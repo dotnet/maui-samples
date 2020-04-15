@@ -1,0 +1,5 @@
+{
+    "msbuild-sdks": {
+            "Xamarin.Android.Sdk": "10.4.99.15"
+    }
+}
