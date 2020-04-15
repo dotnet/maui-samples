@@ -1,5 +1,20 @@
+# net5-samples
 
-# Contributing
+This is a preview of Xamarin in .NET 5.
+
+First install the [latest master build of .NET 5][0].
+
+To build the Android project:
+
+    dotnet publish HelloAndroid\HelloAndroid.csproj --self-contained
+
+_TODO: a future build of Xamarin.Android will support deploying via:_
+
+    dotnet publish -t:Install HelloAndroid\HelloAndroid.csproj --self-contained
+
+[0]: https://github.com/dotnet/installer#installers-and-binaries
+
+## Contributing
 
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a
 Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
