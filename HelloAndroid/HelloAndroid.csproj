@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Xamarin.Android.Sdk">
   <PropertyGroup>
     <TargetFramework>netcoreapp5.0</TargetFramework>
-    <Configuration>Debug</Configuration>
     <RuntimeIdentifier>android.21-arm64</RuntimeIdentifier>
   </PropertyGroup>
 </Project>
