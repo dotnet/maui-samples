@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.iOS.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp5.0</TargetFramework>
+    <RuntimeIdentifier>ios.13-arm64</RuntimeIdentifier>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="4.5.0.617" GeneratePathProperty="true" />
+    <ProjectReference Include="..\HelloForms\HelloForms.csproj" />
+    <!-- NOTE: the items below are workarounds for $(AssetTargetFallback) usage -->
+    <!-- see: https://github.com/NuGet/docs.microsoft.com-nuget/issues/1955 -->
+    <Reference Include="Xamarin.Forms.Platform.iOS" HintPath="$(PkgXamarin_Forms)\build\XCODE11\Xamarin.Forms.Platform.iOS.dll" />
+  </ItemGroup>
+</Project>
