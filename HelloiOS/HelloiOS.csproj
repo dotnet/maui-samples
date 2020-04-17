@@ -2,5 +2,6 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp5.0</TargetFramework>
     <RuntimeIdentifier>ios.13-arm64</RuntimeIdentifier>
+    <OutputType>Exe</OutputType>
   </PropertyGroup>
 </Project>
