@@ -20,7 +20,7 @@ _TODO: a future build of Xamarin.Android will support deploying via:_
 
 To build the iOS project:
 
-    dotnet publish HelloiOS/HelloiOS.csproj -r ios-x64 --self-contained
+    dotnet publish HelloiOS/HelloiOS.csproj --self-contained
 
 [0]: https://github.com/dotnet/installer#installers-and-binaries
 
