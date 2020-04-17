@@ -4,7 +4,13 @@ This is a preview of Xamarin in .NET 5.
 
 First install the [latest master build of .NET 5][0].
 
-To build the Android project:
+Projects:
+
+* HelloAndroid - a native Xamarin.Android application
+* HelloiOS - a native Xamarin.iOS application
+* HelloForms, HelloForms.iOS, HelloForms.Android - a cross-platform Xamarin.Forms application
+
+For example, to build the Android project:
 
     dotnet publish HelloAndroid\HelloAndroid.csproj --self-contained
 

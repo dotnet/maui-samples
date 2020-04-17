@@ -1,0 +1,5 @@
+<Project>
+  <PropertyGroup>
+    <AssetTargetFallback Condition="'$(UsingAndroidNETSdk)' == 'true'">monoandroid10.0;monoandroid90;monoandroid81;monoandroid80;$(AssetTargetFallback)</AssetTargetFallback>
+  </PropertyGroup>
+</Project>
