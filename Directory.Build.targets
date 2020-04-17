@@ -2,4 +2,15 @@
   <PropertyGroup>
     <AssetTargetFallback Condition="'$(UsingAndroidNETSdk)' == 'true'">monoandroid10.0;monoandroid90;monoandroid81;monoandroid80;$(AssetTargetFallback)</AssetTargetFallback>
   </PropertyGroup>
+
+  <Target
+    Name="SetiOSDefaultPublishProps"
+    BeforeTargets="PrepareForPublish"
+    Condition="$(RuntimeIdentifier.StartsWith('ios'))">
+    <PropertyGroup>
+      <PublishTrimmed>True</PublishTrimmed>
+      <MonoAOT>True</MonoAOT>
+      <UseAppHost>False</UseAppHost>
+    </PropertyGroup>
+  </Target>
 </Project>
