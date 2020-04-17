@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.iOS.Sdk">
   <PropertyGroup>
     <TargetFramework>netcoreapp5.0</TargetFramework>
-    <Configuration>Debug</Configuration>
     <RuntimeIdentifier>ios.13-arm64</RuntimeIdentifier>
+    <OutputType>Exe</OutputType>
   </PropertyGroup>
 </Project>
