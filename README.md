@@ -14,7 +14,7 @@ For example, to build the Android project:
 
     dotnet publish HelloAndroid\HelloAndroid.csproj --self-contained
 
-_TODO: a future build of Xamarin.Android will support deploying via:_
+You can also deploy an Android project to an attached device via:
 
     dotnet publish -t:Install HelloAndroid\HelloAndroid.csproj --self-contained
 
