@@ -24,6 +24,35 @@ To build the iOS project:
 
 [0]: https://github.com/dotnet/installer#installers-and-binaries
 
+## Workarounds
+
+These are notes for things we currently had to workaround for these samples to work.
+
+### NuGet
+
+Currently, NuGet is not able to restore existing Xamarin.Android/iOS
+packages for a .NET 5 project. We used `$(AssetTargetFallback)`,
+however, this option does not work in combination with transitive
+dependencies. The `Xamarin.AndroidX.*` set of NuGet packages has a
+complex dependency tree. We just listed every package manually for
+now.
+
+Additionally, we had some problems with the Xamarin.Forms NuGet
+package listing the same assembly in both:
+
+* `lib\netstandard2.0\Xamarin.Forms.Platform.dll`
+* `lib\MonoAndroid10.0\Xamarin.Forms.Platform.dll`
+
+For now we added an MSBuild target in `Directory.Build.targets` to
+resolve this. We also had to manually reference
+`Xamarin.Forms.Platform.Android.dll`.
+
+### AndroidX MSBuild tasks
+
+We need to port some MSBuild tasks to `netstandard2.0` such as:
+
+https://github.com/xamarin/AndroidSupportComponents/blob/68d28bc676673ec45f7f5ea2462c10bed87e2a2a/source/buildtasks/support-vector-drawable/Support-Vector-Drawable-BuildTasks.csproj#L10
+
 ## Contributing
 
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a

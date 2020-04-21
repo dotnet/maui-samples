@@ -1,7 +1,24 @@
 <Project>
-  <PropertyGroup>
-    <AssetTargetFallback Condition="'$(UsingAndroidNETSdk)' == 'true'">monoandroid10.0;monoandroid90;monoandroid81;monoandroid80;$(AssetTargetFallback)</AssetTargetFallback>
+  <PropertyGroup Condition="'$(UsingAndroidNETSdk)' == 'true'">
+    <AssetTargetFallback>monoandroid10.0;monoandroid90;monoandroid81;monoandroid80;$(AssetTargetFallback)</AssetTargetFallback>
+    <!-- Workaround to skip a .NET 4.5 MSBuild task: https://github.com/xamarin/AndroidSupportComponents/blob/68d28bc676673ec45f7f5ea2462c10bed87e2a2a/source/buildtasks/support-vector-drawable/Support-Vector-Drawable-BuildTasks.csproj#L10 -->
+    <VectorDrawableCheckBuildToolsVersionTaskBeforeTargets />
   </PropertyGroup>
+
+  <!-- NOTE: the target below is workarounds for $(AssetTargetFallback) usage -->
+  <!-- related: https://github.com/NuGet/docs.microsoft.com-nuget/issues/1955 -->
+  <Target
+    Name="FixAndroidNuGetAssemblies"
+    AfterTargets="ResolvePackageAssets"
+    Condition="'$(UsingAndroidNETSdk)' == 'true' and '$(PkgXamarin_Forms)' != ''">
+    <ItemGroup>
+      <Reference Include="Xamarin.Forms.Platform"         HintPath="$(PkgXamarin_Forms)\lib\MonoAndroid10.0\Xamarin.Forms.Platform.dll" />
+      <Reference Include="Xamarin.Forms.Platform.Android" HintPath="$(PkgXamarin_Forms)\lib\MonoAndroid10.0\Xamarin.Forms.Platform.Android.dll" />
+      <Reference Include="FormsViewGroup"                 HintPath="$(PkgXamarin_Forms)\lib\MonoAndroid10.0\FormsViewGroup.dll" />
+      <RuntimeCopyLocalItems          Remove="$(PkgXamarin_Forms)\lib\netstandard2.0\Xamarin.Forms.Platform.dll" />
+      <ResolvedCompileFileDefinitions Remove="$(PkgXamarin_Forms)\lib\netstandard2.0\Xamarin.Forms.Platform.dll" />
+    </ItemGroup>
+  </Target>
 
   <Target
     Name="SetiOSDefaultPublishProps"
