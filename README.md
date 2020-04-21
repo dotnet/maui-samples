@@ -53,6 +53,9 @@ We need to port some MSBuild tasks to `netstandard2.0` such as:
 
 https://github.com/xamarin/AndroidSupportComponents/blob/68d28bc676673ec45f7f5ea2462c10bed87e2a2a/source/buildtasks/support-vector-drawable/Support-Vector-Drawable-BuildTasks.csproj#L10
 
+We set `$(VectorDrawableCheckBuildToolsVersionTaskBeforeTargets)` to
+an empty string in `Directory.Build.targets` for now.
+
 ## Contributing
 
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a
