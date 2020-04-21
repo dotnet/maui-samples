@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">Hello Android</string>
-    <string name="action_settings">Settings</string>
+    <string name="app_text">Hello, .NET 5!</string>
 </resources>
