@@ -27,7 +27,7 @@ To build the iOS project:
 
     dotnet publish HelloiOS/HelloiOS.csproj --self-contained
 
-_NOTE: eventually `--self-contained` won't be needed on iOS.
+_NOTE: eventually `--self-contained` won't be needed on iOS._
 
 [0]: https://github.com/dotnet/installer#installers-and-binaries
 
