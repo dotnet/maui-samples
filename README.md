@@ -33,6 +33,10 @@ _This can also be done at the same time as `dotnet publish -t:Install -t:StartAn
 
 ### iOS
 
+Prerequisites:
+
+* Xcode 11.4. Earlier versions won't work.
+
 To build the iOS project:
 
     dotnet publish HelloiOS/HelloiOS.csproj
