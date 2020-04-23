@@ -1,7 +1,8 @@
 ﻿<Project Sdk="Microsoft.iOS.Sdk">
   <PropertyGroup>
     <TargetFramework>netcoreapp5.0</TargetFramework>
-    <RuntimeIdentifier>ios.13-arm64</RuntimeIdentifier>
+    <RuntimeIdentifier>ios-x64</RuntimeIdentifier>
+    <OutputType>Exe</OutputType>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="4.5.0.617" GeneratePathProperty="true" />
