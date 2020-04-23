@@ -1,6 +1,6 @@
 {
     "msbuild-sdks": {
-            "Microsoft.iOS.Sdk": "13.21.1-alpha.17",
+            "Microsoft.iOS.Sdk": "13.21.1-alpha.85",
             "Microsoft.Android.Sdk": "10.4.99.37"
     }
 }

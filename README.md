@@ -35,9 +35,11 @@ _This can also be done at the same time as `-t:Install`._
 
 To build the iOS project:
 
-    dotnet publish HelloiOS/HelloiOS.csproj --self-contained
+    dotnet publish HelloiOS/HelloiOS.csproj
 
-_NOTE: eventually `--self-contained` won't be needed on iOS._
+To launch the iOS project on a simulator:
+
+    dotnet publish HelloiOS/HelloiOS.csproj -t:Run
 
 [0]: https://github.com/dotnet/installer#installers-and-binaries
 
@@ -49,6 +51,7 @@ Currently...
 * There is not a way to setup a Xamarin.Android binding project.
 * `System.Console.WriteLine` does not work. Use
   `Android.Util.Log.Debug` or p/invoke [NSLog][nslog] for now.
+* Building for device doesn't work for iOS.
 
 [nslog]: https://stackoverflow.com/questions/9204160/monotouch-nslog-and-testflightsdk
 
