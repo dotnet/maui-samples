@@ -21,6 +21,4 @@
     </ItemGroup>
   </Target>
 
-  <Target Name="Run" DependsOnTargets="StartAndroidActivity" />
-
 </Project>

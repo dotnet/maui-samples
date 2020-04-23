@@ -27,9 +27,9 @@ the `.csproj` or run:
 
 To launch the app:
 
-    dotnet publish -t:Run HelloAndroid/HelloAndroid.csproj
+    dotnet build -t:StartAndroidActivity HelloAndroid/HelloAndroid.csproj
 
-_This can also be done at the same time as `-t:Install`._
+_This can also be done at the same time as `dotnet publish -t:Install -t:StartAndroidActivity`. We will eventually add a `Run` target for simplicity._
 
 ### iOS
 
