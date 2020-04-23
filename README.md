@@ -12,21 +12,39 @@ Projects:
 
 For example, to build the Android project:
 
-    dotnet publish HelloAndroid\HelloAndroid.csproj --self-contained
+    dotnet publish HelloAndroid\HelloAndroid.csproj
 
-You can also deploy an Android project to an attached device via:
+You can also deploy an Android project to an attached emulator via:
 
-    dotnet publish -t:Install HelloAndroid\HelloAndroid.csproj --self-contained
+    dotnet publish -t:Install HelloAndroid\HelloAndroid.csproj
+
+To deploy to a device, you can either modify `$(RuntimeIdentifier)` in
+the `.csproj` or run:
+
+    dotnet publish -t:Install HelloAndroid\HelloAndroid.csproj -r android.21-arm64
 
 To build the iOS project:
 
     dotnet publish HelloiOS/HelloiOS.csproj --self-contained
 
+_NOTE: eventually `--self-contained` won't be needed on iOS.
+
 [0]: https://github.com/dotnet/installer#installers-and-binaries
+
+## Known Issues
+
+Currently...
+
+* There is not a way to do `dotnet publish` with multiple RIDs.
+* There is not a way to setup a Xamarin.Android binding project.
+* `System.Console.WriteLine` does not work. Use
+  `Android.Util.Log.Debug` or p/invoke [NSLog][nslog] for now.
+
+[nslog]: https://stackoverflow.com/questions/9204160/monotouch-nslog-and-testflightsdk
 
 ## Workarounds
 
-These are notes for things we currently had to workaround for these samples to work.
+These are notes for things we had to workaround for these samples to work.
 
 ### NuGet
 
