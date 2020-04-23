@@ -10,6 +10,8 @@ Projects:
 * HelloiOS - a native Xamarin.iOS application
 * HelloForms, HelloForms.iOS, HelloForms.Android - a cross-platform Xamarin.Forms application
 
+### Android
+
 For example, to build the Android project:
 
     dotnet publish HelloAndroid\HelloAndroid.csproj
@@ -22,6 +24,14 @@ To deploy to a device, you can either modify `$(RuntimeIdentifier)` in
 the `.csproj` or run:
 
     dotnet publish -t:Install HelloAndroid\HelloAndroid.csproj -r android.21-arm64
+
+To launch the app:
+
+    dotnet publish -t:Run HelloAndroid\HelloAndroid.csproj
+
+_This can also be done at the same time as `-t:Install`._
+
+### iOS
 
 To build the iOS project:
 

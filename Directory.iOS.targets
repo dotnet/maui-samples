@@ -1,0 +1,11 @@
+<Project>
+
+  <Target Name="SetiOSDefaultPublishProps" BeforeTargets="PrepareForPublish">
+    <PropertyGroup>
+      <PublishTrimmed>True</PublishTrimmed>
+      <MonoAOT>True</MonoAOT>
+      <UseAppHost>False</UseAppHost>
+    </PropertyGroup>
+  </Target>
+
+</Project>
