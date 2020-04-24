@@ -1,6 +1,6 @@
 # net5-samples
 
-This is a preview of Xamarin in .NET 5.
+_This is an *early* preview of Xamarin in .NET 5 **not for production use**. Expect breaking changes as Xamarin is still in development for .NET 5._
 
 First install the [latest master build of .NET 5][0].
 
