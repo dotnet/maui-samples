@@ -56,10 +56,11 @@ To launch the iOS project on a simulator:
 Currently...
 
 * There is not a way to do `dotnet publish` with multiple RIDs.
-* There is not a way to setup a Xamarin.Android binding project.
-* `System.Console.WriteLine` does not work. Use
-  `Android.Util.Log.Debug` or p/invoke [NSLog][nslog] for now.
+* There is not a way to setup a binding project, neither for Xamarin.Android nor Xamarin.iOS.
+* `System.Console.WriteLine` does not work on Xamarin.Android. Use
+  `Android.Util.Log.Debug` for now.
 * Building for device doesn't work for iOS.
+* Building for tvOS or watchOS does not work.
 
 [nslog]: https://stackoverflow.com/questions/9204160/monotouch-nslog-and-testflightsdk
 
