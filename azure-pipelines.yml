@@ -1,0 +1,33 @@
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+variables:
+  DotNetVersion: 5.0.100-preview.3.20216.6
+
+jobs:
+- job: windows
+  pool:
+    name: Hosted Windows 2019 with VS2019
+  steps:
+    - task: UseDotNet@2
+      displayName: install .NET $(DotNetVersion)
+      inputs:
+        version: $(DotNetVersion)
+    - script: |
+        dotnet publish HelloAndroid\HelloAndroid.csproj -c Debug
+        dotnet publish HelloAndroid\HelloAndroid.csproj -c Release
+        dotnet publish HelloForms.Android\HelloForms.Android.csproj -c Debug
+        dotnet publish HelloForms.Android\HelloForms.Android.csproj -c Release
+- job: mac
+  pool:
+    name: Hosted macOS
+  steps:
+    - task: UseDotNet@2
+      displayName: install .NET $(DotNetVersion)
+      inputs:
+        version: $(DotNetVersion)
+    - script: |
+        dotnet publish net5-samples.sln -c Debug
+        dotnet publish net5-samples.sln -c Release
