@@ -29,7 +29,8 @@ jobs:
   steps:
     - bash: |
         curl https://dot.net/v1/dotnet-install.sh > dotnet-install.sh
-        sh dotnet-install.sh --version $(DotNetVersion) --install-dir ~/.dotnet/ --verbose
+        chmod +x dotnet-install.sh
+        ./dotnet-install.sh --version $(DotNetVersion) --install-dir ~/.dotnet/ --verbose
         dotnet --list-runtimes
       displayName: install .NET $(DotNetVersion)
     - script: |
