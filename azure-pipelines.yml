@@ -25,7 +25,7 @@ jobs:
         dotnet publish HelloForms.Android\HelloForms.Android.csproj -c Release
 - job: mac
   pool:
-    name: Hosted Mac Internal
+    name: Hosted macOS
   steps:
     - bash: |
         curl -L https://dot.net/v1/dotnet-install.sh > dotnet-install.sh
@@ -33,5 +33,7 @@ jobs:
         dotnet --list-runtimes
       displayName: install .NET $(DotNetVersion)
     - script: |
-        dotnet publish net5-samples.sln -c Debug
-        dotnet publish net5-samples.sln -c Release
+        dotnet publish HelloAndroid\HelloAndroid.csproj -c Debug
+        dotnet publish HelloAndroid\HelloAndroid.csproj -c Release
+        dotnet publish HelloForms.Android\HelloForms.Android.csproj -c Debug
+        dotnet publish HelloForms.Android\HelloForms.Android.csproj -c Release
