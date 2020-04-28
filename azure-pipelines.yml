@@ -4,17 +4,19 @@ trigger:
 - master
 
 variables:
-  DotNetVersion: 5.0.100-preview.3.20216.6
+  DotNetVersion: 5.0.100-preview.4.20227.14
 
 jobs:
 - job: windows
   pool:
     name: Hosted Windows 2019 with VS2019
   steps:
-    - task: UseDotNet@2
+    - powershell: |
+        $ErrorActionPreference = 'Stop'
+        $ProgressPreference = 'SilentlyContinue'
+        Invoke-WebRequest -Uri "https://dot.net/v1/dotnet-install.ps1" -OutFile dotnet-install.ps1
+        & ./dotnet-install.ps1 -Version $(DotNetVersion)
       displayName: install .NET $(DotNetVersion)
-      inputs:
-        version: $(DotNetVersion)
     - script: |
         dotnet publish HelloAndroid\HelloAndroid.csproj -c Debug
         dotnet publish HelloAndroid\HelloAndroid.csproj -c Release
@@ -24,10 +26,12 @@ jobs:
   pool:
     name: Hosted macOS
   steps:
-    - task: UseDotNet@2
+    - powershell: |
+        $ErrorActionPreference = 'Stop'
+        $ProgressPreference = 'SilentlyContinue'
+        Invoke-WebRequest -Uri "https://dot.net/v1/dotnet-install.ps1" -OutFile dotnet-install.ps1
+        & ./dotnet-install.ps1 -Version $(DotNetVersion)
       displayName: install .NET $(DotNetVersion)
-      inputs:
-        version: $(DotNetVersion)
     - script: |
         dotnet publish net5-samples.sln -c Debug
         dotnet publish net5-samples.sln -c Release
