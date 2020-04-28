@@ -33,7 +33,7 @@ jobs:
         dotnet --list-runtimes
       displayName: install .NET $(DotNetVersion)
     - script: |
-        dotnet publish HelloAndroid\HelloAndroid.csproj -c Debug
-        dotnet publish HelloAndroid\HelloAndroid.csproj -c Release
-        dotnet publish HelloForms.Android\HelloForms.Android.csproj -c Debug
-        dotnet publish HelloForms.Android\HelloForms.Android.csproj -c Release
+        dotnet publish HelloAndroid/HelloAndroid.csproj -c Debug
+        dotnet publish HelloAndroid/HelloAndroid.csproj -c Release
+        dotnet publish HelloForms.Android/HelloForms.Android.csproj -c Debug
+        dotnet publish HelloForms.Android/HelloForms.Android.csproj -c Release
