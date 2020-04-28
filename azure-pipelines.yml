@@ -15,7 +15,7 @@ jobs:
         $ErrorActionPreference = 'Stop'
         $ProgressPreference = 'SilentlyContinue'
         Invoke-WebRequest -Uri "https://dot.net/v1/dotnet-install.ps1" -OutFile dotnet-install.ps1
-        & .\dotnet-install.ps1 -Version $(DotNetVersion) -InstallDir "$env:ProgramFiles\dotnet\"
+        & .\dotnet-install.ps1 -Version $(DotNetVersion) -InstallDir "$env:ProgramFiles\dotnet\" -Verbose
         & dotnet --list-runtimes
       displayName: install .NET $(DotNetVersion)
     - script: |
@@ -29,7 +29,7 @@ jobs:
   steps:
     - bash: |
         curl https://dot.net/v1/dotnet-install.sh > dotnet-install.sh
-        sh dotnet-install.sh --version $(DotNetVersion) --install-dir ~/.dotnet/
+        sh dotnet-install.sh --version $(DotNetVersion) --install-dir ~/.dotnet/ --verbose
         dotnet --list-runtimes
       displayName: install .NET $(DotNetVersion)
     - script: |
