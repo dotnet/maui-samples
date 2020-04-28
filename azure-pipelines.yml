@@ -27,9 +27,9 @@ jobs:
   pool:
     name: Hosted macOS
   steps:
-    - script: |
+    - bash: |
         curl https://dot.net/v1/dotnet-install.sh > dotnet-install.sh
-        sh dotnet-install.sh --version $(DotNetVersion) --install-dir /usr/local/share/dotnet/
+        sh dotnet-install.sh --version $(DotNetVersion) --install-dir ~/.dotnet/
         dotnet --list-runtimes
       displayName: install .NET $(DotNetVersion)
     - script: |
