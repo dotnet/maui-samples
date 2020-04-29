@@ -20,20 +20,14 @@ For example, to build the Android project:
 
     dotnet publish HelloAndroid/HelloAndroid.csproj
 
-You can also deploy an Android project to an attached emulator via:
+You can launch the Android project to an attached emulator via:
 
-    dotnet publish -t:Install HelloAndroid/HelloAndroid.csproj
+    dotnet publish HelloAndroid/HelloAndroid.csproj -t:Run
 
-To deploy to a device, you can either modify `$(RuntimeIdentifier)` in
+To deploy and run on a device, you can either modify `$(RuntimeIdentifier)` in
 the `.csproj` or run:
 
-    dotnet publish -t:Install HelloAndroid/HelloAndroid.csproj -r android.21-arm64
-
-To launch the app:
-
-    dotnet build -t:StartAndroidActivity HelloAndroid/HelloAndroid.csproj
-
-_This can also be done at the same time as `dotnet publish -t:Install -t:StartAndroidActivity`. We will eventually add a `Run` target for simplicity._
+    dotnet publish HelloAndroid/HelloAndroid.csproj -t:Run -r android.21-arm64
 
 ### iOS
 
