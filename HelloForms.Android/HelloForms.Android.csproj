@@ -2,6 +2,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp5.0</TargetFramework>
     <RuntimeIdentifier>android.21-x86</RuntimeIdentifier>
+    <OutputType>Exe</OutputType>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="4.5.0.617" GeneratePathProperty="true" />
