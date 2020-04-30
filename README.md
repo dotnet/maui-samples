@@ -10,7 +10,7 @@ Projects:
 * HelloiOS - a native Xamarin.iOS application
 * HelloForms, HelloForms.iOS, HelloForms.Android - a cross-platform Xamarin.Forms application
 
-### Android
+## Android
 
 Prerequisites:
 
@@ -29,7 +29,7 @@ the `.csproj` or run:
 
     dotnet publish HelloAndroid/HelloAndroid.csproj -t:Run -r android.21-arm64
 
-### iOS
+## iOS
 
 Prerequisites:
 
@@ -55,8 +55,6 @@ Currently...
   `Android.Util.Log.Debug` for now.
 * Building for device doesn't work for iOS.
 * Building for tvOS or watchOS does not work.
-
-[nslog]: https://stackoverflow.com/questions/9204160/monotouch-nslog-and-testflightsdk
 
 ## Workarounds
 
@@ -84,17 +82,18 @@ resolve this. We also had to manually reference
 ### AndroidX MSBuild tasks
 
 We need to port some MSBuild tasks to `netstandard2.0` such as:
-
-https://github.com/xamarin/AndroidSupportComponents/blob/68d28bc676673ec45f7f5ea2462c10bed87e2a2a/source/buildtasks/support-vector-drawable/Support-Vector-Drawable-BuildTasks.csproj#L10
+[Support-Vector-Drawable-BuildTasks.csproj#L10][1].
 
 We set `$(VectorDrawableCheckBuildToolsVersionTaskBeforeTargets)` to
 an empty string in `Directory.Build.targets` for now.
+
+[1]: https://github.com/xamarin/AndroidSupportComponents/blob/68d28bc676673ec45f7f5ea2462c10bed87e2a2a/source/buildtasks/support-vector-drawable/Support-Vector-Drawable-BuildTasks.csproj#L10
 
 ## Contributing
 
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a
 Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
-the rights to use your contribution. For details, visit https://cla.opensource.microsoft.com.
+the rights to use your contribution. For details, visit [https://cla.opensource.microsoft.com](https://cla.opensource.microsoft.com).
 
 When you submit a pull request, a CLA bot will automatically determine whether you need to provide
 a CLA and decorate the PR appropriately (e.g., status check, comment). Simply follow the instructions
