@@ -16,7 +16,7 @@ jobs:
         $ProgressPreference = 'SilentlyContinue'
         Invoke-WebRequest -Uri "https://dot.net/v1/dotnet-install.ps1" -OutFile dotnet-install.ps1
         & .\dotnet-install.ps1 -Version $(DotNetVersion) -InstallDir "$env:ProgramFiles\dotnet\" -Verbose
-        & dotnet --list-runtimes
+        & dotnet --list-sdks
       displayName: install .NET $(DotNetVersion)
     - script: |
         dotnet publish HelloAndroid\HelloAndroid.csproj -c Debug
@@ -30,7 +30,7 @@ jobs:
     - bash: |
         curl -L https://dot.net/v1/dotnet-install.sh > dotnet-install.sh
         sh dotnet-install.sh --version $(DotNetVersion) --install-dir ~/.dotnet/ --verbose
-        dotnet --list-runtimes
+        dotnet --list-sdks
       displayName: install .NET $(DotNetVersion)
     - script: |
         dotnet publish net5-samples.sln -c Debug
