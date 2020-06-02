@@ -1,50 +1,12 @@
 <Project Sdk="Microsoft.Android.Sdk">
   <PropertyGroup>
-    <TargetFramework>netcoreapp5.0</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <RuntimeIdentifier>android.21-x86</RuntimeIdentifier>
     <OutputType>Exe</OutputType>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.5.0.617" GeneratePathProperty="true" />
+    <PackageReference Include="Xamarin.Forms" Version="4.5.0.617" />
     <ProjectReference Include="..\HelloForms\HelloForms.csproj" />
-    <!-- NOTE: the items below are workarounds for $(AssetTargetFallback) usage -->
-    <!-- see: https://github.com/NuGet/docs.microsoft.com-nuget/issues/1955 -->
-    <PackageReference Include="Xamarin.AndroidX.Activity" Version="1.1.0" />
-    <PackageReference Include="Xamarin.AndroidX.Annotation" Version="1.1.0" />
-    <PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.1.0" />
-    <PackageReference Include="Xamarin.AndroidX.AppCompat.Resources" Version="1.1.0" />
-    <PackageReference Include="Xamarin.AndroidX.Arch.Core.Common" Version="2.1.0" />
-    <PackageReference Include="Xamarin.AndroidX.Arch.Core.Runtime" Version="2.1.0" />
-    <PackageReference Include="Xamarin.AndroidX.AsyncLayoutInflater" Version="1.0.0" />
-    <PackageReference Include="Xamarin.AndroidX.Browser" Version="1.2.0" />
-    <PackageReference Include="Xamarin.AndroidX.CardView" Version="1.0.0" />
-    <PackageReference Include="Xamarin.AndroidX.Collection" Version="1.1.0" />
-    <PackageReference Include="Xamarin.AndroidX.CoordinatorLayout" Version="1.1.0" />
-    <PackageReference Include="Xamarin.AndroidX.Core" Version="1.2.0" />
-    <PackageReference Include="Xamarin.AndroidX.CursorAdapter" Version="1.0.0" />
-    <PackageReference Include="Xamarin.AndroidX.CustomView" Version="1.0.0" />
-    <PackageReference Include="Xamarin.AndroidX.DocumentFile" Version="1.0.1" />
-    <PackageReference Include="Xamarin.AndroidX.DrawerLayout" Version="1.0.0" />
-    <PackageReference Include="Xamarin.AndroidX.Fragment" Version="1.2.3" />
-    <PackageReference Include="Xamarin.AndroidX.Legacy.Support.Core.UI" Version="1.0.0" />
-    <PackageReference Include="Xamarin.AndroidX.Legacy.Support.Core.Utils" Version="1.0.0" />
-    <PackageReference Include="Xamarin.AndroidX.Lifecycle.Common" Version="2.2.0" />
-    <PackageReference Include="Xamarin.AndroidX.Lifecycle.LiveData" Version="2.2.0" />
-    <PackageReference Include="Xamarin.AndroidX.Lifecycle.LiveData.Core" Version="2.2.0" />
-    <PackageReference Include="Xamarin.AndroidX.Lifecycle.Runtime" Version="2.2.0" />
-    <PackageReference Include="Xamarin.AndroidX.Lifecycle.ViewModel" Version="2.2.0" />
-    <PackageReference Include="Xamarin.AndroidX.Loader" Version="1.1.0" />
-    <PackageReference Include="Xamarin.AndroidX.Print" Version="1.0.0" />
-    <PackageReference Include="Xamarin.AndroidX.RecyclerView" Version="1.1.0" />
-    <PackageReference Include="Xamarin.AndroidX.SavedState" Version="1.0.0" />
-    <PackageReference Include="Xamarin.AndroidX.SlidingPaneLayout" Version="1.0.0" />
-    <PackageReference Include="Xamarin.AndroidX.SwipeRefreshLayout" Version="1.0.0" />
-    <PackageReference Include="Xamarin.AndroidX.Transition" Version="1.3.1" />
-    <PackageReference Include="Xamarin.AndroidX.VectorDrawable" Version="1.1.0" />
-    <PackageReference Include="Xamarin.AndroidX.VectorDrawable.Animated" Version="1.1.0" />
-    <PackageReference Include="Xamarin.AndroidX.VersionedParcelable" Version="1.1.0" />
-    <PackageReference Include="Xamarin.AndroidX.ViewPager" Version="1.0.0" />
-    <PackageReference Include="Xamarin.Google.Android.Material" Version="1.0.0" />
     <!--
       add few more packages to bring missing dependencies while linking
       it is probably same issue as here: https://github.com/mono/linker/issues/1139
@@ -56,6 +18,5 @@
     <PackageReference Include="System.IO.Ports" Version="5.0.0-preview.3.20214.6" />
     <PackageReference Include="System.Security.Permissions" Version="5.0.0-preview.3.20214.6" />
     <PackageReference Include="System.Threading.AccessControl" Version="5.0.0-preview.3.20214.6" />
-    <PackageReference Include="Xamarin.Google.Guava.ListenableFuture" Version="1.0.0.2" />
   </ItemGroup>
 </Project>

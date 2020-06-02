@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.Android.Sdk">
   <PropertyGroup>
-    <TargetFramework>netcoreapp5.0</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <RuntimeIdentifier>android.21-x86</RuntimeIdentifier>
     <OutputType>Exe</OutputType>
   </PropertyGroup>
