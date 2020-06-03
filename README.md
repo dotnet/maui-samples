@@ -1,8 +1,8 @@
-# net5-samples
+# net6-samples
 
-_This is an *early* preview of Xamarin in .NET 5 **not for production use**. Expect breaking changes as Xamarin is still in development for .NET 5._
+_This is an *early* preview of Xamarin in .NET 6 **not for production use**. Expect breaking changes as Xamarin is still in development for .NET 6._
 
-First install the [latest master build of .NET 5][0].
+First install the [latest master build of .NET 6][0].
 
 Projects:
 
@@ -63,7 +63,7 @@ These are notes for things we had to workaround for these samples to work.
 ### NuGet
 
 Currently, NuGet is not able to restore existing Xamarin.Android/iOS
-packages for a .NET 5 project. We used `$(AssetTargetFallback)`,
+packages for a .NET 6 project. We used `$(AssetTargetFallback)`,
 however, this option does not work in combination with transitive
 dependencies. The `Xamarin.AndroidX.*` set of NuGet packages has a
 complex dependency tree. We just listed every package manually for
