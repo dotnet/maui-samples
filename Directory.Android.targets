@@ -1,8 +1,0 @@
-<Project>
-
-  <PropertyGroup>
-    <!-- Workaround to skip a .NET 4.5 MSBuild task: https://github.com/xamarin/AndroidSupportComponents/blob/68d28bc676673ec45f7f5ea2462c10bed87e2a2a/source/buildtasks/support-vector-drawable/Support-Vector-Drawable-BuildTasks.csproj#L10 -->
-    <VectorDrawableCheckBuildToolsVersionTaskBeforeTargets />
-  </PropertyGroup>
-
-</Project>
