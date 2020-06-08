@@ -77,19 +77,6 @@ package listing the same assembly in both:
 For now we added workarounds in `xamarin-android`, see
 [xamarin-android#4663](https://github.com/xamarin/xamarin-android/pull/4663).
 
-### AndroidX MSBuild tasks
-
-We need to port some MSBuild tasks to `netstandard2.0` such as:
-[Support-Vector-Drawable-BuildTasks.csproj#L10][1].
-
-We set `$(VectorDrawableCheckBuildToolsVersionTaskBeforeTargets)` to
-an empty string in `Directory.Build.targets` for now.
-
-[1]: https://github.com/xamarin/AndroidSupportComponents/blob/68d28bc676673ec45f7f5ea2462c10bed87e2a2a/source/buildtasks/support-vector-drawable/Support-Vector-Drawable-BuildTasks.csproj#L10
-
-Eventually, we can use a newer version of Xamarin.AndroidX.VectorDrawable
-with [AndroidX#103](https://github.com/xamarin/AndroidX/pull/103).
-
 ## Contributing
 
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a
