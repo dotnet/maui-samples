@@ -1,7 +1,10 @@
 # https://aka.ms/yaml
 
 trigger:
-- master
+- main
+
+pr:
+- main
 
 variables:
   DotNetVersion: 5.0.100-preview.7.20307.3
