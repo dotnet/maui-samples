@@ -61,8 +61,8 @@ jobs:
 
     - bash: |
         # Re-enable if Xcode 11.4.1 available or issue fixed: https://github.com/xamarin/xamarin-macios/issues/8325
-        # dotnet build net5-samples.sln -c Debug -bl:$(LogDirectory)/Debug.binlog &&
-        dotnet build net5-samples.sln -c Release -bl:$(LogDirectory)/Release.binlog
+        # dotnet build net6-samples.sln -c Debug -bl:$(LogDirectory)/Debug.binlog &&
+        dotnet build net6-samples.sln -c Release -bl:$(LogDirectory)/Release.binlog
       displayName: build samples
 
     - task: CopyFiles@2
