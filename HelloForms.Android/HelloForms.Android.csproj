@@ -5,7 +5,7 @@
     <OutputType>Exe</OutputType>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.5.0.617" />
+    <PackageReference Include="Xamarin.Forms" Version="4.7.0.1142" />
     <!-- Needed until the dependencies are updated for Xamarin.Forms -->
     <PackageReference Include="Xamarin.AndroidX.VectorDrawable" Version="1.1.0.1" />
     <ProjectReference Include="..\HelloForms\HelloForms.csproj" />
