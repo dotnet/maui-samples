@@ -7,7 +7,7 @@ pr:
 - main
 
 variables:
-  DotNetVersion: 5.0.100-preview.7.20307.3
+  DotNetVersion: 5.0.100-rc.1.20365.11
 
 jobs:
 - job: windows
