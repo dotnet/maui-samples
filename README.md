@@ -14,7 +14,7 @@ Projects:
 
 Prerequisites:
 
-* You will need the Android SDK installed as well as `Android SDK Platform 29`. Simplest way to get this is to install the current Xamarin workload and go to `Tools > Android > Android SDK Manager` from within Visual Studio.
+* You will need the Android SDK installed as well as `Android SDK Platform 30`. Simplest way to get this is to install the current Xamarin workload and go to `Tools > Android > Android SDK Manager` from within Visual Studio.
 
 For example, to build the Android project:
 
