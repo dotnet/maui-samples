@@ -49,7 +49,6 @@ To launch the iOS project on a simulator:
 
 Currently...
 
-* There is not a way to do `dotnet publish` with multiple RIDs.
 * There is not a way to setup a binding project, neither for Xamarin.Android nor Xamarin.iOS.
 * `System.Console.WriteLine` does not work on Xamarin.Android. Use
   `Android.Util.Log.Debug` for now.
