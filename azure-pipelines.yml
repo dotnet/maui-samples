@@ -27,8 +27,8 @@ jobs:
     - powershell: |
         & dotnet build HelloAndroid\HelloAndroid.csproj -c Debug -bl:$(LogDirectory)\Debug-HelloAndroid.binlog
         & dotnet build HelloAndroid\HelloAndroid.csproj -c Release -bl:$(LogDirectory)\Release-HelloAndroid.binlog
-        & dotnet build HelloForms.Android\HelloForms.Android.csproj -c Debug -bl:$(LogDirectory)\Debug-HelloForms.binlog
-        & dotnet build HelloForms.Android\HelloForms.Android.csproj -c Release -bl:$(LogDirectory)\Release-HelloForms.binlog
+        & dotnet build HelloForms.Droid\HelloForms.Droid.csproj -c Debug -bl:$(LogDirectory)\Debug-HelloForms.binlog
+        & dotnet build HelloForms.Droid\HelloForms.Droid.csproj -c Release -bl:$(LogDirectory)\Release-HelloForms.binlog
       displayName: build samples
       errorActionPreference: stop
 

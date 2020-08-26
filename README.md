@@ -8,7 +8,7 @@ Projects:
 
 * HelloAndroid - a native Xamarin.Android application
 * HelloiOS - a native Xamarin.iOS application
-* HelloForms, HelloForms.iOS, HelloForms.Android - a cross-platform Xamarin.Forms application
+* HelloForms, HelloForms.iOS, HelloForms.Droid - a cross-platform Xamarin.Forms application
 
 ## Android
 
