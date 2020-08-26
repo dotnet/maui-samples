@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloAndroid", "HelloAndroi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloiOS", "HelloiOS\HelloiOS.csproj", "{E97A9C8C-8AD6-496A-A0A4-A5A90870E03D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloForms.Android", "HelloForms.Android\HelloForms.Android.csproj", "{66B60757-4FA8-4CFF-9B44-637CA23BA493}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloForms.Droid", "HelloForms.Droid\HelloForms.Droid.csproj", "{66B60757-4FA8-4CFF-9B44-637CA23BA493}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloForms.iOS", "HelloForms.iOS\HelloForms.iOS.csproj", "{3B314BD0-0A8B-43E7-BF47-131D44EBB1F4}"
 EndProject
