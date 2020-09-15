@@ -4,6 +4,6 @@
     <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.7.0.1142" />
+    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1364" />
   </ItemGroup>
 </Project>
