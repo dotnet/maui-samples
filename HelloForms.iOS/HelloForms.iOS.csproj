@@ -5,7 +5,7 @@
     <OutputType>Exe</OutputType>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.7.0.1142" GeneratePathProperty="true" />
+    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1364" GeneratePathProperty="true" />
     <ProjectReference Include="..\HelloForms\HelloForms.csproj" />
   </ItemGroup>
   <ItemGroup>
