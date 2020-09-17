@@ -1,7 +1,6 @@
 <Project Sdk="Microsoft.Android.Sdk">
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-    <RuntimeIdentifier>android.21-x86</RuntimeIdentifier>
+    <TargetFramework>net5.0-android</TargetFramework>
     <OutputType>Exe</OutputType>
   </PropertyGroup>
   <ItemGroup>
@@ -9,16 +8,5 @@
     <!-- Needed until the dependencies are updated for Xamarin.Forms -->
     <PackageReference Include="Xamarin.AndroidX.VectorDrawable" Version="1.1.0.1" />
     <ProjectReference Include="..\HelloForms\HelloForms.csproj" />
-    <!--
-      add few more packages to bring missing dependencies while linking
-      it is probably same issue as here: https://github.com/mono/linker/issues/1139
-      these should not be needed once we have the AndroidX packages targetting net5
-    -->
-    <PackageReference Include="System.CodeDom" Version="5.0.0-preview.3.20214.6" />
-    <PackageReference Include="System.Diagnostics.EventLog" Version="5.0.0-preview.3.20214.6" />
-    <PackageReference Include="System.Diagnostics.PerformanceCounter" Version="5.0.0-preview.3.20214.6" />
-    <PackageReference Include="System.IO.Ports" Version="5.0.0-preview.3.20214.6" />
-    <PackageReference Include="System.Security.Permissions" Version="5.0.0-preview.3.20214.6" />
-    <PackageReference Include="System.Threading.AccessControl" Version="5.0.0-preview.3.20214.6" />
   </ItemGroup>
 </Project>
