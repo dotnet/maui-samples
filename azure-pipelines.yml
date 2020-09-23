@@ -26,7 +26,7 @@ jobs:
         clang -v
         xcrun clang -v
         DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer xcrun clang -v
-        sudo xcode-select /Applications/Xcode.app
+        sudo xcode-select -s /Applications/Xcode.app
         /usr/libexec/PlistBuddy -c "set :AppleSdkRoot /Applications/Xcode.app" ~/Library/Preferences/Xamarin/Settings.plist
         xcode-select -p
         xcrun xcode-select -p
