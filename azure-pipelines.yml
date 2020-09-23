@@ -4,7 +4,6 @@ variables:
   DotNetVersion: 5.0.100-rc.2.20459.1
 
 jobs:
-
 - job: mac
   pool:
     vmImage: macOS-latest
@@ -18,8 +17,17 @@ jobs:
       displayName: install .NET $(DotNetVersion)
 
     - bash: |
-        set +x
+        set -x
         ls -la /Applications
+        xcode-select -p
+        xcrun xcode-select -p
+        xcodebuild -checkFirstLaunchStatus
+        xcrun xcodebuild -checkFirstLaunchStatus
+        clang -v
+        xcrun clang -v
+        DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer xcrun clang -v
+        sudo xcode-select /Applications/Xcode.app
+        /usr/libexec/PlistBuddy -c "set :AppleSdkRoot /Applications/Xcode.app" ~/Library/Preferences/Xamarin/Settings.plist
         xcode-select -p
         xcrun xcode-select -p
         xcodebuild -checkFirstLaunchStatus
