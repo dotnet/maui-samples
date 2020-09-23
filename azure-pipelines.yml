@@ -1,11 +1,5 @@
 # https://aka.ms/yaml
 
-trigger:
-- main
-
-pr:
-- main
-
 variables:
   DotNetVersion: 5.0.100-rc.2.20459.1
 
