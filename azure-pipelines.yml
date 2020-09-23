@@ -60,6 +60,18 @@ jobs:
       displayName: install .NET $(DotNetVersion)
 
     - bash: |
+        set +x
+        ls -la /Applications
+        xcode-select -p
+        xcrun xcode-select -p
+        xcodebuild -checkFirstLaunchStatus
+        xcrun xcodebuild -checkFirstLaunchStatus
+        clang -v
+        xcrun clang -v
+        DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer xcrun clang -v
+      displayName: diagnostics
+
+    - bash: |
         dotnet build net6-samples.sln -c Debug -bl:$(LogDirectory)/Debug.binlog &&
         dotnet build net6-samples.sln -c Release -bl:$(LogDirectory)/Release.binlog
       displayName: build samples
