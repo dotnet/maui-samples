@@ -39,6 +39,7 @@ jobs:
         DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer xcrun clang -v
         install_name_tool --help
         xcrun install_name_tool --help
+        exit 0
       displayName: diagnostics
 
     - bash: |

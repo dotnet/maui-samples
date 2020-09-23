@@ -1,6 +1,6 @@
 {
     "msbuild-sdks": {
-            "Microsoft.iOS.Sdk": "13.6.100-ci.main.379",
+            "Microsoft.iOS.Sdk": "13.6.100-ci.dotnet-xcrun-for-install-name-tool.387",
             "Microsoft.Android.Sdk": "11.0.100-ci.master.127"
     }
 }
