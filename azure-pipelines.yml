@@ -7,12 +7,12 @@ pr:
 - main
 
 variables:
-  DotNetVersion: 5.0.100-rc.1.20365.11
+  DotNetVersion: 5.0.100-rc.2.20459.1
 
 jobs:
 - job: windows
   pool:
-    name: Hosted Windows 2019 with VS2019
+    vmImage: windows-latest
   variables:
     LogDirectory: $(Build.ArtifactStagingDirectory)\logs
   steps:
@@ -49,7 +49,7 @@ jobs:
 
 - job: mac
   pool:
-    name: Hosted macOS
+    vmImage: macOS-latest
   variables:
     LogDirectory: $(Build.ArtifactStagingDirectory)/logs
   steps:
@@ -60,8 +60,13 @@ jobs:
       displayName: install .NET $(DotNetVersion)
 
     - bash: |
-        # Re-enable if Xcode 11.4.1 available or issue fixed: https://github.com/xamarin/xamarin-macios/issues/8325
-        # dotnet build net6-samples.sln -c Debug -bl:$(LogDirectory)/Debug.binlog &&
+        set -x
+        mkdir -p ~/Library/Preferences/Xamarin
+        /usr/libexec/PlistBuddy -c "add :AppleSdkRoot string $(dirname $(dirname $(xcode-select -p)))" ~/Library/Preferences/Xamarin/Settings.plist
+      displayName: configure vsmac xcode
+
+    - bash: |
+        dotnet build net6-samples.sln -c Debug -bl:$(LogDirectory)/Debug.binlog &&
         dotnet build net6-samples.sln -c Release -bl:$(LogDirectory)/Release.binlog
       displayName: build samples
 

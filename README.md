@@ -20,14 +20,9 @@ For example, to build the Android project:
 
     dotnet build HelloAndroid/HelloAndroid.csproj
 
-You can launch the Android project to an attached emulator via:
+You can launch the Android project to an attached emulator or device via:
 
     dotnet build HelloAndroid/HelloAndroid.csproj -t:Run
-
-To deploy and run on a device, you can either modify `$(RuntimeIdentifier)` in
-the `.csproj` or run:
-
-    dotnet build HelloAndroid/HelloAndroid.csproj -t:Run -r android.21-arm64
 
 ## iOS
 
@@ -49,7 +44,7 @@ To launch the iOS project on a simulator:
 
 Currently...
 
-* There is not a way to setup a binding project, neither for Xamarin.Android nor Xamarin.iOS.
+* There is not a way to setup a binding project for Xamarin.iOS.
 * `System.Console.WriteLine` does not work on Xamarin.Android. Use
   `Android.Util.Log.Debug` for now.
 * Building for device doesn't work for iOS.

@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.iOS.Sdk">
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net5.0-ios</TargetFramework>
     <RuntimeIdentifier>ios-x64</RuntimeIdentifier>
     <OutputType>Exe</OutputType>
   </PropertyGroup>
@@ -8,16 +8,4 @@
     <PackageReference Include="Xamarin.Forms" Version="4.8.0.1364" GeneratePathProperty="true" />
     <ProjectReference Include="..\HelloForms\HelloForms.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <!-- The linker resolves some assembly references too eagerly, and fails when it can't find them, so work around this by referencing the missing assemblies-->
-    <!-- ref: https://github.com/mono/linker/issues/1139 -->
-    <PackageReference Include="System.Security.Permissions" Version="5.0.0-preview.2.20160.6" />
-    <PackageReference Include="System.Threading.AccessControl" Version="5.0.0-preview.2.20160.6" />
-    <PackageReference Include="System.CodeDom" Version="5.0.0-preview.2.20160.6" />
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0-preview.2.20160.6" />
-    <PackageReference Include="System.Diagnostics.PerformanceCounter" Version="5.0.0-preview.2.20160.6" />
-    <PackageReference Include="System.Diagnostics.EventLog" Version="5.0.0-preview.2.20160.6" />
-    <PackageReference Include="System.IO.Ports" Version="5.0.0-preview.2.20160.6" />
-  </ItemGroup>
-
 </Project>
