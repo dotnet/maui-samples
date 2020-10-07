@@ -2,13 +2,20 @@
 
 _This is an *early* preview of Xamarin in .NET 6 **not for production use**. Expect breaking changes as Xamarin is still in development for .NET 6._
 
-First install the [latest master build of .NET 6][0].
+This repo requires a specific build of .NET 5 rc 2:
+
+* https://dotnetcli.azureedge.net/dotnet/Sdk/5.0.100-rc.2.20480.7/dotnet-sdk-5.0.100-rc.2.20480.7-win-x64.exe
+* https://dotnetcli.azureedge.net/dotnet/Sdk/5.0.100-rc.2.20480.7/dotnet-sdk-5.0.100-rc.2.20480.7-osx-x64.pkg
+
+_NOTE: newer builds *may* work, but your mileage may vary. You can find the full list of builds at the [dotnet/installer][dotnet/installer] repo._
 
 Projects:
 
 * HelloAndroid - a native Xamarin.Android application
 * HelloiOS - a native Xamarin.iOS application
 * HelloForms, HelloForms.iOS, HelloForms.Droid - a cross-platform Xamarin.Forms application
+
+[dotnet/installer]: https://github.com/dotnet/installer#installers-and-binaries
 
 ## Android
 
@@ -37,8 +44,6 @@ To build the iOS project:
 To launch the iOS project on a simulator:
 
     dotnet build HelloiOS/HelloiOS.csproj -t:Run
-
-[0]: https://github.com/dotnet/installer#installers-and-binaries
 
 ## Known Issues
 
