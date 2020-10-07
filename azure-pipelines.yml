@@ -48,6 +48,7 @@ jobs:
       condition: always()
 
 - job: mac
+  timeoutInMinutes: 120
   pool:
     vmImage: macOS-latest
   variables:
