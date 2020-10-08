@@ -53,6 +53,7 @@ jobs:
     vmImage: macOS-latest
   variables:
     - group: xamops-azdev-secrets
+    - group: Xamarin-Secrets
     - name: LogDirectory
       value: $(Build.ArtifactStagingDirectory)/logs
   steps:
@@ -65,7 +66,7 @@ jobs:
     - task: provisionator@2
       displayName: install Xcode
       inputs:
-        github_token: $(github-pat)
+        github_token: $(github--pat--vs-mobiletools-engineering-service2)
         provisioning_script: $(System.DefaultWorkingDirectory)/scripts/provision.csx
         provisioning_extra_args: '-v -v -v -v'
 
