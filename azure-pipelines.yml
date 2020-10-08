@@ -52,6 +52,7 @@ jobs:
   pool:
     vmImage: macOS-latest
   variables:
+    - group: xamops-azdev-secrets
     - group: Xamarin-Secrets
     - name: LogDirectory
       value: $(Build.ArtifactStagingDirectory)/logs
