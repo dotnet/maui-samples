@@ -7,7 +7,7 @@ pr:
 - main
 
 variables:
-  DotNetVersion: 5.0.100-rc.2.20459.1
+  DotNetVersion: 5.0.100-rc.2.20480.7
 
 jobs:
 - job: windows
@@ -48,16 +48,27 @@ jobs:
       condition: always()
 
 - job: mac
+  timeoutInMinutes: 120
   pool:
     vmImage: macOS-latest
   variables:
-    LogDirectory: $(Build.ArtifactStagingDirectory)/logs
+    - group: xamops-azdev-secrets
+    - group: Xamarin-Secrets
+    - name: LogDirectory
+      value: $(Build.ArtifactStagingDirectory)/logs
   steps:
     - bash: >
         curl -L https://dot.net/v1/dotnet-install.sh > dotnet-install.sh &&
         sh dotnet-install.sh --version $(DotNetVersion) --install-dir ~/.dotnet/ --verbose &&
         dotnet --list-sdks
       displayName: install .NET $(DotNetVersion)
+
+    - task: provisionator@2
+      displayName: install Xcode
+      inputs:
+        github_token: $(github--pat--vs-mobiletools-engineering-service2)
+        provisioning_script: $(System.DefaultWorkingDirectory)/scripts/provision.csx
+        provisioning_extra_args: '-v -v -v -v'
 
     - bash: |
         set -x
