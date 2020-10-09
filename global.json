@@ -1,6 +1,6 @@
 {
     "msbuild-sdks": {
-            "Microsoft.iOS.Sdk": "14.0.100-ci.main.559",
+            "Microsoft.iOS.Sdk": "14.0.100-ci.main.568",
             "Microsoft.Android.Sdk": "11.0.100-ci.master.169"
     }
 }
