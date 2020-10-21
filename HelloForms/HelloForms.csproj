@@ -1,8 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFrameworks>net5.0-android;net5.0-ios</TargetFrameworks>
+    <RuntimeIdentifier Condition=" '$(TargetFramework)' == 'net5.0-ios' ">ios-x64</RuntimeIdentifier>
+    <OutputType>Exe</OutputType>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1364" />
+    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1364" GeneratePathProperty="true" />
   </ItemGroup>
 </Project>
