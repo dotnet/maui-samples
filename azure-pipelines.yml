@@ -65,11 +65,19 @@ jobs:
     - group: Xamarin-Secrets
     - name: LogDirectory
       value: $(Build.ArtifactStagingDirectory)/logs
+    - name: DotNet.Root
+      value: /usr/local/share/dotnet/
+    - name: DotNet.Tools
+      value: ~/.dotnet/tools
   steps:
+    - task: UseDotNet@2
+      displayName: install .NET Core 3.1
+      inputs:
+        version: 3.1.x
+        installationPath: $(DotNet.Root)
+
     - bash: >
-        export DOTNET_ROOT="/usr/local/share/dotnet/" &&
-        export DOTNET_TOOLS="~/.dotnet/tools" &&
-        export PATH="$DOTNET_ROOT:$DOTNET_TOOLS:$PATH" &&
+        export PATH="$(DotNet.Root):$(DotNet.Tools):$PATH" &&
         curl -L https://dot.net/v1/dotnet-install.sh > dotnet-install.sh &&
         sh dotnet-install.sh --version $(DotNetVersion) --install-dir $DOTNET_ROOT --verbose &&
         dotnet --list-sdks &&
