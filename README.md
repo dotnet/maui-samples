@@ -2,18 +2,33 @@
 
 _This is an *early* preview of Xamarin in .NET 6 **not for production use**. Expect breaking changes as Xamarin is still in development for .NET 6._
 
-This repo requires a specific build of .NET 5 rc 2:
+This repo requires a specific build of .NET 5 rtm:
 
-* https://dotnetcli.azureedge.net/dotnet/Sdk/5.0.100-rc.2.20480.7/dotnet-sdk-5.0.100-rc.2.20480.7-win-x64.exe
-* https://dotnetcli.azureedge.net/dotnet/Sdk/5.0.100-rc.2.20480.7/dotnet-sdk-5.0.100-rc.2.20480.7-osx-x64.pkg
+* Windows: https://dotnetcli.azureedge.net/dotnet/Sdk/5.0.100-rtm.20509.5/dotnet-sdk-5.0.100-rtm.20509.5-win-x64.exe
+* macOS: https://dotnetcli.azureedge.net/dotnet/Sdk/5.0.100-rtm.20509.5/dotnet-sdk-5.0.100-rtm.20509.5-osx-x64.pkg
 
-_NOTE: newer builds *may* work, but your mileage may vary. You can find the full list of builds at the [dotnet/installer][dotnet/installer] repo._
+You will also need to install builds of the iOS and Android workloads:
+
+Android:
+* Windows: https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/4181754/master/519ca83979916cfb1424ea4406639fd665fc1af7/Microsoft.NET.Workload.Android.11.0.100.208.msi
+* macOS: https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/4181754/master/519ca83979916cfb1424ea4406639fd665fc1af7/Microsoft.NET.Workload.Android-11.0.100-ci.master.208.pkg
+
+iOS:
+* Windows: Coming Soon
+* macOS: https://bosstoragemirror.blob.core.windows.net/wrench/jenkins/main/923aef0838a64d7c2886716806c669d107fa399b/467/package/Microsoft.iOS.Bundle.14.1.100-ci.main.27.pkg
+
+_NOTE: newer builds of .NET 5 *may* work, but your mileage may vary.
+The workload installers enable a feature flag file via
+`sdk/5.0.100-rtm.20509.5/EnableWorkloadResolver.sentinel`, which would
+need to be created manually for other .NET 5 versions. You can find
+the full list of builds at the [dotnet/installer][dotnet/installer]
+repo._
 
 Projects:
 
 * HelloAndroid - a native Xamarin.Android application
 * HelloiOS - a native Xamarin.iOS application
-* HelloForms, HelloForms.iOS, HelloForms.Droid - a cross-platform Xamarin.Forms application
+* HelloForms - a multi-targeted Xamarin.Forms application for iOS and Android.
 
 [dotnet/installer]: https://github.com/dotnet/installer#installers-and-binaries
 
@@ -44,6 +59,13 @@ To build the iOS project:
 To launch the iOS project on a simulator:
 
     dotnet build HelloiOS/HelloiOS.csproj -t:Run
+
+## Xamarin.Forms
+
+To launch the Forms project, you will need to specify a `$(TargetFramework)`:
+
+    dotnet build HelloForms/HelloForms.csproj -t:Run -p:TargetFramework=net5.0-android
+    dotnet build HelloForms/HelloForms.csproj -t:Run -p:TargetFramework=net5.0-ios
 
 ## Known Issues
 

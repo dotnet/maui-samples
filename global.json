@@ -1,6 +1,7 @@
 {
-    "msbuild-sdks": {
-            "Microsoft.iOS.Sdk": "14.0.100-ci.main.568",
-            "Microsoft.Android.Sdk": "11.0.100-ci.master.169"
+    "sdk": {
+        "version": "5.0.100-rtm.20509.5",
+        "rollForward": "major",
+        "allowPrerelease": true
     }
 }

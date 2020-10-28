@@ -7,7 +7,11 @@ pr:
 - main
 
 variables:
-  DotNetVersion: 5.0.100-rc.2.20480.7
+  DotNetVersion: 5.0.100-rtm.20509.5
+  DotNet.Cli.Telemetry.OptOut: true
+  Android.Msi: https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/4181754/master/519ca83979916cfb1424ea4406639fd665fc1af7/Microsoft.NET.Workload.Android.11.0.100.208.msi
+  Android.Pkg: https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/4181754/master/519ca83979916cfb1424ea4406639fd665fc1af7/Microsoft.NET.Workload.Android-11.0.100-ci.master.208.pkg
+  iOS.Pkg: https://bosstoragemirror.blob.core.windows.net/wrench/jenkins/main/923aef0838a64d7c2886716806c669d107fa399b/467/package/Microsoft.iOS.Bundle.14.1.100-ci.main.27.pkg
 
 jobs:
 - job: windows
@@ -25,10 +29,15 @@ jobs:
       errorActionPreference: stop
 
     - powershell: |
-        & dotnet build HelloAndroid\HelloAndroid.csproj -c Debug -bl:$(LogDirectory)\Debug-HelloAndroid.binlog
+        & dotnet tool install --global boots
+        & boots $(Android.Msi)
+      displayName: install .NET workloads
+
+    - powershell: |
+        & dotnet build HelloAndroid\HelloAndroid.csproj -c Debug   -bl:$(LogDirectory)\Debug-HelloAndroid.binlog
         & dotnet build HelloAndroid\HelloAndroid.csproj -c Release -bl:$(LogDirectory)\Release-HelloAndroid.binlog
-        & dotnet build HelloForms.Droid\HelloForms.Droid.csproj -c Debug -bl:$(LogDirectory)\Debug-HelloForms.binlog
-        & dotnet build HelloForms.Droid\HelloForms.Droid.csproj -c Release -bl:$(LogDirectory)\Release-HelloForms.binlog
+        & dotnet build HelloForms\HelloForms.csproj     -c Debug   -bl:$(LogDirectory)\Debug-HelloForms.binlog   -p:TargetFramework=net5.0-android
+        & dotnet build HelloForms\HelloForms.csproj     -c Release -bl:$(LogDirectory)\Release-HelloForms.binlog -p:TargetFramework=net5.0-android
       displayName: build samples
       errorActionPreference: stop
 
@@ -56,12 +65,30 @@ jobs:
     - group: Xamarin-Secrets
     - name: LogDirectory
       value: $(Build.ArtifactStagingDirectory)/logs
+    - name: DotNet.Root
+      value: /usr/local/share/dotnet/
+    - name: DotNet.Tools
+      value: ~/.dotnet/tools
   steps:
+    - task: UseDotNet@2
+      displayName: install .NET Core 3.1
+      inputs:
+        version: 3.1.x
+        installationPath: $(DotNet.Root)
+
     - bash: >
+        export PATH="$(DotNet.Root):$(DotNet.Tools):$PATH" &&
         curl -L https://dot.net/v1/dotnet-install.sh > dotnet-install.sh &&
-        sh dotnet-install.sh --version $(DotNetVersion) --install-dir ~/.dotnet/ --verbose &&
-        dotnet --list-sdks
+        sh dotnet-install.sh --version $(DotNetVersion) --install-dir $DOTNET_ROOT --verbose &&
+        dotnet --list-sdks &&
+        echo "##vso[task.setvariable variable=PATH]$PATH"
       displayName: install .NET $(DotNetVersion)
+
+    - bash: |
+        dotnet tool install --global boots
+        boots $(Android.Pkg)
+        boots $(iOS.Pkg)
+      displayName: install .NET workloads
 
     - task: provisionator@2
       displayName: install Xcode
@@ -73,11 +100,11 @@ jobs:
     - bash: |
         set -x
         mkdir -p ~/Library/Preferences/Xamarin
-        /usr/libexec/PlistBuddy -c "add :AppleSdkRoot string $(dirname $(dirname $(xcode-select -p)))" ~/Library/Preferences/Xamarin/Settings.plist
+        /usr/libexec/PlistBuddy -c "add :AppleSdkRoot string $(dirname $(dirname $(xcode-select -p)))" ~/Library/Preferences/Xamarin/Settings.plist || true
       displayName: configure vsmac xcode
 
     - bash: |
-        dotnet build net6-samples.sln -c Debug -bl:$(LogDirectory)/Debug.binlog &&
+        dotnet build net6-samples.sln -c Debug   -bl:$(LogDirectory)/Debug.binlog &&
         dotnet build net6-samples.sln -c Release -bl:$(LogDirectory)/Release.binlog
       displayName: build samples
 
