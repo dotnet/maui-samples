@@ -51,7 +51,7 @@ You can launch the Android project to an attached emulator or device via:
 
 Prerequisites:
 
-* Xcode 11.4. Earlier versions won't work.
+* Xcode 12.1. Earlier versions won't work.
 
 To build the iOS project:
 
