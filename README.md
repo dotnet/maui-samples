@@ -14,8 +14,9 @@ Android:
 * macOS: https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/4183754/master/57c5a5fde5efd23f5958cfd8119b7f9c31d9e39d/Microsoft.NET.Workload.Android-11.0.100-ci.master.209.pkg
 
 iOS:
-* Windows: Coming Soon
-* macOS: https://bosstoragemirror.blob.core.windows.net/wrench/jenkins/main/923aef0838a64d7c2886716806c669d107fa399b/467/package/Microsoft.iOS.Bundle.14.1.100-ci.main.27.pkg
+
+* Windows: [Microsoft.NET.Workload.iOS.14.1.100-ci.main.44.msi](https://bosstoragemirror.blob.core.windows.net/wrench/jenkins/main/42bd13cbdc282c8a3685100591721919cd809bd8/484/package/Microsoft.NET.Workload.iOS.14.1.100-ci.main.44.msi)
+* macOS: [Microsoft.iOS.Bundle.14.1.100-ci.main.44.pkg](https://bosstoragemirror.blob.core.windows.net/wrench/jenkins/main/923aef0838a64d7c2886716806c669d107fa399b/467/package/Microsoft.iOS.Bundle.14.1.100-ci.main.44.pkg)
 
 _NOTE: newer builds of .NET 5 *may* work, but your mileage may vary.
 The workload installers enable a feature flag file via
@@ -50,7 +51,7 @@ You can launch the Android project to an attached emulator or device via:
 
 Prerequisites:
 
-* Xcode 11.4. Earlier versions won't work.
+* Xcode 12.1. Earlier versions won't work.
 
 To build the iOS project:
 

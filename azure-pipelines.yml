@@ -11,7 +11,7 @@ variables:
   DotNet.Cli.Telemetry.OptOut: true
   Android.Msi: https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/4183754/master/57c5a5fde5efd23f5958cfd8119b7f9c31d9e39d/Microsoft.NET.Workload.Android.11.0.100.209.msi
   Android.Pkg: https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/4183754/master/57c5a5fde5efd23f5958cfd8119b7f9c31d9e39d/Microsoft.NET.Workload.Android-11.0.100-ci.master.209.pkg
-  iOS.Pkg: https://bosstoragemirror.blob.core.windows.net/wrench/jenkins/main/923aef0838a64d7c2886716806c669d107fa399b/467/package/Microsoft.iOS.Bundle.14.1.100-ci.main.27.pkg
+  iOS.Pkg: https://bosstoragemirror.blob.core.windows.net/wrench/jenkins/main/42bd13cbdc282c8a3685100591721919cd809bd8/484/package/Microsoft.iOS.Bundle.14.1.100-ci.main.44.pkg
 
 jobs:
 - job: windows
@@ -100,7 +100,9 @@ jobs:
     - bash: |
         set -x
         mkdir -p ~/Library/Preferences/Xamarin
+        rm -f ~/Library/Preferences/Xamarin/Settings.plist
         /usr/libexec/PlistBuddy -c "add :AppleSdkRoot string $(dirname $(dirname $(xcode-select -p)))" ~/Library/Preferences/Xamarin/Settings.plist || true
+        cat ~/Library/Preferences/Xamarin/Settings.plist || true
       displayName: configure vsmac xcode
 
     - bash: |
