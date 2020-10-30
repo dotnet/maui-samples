@@ -11,7 +11,8 @@ variables:
   DotNet.Cli.Telemetry.OptOut: true
   Android.Msi: https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/4183754/master/57c5a5fde5efd23f5958cfd8119b7f9c31d9e39d/Microsoft.NET.Workload.Android.11.0.100.209.msi
   Android.Pkg: https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/4183754/master/57c5a5fde5efd23f5958cfd8119b7f9c31d9e39d/Microsoft.NET.Workload.Android-11.0.100-ci.master.209.pkg
-  iOS.Pkg: https://bosstoragemirror.blob.core.windows.net/wrench/jenkins/main/42bd13cbdc282c8a3685100591721919cd809bd8/484/package/Microsoft.iOS.Bundle.14.1.100-ci.main.44.pkg
+  iOS.Msi: https://bosstoragemirror.blob.core.windows.net/wrench/jenkins/main/90bfb623ed14defe2475b5dd9040492c3f7048c9/492/package/Microsoft.NET.Workload.iOS.14.1.100-ci.main.52.msi
+  iOS.Pkg: https://bosstoragemirror.blob.core.windows.net/wrench/jenkins/main/90bfb623ed14defe2475b5dd9040492c3f7048c9/492/package/Microsoft.iOS.Bundle.14.1.100-ci.main.52.pkg
 
 jobs:
 - job: windows
@@ -31,13 +32,13 @@ jobs:
     - powershell: |
         & dotnet tool install --global boots
         & boots $(Android.Msi)
+        & boots $(iOS.Msi)
       displayName: install .NET workloads
+      errorActionPreference: stop
 
     - powershell: |
-        & dotnet build HelloAndroid\HelloAndroid.csproj -c Debug   -bl:$(LogDirectory)\Debug-HelloAndroid.binlog
-        & dotnet build HelloAndroid\HelloAndroid.csproj -c Release -bl:$(LogDirectory)\Release-HelloAndroid.binlog
-        & dotnet build HelloForms\HelloForms.csproj     -c Debug   -bl:$(LogDirectory)\Debug-HelloForms.binlog   -p:TargetFramework=net5.0-android
-        & dotnet build HelloForms\HelloForms.csproj     -c Release -bl:$(LogDirectory)\Release-HelloForms.binlog -p:TargetFramework=net5.0-android
+        & dotnet build net6-samples.sln -c Debug   -bl:$(LogDirectory)\Debug.binlog
+        & dotnet build net6-samples.sln -c Release -bl:$(LogDirectory)\Release.binlog
       displayName: build samples
       errorActionPreference: stop
 
