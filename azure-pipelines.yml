@@ -100,7 +100,9 @@ jobs:
     - bash: |
         set -x
         mkdir -p ~/Library/Preferences/Xamarin
+        rm -f ~/Library/Preferences/Xamarin/Settings.plist
         /usr/libexec/PlistBuddy -c "add :AppleSdkRoot string $(dirname $(dirname $(xcode-select -p)))" ~/Library/Preferences/Xamarin/Settings.plist || true
+        cat ~/Library/Preferences/Xamarin/Settings.plist || true
       displayName: configure vsmac xcode
 
     - bash: |
