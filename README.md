@@ -10,8 +10,8 @@ This repo requires a specific build of .NET 5 rtm:
 You will also need to install builds of the iOS and Android workloads:
 
 Android:
-* Windows: https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/4181754/master/519ca83979916cfb1424ea4406639fd665fc1af7/Microsoft.NET.Workload.Android.11.0.100.208.msi
-* macOS: https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/4181754/master/519ca83979916cfb1424ea4406639fd665fc1af7/Microsoft.NET.Workload.Android-11.0.100-ci.master.208.pkg
+* Windows: https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/4183754/master/57c5a5fde5efd23f5958cfd8119b7f9c31d9e39d/Microsoft.NET.Workload.Android.11.0.100.209.msi
+* macOS: https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/4183754/master/57c5a5fde5efd23f5958cfd8119b7f9c31d9e39d/Microsoft.NET.Workload.Android-11.0.100-ci.master.209.pkg
 
 iOS:
 
