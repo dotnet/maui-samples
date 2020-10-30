@@ -4,14 +4,14 @@ _This is an *early* preview of Xamarin in .NET 6 **not for production use**. Exp
 
 This repo requires a specific build of .NET 5 rtm:
 
-* Windows: https://dotnetcli.azureedge.net/dotnet/Sdk/5.0.100-rtm.20509.5/dotnet-sdk-5.0.100-rtm.20509.5-win-x64.exe
-* macOS: https://dotnetcli.azureedge.net/dotnet/Sdk/5.0.100-rtm.20509.5/dotnet-sdk-5.0.100-rtm.20509.5-osx-x64.pkg
+* Windows: [dotnet-sdk-5.0.100-rtm.20509.5-win-x64.exe](https://dotnetcli.azureedge.net/dotnet/Sdk/5.0.100-rtm.20509.5/dotnet-sdk-5.0.100-rtm.20509.5-win-x64.exe)
+* macOS: [dotnet-sdk-5.0.100-rtm.20509.5-osx-x64.pkg](https://dotnetcli.azureedge.net/dotnet/Sdk/5.0.100-rtm.20509.5/dotnet-sdk-5.0.100-rtm.20509.5-osx-x64.pkg)
 
 You will also need to install builds of the iOS and Android workloads:
 
 Android:
-* Windows: https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/4183754/master/57c5a5fde5efd23f5958cfd8119b7f9c31d9e39d/Microsoft.NET.Workload.Android.11.0.100.209.msi
-* macOS: https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/4183754/master/57c5a5fde5efd23f5958cfd8119b7f9c31d9e39d/Microsoft.NET.Workload.Android-11.0.100-ci.master.209.pkg
+* Windows: [Microsoft.NET.Workload.Android.11.0.100.209.msi](https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/4183754/master/57c5a5fde5efd23f5958cfd8119b7f9c31d9e39d/Microsoft.NET.Workload.Android.11.0.100.209.msi)
+* macOS: [Microsoft.NET.Workload.Android-11.0.100-ci.master.209.pkg](https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/4183754/master/57c5a5fde5efd23f5958cfd8119b7f9c31d9e39d/Microsoft.NET.Workload.Android-11.0.100-ci.master.209.pkg)
 
 iOS:
 
