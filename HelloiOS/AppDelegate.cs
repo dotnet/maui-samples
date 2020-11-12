@@ -21,7 +21,12 @@ namespace HelloiOS
             // create a new window instance based on the screen size
             Window = new UIWindow(UIScreen.MainScreen.Bounds);
             var vc = new UIViewController ();
-            vc.View.BackgroundColor = UIColor.Green;
+            vc.View.AddSubview (new UILabel (Window.Frame)
+            {
+                BackgroundColor = UIColor.White,
+                TextAlignment = UITextAlignment.Center,
+                Text = "Hello, .NET 6!"
+            });
             Window.RootViewController = vc;
 
             // make the window visible
