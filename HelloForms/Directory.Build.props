@@ -19,13 +19,13 @@
 
   <!-- Shared -->
   <ItemGroup>
-    <Compile Include="Shared\**$(DefaultLanguageSourceExtension)" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
+    <Compile Include="Shared\**\*$(DefaultLanguageSourceExtension)" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
     <EmbeddedResource Include="Shared\**\*.xaml" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
   </ItemGroup>
 
   <!-- Android -->
   <ItemGroup Condition=" '$(TargetPlatformIdentifier)' == 'android' ">
-    <Compile Include="$(AndroidProjectFolder)**$(DefaultLanguageSourceExtension)" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
+    <Compile Include="$(AndroidProjectFolder)**\*$(DefaultLanguageSourceExtension)" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
     <AndroidResource Include="$(MonoAndroidResourcePrefix)\*\*.xml" />
     <AndroidResource Include="$(MonoAndroidResourcePrefix)\*\*.axml" />
     <AndroidResource Include="$(MonoAndroidResourcePrefix)\*\*.png" />
@@ -40,7 +40,7 @@
 
   <!-- iOS -->
   <ItemGroup Condition=" '$(TargetPlatformIdentifier)' == 'ios' ">
-    <Compile Include="$(iOSProjectFolder)**$(DefaultLanguageSourceExtension)" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
+    <Compile Include="$(iOSProjectFolder)**\*$(DefaultLanguageSourceExtension)" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
     <None Include="$(iOSProjectFolder)Info.plist" LogicalName="Info.plist" />
     <SceneKitAsset Include="$(iOSProjectFolder)**\*.scnassets\*">
       <IsDefaultItem>true</IsDefaultItem>
