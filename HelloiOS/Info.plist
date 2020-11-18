@@ -5,7 +5,7 @@
     <key>CFBundleDisplayName</key>
     <string>Hello iOS</string>
     <key>CFBundleIdentifier</key>
-    <string>com.microsoft.net5.helloios</string>
+    <string>com.microsoft.net6.helloios</string>
     <key>CFBundleShortVersionString</key>
     <string>1.0</string>
     <key>CFBundleVersion</key>

@@ -2,25 +2,25 @@
 
 _This is an *early* preview of Xamarin in .NET 6 **not for production use**. Expect breaking changes as Xamarin is still in development for .NET 6._
 
-This repo requires a specific build of .NET 5 rtm:
+This repo requires a specific build of .NET 6:
 
-* Windows: [dotnet-sdk-5.0.100-rtm.20509.5-win-x64.exe](https://dotnetcli.azureedge.net/dotnet/Sdk/5.0.100-rtm.20509.5/dotnet-sdk-5.0.100-rtm.20509.5-win-x64.exe)
-* macOS: [dotnet-sdk-5.0.100-rtm.20509.5-osx-x64.pkg](https://dotnetcli.azureedge.net/dotnet/Sdk/5.0.100-rtm.20509.5/dotnet-sdk-5.0.100-rtm.20509.5-osx-x64.pkg)
+* Windows: [dotnet-sdk-6.0.100-alpha.1.20562.2-win-x64.exe](https://dotnetcli.azureedge.net/dotnet/Sdk/6.0.100-alpha.1.20562.2/dotnet-sdk-6.0.100-alpha.1.20562.2-win-x64.exe)
+* macOS: [dotnet-sdk-6.0.100-alpha.1.20562.2-osx-x64.pkg](https://dotnetcli.azureedge.net/dotnet/Sdk/6.0.100-alpha.1.20562.2/dotnet-sdk-6.0.100-alpha.1.20562.2-osx-x64.pkg)
 
 You will also need to install builds of the iOS and Android workloads:
 
 Android:
-* Windows: [Microsoft.NET.Workload.Android.11.0.100.209.msi](https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/4183754/master/57c5a5fde5efd23f5958cfd8119b7f9c31d9e39d/Microsoft.NET.Workload.Android.11.0.100.209.msi)
-* macOS: [Microsoft.NET.Workload.Android-11.0.100-ci.master.209.pkg](https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/4183754/master/57c5a5fde5efd23f5958cfd8119b7f9c31d9e39d/Microsoft.NET.Workload.Android-11.0.100-ci.master.209.pkg)
+* Windows: [Microsoft.NET.Workload.Android.11.0.100.245.msi](https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4241621/master/6e3e3831afa958ab8126e268f7a128321f75dbd6/Microsoft.NET.Workload.Android.11.0.100.245.msi)
+* macOS: [Microsoft.NET.Workload.Android-11.0.100-ci.master.245.pkg](https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4241621/master/6e3e3831afa958ab8126e268f7a128321f75dbd6/Microsoft.NET.Workload.Android-11.0.100-ci.master.245.pkg)
 
 iOS:
 
-* Windows: [Microsoft.NET.Workload.iOS.14.1.100-ci.main.52.msi](https://bosstoragemirror.blob.core.windows.net/wrench/jenkins/main/90bfb623ed14defe2475b5dd9040492c3f7048c9/492/package/Microsoft.NET.Workload.iOS.14.1.100-ci.main.52.msi)
-* macOS: [Microsoft.iOS.Bundle.14.1.100-ci.main.52.pkg](https://bosstoragemirror.blob.core.windows.net/wrench/jenkins/main/90bfb623ed14defe2475b5dd9040492c3f7048c9/492/package/Microsoft.iOS.Bundle.14.1.100-ci.main.52.pkg)
+* Windows: [Microsoft.NET.Workload.iOS.14.2.100-ci.main.30.msi](https://bosstoragemirror.blob.core.windows.net/wrench/jenkins/main/3174e94a178c41cae0a51fa296e52f711957c14a/543/package/Microsoft.NET.Workload.iOS.14.2.100-ci.main.30.msi)
+* macOS: [Microsoft.iOS.Bundle.14.2.100-ci.main.30.pkg](https://bosstoragemirror.blob.core.windows.net/wrench/jenkins/main/3174e94a178c41cae0a51fa296e52f711957c14a/543/package/Microsoft.iOS.Bundle.14.2.100-ci.main.30.pkg)
 
-_NOTE: newer builds of .NET 5 *may* work, but your mileage may vary.
+_NOTE: newer builds of .NET *may* work, but your mileage may vary.
 The workload installers enable a feature flag file via
-`sdk/5.0.100-rtm.20509.5/EnableWorkloadResolver.sentinel`, which would
+`sdk/6.0.100-alpha.1.20562.2/EnableWorkloadResolver.sentinel`, which would
 need to be created manually for other .NET 5 versions. You can find
 the full list of builds at the [dotnet/installer][dotnet/installer]
 repo._
@@ -51,7 +51,7 @@ You can launch the Android project to an attached emulator or device via:
 
 Prerequisites:
 
-* Xcode 12.1. Earlier versions won't work.
+* Xcode 12.2. Earlier versions won't work.
 
 To build the iOS project:
 
@@ -65,8 +65,8 @@ To launch the iOS project on a simulator:
 
 To launch the Forms project, you will need to specify a `$(TargetFramework)`:
 
-    dotnet build HelloForms/HelloForms.csproj -t:Run -p:TargetFramework=net5.0-android
-    dotnet build HelloForms/HelloForms.csproj -t:Run -p:TargetFramework=net5.0-ios
+    dotnet build HelloForms/HelloForms.csproj -t:Run -p:TargetFramework=net6.0-android
+    dotnet build HelloForms/HelloForms.csproj -t:Run -p:TargetFramework=net6.0-ios
 
 ## Known Issues
 

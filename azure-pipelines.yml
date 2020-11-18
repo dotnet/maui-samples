@@ -7,12 +7,12 @@ pr:
 - main
 
 variables:
-  DotNetVersion: 5.0.100-rtm.20509.5
+  DotNetVersion: 6.0.100-alpha.1.20562.2
   DotNet.Cli.Telemetry.OptOut: true
-  Android.Msi: https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/4183754/master/57c5a5fde5efd23f5958cfd8119b7f9c31d9e39d/Microsoft.NET.Workload.Android.11.0.100.209.msi
-  Android.Pkg: https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/4183754/master/57c5a5fde5efd23f5958cfd8119b7f9c31d9e39d/Microsoft.NET.Workload.Android-11.0.100-ci.master.209.pkg
-  iOS.Msi: https://bosstoragemirror.blob.core.windows.net/wrench/jenkins/main/90bfb623ed14defe2475b5dd9040492c3f7048c9/492/package/Microsoft.NET.Workload.iOS.14.1.100-ci.main.52.msi
-  iOS.Pkg: https://bosstoragemirror.blob.core.windows.net/wrench/jenkins/main/90bfb623ed14defe2475b5dd9040492c3f7048c9/492/package/Microsoft.iOS.Bundle.14.1.100-ci.main.52.pkg
+  Android.Msi: https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4241621/master/6e3e3831afa958ab8126e268f7a128321f75dbd6/Microsoft.NET.Workload.Android.11.0.100.245.msi
+  Android.Pkg: https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4241621/master/6e3e3831afa958ab8126e268f7a128321f75dbd6/Microsoft.NET.Workload.Android-11.0.100-ci.master.245.pkg
+  iOS.Msi: https://bosstoragemirror.blob.core.windows.net/wrench/jenkins/main/3174e94a178c41cae0a51fa296e52f711957c14a/543/package/Microsoft.NET.Workload.iOS.14.2.100-ci.main.30.msi
+  iOS.Pkg: https://bosstoragemirror.blob.core.windows.net/wrench/jenkins/main/3174e94a178c41cae0a51fa296e52f711957c14a/543/package/Microsoft.iOS.Bundle.14.2.100-ci.main.30.pkg
 
 jobs:
 - job: windows

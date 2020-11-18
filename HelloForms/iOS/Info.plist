@@ -25,7 +25,7 @@
     <key>CFBundleDisplayName</key>
     <string>HelloForms</string>
     <key>CFBundleIdentifier</key>
-    <string>com.microsoft.net5.helloforms</string>
+    <string>com.microsoft.net6.helloforms</string>
     <key>CFBundleVersion</key>
     <string>1.0</string>
     <key>UILaunchStoryboardName</key>

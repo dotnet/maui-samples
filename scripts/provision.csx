@@ -1,1 +1,1 @@
-Xcode ("12.1").XcodeSelect ();
+Xcode ("12.2").XcodeSelect ();
