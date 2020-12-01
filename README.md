@@ -10,8 +10,8 @@ This repo requires a specific build of .NET 6:
 You will also need to install builds of the iOS and Android workloads:
 
 Android:
-* Windows: [Microsoft.NET.Workload.Android.11.0.100.245.msi](https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4241621/master/6e3e3831afa958ab8126e268f7a128321f75dbd6/Microsoft.NET.Workload.Android.11.0.100.245.msi)
-* macOS: [Microsoft.NET.Workload.Android-11.0.100-ci.master.245.pkg](https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4241621/master/6e3e3831afa958ab8126e268f7a128321f75dbd6/Microsoft.NET.Workload.Android-11.0.100-ci.master.245.pkg)
+* Windows: [Microsoft.NET.Workload.Android.11.0.100.255.msi](https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4264138/master/8e097b44df981bb4259845cfe2db9ca2aaaedc91/Microsoft.NET.Workload.Android.11.0.100.255.msi)
+* macOS: [Microsoft.NET.Workload.Android-11.0.100-ci.master.255.pkg](https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4264138/master/8e097b44df981bb4259845cfe2db9ca2aaaedc91/Microsoft.NET.Workload.Android-11.0.100-ci.master.255.pkg)
 
 iOS:
 
