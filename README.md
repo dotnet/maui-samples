@@ -4,23 +4,24 @@ _This is an *early* preview of Xamarin in .NET 6 **not for production use**. Exp
 
 This repo requires a specific build of .NET 6:
 
-* Windows: [dotnet-sdk-6.0.100-alpha.1.20562.2-win-x64.exe](https://dotnetcli.azureedge.net/dotnet/Sdk/6.0.100-alpha.1.20562.2/dotnet-sdk-6.0.100-alpha.1.20562.2-win-x64.exe)
-* macOS: [dotnet-sdk-6.0.100-alpha.1.20562.2-osx-x64.pkg](https://dotnetcli.azureedge.net/dotnet/Sdk/6.0.100-alpha.1.20562.2/dotnet-sdk-6.0.100-alpha.1.20562.2-osx-x64.pkg)
+* Windows: [dotnet-sdk-6.0.100-preview.1.21081.5-win-x64.exe](https://dotnetcli.azureedge.net/dotnet/Sdk/6.0.100-preview.1.21081.5/dotnet-sdk-6.0.100-preview.1.21081.5-win-x64.exe)
+* macOS: [dotnet-sdk-6.0.100-preview.1.21081.5-osx-x64.pkg](https://dotnetcli.azureedge.net/dotnet/Sdk/6.0.100-preview.1.21081.5/dotnet-sdk-6.0.100-preview.1.21081.5-osx-x64.pkg)
 
 You will also need to install builds of the iOS and Android workloads:
 
 Android:
-* Windows: [Microsoft.NET.Workload.Android.11.0.100.255.msi](https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4264138/master/8e097b44df981bb4259845cfe2db9ca2aaaedc91/Microsoft.NET.Workload.Android.11.0.100.255.msi)
-* macOS: [Microsoft.NET.Workload.Android-11.0.100-ci.master.255.pkg](https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4264138/master/8e097b44df981bb4259845cfe2db9ca2aaaedc91/Microsoft.NET.Workload.Android-11.0.100-ci.master.255.pkg)
+
+* Windows: [Microsoft.NET.Workload.Android.11.0.200.72.msi](https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4435786/master/abea285994fb4366de7c6c5e1ae9cc9ee22145dd/Microsoft.NET.Workload.Android.11.0.200.72.msi)
+* macOS: [Microsoft.NET.Workload.Android-11.0.200-ci.master.72.pkg](https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4435786/master/abea285994fb4366de7c6c5e1ae9cc9ee22145dd/Microsoft.NET.Workload.Android-11.0.200-ci.master.72.pkg)
 
 iOS:
 
-* Windows: [Microsoft.NET.Workload.iOS.14.2.100-ci.main.30.msi](https://bosstoragemirror.blob.core.windows.net/wrench/jenkins/main/3174e94a178c41cae0a51fa296e52f711957c14a/543/package/Microsoft.NET.Workload.iOS.14.2.100-ci.main.30.msi)
-* macOS: [Microsoft.iOS.Bundle.14.2.100-ci.main.30.pkg](https://bosstoragemirror.blob.core.windows.net/wrench/jenkins/main/3174e94a178c41cae0a51fa296e52f711957c14a/543/package/Microsoft.iOS.Bundle.14.2.100-ci.main.30.pkg)
+* Windows: [Microsoft.NET.Workload.iOS.14.3.100-ci.main.1045.msi](https://bosstoragemirror.azureedge.net/wrench/main/783faabb73719f874d33976119c678a04f907041/4435855/package/Microsoft.NET.Workload.iOS.14.3.100-ci.main.1045.msi)
+* macOS: [Microsoft.iOS.Bundle.14.3.100-ci.main.1045.pkg](https://bosstoragemirror.azureedge.net/wrench/main/783faabb73719f874d33976119c678a04f907041/4435855/package/Microsoft.iOS.Bundle.14.3.100-ci.main.1045.pkg)
 
 _NOTE: newer builds of .NET *may* work, but your mileage may vary.
 The workload installers enable a feature flag file via
-`sdk/6.0.100-alpha.1.20562.2/EnableWorkloadResolver.sentinel`, which would
+`sdk/6.0.100-preview.1.21081.5/EnableWorkloadResolver.sentinel`, which would
 need to be created manually for other .NET 6 versions. You can find
 the full list of builds at the [dotnet/installer][dotnet/installer]
 repo._
@@ -41,32 +42,36 @@ Prerequisites:
 
 For example, to build the Android project:
 
-    dotnet build HelloAndroid/HelloAndroid.csproj
+    dotnet build HelloAndroid
 
 You can launch the Android project to an attached emulator or device via:
 
-    dotnet build HelloAndroid/HelloAndroid.csproj -t:Run
+    dotnet build HelloAndroid -t:Run
 
 ## iOS
 
 Prerequisites:
 
-* Xcode 12.2. Earlier versions won't work.
+* Xcode 12.3. Earlier versions won't work.
 
 To build the iOS project:
 
-    dotnet build HelloiOS/HelloiOS.csproj
+    dotnet build HelloiOS
 
 To launch the iOS project on a simulator:
 
-    dotnet build HelloiOS/HelloiOS.csproj -t:Run
+    dotnet build HelloiOS -t:Run
 
 ## Xamarin.Forms
 
-To launch the Forms project, you will need to specify a `$(TargetFramework)`:
+To launch the Forms project, you will need to specify a `$(TargetFramework)` via the `-f` switch:
 
-    dotnet build HelloForms/HelloForms.csproj -t:Run -p:TargetFramework=net6.0-android
-    dotnet build HelloForms/HelloForms.csproj -t:Run -p:TargetFramework=net6.0-ios
+    dotnet build HelloForms -t:Run -f net6.0-android
+    dotnet build HelloForms -t:Run -f net6.0-ios
+
+> NOTE: You may need to add the `--no-restore` switch until
+> [dotnet#15485](https://github.com/dotnet/sdk/issues/15485) is
+> resolved.
 
 ## Known Issues
 
