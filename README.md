@@ -73,13 +73,28 @@ To launch the Forms project, you will need to specify a `$(TargetFramework)` via
 > [dotnet#15485](https://github.com/dotnet/sdk/issues/15485) is
 > resolved.
 
+## Using IDEs
+
+Currently, you can use Visual Studio 2019 16.9 Preview 4 on Windows
+(with the Xamarin workload) with a few manual steps.
+
+Open an Administrator command prompt to enable the
+`EnableWorkloadResolver.sentinel` feature flag:
+
+    > cd "C:\Program Files (x86)\Microsoft Visual Studio\2019\Preview\MSBuild\Current\Bin\SdkResolvers\Microsoft.DotNet.MSBuildSdkResolver"
+    > echo > EnableWorkloadResolver.sentinel
+
+> NOTE: your path to Visual Studio may vary, depending on where you
+> selected to install it. `Preview` is the default folder for Visual
+> Studio Preview versions.
+
+Restart Visual Studio after making this change.
+
 ## Known Issues
 
 Currently...
 
 * There is not a way to setup a binding project for Xamarin.iOS.
-* `System.Console.WriteLine` does not work on Xamarin.Android. Use
-  `Android.Util.Log.Debug` for now.
 * Building for device doesn't work for iOS.
 * Building for tvOS or watchOS does not work.
 
