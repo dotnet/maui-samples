@@ -90,14 +90,6 @@ Open an Administrator command prompt to enable the
 
 Restart Visual Studio after making this change.
 
-## Known Issues
-
-Currently...
-
-* There is not a way to setup a binding project for Xamarin.iOS.
-* Building for device doesn't work for iOS.
-* Building for tvOS or watchOS does not work.
-
 ## Workarounds
 
 These are notes for things we had to workaround for these samples to work.
