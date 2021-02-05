@@ -16,8 +16,8 @@ Android:
 
 iOS:
 
-* Windows: [Microsoft.NET.Workload.iOS.14.3.100-ci.main.1045.msi](https://bosstoragemirror.azureedge.net/wrench/main/783faabb73719f874d33976119c678a04f907041/4435855/package/Microsoft.NET.Workload.iOS.14.3.100-ci.main.1045.msi)
-* macOS: [Microsoft.iOS.Bundle.14.3.100-ci.main.1045.pkg](https://bosstoragemirror.azureedge.net/wrench/main/783faabb73719f874d33976119c678a04f907041/4435855/package/Microsoft.iOS.Bundle.14.3.100-ci.main.1045.pkg)
+* Windows: [Microsoft.NET.Workload.iOS.14.3.100-ci.main.1050.msi](https://bosstoragemirror.azureedge.net/wrench/main/43a294f512d0a68c7b2649c620094a196d6c16f8/4440962/package/Microsoft.NET.Workload.iOS.14.3.100-ci.main.1050.msi)
+* macOS: [Microsoft.iOS.Bundle.14.3.100-ci.main.1050.pkg](https://bosstoragemirror.azureedge.net/wrench/main/43a294f512d0a68c7b2649c620094a196d6c16f8/4440962/package/Microsoft.iOS.Bundle.14.3.100-ci.main.1050.pkg)
 
 _NOTE: newer builds of .NET *may* work, but your mileage may vary.
 The workload installers enable a feature flag file via
