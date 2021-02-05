@@ -11,8 +11,8 @@ variables:
   DotNet.Cli.Telemetry.OptOut: true
   Android.Msi: https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4435786/master/abea285994fb4366de7c6c5e1ae9cc9ee22145dd/Microsoft.NET.Workload.Android.11.0.200.72.msi
   Android.Pkg: https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4435786/master/abea285994fb4366de7c6c5e1ae9cc9ee22145dd/Microsoft.NET.Workload.Android-11.0.200-ci.master.72.pkg
-  iOS.Msi: https://bosstoragemirror.azureedge.net/wrench/main/783faabb73719f874d33976119c678a04f907041/4435855/package/Microsoft.NET.Workload.iOS.14.3.100-ci.main.1045.msi
-  iOS.Pkg: https://bosstoragemirror.azureedge.net/wrench/main/783faabb73719f874d33976119c678a04f907041/4435855/package/Microsoft.iOS.Bundle.14.3.100-ci.main.1045.pkg
+  iOS.Msi: https://bosstoragemirror.azureedge.net/wrench/main/43a294f512d0a68c7b2649c620094a196d6c16f8/4440962/package/Microsoft.NET.Workload.iOS.14.3.100-ci.main.1050.msi
+  iOS.Pkg: https://bosstoragemirror.azureedge.net/wrench/main/43a294f512d0a68c7b2649c620094a196d6c16f8/4440962/package/Microsoft.iOS.Bundle.14.3.100-ci.main.1050.pkg
 
 jobs:
 - job: windows
@@ -79,7 +79,7 @@ jobs:
 
     - bash: >
         export PATH="$(DotNet.Root):$(DotNet.Tools):$PATH" &&
-        curl -L https://dot.net/v1/dotnet-install.sh > dotnet-install.sh &&
+        curl -L https://raw.githubusercontent.com/dotnet/install-scripts/7a9d5dcab92cf131fc2d8977052f8c2c2d540e22/src/dotnet-install.sh > dotnet-install.sh &&
         sh dotnet-install.sh --version $(DotNetVersion) --install-dir $DOTNET_ROOT --verbose &&
         dotnet --list-sdks &&
         echo "##vso[task.setvariable variable=PATH]$PATH"
