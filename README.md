@@ -4,15 +4,15 @@ _This is an *early* preview of Xamarin in .NET 6 **not for production use**. Exp
 
 This repo requires a specific build of .NET 6:
 
-* Windows: [dotnet-sdk-6.0.100-preview.1.21081.5-win-x64.exe](https://dotnetcli.azureedge.net/dotnet/Sdk/6.0.100-preview.1.21081.5/dotnet-sdk-6.0.100-preview.1.21081.5-win-x64.exe)
-* macOS: [dotnet-sdk-6.0.100-preview.1.21081.5-osx-x64.pkg](https://dotnetcli.azureedge.net/dotnet/Sdk/6.0.100-preview.1.21081.5/dotnet-sdk-6.0.100-preview.1.21081.5-osx-x64.pkg)
+* Windows: [dotnet-sdk-6.0.100-preview.1.21103.13-win-x64.exe](https://dotnetcli.azureedge.net/dotnet/Sdk/6.0.100-preview.1.21103.13/dotnet-sdk-6.0.100-preview.1.21103.13-win-x64.exe)
+* macOS: [dotnet-sdk-6.0.100-preview.1.21103.13-osx-x64.pkg](https://dotnetcli.azureedge.net/dotnet/Sdk/6.0.100-preview.1.21103.13/dotnet-sdk-6.0.100-preview.1.21103.13-osx-x64.pkg)
 
 You will also need to install builds of the iOS and Android workloads:
 
 Android:
 
-* Windows: [Microsoft.NET.Workload.Android.11.0.200.72.msi](https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4435786/master/abea285994fb4366de7c6c5e1ae9cc9ee22145dd/Microsoft.NET.Workload.Android.11.0.200.72.msi)
-* macOS: [Microsoft.NET.Workload.Android-11.0.200-ci.master.72.pkg](https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4435786/master/abea285994fb4366de7c6c5e1ae9cc9ee22145dd/Microsoft.NET.Workload.Android-11.0.200-ci.master.72.pkg)
+* Windows: [Microsoft.NET.Workload.Android.11.0.200.85.msi](https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4451481/master/05bb8e0eae11ae6a73838b13cf91ee2433169dff/Microsoft.NET.Workload.Android.11.0.200.85.msi)
+* macOS: [Microsoft.NET.Workload.Android-11.0.200-ci.master.85.pkg](https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4451481/master/05bb8e0eae11ae6a73838b13cf91ee2433169dff/Microsoft.NET.Workload.Android-11.0.200-ci.master.85.pkg)
 
 iOS:
 
@@ -21,7 +21,7 @@ iOS:
 
 _NOTE: newer builds of .NET *may* work, but your mileage may vary.
 The workload installers enable a feature flag file via
-`sdk/6.0.100-preview.1.21081.5/EnableWorkloadResolver.sentinel`, which would
+`sdk/6.0.100-preview.1.21103.13/EnableWorkloadResolver.sentinel`, which would
 need to be created manually for other .NET 6 versions. You can find
 the full list of builds at the [dotnet/installer][dotnet/installer]
 repo._
