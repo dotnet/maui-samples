@@ -62,8 +62,6 @@ jobs:
   pool:
     vmImage: macOS-latest
   variables:
-    - group: xamops-azdev-secrets
-    - group: Xamarin-Secrets
     - name: LogDirectory
       value: $(Build.ArtifactStagingDirectory)/logs
     - name: DotNet.Root
@@ -91,12 +89,8 @@ jobs:
         boots $(iOS.Pkg)
       displayName: install .NET workloads
 
-    - task: provisionator@2
-      displayName: install Xcode
-      inputs:
-        github_token: $(github--pat--vs-mobiletools-engineering-service2)
-        provisioning_script: $(System.DefaultWorkingDirectory)/scripts/provision.csx
-        provisioning_extra_args: '-v -v -v -v'
+    - bash: sudo xcode-select -s /Applications/Xcode_12.3.app
+      displayName: select Xcode 12.3
 
     - bash: |
         set -x
