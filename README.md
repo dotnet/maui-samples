@@ -90,6 +90,17 @@ Open an Administrator command prompt to enable the
 
 Restart Visual Studio after making this change.
 
+### iOS from Visual Studio
+To build and debug .NET 6 iOS applications from Visual Studio 2019 you must manually intall the .NET 6 SDK and iOS workloads on both **Windows and macOS** (Mac build host).
+
+If while connecting Visual Studio to your Mac through XMA you are prompted to install a different version of the SDK, you can ignore that since it refers to the legacy one.
+
+> Note: currently only the iOS simulator is supported.
+
+### Known Issues
+- There are no project property pages avaialble for both iOS and Android
+- Editors (i.e. Manifest editor, Entitlements editor, etc.) will fail to open, so as a workaround please open those files with the XML editor.
+
 ## Workarounds
 
 These are notes for things we had to workaround for these samples to work.
