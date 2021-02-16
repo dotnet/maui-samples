@@ -1,6 +1,6 @@
-# net6-samples
+# .NET 6.0.0 Mobile Samples
 
-_This is an *early* preview of Xamarin in .NET 6 **not for production use**. Expect breaking changes as Xamarin is still in development for .NET 6._
+_This is an *early* preview of Mobile (iOS/Android) in .NET 6 **not for production use**. Expect breaking changes as this is still in development for .NET 6._
 
 This repo requires a specific build of .NET 6:
 
@@ -28,9 +28,9 @@ repo._
 
 Projects:
 
-* HelloAndroid - a native Xamarin.Android application
-* HelloiOS - a native Xamarin.iOS application
-* HelloForms - a multi-targeted Xamarin.Forms application for iOS and Android.
+* HelloAndroid - a native Android application
+* HelloiOS - a native iOS application
+* HelloForms - a multi-targeted Xamarin.Forms application for iOS and Android (will migrate to MAUI in a later preview)
 
 [dotnet/installer]: https://github.com/dotnet/installer#installers-and-binaries
 
@@ -62,7 +62,9 @@ To launch the iOS project on a simulator:
 
     dotnet build HelloiOS -t:Run
 
-## Xamarin.Forms
+## Xamarin.Forms / MAUI
+
+*In later previews, this sample will be migrated to use MAUI*
 
 To launch the Forms project, you will need to specify a `$(TargetFramework)` via the `-f` switch:
 
