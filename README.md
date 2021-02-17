@@ -16,6 +16,10 @@ Android:
 
 iOS:
 
+These builds are newer than [.NET 6 Preview 1][net6preview1] and
+require Xcode 12.4. Use downloads from [.NET 6 Preview
+1][net6preview1] for Xcode 12.3:
+
 * Windows: [Microsoft.NET.Workload.iOS.14.4.100-ci.main.1088.msi](https://bosstoragemirror.azureedge.net/wrench/main/648218c2878d0bf3c783f120234ed472ec7e5047/4472243/package/Microsoft.NET.Workload.iOS.14.4.100-ci.main.1088.msi)
 * macOS: [Microsoft.iOS.Bundle.14.4.100-ci.main.1088.pkg](https://bosstoragemirror.azureedge.net/wrench/main/648218c2878d0bf3c783f120234ed472ec7e5047/4472243/package/notarized/Microsoft.iOS.Bundle.14.4.100-ci.main.1088.pkg)
 
@@ -33,6 +37,7 @@ Projects:
 * HelloForms - a multi-targeted Xamarin.Forms application for iOS and Android.
 
 [dotnet/installer]: https://github.com/dotnet/installer#installers-and-binaries
+[net6preview1]: https://github.com/dotnet/net6-mobile-samples/releases/tag/6.0.1xx-preview1
 
 ## Android
 
@@ -52,7 +57,7 @@ You can launch the Android project to an attached emulator or device via:
 
 Prerequisites:
 
-* Xcode 12.3. Earlier versions won't work.
+* Xcode 12.4. Earlier versions won't work.
 
 To build the iOS project:
 
