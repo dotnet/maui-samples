@@ -89,8 +89,8 @@ jobs:
         boots $(iOS.Pkg)
       displayName: install .NET workloads
 
-    - bash: sudo xcode-select -s /Applications/Xcode_12.3.app
-      displayName: select Xcode 12.3
+    - bash: sudo xcode-select -s /Applications/Xcode_12.4.app
+      displayName: select Xcode 12.4
 
     - bash: |
         set -x
