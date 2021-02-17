@@ -15,6 +15,8 @@
     <!-- iOS -->
     <iOSProjectFolder>iOS\</iOSProjectFolder>
     <IPhoneResourcePrefix>$(iOSProjectFolder)Resources</IPhoneResourcePrefix>
+    <!--NOTE: the System.IO.Ports @(PackageReference) triggers this-->
+    <NoWarn>XA4301</NoWarn>
   </PropertyGroup>
 
   <!-- Shared -->

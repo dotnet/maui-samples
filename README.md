@@ -1,35 +1,36 @@
-# net6-samples
+# .NET 6.0.0 Mobile Samples
 
-_This is an *early* preview of Xamarin in .NET 6 **not for production use**. Expect breaking changes as Xamarin is still in development for .NET 6._
+_This is an *early* preview of Mobile (iOS/Android) in .NET 6 **not for production use**. Expect breaking changes as this is still in development for .NET 6._
 
 This repo requires a specific build of .NET 6:
 
-* Windows: [dotnet-sdk-6.0.100-alpha.1.20562.2-win-x64.exe](https://dotnetcli.azureedge.net/dotnet/Sdk/6.0.100-alpha.1.20562.2/dotnet-sdk-6.0.100-alpha.1.20562.2-win-x64.exe)
-* macOS: [dotnet-sdk-6.0.100-alpha.1.20562.2-osx-x64.pkg](https://dotnetcli.azureedge.net/dotnet/Sdk/6.0.100-alpha.1.20562.2/dotnet-sdk-6.0.100-alpha.1.20562.2-osx-x64.pkg)
+* Windows: [dotnet-sdk-6.0.100-preview.1.21103.13-win-x64.exe](https://dotnetcli.azureedge.net/dotnet/Sdk/6.0.100-preview.1.21103.13/dotnet-sdk-6.0.100-preview.1.21103.13-win-x64.exe)
+* macOS: [dotnet-sdk-6.0.100-preview.1.21103.13-osx-x64.pkg](https://dotnetcli.azureedge.net/dotnet/Sdk/6.0.100-preview.1.21103.13/dotnet-sdk-6.0.100-preview.1.21103.13-osx-x64.pkg)
 
 You will also need to install builds of the iOS and Android workloads:
 
 Android:
-* Windows: [Microsoft.NET.Workload.Android.11.0.100.255.msi](https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4264138/master/8e097b44df981bb4259845cfe2db9ca2aaaedc91/Microsoft.NET.Workload.Android.11.0.100.255.msi)
-* macOS: [Microsoft.NET.Workload.Android-11.0.100-ci.master.255.pkg](https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4264138/master/8e097b44df981bb4259845cfe2db9ca2aaaedc91/Microsoft.NET.Workload.Android-11.0.100-ci.master.255.pkg)
+
+* Windows: [Microsoft.NET.Workload.Android.11.0.200.85.msi](https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4451481/master/05bb8e0eae11ae6a73838b13cf91ee2433169dff/Microsoft.NET.Workload.Android.11.0.200.85.msi)
+* macOS: [Microsoft.NET.Workload.Android-11.0.200-ci.master.85.pkg](https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4451481/master/05bb8e0eae11ae6a73838b13cf91ee2433169dff/Microsoft.NET.Workload.Android-11.0.200-ci.master.85.pkg)
 
 iOS:
 
-* Windows: [Microsoft.NET.Workload.iOS.14.2.100-ci.main.30.msi](https://bosstoragemirror.blob.core.windows.net/wrench/jenkins/main/3174e94a178c41cae0a51fa296e52f711957c14a/543/package/Microsoft.NET.Workload.iOS.14.2.100-ci.main.30.msi)
-* macOS: [Microsoft.iOS.Bundle.14.2.100-ci.main.30.pkg](https://bosstoragemirror.blob.core.windows.net/wrench/jenkins/main/3174e94a178c41cae0a51fa296e52f711957c14a/543/package/Microsoft.iOS.Bundle.14.2.100-ci.main.30.pkg)
+* Windows: [Microsoft.NET.Workload.iOS.14.3.100-ci.main.1079.msi](https://bosstoragemirror.azureedge.net/wrench/main/f01fde5cd9a7ffffcdc8d241200c35988700fa00/4449408/package/Microsoft.NET.Workload.iOS.14.3.100-ci.main.1079.msi)
+* macOS: [Microsoft.iOS.Bundle.14.3.100-ci.main.1079.pkg](https://bosstoragemirror.azureedge.net/wrench/main/f01fde5cd9a7ffffcdc8d241200c35988700fa00/4449408/package/notarized/Microsoft.iOS.Bundle.14.3.100-ci.main.1079.pkg)
 
 _NOTE: newer builds of .NET *may* work, but your mileage may vary.
 The workload installers enable a feature flag file via
-`sdk/6.0.100-alpha.1.20562.2/EnableWorkloadResolver.sentinel`, which would
+`sdk/6.0.100-preview.1.21103.13/EnableWorkloadResolver.sentinel`, which would
 need to be created manually for other .NET 6 versions. You can find
 the full list of builds at the [dotnet/installer][dotnet/installer]
 repo._
 
 Projects:
 
-* HelloAndroid - a native Xamarin.Android application
-* HelloiOS - a native Xamarin.iOS application
-* HelloForms - a multi-targeted Xamarin.Forms application for iOS and Android.
+* HelloAndroid - a native Android application
+* HelloiOS - a native iOS application
+* HelloForms - a multi-targeted Xamarin.Forms application for iOS and Android (will migrate to MAUI in a later preview)
 
 [dotnet/installer]: https://github.com/dotnet/installer#installers-and-binaries
 
@@ -41,42 +42,55 @@ Prerequisites:
 
 For example, to build the Android project:
 
-    dotnet build HelloAndroid/HelloAndroid.csproj
+    dotnet build HelloAndroid
 
 You can launch the Android project to an attached emulator or device via:
 
-    dotnet build HelloAndroid/HelloAndroid.csproj -t:Run
+    dotnet build HelloAndroid -t:Run
 
 ## iOS
 
 Prerequisites:
 
-* Xcode 12.2. Earlier versions won't work.
+* Xcode 12.3. Earlier versions won't work.
 
 To build the iOS project:
 
-    dotnet build HelloiOS/HelloiOS.csproj
+    dotnet build HelloiOS
 
 To launch the iOS project on a simulator:
 
-    dotnet build HelloiOS/HelloiOS.csproj -t:Run
+    dotnet build HelloiOS -t:Run
 
-## Xamarin.Forms
+## Xamarin.Forms / MAUI
 
-To launch the Forms project, you will need to specify a `$(TargetFramework)`:
+*In later previews, this sample will be migrated to use MAUI*
 
-    dotnet build HelloForms/HelloForms.csproj -t:Run -p:TargetFramework=net6.0-android
-    dotnet build HelloForms/HelloForms.csproj -t:Run -p:TargetFramework=net6.0-ios
+To launch the Forms project, you will need to specify a `$(TargetFramework)` via the `-f` switch:
 
-## Known Issues
+    dotnet build HelloForms -t:Run -f net6.0-android
+    dotnet build HelloForms -t:Run -f net6.0-ios
 
-Currently...
+> NOTE: You may need to add the `--no-restore` switch until
+> [dotnet#15485](https://github.com/dotnet/sdk/issues/15485) is
+> resolved.
 
-* There is not a way to setup a binding project for Xamarin.iOS.
-* `System.Console.WriteLine` does not work on Xamarin.Android. Use
-  `Android.Util.Log.Debug` for now.
-* Building for device doesn't work for iOS.
-* Building for tvOS or watchOS does not work.
+## Using IDEs
+
+Currently, you can use Visual Studio 2019 16.9 Preview 4 on Windows
+(with the Xamarin workload) with a few manual steps.
+
+Open an Administrator command prompt to enable the
+`EnableWorkloadResolver.sentinel` feature flag:
+
+    > cd "C:\Program Files (x86)\Microsoft Visual Studio\2019\Preview\MSBuild\Current\Bin\SdkResolvers\Microsoft.DotNet.MSBuildSdkResolver"
+    > echo > EnableWorkloadResolver.sentinel
+
+> NOTE: your path to Visual Studio may vary, depending on where you
+> selected to install it. `Preview` is the default folder for Visual
+> Studio Preview versions.
+
+Restart Visual Studio after making this change.
 
 ## Workarounds
 

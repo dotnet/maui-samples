@@ -7,12 +7,12 @@ pr:
 - main
 
 variables:
-  DotNetVersion: 6.0.100-alpha.1.20562.2
+  DotNetVersion: 6.0.100-preview.1.21103.13
   DotNet.Cli.Telemetry.OptOut: true
-  Android.Msi: https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4264138/master/8e097b44df981bb4259845cfe2db9ca2aaaedc91/Microsoft.NET.Workload.Android.11.0.100.255.msi
-  Android.Pkg: https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4264138/master/8e097b44df981bb4259845cfe2db9ca2aaaedc91/Microsoft.NET.Workload.Android-11.0.100-ci.master.255.pkg
-  iOS.Msi: https://bosstoragemirror.blob.core.windows.net/wrench/jenkins/main/3174e94a178c41cae0a51fa296e52f711957c14a/543/package/Microsoft.NET.Workload.iOS.14.2.100-ci.main.30.msi
-  iOS.Pkg: https://bosstoragemirror.blob.core.windows.net/wrench/jenkins/main/3174e94a178c41cae0a51fa296e52f711957c14a/543/package/Microsoft.iOS.Bundle.14.2.100-ci.main.30.pkg
+  Android.Msi: https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4451481/master/05bb8e0eae11ae6a73838b13cf91ee2433169dff/Microsoft.NET.Workload.Android.11.0.200.85.msi
+  Android.Pkg: https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4451481/master/05bb8e0eae11ae6a73838b13cf91ee2433169dff/Microsoft.NET.Workload.Android-11.0.200-ci.master.85.pkg
+  iOS.Msi: https://bosstoragemirror.azureedge.net/wrench/main/f01fde5cd9a7ffffcdc8d241200c35988700fa00/4449408/package/Microsoft.NET.Workload.iOS.14.3.100-ci.main.1079.msi
+  iOS.Pkg: https://bosstoragemirror.azureedge.net/wrench/main/f01fde5cd9a7ffffcdc8d241200c35988700fa00/4449408/package/notarized/Microsoft.iOS.Bundle.14.3.100-ci.main.1079.pkg
 
 jobs:
 - job: windows
@@ -62,8 +62,6 @@ jobs:
   pool:
     vmImage: macOS-latest
   variables:
-    - group: xamops-azdev-secrets
-    - group: Xamarin-Secrets
     - name: LogDirectory
       value: $(Build.ArtifactStagingDirectory)/logs
     - name: DotNet.Root
@@ -79,7 +77,7 @@ jobs:
 
     - bash: >
         export PATH="$(DotNet.Root):$(DotNet.Tools):$PATH" &&
-        curl -L https://dot.net/v1/dotnet-install.sh > dotnet-install.sh &&
+        curl -L https://raw.githubusercontent.com/dotnet/install-scripts/7a9d5dcab92cf131fc2d8977052f8c2c2d540e22/src/dotnet-install.sh > dotnet-install.sh &&
         sh dotnet-install.sh --version $(DotNetVersion) --install-dir $DOTNET_ROOT --verbose &&
         dotnet --list-sdks &&
         echo "##vso[task.setvariable variable=PATH]$PATH"
@@ -91,12 +89,8 @@ jobs:
         boots $(iOS.Pkg)
       displayName: install .NET workloads
 
-    - task: provisionator@2
-      displayName: install Xcode
-      inputs:
-        github_token: $(github--pat--vs-mobiletools-engineering-service2)
-        provisioning_script: $(System.DefaultWorkingDirectory)/scripts/provision.csx
-        provisioning_extra_args: '-v -v -v -v'
+    - bash: sudo xcode-select -s /Applications/Xcode_12.3.app
+      displayName: select Xcode 12.3
 
     - bash: |
         set -x
