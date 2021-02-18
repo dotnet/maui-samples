@@ -2,6 +2,10 @@
 
 _This is an *early* preview of Mobile (iOS/Android) in .NET 6 **not for production use**. Expect breaking changes as this is still in development for .NET 6._
 
+If you are looking for the absolute newest download links see the
+[develop](https://github.com/dotnet/net6-mobile-samples/tree/develop)
+branch.
+
 This repo requires a specific build of .NET 6:
 
 * Windows: [dotnet-sdk-6.0.100-preview.1.21103.13-win-x64.exe](https://download.visualstudio.microsoft.com/download/pr/68e6514a-ec0f-46ea-a00a-76ec205c42cc/f68e27ee1a41320ad5e331ccd6bcab9f/dotnet-sdk-6.0.100-preview.1.21103.13-win-x64.exe)
