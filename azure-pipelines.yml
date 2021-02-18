@@ -2,9 +2,11 @@
 
 trigger:
 - main
+- develop
 
 pr:
 - main
+- develop
 
 variables:
   DotNetVersion: 6.0.100-preview.1.21103.13
