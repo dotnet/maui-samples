@@ -13,8 +13,8 @@ variables:
   DotNet.Cli.Telemetry.OptOut: true
   Android.Msi: https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4451481/master/05bb8e0eae11ae6a73838b13cf91ee2433169dff/Microsoft.NET.Workload.Android.11.0.200.85.msi
   Android.Pkg: https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4451481/master/05bb8e0eae11ae6a73838b13cf91ee2433169dff/Microsoft.NET.Workload.Android-11.0.200-ci.master.85.pkg
-  iOS.Msi: https://bosstoragemirror.azureedge.net/wrench/main/f01fde5cd9a7ffffcdc8d241200c35988700fa00/4449408/package/Microsoft.NET.Workload.iOS.14.3.100-ci.main.1079.msi
-  iOS.Pkg: https://bosstoragemirror.azureedge.net/wrench/main/f01fde5cd9a7ffffcdc8d241200c35988700fa00/4449408/package/notarized/Microsoft.iOS.Bundle.14.3.100-ci.main.1079.pkg
+  iOS.Msi: https://bosstoragemirror.azureedge.net/wrench/main/648218c2878d0bf3c783f120234ed472ec7e5047/4472243/package/Microsoft.NET.Workload.iOS.14.4.100-ci.main.1088.msi
+  iOS.Pkg: https://bosstoragemirror.azureedge.net/wrench/main/648218c2878d0bf3c783f120234ed472ec7e5047/4472243/package/notarized/Microsoft.iOS.Bundle.14.4.100-ci.main.1088.pkg
 
 jobs:
 - job: windows
@@ -91,8 +91,8 @@ jobs:
         boots $(iOS.Pkg)
       displayName: install .NET workloads
 
-    - bash: sudo xcode-select -s /Applications/Xcode_12.3.app
-      displayName: select Xcode 12.3
+    - bash: sudo xcode-select -s /Applications/Xcode_12.4.app
+      displayName: select Xcode 12.4
 
     - bash: |
         set -x

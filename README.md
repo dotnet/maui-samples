@@ -20,8 +20,12 @@ Android:
 
 iOS:
 
-* Windows: [Microsoft.NET.Workload.iOS.14.3.100-ci.main.1079.msi](https://bosstoragemirror.azureedge.net/wrench/main/f01fde5cd9a7ffffcdc8d241200c35988700fa00/4449408/package/Microsoft.NET.Workload.iOS.14.3.100-ci.main.1079.msi)
-* macOS: [Microsoft.iOS.Bundle.14.3.100-ci.main.1079.pkg](https://bosstoragemirror.azureedge.net/wrench/main/f01fde5cd9a7ffffcdc8d241200c35988700fa00/4449408/package/notarized/Microsoft.iOS.Bundle.14.3.100-ci.main.1079.pkg)
+These builds are newer than [.NET 6 Preview 1][net6preview1] and
+require Xcode 12.4. Use downloads from [.NET 6 Preview
+1][net6preview1] for Xcode 12.3:
+
+* Windows: [Microsoft.NET.Workload.iOS.14.4.100-ci.main.1088.msi](https://bosstoragemirror.azureedge.net/wrench/main/648218c2878d0bf3c783f120234ed472ec7e5047/4472243/package/Microsoft.NET.Workload.iOS.14.4.100-ci.main.1088.msi)
+* macOS: [Microsoft.iOS.Bundle.14.4.100-ci.main.1088.pkg](https://bosstoragemirror.azureedge.net/wrench/main/648218c2878d0bf3c783f120234ed472ec7e5047/4472243/package/notarized/Microsoft.iOS.Bundle.14.4.100-ci.main.1088.pkg)
 
 _NOTE: newer builds of .NET *may* work, but your mileage may vary.
 The workload installers enable a feature flag file via
@@ -37,6 +41,7 @@ Projects:
 * HelloForms - a multi-targeted Xamarin.Forms application for iOS and Android (will migrate to MAUI in a later preview)
 
 [dotnet/installer]: https://github.com/dotnet/installer#installers-and-binaries
+[net6preview1]: https://github.com/dotnet/net6-mobile-samples/releases/tag/6.0.1xx-preview1
 
 ## Android
 
@@ -56,7 +61,7 @@ You can launch the Android project to an attached emulator or device via:
 
 Prerequisites:
 
-* Xcode 12.3. Earlier versions won't work.
+* Xcode 12.4. Earlier versions won't work.
 
 To build the iOS project:
 
@@ -95,6 +100,17 @@ Open an Administrator command prompt to enable the
 > Studio Preview versions.
 
 Restart Visual Studio after making this change.
+
+### iOS from Visual Studio
+To build and debug .NET 6 iOS applications from Visual Studio 2019 you must manually intall the .NET 6 SDK and iOS workloads on both **Windows and macOS** (Mac build host).
+
+If while connecting Visual Studio to your Mac through XMA you are prompted to install a different version of the SDK, you can ignore that since it refers to the legacy one.
+
+> Note: currently only the iOS simulator is supported.
+
+### Known Issues
+- There are no project property pages avaialble for both iOS and Android
+- Editors (i.e. Manifest editor, Entitlements editor, etc.) will fail to open, so as a workaround please open those files with the XML editor.
 
 ## Workarounds
 
