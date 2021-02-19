@@ -1,7 +1,5 @@
 ﻿using Android.App;
 using Android.OS;
-using Android.Runtime;
-using Android.Widget;
 
 namespace HelloAndroid
 {
