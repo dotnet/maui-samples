@@ -2,7 +2,6 @@
   <PropertyGroup>
     <TargetFrameworks>net6.0-android;net6.0-ios</TargetFrameworks>
     <RuntimeIdentifier Condition=" '$(TargetFramework)' == 'net6.0-ios' ">ios-x64</RuntimeIdentifier>
-    <EmbedAssembliesIntoApk Condition=" '$(TargetFramework)' == 'net6.0-android' " >true</EmbedAssembliesIntoApk>
     <OutputType>Exe</OutputType>
   </PropertyGroup>
   <ItemGroup>
