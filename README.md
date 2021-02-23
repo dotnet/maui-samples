@@ -15,8 +15,8 @@ You will also need to install builds of the iOS and Android workloads:
 
 Android:
 
-* Windows: [Microsoft.NET.Workload.Android.11.0.200.85.msi](https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4451481/master/05bb8e0eae11ae6a73838b13cf91ee2433169dff/Microsoft.NET.Workload.Android.11.0.200.85.msi)
-* macOS: [Microsoft.NET.Workload.Android-11.0.200-ci.master.85.pkg](https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4451481/master/05bb8e0eae11ae6a73838b13cf91ee2433169dff/Microsoft.NET.Workload.Android-11.0.200-ci.master.85.pkg)
+* Windows: [Microsoft.NET.Workload.Android.11.0.200.118.msi](https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4498522/master/2f83bddb99f6a0948631cd0f09bf037ba8a4e359/Microsoft.NET.Workload.Android.11.0.200.118.msi)
+* macOS: [Microsoft.NET.Workload.Android-11.0.200-ci.master.118.pkg](https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4498522/master/2f83bddb99f6a0948631cd0f09bf037ba8a4e359/Microsoft.NET.Workload.Android-11.0.200-ci.master.118.pkg)
 
 iOS:
 
@@ -102,15 +102,24 @@ Open an Administrator command prompt to enable the
 Restart Visual Studio after making this change.
 
 ### iOS from Visual Studio
-To build and debug .NET 6 iOS applications from Visual Studio 2019 you must manually intall the .NET 6 SDK and iOS workloads on both **Windows and macOS** (Mac build host).
 
-If while connecting Visual Studio to your Mac through XMA you are prompted to install a different version of the SDK, you can ignore that since it refers to the legacy one.
+To build and debug .NET 6 iOS applications from Visual Studio 2019 you
+must manually intall the .NET 6 SDK and iOS workloads on both
+**Windows and macOS** (Mac build host).
+
+If while connecting Visual Studio to your Mac through XMA you are
+prompted to install a different version of the SDK, you can ignore
+that since it refers to the legacy one.
 
 > Note: currently only the iOS simulator is supported.
 
 ### Known Issues
-- There are no project property pages avaialble for both iOS and Android
-- Editors (i.e. Manifest editor, Entitlements editor, etc.) will fail to open, so as a workaround please open those files with the XML editor.
+
+* There are no project property pages available for both iOS and
+  Android
+* Editors (i.e. Manifest editor, Entitlements editor, etc.) will fail
+  to open, so as a workaround please open those files with the XML
+  editor.
 
 ## Workarounds
 
