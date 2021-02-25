@@ -8,8 +8,8 @@ branch.
 
 This repo requires a specific build of .NET 6:
 
-* Windows: [dotnet-sdk-6.0.100-preview.1.21103.13-win-x64.exe](https://download.visualstudio.microsoft.com/download/pr/68e6514a-ec0f-46ea-a00a-76ec205c42cc/f68e27ee1a41320ad5e331ccd6bcab9f/dotnet-sdk-6.0.100-preview.1.21103.13-win-x64.exe)
-* macOS: [dotnet-sdk-6.0.100-preview.1.21103.13-osx-x64.pkg](https://download.visualstudio.microsoft.com/download/pr/f7224456-9898-45b6-8acc-b110900653cd/817c4e3b1ee787985fdf85032eb2752d/dotnet-sdk-6.0.100-preview.1.21103.13-osx-x64.pkg)
+* Windows: [dotnet-sdk-6.0.100-preview.2.21114.3-win-x64.exe](https://dotnetcli.blob.core.windows.net/dotnet/Sdk/6.0.100-preview.2.21114.3/dotnet-sdk-6.0.100-preview.2.21114.3-win-x64.exe)
+* macOS: [dotnet-sdk-6.0.100-preview.2.21114.3-osx-x64.pkg](https://dotnetcli.blob.core.windows.net/dotnet/Sdk/6.0.100-preview.2.21114.3/dotnet-sdk-6.0.100-preview.2.21114.3-osx-x64.pkg)
 
 You will also need to install builds of the iOS and Android workloads:
 
@@ -24,8 +24,8 @@ These builds are newer than [.NET 6 Preview 1][net6preview1] and
 require Xcode 12.4. Use downloads from [.NET 6 Preview
 1][net6preview1] for Xcode 12.3:
 
-* Windows: [Microsoft.NET.Workload.iOS.14.4.100-ci.main.1100.msi](https://bosstoragemirror.azureedge.net/wrench/main/37831cd0f5105a5df2591553fa0c85ad8d236bad/4483958/package/Microsoft.NET.Workload.iOS.14.4.100-ci.main.1100.msi)
-* macOS: [Microsoft.iOS.Bundle.14.4.100-ci.main.1100.pkg](https://bosstoragemirror.azureedge.net/wrench/main/37831cd0f5105a5df2591553fa0c85ad8d236bad/4483958/package/notarized/Microsoft.iOS.Bundle.14.4.100-ci.main.1100.pkg)
+* Windows: [Microsoft.NET.Workload.iOS.14.4.100-ci.main.1144.msi](https://bosstoragemirror.blob.core.windows.net/wrench/main/3a69beae5337a1dba3dd2b56c442a6b5ec089429/4505964/package/Microsoft.NET.Workload.iOS.14.4.100-ci.main.1144.msi)
+* macOS: [Microsoft.iOS.Bundle.14.4.100-ci.main.1144.pkg](https://bosstoragemirror.blob.core.windows.net/wrench/main/3a69beae5337a1dba3dd2b56c442a6b5ec089429/4505964/package/Microsoft.iOS.Bundle.14.4.100-ci.main.1144.pkg)
 
 _NOTE: newer builds of .NET *may* work, but your mileage may vary.
 The workload installers enable a feature flag file via
