@@ -20,7 +20,7 @@
             // we only support android at this time.
             "label": "Run",
             "type": "shell",
-            "command": "dotnet build ${input:project} \"-t:Run\" --no-restore -p:TargetFramework=net6.0-android -p:AndroidAttachDebugger=${input:attach} -p:AndroidSdbHostPort=10000 -p:Configuration=${input:configuration}",
+            "command": "dotnet build ${input:project} \"-t:Run\" --no-restore -p:TargetFramework=${input:targetframework} -p:AndroidAttachDebugger=${input:attach} -p:AndroidSdbHostPort=10000 -p:Configuration=${input:configuration}",
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -61,8 +61,17 @@
             "options": [
                 "Build",
                 "Install",
-                "SignAndroidPackage",
                 "Clean"
+            ]
+        },
+        {
+            "id": "targetframework",
+            "type": "pickString",
+            "default": "net6.0-android",
+            "description": "Select TargetFramework",
+            "options": [
+                "net6.0-android",
+                //"net6.0-ios", // uncomment when iOS is supported.
             ]
         },
         {
