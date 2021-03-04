@@ -24,8 +24,8 @@ These builds are newer than [.NET 6 Preview 1][net6preview1] and
 require Xcode 12.4. Use downloads from [.NET 6 Preview
 1][net6preview1] for Xcode 12.3:
 
-* Windows: [Microsoft.NET.Workload.iOS.14.4.100-ci.main.1144.msi](https://bosstoragemirror.blob.core.windows.net/wrench/main/3a69beae5337a1dba3dd2b56c442a6b5ec089429/4505964/package/Microsoft.NET.Workload.iOS.14.4.100-ci.main.1144.msi)
-* macOS: [Microsoft.iOS.Bundle.14.4.100-ci.main.1144.pkg](https://bosstoragemirror.blob.core.windows.net/wrench/main/3a69beae5337a1dba3dd2b56c442a6b5ec089429/4505964/package/Microsoft.iOS.Bundle.14.4.100-ci.main.1144.pkg)
+* Windows: [Microsoft.NET.Workload.iOS.14.4.100-ci.main.1167.msi](https://bosstoragemirror.azureedge.net/wrench/main/80ed9d81bcf66afa2d800bc362e467180dbf246c/4524716/package/Microsoft.NET.Workload.iOS.14.4.100-ci.main.1167.msi)
+* macOS: [Microsoft.iOS.Bundle.14.4.100-ci.main.1167.pkg](https://bosstoragemirror.azureedge.net/wrench/main/80ed9d81bcf66afa2d800bc362e467180dbf246c/4524716/package/notarized/Microsoft.iOS.Bundle.14.4.100-ci.main.1167.pkg)
 
 _NOTE: newer builds of .NET *may* work, but your mileage may vary.
 The workload installers enable a feature flag file via
