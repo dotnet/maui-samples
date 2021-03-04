@@ -15,8 +15,8 @@ You will also need to install builds of the iOS and Android workloads:
 
 Android:
 
-* Windows: [Microsoft.NET.Workload.Android.11.0.200.118.msi](https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4498522/master/2f83bddb99f6a0948631cd0f09bf037ba8a4e359/Microsoft.NET.Workload.Android.11.0.200.118.msi)
-* macOS: [Microsoft.NET.Workload.Android-11.0.200-ci.master.118.pkg](https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4498522/master/2f83bddb99f6a0948631cd0f09bf037ba8a4e359/Microsoft.NET.Workload.Android-11.0.200-ci.master.118.pkg)
+* Windows: [Microsoft.NET.Workload.Android.11.0.200.136.msi](https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4525053/master/8cd0b47032d267a63b449a63c0839c60cbd976f1/Microsoft.NET.Workload.Android.11.0.200.136.msi)
+* macOS: [Microsoft.NET.Workload.Android-11.0.200.136.pkg](https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4525053/master/8cd0b47032d267a63b449a63c0839c60cbd976f1/Microsoft.NET.Workload.Android-11.0.200-ci.8cd0b47032d267a63b449a63c0839c60cbd976f1.136.pkg)
 
 iOS:
 
@@ -24,8 +24,8 @@ These builds are newer than [.NET 6 Preview 1][net6preview1] and
 require Xcode 12.4. Use downloads from [.NET 6 Preview
 1][net6preview1] for Xcode 12.3:
 
-* Windows: [Microsoft.NET.Workload.iOS.14.4.100-ci.main.1144.msi](https://bosstoragemirror.blob.core.windows.net/wrench/main/3a69beae5337a1dba3dd2b56c442a6b5ec089429/4505964/package/Microsoft.NET.Workload.iOS.14.4.100-ci.main.1144.msi)
-* macOS: [Microsoft.iOS.Bundle.14.4.100-ci.main.1144.pkg](https://bosstoragemirror.blob.core.windows.net/wrench/main/3a69beae5337a1dba3dd2b56c442a6b5ec089429/4505964/package/Microsoft.iOS.Bundle.14.4.100-ci.main.1144.pkg)
+* Windows: [Microsoft.NET.Workload.iOS.14.4.100-ci.main.1167.msi](https://bosstoragemirror.azureedge.net/wrench/main/80ed9d81bcf66afa2d800bc362e467180dbf246c/4524716/package/Microsoft.NET.Workload.iOS.14.4.100-ci.main.1167.msi)
+* macOS: [Microsoft.iOS.Bundle.14.4.100-ci.main.1167.pkg](https://bosstoragemirror.azureedge.net/wrench/main/80ed9d81bcf66afa2d800bc362e467180dbf246c/4524716/package/notarized/Microsoft.iOS.Bundle.14.4.100-ci.main.1167.pkg)
 
 Mac Catalyst:
 
@@ -129,6 +129,36 @@ Running and debugging apps from Visual Studio for Mac does not work yet.
 * Editors (i.e. Manifest editor, Entitlements editor, etc.) will fail
   to open, so as a workaround please open those files with the XML
   editor.
+
+### Android from VSCode
+
+Support has been added to allow debugging of Android based apps in
+VSCode. Open the `net6-mobile-samples.code-workspace` in VSCode.
+
+    > code net6-mobile-samples.code-workspace
+
+To build your application use open the Command Pallette and select
+`Run Build Task`. Select `Build` and then the `Target` you want to
+run. Available targets are:
+
+* `Build` : Builds the Project.
+* `Install` : Installs the Application on a Device or Emulator.
+* `Clean` : Clean the Project.
+
+You can then select the `Project` and then the `Configuration`
+(`Debug` or `Release`) you want to `Build`.
+
+To Debug goto the `Run` Tab and make sure `Debug` is selected. Click
+the Run button. You will be prompted on which project you wish to run,
+then asked which `TargetFramework` you want to target. For now only
+`net6.0-android` is supported. You will then be asked if you want to
+attach the debugger. Finally you will be asked which configuration you
+wish to use `Debug` or `Release`. After this the application should
+deploy and run, breakpoints should behave as normal.
+
+Note: You will need to build your application at least once via
+`Run Build Task`. This is to that NuGet packages are restored correctly.
+This should not be required once [dotnet#15485](https://github.com/dotnet/sdk/issues/15485) is resolved.
 
 ## Workarounds
 
