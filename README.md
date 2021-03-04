@@ -15,8 +15,8 @@ You will also need to install builds of the iOS and Android workloads:
 
 Android:
 
-* Windows: [Microsoft.NET.Workload.Android.11.0.200.118.msi](https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4498522/master/2f83bddb99f6a0948631cd0f09bf037ba8a4e359/Microsoft.NET.Workload.Android.11.0.200.118.msi)
-* macOS: [Microsoft.NET.Workload.Android-11.0.200-ci.master.118.pkg](https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4498522/master/2f83bddb99f6a0948631cd0f09bf037ba8a4e359/Microsoft.NET.Workload.Android-11.0.200-ci.master.118.pkg)
+* Windows: [Microsoft.NET.Workload.Android.11.0.200.136.msi](https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4525053/master/8cd0b47032d267a63b449a63c0839c60cbd976f1/Microsoft.NET.Workload.Android.11.0.200.136.msi)
+* macOS: [Microsoft.NET.Workload.Android-11.0.200.136.pkg](https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4525053/master/8cd0b47032d267a63b449a63c0839c60cbd976f1/Microsoft.NET.Workload.Android-11.0.200-ci.8cd0b47032d267a63b449a63c0839c60cbd976f1.136.pkg)
 
 iOS:
 
