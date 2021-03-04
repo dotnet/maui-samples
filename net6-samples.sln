@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloiOS", "HelloiOS\Helloi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloForms", "HelloForms\HelloForms.csproj", "{36BB19AF-93D3-4704-AFCE-181941EBD691}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloMacCatalyst", "HelloMacCatalyst\HelloMacCatalyst.csproj", "{7984B115-AB8F-4899-B591-7CE7A1D46185}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,10 +29,6 @@ Global
 		{36BB19AF-93D3-4704-AFCE-181941EBD691}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{36BB19AF-93D3-4704-AFCE-181941EBD691}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{36BB19AF-93D3-4704-AFCE-181941EBD691}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7984B115-AB8F-4899-B591-7CE7A1D46185}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7984B115-AB8F-4899-B591-7CE7A1D46185}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7984B115-AB8F-4899-B591-7CE7A1D46185}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7984B115-AB8F-4899-B591-7CE7A1D46185}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
