@@ -27,6 +27,10 @@ require Xcode 12.4. Use downloads from [.NET 6 Preview
 * Windows: [Microsoft.NET.Workload.iOS.14.4.100-ci.main.1167.msi](https://bosstoragemirror.azureedge.net/wrench/main/80ed9d81bcf66afa2d800bc362e467180dbf246c/4524716/package/Microsoft.NET.Workload.iOS.14.4.100-ci.main.1167.msi)
 * macOS: [Microsoft.iOS.Bundle.14.4.100-ci.main.1167.pkg](https://bosstoragemirror.azureedge.net/wrench/main/80ed9d81bcf66afa2d800bc362e467180dbf246c/4524716/package/notarized/Microsoft.iOS.Bundle.14.4.100-ci.main.1167.pkg)
 
+Mac Catalyst:
+
+* macOS: [Microsoft.MacCatalyst.Bundle.14.3.100-ci.main.289.pkg](https://bosstoragemirror.azureedge.net/wrench/main/3a69beae5337a1dba3dd2b56c442a6b5ec089429/4505964/package/Microsoft.MacCatalyst.Bundle.14.3.100-ci.main.289.pkg)
+
 _NOTE: newer builds of .NET *may* work, but your mileage may vary.
 The workload installers enable a feature flag file via
 `sdk/6.0.100-preview.1.21103.13/EnableWorkloadResolver.sentinel`, which would
@@ -38,6 +42,7 @@ Projects:
 
 * HelloAndroid - a native Android application
 * HelloiOS - a native iOS application
+* HelloMacCatalyst - a native Mac Catalyst application
 * HelloForms - a multi-targeted Xamarin.Forms application for iOS and Android (will migrate to MAUI in a later preview)
 
 [dotnet/installer]: https://github.com/dotnet/installer#installers-and-binaries
@@ -112,6 +117,10 @@ prompted to install a different version of the SDK, you can ignore
 that since it refers to the legacy one.
 
 > Note: currently only the iOS simulator is supported.
+
+### Mac Catalyst from Visual Studio for Mac
+
+Running and debugging apps from Visual Studio for Mac does not work yet.
 
 ### Known Issues
 
