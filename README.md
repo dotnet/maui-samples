@@ -29,7 +29,7 @@ require Xcode 12.4. Use downloads from [.NET 6 Preview
 
 Mac Catalyst:
 
-* macOS: [Microsoft.MacCatalyst.Bundle.14.3.100-ci.main.289.pkg](https://bosstoragemirror.azureedge.net/wrench/main/3a69beae5337a1dba3dd2b56c442a6b5ec089429/4505964/package/Microsoft.MacCatalyst.Bundle.14.3.100-ci.main.289.pkg)
+* macOS: [Microsoft.MacCatalyst.Bundle.14.3.100-ci.main.315.pkg](https://bosstoragemirror.azureedge.net/wrench/main/23bdf612307e9fee625bce8e3cc5fe50eb86fa3e/4525406/package/Microsoft.MacCatalyst.Bundle.14.3.100-ci.main.315.pkg)
 
 _NOTE: newer builds of .NET *may* work, but your mileage may vary.
 The workload installers enable a feature flag file via
