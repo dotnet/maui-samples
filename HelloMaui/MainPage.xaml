@@ -2,12 +2,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="HelloMaui.MainPage">
 
-    <StackLayout>
-        <Label Text="Welcome to Microsoft MAUI!"
+    <StackLayout Padding="30">
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Welcome to Microsoft MAUI!"
                VerticalOptions="CenterAndExpand"
                HorizontalOptions="CenterAndExpand" />
 
-        <Label Text="&#xf388;" FontFamily="IonIcons" HorizontalOptions="Center" />
+            <Label Text="&#xf388;" FontFamily="IonIcons" TextColor="#000000" FontSize="20" />
+        </StackLayout>
     </StackLayout>
 
 </ContentPage>
