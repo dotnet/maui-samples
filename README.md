@@ -73,7 +73,7 @@ To launch the iOS project on a simulator:
 
 ## .NET MAUI
 
-To launch the Forms project, you will need to specify a `$(TargetFramework)` via the `-f` switch:
+To launch the .NET MAUI project, you will need to specify a `$(TargetFramework)` via the `-f` switch:
 
     dotnet build HelloMaui -t:Run -f net6.0-android
     dotnet build HelloMaui -t:Run -f net6.0-ios
