@@ -24,12 +24,12 @@ These builds are newer than [.NET 6 Preview 1][net6preview1] and
 require Xcode 12.4. Use downloads from [.NET 6 Preview
 1][net6preview1] for Xcode 12.3:
 
-* Windows: [Microsoft.NET.Workload.iOS.14.4.100-ci.main.1167.msi](https://bosstoragemirror.azureedge.net/wrench/main/80ed9d81bcf66afa2d800bc362e467180dbf246c/4524716/package/Microsoft.NET.Workload.iOS.14.4.100-ci.main.1167.msi)
-* macOS: [Microsoft.iOS.Bundle.14.4.100-ci.main.1167.pkg](https://bosstoragemirror.azureedge.net/wrench/main/80ed9d81bcf66afa2d800bc362e467180dbf246c/4524716/package/notarized/Microsoft.iOS.Bundle.14.4.100-ci.main.1167.pkg)
+* Windows: [Microsoft.NET.Workload.iOS.14.4.100-ci.main.1171.msi](https://bosstoragemirror.azureedge.net/wrench/main/94fb7823f263f0367f7c311dc90920e88d5d5f9a/4526923/package/Microsoft.NET.Workload.iOS.14.4.100-ci.main.1171.msi)
+* macOS: [Microsoft.iOS.Bundle.14.4.100-ci.main.1171.pkg](https://bosstoragemirror.azureedge.net/wrench/main/94fb7823f263f0367f7c311dc90920e88d5d5f9a/4526923/package/Microsoft.iOS.Bundle.14.4.100-ci.main.1171.pkg)
 
 Mac Catalyst:
 
-* macOS: [Microsoft.MacCatalyst.Bundle.14.3.100-ci.main.315.pkg](https://bosstoragemirror.azureedge.net/wrench/main/23bdf612307e9fee625bce8e3cc5fe50eb86fa3e/4525406/package/Microsoft.MacCatalyst.Bundle.14.3.100-ci.main.315.pkg)
+* macOS: [Microsoft.MacCatalyst.Bundle.14.3.100-ci.main.316.pkg](https://bosstoragemirror.azureedge.net/wrench/main/94fb7823f263f0367f7c311dc90920e88d5d5f9a/4526923/package/Microsoft.MacCatalyst.Bundle.14.3.100-ci.main.316.pkg)
 
 _NOTE: newer builds of .NET *may* work, but your mileage may vary.
 The workload installers enable a feature flag file via
