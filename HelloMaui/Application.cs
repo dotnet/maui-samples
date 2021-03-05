@@ -16,7 +16,7 @@ namespace HelloMaui
 				.ConfigureFonts((hostingContext, fonts) =>
 				{
 					fonts.AddFont("ionicons.ttf", "IonIcons");
-				});;
+				});
 
 		public override IWindow CreateWindow(IActivationState state)
 		{
