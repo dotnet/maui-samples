@@ -4,8 +4,8 @@
 <dict>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>MinimumOSVersion</key>
-	<string>10.3.4</string>
+	<key>LSMinimumOSVersion</key>
+	<string>10.15</string>
 	<key>UIDeviceFamily</key>
 	<array>
 		<integer>1</integer>
