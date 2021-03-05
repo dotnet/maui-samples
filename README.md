@@ -97,14 +97,22 @@ Currently, you can use Visual Studio 2019 16.9 Preview 4 on Windows
 Open an Administrator command prompt to enable the
 `EnableWorkloadResolver.sentinel` feature flag:
 
-    > cd "C:\Program Files (x86)\Microsoft Visual Studio\2019\Preview\MSBuild\Current\Bin\SdkResolvers\Microsoft.DotNet.MSBuildSdkResolver"
+    > cd "%ProgramFiles(x86)%\Microsoft Visual Studio\2019\Preview\MSBuild\Current\Bin\SdkResolvers\Microsoft.DotNet.MSBuildSdkResolver"
     > echo > EnableWorkloadResolver.sentinel
+
+Or in an Administrator `powershell` prompt:
+
+    > cd "${env:ProgramFiles(x86)}\Microsoft Visual Studio\2019\Preview\MSBuild\Current\Bin\SdkResolvers\Microsoft.DotNet.MSBuildSdkResolver"
+    > '' > EnableWorkloadResolver.sentinel
 
 > NOTE: your path to Visual Studio may vary, depending on where you
 > selected to install it. `Preview` is the default folder for Visual
 > Studio Preview versions.
 
+This command creates an empty file that enables .NET workload support.
 Restart Visual Studio after making this change.
+
+Visual Studio for Mac support will be coming in a future release.
 
 ### iOS from Visual Studio
 
