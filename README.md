@@ -38,7 +38,7 @@ Projects:
 
 * HelloAndroid - a native Android application
 * HelloiOS - a native iOS application
-* HelloForms - a multi-targeted Xamarin.Forms application for iOS and Android (will migrate to MAUI in a later preview)
+* HelloMaui - a multi-targeted .NET MAUI Single Project for iOS and Android
 
 [dotnet/installer]: https://github.com/dotnet/installer#installers-and-binaries
 [net6preview1]: https://github.com/dotnet/net6-mobile-samples/releases/tag/6.0.1xx-preview1
@@ -71,18 +71,12 @@ To launch the iOS project on a simulator:
 
     dotnet build HelloiOS -t:Run
 
-## Xamarin.Forms / MAUI
-
-*In later previews, this sample will be migrated to use MAUI*
+## .NET MAUI
 
 To launch the Forms project, you will need to specify a `$(TargetFramework)` via the `-f` switch:
 
-    dotnet build HelloForms -t:Run -f net6.0-android
-    dotnet build HelloForms -t:Run -f net6.0-ios
-
-> NOTE: You may need to add the `--no-restore` switch until
-> [dotnet#15485](https://github.com/dotnet/sdk/issues/15485) is
-> resolved.
+    dotnet build HelloMaui -t:Run -f net6.0-android
+    dotnet build HelloMaui -t:Run -f net6.0-ios
 
 ## Using IDEs
 
@@ -162,12 +156,6 @@ packages for a .NET 6 project. We tried `$(AssetTargetFallback)`,
 however, this option does not work in combination with transitive
 dependencies. The `Xamarin.AndroidX.*` set of NuGet packages has a
 complex dependency tree.
-
-Additionally, we had some problems with the Xamarin.Forms NuGet
-package listing the same assembly in both:
-
-* `lib\netstandard2.0\Xamarin.Forms.Platform.dll`
-* `lib\MonoAndroid10.0\Xamarin.Forms.Platform.dll`
 
 For now we added workarounds in `xamarin-android`, see
 [xamarin-android#4663](https://github.com/xamarin/xamarin-android/pull/4663).
