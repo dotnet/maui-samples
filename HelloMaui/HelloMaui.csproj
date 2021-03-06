@@ -1,7 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net6.0-android;net6.0-ios;net6.0-maccatalyst</TargetFrameworks>
-    <OutputType>Exe</OutputType>
+    <TargetFrameworks>net6.0-android;net6.0-ios</TargetFrameworks>
+    <TargetFrameworks Condition=" '$(OS)' != 'Windows_NT' ">$(TargetFrameworks);net6.0-maccatalyst</TargetFrameworks>
+    <OutputType>Library</OutputType>
     <SingleProject>true</SingleProject>
     <ApplicationId>com.microsoft.hellomaui</ApplicationId>
     <ApplicationTitle>MAUI</ApplicationTitle>
