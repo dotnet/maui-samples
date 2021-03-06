@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFrameworks>net6.0-android;net6.0-ios</TargetFrameworks>
     <TargetFrameworks Condition=" '$(OS)' != 'Windows_NT' ">$(TargetFrameworks);net6.0-maccatalyst</TargetFrameworks>
-    <OutputType>Library</OutputType>
+    <OutputType>Exe</OutputType>
     <SingleProject>true</SingleProject>
     <ApplicationId>com.microsoft.hellomaui</ApplicationId>
     <ApplicationTitle>MAUI</ApplicationTitle>
