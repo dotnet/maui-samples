@@ -19,7 +19,7 @@ namespace HelloMaui
 			set => Content = (View)value;
 		}
 
-		private async void OnButtonClicked(object sender, EventArgs e)
+		private void OnButtonClicked(object sender, EventArgs e)
 		{
 			entry.Text = "Thanks!";
 		}
