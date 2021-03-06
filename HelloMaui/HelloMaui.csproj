@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net6.0-android;net6.0-ios</TargetFrameworks>
+    <TargetFrameworks Condition=" '$(OS)' != 'Windows_NT' ">$(TargetFrameworks);net6.0-maccatalyst</TargetFrameworks>
+    <OutputType>Exe</OutputType>
+    <SingleProject>true</SingleProject>
+    <ApplicationId>com.microsoft.hellomaui</ApplicationId>
+    <ApplicationTitle>MAUI</ApplicationTitle>
+    <ApplicationVersion>1.0</ApplicationVersion>
+    <AndroidVersionCode>1</AndroidVersionCode>
+    <RuntimeIdentifier Condition="'$(TargetFramework)' == 'net6.0-ios'">ios-x64</RuntimeIdentifier>
+    <RuntimeIdentifier Condition="'$(TargetFramework)' == 'net6.0-maccatalyst'">maccatalyst-x64</RuntimeIdentifier>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Maui" Version="6.0.100-preview.2.122" />
+  </ItemGroup>
+  <ItemGroup>
+    <SharedImage Include="appicon.svg" ForegroundFile="appiconfg.svg" IsAppIcon="true" />
+    <SharedFont Include="Resources\Fonts\ionicons.ttf" />
+  </ItemGroup>
+</Project>
