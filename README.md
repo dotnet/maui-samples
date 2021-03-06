@@ -80,8 +80,13 @@ To launch the iOS project on a simulator:
 
 To launch the .NET MAUI project, you will need to specify a `$(TargetFramework)` via the `-f` switch:
 
+> NOTE: You may need to add the `--no-restore` switch until
+> [dotnet#15485](https://github.com/dotnet/sdk/issues/15485) is
+> resolved.
+
     dotnet build HelloMaui -t:Run -f net6.0-android
     dotnet build HelloMaui -t:Run -f net6.0-ios
+    dotnet build HelloMaui -t:Run -f net6.0-maccatalyst
 
 ## Using IDEs
 
