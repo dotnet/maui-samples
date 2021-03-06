@@ -1,4 +1,5 @@
-﻿using Microsoft.Maui;
+﻿using System;
+using Microsoft.Maui;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Controls.Xaml;
 
@@ -16,6 +17,11 @@ namespace HelloMaui
 		{
 			get => (IView)Content;
 			set => Content = (View)value;
+		}
+
+		private void OnButtonClicked(object sender, EventArgs e)
+		{
+			entry.Text = "Thanks!";
 		}
 	}
 }
