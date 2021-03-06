@@ -24,8 +24,12 @@ These builds are newer than [.NET 6 Preview 1][net6preview1] and
 require Xcode 12.4. Use downloads from [.NET 6 Preview
 1][net6preview1] for Xcode 12.3:
 
-* Windows: [Microsoft.NET.Workload.iOS.14.4.100-ci.main.1167.msi](https://bosstoragemirror.azureedge.net/wrench/main/80ed9d81bcf66afa2d800bc362e467180dbf246c/4524716/package/Microsoft.NET.Workload.iOS.14.4.100-ci.main.1167.msi)
-* macOS: [Microsoft.iOS.Bundle.14.4.100-ci.main.1167.pkg](https://bosstoragemirror.azureedge.net/wrench/main/80ed9d81bcf66afa2d800bc362e467180dbf246c/4524716/package/notarized/Microsoft.iOS.Bundle.14.4.100-ci.main.1167.pkg)
+* Windows: [Microsoft.NET.Workload.iOS.14.4.100-ci.main.1171.msi](https://bosstoragemirror.azureedge.net/wrench/main/94fb7823f263f0367f7c311dc90920e88d5d5f9a/4526923/package/Microsoft.NET.Workload.iOS.14.4.100-ci.main.1171.msi)
+* macOS: [Microsoft.iOS.Bundle.14.4.100-ci.main.1171.pkg](https://bosstoragemirror.azureedge.net/wrench/main/94fb7823f263f0367f7c311dc90920e88d5d5f9a/4526923/package/Microsoft.iOS.Bundle.14.4.100-ci.main.1171.pkg)
+
+Mac Catalyst:
+
+* macOS: [Microsoft.MacCatalyst.Bundle.14.3.100-ci.main.316.pkg](https://bosstoragemirror.azureedge.net/wrench/main/94fb7823f263f0367f7c311dc90920e88d5d5f9a/4526923/package/Microsoft.MacCatalyst.Bundle.14.3.100-ci.main.316.pkg)
 
 _NOTE: newer builds of .NET *may* work, but your mileage may vary.
 The workload installers enable a feature flag file via
@@ -36,9 +40,10 @@ repo._
 
 Projects:
 
+* HelloMaui - a multi-targeted .NET MAUI Single Project for iOS and Android
 * HelloAndroid - a native Android application
 * HelloiOS - a native iOS application
-* HelloMaui - a multi-targeted .NET MAUI Single Project for iOS and Android
+* HelloMacCatalyst - a native Mac Catalyst application
 
 [dotnet/installer]: https://github.com/dotnet/installer#installers-and-binaries
 [net6preview1]: https://github.com/dotnet/net6-mobile-samples/releases/tag/6.0.1xx-preview1
@@ -86,14 +91,22 @@ Currently, you can use Visual Studio 2019 16.9 Preview 4 on Windows
 Open an Administrator command prompt to enable the
 `EnableWorkloadResolver.sentinel` feature flag:
 
-    > cd "C:\Program Files (x86)\Microsoft Visual Studio\2019\Preview\MSBuild\Current\Bin\SdkResolvers\Microsoft.DotNet.MSBuildSdkResolver"
+    > cd "%ProgramFiles(x86)%\Microsoft Visual Studio\2019\Preview\MSBuild\Current\Bin\SdkResolvers\Microsoft.DotNet.MSBuildSdkResolver"
     > echo > EnableWorkloadResolver.sentinel
+
+Or in an Administrator `powershell` prompt:
+
+    > cd "${env:ProgramFiles(x86)}\Microsoft Visual Studio\2019\Preview\MSBuild\Current\Bin\SdkResolvers\Microsoft.DotNet.MSBuildSdkResolver"
+    > '' > EnableWorkloadResolver.sentinel
 
 > NOTE: your path to Visual Studio may vary, depending on where you
 > selected to install it. `Preview` is the default folder for Visual
 > Studio Preview versions.
 
+This command creates an empty file that enables .NET workload support.
 Restart Visual Studio after making this change.
+
+Visual Studio for Mac support will be coming in a future release.
 
 ### iOS from Visual Studio
 
@@ -106,6 +119,10 @@ prompted to install a different version of the SDK, you can ignore
 that since it refers to the legacy one.
 
 > Note: currently only the iOS simulator is supported.
+
+### Mac Catalyst from Visual Studio for Mac
+
+Running and debugging apps from Visual Studio for Mac does not work yet.
 
 ### Known Issues
 

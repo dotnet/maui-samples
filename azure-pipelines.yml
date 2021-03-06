@@ -13,8 +13,9 @@ variables:
   DotNet.Cli.Telemetry.OptOut: true
   Android.Msi: https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4525053/master/8cd0b47032d267a63b449a63c0839c60cbd976f1/Microsoft.NET.Workload.Android.11.0.200.136.msi
   Android.Pkg: https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4525053/master/8cd0b47032d267a63b449a63c0839c60cbd976f1/Microsoft.NET.Workload.Android-11.0.200-ci.8cd0b47032d267a63b449a63c0839c60cbd976f1.136.pkg
-  iOS.Msi: https://bosstoragemirror.azureedge.net/wrench/main/80ed9d81bcf66afa2d800bc362e467180dbf246c/4524716/package/Microsoft.NET.Workload.iOS.14.4.100-ci.main.1167.msi
-  iOS.Pkg: https://bosstoragemirror.azureedge.net/wrench/main/80ed9d81bcf66afa2d800bc362e467180dbf246c/4524716/package/notarized/Microsoft.iOS.Bundle.14.4.100-ci.main.1167.pkg
+  iOS.Msi: https://bosstoragemirror.azureedge.net/wrench/main/94fb7823f263f0367f7c311dc90920e88d5d5f9a/4526923/package/Microsoft.NET.Workload.iOS.14.4.100-ci.main.1171.msi
+  iOS.Pkg: https://bosstoragemirror.azureedge.net/wrench/main/94fb7823f263f0367f7c311dc90920e88d5d5f9a/4526923/package/Microsoft.iOS.Bundle.14.4.100-ci.main.1171.pkg
+  MacCatalyst.Pkg: https://bosstoragemirror.azureedge.net/wrench/main/94fb7823f263f0367f7c311dc90920e88d5d5f9a/4526923/package/Microsoft.MacCatalyst.Bundle.14.3.100-ci.main.316.pkg
 
 jobs:
 - job: windows
@@ -89,6 +90,7 @@ jobs:
         dotnet tool install --global boots
         boots $(Android.Pkg)
         boots $(iOS.Pkg)
+        boots $(MacCatalyst.Pkg)
       displayName: install .NET workloads
 
     - bash: sudo xcode-select -s /Applications/Xcode_12.4.app
