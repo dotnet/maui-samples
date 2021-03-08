@@ -8,32 +8,28 @@ branch.
 
 This repo requires a specific build of .NET 6:
 
-* Windows: [dotnet-sdk-6.0.100-preview.2.21114.3-win-x64.exe](https://dotnetcli.blob.core.windows.net/dotnet/Sdk/6.0.100-preview.2.21114.3/dotnet-sdk-6.0.100-preview.2.21114.3-win-x64.exe)
-* macOS: [dotnet-sdk-6.0.100-preview.2.21114.3-osx-x64.pkg](https://dotnetcli.blob.core.windows.net/dotnet/Sdk/6.0.100-preview.2.21114.3/dotnet-sdk-6.0.100-preview.2.21114.3-osx-x64.pkg)
+* Windows: [dotnet-sdk-6.0.100-preview.2.21155.3-win-x64.exe](https://dotnetcli.azureedge.net/dotnet/Sdk/6.0.100-preview.2.21155.3/dotnet-sdk-6.0.100-preview.2.21155.3-win-x64.exe)
+* macOS: [dotnet-sdk-6.0.100-preview.2.21155.3-osx-x64.pkg](https://dotnetcli.azureedge.net/dotnet/Sdk/6.0.100-preview.2.21155.3/dotnet-sdk-6.0.100-preview.2.21155.3-osx-x64.pkg)
 
 You will also need to install builds of the iOS and Android workloads:
 
 Android:
 
-* Windows: [Microsoft.NET.Workload.Android.11.0.200.136.msi](https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4525053/master/8cd0b47032d267a63b449a63c0839c60cbd976f1/Microsoft.NET.Workload.Android.11.0.200.136.msi)
-* macOS: [Microsoft.NET.Workload.Android-11.0.200.136.pkg](https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4525053/master/8cd0b47032d267a63b449a63c0839c60cbd976f1/Microsoft.NET.Workload.Android-11.0.200-ci.8cd0b47032d267a63b449a63c0839c60cbd976f1.136.pkg)
+* Windows: [Microsoft.NET.Workload.Android.11.0.200.148.msi](https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4534967/main/f4d8fe238b15eadfc7842749bf13e5fca3e2f2d2/Microsoft.NET.Workload.Android.11.0.200.148.msi)
+* macOS: [Microsoft.NET.Workload.Android-11.0.200.148.pkg](https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4534967/main/f4d8fe238b15eadfc7842749bf13e5fca3e2f2d2/Microsoft.NET.Workload.Android-11.0.200-ci.f4d8fe238b15eadfc7842749bf13e5fca3e2f2d2.148.pkg)
 
 iOS:
 
-These builds are newer than [.NET 6 Preview 1][net6preview1] and
-require Xcode 12.4. Use downloads from [.NET 6 Preview
-1][net6preview1] for Xcode 12.3:
-
-* Windows: [Microsoft.NET.Workload.iOS.14.4.100-ci.main.1171.msi](https://bosstoragemirror.azureedge.net/wrench/main/94fb7823f263f0367f7c311dc90920e88d5d5f9a/4526923/package/Microsoft.NET.Workload.iOS.14.4.100-ci.main.1171.msi)
-* macOS: [Microsoft.iOS.Bundle.14.4.100-ci.main.1171.pkg](https://bosstoragemirror.azureedge.net/wrench/main/94fb7823f263f0367f7c311dc90920e88d5d5f9a/4526923/package/Microsoft.iOS.Bundle.14.4.100-ci.main.1171.pkg)
+* Windows: [Microsoft.NET.Workload.iOS.14.4.100-ci.main.1180.msi](https://bosstoragemirror.azureedge.net/wrench/main/bccef33d3f1d695a2fdf8f8ae10599cbc598c7bb/4534247/package/Microsoft.NET.Workload.iOS.14.4.100-ci.main.1180.msi)
+* macOS: [Microsoft.iOS.Bundle.14.4.100-ci.main.1180.pkg](https://bosstoragemirror.azureedge.net/wrench/main/bccef33d3f1d695a2fdf8f8ae10599cbc598c7bb/4534247/package/notarized/Microsoft.iOS.Bundle.14.4.100-ci.main.1180.pkg)
 
 Mac Catalyst:
 
-* macOS: [Microsoft.MacCatalyst.Bundle.14.3.100-ci.main.316.pkg](https://bosstoragemirror.azureedge.net/wrench/main/94fb7823f263f0367f7c311dc90920e88d5d5f9a/4526923/package/Microsoft.MacCatalyst.Bundle.14.3.100-ci.main.316.pkg)
+* macOS: [Microsoft.MacCatalyst.Bundle.14.3.100-ci.main.325.pkg](https://bosstoragemirror.azureedge.net/wrench/main/bccef33d3f1d695a2fdf8f8ae10599cbc598c7bb/4534247/package/Microsoft.MacCatalyst.Bundle.14.3.100-ci.main.325.pkg)
 
 _NOTE: newer builds of .NET *may* work, but your mileage may vary.
 The workload installers enable a feature flag file via
-`sdk/6.0.100-preview.1.21103.13/EnableWorkloadResolver.sentinel`, which would
+`sdk/6.0.100-*/EnableWorkloadResolver.sentinel`, which would
 need to be created manually for other .NET 6 versions. You can find
 the full list of builds at the [dotnet/installer][dotnet/installer]
 repo._
@@ -90,23 +86,23 @@ To launch the .NET MAUI project, you will need to specify a `$(TargetFramework)`
 
 ## Using IDEs
 
-Currently, you can use Visual Studio 2019 16.9 Preview 4 on Windows
-(with the Xamarin workload) with a few manual steps.
+Currently, you can use Visual Studio 2019 16.9 on Windows (with the
+Xamarin workload) with a few manual steps.
 
 Open an Administrator command prompt to enable the
 `EnableWorkloadResolver.sentinel` feature flag:
 
-    > cd "%ProgramFiles(x86)%\Microsoft Visual Studio\2019\Preview\MSBuild\Current\Bin\SdkResolvers\Microsoft.DotNet.MSBuildSdkResolver"
+    > cd "%ProgramFiles(x86)%\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\SdkResolvers\Microsoft.DotNet.MSBuildSdkResolver"
     > echo > EnableWorkloadResolver.sentinel
 
 Or in an Administrator `powershell` prompt:
 
-    > cd "${env:ProgramFiles(x86)}\Microsoft Visual Studio\2019\Preview\MSBuild\Current\Bin\SdkResolvers\Microsoft.DotNet.MSBuildSdkResolver"
+    > cd "${env:ProgramFiles(x86)}\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\SdkResolvers\Microsoft.DotNet.MSBuildSdkResolver"
     > '' > EnableWorkloadResolver.sentinel
 
 > NOTE: your path to Visual Studio may vary, depending on where you
-> selected to install it. `Preview` is the default folder for Visual
-> Studio Preview versions.
+> selected to install it. `Enterprise`, `Professional`, or `Community`
+> might be correct depending on the SKU you have installed.
 
 This command creates an empty file that enables .NET workload support.
 Restart Visual Studio after making this change.
@@ -166,18 +162,3 @@ deploy and run, breakpoints should behave as normal.
 Note: You will need to build your application at least once via
 `Run Build Task`. This is to that NuGet packages are restored correctly.
 This should not be required once [dotnet#15485](https://github.com/dotnet/sdk/issues/15485) is resolved.
-
-## Workarounds
-
-These are notes for things we had to workaround for these samples to work.
-
-### NuGet
-
-Currently, NuGet is not able to restore existing Xamarin.Android/iOS
-packages for a .NET 6 project. We tried `$(AssetTargetFallback)`,
-however, this option does not work in combination with transitive
-dependencies. The `Xamarin.AndroidX.*` set of NuGet packages has a
-complex dependency tree.
-
-For now we added workarounds in `xamarin-android`, see
-[xamarin-android#4663](https://github.com/xamarin/xamarin-android/pull/4663).
