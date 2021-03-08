@@ -8,8 +8,8 @@ branch.
 
 This repo requires a specific build of .NET 6:
 
-* Windows: [dotnet-sdk-6.0.100-preview.2.21155.3-win-x64.exe](https://dotnetcli.blob.core.windows.net/dotnet/Sdk/6.0.100-preview.2.21155.3/dotnet-sdk-6.0.100-preview.2.21155.3-win-x64.exe)
-* macOS: [dotnet-sdk-6.0.100-preview.2.21155.3-osx-x64.pkg](https://dotnetcli.blob.core.windows.net/dotnet/Sdk/6.0.100-preview.2.21155.3/dotnet-sdk-6.0.100-preview.2.21155.3-osx-x64.pkg)
+* Windows: [dotnet-sdk-6.0.100-preview.2.21155.3-win-x64.exe](https://dotnetcli.azureedge.net/dotnet/Sdk/6.0.100-preview.2.21155.3/dotnet-sdk-6.0.100-preview.2.21155.3-win-x64.exe)
+* macOS: [dotnet-sdk-6.0.100-preview.2.21155.3-osx-x64.pkg](https://dotnetcli.azureedge.net/dotnet/Sdk/6.0.100-preview.2.21155.3/dotnet-sdk-6.0.100-preview.2.21155.3-osx-x64.pkg)
 
 You will also need to install builds of the iOS and Android workloads:
 
