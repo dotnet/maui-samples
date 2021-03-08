@@ -14,6 +14,16 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Maui" Version="6.0.100-preview.2.122" />
   </ItemGroup>
+  <!-- NOTE: these are needed only for Release builds -->
+  <ItemGroup Condition=" '$(Configuration)' == 'Release' ">
+    <PackageReference Include="System.CodeDom" Version="6.0.0-preview.1.21102.12" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.0-preview.1.21102.12" />
+    <PackageReference Include="System.Diagnostics.PerformanceCounter" Version="6.0.0-preview.1.21102.12" />
+    <PackageReference Include="System.Diagnostics.EventLog" Version="6.0.0-preview.1.21102.12" />
+    <PackageReference Include="System.Drawing.Common" Version="6.0.0-preview.1.21102.12" />
+    <PackageReference Include="System.IO.Ports" Version="6.0.0-preview.1.21102.12" />
+    <PackageReference Include="System.Threading.AccessControl" Version="6.0.0-preview.1.21102.12" />
+  </ItemGroup>
   <ItemGroup>
     <SharedImage Include="appicon.svg" ForegroundFile="appiconfg.svg" IsAppIcon="true" />
     <SharedFont Include="Resources\Fonts\ionicons.ttf" />
