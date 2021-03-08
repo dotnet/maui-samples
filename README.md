@@ -86,23 +86,23 @@ To launch the .NET MAUI project, you will need to specify a `$(TargetFramework)`
 
 ## Using IDEs
 
-Currently, you can use Visual Studio 2019 16.9 Preview 4 on Windows
-(with the Xamarin workload) with a few manual steps.
+Currently, you can use Visual Studio 2019 16.9 on Windows (with the
+Xamarin workload) with a few manual steps.
 
 Open an Administrator command prompt to enable the
 `EnableWorkloadResolver.sentinel` feature flag:
 
-    > cd "%ProgramFiles(x86)%\Microsoft Visual Studio\2019\Preview\MSBuild\Current\Bin\SdkResolvers\Microsoft.DotNet.MSBuildSdkResolver"
+    > cd "%ProgramFiles(x86)%\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\SdkResolvers\Microsoft.DotNet.MSBuildSdkResolver"
     > echo > EnableWorkloadResolver.sentinel
 
 Or in an Administrator `powershell` prompt:
 
-    > cd "${env:ProgramFiles(x86)}\Microsoft Visual Studio\2019\Preview\MSBuild\Current\Bin\SdkResolvers\Microsoft.DotNet.MSBuildSdkResolver"
+    > cd "${env:ProgramFiles(x86)}\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\SdkResolvers\Microsoft.DotNet.MSBuildSdkResolver"
     > '' > EnableWorkloadResolver.sentinel
 
 > NOTE: your path to Visual Studio may vary, depending on where you
-> selected to install it. `Preview` is the default folder for Visual
-> Studio Preview versions.
+> selected to install it. `Enterprise`, `Professional`, or `Community`
+> might be correct depending on the SKU you have installed.
 
 This command creates an empty file that enables .NET workload support.
 Restart Visual Studio after making this change.
