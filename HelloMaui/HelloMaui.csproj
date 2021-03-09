@@ -15,7 +15,8 @@
     <PackageReference Include="Microsoft.Maui" Version="6.0.100-preview.2.122" />
   </ItemGroup>
   <ItemGroup>
-    <SharedImage Include="appicon.svg" ForegroundFile="appiconfg.svg" IsAppIcon="true" />
-    <SharedFont Include="Resources\Fonts\ionicons.ttf" />
+    <SharedImage Include="Resources\AppIcons\appicon.svg" ForegroundFile="Resources\AppIcons\appiconfg.svg" IsAppIcon="true" />
+    <SharedImage Include="Resources\Images\*" />
+    <SharedFont Include="Resources\Fonts\*" />
   </ItemGroup>
 </Project>

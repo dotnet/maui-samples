@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Maui;
+using Microsoft.Maui.Controls.Compatibility;
 using Microsoft.Maui.Hosting;
 
 namespace HelloMaui
@@ -8,6 +9,7 @@ namespace HelloMaui
 	{
 		public override IAppHostBuilder CreateBuilder() => 
 			base.CreateBuilder()
+				.RegisterCompatibilityRenderers()
 				.ConfigureServices((ctx, services) =>
 				{
 					services.AddTransient<MainPage>();
