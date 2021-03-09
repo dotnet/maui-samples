@@ -19,9 +19,12 @@ namespace HelloMaui
 			set => Content = (View)value;
 		}
 
+		int count = 0;
+
 		private void OnButtonClicked(object sender, EventArgs e)
 		{
-			entry.Text = "Thanks!";
+			count++;
+			CounterLabel.Text = $"You clicked {count} times. YAY!";
 		}
 	}
 }

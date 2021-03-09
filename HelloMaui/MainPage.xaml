@@ -5,19 +5,38 @@
 
     <StackLayout Padding="{OnPlatform iOS='30,60,30,30', Default='30'}">
 
-        <Label Text="Welcome to .NET MAUI!" HorizontalOptions="CenterAndExpand" />
-
-        <Label Text="This is just a label!" TextColor="Black" HorizontalOptions="CenterAndExpand" />
+        <Label Text="Welcome to .NET MAUI!" 
+            FontSize="32"
+            TextColor="Black" 
+            HorizontalOptions="CenterAndExpand" />
 
         <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-            <Label Text="&#xf388;" FontFamily="IonIcons" TextColor="Red" FontSize="20" />
-            <Label Text="&#xf388;" FontFamily="IonIcons" TextColor="Red" FontSize="20" />
-            <Label Text="&#xf388;" FontFamily="IonIcons" TextColor="Red" FontSize="20" />
+            <Label Text="&#xf388;" FontFamily="IonIcons" TextColor="#2B0B98" FontSize="32" />
+            <Label Text="&#xf388;" FontFamily="IonIcons" TextColor="#2B0B98" FontSize="32" />
+            <Label Text="&#xf388;" FontFamily="IonIcons" TextColor="#2B0B98" FontSize="32" />
         </StackLayout>
+
+        <Label Text="Click the button. You know you want to!" 
+            FontSize="18"
+            TextColor="Black" 
+            x:Name="CounterLabel"
+            HorizontalOptions="CenterAndExpand" />
 
         <Button Text="Click Me!" Clicked="OnButtonClicked" />
 
-        <Entry x:Name="entry" Text="" />
+        <Label Text="Entry" 
+            TextColor="Black"  />
+        <Entry x:Name="entry" Text="Entry" />
+
+        <Label Text="Slider" 
+            TextColor="Black"  />
+        <Slider />
+
+        <Label Text="Switch" 
+            TextColor="Black"  />
+        <Switch 
+            HorizontalOptions="Start"
+        />
 
     </StackLayout>
 
