@@ -25,7 +25,8 @@
     <PackageReference Include="System.Threading.AccessControl" Version="6.0.0-preview.1.21102.12" />
   </ItemGroup>
   <ItemGroup>
-    <SharedImage Include="appicon.svg" ForegroundFile="appiconfg.svg" IsAppIcon="true" />
-    <SharedFont Include="Resources\Fonts\ionicons.ttf" />
+    <SharedImage Include="Resources\AppIcons\appicon.svg" ForegroundFile="Resources\AppIcons\appiconfg.svg" IsAppIcon="true" />
+    <SharedImage Include="Resources\Images\*" />
+    <SharedFont Include="Resources\Fonts\*" />
   </ItemGroup>
 </Project>

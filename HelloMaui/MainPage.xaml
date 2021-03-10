@@ -38,6 +38,13 @@
             HorizontalOptions="Start"
         />
 
+        <Label Text="Image" 
+            TextColor="Black"  />
+        <Image 
+            Source="dotnet_bot.png"
+            Margin="40,0"
+        />
+
     </StackLayout>
 
 </ContentPage>
