@@ -12,17 +12,17 @@
     <RuntimeIdentifier Condition="'$(TargetFramework)' == 'net6.0-maccatalyst'">maccatalyst-x64</RuntimeIdentifier>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Maui" Version="6.0.100-preview.2.148" />
+    <PackageReference Include="Microsoft.Maui" Version="6.0.100-*" />
   </ItemGroup>
   <!-- NOTE: these are needed only for Release builds -->
   <ItemGroup Condition=" '$(Configuration)' == 'Release' ">
-    <PackageReference Include="System.CodeDom" Version="6.0.0-preview.1.21102.12" />
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.0-preview.1.21102.12" />
-    <PackageReference Include="System.Diagnostics.PerformanceCounter" Version="6.0.0-preview.1.21102.12" />
-    <PackageReference Include="System.Diagnostics.EventLog" Version="6.0.0-preview.1.21102.12" />
-    <PackageReference Include="System.Drawing.Common" Version="6.0.0-preview.1.21102.12" />
-    <PackageReference Include="System.IO.Ports" Version="6.0.0-preview.1.21102.12" />
-    <PackageReference Include="System.Threading.AccessControl" Version="6.0.0-preview.1.21102.12" />
+    <PackageReference Include="System.CodeDom" Version="6.0.0-*" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.0-*" />
+    <PackageReference Include="System.Diagnostics.PerformanceCounter" Version="6.0.0-*" />
+    <PackageReference Include="System.Diagnostics.EventLog" Version="6.0.0-*" />
+    <PackageReference Include="System.Drawing.Common" Version="6.0.0-*" />
+    <PackageReference Include="System.IO.Ports" Version="6.0.0-*" />
+    <PackageReference Include="System.Threading.AccessControl" Version="6.0.0-*" />
   </ItemGroup>
   <ItemGroup>
     <SharedImage Include="Resources\AppIcons\appicon.svg" ForegroundFile="Resources\AppIcons\appiconfg.svg" IsAppIcon="true" />
