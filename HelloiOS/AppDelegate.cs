@@ -20,9 +20,9 @@ namespace HelloiOS
         {
             // create a new window instance based on the screen size
             Window = new UIWindow(UIScreen.MainScreen.Bounds);
-            var vc = new UIViewController ();
+            var vc = new UIViewController();
             UIColor backgroundColor = UIDevice.CurrentDevice.CheckSystemVersion(13, 0) ? UIColor.SystemBackgroundColor : UIColor.White;
-            vc.View.AddSubview (new UILabel (Window.Frame)
+            vc.View.AddSubview(new UILabel(Window.Frame)
             {
                 BackgroundColor = backgroundColor,
                 TextAlignment = UITextAlignment.Center,
