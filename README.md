@@ -86,6 +86,8 @@ To launch the .NET MAUI project, you will need to specify a `$(TargetFramework)`
 
 ## Using IDEs
 
+IDE integration into Visual Studio, Visaul Studio for Mac, and Visual Studio Code are a work in progress. 
+
 ### Visual Studio
 
 Currently, you can use Visual Studio 2019 16.9 on Windows (with the Xamarin workload) with a few manual steps to run iOS & Android apps built on .NET 6.
