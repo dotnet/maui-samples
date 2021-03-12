@@ -25,7 +25,7 @@ iOS:
 
 Mac (Cocoa/AppKit):
 
-* macOS: [Microsoft.macOS.Bundle.11.1.100-ci.main.1245.pkg](https://bosstoragemirror.blob.core.windows.net/wrench/main/98c8649d0c7d1e3c4c8d8d09e022befa853fb1e7/4541181/package/notarized/Microsoft.macOS.Bundle.11.1.100-ci.main.1245.pkg)
+* macOS: [Microsoft.macOS.Bundle.11.1.100-ci.main.1245.pkg](https://bosstoragemirror.azureedge.net/wrench/main/98c8649d0c7d1e3c4c8d8d09e022befa853fb1e7/4541181/package/notarized/Microsoft.macOS.Bundle.11.1.100-ci.main.1245.pkg)
 
 Mac Catalyst (UIKit):
 
