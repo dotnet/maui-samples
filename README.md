@@ -86,79 +86,66 @@ To launch the .NET MAUI project, you will need to specify a `$(TargetFramework)`
 
 ## Using IDEs
 
-Currently, you can use Visual Studio 2019 16.9 on Windows (with the
-Xamarin workload) with a few manual steps.
+### Visual Studio
 
-Open an Administrator command prompt to enable the
-`EnableWorkloadResolver.sentinel` feature flag:
+Currently, you can use Visual Studio 2019 16.9 on Windows (with the Xamarin workload) with a few manual steps to run iOS & Android apps built on .NET 6.
+
+Open an Administrator command prompt to enable the `EnableWorkloadResolver.sentinel` feature flag:
 
     > cd "%ProgramFiles(x86)%\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\SdkResolvers\Microsoft.DotNet.MSBuildSdkResolver"
-    > echo > EnableWorkloadResolver.sentinel
+    > type NUL > EnableWorkloadResolver.sentinel
 
 Or in an Administrator `powershell` prompt:
 
     > cd "${env:ProgramFiles(x86)}\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\SdkResolvers\Microsoft.DotNet.MSBuildSdkResolver"
     > '' > EnableWorkloadResolver.sentinel
 
-> NOTE: your path to Visual Studio may vary, depending on where you
-> selected to install it. `Enterprise`, `Professional`, or `Community`
-> might be correct depending on the SKU you have installed.
+> NOTE: your path to Visual Studio may vary, depending on where you selected to install it. 
+> `Enterprise`, `Professional`, or `Community` might be correct depending on the SKU you have installed.
 
 This command creates an empty file that enables .NET workload support.
+
 Restart Visual Studio after making this change.
 
-Visual Studio for Mac support will be coming in a future release.
+### Visual Studio for Mac
+
+Visual Studio for Mac is not supported at this time, but will be coming in a future release.
+
+### .NET MAUI
+
+.NET MAUI bassed projects can be open in Visual Studio and Visual Studio for Mac, however can not be run or debugged directly from the IDEs at this time.
 
 ### iOS from Visual Studio
 
-To build and debug .NET 6 iOS applications from Visual Studio 2019 you
-must manually intall the .NET 6 SDK and iOS workloads on both
-**Windows and macOS** (Mac build host).
+To build and debug .NET 6 iOS applications from Visual Studio 2019 you must manually intall the .NET 6 SDK and iOS workloads on both **Windows and macOS** (Mac build host).
 
-If while connecting Visual Studio to your Mac through XMA you are
-prompted to install a different version of the SDK, you can ignore
-that since it refers to the legacy one.
+If while connecting Visual Studio to your Mac through XMA you are prompted to install a different version of the SDK, you can ignore that since it refers to the legacy one.
 
-> Note: currently only the iOS simulator is supported.
+> Note: currently only the iOS simulator is supported (not the remoted simulator).
 
 ### Mac Catalyst from Visual Studio for Mac
 
-Running and debugging apps from Visual Studio for Mac does not work yet.
+Running and debugging apps from Visual Studio for Mac is not supported at this time..
 
-### Known Issues
+### Known Issues - Visual Studio & Visual Studio for Mac
 
-* There are no project property pages available for both iOS and
-  Android
-* Editors (i.e. Manifest editor, Entitlements editor, etc.) will fail
-  to open, so as a workaround please open those files with the XML
-  editor.
+* There are no project property pages available for both iOS and Android
+* Editors (i.e. Manifest editor, Entitlements editor, etc.) will fail to open, so as a workaround please open those files with the XML editor.
 
-### Android from VSCode
+### Visual Studio Code
 
-Support has been added to allow debugging of Android based apps in
-VSCode. Open the `net6-mobile-samples.code-workspace` in VSCode.
+Support has been added to allow debugging of **Android** based apps in Visual Studio Code. Open the `net6-mobile-samples.code-workspace` in Visual Studio Code.
 
     > code net6-mobile-samples.code-workspace
 
-To build your application use open the Command Pallette and select
-`Run Build Task`. Select `Build` and then the `Target` you want to
-run. Available targets are:
+To build your application use open the Command Pallette and select `Run Build Task`. Select `Build` and then the `Target` you want to run. Available targets are:
 
 * `Build` : Builds the Project.
 * `Install` : Installs the Application on a Device or Emulator.
 * `Clean` : Clean the Project.
 
-You can then select the `Project` and then the `Configuration`
-(`Debug` or `Release`) you want to `Build`.
+You can then select the `Project` and then the `Configuration` (`Debug` or `Release`) you want to `Build`.
 
-To Debug goto the `Run` Tab and make sure `Debug` is selected. Click
-the Run button. You will be prompted on which project you wish to run,
-then asked which `TargetFramework` you want to target. For now only
-`net6.0-android` is supported. You will then be asked if you want to
-attach the debugger. Finally you will be asked which configuration you
-wish to use `Debug` or `Release`. After this the application should
-deploy and run, breakpoints should behave as normal.
+To Debug goto the `Run` Tab and make sure `Debug` is selected. Click the Run button. You will be prompted on which project you wish to run, then asked which `TargetFramework` you want to target. For now only `net6.0-android` is supported. You will then be asked if you want to attach the debugger. Finally you will be asked which configuration you wish to use `Debug` or `Release`. After this the application should deploy and run, breakpoints should behave as normal.
 
-Note: You will need to build your application at least once via
-`Run Build Task`. This is to that NuGet packages are restored correctly.
-This should not be required once [dotnet#15485](https://github.com/dotnet/sdk/issues/15485) is resolved.
+Note: You will need to build your application at least once via `Run Build Task`. This is to that NuGet packages are restored correctly. This should not be required once [dotnet#15485](https://github.com/dotnet/sdk/issues/15485) is resolved.
