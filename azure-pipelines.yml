@@ -109,12 +109,18 @@ jobs:
         dotnet build net6-samples.sln -c Release -bl:$(LogDirectory)/Release.binlog
       displayName: build samples
 
+    - bash: |
+        dotnet build vs/net6-samples-mac.sln -c Debug   -bl:$(LogDirectory)/Debug-Mac.binlog &&
+        dotnet build vs/net6-samples-mac.sln -c Release -bl:$(LogDirectory)/Release-Mac.binlog
+      displayName: build macOS-only samples
+
     - task: CopyFiles@2
       displayName: copy artifacts
       inputs:
         contents: |
           *Android/**/*-Signed.apk
           *iOS/**/*.app/**
+          *Mac*/**/*.app/**
         targetFolder: $(Build.ArtifactStagingDirectory)
         overWrite: true
       condition: always()
