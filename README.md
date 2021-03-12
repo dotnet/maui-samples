@@ -23,7 +23,11 @@ iOS:
 * Windows: [Microsoft.NET.Workload.iOS.14.4.100-ci.main.1192.msi](https://bosstoragemirror.azureedge.net/wrench/main/98c8649d0c7d1e3c4c8d8d09e022befa853fb1e7/4541181/package/Microsoft.NET.Workload.iOS.14.4.100-ci.main.1192.msi)
 * macOS: [Microsoft.iOS.Bundle.14.4.100-ci.main.1192.pkg](https://bosstoragemirror.azureedge.net/wrench/main/98c8649d0c7d1e3c4c8d8d09e022befa853fb1e7/4541181/package/notarized/Microsoft.iOS.Bundle.14.4.100-ci.main.1192.pkg)
 
-Mac Catalyst:
+Mac (Cocoa/AppKit):
+
+* macOS: [Microsoft.macOS.Bundle.11.1.100-ci.main.1245.pkg](https://bosstoragemirror.blob.core.windows.net/wrench/main/98c8649d0c7d1e3c4c8d8d09e022befa853fb1e7/4541181/package/notarized/Microsoft.macOS.Bundle.11.1.100-ci.main.1245.pkg)
+
+Mac Catalyst (UIKit):
 
 * macOS: [Microsoft.MacCatalyst.Bundle.14.3.100-ci.main.337.pkg](https://bosstoragemirror.azureedge.net/wrench/main/98c8649d0c7d1e3c4c8d8d09e022befa853fb1e7/4541181/package/notarized/Microsoft.MacCatalyst.Bundle.14.3.100-ci.main.337.pkg)
 
