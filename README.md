@@ -72,6 +72,21 @@ To launch the iOS project on a simulator:
 
     dotnet build HelloiOS -t:Run
 
+## iOS F#
+
+Prerequisites:
+
+* Xcode 12.4. Earlier versions won't work.
+
+To build the iOS project:
+
+    dotnet build HelloiOSFSharp
+
+To launch the iOS project on a simulator:
+
+    dotnet build HelloiOSFSharp -t:Run
+
+
 ## .NET MAUI
 
 To launch the .NET MAUI project, you will need to specify a `$(TargetFramework)` via the `-f` switch:
