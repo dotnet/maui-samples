@@ -5,10 +5,6 @@
     <OutputType>Exe</OutputType>
   </PropertyGroup>
   <ItemGroup>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
-    <InterfaceDefinition Include="LaunchScreen.storyboard" />
-    <None Include="Info.plist" />
-    <None Include="Entitlements.plist" />
     <Compile Include="AppDelegate.fs" />
     <Compile Include="Main.fs" />
   </ItemGroup>

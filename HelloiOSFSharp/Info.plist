@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
     <key>CFBundleDisplayName</key>
-    <string>Hello iOS</string>
+    <string>Hello iOS FSharp</string>
     <key>CFBundleIdentifier</key>
-    <string>com.microsoft.net6.helloios</string>
+    <string>com.microsoft.net6.helloiosfsharp</string>
     <key>CFBundleShortVersionString</key>
     <string>1.0</string>
     <key>CFBundleVersion</key>
