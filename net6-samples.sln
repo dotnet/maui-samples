@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloiOS", "HelloiOS\Helloi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloMaui", "HelloMaui\HelloMaui.csproj", "{6BFC2F42-E806-489E-9DBA-53DC4C995EDC}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "HelloiOSFSharp", "HelloiOSFSharp\HelloiOSFSharp.fsproj", "{7B5145A1-88C8-4D99-8CBB-2165D9FFA002}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "fsharp\HelloiOSFSharp", "fsharp\HelloiOSFSharp\HelloiOSFSharp.fsproj", "{7B5145A1-88C8-4D99-8CBB-2165D9FFA002}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
