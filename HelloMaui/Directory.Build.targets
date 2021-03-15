@@ -1,0 +1,9 @@
+<Project>
+	<PropertyGroup>
+		<_KeepLaunchProfiles>true</_KeepLaunchProfiles>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectCapability Include="MauiSingleProject"/>
+	</ItemGroup>
+</Project>
