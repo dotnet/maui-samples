@@ -1,27 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net6.0-ios;net6.0-android;net6.0-maccatalyst</TargetFrameworks>
+    <TargetFrameworks>net6.0-android;net6.0-ios</TargetFrameworks>
+    <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('osx'))">$(TargetFrameworks);net6.0-maccatalyst</TargetFrameworks>
     <OutputType>Exe</OutputType>
     <SingleProject>true</SingleProject>
     <ApplicationId>com.microsoft.hellomaui</ApplicationId>
     <ApplicationTitle>MAUI</ApplicationTitle>
     <ApplicationVersion>1.0</ApplicationVersion>
     <AndroidVersionCode>1</AndroidVersionCode>
-    <RuntimeIdentifier Condition="'$(TargetFramework)' == 'net6.0-ios'">ios-x64</RuntimeIdentifier>
+    <RuntimeIdentifier Condition="'$(TargetFramework)' == 'net6.0-ios'">iossimulator-x64</RuntimeIdentifier>
     <RuntimeIdentifier Condition="'$(TargetFramework)' == 'net6.0-maccatalyst'">maccatalyst-x64</RuntimeIdentifier>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Maui" Version="6.0.100-preview.2.174" />
-  </ItemGroup>
-  <!-- NOTE: these are needed only for Release builds -->
-  <ItemGroup Condition=" '$(Configuration)' == 'Release' ">
-    <PackageReference Include="System.CodeDom" Version="6.0.0-*" />
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.0-*" />
-    <PackageReference Include="System.Diagnostics.PerformanceCounter" Version="6.0.0-*" />
-    <PackageReference Include="System.Diagnostics.EventLog" Version="6.0.0-*" />
-    <PackageReference Include="System.Drawing.Common" Version="6.0.0-*" />
-    <PackageReference Include="System.IO.Ports" Version="6.0.0-*" />
-    <PackageReference Include="System.Threading.AccessControl" Version="6.0.0-*" />
   </ItemGroup>
   <ItemGroup>
     <SharedImage Include="Resources\AppIcons\appicon.svg" ForegroundFile="Resources\AppIcons\appiconfg.svg" IsAppIcon="true" />
