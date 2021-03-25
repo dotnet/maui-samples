@@ -29,4 +29,14 @@
     <SharedImage Include="Resources\Images\*" />
     <SharedFont Include="Resources\Fonts\*" />
   </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net6.0-ios'">
+    <None Include="iOS\Info.plist">
+      <LogicalName>Info.plist</LogicalName>
+    </None>
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net6.0-maccatalyst'">
+    <None Include="MacCatalyst\Info.plist">
+      <LogicalName>Info.plist</LogicalName>
+    </None>
+  </ItemGroup>
 </Project>
