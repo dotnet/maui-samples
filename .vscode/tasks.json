@@ -50,7 +50,7 @@
             "description": "Pick the Project you want to build.",
             "options": [
                 "HelloAndroid/HelloAndroid.csproj",
-                "HelloForms/HelloForms.csproj",
+                "HelloMaui/HelloMaui.csproj",
             ]
         },
         {
