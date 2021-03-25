@@ -21,15 +21,15 @@ Android:
 iOS:
 
 * Windows: [Microsoft.NET.Workload.iOS.14.4.100-ci.main.1271.msi](https://bosstoragemirror.azureedge.net/wrench/main/c8b6bc6c85a0067387ee298ef5e7d55992be5f0a/4590608/package/Microsoft.NET.Workload.iOS.14.4.100-ci.main.1271.msi)
-* macOS: [Microsoft.iOS.Bundle.14.4.100-ci.main.1271.pkg](https://bosstoragemirror.azureedge.net/wrench/main/c8b6bc6c85a0067387ee298ef5e7d55992be5f0a/4590608/package/Microsoft.iOS.Bundle.14.4.100-ci.main.1271.pkg)
+* macOS: [Microsoft.iOS.Bundle.14.4.100-ci.main.1271.pkg](https://bosstoragemirror.azureedge.net/wrench/main/c8b6bc6c85a0067387ee298ef5e7d55992be5f0a/4590608/package/notarized/Microsoft.iOS.Bundle.14.4.100-ci.main.1271.pkg)
 
 Mac (Cocoa/AppKit):
 
-* macOS: [Microsoft.macOS.Bundle.11.1.100-ci.main.1324.pkg](https://bosstoragemirror.azureedge.net/wrench/main/c8b6bc6c85a0067387ee298ef5e7d55992be5f0a/4590608/package/Microsoft.macOS.Bundle.11.1.100-ci.main.1324.pkg)
+* macOS: [Microsoft.macOS.Bundle.11.1.100-ci.main.1324.pkg](https://bosstoragemirror.azureedge.net/wrench/main/c8b6bc6c85a0067387ee298ef5e7d55992be5f0a/4590608/package/notarized/Microsoft.macOS.Bundle.11.1.100-ci.main.1324.pkg)
 
 Mac Catalyst (UIKit):
 
-* macOS: [Microsoft.MacCatalyst.Bundle.14.3.100-ci.main.416.pkg](https://bosstoragemirror.azureedge.net/wrench/main/c8b6bc6c85a0067387ee298ef5e7d55992be5f0a/4590608/package/Microsoft.MacCatalyst.Bundle.14.3.100-ci.main.416.pkg)
+* macOS: [Microsoft.MacCatalyst.Bundle.14.3.100-ci.main.416.pkg](https://bosstoragemirror.azureedge.net/wrench/main/c8b6bc6c85a0067387ee298ef5e7d55992be5f0a/4590608/package/notarized/Microsoft.MacCatalyst.Bundle.14.3.100-ci.main.416.pkg)
 
 _NOTE: newer builds of .NET *may* work, but your mileage may vary.
 The workload installers enable a feature flag file via
