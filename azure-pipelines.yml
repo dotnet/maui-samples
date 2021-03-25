@@ -13,10 +13,10 @@ variables:
   DotNet.Cli.Telemetry.OptOut: true
   Android.Msi: https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4534967/main/f4d8fe238b15eadfc7842749bf13e5fca3e2f2d2/Microsoft.NET.Workload.Android.11.0.200.148.msi
   Android.Pkg: https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4534967/main/f4d8fe238b15eadfc7842749bf13e5fca3e2f2d2/Microsoft.NET.Workload.Android-11.0.200-ci.f4d8fe238b15eadfc7842749bf13e5fca3e2f2d2.148.pkg
-  iOS.Msi: https://bosstoragemirror.azureedge.net/wrench/main/98c8649d0c7d1e3c4c8d8d09e022befa853fb1e7/4541181/package/Microsoft.NET.Workload.iOS.14.4.100-ci.main.1192.msi
-  iOS.Pkg: https://bosstoragemirror.azureedge.net/wrench/main/98c8649d0c7d1e3c4c8d8d09e022befa853fb1e7/4541181/package/notarized/Microsoft.iOS.Bundle.14.4.100-ci.main.1192.pkg
-  macOS.Pkg: https://bosstoragemirror.azureedge.net/wrench/main/98c8649d0c7d1e3c4c8d8d09e022befa853fb1e7/4541181/package/notarized/Microsoft.macOS.Bundle.11.1.100-ci.main.1245.pkg
-  MacCatalyst.Pkg: https://bosstoragemirror.azureedge.net/wrench/main/98c8649d0c7d1e3c4c8d8d09e022befa853fb1e7/4541181/package/notarized/Microsoft.MacCatalyst.Bundle.14.3.100-ci.main.337.pkg
+  iOS.Msi: https://bosstoragemirror.azureedge.net/wrench/main/c8b6bc6c85a0067387ee298ef5e7d55992be5f0a/4590608/package/Microsoft.NET.Workload.iOS.14.4.100-ci.main.1271.msi
+  iOS.Pkg: https://bosstoragemirror.azureedge.net/wrench/main/c8b6bc6c85a0067387ee298ef5e7d55992be5f0a/4590608/package/Microsoft.iOS.Bundle.14.4.100-ci.main.1271.pkg
+  macOS.Pkg: https://bosstoragemirror.azureedge.net/wrench/main/c8b6bc6c85a0067387ee298ef5e7d55992be5f0a/4590608/package/Microsoft.macOS.Bundle.11.1.100-ci.main.1324.pkg
+  MacCatalyst.Pkg: https://bosstoragemirror.azureedge.net/wrench/main/c8b6bc6c85a0067387ee298ef5e7d55992be5f0a/4590608/package/Microsoft.MacCatalyst.Bundle.14.3.100-ci.main.416.pkg
 
 jobs:
 - job: windows
