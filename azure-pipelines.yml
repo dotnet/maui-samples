@@ -9,14 +9,14 @@ pr:
 - develop
 
 variables:
-  DotNetVersion: 6.0.100-preview.2.21155.3
+  DotNetVersion: 6.0.100-preview.3.21201.23
   DotNet.Cli.Telemetry.OptOut: true
-  Android.Msi: https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4534967/main/f4d8fe238b15eadfc7842749bf13e5fca3e2f2d2/Microsoft.NET.Workload.Android.11.0.200.148.msi
-  Android.Pkg: https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4534967/main/f4d8fe238b15eadfc7842749bf13e5fca3e2f2d2/Microsoft.NET.Workload.Android-11.0.200-ci.f4d8fe238b15eadfc7842749bf13e5fca3e2f2d2.148.pkg
-  iOS.Msi: https://bosstoragemirror.azureedge.net/wrench/main/98c8649d0c7d1e3c4c8d8d09e022befa853fb1e7/4541181/package/Microsoft.NET.Workload.iOS.14.4.100-ci.main.1192.msi
-  iOS.Pkg: https://bosstoragemirror.azureedge.net/wrench/main/98c8649d0c7d1e3c4c8d8d09e022befa853fb1e7/4541181/package/notarized/Microsoft.iOS.Bundle.14.4.100-ci.main.1192.pkg
-  macOS.Pkg: https://bosstoragemirror.azureedge.net/wrench/main/98c8649d0c7d1e3c4c8d8d09e022befa853fb1e7/4541181/package/notarized/Microsoft.macOS.Bundle.11.1.100-ci.main.1245.pkg
-  MacCatalyst.Pkg: https://bosstoragemirror.azureedge.net/wrench/main/98c8649d0c7d1e3c4c8d8d09e022befa853fb1e7/4541181/package/notarized/Microsoft.MacCatalyst.Bundle.14.3.100-ci.main.337.pkg
+  Android.Msi: https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4617630/6.0.1xx-preview3/d360d17b3c300c09d035e90be43c6d78e7df4de7/Microsoft.NET.Workload.Android.11.0.200.195.msi
+  Android.Pkg: https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4617630/6.0.1xx-preview3/d360d17b3c300c09d035e90be43c6d78e7df4de7/Microsoft.NET.Workload.Android-11.0.200-preview.3.195.pkg
+  iOS.Msi: https://bosstoragemirror.azureedge.net/wrench/main/5c12fdfac92277cd19cb4c73daa083ddc75d781b/4616808/package/Microsoft.NET.Workload.iOS.14.4.100-ci.main.1320.msi
+  iOS.Pkg: https://bosstoragemirror.azureedge.net/wrench/main/5c12fdfac92277cd19cb4c73daa083ddc75d781b/4616808/package/notarized/Microsoft.iOS.Bundle.14.4.100-ci.main.1320.pkg
+  macOS.Pkg: https://bosstoragemirror.azureedge.net/wrench/main/5c12fdfac92277cd19cb4c73daa083ddc75d781b/4616808/package/notarized/Microsoft.macOS.Bundle.11.1.100-ci.main.1373.pkg
+  MacCatalyst.Pkg: https://bosstoragemirror.azureedge.net/wrench/main/5c12fdfac92277cd19cb4c73daa083ddc75d781b/4616808/package/notarized/Microsoft.MacCatalyst.Bundle.14.3.100-ci.main.465.pkg
 
 jobs:
 - job: windows
