@@ -1,13 +1,16 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Maui;
+using Microsoft.Maui.Controls;
 using Microsoft.Maui.Controls.Compatibility;
+using Microsoft.Maui.Controls.Compatibility.Platform.UWP;
+using Microsoft.Maui.Controls.PlatformConfiguration.WindowsSpecific;
 using Microsoft.Maui.Hosting;
 using System;
 using System.Diagnostics;
 
 namespace HelloMaui
 {
-	public class Application : IApplication
+	public class Application : Microsoft.Maui.Controls.Application
 	{
 		public Application(IServiceProvider services)
 		{
@@ -16,11 +19,14 @@ namespace HelloMaui
 
 		public IServiceProvider Services { get; }
 
-		public IWindow CreateWindow(IActivationState activationState)
-		{
-			Forms.Init(activationState);
+        public override IWindow CreateWindow(IActivationState activationState)
+        {            
+            Forms.Init(activationState);
 
-			return Services.GetRequiredService<IWindow>();
-		}
-	}
+            this.On<Microsoft.Maui.Controls.PlatformConfiguration.Windows>()
+                .SetImageDirectory("Assets");
+
+            return Services.GetRequiredService<IWindow>();
+        }
+    }
 }
