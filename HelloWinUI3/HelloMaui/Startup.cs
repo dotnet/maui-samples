@@ -16,23 +16,12 @@ namespace HelloMaui
 
 		public void Configure(IAppHostBuilder appBuilder)
 		{
-
 			appBuilder = 
 				appBuilder
 					.UseFormsCompatibility()
 					.UseMauiApp<Application>();
 
 			appBuilder
-				.ConfigureAppConfiguration((hostingContext, config) =>
-				{
-					config.AddInMemoryCollection(new Dictionary<string, string>
-					{
-						{"MyKey", "Dictionary MyKey Value"},
-						{":Title", "Dictionary_Title"},
-						{"Position:Name", "Dictionary_Name" },
-						{"Logging:LogLevel:Default", "Warning"}
-					});
-				})
 				.UseMauiServiceProviderFactory(true)
 				.ConfigureServices(services =>
 				{
@@ -41,7 +30,7 @@ namespace HelloMaui
 				})
 				.ConfigureFonts(fonts =>
 				{
-					fonts.AddFont("Dokdo-Regular.ttf", "Dokdo");
+					fonts.AddFont("ionicons.ttf", "IonIcons");
 				});
 		}
 	}
