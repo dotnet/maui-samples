@@ -5,12 +5,13 @@ namespace HelloMaui
 {
 	public class MainWindow : IWindow
 	{
-		public IPage Page { get; set; }
-		public IMauiContext MauiContext { get; set; }
-
 		public MainWindow()
 		{
-			Page = App.Current.Services.GetService<MainPage>();
+			Page = new MainPage();
 		}
+
+		public IPage Page { get; set; }
+
+		public IMauiContext MauiContext { get; set; }
 	}
 }
