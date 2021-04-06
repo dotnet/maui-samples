@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net6.0-android;net6.0-ios</TargetFrameworks>
-    <TargetFrameworks Condition="Exists('$(MSBuildExtensionsPath)..\..\packs\Microsoft.MacCatalyst.Sdk')">$(TargetFrameworks);net6.0-maccatalyst</TargetFrameworks>
+    <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('osx')) Or Exists('$(MSBuildExtensionsPath)..\..\packs\Microsoft.MacCatalyst.Sdk')">$(TargetFrameworks);net6.0-maccatalyst</TargetFrameworks>
     <OutputType>Exe</OutputType>
     <SingleProject>true</SingleProject>
     <ApplicationId>com.microsoft.hellomaui</ApplicationId>
