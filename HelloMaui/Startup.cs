@@ -10,7 +10,10 @@ namespace HelloMaui
 		{
 			appBuilder
 				.UseFormsCompatibility()
-				.UseMauiApp<App>();
+				.UseMauiApp<App>()
+				.ConfigureFonts(fonts => {
+					fonts.AddFont("ionicons.ttf", "IonIcons");
+				});
 		}
 	}
 }
