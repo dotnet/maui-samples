@@ -6,7 +6,26 @@ If you are looking for the absolute newest download links see the
 [develop](https://github.com/dotnet/net6-mobile-samples/tree/develop)
 branch.
 
-This repo requires a specific build of .NET 6:
+## Installing with .NET MAUI Check Tool
+
+This is a community supported, open source, global dotnet tool intended to help evaluation your development environment and help you install / configure everything you need to build a .NET MAUI application.
+
+Install: `dotnet install -g redth.net.maui.check`
+Run: `maui-check --dev`
+
+This will evaluate your environment and in most cases optionally install / configure missing components for you, such as:
+ - OpenJdk / AndroidSDK
+ - .NET 6 Preview SDK
+ - .NET MAUI / iOS / Android workloads and packs
+ - .NET MAUI Templates
+ - Workload Resolver .sentinel files for dotnet and Visual Studio Windows/Mac
+
+For more information and source code, visit [redth/dotnet-maui-check](https://github.com/redth/dotnet-maui-check)
+
+
+## Installing with Official Preview Installers
+
+If you prefer to install everything manually, you can find all of the official installer links below:
 
 * Windows: [dotnet-sdk-6.0.100-preview.3.21202.5-win-x64.exe](https://dotnetcli.azureedge.net/dotnet/Sdk/6.0.100-preview.3.21202.5/dotnet-sdk-6.0.100-preview.3.21202.5-win-x64.exe)
 * macOS: [dotnet-sdk-6.0.100-preview.3.21202.5-osx-x64.pkg](https://dotnetcli.azureedge.net/dotnet/Sdk/6.0.100-preview.3.21202.5/dotnet-sdk-6.0.100-preview.3.21202.5-osx-x64.pkg)
