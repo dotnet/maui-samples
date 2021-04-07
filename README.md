@@ -103,7 +103,7 @@ To launch the iOS project on a simulator:
 
 ## WINUI3
 
-Currently WinUI3 only compiles in the IDE and does not work with `dotnet`. You will need to open the HelloWinUI3.sln in Visual Studio 16.10 Public Preview.
+Currently WinUI3 requires build and deploy. You will need to open the HelloWinUI3.sln with the latest preview of Visual Studio 2019 16.10.
 
 ## .NET MAUI
 
