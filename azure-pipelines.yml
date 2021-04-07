@@ -61,6 +61,10 @@ jobs:
         targetPath: $(Build.ArtifactStagingDirectory)
       condition: always()
 
+    - task: MSBuild@1
+      inputs:
+        solution: 'HelloWinUI3/HelloWinUI3.sln' 
+
 - job: mac
   timeoutInMinutes: 120
   pool:
