@@ -68,7 +68,7 @@ Projects:
 * HelloAndroid - a native Android application
 * HelloiOS - a native iOS application
 * HelloMacCatalyst - a native Mac Catalyst application
-* HelloWinUI3 - .NET MAUI WinUI3 application. WinUI3 currently doesn't work with `dotnet` tooling.
+* HelloWinUI3 - .NET MAUI WinUI3 application. WinUI3 requires build and deploy with the latest preview of Visual Studio 2019 16.10
 
 [dotnet/installer]: https://github.com/dotnet/installer#installers-and-binaries
 [net6preview1]: https://github.com/dotnet/net6-mobile-samples/releases/tag/6.0.1xx-preview1
