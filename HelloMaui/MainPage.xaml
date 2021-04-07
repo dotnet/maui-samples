@@ -6,7 +6,7 @@
     <ScrollView>
         <StackLayout Padding="{OnPlatform iOS='30,60,30,30', Default='30'}">
 
-            <Label Text="Welcome to .NET MAUI!" 
+            <Label Text="Welcome to .NET MAUI!"
                 SemanticProperties.HeadingLevel="Level1"
                 FontSize="32"
                 HorizontalOptions="CenterAndExpand" />
@@ -20,13 +20,13 @@
                 <Label Style="{DynamicResource Glyph}" Text="&#xf388;" SemanticProperties.Description="Heart" />
             </StackLayout>
 
-            <Label Text="Click the button. You know you want to!"
+            <Label Text="Click the button. You know you want to!" 
                 FontSize="18"
                 x:Name="CounterLabel"
                 HorizontalOptions="CenterAndExpand" />
 
             <Button Text="Click Me!" 
-                Clicked="OnButtonClicked" 
+                Clicked="OnButtonClicked"
                 SemanticProperties.Hint="Counts the number of times you click"/>
 
             <Label Text="Entry" 
