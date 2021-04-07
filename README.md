@@ -53,8 +53,7 @@ Mac Catalyst (UIKit):
 
 WinUI3:
 
-* Windows: Make sure the `Universal Windows Platform development` workload is checked.
-<img src="Assets/WinUI3.PNG" alt="UWP Visual Studio Workload" height="145" >
+* Windows: [Get started with Project Reunion](https://docs.microsoft.com/en-us/windows/apps/project-reunion/get-started-with-project-reunion#set-up-your-development-environment)
 
 _NOTE: newer builds of .NET *may* work, but your mileage may vary.
 The workload installers enable a feature flag file via
