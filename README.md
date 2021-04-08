@@ -11,7 +11,7 @@ branch.
 This is a community supported, open source, global dotnet tool intended to help evaluation your development environment and help you install / configure everything you need to build a .NET MAUI application.
 
 Install: `dotnet tool install -g redth.net.maui.check`
-Run: `maui-check --dev`
+Run: `maui-check`
 
 This will evaluate your environment and in most cases optionally install / configure missing components for you, such as:
  - OpenJdk / AndroidSDK
