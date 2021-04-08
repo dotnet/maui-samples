@@ -6,7 +6,8 @@
     <ScrollView>
         <StackLayout Padding="{OnPlatform iOS='30,60,30,30', Default='30'}">
 
-            <Label Text="Welcome to .NET MAUI!" 
+            <Label Text="Welcome to .NET MAUI!"
+                SemanticProperties.HeadingLevel="Level1"
                 FontSize="32"
                 HorizontalOptions="CenterAndExpand" />
 
@@ -14,9 +15,9 @@
                 HorizontalOptions="CenterAndExpand" />
 
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                <Label Style="{DynamicResource Glyph}" Text="&#xf388;" />
-                <Label Style="{DynamicResource Glyph}" Text="&#xf388;" />
-                <Label Style="{DynamicResource Glyph}" Text="&#xf388;" />
+                <Label Style="{DynamicResource Glyph}" Text="&#xf388;" SemanticProperties.Description="Heart" />
+                <Label Style="{DynamicResource Glyph}" Text="&#xf388;" SemanticProperties.Description="Heart" />
+                <Label Style="{DynamicResource Glyph}" Text="&#xf388;" SemanticProperties.Description="Heart" />
             </StackLayout>
 
             <Label Text="Click the button. You know you want to!" 
@@ -24,7 +25,9 @@
                 x:Name="CounterLabel"
                 HorizontalOptions="CenterAndExpand" />
 
-            <Button Text="Click Me!" Clicked="OnButtonClicked" />
+            <Button Text="Click Me!" 
+                Clicked="OnButtonClicked"
+                SemanticProperties.Hint="Counts the number of times you click"/>
 
             <Label Text="Entry" 
                 TextColor="{DynamicResource PrimaryTextColor}"  />
@@ -40,6 +43,7 @@
             <Label Text="Image" />
             <Image 
                 Source="dotnet_bot.png"
+                SemanticProperties.Description="Cute dotnet bot waving hi to you!"
                 Margin="40,0" />
 
         </StackLayout>
