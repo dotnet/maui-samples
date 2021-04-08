@@ -4,7 +4,7 @@
     <VisualStudioVersion>15.0</VisualStudioVersion>
   </PropertyGroup>
   <PropertyGroup>
-    <ILLinkTasksAssembly Condition="$(ILLinkTasksAssembly) == ''">$(MicrosoftNETBuildTasksDirectory)ILLink.Tasks.dll</ILLinkTasksAssembly>
+    <SkipImportNetSdk>true</SkipImportNetSdk>
   </PropertyGroup>
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|x86">
