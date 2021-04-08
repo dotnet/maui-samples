@@ -5,6 +5,12 @@
     "version": "0.2.0",
     "configurations": [
         {
+			"name": "Comet",
+			"type": "comet",
+			"request": "launch",
+			"preLaunchTask": "comet: Run"
+		},
+        {
             "name": "Debug",
             "type": "mono",
             "request": "attach",

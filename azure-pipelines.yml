@@ -9,13 +9,14 @@ pr:
 - develop
 
 variables:
-  DotNetVersion: 6.0.100-preview.2.21155.3
+  DotNetVersion: 6.0.100-preview.3.21202.5
   DotNet.Cli.Telemetry.OptOut: true
-  Android.Msi: https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4534967/main/f4d8fe238b15eadfc7842749bf13e5fca3e2f2d2/Microsoft.NET.Workload.Android.11.0.200.148.msi
-  Android.Pkg: https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4534967/main/f4d8fe238b15eadfc7842749bf13e5fca3e2f2d2/Microsoft.NET.Workload.Android-11.0.200-ci.f4d8fe238b15eadfc7842749bf13e5fca3e2f2d2.148.pkg
-  iOS.Msi: https://bosstoragemirror.azureedge.net/wrench/main/98c8649d0c7d1e3c4c8d8d09e022befa853fb1e7/4541181/package/Microsoft.NET.Workload.iOS.14.4.100-ci.main.1192.msi
-  iOS.Pkg: https://bosstoragemirror.azureedge.net/wrench/main/98c8649d0c7d1e3c4c8d8d09e022befa853fb1e7/4541181/package/notarized/Microsoft.iOS.Bundle.14.4.100-ci.main.1192.pkg
-  MacCatalyst.Pkg: https://bosstoragemirror.azureedge.net/wrench/main/98c8649d0c7d1e3c4c8d8d09e022befa853fb1e7/4541181/package/notarized/Microsoft.MacCatalyst.Bundle.14.3.100-ci.main.337.pkg
+  Android.Msi: https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4624420/6.0.1xx-preview3/7d6cd1cde4182d7db2cfc5d0b55364c972b6d34f/Microsoft.NET.Workload.Android.11.0.200.196.msi
+  Android.Pkg: https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4624420/6.0.1xx-preview3/7d6cd1cde4182d7db2cfc5d0b55364c972b6d34f/Microsoft.NET.Workload.Android-11.0.200-preview.3.196.pkg
+  iOS.Msi: https://bosstoragemirror.azureedge.net/wrench/6.0.1xx-preview3/f68d4d9c2a342daf9eaad364ccbe252e009d3901/4623693/package/Microsoft.NET.Workload.iOS.14.4.100-preview.3.1326.msi
+  iOS.Pkg: https://bosstoragemirror.azureedge.net/wrench/6.0.1xx-preview3/f68d4d9c2a342daf9eaad364ccbe252e009d3901/4623693/package/notarized/Microsoft.iOS.Bundle.14.4.100-preview.3.1326.pkg
+  macOS.Pkg: https://bosstoragemirror.azureedge.net/wrench/6.0.1xx-preview3/f68d4d9c2a342daf9eaad364ccbe252e009d3901/4623693/package/notarized/Microsoft.macOS.Bundle.11.1.100-preview.3.1379.pkg
+  MacCatalyst.Pkg: https://bosstoragemirror.azureedge.net/wrench/6.0.1xx-preview3/f68d4d9c2a342daf9eaad364ccbe252e009d3901/4623693/package/notarized/Microsoft.MacCatalyst.Bundle.14.3.100-preview.3.471.pkg
 
 jobs:
 - job: windows
@@ -44,6 +45,17 @@ jobs:
         & dotnet build net6-samples.sln -c Release -bl:$(LogDirectory)\Release.binlog
       displayName: build samples
       errorActionPreference: stop
+
+    - powershell: |
+        & dotnet restore HelloWinUI3/HelloWinUI3.sln
+      displayName: Restore .NET MAUI WinUI3 Solution
+      errorActionPreference: stop
+
+    - task: MSBuild@1
+      displayName: Build .NET MAUI WinUI3 Solution
+      inputs:
+        solution: 'HelloWinUI3/HelloWinUI3.sln' 
+        restoreNugetPackages: true
 
     - task: CopyFiles@2
       displayName: copy artifacts
@@ -90,6 +102,7 @@ jobs:
         dotnet tool install --global boots
         boots $(Android.Pkg)
         boots $(iOS.Pkg)
+        boots $(macOS.Pkg)
         boots $(MacCatalyst.Pkg)
       displayName: install .NET workloads
 
@@ -109,12 +122,18 @@ jobs:
         dotnet build net6-samples.sln -c Release -bl:$(LogDirectory)/Release.binlog
       displayName: build samples
 
+    - bash: |
+        dotnet build vs/net6-samples-mac.sln -c Debug   -bl:$(LogDirectory)/Debug-Mac.binlog &&
+        dotnet build vs/net6-samples-mac.sln -c Release -bl:$(LogDirectory)/Release-Mac.binlog
+      displayName: build macOS-only samples
+
     - task: CopyFiles@2
       displayName: copy artifacts
       inputs:
         contents: |
           *Android/**/*-Signed.apk
           *iOS/**/*.app/**
+          *Mac*/**/*.app/**
         targetFolder: $(Build.ArtifactStagingDirectory)
         overWrite: true
       condition: always()

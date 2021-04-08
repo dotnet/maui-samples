@@ -13,18 +13,14 @@ namespace HelloMaui
 			InitializeComponent();
 		}
 
-		public IView View
-		{
-			get => (IView)Content;
-			set => Content = (View)value;
-		}
-
 		int count = 0;
 
 		private void OnButtonClicked(object sender, EventArgs e)
 		{
 			count++;
-			CounterLabel.Text = $"You clicked {count} times. YAY!";
+			CounterLabel.Text = $"You clicked {count} times!";
 		}
+
+		public IView View { get => (IView)Content; set => Content = (View)value; }
 	}
 }

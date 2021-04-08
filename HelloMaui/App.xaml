@@ -1,0 +1,26 @@
+﻿<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:HelloMaui"
+             x:Class="HelloMaui.App">
+    <Application.Resources>
+        <ResourceDictionary>
+
+            <!-- Add any additional resources here. -->
+            <Color x:Key="PageBackgroundColor">White</Color>
+
+            <Color x:Key="PrimaryTextColor">Black</Color>
+
+            <Color x:Key="GlyphColor">#2B0B98</Color>
+
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="{DynamicResource PrimaryTextColor}" />
+            </Style>
+
+            <Style TargetType="Label" x:Key="Glyph">
+                <Setter Property="TextColor" Value="{DynamicResource GlyphColor}" />
+                <Setter Property="FontFamily" Value="IonIcons" />
+                <Setter Property="FontSize" Value="32" />
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
