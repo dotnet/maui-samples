@@ -19,6 +19,7 @@ This will evaluate your environment and in most cases optionally install / confi
  - .NET MAUI / iOS / Android workloads and packs
  - .NET MAUI Templates
  - Workload Resolver .sentinel files for dotnet and Visual Studio Windows/Mac
+ - Currently does not install workloads required for WinUI3
 
 For more information and source code, visit [redth/dotnet-maui-check](https://github.com/redth/dotnet-maui-check)
 
@@ -50,6 +51,10 @@ Mac Catalyst (UIKit):
 
 * macOS: [Microsoft.MacCatalyst.Bundle.14.3.100-preview.3.471.pkg](https://bosstoragemirror.azureedge.net/wrench/6.0.1xx-preview3/f68d4d9c2a342daf9eaad364ccbe252e009d3901/4623693/package/notarized/Microsoft.MacCatalyst.Bundle.14.3.100-preview.3.471.pkg)
 
+WinUI3:
+
+* Windows: [Get started with Project Reunion](https://docs.microsoft.com/en-us/windows/apps/project-reunion/get-started-with-project-reunion#set-up-your-development-environment)
+
 _NOTE: newer builds of .NET *may* work, but your mileage may vary.
 The workload installers enable a feature flag file via
 `sdk/6.0.100-*/EnableWorkloadResolver.sentinel`, which would
@@ -63,6 +68,7 @@ Projects:
 * HelloAndroid - a native Android application
 * HelloiOS - a native iOS application
 * HelloMacCatalyst - a native Mac Catalyst application
+* HelloWinUI3 - .NET MAUI WinUI3 application. WinUI3 requires build and deploy with the latest preview of Visual Studio 2019 16.10
 
 [dotnet/installer]: https://github.com/dotnet/installer#installers-and-binaries
 [net6preview1]: https://github.com/dotnet/net6-mobile-samples/releases/tag/6.0.1xx-preview1
@@ -94,6 +100,10 @@ To build the iOS project:
 To launch the iOS project on a simulator:
 
     dotnet build HelloiOS -t:Run
+
+## WINUI3
+
+Currently WinUI3 requires build and deploy. You will need to open the HelloWinUI3.sln with the latest preview of Visual Studio 2019 16.10.
 
 ## .NET MAUI
 
