@@ -11,7 +11,7 @@
     <RuntimeIdentifier Condition="'$(TargetFramework)' == 'net6.0-ios'">iossimulator-x64</RuntimeIdentifier>
     <RuntimeIdentifier Condition="'$(TargetFramework)' == 'net6.0-maccatalyst'">maccatalyst-x64</RuntimeIdentifier>
     <!-- Debugger workaround -->
-    <MtouchExtraArgs Condition="'$(TargetPlatformIdentifier)' == 'ios' Or '$(TargetPlatformIdentifier)' == 'maccatalyst'">$(MtouchExtraArgs) --setenv:MONO_THREADS_SUSPEND=preemptive</MtouchExtraArgs>
+    <MtouchExtraArgs Condition="'$(TargetFramework)' == 'net6.0-ios' Or '$(TargetFramework)' == 'net6.0-maccatalyst'">$(MtouchExtraArgs) --setenv:MONO_THREADS_SUSPEND=preemptive</MtouchExtraArgs>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Maui" Version="6.0.100-preview.3.322" />
