@@ -50,7 +50,7 @@ jobs:
       displayName: Build .NET MAUI WinUI3 Solution
       inputs:
         solution: 'HelloWinUI3/HelloWinUI3.sln'
-        msbuildArguments: '/restore'
+        msbuildArguments: '/p:platform=x64 /restore'
 
     - task: CopyFiles@2
       displayName: copy artifacts
