@@ -54,9 +54,9 @@ jobs:
     - task: MSBuild@1
       displayName: Build .NET MAUI WinUI3 Solution
       inputs:
-        solution: 'HelloWinUI3/HelloWinUI3.sln' 
-        restoreNugetPackages: true
+        solution: 'HelloWinUI3/HelloWinUI3.sln'
         platform: 'x64'
+        msbuildArguments: '/restore'
 
     - task: CopyFiles@2
       displayName: copy artifacts
