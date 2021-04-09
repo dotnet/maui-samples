@@ -56,7 +56,7 @@ jobs:
       inputs:
         solution: 'HelloWinUI3/HelloWinUI3.sln'
         platform: 'x64'
-        msbuildArguments: '/restore'
+        msbuildArguments: '/restore /p:SkipImportNetSdk=true'
 
     - task: CopyFiles@2
       displayName: copy artifacts
