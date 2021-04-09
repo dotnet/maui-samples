@@ -47,10 +47,16 @@ jobs:
       errorActionPreference: stop
 
     - task: MSBuild@1
-      displayName: Build .NET MAUI WinUI3 Solution
+      displayName: Build/Restore WinUI3
       inputs:
         solution: 'HelloWinUI3/HelloWinUI3.sln'
         msbuildArguments: '/restore'
+
+    - task: MSBuild@1
+      displayName: Build x64 WinUI3
+      inputs:
+        solution: 'HelloWinUI3/HelloWinUI3.sln'
+        msbuildArguments: '/p:platform=x64'
 
     - task: CopyFiles@2
       displayName: copy artifacts
