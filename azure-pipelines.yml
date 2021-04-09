@@ -55,8 +55,7 @@ jobs:
       displayName: Build .NET MAUI WinUI3 Solution
       inputs:
         solution: 'HelloWinUI3/HelloWinUI3.sln'
-        platform: 'x64'
-        msbuildArguments: '/restore /p:SkipImportNetSdk=true'
+        msbuildArguments: '/restore'
 
     - task: CopyFiles@2
       displayName: copy artifacts
