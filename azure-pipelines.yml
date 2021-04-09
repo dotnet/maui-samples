@@ -46,11 +46,6 @@ jobs:
       displayName: build samples
       errorActionPreference: stop
 
-    - powershell: |
-        & dotnet restore HelloWinUI3/HelloWinUI3.sln
-      displayName: Restore .NET MAUI WinUI3 Solution
-      errorActionPreference: stop
-
     - task: MSBuild@1
       displayName: Build .NET MAUI WinUI3 Solution
       inputs:
