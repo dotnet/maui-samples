@@ -40,11 +40,11 @@ jobs:
       displayName: install .NET workloads
       errorActionPreference: stop
 
-#    - powershell: |
-#        & dotnet build net6-samples.sln -c Debug   -bl:$(LogDirectory)\Debug.binlog
-#        & dotnet build net6-samples.sln -c Release -bl:$(LogDirectory)\Release.binlog
-#      displayName: build samples
-#      errorActionPreference: stop
+    - powershell: |
+        & dotnet build net6-samples.sln -c Debug   -bl:$(LogDirectory)\Debug.binlog
+        & dotnet build net6-samples.sln -c Release -bl:$(LogDirectory)\Release.binlog
+      displayName: build samples
+      errorActionPreference: stop
 
     - task: MSBuild@1
       displayName: Build/Restore WinUI3
