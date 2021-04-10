@@ -178,5 +178,3 @@ To build your application use open the Command Pallette and select `Run Build Ta
 You can then select the `Project` and then the `Configuration` (`Debug` or `Release`) you want to `Build`.
 
 To Debug goto the `Run` Tab and make sure `Debug` is selected. Click the Run button. You will be prompted on which project you wish to run, then asked which `TargetFramework` you want to target. For now only `net6.0-android` is supported. You will then be asked if you want to attach the debugger. Finally you will be asked which configuration you wish to use `Debug` or `Release`. After this the application should deploy and run, breakpoints should behave as normal.
-
-Note: You will need to build your application at least once via `Run Build Task`. This is to that NuGet packages are restored correctly. This should not be required once [dotnet#15485](https://github.com/dotnet/sdk/issues/15485) is resolved.
