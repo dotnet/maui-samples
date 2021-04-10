@@ -20,7 +20,7 @@
             // we only support android at this time.
             "label": "Run",
             "type": "shell",
-            "command": "dotnet build ${input:project} \"-t:Run\" --no-restore -p:TargetFramework=${input:targetframework} -p:Configuration=${input:configuration} -p:AndroidAttachDebugger=${input:attach} -p:AndroidSdbHostPort=10000",
+            "command": "dotnet build ${input:project} \"-t:Run\" -p:TargetFramework=${input:targetframework} -p:Configuration=${input:configuration} -p:AndroidAttachDebugger=${input:attach} -p:AndroidSdbHostPort=10000",
             "group": {
                 "kind": "build",
                 "isDefault": true
