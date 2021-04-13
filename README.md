@@ -28,8 +28,8 @@ For more information and source code, visit [redth/dotnet-maui-check](https://gi
 
 If you prefer to install everything manually, you can find all of the official installer links below:
 
-* Windows: [dotnet-sdk-6.0.100-preview.3.21202.5-win-x64.exe](https://dotnetcli.azureedge.net/dotnet/Sdk/6.0.100-preview.3.21202.5/dotnet-sdk-6.0.100-preview.3.21202.5-win-x64.exe)
-* macOS: [dotnet-sdk-6.0.100-preview.3.21202.5-osx-x64.pkg](https://dotnetcli.azureedge.net/dotnet/Sdk/6.0.100-preview.3.21202.5/dotnet-sdk-6.0.100-preview.3.21202.5-osx-x64.pkg)
+* Windows: [dotnet-sdk-6.0.100-preview.3.21202.5-win-x64.exe](https://download.visualstudio.microsoft.com/download/pr/f650c921-3ee9-4352-b743-a052e45d9ce7/99c5e001a48d243d27765d84c74f1e37/dotnet-sdk-6.0.100-preview.3.21202.5-win-x64.exe)
+* macOS: [dotnet-sdk-6.0.100-preview.3.21202.5-osx-x64.pkg](https://download.visualstudio.microsoft.com/download/pr/fc5fdd1f-fb4c-4b88-a507-158204030320/98497ef248883404ff5b0604dda944fb/dotnet-sdk-6.0.100-preview.3.21202.5-osx-x64.pkg)
 
 You will also need to install builds of the iOS and Android workloads:
 
