@@ -46,16 +46,17 @@ jobs:
       displayName: build samples
       errorActionPreference: stop
 
-    - powershell: |
-        & dotnet restore HelloWinUI3/HelloWinUI3.sln
-      displayName: Restore .NET MAUI WinUI3 Solution
-      errorActionPreference: stop
+    - task: MSBuild@1
+      displayName: build WinUI3 Debug
+      inputs:
+        solution: HelloWinUI3/HelloWinUI3.sln
+        msbuildArguments: -restore -p:Configuration=Debug -bl:$(LogDirectory)\WinUI3-Debug.binlog
 
     - task: MSBuild@1
-      displayName: Build .NET MAUI WinUI3 Solution
+      displayName: build WinUI3 Release
       inputs:
-        solution: 'HelloWinUI3/HelloWinUI3.sln' 
-        restoreNugetPackages: true
+        solution: HelloWinUI3/HelloWinUI3.sln
+        msbuildArguments: -p:Configuration=Release -bl:$(LogDirectory)\WinUI3-Release.binlog
 
     - task: CopyFiles@2
       displayName: copy artifacts
