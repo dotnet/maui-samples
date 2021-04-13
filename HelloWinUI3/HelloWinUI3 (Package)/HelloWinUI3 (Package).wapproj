@@ -5,6 +5,8 @@
   </PropertyGroup>
   <PropertyGroup>
     <SkipImportNetSdk>true</SkipImportNetSdk>
+    <_ReferenceHelloOutputAssembly Condition=" '$(BuildingInsideVisualStudio)' == 'true' ">true</_ReferenceHelloOutputAssembly>
+    <_ReferenceHelloOutputAssembly Condition=" '$(BuildingInsideVisualStudio)' != 'true' ">false</_ReferenceHelloOutputAssembly>
   </PropertyGroup>
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|x86">
@@ -62,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HelloWinUI3\HelloWinUI3.csproj">
+      <ReferenceOutputAssembly>$(_ReferenceHelloOutputAssembly)</ReferenceOutputAssembly>
       <SkipGetTargetFrameworkProperties>True</SkipGetTargetFrameworkProperties>
       <PublishProfile>Properties\PublishProfiles\win10-$(Platform).pubxml</PublishProfile>
     </ProjectReference>
