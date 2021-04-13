@@ -28,8 +28,8 @@ For more information and source code, visit [redth/dotnet-maui-check](https://gi
 
 If you prefer to install everything manually, you can find all of the official installer links below:
 
-* Windows: [dotnet-sdk-6.0.100-preview.3.21202.5-win-x64.exe](https://dotnetcli.azureedge.net/dotnet/Sdk/6.0.100-preview.3.21202.5/dotnet-sdk-6.0.100-preview.3.21202.5-win-x64.exe)
-* macOS: [dotnet-sdk-6.0.100-preview.3.21202.5-osx-x64.pkg](https://dotnetcli.azureedge.net/dotnet/Sdk/6.0.100-preview.3.21202.5/dotnet-sdk-6.0.100-preview.3.21202.5-osx-x64.pkg)
+* Windows: [dotnet-sdk-6.0.100-preview.3.21202.5-win-x64.exe](https://download.visualstudio.microsoft.com/download/pr/f650c921-3ee9-4352-b743-a052e45d9ce7/99c5e001a48d243d27765d84c74f1e37/dotnet-sdk-6.0.100-preview.3.21202.5-win-x64.exe)
+* macOS: [dotnet-sdk-6.0.100-preview.3.21202.5-osx-x64.pkg](https://download.visualstudio.microsoft.com/download/pr/fc5fdd1f-fb4c-4b88-a507-158204030320/98497ef248883404ff5b0604dda944fb/dotnet-sdk-6.0.100-preview.3.21202.5-osx-x64.pkg)
 
 You will also need to install builds of the iOS and Android workloads:
 
@@ -178,5 +178,3 @@ To build your application use open the Command Pallette and select `Run Build Ta
 You can then select the `Project` and then the `Configuration` (`Debug` or `Release`) you want to `Build`.
 
 To Debug goto the `Run` Tab and make sure `Debug` is selected. Click the Run button. You will be prompted on which project you wish to run, then asked which `TargetFramework` you want to target. For now only `net6.0-android` is supported. You will then be asked if you want to attach the debugger. Finally you will be asked which configuration you wish to use `Debug` or `Release`. After this the application should deploy and run, breakpoints should behave as normal.
-
-Note: You will need to build your application at least once via `Run Build Task`. This is to that NuGet packages are restored correctly. This should not be required once [dotnet#15485](https://github.com/dotnet/sdk/issues/15485) is resolved.
