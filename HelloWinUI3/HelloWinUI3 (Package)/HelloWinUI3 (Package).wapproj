@@ -5,6 +5,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <SkipImportNetSdk>true</SkipImportNetSdk>
+    <!-- TODO: Workaround to be able to build via the command-line -->
     <_ReferenceHelloOutputAssembly Condition=" '$(BuildingInsideVisualStudio)' == 'true' ">true</_ReferenceHelloOutputAssembly>
     <_ReferenceHelloOutputAssembly Condition=" '$(BuildingInsideVisualStudio)' != 'true' ">false</_ReferenceHelloOutputAssembly>
   </PropertyGroup>

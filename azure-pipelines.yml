@@ -47,10 +47,16 @@ jobs:
       errorActionPreference: stop
 
     - task: MSBuild@1
-      displayName: build WinUI3
+      displayName: build WinUI3 Debug
       inputs:
         solution: HelloWinUI3/HelloWinUI3.sln
-        msbuildArguments: -restore -bl:$(LogDirectory)\WinUI3.binlog
+        msbuildArguments: -restore -p:Configuration=Debug -bl:$(LogDirectory)\WinUI3-Debug.binlog
+
+    - task: MSBuild@1
+      displayName: build WinUI3 Release
+      inputs:
+        solution: HelloWinUI3/HelloWinUI3.sln
+        msbuildArguments: -p:Configuration=Release -bl:$(LogDirectory)\WinUI3-Release.binlog
 
     - task: CopyFiles@2
       displayName: copy artifacts
