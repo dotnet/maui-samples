@@ -6,4 +6,5 @@
   <ItemGroup>
     <ProjectCapability Include="MauiSingleProject" />
   </ItemGroup>
+  <Import Project="..\Directory.Build.targets" />
 </Project>
