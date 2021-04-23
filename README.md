@@ -14,42 +14,42 @@ Install: `dotnet tool install -g redth.net.maui.check`
 Run: `maui-check --dev`
 
 This will evaluate your environment and in most cases optionally install / configure missing components for you, such as:
- - OpenJdk / AndroidSDK
- - .NET 6 Preview SDK
- - .NET MAUI / iOS / Android workloads and packs
- - .NET MAUI Templates
- - Workload Resolver .sentinel files for dotnet and Visual Studio Windows/Mac
- - Currently does not install workloads required for WinUI3
+
+* OpenJdk / AndroidSDK
+* .NET 6 Preview SDK
+* .NET MAUI / iOS / Android workloads and packs
+* .NET MAUI Templates
+* Workload Resolver .sentinel files for dotnet and Visual Studio Windows/Mac
+* Currently does not install workloads required for WinUI3
 
 For more information and source code, visit [redth/dotnet-maui-check](https://github.com/redth/dotnet-maui-check)
-
 
 ## Installing with Official Preview Installers
 
 If you prefer to install everything manually, you can find all of the official installer links below:
 
-* Windows: [dotnet-sdk-6.0.100-preview.3.21202.5-win-x64.exe](https://download.visualstudio.microsoft.com/download/pr/f650c921-3ee9-4352-b743-a052e45d9ce7/99c5e001a48d243d27765d84c74f1e37/dotnet-sdk-6.0.100-preview.3.21202.5-win-x64.exe)
-* macOS: [dotnet-sdk-6.0.100-preview.3.21202.5-osx-x64.pkg](https://download.visualstudio.microsoft.com/download/pr/fc5fdd1f-fb4c-4b88-a507-158204030320/98497ef248883404ff5b0604dda944fb/dotnet-sdk-6.0.100-preview.3.21202.5-osx-x64.pkg)
+* Windows: [dotnet-sdk-6.0.100-preview.4.21215.1-win-x64.exe](https://dotnetcli.azureedge.net/dotnet/Sdk/6.0.100-preview.4.21215.1/dotnet-sdk-6.0.100-preview.4.21215.1-win-x64.exe)
+* macOS: [dotnet-sdk-6.0.100-preview.4.21215.1-osx-x64.pkg](https://dotnetcli.azureedge.net/dotnet/Sdk/6.0.100-preview.4.21215.1/dotnet-sdk-6.0.100-preview.4.21215.1-osx-x64.pkg)
 
 You will also need to install builds of the iOS and Android workloads:
 
 Android:
 
-* Windows: [Microsoft.NET.Workload.Android.11.0.200-preview.3.196.msi](https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4624420/6.0.1xx-preview3/7d6cd1cde4182d7db2cfc5d0b55364c972b6d34f/Microsoft.NET.Workload.Android.11.0.200.196.msi)
-* macOS: [Microsoft.NET.Workload.Android-11.0.200-preview.3.196.pkg](https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4624420/6.0.1xx-preview3/7d6cd1cde4182d7db2cfc5d0b55364c972b6d34f/Microsoft.NET.Workload.Android-11.0.200-preview.3.196.pkg)
+* Windows: [Microsoft.NET.Workload.Android.11.0.200.226.msi](https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4677238/main/19703962615d9170a6b289ab90e566d187bc6c3b/Microsoft.NET.Workload.Android.11.0.200.226.msi)
+* macOS: [Microsoft.NET.Workload.Android-11.0.200-ci.main.226.pkg](https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4677238/main/19703962615d9170a6b289ab90e566d187bc6c3b/Microsoft.NET.Workload.Android-11.0.200-ci.main.226.pkg)
 
 iOS:
 
-* Windows: [Microsoft.NET.Workload.iOS.14.4.100-preview.3.1326.msi](https://bosstoragemirror.azureedge.net/wrench/6.0.1xx-preview3/f68d4d9c2a342daf9eaad364ccbe252e009d3901/4623693/package/Microsoft.NET.Workload.iOS.14.4.100-preview.3.1326.msi)
-* macOS: [Microsoft.iOS.Bundle.14.4.100-preview.3.1326.pkg](https://bosstoragemirror.azureedge.net/wrench/6.0.1xx-preview3/f68d4d9c2a342daf9eaad364ccbe252e009d3901/4623693/package/notarized/Microsoft.iOS.Bundle.14.4.100-preview.3.1326.pkg)
+* Windows: [Microsoft.NET.Workload.iOS.14.5.100-ci.main.620.msi](https://bosstoragemirror.azureedge.net/wrench/main/405441f544149677e420c9c0f8a8788f7bcbbeb3/4673591/package/Microsoft.NET.Workload.iOS.14.5.100-ci.main.620.msi)
+* macOS: [Microsoft.iOS.Bundle.14.5.100-ci.main.620.pkg](https://bosstoragemirror.azureedge.net/wrench/main/405441f544149677e420c9c0f8a8788f7bcbbeb3/4673591/package/notarized/Microsoft.iOS.Bundle.14.5.100-ci.main.620.pkg)
 
 Mac (Cocoa/AppKit):
 
-* macOS: [Microsoft.macOS.Bundle.11.1.100-preview.3.1379.pkg](https://bosstoragemirror.azureedge.net/wrench/6.0.1xx-preview3/f68d4d9c2a342daf9eaad364ccbe252e009d3901/4623693/package/notarized/Microsoft.macOS.Bundle.11.1.100-preview.3.1379.pkg)
+* macOS: [Microsoft.macOS.Bundle.11.3.100-ci.main.620.pkg](https://bosstoragemirror.azureedge.net/wrench/main/405441f544149677e420c9c0f8a8788f7bcbbeb3/4673591/package/notarized/Microsoft.macOS.Bundle.11.3.100-ci.main.620.pkg)
 
 Mac Catalyst (UIKit):
 
-* macOS: [Microsoft.MacCatalyst.Bundle.14.3.100-preview.3.471.pkg](https://bosstoragemirror.azureedge.net/wrench/6.0.1xx-preview3/f68d4d9c2a342daf9eaad364ccbe252e009d3901/4623693/package/notarized/Microsoft.MacCatalyst.Bundle.14.3.100-preview.3.471.pkg)
+* macOS: [Microsoft.MacCatalyst.Bundle.14.5.100-ci.main.620.pkg](https://bosstoragemirror.azureedge.net/wrench/main/405441f544149677e420c9c0f8a8788f7bcbbeb3/4673591/package/notarized/Microsoft.MacCatalyst.Bundle.14.5.100-ci.main.620.pkg)
 
 WinUI3:
 
@@ -77,6 +77,7 @@ Projects:
 
 Prerequisites:
 
+* Starting in .NET 6 Preview 4, [Microsoft OpenJDK 11](https://www.microsoft.com/openjdk) is recommended.
 * You will need the Android SDK installed as well as `Android SDK Platform 30`. Simplest way to get this is to install the current Xamarin workload and go to `Tools > Android > Android SDK Manager` from within Visual Studio.
 
 For example, to build the Android project:
@@ -91,7 +92,7 @@ You can launch the Android project to an attached emulator or device via:
 
 Prerequisites:
 
-* Xcode 12.4. Earlier versions won't work.
+* Xcode 12.5. Earlier versions won't work.
 
 To build the iOS project:
 
