@@ -67,12 +67,15 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.ProjectReunion" Version="[0.5.0]">
+    <!--<PackageReference Include="Microsoft.ProjectReunion" Version="[0.5.6]">
       <IncludeAssets>build</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.ProjectReunion.WinUI" Version="[0.5.0]">
+    <PackageReference Include="Microsoft.ProjectReunion.WinUI" Version="[0.5.6]">
       <IncludeAssets>build</IncludeAssets>
-    </PackageReference>
+    </PackageReference>-->
+		<PackageReference Include="Microsoft.ProjectReunion" Version="0.5.0" />
+		<PackageReference Include="Microsoft.ProjectReunion.Foundation" Version="0.5.0" />
+		<PackageReference Include="Microsoft.ProjectReunion.WinUI" Version="0.5.0" />
   </ItemGroup>
   <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.targets" />
 </Project>
