@@ -3,22 +3,22 @@
              x:Class="HelloMaui.MainPage"
              BackgroundColor="{DynamicResource PageBackgroundColor}">
 
-    <ScrollView>
-        <StackLayout Padding="{OnPlatform iOS='30,60,30,30', Default='30'}">
+    <ScrollView Padding="{OnPlatform iOS='30,60,30,30', Default='30'}">
+        <VerticalStackLayout>
 
             <Label Text="Welcome to .NET MAUI!"
                 SemanticProperties.HeadingLevel="Level1"
                 FontSize="32"
                 HorizontalOptions="CenterAndExpand" />
 
-            <Label Text=".NET 6 Preview 3"
+            <Label Text=".NET 6 Preview 4"
                 HorizontalOptions="CenterAndExpand" />
 
-            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+            <HorizontalStackLayout HorizontalOptions="CenterAndExpand">
                 <Label Style="{DynamicResource Glyph}" Text="&#xf388;" SemanticProperties.Description="Heart" />
                 <Label Style="{DynamicResource Glyph}" Text="&#xf388;" SemanticProperties.Description="Heart" />
                 <Label Style="{DynamicResource Glyph}" Text="&#xf388;" SemanticProperties.Description="Heart" />
-            </StackLayout>
+            </HorizontalStackLayout>
 
             <Label Text="Click the button. You know you want to!" 
                 FontSize="18"
@@ -46,6 +46,6 @@
                 SemanticProperties.Description="Cute dotnet bot waving hi to you!"
                 Margin="40,0" />
 
-        </StackLayout>
+        </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
