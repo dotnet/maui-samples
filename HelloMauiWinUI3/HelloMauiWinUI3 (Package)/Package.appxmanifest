@@ -12,8 +12,8 @@
     Version="1.0.0.0" />
 
   <Properties>
-    <DisplayName>HelloWinUI3 (Package)</DisplayName>
-    <PublisherDisplayName>shane</PublisherDisplayName>
+    <DisplayName>Hello Maui</DisplayName>
+    <PublisherDisplayName>Microsoft</PublisherDisplayName>
     <Logo>Images\StoreLogo.png</Logo>
   </Properties>
 
@@ -31,13 +31,14 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="$targetentrypoint$">
       <uap:VisualElements
-        DisplayName="HelloWinUI3 (Package)"
-        Description="HelloWinUI3 (Package)"
-        BackgroundColor="transparent"
+        DisplayName="Hello Maui"
+        Description="Hello .NET MAUI"
+        BackgroundColor="#512BD4"
         Square150x150Logo="Images\Square150x150Logo.png"
         Square44x44Logo="Images\Square44x44Logo.png">
-        <uap:DefaultTile Wide310x150Logo="Images\Wide310x150Logo.png" />
-        <uap:SplashScreen Image="Images\SplashScreen.png" />
+        <uap:DefaultTile Wide310x150Logo="Images\Wide310x150Logo.png"  Square71x71Logo="Images\SmallTile.png" Square310x310Logo="Images\LargeTile.png" ShortName="Hello MAUI"/>
+        <uap:SplashScreen Image="Images\SplashScreen.png"  BackgroundColor="#512BD4"/>
+        <uap:LockScreen BadgeLogo="Images\BadgeLogo.png"/>
       </uap:VisualElements>
     </Application>
   </Applications>
