@@ -7,23 +7,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-		<!--<PackageReference Include="Microsoft.ProjectReunion" Version="[0.5.6]">
-			<IncludeAssets>build</IncludeAssets>
-		</PackageReference>-->
-		<PackageReference Include="Microsoft.ProjectReunion" Version="0.5.0" />
-		<PackageReference Include="Microsoft.ProjectReunion.Foundation" Version="0.5.0" />
-		<PackageReference Include="Microsoft.ProjectReunion.WinUI" Version="0.5.0" />
-		
-    <PackageReference Include="Microsoft.Maui" Version="6.0.100-preview.4.446" />
-    <PackageReference Include="Microsoft.Maui.Controls" Version="6.0.100-preview.4.446" />
-    <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="6.0.100-preview.4.446" />
-    <PackageReference Include="Microsoft.Maui.Resizetizer" Version="6.0.100-preview.4.446" />
+    <PackageReference Include="Microsoft.ProjectReunion" Version="[0.5.6]">
+      <IncludeAssets>build</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Maui" Version="6.0.100-preview.4.2741" />
+    <PackageReference Include="Microsoft.Maui.Controls" Version="6.0.100-preview.4.2741" />
+    <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="6.0.100-preview.4.2741" />
+    <PackageReference Include="Microsoft.Maui.Resizetizer" Version="6.0.100-preview.4.2741" />
   </ItemGroup>
 
-	<ItemGroup>
-		<FrameworkReference Update="Microsoft.Windows.SDK.NET.Ref" RuntimeFrameworkVersion="10.0.19041.16" />
-		<FrameworkReference Update="Microsoft.Windows.SDK.NET.Ref" TargetingPackVersion="10.0.19041.16" />
-	</ItemGroup>
+  <ItemGroup>
+    <FrameworkReference Update="Microsoft.Windows.SDK.NET.Ref" RuntimeFrameworkVersion="10.0.19041.16" />
+    <FrameworkReference Update="Microsoft.Windows.SDK.NET.Ref" TargetingPackVersion="10.0.19041.16" />
+  </ItemGroup>
 
   <ItemGroup>
     <Compile Include="..\..\HelloMaui\App.xaml.cs" Link="App.xaml.cs" />
