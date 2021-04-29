@@ -9,7 +9,7 @@ pr:
 - develop
 
 variables:
-  DotNetVersion: 6.0.100-preview.4.21215.1
+  DotNetVersion: 6.0.100-preview.4.21226.14
   DotNet.Cli.Telemetry.OptOut: true
   Android.Msi: https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4677238/main/19703962615d9170a6b289ab90e566d187bc6c3b/Microsoft.NET.Workload.Android.11.0.200.226.msi
   Android.Pkg: https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4677238/main/19703962615d9170a6b289ab90e566d187bc6c3b/Microsoft.NET.Workload.Android-11.0.200-ci.main.226.pkg
