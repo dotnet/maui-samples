@@ -1,0 +1,9 @@
+<Project>
+  <!-- 
+    Temporarily disable the linker on CI for Apple platforms until we
+    get machine pools with Big Sur and Xcode 12.5.
+  -->
+  <PropertyGroup Condition=" '$(IsRunningOnCI)' == 'true' ">
+    <PublishTrimmed Condition=" '$(TargetFramework)' == 'net6.0-ios' or '$(TargetFramework)' == 'net6.0-macos' or '$(TargetFramework)' == 'net6.0-maccatalyst' ">false</PublishTrimmed>
+  </PropertyGroup>
+</Project>

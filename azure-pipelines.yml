@@ -9,6 +9,7 @@ pr:
 - develop
 
 variables:
+  IsRunningOnCI: true
   DotNetVersion: 6.0.100-preview.4.21226.14
   DotNet.Cli.Telemetry.OptOut: true
   MauiCheck.Version: 0.4.1
