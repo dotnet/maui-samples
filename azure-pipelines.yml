@@ -11,6 +11,7 @@ pr:
 variables:
   DotNetVersion: 6.0.100-preview.4.21226.14
   DotNet.Cli.Telemetry.OptOut: true
+  MauiCheck.Version: 0.4.1
   MauiCheck.Manifest: https://raw.githubusercontent.com/Redth/dotnet-maui-check/main/manifests/maui-dev.manifest.json
 
 jobs:
@@ -29,7 +30,7 @@ jobs:
       errorActionPreference: stop
 
     - powershell: |
-        & dotnet tool install --global redth.net.maui.check
+        & dotnet tool update --global redth.net.maui.check --version $(MauiCheck.Version)
         & maui-check --ci --non-interactive --fix --skip androidsdk --skip xcode --skip vswin --skip vsmac --manifest $(MauiCheck.Manifest)
       displayName: maui-check
       errorActionPreference: stop
@@ -93,8 +94,8 @@ jobs:
         echo "##vso[task.setvariable variable=PATH]$PATH"
       displayName: install .NET $(DotNetVersion)
 
-    - bash: |
-        dotnet tool install --global redth.net.maui.check
+    - bash: >
+        dotnet tool update --global redth.net.maui.check --version $(MauiCheck.Version) &&
         maui-check --ci --non-interactive --fix --skip androidsdk --skip xcode --skip vswin --skip vsmac --manifest $(MauiCheck.Manifest)
       displayName: install .NET workloads
 
