@@ -10,7 +10,7 @@ pr:
 
 variables:
   IsRunningOnCI: true
-  DotNetVersion: 6.0.100-preview.4.21226.14
+  DotNetVersion: 6.0.100-preview.4.21255.9
   DotNet.Cli.Telemetry.OptOut: true
   MauiCheck.Version: 0.4.1
   MauiCheck.Manifest: https://raw.githubusercontent.com/Redth/dotnet-maui-check/main/manifests/maui-dev.manifest.json
