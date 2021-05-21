@@ -37,15 +37,22 @@ You can find the full list of builds at the [dotnet/installer][dotnet/installer]
 ## `dotnet workload install` Command
 
 Starting in .NET 6 Preview 4, a new `dotnet workload install` command
-is available for installing the mobile workloads.
+is available for installing the mobile workloads. You will need to run
+this command in the current directory of this repository, so the
+`NuGet.config` file will be used.
+
+> NOTE: The `--configfile` and `--add-source` switches are not
+> implemented yet for `dotnet workload install` in .NET 6 Preview 4.
 
 On Windows, in an Administrator command prompt:
 
-    > dotnet workload install microsoft-android-sdk-full --configfile NuGet.config
+    > cd C:\src\net6-mobile-samples
+    > dotnet workload install microsoft-android-sdk-full --skip-manifest-update
 
 On macOS, you'd need to use `sudo`:
 
-    $ sudo dotnet workload install microsoft-android-sdk-full --configfile NuGet.config
+    $ cd ~\src\net6-mobile\samples
+    $ sudo dotnet workload install microsoft-android-sdk-full --skip-manifest-update
 
 The path to the `NuGet.config` file should be the file found in this repo.
 
@@ -57,10 +64,10 @@ The workload ID for each platform is:
 * `microsoft-macos-sdk-full`
 * `microsoft-tvos-sdk-full`
 
-_NOTE: using `maui-check` is the preferred method for installing
-workloads, because it will check your system for other software. In
-.NET 6 Preview 4, `maui-check` also will install slightly newer builds
-for Apple platforms that contain additional fixes._
+> NOTE: using `maui-check` is the preferred method for installing
+> workloads, because it will check your system for other software. In
+> .NET 6 > Preview 4, `maui-check` also will install newer builds for
+> Apple platforms that contain additional fixes.
 
 ## Projects
 
@@ -122,32 +129,14 @@ IDE integration into Visual Studio, Visual Studio for Mac, and Visual Studio Cod
 
 ### Visual Studio
 
-Currently, you can use Visual Studio 2019 16.9 on Windows (with the Xamarin workload) with a few manual steps to run iOS & Android apps built on .NET 6.
-
-Open an Administrator command prompt to enable the `EnableWorkloadResolver.sentinel` feature flag:
-
-    > cd "%ProgramFiles(x86)%\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\SdkResolvers\Microsoft.DotNet.MSBuildSdkResolver"
-    > type NUL > EnableWorkloadResolver.sentinel
-
-Or in an Administrator `powershell` prompt:
-
-    > cd "${env:ProgramFiles(x86)}\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\SdkResolvers\Microsoft.DotNet.MSBuildSdkResolver"
-    > '' > EnableWorkloadResolver.sentinel
-
-> NOTE: your path to Visual Studio may vary, depending on where you selected to install it. 
-> `Enterprise`, `Professional`, or `Community` might be correct depending on the SKU you have installed.
-
-This command creates an empty file that enables .NET workload support.
-
-Restart Visual Studio after making this change.
+Currently, you can use Visual Studio 2019 16.10 on Windows (with the
+Xamarin workload installed). .NET 6 Preview 4 requires MSBuild 16.10,
+so .NET 6 projects will not be able to load in older versions of
+Visual Studio.
 
 ### Visual Studio for Mac
 
 Visual Studio for Mac is not supported at this time, but will be coming in a future release.
-
-### .NET MAUI
-
-.NET MAUI bassed projects can be open in Visual Studio and Visual Studio for Mac, however can not be run or debugged directly from the IDEs at this time.
 
 ### iOS from Visual Studio
 
