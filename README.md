@@ -24,45 +24,45 @@ This will evaluate your environment and in most cases optionally install / confi
 
 For more information and source code, visit [redth/dotnet-maui-check](https://github.com/redth/dotnet-maui-check)
 
-## Installing with Official Preview Installers
+## .NET 6 Preview Installers
 
 If you prefer to install everything manually, you can find all of the official installer links below:
 
-* Windows: [dotnet-sdk-6.0.100-preview.4.21215.1-win-x64.exe](https://dotnetcli.azureedge.net/dotnet/Sdk/6.0.100-preview.4.21215.1/dotnet-sdk-6.0.100-preview.4.21215.1-win-x64.exe)
-* macOS: [dotnet-sdk-6.0.100-preview.4.21215.1-osx-x64.pkg](https://dotnetcli.azureedge.net/dotnet/Sdk/6.0.100-preview.4.21215.1/dotnet-sdk-6.0.100-preview.4.21215.1-osx-x64.pkg)
-
-You will also need to install builds of the iOS and Android workloads:
-
-Android:
-
-* Windows: [Microsoft.NET.Workload.Android.11.0.200.226.msi](https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4677238/main/19703962615d9170a6b289ab90e566d187bc6c3b/Microsoft.NET.Workload.Android.11.0.200.226.msi)
-* macOS: [Microsoft.NET.Workload.Android-11.0.200-ci.main.226.pkg](https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4677238/main/19703962615d9170a6b289ab90e566d187bc6c3b/Microsoft.NET.Workload.Android-11.0.200-ci.main.226.pkg)
-
-iOS:
-
-* Windows: [Microsoft.NET.Workload.iOS.14.5.100-ci.main.620.msi](https://bosstoragemirror.azureedge.net/wrench/main/405441f544149677e420c9c0f8a8788f7bcbbeb3/4673591/package/Microsoft.NET.Workload.iOS.14.5.100-ci.main.620.msi)
-* macOS: [Microsoft.iOS.Bundle.14.5.100-ci.main.620.pkg](https://bosstoragemirror.azureedge.net/wrench/main/405441f544149677e420c9c0f8a8788f7bcbbeb3/4673591/package/notarized/Microsoft.iOS.Bundle.14.5.100-ci.main.620.pkg)
-
-Mac (Cocoa/AppKit):
-
-* macOS: [Microsoft.macOS.Bundle.11.3.100-ci.main.620.pkg](https://bosstoragemirror.azureedge.net/wrench/main/405441f544149677e420c9c0f8a8788f7bcbbeb3/4673591/package/notarized/Microsoft.macOS.Bundle.11.3.100-ci.main.620.pkg)
-
-Mac Catalyst (UIKit):
-
-* macOS: [Microsoft.MacCatalyst.Bundle.14.5.100-ci.main.620.pkg](https://bosstoragemirror.azureedge.net/wrench/main/405441f544149677e420c9c0f8a8788f7bcbbeb3/4673591/package/notarized/Microsoft.MacCatalyst.Bundle.14.5.100-ci.main.620.pkg)
-
-WinUI3:
-
-* Windows: [Get started with Project Reunion](https://docs.microsoft.com/en-us/windows/apps/project-reunion/get-started-with-project-reunion#set-up-your-development-environment)
+* Windows: [dotnet-sdk-6.0.100-preview.4.21255.9-win-x64.exe](https://dotnetcli.azureedge.net/dotnet/Sdk/6.0.100-preview.4.21255.9/dotnet-sdk-6.0.100-preview.4.21255.9-win-x64.exe)
+* macOS: [dotnet-sdk-6.0.100-preview.4.21255.9-osx-x64.pkg](https://dotnetcli.azureedge.net/dotnet/Sdk/6.0.100-preview.4.21255.9/dotnet-sdk-6.0.100-preview.4.21255.9-osx-x64.pkg)
 
 _NOTE: newer builds of .NET *may* work, but your mileage may vary.
-The workload installers enable a feature flag file via
-`sdk/6.0.100-*/EnableWorkloadResolver.sentinel`, which would
-need to be created manually for other .NET 6 versions. You can find
-the full list of builds at the [dotnet/installer][dotnet/installer]
-repo._
+You can find the full list of builds at the [dotnet/installer][dotnet/installer] repo._
 
-Projects:
+## `dotnet workload install` Command
+
+Starting in .NET 6 Preview 4, a new `dotnet workload install` command
+is available for installing the mobile workloads.
+
+On Windows, in an Administrator command prompt:
+
+    > dotnet workload install microsoft-android-sdk-full --configfile NuGet.config
+
+On macOS, you'd need to use `sudo`:
+
+    $ sudo dotnet workload install microsoft-android-sdk-full --configfile NuGet.config
+
+The path to the `NuGet.config` file should be the file found in this repo.
+
+The workload ID for each platform is:
+
+* `microsoft-android-sdk-full`
+* `microsoft-ios-sdk-full`
+* `microsoft-maccatalyst-sdk-full`
+* `microsoft-macos-sdk-full`
+* `microsoft-tvos-sdk-full`
+
+_NOTE: using `maui-check` is the preferred method for installing
+workloads, because it will check your system for other software. In
+.NET 6 Preview 4, `maui-check` also will install slightly newer builds
+for Apple platforms that contain additional fixes._
+
+## Projects
 
 * HelloMaui - a multi-targeted .NET MAUI Single Project for iOS and Android
 * HelloAndroid - a native Android application
@@ -102,9 +102,11 @@ To launch the iOS project on a simulator:
 
     dotnet build HelloiOS -t:Run
 
-## WINUI3
+## WinUI3
 
 Currently WinUI3 requires build and deploy. You will need to open the HelloWinUI3.sln with the latest preview of Visual Studio 2019 16.10.
+
+* Windows: [Get started with Project Reunion](https://docs.microsoft.com/en-us/windows/apps/project-reunion/get-started-with-project-reunion#set-up-your-development-environment)
 
 ## .NET MAUI
 
