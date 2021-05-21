@@ -51,7 +51,7 @@ On Windows, in an Administrator command prompt:
 
 On macOS, you'd need to use `sudo`:
 
-    $ cd ~\src\net6-mobile-samples
+    $ cd ~/src/net6-mobile-samples
     $ sudo dotnet workload install microsoft-android-sdk-full --skip-manifest-update
 
 The path to the `NuGet.config` file should be the file found in this repo.
