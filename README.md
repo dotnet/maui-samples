@@ -144,7 +144,7 @@ Visual Studio for Mac is not supported at this time, but will be coming in a fut
 
 ### .NET MAUI
 
-.NET MAUI bassed projects can be open in Visual Studio and Visual Studio for Mac, however can not be run or debugged directly from the IDEs at this time.
+.NET MAUI based projects can be open in Visual Studio and Visual Studio for Mac, however can not be run or debugged directly from the IDEs at this time.
 
 ### iOS from Visual Studio
 
