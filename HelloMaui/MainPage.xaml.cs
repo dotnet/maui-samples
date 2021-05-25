@@ -20,7 +20,5 @@ namespace HelloMaui
 			count++;
 			CounterLabel.Text = $"You clicked {count} times!";
 		}
-
-		public IView View { get => (IView)Content; set => Content = (View)value; }
 	}
 }

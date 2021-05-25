@@ -11,14 +11,14 @@ namespace HelloMaui
 			InitializeComponent();
 		}
 
-		public override IWindow CreateWindow(IActivationState activationState)
+		protected override IWindow CreateWindow(IActivationState activationState)
 		{
 			Microsoft.Maui.Controls.Compatibility.Forms.Init(activationState);
 
 			this.On<Microsoft.Maui.Controls.PlatformConfiguration.Windows>()
 				.SetImageDirectory("Assets");
 
-			return new MainWindow();
+			return new Microsoft.Maui.Controls.Window(new MainPage());
 		}
 	}
 }

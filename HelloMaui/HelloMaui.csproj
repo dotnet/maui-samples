@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net6.0-ios;net6.0-android</TargetFrameworks>
     <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('osx')) Or Exists('$(MSBuildExtensionsPath)..\..\packs\Microsoft.MacCatalyst.Sdk')">$(TargetFrameworks);net6.0-maccatalyst</TargetFrameworks>
@@ -10,13 +10,13 @@
     <AndroidVersionCode>1</AndroidVersionCode>
     <RuntimeIdentifier Condition="'$(TargetFramework)' == 'net6.0-ios'">iossimulator-x64</RuntimeIdentifier>
     <RuntimeIdentifier Condition="'$(TargetFramework)' == 'net6.0-maccatalyst'">maccatalyst-x64</RuntimeIdentifier>
-    <!-- Debugger workaround -->
-    <MtouchExtraArgs Condition="'$(TargetFramework)' == 'net6.0-ios' Or '$(TargetFramework)' == 'net6.0-maccatalyst'">$(MtouchExtraArgs) --setenv:MONO_THREADS_SUSPEND=preemptive</MtouchExtraArgs>
+    <InvariantGlobalization Condition="'$(TargetFramework)' == 'net6.0-maccatalyst'">true</InvariantGlobalization>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Maui" Version="6.0.100-preview.3.322" />
+    <PackageReference Include="Microsoft.Maui" Version="6.0.100-preview.4.618" />
   </ItemGroup>
   <ItemGroup>
+    <MauiSplashScreen Include="Resources\AppIcons\appiconfg.svg" Color="#512BD4" />
     <MauiImage Include="Resources\AppIcons\appicon.svg" ForegroundFile="Resources\AppIcons\appiconfg.svg" IsAppIcon="true" />
     <MauiImage Include="Resources\Images\*" />
     <MauiFont Include="Resources\Fonts\*" />

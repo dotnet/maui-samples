@@ -9,14 +9,11 @@ pr:
 - develop
 
 variables:
-  DotNetVersion: 6.0.100-preview.3.21202.5
+  IsRunningOnCI: true
+  DotNetVersion: 6.0.100-preview.4.21255.9
   DotNet.Cli.Telemetry.OptOut: true
-  Android.Msi: https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4624420/6.0.1xx-preview3/7d6cd1cde4182d7db2cfc5d0b55364c972b6d34f/Microsoft.NET.Workload.Android.11.0.200.196.msi
-  Android.Pkg: https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/net6/4624420/6.0.1xx-preview3/7d6cd1cde4182d7db2cfc5d0b55364c972b6d34f/Microsoft.NET.Workload.Android-11.0.200-preview.3.196.pkg
-  iOS.Msi: https://bosstoragemirror.azureedge.net/wrench/6.0.1xx-preview3/f68d4d9c2a342daf9eaad364ccbe252e009d3901/4623693/package/Microsoft.NET.Workload.iOS.14.4.100-preview.3.1326.msi
-  iOS.Pkg: https://bosstoragemirror.azureedge.net/wrench/6.0.1xx-preview3/f68d4d9c2a342daf9eaad364ccbe252e009d3901/4623693/package/notarized/Microsoft.iOS.Bundle.14.4.100-preview.3.1326.pkg
-  macOS.Pkg: https://bosstoragemirror.azureedge.net/wrench/6.0.1xx-preview3/f68d4d9c2a342daf9eaad364ccbe252e009d3901/4623693/package/notarized/Microsoft.macOS.Bundle.11.1.100-preview.3.1379.pkg
-  MacCatalyst.Pkg: https://bosstoragemirror.azureedge.net/wrench/6.0.1xx-preview3/f68d4d9c2a342daf9eaad364ccbe252e009d3901/4623693/package/notarized/Microsoft.MacCatalyst.Bundle.14.3.100-preview.3.471.pkg
+  MauiCheck.Version: 0.4.1
+  MauiCheck.Manifest: https://raw.githubusercontent.com/Redth/dotnet-maui-check/main/manifests/maui-dev.manifest.json
 
 jobs:
 - job: windows
@@ -34,10 +31,9 @@ jobs:
       errorActionPreference: stop
 
     - powershell: |
-        & dotnet tool install --global boots
-        & boots $(Android.Msi)
-        & boots $(iOS.Msi)
-      displayName: install .NET workloads
+        & dotnet tool update --global redth.net.maui.check --version $(MauiCheck.Version) --add-source https://api.nuget.org/v3/index.json
+        & maui-check --ci --non-interactive --fix --skip androidsdk --skip xcode --skip vswin --skip vsmac --manifest $(MauiCheck.Manifest)
+      displayName: maui-check
       errorActionPreference: stop
 
     - powershell: |
@@ -46,17 +42,18 @@ jobs:
       displayName: build samples
       errorActionPreference: stop
 
-    - task: MSBuild@1
-      displayName: build WinUI3 Debug
-      inputs:
-        solution: HelloWinUI3/HelloWinUI3.sln
-        msbuildArguments: -restore -p:Configuration=Debug -bl:$(LogDirectory)\WinUI3-Debug.binlog
+    # TODO: enable these when VS 16.10 is available
+    # - task: MSBuild@1
+    #   displayName: build WinUI3 Debug
+    #   inputs:
+    #     solution: HelloMauiWinUI3/HelloMauiWinUI3.sln
+    #     msbuildArguments: -restore -p:Configuration=Debug -bl:$(LogDirectory)\WinUI3-Debug.binlog
 
-    - task: MSBuild@1
-      displayName: build WinUI3 Release
-      inputs:
-        solution: HelloWinUI3/HelloWinUI3.sln
-        msbuildArguments: -p:Configuration=Release -bl:$(LogDirectory)\WinUI3-Release.binlog
+    # - task: MSBuild@1
+    #   displayName: build WinUI3 Release
+    #   inputs:
+    #     solution: HelloMauiWinUI3/HelloMauiWinUI3.sln
+    #     msbuildArguments: -p:Configuration=Release -bl:$(LogDirectory)\WinUI3-Release.binlog
 
     - task: CopyFiles@2
       displayName: copy artifacts
@@ -99,13 +96,10 @@ jobs:
         echo "##vso[task.setvariable variable=PATH]$PATH"
       displayName: install .NET $(DotNetVersion)
 
-    - bash: |
-        dotnet tool install --global boots
-        boots $(Android.Pkg)
-        boots $(iOS.Pkg)
-        boots $(macOS.Pkg)
-        boots $(MacCatalyst.Pkg)
-      displayName: install .NET workloads
+    - bash: >
+        dotnet tool update --global redth.net.maui.check --version $(MauiCheck.Version) --add-source https://api.nuget.org/v3/index.json &&
+        maui-check --ci --non-interactive --fix --skip androidsdk --skip xcode --skip vswin --skip vsmac --manifest $(MauiCheck.Manifest)
+      displayName: maui-check
 
     - bash: sudo xcode-select -s /Applications/Xcode_12.4.app
       displayName: select Xcode 12.4
