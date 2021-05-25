@@ -23,7 +23,7 @@
     </PackageReference>
     <PackageReference Include="Microsoft.Maui" Version="6.0.100-preview.4.631" />
     <PackageReference Include="Microsoft.Maui.Controls" Version="6.0.100-preview.4.631" />
-		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="6.0.100-preview.4.631" />
+    <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="6.0.100-preview.4.631" />
     <PackageReference Include="Microsoft.Maui.Resizetizer" Version="6.0.100-preview.4.631" />
   </ItemGroup>
 
