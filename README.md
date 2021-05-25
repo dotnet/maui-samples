@@ -31,8 +31,16 @@ If you prefer to install everything manually, you can find all of the official i
 * Windows: [dotnet-sdk-6.0.100-preview.4.21255.9-win-x64.exe](https://dotnetcli.azureedge.net/dotnet/Sdk/6.0.100-preview.4.21255.9/dotnet-sdk-6.0.100-preview.4.21255.9-win-x64.exe)
 * macOS: [dotnet-sdk-6.0.100-preview.4.21255.9-osx-x64.pkg](https://dotnetcli.azureedge.net/dotnet/Sdk/6.0.100-preview.4.21255.9/dotnet-sdk-6.0.100-preview.4.21255.9-osx-x64.pkg)
 
-_NOTE: newer builds of .NET *may* work, but your mileage may vary.
-You can find the full list of builds at the [dotnet/installer][dotnet/installer] repo._
+Newer builds of .NET *may* work, but your mileage may vary. You can
+find the full list of builds at the [dotnet/installer][dotnet/installer]
+repo.
+
+You may need to add an additional feed to the `NuGet.config` file in
+this repo when using unreleased builds of .NET 6:
+
+```xml
+<add key="dotnet6" value="https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet6/nuget/v3/index.json" />
+```
 
 ## `dotnet workload install` Command
 
