@@ -1,16 +1,15 @@
-# .NET 6.0.0 Mobile Samples
+# .NET 6.0.0 Client App Samples for Android, iOS, macOS, and Windows
 
-_This is an *early* preview of Mobile (iOS/Android) in .NET 6 **not for production use**. Expect breaking changes as this is still in development for .NET 6._
+_These apps are based on is a previews of Mobile (iOS/Android) and Desktop (macOS/Windows) in .NET 6 which are **not for production use**. Expect breaking changes as this is still in development for .NET 6._
 
-If you are looking for the absolute newest download links see the
-[develop](https://github.com/dotnet/maui-samples/tree/develop)
-branch.
+If you are looking for the absolute newest download links, see the [develop](https://github.com/dotnet/maui-samples/tree/develop) branch.
 
 ## Installing with .NET MAUI Check Tool
 
 This is a community supported, open source, global dotnet tool intended to help evaluation your development environment and help you install / configure everything you need to build a .NET MAUI application.
 
 Install: `dotnet tool install -g redth.net.maui.check`
+
 Run: `maui-check`
 
 This will evaluate your environment and in most cases optionally install / configure missing components for you, such as:
