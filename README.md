@@ -3,7 +3,7 @@
 _This is an *early* preview of Mobile (iOS/Android) in .NET 6 **not for production use**. Expect breaking changes as this is still in development for .NET 6._
 
 If you are looking for the absolute newest download links see the
-[develop](https://github.com/dotnet/net6-mobile-samples/tree/develop)
+[develop](https://github.com/dotnet/maui-samples/tree/develop)
 branch.
 
 ## Installing with .NET MAUI Check Tool
@@ -46,12 +46,12 @@ this command in the current directory of this repository, so the
 
 On Windows, in an Administrator command prompt:
 
-    > cd C:\src\net6-mobile-samples
+    > cd C:\src\maui-samples
     > dotnet workload install microsoft-android-sdk-full --skip-manifest-update
 
 On macOS, you'd need to use `sudo`:
 
-    $ cd ~/src/net6-mobile-samples
+    $ cd ~/src/maui-samples
     $ sudo dotnet workload install microsoft-android-sdk-full --skip-manifest-update
 
 The path to the `NuGet.config` file should be the file found in this repo.
@@ -78,7 +78,6 @@ The workload ID for each platform is:
 * HelloWinUI3 - .NET MAUI WinUI3 application. WinUI3 requires build and deploy with the latest preview of Visual Studio 2019 16.10
 
 [dotnet/installer]: https://github.com/dotnet/installer#installers-and-binaries
-[net6preview1]: https://github.com/dotnet/net6-mobile-samples/releases/tag/6.0.1xx-preview1
 
 ## Android
 
