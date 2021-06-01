@@ -38,7 +38,7 @@
         Square44x44Logo="Images\Square44x44Logo.png">
         <uap:DefaultTile Wide310x150Logo="Images\Wide310x150Logo.png"  Square71x71Logo="Images\SmallTile.png" Square310x310Logo="Images\LargeTile.png" ShortName="Hello MAUI"/>
         <uap:SplashScreen Image="Images\SplashScreen.png"  BackgroundColor="#512BD4"/>
-        <uap:LockScreen BadgeLogo="Images\BadgeLogo.png"/>
+        <uap:LockScreen BadgeLogo="Images\BadgeLogo.png" Notification="badgeAndTileText"/>
       </uap:VisualElements>
     </Application>
   </Applications>
