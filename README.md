@@ -10,7 +10,7 @@ This is a community supported, open source, global dotnet tool intended to help 
 
 Install: `dotnet tool install -g redth.net.maui.check`
 
-Run: `maui-check --dev`
+Run: `maui-check --preview`
 
 This will evaluate your environment and in most cases optionally install / configure missing components for you, such as:
 
@@ -27,8 +27,8 @@ For more information and source code, visit [redth/dotnet-maui-check](https://gi
 
 If you prefer to install everything manually, you can find all of the official installer links below:
 
-* Windows: [dotnet-sdk-6.0.100-preview.4.21255.9-win-x64.exe](https://dotnetcli.azureedge.net/dotnet/Sdk/6.0.100-preview.4.21255.9/dotnet-sdk-6.0.100-preview.4.21255.9-win-x64.exe)
-* macOS: [dotnet-sdk-6.0.100-preview.4.21255.9-osx-x64.pkg](https://dotnetcli.azureedge.net/dotnet/Sdk/6.0.100-preview.4.21255.9/dotnet-sdk-6.0.100-preview.4.21255.9-osx-x64.pkg)
+* Windows: [dotnet-sdk-6.0.100-preview.5.21302.13-win-x64.exe](https://dotnetcli.azureedge.net/dotnet/Sdk/6.0.100-preview.5.21302.13/dotnet-sdk-6.0.100-preview.5.21302.13-win-x64.exe)
+* macOS: [dotnet-sdk-6.0.100-preview.5.21302.13-osx-x64.pkg](https://dotnetcli.azureedge.net/dotnet/Sdk/6.0.100-preview.5.21302.13/dotnet-sdk-6.0.100-preview.5.21302.13-osx-x64.pkg)
 
 _NOTE: newer builds of .NET *may* work, but your mileage may vary.
 You can find the full list of builds at the [dotnet/installer][dotnet/installer] repo._
