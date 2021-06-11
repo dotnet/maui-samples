@@ -4,6 +4,7 @@
     <OutputType>Exe</OutputType>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Google.Android.Material" Version="1.3.0.1-net6preview03.4680155" />
+    <PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.3.0" />
+    <PackageReference Include="Xamarin.Google.Android.Material" Version="1.3.0.1" />
   </ItemGroup>
 </Project>
