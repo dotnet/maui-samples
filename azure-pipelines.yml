@@ -10,10 +10,10 @@ pr:
 
 variables:
   IsRunningOnCI: true
-  DotNetVersion: 6.0.100-preview.4.21255.9
+  DotNetVersion: 6.0.100-preview.5.21302.13
   DotNet.Cli.Telemetry.OptOut: true
-  MauiCheck.Version: 0.4.1
-  MauiCheck.Manifest: https://raw.githubusercontent.com/Redth/dotnet-maui-check/main/manifests/maui-dev.manifest.json
+  MauiCheck.Version: 0.5.5
+  MauiCheck.Manifest: https://raw.githubusercontent.com/Redth/dotnet-maui-check/main/manifests/maui-preview.manifest.json
 
 jobs:
 - job: windows
@@ -82,9 +82,9 @@ jobs:
       value: ~/.dotnet/tools
   steps:
     - task: UseDotNet@2
-      displayName: install .NET Core 3.1
+      displayName: install .NET 5
       inputs:
-        version: 3.1.x
+        version: 5.x
         installationPath: $(DotNet.Root)
 
     - bash: >
