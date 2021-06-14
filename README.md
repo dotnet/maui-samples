@@ -35,25 +35,16 @@ You can find the full list of builds at the [dotnet/installer][dotnet/installer]
 
 ## `dotnet workload install` Command
 
-Starting in .NET 6 Preview 4, a new `dotnet workload install` command
-is available for installing the mobile workloads. You will need to run
-this command in the current directory of this repository, so the
-`NuGet.config` file will be used.
-
-> NOTE: The `--configfile` and `--add-source` switches are not
-> implemented yet for `dotnet workload install` in .NET 6 Preview 4.
+A new `dotnet workload install` command is available for installing
+the mobile workloads.
 
 On Windows, in an Administrator command prompt:
 
-    > cd C:\src\maui-samples
-    > dotnet workload install microsoft-android-sdk-full --skip-manifest-update
+    > dotnet workload install microsoft-android-sdk-full
 
 On macOS, you'd need to use `sudo`:
 
-    $ cd ~/src/maui-samples
-    $ sudo dotnet workload install microsoft-android-sdk-full --skip-manifest-update
-
-The path to the `NuGet.config` file should be the file found in this repo.
+    $ sudo dotnet workload install microsoft-android-sdk-full
 
 The workload ID for each platform is:
 
@@ -64,9 +55,7 @@ The workload ID for each platform is:
 * `microsoft-tvos-sdk-full`
 
 > NOTE: using `maui-check` is the preferred method for installing
-> workloads, because it will check your system for other software. In
-> .NET 6 > Preview 4, `maui-check` also will install newer builds for
-> Apple platforms that contain additional fixes.
+> workloads, because it will check your system for other software.
 
 ## Projects
 
