@@ -11,7 +11,7 @@
                 FontSize="32"
                 HorizontalOptions="CenterAndExpand" />
 
-            <Label Text=".NET 6 Preview 4"
+            <Label Text=".NET 6 Preview 5"
                 HorizontalOptions="CenterAndExpand" />
 
             <HorizontalStackLayout HorizontalOptions="CenterAndExpand">
