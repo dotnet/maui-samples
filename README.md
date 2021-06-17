@@ -27,8 +27,8 @@ For more information and source code, visit [redth/dotnet-maui-check](https://gi
 
 If you prefer to install everything manually, you can find all of the official installer links below:
 
-* Windows: [dotnet-sdk-6.0.100-preview.5.21302.13-win-x64.exe](https://dotnetcli.azureedge.net/dotnet/Sdk/6.0.100-preview.5.21302.13/dotnet-sdk-6.0.100-preview.5.21302.13-win-x64.exe)
-* macOS: [dotnet-sdk-6.0.100-preview.5.21302.13-osx-x64.pkg](https://dotnetcli.azureedge.net/dotnet/Sdk/6.0.100-preview.5.21302.13/dotnet-sdk-6.0.100-preview.5.21302.13-osx-x64.pkg)
+* Windows: [dotnet-sdk-6.0.100-preview.5.21302.13-win-x64.exe](https://download.visualstudio.microsoft.com/download/pr/df52c798-6143-42f1-98e0-9cc7fc6257cd/cc09da4dcb8a59c1dcf905952f3382a1/dotnet-sdk-6.0.100-preview.5.21302.13-win-x64.exe)
+* macOS: [dotnet-sdk-6.0.100-preview.5.21302.13-osx-x64.pkg](https://download.visualstudio.microsoft.com/download/pr/134a7c15-69cf-40b3-ba78-a78a666ac2de/996de9580ee6c05b2bcb0e9456fdf877/dotnet-sdk-6.0.100-preview.5.21302.13-osx-x64.pkg)
 
 _NOTE: newer builds of .NET *may* work, but your mileage may vary.
 You can find the full list of builds at the [dotnet/installer][dotnet/installer] repo._
