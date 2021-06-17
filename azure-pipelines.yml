@@ -12,7 +12,7 @@ variables:
   IsRunningOnCI: true
   DotNetVersion: 6.0.100-preview.5.21302.13
   DotNet.Cli.Telemetry.OptOut: true
-  MauiCheck.Version: 0.5.5
+  MauiCheck.Version: 0.5.6
   MauiCheck.Manifest: https://raw.githubusercontent.com/Redth/dotnet-maui-check/main/manifests/maui-preview.manifest.json
 
 jobs:
