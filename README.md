@@ -103,6 +103,7 @@ Currently WinUI3 requires build and deploy. You will need to open the HelloWinUI
 * Windows: [Get started with Project Reunion](https://docs.microsoft.com/en-us/windows/apps/project-reunion/get-started-with-project-reunion#set-up-your-development-environment)
 
 - Install the following 0.8 Preview Reunion VSIXs. .NET MAUI currently only works with 0.8 Reunion Preview and will not work with 0.8 Reunion Stable.
+  - Uninstall any WinUI extensions that you may have previously installed
   - https://marketplace.visualstudio.com/items?itemName=ProjectReunion.MicrosoftProjectReunionPreview
   - https://marketplace.visualstudio.com/items?itemName=ProjectReunion.MicrosoftSingleProjectMSIXPackagingTools
 
