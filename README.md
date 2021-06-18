@@ -63,7 +63,7 @@ The workload ID for each platform is:
 * HelloAndroid - a native Android application
 * HelloiOS - a native iOS application
 * HelloMacCatalyst - a native Mac Catalyst application
-* HelloWinUI3 - .NET MAUI WinUI3 application. WinUI3 requires build and deploy with the latest preview of Visual Studio 2019 16.10
+* HelloWinUI3 - .NET MAUI WinUI3 application. WinUI3 requires build and deploy with the latest preview of Visual Studio 2019 16.11. .NET MAUI WinUI currently does not work with Visual Studio 2022
 
 [dotnet/installer]: https://github.com/dotnet/installer#installers-and-binaries
 
@@ -98,9 +98,13 @@ To launch the iOS project on a simulator:
 
 ## WinUI3
 
-Currently WinUI3 requires build and deploy. You will need to open the HelloWinUI3.sln with the latest preview of Visual Studio 2019 16.10.
+Currently WinUI3 requires build and deploy. You will need to open the HelloWinUI3.sln with the latest preview of Visual Studio 2019 16.11. WinUI currently does not work with Visual Studio 2022
 
 * Windows: [Get started with Project Reunion](https://docs.microsoft.com/en-us/windows/apps/project-reunion/get-started-with-project-reunion#set-up-your-development-environment)
+
+- Install the following 0.8 Preview Reunion VSIXs. .NET MAUI currently only works with 0.8 Reunion Preview and will not work with 0.8 Reunion Stable.
+  - https://marketplace.visualstudio.com/items?itemName=ProjectReunion.MicrosoftProjectReunionPreview
+  - https://marketplace.visualstudio.com/items?itemName=ProjectReunion.MicrosoftSingleProjectMSIXPackagingTools
 
 ## .NET MAUI
 
@@ -116,8 +120,8 @@ IDE integration into Visual Studio, Visual Studio for Mac, and Visual Studio Cod
 
 ### Visual Studio
 
-Currently, you can use Visual Studio 2019 16.10 on Windows (with the
-Xamarin workload installed). .NET 6 Preview 4 requires MSBuild 16.10,
+Currently, you can use Visual Studio 2019 16.11 on Windows (with the
+Xamarin workload installed). .NET 6 Preview 5 requires MSBuild 16.11,
 so .NET 6 projects will not be able to load in older versions of
 Visual Studio.
 
