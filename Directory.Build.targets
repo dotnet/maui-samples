@@ -6,4 +6,9 @@
   <PropertyGroup Condition=" '$(IsRunningOnCI)' == 'true' ">
     <PublishTrimmed Condition=" '$(TargetFramework)' == 'net6.0-ios' or '$(TargetFramework)' == 'net6.0-macos' or '$(TargetFramework)' == 'net6.0-maccatalyst' ">false</PublishTrimmed>
   </PropertyGroup>
+
+  <!-- Required - Overwrite tasks that are not needed when multitargeting -->
+  <Target Name="ValidateWinUIPlatform" />
+  <Target Name="BinPlaceBootstrapDll" />
+
 </Project>
