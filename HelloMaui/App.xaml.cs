@@ -11,7 +11,7 @@ namespace HelloMaui
 			InitializeComponent();
 		}
 
-		protected override IWindow CreateWindow(IActivationState activationState)
+		protected override Window CreateWindow(IActivationState activationState)
 		{
 			Microsoft.Maui.Controls.Compatibility.Forms.Init(activationState);
 

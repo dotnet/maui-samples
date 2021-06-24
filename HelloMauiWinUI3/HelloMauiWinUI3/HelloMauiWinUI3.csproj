@@ -3,6 +3,7 @@
     <TargetFrameworks>net6.0-windows10.0.19041</TargetFrameworks>
     <OutputType>WinExe</OutputType>
     <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+    <UseMaui>true</UseMaui>
     <SingleProject>true</SingleProject>
     <RootNamespace>HelloMaui</RootNamespace>
 
@@ -12,15 +13,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Maui" Version="6.0.100-preview.5.794" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.ProjectReunion" Version="0.8.0-preview" />
     <PackageReference Include="Microsoft.ProjectReunion.Foundation" Version="0.8.0-preview" />
     <PackageReference Include="Microsoft.ProjectReunion.WinUI" Version="0.8.0-preview" />
-    <FrameworkReference Update="Microsoft.Windows.SDK.NET.Ref" RuntimeFrameworkVersion="10.0.19041.16" />
-    <FrameworkReference Update="Microsoft.Windows.SDK.NET.Ref" TargetingPackVersion="10.0.19041.16" />
   </ItemGroup>
 
   <ItemGroup>
