@@ -8,9 +8,9 @@ If you are looking for the absolute newest download links, see the [develop](htt
 
 This is a community supported, open source, global dotnet tool intended to help evaluation your development environment and help you install / configure everything you need to build a .NET MAUI application.
 
-Install: `dotnet tool install -g redth.net.maui.check`
+Install: `dotnet tool update -g redth.net.maui.check --version 0.6.0-pre01`
 
-Run: `maui-check --preview`
+Run: `maui-check --main`
 
 This will evaluate your environment and in most cases optionally install / configure missing components for you, such as:
 
