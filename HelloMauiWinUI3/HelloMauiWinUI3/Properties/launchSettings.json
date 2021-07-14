@@ -1,7 +1,7 @@
 {
   "profiles": {
     "HelloMauiWinUI3": {
-      "commandName": "AppContainer"
+      "commandName": "MsixPackage"
     }
   }
 }
