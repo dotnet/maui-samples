@@ -7,6 +7,11 @@
     <PublishTrimmed Condition=" '$(TargetFramework)' == 'net6.0-ios' or '$(TargetFramework)' == 'net6.0-macos' or '$(TargetFramework)' == 'net6.0-maccatalyst' ">false</PublishTrimmed>
   </PropertyGroup>
 
+  <!-- Temporarily disable runtimeconfig.json under .NET framework MSBuild -->
+  <PropertyGroup Condition=" '$(MSBuildRuntimeType)' == 'Full' and ('$(TargetFramework)' == 'net6.0-android' or '$(TargetFramework)' == 'net6.0-ios' or '$(TargetFramework)' == 'net6.0-maccatalyst') ">
+    <GenerateRuntimeConfigurationFiles>false</GenerateRuntimeConfigurationFiles>
+  </PropertyGroup>
+
   <!-- Required - Overwrite tasks that are not needed when multitargeting -->
   <Target Name="ValidateWinUIPlatform" />
   <Target Name="BinPlaceBootstrapDll" />

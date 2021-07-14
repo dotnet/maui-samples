@@ -2,6 +2,7 @@
   <PropertyGroup>
     <TargetFrameworks>net6.0-ios;net6.0-android;net6.0-maccatalyst</TargetFrameworks>
     <OutputType>Exe</OutputType>
+    <UseMaui>true</UseMaui>
     <SingleProject>true</SingleProject>
     <ApplicationId>com.microsoft.hellomaui</ApplicationId>
     <ApplicationTitle>MAUI</ApplicationTitle>
@@ -11,9 +12,6 @@
     <RuntimeIdentifier Condition="'$(TargetFramework)' == 'net6.0-maccatalyst'">maccatalyst-x64</RuntimeIdentifier>
     <InvariantGlobalization Condition="'$(TargetFramework)' == 'net6.0-maccatalyst'">true</InvariantGlobalization>
   </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="Microsoft.Maui" Version="6.0.100-preview.5.794" />
-  </ItemGroup>
   <ItemGroup>
     <MauiSplashScreen Include="Resources\AppIcons\appiconfg.svg" Color="#512BD4" />
     <MauiImage Include="Resources\AppIcons\appicon.svg" ForegroundFile="Resources\AppIcons\appiconfg.svg" IsAppIcon="true" />
