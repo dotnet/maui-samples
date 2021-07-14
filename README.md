@@ -8,18 +8,16 @@ If you are looking for the absolute newest download links, see the [develop](htt
 
 This is a community supported, open source, global dotnet tool intended to help evaluation your development environment and help you install / configure everything you need to build a .NET MAUI application.
 
-Install: `dotnet tool update -g redth.net.maui.check --version 0.6.0-pre01`
+Install: `dotnet tool update -g redth.net.maui.check --version 0.6.1`
 
-Run: `maui-check --main`
+Run: `maui-check --preview`
 
 This will evaluate your environment and in most cases optionally install / configure missing components for you, such as:
 
 * OpenJdk / AndroidSDK
 * .NET 6 Preview SDK
-* .NET MAUI / iOS / Android workloads and packs
-* .NET MAUI Templates
-* Workload Resolver .sentinel files for dotnet and Visual Studio Windows/Mac
-* Currently does not install workloads required for WinUI3
+* .NET MAUI / iOS / Android workloads
+* Currently does not install SDK's for WinUI3 (Install UWP Workload from Visual Studio 2022)
 
 For more information and source code, visit [redth/dotnet-maui-check](https://github.com/redth/dotnet-maui-check)
 
@@ -27,8 +25,8 @@ For more information and source code, visit [redth/dotnet-maui-check](https://gi
 
 If you prefer to install everything manually, you can find all of the official installer links below:
 
-* Windows: [dotnet-sdk-6.0.100-preview.6.21313.2-win-x64.exe](https://dotnetcli.azureedge.net/dotnet/Sdk/6.0.100-preview.6.21313.2/dotnet-sdk-6.0.100-preview.6.21313.2-win-x64.exe)
-* macOS: [dotnet-sdk-6.0.100-preview.6.21313.2-osx-x64.pkg](https://dotnetcli.azureedge.net/dotnet/Sdk/6.0.100-preview.6.21313.2/dotnet-sdk-6.0.100-preview.6.21313.2-osx-x64.pkg)
+* Windows: [dotnet-sdk-6.0.100-preview.6.21355.2-win-x64.exe](https://dotnetcli.azureedge.net/dotnet/Sdk/6.0.100-preview.6.21355.2/dotnet-sdk-6.0.100-preview.6.21355.2-win-x64.exe)
+* macOS: [dotnet-sdk-6.0.100-preview.6.21355.2-osx-x64.pkg](https://dotnetcli.azureedge.net/dotnet/Sdk/6.0.100-preview.6.21355.2/dotnet-sdk-6.0.100-preview.6.21355.2-osx-x64.pkg)
 
 _NOTE: newer builds of .NET *may* work, but your mileage may vary.
 You can find the full list of builds at the [dotnet/installer][dotnet/installer] repo._
@@ -40,19 +38,24 @@ the mobile workloads.
 
 On Windows, in an Administrator command prompt:
 
-    > dotnet workload install microsoft-android-sdk-full
+    > dotnet workload install maui
 
 On macOS, you'd need to use `sudo`:
 
-    $ sudo dotnet workload install microsoft-android-sdk-full
+    $ sudo dotnet workload install maui
 
 The workload ID for each platform is:
 
-* `microsoft-android-sdk-full`
-* `microsoft-ios-sdk-full`
-* `microsoft-maccatalyst-sdk-full`
-* `microsoft-macos-sdk-full`
-* `microsoft-tvos-sdk-full`
+* `maui`
+* `maui-android`
+* `maui-ios`
+* `maui-maccatalyst`
+* `maui-windows`
+* `microsoft-android-sdk-full` (changing to `android` in a future release)
+* `microsoft-ios-sdk-full` (changing to `ios` in a future release)
+* `microsoft-maccatalyst-sdk-full` (changing to `maccatalyst` in a future release)
+* `microsoft-macos-sdk-full` (changing to `macos` in a future release)
+* `microsoft-tvos-sdk-full` (changing to `tvos` in a future release)
 
 > NOTE: using `maui-check` is the preferred method for installing
 > workloads, because it will check your system for other software.
@@ -63,7 +66,7 @@ The workload ID for each platform is:
 * HelloAndroid - a native Android application
 * HelloiOS - a native iOS application
 * HelloMacCatalyst - a native Mac Catalyst application
-* HelloWinUI3 - .NET MAUI WinUI3 application. WinUI3 requires build and deploy with the latest preview of Visual Studio 2019 16.11. .NET MAUI WinUI currently does not work with Visual Studio 2022
+* HelloWinUI3 - .NET MAUI WinUI3 application. WinUI3 requires build and deploy with the latest preview of Visual Studio 2022 17.0.
 
 [dotnet/installer]: https://github.com/dotnet/installer#installers-and-binaries
 
@@ -86,7 +89,7 @@ You can launch the Android project to an attached emulator or device via:
 
 Prerequisites:
 
-* Xcode 12.5. Earlier versions won't work.
+* Xcode 13.0 beta 2. Earlier versions won't work.
 
 To build the iOS project:
 
@@ -98,14 +101,12 @@ To launch the iOS project on a simulator:
 
 ## WinUI3
 
-Currently WinUI3 requires build and deploy. You will need to open the HelloWinUI3.sln with the latest preview of Visual Studio 2019 16.11. WinUI currently does not work with Visual Studio 2022
+Currently WinUI3 requires build and deploy. You will need to open the HelloWinUI3.sln with the latest preview of Visual Studio 2022 17.0.
 
 * Windows: [Get started with Project Reunion](https://docs.microsoft.com/en-us/windows/apps/project-reunion/get-started-with-project-reunion#set-up-your-development-environment)
 
-- Install the following 0.8 Preview Reunion VSIXs. .NET MAUI currently only works with 0.8 Reunion Preview and will not work with 0.8 Reunion Stable.
-  - Uninstall any WinUI extensions that you may have previously installed
-  - https://marketplace.visualstudio.com/items?itemName=ProjectReunion.MicrosoftProjectReunionPreview
-  - https://marketplace.visualstudio.com/items?itemName=ProjectReunion.MicrosoftSingleProjectMSIXPackagingTools
+* Install the following Preview VSIX. .NET MAUI currently only works with 0.8 Stable.
+  - *URL TBD*
 
 ## .NET MAUI
 
@@ -121,8 +122,8 @@ IDE integration into Visual Studio, Visual Studio for Mac, and Visual Studio Cod
 
 ### Visual Studio
 
-Currently, you can use Visual Studio 2019 16.11 on Windows (with the
-Xamarin workload installed). .NET 6 Preview 5 requires MSBuild 16.11,
+Currently, you can use Visual Studio 2022 17.0 on Windows (with the
+Xamarin workload installed). .NET 6 Preview 6 requires MSBuild 17.0,
 so .NET 6 projects will not be able to load in older versions of
 Visual Studio.
 
@@ -132,11 +133,11 @@ Visual Studio for Mac is not supported at this time, but will be coming in a fut
 
 ### iOS from Visual Studio
 
-To build and debug .NET 6 iOS applications from Visual Studio 2019 you must manually intall the .NET 6 SDK and iOS workloads on both **Windows and macOS** (Mac build host).
+To build and debug .NET 6 iOS applications from Visual Studio 2019 you must manually install the .NET 6 SDK and iOS workloads on both **Windows and macOS** (Mac build host).
 
 If while connecting Visual Studio to your Mac through XMA you are prompted to install a different version of the SDK, you can ignore that since it refers to the legacy one.
 
-> Note: currently only the iOS simulator is supported (not the remoted simulator).
+> Note: currently only the iOS simulator is supported (not the remote simulator).
 
 ### Mac Catalyst from Visual Studio for Mac
 
