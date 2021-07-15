@@ -10,9 +10,9 @@ pr:
 
 variables:
   IsRunningOnCI: true
-  DotNetVersion: 6.0.100-preview.6.21313.2
+  DotNetVersion: 6.0.100-preview.6.21355.2
   DotNet.Cli.Telemetry.OptOut: true
-  MauiCheck.Version: 0.6.0-pre01
+  MauiCheck.Version: 0.6.1
 
 jobs:
 - job: windows
@@ -31,9 +31,10 @@ jobs:
 
     - powershell: |
         & dotnet tool update --global redth.net.maui.check --version $(MauiCheck.Version) --add-source https://api.nuget.org/v3/index.json
-        & maui-check --ci --non-interactive --fix --skip androidsdk --skip xcode --skip vswin --skip vsmac --main
+        & maui-check --ci --non-interactive --fix --skip androidsdk --skip xcode --skip vswin --skip vsmac
       displayName: maui-check
-      errorActionPreference: stop
+      errorActionPreference: continue
+      ignoreLASTEXITCODE: true
 
     - powershell: |
         & dotnet build net6-samples.sln -c Debug   -bl:$(LogDirectory)\Debug.binlog
@@ -96,7 +97,7 @@ jobs:
 
     - bash: >
         dotnet tool update --global redth.net.maui.check --version $(MauiCheck.Version) --add-source https://api.nuget.org/v3/index.json &&
-        maui-check --ci --non-interactive --fix --skip androidsdk --skip xcode --skip vswin --skip vsmac --main
+        maui-check --ci --non-interactive --fix --skip androidsdk --skip xcode --skip vswin --skip vsmac
       displayName: maui-check
 
     - bash: sudo xcode-select -s /Applications/Xcode_12.4.app

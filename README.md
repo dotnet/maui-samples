@@ -10,7 +10,7 @@ This is a community supported, open source, global dotnet tool intended to help 
 
 Install: `dotnet tool update -g redth.net.maui.check --version 0.6.1`
 
-Run: `maui-check --preview`
+Run: `maui-check`
 
 This will evaluate your environment and in most cases optionally install / configure missing components for you, such as:
 
