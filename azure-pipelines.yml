@@ -31,10 +31,9 @@ jobs:
 
     - powershell: |
         & dotnet tool update --global redth.net.maui.check --version $(MauiCheck.Version)
-        & maui-check --ci --non-interactive --fix --skip androidsdk --skip xcode --skip vswin --skip vsmac
+        & maui-check --ci --non-interactive --fix --skip androidsdk --skip xcode --skip vswin --skip vsmac --skip edgewebview2
       displayName: maui-check
-      errorActionPreference: continue
-      ignoreLASTEXITCODE: true
+      errorActionPreference: stop
 
     - powershell: |
         & dotnet build net6-samples.sln -c Debug   -bl:$(LogDirectory)\Debug.binlog
@@ -97,7 +96,7 @@ jobs:
 
     - bash: >
         dotnet tool update --global redth.net.maui.check --version $(MauiCheck.Version) &&
-        maui-check --ci --non-interactive --fix --skip androidsdk --skip xcode --skip vswin --skip vsmac
+        maui-check --ci --non-interactive --fix --skip androidsdk --skip xcode --skip vswin --skip vsmac --skip edgewebview2
       displayName: maui-check
 
     - bash: sudo xcode-select -s /Applications/Xcode_12.4.app
