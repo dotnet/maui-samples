@@ -10,9 +10,9 @@ pr:
 
 variables:
   IsRunningOnCI: true
-  DotNetVersion: 6.0.100-preview.6.21355.2
+  DotNetVersion: 6.0.100-preview.7.21379.14
   DotNet.Cli.Telemetry.OptOut: true
-  MauiCheck.Version: 0.6.1
+  MauiCheck.Version: 0.7.3
 
 jobs:
 - job: windows

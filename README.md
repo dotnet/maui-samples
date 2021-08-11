@@ -1,4 +1,4 @@
-# .NET 6.0.0 Client App Samples for Android, iOS, macOS, and Windows
+# .NET 6 Client App Samples for Android, iOS, macOS, and Windows
 
 _These apps are based on previews of Mobile (iOS/Android) and Desktop (macOS/Windows) in .NET 6 which are **not for production use**. Expect breaking changes as this is still in development for .NET 6._
 
@@ -8,25 +8,24 @@ If you are looking for the absolute newest download links, see the [develop](htt
 
 This is a community supported, open source, global dotnet tool intended to help evaluation your development environment and help you install / configure everything you need to build a .NET MAUI application.
 
-Install: `dotnet tool update -g redth.net.maui.check --version 0.6.1`
+Install: `dotnet tool update -g redth.net.maui.check --version 0.7.3`
 
 Run: `maui-check`
 
 This will evaluate your environment and in most cases optionally install / configure missing components for you, such as:
 
-* OpenJdk / AndroidSDK
+* OpenJDK / Android SDK
 * .NET 6 Preview SDK
 * .NET MAUI / iOS / Android workloads
-* Currently does not install SDK's for WinUI3 (Install UWP Workload from Visual Studio 2022)
+* Currently does not install SDKs for WinUI3 (Install UWP Workload from Visual Studio 2022)
 
 For more information and source code, visit [redth/dotnet-maui-check](https://github.com/redth/dotnet-maui-check)
 
 ## .NET 6 Preview Installers
 
-If you prefer to install everything manually, you can find all of the official installer links below:
+Download the .NET 6 SDK at:
 
-* Windows: [dotnet-sdk-6.0.100-preview.6.21355.2-win-x64.exe](https://download.visualstudio.microsoft.com/download/pr/9da8718a-a4cf-42dc-a86c-1ea648acf136/73e158f3e4dfb1446595d0dba5b6343a/dotnet-sdk-6.0.100-preview.6.21355.2-win-x64.exe)
-* macOS: [dotnet-sdk-6.0.100-preview.6.21355.2-osx-x64.pkg](https://download.visualstudio.microsoft.com/download/pr/767abef9-9636-47a7-9929-6ac4201b6837/95c3c13e937efb01255843a6d4adf9ed/dotnet-sdk-6.0.100-preview.6.21355.2-osx-x64.pkg)
+https://dotnet.microsoft.com/download/dotnet/6.0
 
 _NOTE: newer builds of .NET *may* work, but your mileage may vary.
 You can find the full list of builds at the [dotnet/installer][dotnet/installer] repo._
@@ -51,11 +50,11 @@ The workload ID for each platform is:
 * `maui-ios`
 * `maui-maccatalyst`
 * `maui-windows`
-* `microsoft-android-sdk-full` (changing to `android` in a future release)
-* `microsoft-ios-sdk-full` (changing to `ios` in a future release)
-* `microsoft-maccatalyst-sdk-full` (changing to `maccatalyst` in a future release)
-* `microsoft-macos-sdk-full` (changing to `macos` in a future release)
-* `microsoft-tvos-sdk-full` (changing to `tvos` in a future release)
+* `android`
+* `ios`
+* `maccatalyst`
+* `macos`
+* `tvos`
 
 > NOTE: using `maui-check` is the preferred method for installing
 > workloads, because it will check your system for other software.
