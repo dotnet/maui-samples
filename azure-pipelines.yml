@@ -12,7 +12,6 @@ variables:
   IsRunningOnCI: true
   DotNetVersion: 6.0.100-preview.7.21379.14
   DotNet.Cli.Telemetry.OptOut: true
-  MauiCheck.Version: 0.7.3
 
 jobs:
 - job: windows
@@ -29,11 +28,8 @@ jobs:
       displayName: install .NET $(DotNetVersion)
       errorActionPreference: stop
 
-    - powershell: |
-        & dotnet tool update --global redth.net.maui.check --version $(MauiCheck.Version)
-        & maui-check --ci --non-interactive --fix --skip androidsdk --skip xcode --skip vswin --skip vsmac --skip edgewebview2
-      displayName: maui-check
-      errorActionPreference: stop
+    - powershell: dotnet workload install maui --verbosity diag
+      displayName: install optional workloads
 
     - powershell: |
         & dotnet build net6-samples.sln -c Debug   -bl:$(LogDirectory)\Debug.binlog
@@ -94,10 +90,8 @@ jobs:
         echo "##vso[task.setvariable variable=PATH]$PATH"
       displayName: install .NET $(DotNetVersion)
 
-    - bash: >
-        dotnet tool update --global redth.net.maui.check --version $(MauiCheck.Version) &&
-        maui-check --ci --non-interactive --fix --skip androidsdk --skip xcode --skip vswin --skip vsmac --skip edgewebview2
-      displayName: maui-check
+    - bash: dotnet workload install maui --verbosity diag
+      displayName: install optional workloads
 
     - bash: sudo xcode-select -s /Applications/Xcode_12.4.app
       displayName: select Xcode 12.4
