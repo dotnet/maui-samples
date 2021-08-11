@@ -1,4 +1,8 @@
 <Project>
+  <PropertyGroup>
+    <DisableImplicitNamespaceImports>true</DisableImplicitNamespaceImports>
+  </PropertyGroup>
+
   <!-- 
     Temporarily disable the linker on CI for Apple platforms until we
     get machine pools with Big Sur and Xcode 12.5.
