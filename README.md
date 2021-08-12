@@ -7,4 +7,4 @@ This repo contained original installation guides and sample projects for .NET MA
 * [.NET MAUI Blog](https://devblogs.microsoft.com/dotnet/category/net-maui/)
 * [.NET MAUI Installation](https://docs.microsoft.com/dotnet/maui/get-started/first-app?pivots=windows)
 * [.NET MAUI Documenation](https://docs.microsoft.com/dotnet/maui)
-* [Weather '21' Sample App](https://github.com/davidortinau/WeatherTwentyOne)
+* [Weather '21 Sample App](https://github.com/davidortinau/WeatherTwentyOne)
