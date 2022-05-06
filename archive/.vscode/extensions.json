@@ -1,7 +1,0 @@
-{
-    "recommendations": [
-      "ms-dotnettools.csharp",
-      "ms-vscode.mono-debug",
-      "visualstudioexptteam.vscodeintellicode",
-    ]
-}

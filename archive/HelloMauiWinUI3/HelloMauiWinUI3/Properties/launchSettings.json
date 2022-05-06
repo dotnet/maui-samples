@@ -1,7 +1,0 @@
-{
-  "profiles": {
-    "HelloMauiWinUI3": {
-      "commandName": "MsixPackage"
-    }
-  }
-}
