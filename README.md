@@ -1,9 +1,9 @@
 # .NET MAUI Samples
 
-This is the home for samples built with [.NET MAUI](https://dotnetmaui.dev) that showcase how to build cross-platform apps for iOS, Android, macOS, and Windows from a single shared C# codebase.
+This is the home for samples built with [.NET MAUI](https://dot.net/maui) that showcase how to build cross-platform apps for iOS, Android, macOS, and Windows from a single shared C# codebase.
 
 ## .NET MAUI Links
-* [.NET MAUI Website](https://dotnetmaui.dev)
+* [.NET MAUI Website](https://dot.net/maui)
 * [.NET MAUI on GitHub](https://www.github.com/dotnet/maui)
 * [.NET MAUI Blog](https://devblogs.microsoft.com/dotnet/category/maui/)
 * [.NET MAUI Installation](https://docs.microsoft.com/dotnet/maui/get-started/first-app?pivots=windows)
