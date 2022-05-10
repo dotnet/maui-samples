@@ -353,3 +353,4 @@ MigrationBackup/
 Resource.designer.cs
 6.0/Apps/WeatherTwentyOne/src/nuget.config
 6.0/Apps/WeatherTwentyOne/src/.editorconfig
+*.DS_Store

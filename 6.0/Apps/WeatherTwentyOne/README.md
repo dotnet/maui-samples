@@ -1,12 +1,19 @@
+---
+name: .NET MAUI - Weather '21
+description: Weather '21 application that demonstrates UI techniques for adapting UI to desktop and mobile form factors, integrating with native platform-specific features, and supporting light and dark appearance themes.
+page_type: sample
+languages:
+- csharp, xaml
+products:
+- .net
+urlFragment: apps-weathertwentyone
+---
+
 # Weather '21
 
-This is a [.NET MAUI](https://github.com/dotnet/maui) app showcasing .NET 6 Preview progress. For more information about what's included, [read the blogs](https://devblogs.microsoft.com/dotnet/category/maui/).
+This is a [.NET MAUI](https://github.com/dotnet/maui) app showcasing responsive UI that adapts to desktop and mobile, and integrates with native platform features. 
 
 ![.NET MAUI Weather App on all platforms](images/maui-weather-hero-sm.png)
-
-## Requirements
-
-Setup instructions for Windows and Mac are [here on the dotnet/maui wiki](https://github.com/dotnet/maui/wiki#getting-started).
 
 ## Platform Integrations
 
