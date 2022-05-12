@@ -20,7 +20,7 @@ Samples built with .NET Multi-platform App UI (.NET MAUI).
 ## .NET MAUI Links
 
 * [.NET MAUI Website](https://dot.net/maui)
-* [.NET MAUI Documenation](https://docs.microsoft.com/dotnet/maui)
+* [.NET MAUI Documentation](https://docs.microsoft.com/dotnet/maui)
 * [.NET MAUI Blog](https://devblogs.microsoft.com/dotnet/category/maui/)
 * [.NET MAUI GitHub](https://github.com/dotnet/maui)
 
