@@ -6,15 +6,16 @@ Samples built with .NET Multi-platform App UI (.NET MAUI).
 
 ## Official Samples
 
-* [Weather '21 App](https://github.com/dotnet/maui-samples/tree/main/6.0/Apps/WeatherTwentyOne)
-* [Calculator App](https://github.com/dotnet/maui-samples/tree/main/6.0/Apps/Calculator)
+* [Weather '21 App](6.0/Apps/WeatherTwentyOne)
+* [Calculator App](6.0/Apps/Calculator)
 * [.NET Podcasts App](https://github.com/microsoft/dotnet-podcasts)
-* [David's Navigation Samples](https://github.com/dotnet/maui-samples/tree/main/6.0/Navigation)
+* [Navigation Samples](6.0/Navigation)
+* [Beginner's Series Task App Sample](6.0/Beginners-Series)
 
 ## Community Samples
 
 * [Rachel's Recipes App](https://github.com/rachelkang/recipeSearch)
-* [Javier's .NET MAUI Samples](https://github.com/jsuarezruiz)
+* [Awesome .NET MAUI](https://github.com/jsuarezruiz/awesome-dotnet-maui)
 
 ## .NET MAUI Links
 
