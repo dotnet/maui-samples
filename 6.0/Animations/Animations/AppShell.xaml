@@ -7,6 +7,11 @@
     Shell.FlyoutBehavior="Flyout">
 
     <ShellContent
+        Title="Custom Animations"
+        ContentTemplate="{DataTemplate local:CustomAnimationPage}"
+        Route="custom" />
+    
+    <ShellContent
         Title="Fade"
         ContentTemplate="{DataTemplate local:FadePage}"
         Route="fade" />

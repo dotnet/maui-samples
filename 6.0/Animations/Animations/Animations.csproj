@@ -57,6 +57,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Pages\CustomAnimationPage.xaml.cs">
+	    <DependentUpon>CustomAnimationPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Pages\TranslatePage.xaml.cs">
 	    <DependentUpon>TranslatePage.xaml</DependentUpon>
 	  </Compile>
@@ -76,6 +79,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\EasingsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\CustomAnimationPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\TranslatePage.xaml">
