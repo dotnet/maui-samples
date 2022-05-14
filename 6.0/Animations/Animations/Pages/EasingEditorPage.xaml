@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:controls="clr-namespace:Animations.Controls"
+             Title="{Binding Card.CardTitle}"
+             x:Class="Animations.EasingEditorPage">
+    <ContentPage.Resources>
+        <toolkit:BoolToObjectConverter
+            x:Key="BoolToPlayPause"
+            x:TypeArguments="FontImageSource"
+                                          TrueObject="{StaticResource PauseIcon}"
+                                          FalseObject="{StaticResource PlayIcon}"
+                                          />
+    </ContentPage.Resources>
+    
+    <ContentPage.Content>
+        <Grid RowDefinitions="2*,80,3*" RowSpacing="0">
+            
+            <Grid x:Name="PathContainer">
+                <Path Data="M1 84c44 1 81.5 48.6 123-83"
+                      x:Name="EasingPath"
+                      HorizontalOptions="Center"
+                      VerticalOptions="Center"
+                      ScaleX="{Binding ScaleFactor}"
+                      ScaleY="{Binding ScaleFactor}"
+                      Stroke="{StaticResource InGradient}">
+                    
+                </Path>
+                    
+            </Grid>
+            <Grid Grid.Row="1" x:Name="AnimationTrack" BackgroundColor="Black" Padding="8">
+                <BoxView x:Name="Pacer" WidthRequest="0" HorizontalOptions="Start"
+                         Margin="-8" BackgroundColor="#FFFFFF" Opacity="0.2" />
+                <BoxView BackgroundColor="{StaticResource ThemePrimary}"
+                         x:Name="Box"
+                         HeightRequest="60" WidthRequest="60"
+                         HorizontalOptions="Start"
+                         VerticalOptions="Center"
+                         CornerRadius="8"/>
+            </Grid>
+                
+                
+            
+                <ScrollView Grid.Row="2">
+                <StackLayout Spacing="0">
+                    <FlexLayout HorizontalOptions="Center" AlignItems="Center"
+                                BackgroundColor="#1d1d1d">
+                        <BoxView FlexLayout.Grow="1" />
+                        <ImageButton x:Name="ResetBtn" Source="{StaticResource ResetIcon}"
+                                     BackgroundColor="Transparent"
+                                     Margin="8,0"
+                                     Clicked="ResetBtn_OnClicked"/>
+                        <ImageButton x:Name="PlayBtn"
+                                     BackgroundColor="Transparent"
+                                     Source="{Binding IsPlaying, 
+                                        Converter={StaticResource BoolToPlayPause}}" 
+                                     Margin="8,0" 
+                                     Clicked="PlayBtn_OnClicked"/>
+                            
+                        
+                        <BoxView FlexLayout.Grow="1" />
+                    </FlexLayout>
+                    <TableView HasUnevenRows="True">
+                        <TableSection Title="Options">
+                            <ViewCell>
+                                <Grid ColumnDefinitions="2*,4*" 
+                                      RowDefinitions="60"
+                                      Padding="15,8">
+                                    <Label Text="Duration" VerticalOptions="Center"/>
+                                    <Label Text="{Binding Duration}" InputTransparent="True"
+                                           Grid.Column="1"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Start"/>
+                                    
+                                    <Slider Grid.Column="1" 
+                                            VerticalOptions="Center"
+                                            Value="{Binding Duration, Mode=TwoWay, FallbackValue=250}"
+                                            Maximum="3000" />
+                                </Grid>
+                                    
+                                    
+                            </ViewCell>
+                            <EntryCell Label="Rate" Text="{Binding Rate, Mode=TwoWay}" Keyboard="Numeric" />
+                                <SwitchCell On="{Binding IsLooping, Mode=TwoWay}" 
+                                            OnColor="{StaticResource ThemePrimary}"
+                                            Text="Loop"/>
+                            
+                        </TableSection>
+                    </TableView>
+                    
+                </StackLayout>
+            </ScrollView>
+            </Grid>
+    </ContentPage.Content>
+</ContentPage>
