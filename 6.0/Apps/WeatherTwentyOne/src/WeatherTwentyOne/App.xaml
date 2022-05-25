@@ -40,7 +40,7 @@
             
 
             <!-- Desktop/Tablet-->
-            <FlyoutItem Title="Home" Icon="tab_home.png">
+            <FlyoutItem Title="Home" FlyoutIcon="tab_home.png">
                 <ShellContent ContentTemplate="{DataTemplate page:HomePage}"/>
             </FlyoutItem>
             <FlyoutItem Title="Favorites" Icon="tab_favorites.png">
@@ -48,9 +48,6 @@
             </FlyoutItem>
             <FlyoutItem Title="Map" Icon="tab_map.png">
                 <ShellContent ContentTemplate="{DataTemplate page:MapPage}"/>
-            </FlyoutItem>
-            <FlyoutItem Route="settings" FlyoutItemIsVisible="False" >
-                <ShellContent ContentTemplate="{DataTemplate page:SettingsPage}"/>
             </FlyoutItem>
 
             <!-- Phone -->
