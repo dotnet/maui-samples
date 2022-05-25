@@ -48,9 +48,7 @@
     <Style x:Key="BaseStyle"
            TargetType="Element">
             <Setter Property="Shell.FlyoutBackgroundColor"
-                        Value="{AppThemeBinding 
-                                Light={StaticResource LightGray}, 
-                                Dark={StaticResource Background_Mid}}"/>
+                        Value="{StaticResource Background_Mid}"/>
             <Setter Property="Shell.BackgroundColor"
                     Value="{AppThemeBinding 
                         Light={StaticResource LightGray}, 

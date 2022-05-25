@@ -8,16 +8,16 @@ public partial class App : Application
     {
         InitializeComponent();
 
-        //App.Current.UserAppTheme = OSAppTheme.Light;
+        //App.Current.UserAppTheme = AppTheme.Dark;
 
         if (DeviceInfo.Idiom == DeviceIdiom.Phone)
             Shell.Current.CurrentItem = PhoneTabs;
 
-        Routing.RegisterRoute("settings", typeof(SettingsPage));
+        //Routing.RegisterRoute(nameof(SettingsPage), typeof(SettingsPage));
     }
 
     void TapGestureRecognizer_Tapped(System.Object sender, System.EventArgs e)
     {
-        Shell.Current.GoToAsync("///settings");
+        Shell.Current.GoToAsync($"///settings");
     }
 }
