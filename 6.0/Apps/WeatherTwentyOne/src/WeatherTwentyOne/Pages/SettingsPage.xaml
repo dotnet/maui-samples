@@ -225,7 +225,7 @@
                                         Source="{FontImage
                                         FontFamily=FontAwesome,
                                         Glyph={x:Static local:IconFont.Mobile},
-                                        Color={StaticResource NeutralDark},
+                                        Color={StaticResource MidGray},
                                         Size=42}"/>
                                     <Label
                                         Text="Default"

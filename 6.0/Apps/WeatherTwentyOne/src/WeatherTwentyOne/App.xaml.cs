@@ -1,4 +1,5 @@
-﻿using WeatherTwentyOne.Pages;
+﻿using System.Diagnostics;
+using WeatherTwentyOne.Pages;
 
 namespace WeatherTwentyOne;
 
@@ -16,8 +17,12 @@ public partial class App : Application
         //Routing.RegisterRoute(nameof(SettingsPage), typeof(SettingsPage));
     }
 
-    void TapGestureRecognizer_Tapped(System.Object sender, System.EventArgs e)
+    async void TapGestureRecognizer_Tapped(System.Object sender, System.EventArgs e)
     {
-        Shell.Current.GoToAsync($"///settings");
+        try { 
+            await Shell.Current.GoToAsync($"///settings");
+        }catch (Exception ex) {
+            Debug.WriteLine($"err: {ex.Message}");
+        }
     }
 }

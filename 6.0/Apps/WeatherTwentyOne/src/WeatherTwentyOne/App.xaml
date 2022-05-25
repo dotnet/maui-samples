@@ -49,7 +49,7 @@
             <FlyoutItem Title="Map" FlyoutIcon="tab_map.png">
                 <ShellContent ContentTemplate="{DataTemplate page:MapPage}"/>
             </FlyoutItem>
-            <FlyoutItem Title="Settings" FlyoutIcon="tab_map.png" FlyoutItemIsVisible="False" Route="settings">
+            <FlyoutItem Title="Settings" Route="settings" FlyoutItemIsVisible="False">
                 <ShellContent ContentTemplate="{DataTemplate page:SettingsPage}"/>
             </FlyoutItem>
 
