@@ -56,12 +56,12 @@
                 </VisualStateManager.VisualStateGroups>
 
                 <Grid
-                                Margin="8"
-                                WidthRequest="100">
+                                
+                                >
                     <Grid
                                       WidthRequest="18"
                                       HeightRequest="18"
-                                      Margin="0,0,8,0"
+                                      Margin="0,8,8,0"
                                       HorizontalOptions="End"
                                       VerticalOptions="Start">
                         <Ellipse
@@ -215,10 +215,13 @@
                                      CheckedChanged="RadioButton_CheckedChanged"
                                      >
                             <RadioButton.Content>
-                                <Grid RowDefinitions="4*,1*">
+                                <Grid RowDefinitions="*">
                                     <Image
                                         VerticalOptions="Center"
                                         HorizontalOptions="Center"
+                                        WidthRequest="50"
+                                        HeightRequest="50"
+                                        Margin="0,-8,0,0"
                                         Source="{FontImage
                                         FontFamily=FontAwesome,
                                         Glyph={x:Static local:IconFont.Mobile},
@@ -226,19 +229,23 @@
                                         Size=42}"/>
                                     <Label
                                         Text="Default"
-                                        VerticalOptions="Center"
+                                        VerticalOptions="End"
                                         HorizontalOptions="Center"
-                                        Grid.Row="1"/>
+                                        FontSize="12"
+                                        Margin="0,0,0,10"/>
                                 </Grid>
                             </RadioButton.Content>
                         </RadioButton>
                         <RadioButton Value="{x:Static am:AppTheme.Dark}"
                                      CheckedChanged="RadioButton_CheckedChanged">
                             <RadioButton.Content>
-                                <Grid RowDefinitions="4*,1*">
+                                <Grid RowDefinitions="*">
                                     <Image
                                         VerticalOptions="Center"
                                         HorizontalOptions="Center"
+                                        WidthRequest="50"
+                                        HeightRequest="50"
+                                        Margin="0,-8,0,0"
                                         Source="{FontImage
                                         FontFamily=FontAwesome,
                                         Glyph={x:Static local:IconFont.Lightbulb},
@@ -246,9 +253,11 @@
                                         Size=42}"/>
                                     <Label
                                         Text="Dark"
-                                        VerticalOptions="Center"
+                                        VerticalOptions="End"
+                                        Margin="0,0,0,10"
                                         HorizontalOptions="Center"
-                                        Grid.Row="1"/>
+                                        FontSize="12"
+                                        />
                                 </Grid>
                             </RadioButton.Content>
                         </RadioButton>
@@ -256,10 +265,13 @@
                                      CheckedChanged="RadioButton_CheckedChanged"
                                      >
                             <RadioButton.Content>
-                                <Grid RowDefinitions="4*,1*">
+                                <Grid RowDefinitions="*">
                                     <Image
                                         VerticalOptions="Center"
                                         HorizontalOptions="Center"
+                                        WidthRequest="50"
+                                        HeightRequest="50"
+                                        Margin="0,-8,0,0"
                                         Source="{FontImage
                                         FontFamily=FontAwesome,
                                         Glyph={x:Static local:IconFont.Lightbulb},
@@ -267,9 +279,10 @@
                                         Size=42}"/>
                                     <Label
                                         Text="Light"
-                                        VerticalOptions="Center"
+                                        FontSize="12"
+                                        VerticalOptions="End"
                                         HorizontalOptions="Center"
-                                        Grid.Row="1"/>
+                                        Margin="0,0,0,10"/>
                                 </Grid>
                             </RadioButton.Content>
                         </RadioButton>

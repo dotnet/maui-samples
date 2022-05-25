@@ -150,7 +150,7 @@
     <Style TargetType="Label"
             Class="SubContent">
         <Setter Property="FontSize"
-                Value="14"/>
+                Value="12"/>
         <Setter Property="TextColor"
                 Value="{AppThemeBinding Light={StaticResource DarkGray}, Dark={StaticResource TabOff}}"/>
     </Style>

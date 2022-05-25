@@ -7,13 +7,12 @@
         <DataTemplate x:Key="MetricTemplate">
             <Border
                 HeightRequest="154"
-                WidthRequest="150"
                 x:DataType="m:Metric"
                 Stroke="Transparent"
                 BackgroundColor="{AppThemeBinding Light={StaticResource LightGray}, Dark={StaticResource Background_Mid}}">
                 <Border.StrokeShape>
                     <RoundRectangle         
-                        CornerRadius="40" />
+                        CornerRadius="8" />
                 </Border.StrokeShape>
                 <Grid
                     Margin="15"
