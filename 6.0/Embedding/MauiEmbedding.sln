@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MauiEmbedding.Shared", "Mau
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MauiEmbedding.iOSApp", "MauiEmbedding.iOSApp\MauiEmbedding.iOSApp.csproj", "{0BC31144-3EB3-4C22-8E41-7D21EA5960CA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MauiEmbedding.MacCatalyst", "MauiEmbedding.MacCatalyst\MauiEmbedding.MacCatalyst.csproj", "{EF59231A-6F68-41F6-8309-27F14FDC9146}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,14 @@ Global
 		{0BC31144-3EB3-4C22-8E41-7D21EA5960CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0BC31144-3EB3-4C22-8E41-7D21EA5960CA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0BC31144-3EB3-4C22-8E41-7D21EA5960CA}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{25D2A55A-BB75-426C-A71B-D785B1CD02B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25D2A55A-BB75-426C-A71B-D785B1CD02B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25D2A55A-BB75-426C-A71B-D785B1CD02B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25D2A55A-BB75-426C-A71B-D785B1CD02B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF59231A-6F68-41F6-8309-27F14FDC9146}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF59231A-6F68-41F6-8309-27F14FDC9146}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF59231A-6F68-41F6-8309-27F14FDC9146}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF59231A-6F68-41F6-8309-27F14FDC9146}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
