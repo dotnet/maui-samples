@@ -29,18 +29,18 @@ public class AppDelegate : UIApplicationDelegate {
 		Window.RootViewController = vc;
 
 		// Setup .NET MAUI
-            var builder = MauiApp.CreateBuilder();
+        var builder = MauiApp.CreateBuilder();
 
-            // Add Microsoft.Maui Controls
-            AppHostBuilderExtensions.UseMauiEmbedding<Microsoft.Maui.Controls.Application>(builder);
+        // Add Microsoft.Maui Controls
+        AppHostBuilderExtensions.UseMauiEmbedding<Microsoft.Maui.Controls.Application>(builder);
 
-            var mauiApp = builder.Build();
+        var mauiApp = builder.Build();
 
-            // Create and save a Maui Context. This is needed for creating Platform UI
-            mauiContext = new MauiContext(mauiApp.Services);
-            var mauiControl = new MauiControl().ToPlatform(mauiContext);
-            mauiControl.Center = Window.Center;
-            vc.View!.AddSubview(mauiControl);
+        // Create and save a Maui Context. This is needed for creating Platform UI
+        mauiContext = new MauiContext(mauiApp.Services);
+        var mauiControl = new MauiControl().ToPlatform(mauiContext);
+        mauiControl.Center = Window.Center;
+        vc.View!.AddSubview(mauiControl);
 
 		// make the window visible
 		Window.MakeKeyAndVisible ();

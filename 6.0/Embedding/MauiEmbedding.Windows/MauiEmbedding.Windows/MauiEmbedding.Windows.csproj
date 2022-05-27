@@ -1,0 +1,54 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows10.0.19041.0</TargetFramework>
+    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+    <RootNamespace>MauiEmbedding.Windows</RootNamespace>
+    <ApplicationManifest>Package.appxmanifest</ApplicationManifest>
+    <Platforms>x86;x64;arm64</Platforms>
+    <RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
+	  <PublishProfile>win10-$(Platform).pubxml</PublishProfile>
+    <UseWinUI>true</UseWinUI>
+	<UseMaui>true</UseMaui>
+	  <EnableDefaultXamlItems>false</EnableDefaultXamlItems>
+	<MauiEnablePlatformUsings>true</MauiEnablePlatformUsings>
+	  <EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.0.3" />
+	<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22000.194" />
+    <Manifest Include="$(ApplicationManifest)" />
+  </ItemGroup>
+
+	<ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnablePreviewMsixTooling)'=='true'">
+		<ProjectCapability Include="Msix" />
+	</ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\MauiEmbedding.Shared\MauiEmbedding.Shared.csproj" />
+  </ItemGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+		<DefineConstants>DISABLE_XAML_GENERATED_MAIN</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+		<DefineConstants>
+			DISABLE_XAML_GENERATED_MAIN
+		</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+		<DefineConstants>
+			DISABLE_XAML_GENERATED_MAIN
+		</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+		<DefineConstants>DISABLE_XAML_GENERATED_MAIN</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|arm64'">
+		<DefineConstants>DISABLE_XAML_GENERATED_MAIN</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|arm64'">
+		<DefineConstants>DISABLE_XAML_GENERATED_MAIN</DefineConstants>
+	</PropertyGroup>
+</Project>

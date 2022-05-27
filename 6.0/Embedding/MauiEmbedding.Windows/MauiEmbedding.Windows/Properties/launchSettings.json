@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "MauiMultiProject (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "MauiMultiProject (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
