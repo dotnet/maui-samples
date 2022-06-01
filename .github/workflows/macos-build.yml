@@ -1,10 +1,10 @@
 name: macOSCI
 
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  # push:
+  #   branches: [ main ]
+  # pull_request:
+  #   branches: [ main ]
 
   workflow_dispatch:
 
@@ -35,7 +35,9 @@ jobs:
           dotnet workload install android ios maccatalyst tvos macos maui wasm-tools --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
     
       - name: Restore nuget packages
-        run: dotnet restore 6.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne.sln
+        run: |
+          cd 6.0\Apps\WeatherTwentyOne\src\
+          dotnet restore WeatherTwentyOne.sln
         
         # https://docs.microsoft.com/en-us/dotnet/maui/macos/deployment/overview
       - name : Build MacCatalyst App
@@ -80,7 +82,9 @@ jobs:
           dotnet workload install android ios maccatalyst tvos macos maui wasm-tools --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
     
       - name: Restore nuget packages
-        run: dotnet restore 6.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne.sln
+        run: |
+          cd 6.0\Apps\WeatherTwentyOne\src\
+          dotnet restore 6.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne.sln
         
         # https://docs.microsoft.com/en-us/dotnet/maui/ios/deployment/overview
       - name : Build iOS App
