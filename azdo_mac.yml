@@ -67,7 +67,6 @@ stages:
   - job: BuildMAUIApps
     displayName: Build Weather21 App
     pool:
-      name: Hosted macOS
       vmImage: 'macOS-11'
       demands:
       - MSBuild
