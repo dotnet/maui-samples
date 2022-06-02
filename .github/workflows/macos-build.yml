@@ -91,8 +91,7 @@ jobs:
         shell: bash
         run: |
           cd 6.0/Apps/WeatherTwentyOne/src
-          dotnet build -f net6.0-ios -c Release -o ./artifacts
-          dotnet publish -f net6.0-ios -c Release /p:ArchiveOnBuild=true -o ./artifacts
+          dotnet build -f net6.0-ios -c Debug -o ./artifacts
 
 #       - name: Build and Run UnitTests
 #         shell: bash
