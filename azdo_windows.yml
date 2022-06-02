@@ -4,6 +4,7 @@
 variables:
     BuildConfiguration: Release
     DotNetVersion: 6.0.300
+    VSVERSION: 17/pre
 
 stages:
 - stage: BuildAndroid
@@ -80,7 +81,7 @@ stages:
           Invoke-WebRequest -UseBasicParsing -Uri "https://aka.ms/vs/install/latest/vs_setup.exe" -OutFile "$env:TEMP\dd_vs_setup.exe"
           & "$env:TEMP\dd_vs_setup.exe" --update --quiet --wait | Out-Null
                     
-          Invoke-WebRequest -UseBasicParsing -Uri "https://aka.ms/vs/${{env.VSVERSION}}/vs_enterprise.exe" -OutFile "$env:TEMP\dd_vs_enterprise.exe"
+          Invoke-WebRequest -UseBasicParsing -Uri "https://aka.ms/vs/$(VSVERSION)/vs_enterprise.exe" -OutFile "$env:TEMP\dd_vs_enterprise.exe"
           & "$env:TEMP\dd_vs_enterprise.exe" --quiet --norestart --wait --includeRecommended --add Microsoft.VisualStudio.Workload.NetCrossPlat | Out-Null
     - task: UseDotNet@2
       displayName: .NET Version
