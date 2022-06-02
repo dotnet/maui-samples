@@ -91,7 +91,7 @@ jobs:
         shell: bash
         run: |
           cd 6.0/Apps/WeatherTwentyOne/src
-          dotnet build -f net6.0-ios -c Debug -o ./artifacts
+          dotnet build -f net6.0-ios -c Debug /p:packageApp=false /p:buildForSimulator=true
 
 #       - name: Build and Run UnitTests
 #         shell: bash
@@ -103,5 +103,5 @@ jobs:
         with:
           name: artifacts-ios
           path: |
-            6.0/Apps/WeatherTwentyOne/src/artifacts/**/*.app
+            6.0/Apps/WeatherTwentyOne/src/WeatherTwentyOne/bin/Debug/net6.0-ios/iossimulator-x64/**/*.app
       
