@@ -84,7 +84,7 @@ jobs:
       - name: Restore nuget packages
         run: |
           cd 6.0/Apps/WeatherTwentyOne/src/
-          dotnet restore 6.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne.sln
+          dotnet restore WeatherTwentyOne.sln
         
         # https://docs.microsoft.com/en-us/dotnet/maui/ios/deployment/overview
       - name : Build iOS App
@@ -104,5 +104,5 @@ jobs:
         with:
           name: artifacts-ios
           path: |
-            6.0/Apps/WeatherTwentyOne/src/artifacts/**/*.ipa
+            6.0/Apps/WeatherTwentyOne/src/artifacts/**/*.app
       
