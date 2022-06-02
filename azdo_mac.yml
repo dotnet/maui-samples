@@ -102,14 +102,13 @@ stages:
         targetType: 'inline'
         script: |
           cd 6.0/Apps/WeatherTwentyOne/src
-          dotnet build -f net6.0-ios -c Release -o ./artifacts
-          dotnet publish -f net6.0-ios -c Release -p:BuildIpa=True -o ./artifacts
+          dotnet build -f net6.0-ios -c Debug /p:packageApp=false /p:buildForSimulator=true
 
     - task: CopyFiles@2
       inputs:
         Contents: |
-          **/**/6.0/Apps/WeatherTwentyOne/src/artifacts/**/*.app
-          6.0/Apps/WeatherTwentyOne/src/artifacts/**/*.app
+          **/**/6.0/Apps/WeatherTwentyOne/src/WeatherTwentyOne/bin/Debug/net6.0-ios/iossimulator-x64/**/*.app
+          6.0/Apps/WeatherTwentyOne/src/WeatherTwentyOne/bin/Debug/net6.0-ios/iossimulator-x64/**/*.app
         TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
     - task: PublishBuildArtifacts@1
