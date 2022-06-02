@@ -12,52 +12,52 @@ env:
     DOTNETVERSION: 6.0.300
 
 jobs:
-  buildmacCatalyst:
-    runs-on: macos-11
+#   buildmacCatalyst:
+#     runs-on: macos-11
     
-    steps:
-      - uses: actions/checkout@v2
+#     steps:
+#       - uses: actions/checkout@v2
 
-      - name: Setup .NET SDK ${{env.DOTNETVERSION}}
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version:  '${{env.DOTNETVERSION}}'
+#       - name: Setup .NET SDK ${{env.DOTNETVERSION}}
+#         uses: actions/setup-dotnet@v1
+#         with:
+#           dotnet-version:  '${{env.DOTNETVERSION}}'
           
-      - name: List installed .NET info
-        shell: pwsh
-        run: dotnet --info
+#       - name: List installed .NET info
+#         shell: pwsh
+#         run: dotnet --info
 
-      - name: Install .NET MAUI
-        shell: bash
-        run: |
-          dotnet nuget locals all --clear 
-          dotnet workload install maui --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
-          dotnet workload install android ios maccatalyst tvos macos maui wasm-tools --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
-    
-      - name: Restore nuget packages
-        run: |
-          cd 6.0/Apps/WeatherTwentyOne/src/
-          dotnet restore WeatherTwentyOne.sln
-        
-        # https://docs.microsoft.com/en-us/dotnet/maui/macos/deployment/overview
-      - name : Build MacCatalyst App
-        shell: bash
-        run: |
-          cd 6.0/Apps/WeatherTwentyOne/src
-          dotnet build -f net6.0-maccatalyst -c Release -o ./artifacts
-          dotnet publish -f net6.0-maccatalyst -c Release -p:BuildIpa=True -o ./artifacts
-
-#       - name: Build and Run UnitTests
+#       - name: Install .NET MAUI
 #         shell: bash
 #         run: |
-#           dotnet build <path to unit test csproj>
-#           dotnet test <path to unit test csproj> --no-build --verbosity normal
+#           dotnet nuget locals all --clear 
+#           dotnet workload install maui --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
+#           dotnet workload install android ios maccatalyst tvos macos maui wasm-tools --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
+    
+#       - name: Restore nuget packages
+#         run: |
+#           cd 6.0/Apps/WeatherTwentyOne/src/
+#           dotnet restore WeatherTwentyOne.sln
+        
+#         # https://docs.microsoft.com/en-us/dotnet/maui/macos/deployment/overview
+#       - name : Build MacCatalyst App
+#         shell: bash
+#         run: |
+#           cd 6.0/Apps/WeatherTwentyOne/src
+#           dotnet build -f net6.0-maccatalyst -c Release -o ./artifacts
+#           dotnet publish -f net6.0-maccatalyst -c Release -p:BuildIpa=True -o ./artifacts
 
-      - uses: actions/upload-artifact@v2
-        with:
-          name: artifacts-mac
-          path: |
-            6.0/Apps/WeatherTwentyOne/src/artifacts/**/*.pkg
+# #       - name: Build and Run UnitTests
+# #         shell: bash
+# #         run: |
+# #           dotnet build <path to unit test csproj>
+# #           dotnet test <path to unit test csproj> --no-build --verbosity normal
+
+#       - uses: actions/upload-artifact@v2
+#         with:
+#           name: artifacts-mac
+#           path: |
+#             6.0/Apps/WeatherTwentyOne/src/artifacts/**/*.pkg
   
   buildiOS:
     runs-on: macos-11
@@ -91,7 +91,7 @@ jobs:
         shell: bash
         run: |
           cd 6.0/Apps/WeatherTwentyOne/src
-          dotnet build -f net6.0-ios -c Debug /p:packageApp=false /p:buildForSimulator=true
+          dotnet build -f net6.0-ios -c Debug /p:packageApp=false /p:buildForSimulator=true /p:ArchiveOnBuild=false
 
 #       - name: Build and Run UnitTests
 #         shell: bash
