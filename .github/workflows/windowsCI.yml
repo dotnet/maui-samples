@@ -64,7 +64,7 @@ jobs:
         env:
           CERT_PASSWORD: ${{ secrets.WIN_CERT_PASSWORD }}
         run: |
-          '"C:\Program Files (x86)\Windows Kits\10\App Certification Kit\SignTool" sign /a /fd SHA256 /f WinSignCert.pfx /p ($env:CERT_PASSWORD) 6.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\bin\Release\net6.0-windows10.0.19041.0\win10-x64\**\*.msix'
+          '"C:\Program Files (x86)\Windows Kits\10\App Certification Kit\SignTool" sign /a /fd SHA256 /f WinSignCert.pfx /p ($env:CERT_PASSWORD) 6.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\bin\Release\net6.0-windows10.0.19041.0\win10-x64\AppPackages\WeatherTwentyOne_1.0.0.0_TestWeatherTwentyOne_1.0.0.0_x64.msix'
 
       - uses: actions/upload-artifact@v2
         with:
