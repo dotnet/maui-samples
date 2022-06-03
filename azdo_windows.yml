@@ -7,60 +7,60 @@ variables:
     VSVERSION: 17/pre
 
 stages:
-- stage: BuildAndroid
-  jobs:
-  - job: BuildMAUIApps
-    displayName: Build Weather21 App
-    pool:
-      vmImage: 'windows-2022'
-      demands:
-      - MSBuild
+# - stage: BuildAndroid
+#   jobs:
+#   - job: BuildMAUIApps
+#     displayName: Build Weather21 App
+#     pool:
+#       vmImage: 'windows-2022'
+#       demands:
+#       - MSBuild
       
-    steps:
+#     steps:
     
-    - task: UseDotNet@2
-      displayName: .NET Version
-      inputs:
-        packageType: 'sdk'
-        version: '$(DotNetVersion)'
+#     - task: UseDotNet@2
+#       displayName: .NET Version
+#       inputs:
+#         packageType: 'sdk'
+#         version: '$(DotNetVersion)'
     
-    - task: Bash@3
-      displayName: Install MAUI
-      inputs:
-        targetType: 'inline'
-        script: |
-          dotnet nuget locals all --clear 
-          dotnet workload install maui --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
-          dotnet workload install android ios maccatalyst tvos macos maui wasm-tools --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
+#     - task: Bash@3
+#       displayName: Install MAUI
+#       inputs:
+#         targetType: 'inline'
+#         script: |
+#           dotnet nuget locals all --clear 
+#           dotnet workload install maui --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
+#           dotnet workload install android ios maccatalyst tvos macos maui wasm-tools --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
     
-    - task: Bash@3
-      displayName: Restore nuget
-      inputs:
-        targetType: 'inline'
-        script: |
-          cd 6.0/Apps/WeatherTwentyOne/src/
-          dotnet restore WeatherTwentyOne.sln
+#     - task: Bash@3
+#       displayName: Restore nuget
+#       inputs:
+#         targetType: 'inline'
+#         script: |
+#           cd 6.0/Apps/WeatherTwentyOne/src/
+#           dotnet restore WeatherTwentyOne.sln
 
-    - task: Bash@3
-      displayName: Build Android App
-      inputs:
-        targetType: 'inline'
-        script: |
-          cd 6.0/Apps/WeatherTwentyOne/src
-          dotnet build -f net6.0-android -c Release
+#     - task: Bash@3
+#       displayName: Build Android App
+#       inputs:
+#         targetType: 'inline'
+#         script: |
+#           cd 6.0/Apps/WeatherTwentyOne/src
+#           dotnet build -f net6.0-android -c Release
 
-    - task: CopyFiles@2
-      inputs:
-        Contents: |
-          **\**\6.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\bin\Release\net6.0-android\publish\*.apk
-          6.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\bin\Release\net6.0-android\publish\*.apk
-        TargetFolder: '$(Build.ArtifactStagingDirectory)'
+#     - task: CopyFiles@2
+#       inputs:
+#         Contents: |
+#           **\**\6.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\bin\Release\net6.0-android\publish\*.apk
+#           6.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\bin\Release\net6.0-android\publish\*.apk
+#         TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
-    - task: PublishBuildArtifacts@1
-      inputs:
-        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-        ArtifactName: 'drop_android'
-        publishLocation: 'Container'
+#     - task: PublishBuildArtifacts@1
+#       inputs:
+#         PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+#         ArtifactName: 'drop_android'
+#         publishLocation: 'Container'
 
 - stage: BuildWindows
   jobs:
@@ -97,14 +97,24 @@ stages:
           & dotnet nuget locals all --clear
           & dotnet workload install maui --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
           & dotnet workload install android ios maccatalyst tvos macos maui wasm-tools maui-maccatalyst --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
-    - task: PowerShell@2
-      displayName: Build Windows MSIX
-      inputs:
-        targetType: 'inline'
-        script: |
-          cd .\6.0\Apps\WeatherTwentyOne\src\
-          msbuild .\WeatherTwentyOne.sln -restore -p:Configuration=Release /p:GenerateAppxPackageOnBuild=true
+    
 
+    # - task: PowerShell@2
+    #   displayName: Build Windows MSIX
+    #   inputs:
+    #     targetType: 'inline'
+    #     script: |
+    #       cd 6.0\Apps\WeatherTwentyOne\src\
+    #       "C:\Program Files\Microsoft Visual Studio\2022\PublicPreview\MSBuild\Current\Bin\MSBuild" WeatherTwentyOne.sln -restore -p:Configuration=Release /p:GenerateAppxPackageOnBuild=true
+
+
+    - task: MSBuild@1
+      inputs:
+        solution: '**/WeatherTwentyOne.sln'
+        msbuildLocationMethod: 'location'
+        msbuildLocation: 'C:\Program Files\Microsoft Visual Studio\2022\PublicPreview\MSBuild\Current\Bin\'
+        configuration: 'Release'
+        msbuildArguments: '/p:GenerateAppxPackageOnBuild=true'
     - task: PowerShell@2
       displayName: Pack Windows App
       inputs:
