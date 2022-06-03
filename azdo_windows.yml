@@ -104,8 +104,8 @@ stages:
       inputs:
         targetType: 'inline'
         script: |
-          cd .\6.0\Apps\WeatherTwentyOne\src\
-          "C:\Program Files\Microsoft Visual Studio\2022\PublicPreview\MSBuild\Current\Bin\msbuild" WeatherTwentyOne.sln -restore -p:Configuration=Release /p:GenerateAppxPackageOnBuild=true
+          & cd .\6.0\Apps\WeatherTwentyOne\src\
+          & "C:\Program Files\Microsoft Visual Studio\2022\PublicPreview\MSBuild\Current\Bin\MSBuild" WeatherTwentyOne.sln -restore -p:Configuration=Release /p:GenerateAppxPackageOnBuild=true
 
 
     - task: PowerShell@2
