@@ -6,62 +6,62 @@ variables:
     DotNetVersion: 6.0.300
 
 stages:
-# - stage: BuildMacCatalyst
-#   jobs:
-#   - job: BuildMAUIApps
-#     displayName: Build Weather21 App
-#     pool:
-#       vmImage: 'macOS-12'
-#       demands:
-#       - MSBuild
+- stage: BuildMacCatalyst
+  jobs:
+  - job: BuildMAUIApps
+    displayName: Build Weather21 App
+    pool:
+      vmImage: 'macOS-12'
+      demands:
+      - MSBuild
       
-#     steps:
+    steps:
     
-#     - task: UseDotNet@2
-#       displayName: .NET Version
-#       inputs:
-#         packageType: 'sdk'
-#         version: '$(DotNetVersion)'
+    - task: UseDotNet@2
+      displayName: .NET Version
+      inputs:
+        packageType: 'sdk'
+        version: '$(DotNetVersion)'
     
-#     - task: Bash@3
-#       displayName: Install MAUI
-#       inputs:
-#         targetType: 'inline'
-#         script: |
-#           dotnet nuget locals all --clear 
-#           dotnet workload install maui --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
-#           dotnet workload install android ios maccatalyst tvos macos maui wasm-tools --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
+    - task: Bash@3
+      displayName: Install MAUI
+      inputs:
+        targetType: 'inline'
+        script: |
+          dotnet nuget locals all --clear 
+          dotnet workload install maui --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
+          dotnet workload install android ios maccatalyst tvos macos maui wasm-tools --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
     
-#     - task: Bash@3
-#       displayName: Restore nuget
-#       inputs:
-#         targetType: 'inline'
-#         script: |
-#           cd 6.0/Apps/WeatherTwentyOne/src/
-#           dotnet restore WeatherTwentyOne.sln
+    - task: Bash@3
+      displayName: Restore nuget
+      inputs:
+        targetType: 'inline'
+        script: |
+          cd 6.0/Apps/WeatherTwentyOne/src/
+          dotnet restore WeatherTwentyOne.sln
 
-#     # https://docs.microsoft.com/en-us/dotnet/maui/macos/deployment/overview
-#     - task: Bash@3
-#       displayName: Build MacCatalyst App
-#       inputs:
-#         targetType: 'inline'
-#         script: |
-#           cd 6.0/Apps/WeatherTwentyOne/src
-#           dotnet build -f net6.0-maccatalyst -c Release -o ./artifacts
-#           dotnet publish -f net6.0-maccatalyst -c Release -p:BuildIpa=True -o ./artifacts
+    # https://docs.microsoft.com/en-us/dotnet/maui/macos/deployment/overview
+    - task: Bash@3
+      displayName: Build MacCatalyst App
+      inputs:
+        targetType: 'inline'
+        script: |
+          cd 6.0/Apps/WeatherTwentyOne/src
+          dotnet build -f net6.0-maccatalyst -c Release -o ./artifacts
+          dotnet publish -f net6.0-maccatalyst -c Release -p:BuildIpa=True -o ./artifacts
 
-#     - task: CopyFiles@2
-#       inputs:
-#         Contents: |
-#           **/**/6.0/Apps/WeatherTwentyOne/src/artifacts/**/*.pkg
-#           6.0/Apps/WeatherTwentyOne/src/artifacts/**/*.pkg
-#         TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    - task: CopyFiles@2
+      inputs:
+        Contents: |
+          **/**/6.0/Apps/WeatherTwentyOne/src/artifacts/**/*.pkg
+          6.0/Apps/WeatherTwentyOne/src/artifacts/**/*.pkg
+        TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
-#     - task: PublishBuildArtifacts@1
-#       inputs:
-#         PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-#         ArtifactName: 'drop_maccatalyst'
-#         publishLocation: 'Container'
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'drop_maccatalyst'
+        publishLocation: 'Container'
 
 - stage: BuildiOS
   jobs:
