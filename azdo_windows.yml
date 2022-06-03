@@ -1,5 +1,5 @@
-# trigger:
-# - main
+trigger:
+- main
 
 variables:
     BuildConfiguration: Release
@@ -7,60 +7,61 @@ variables:
     VSVERSION: 17/pre
 
 stages:
-# - stage: BuildAndroid
-#   jobs:
-#   - job: BuildMAUIApps
-#     displayName: Build Weather21 App
-#     pool:
-#       vmImage: 'windows-2022'
-#       demands:
-#       - MSBuild
+- stage: BuildAndroid
+  jobs:
+  - job: BuildMAUIApps
+    displayName: Build Weather21 App
+    pool:
+      vmImage: 'windows-2022'
+      demands:
+      - MSBuild
       
-#     steps:
+    steps:
     
-#     - task: UseDotNet@2
-#       displayName: .NET Version
-#       inputs:
-#         packageType: 'sdk'
-#         version: '$(DotNetVersion)'
+    - task: UseDotNet@2
+      displayName: .NET Version
+      inputs:
+        packageType: 'sdk'
+        version: '$(DotNetVersion)'
     
-#     - task: Bash@3
-#       displayName: Install MAUI
-#       inputs:
-#         targetType: 'inline'
-#         script: |
-#           dotnet nuget locals all --clear 
-#           dotnet workload install maui --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
-#           dotnet workload install android ios maccatalyst tvos macos maui wasm-tools --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
+    - task: Bash@3
+      displayName: Install MAUI
+      inputs:
+        targetType: 'inline'
+        script: |
+          dotnet nuget locals all --clear 
+          dotnet workload install maui --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
+          dotnet workload install android ios maccatalyst tvos macos maui wasm-tools --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
     
-#     - task: Bash@3
-#       displayName: Restore nuget
-#       inputs:
-#         targetType: 'inline'
-#         script: |
-#           cd 6.0/Apps/WeatherTwentyOne/src/
-#           dotnet restore WeatherTwentyOne.sln
+    - task: Bash@3
+      displayName: Restore nuget
+      inputs:
+        targetType: 'inline'
+        script: |
+          cd 6.0/Apps/WeatherTwentyOne/src/
+          dotnet restore WeatherTwentyOne.sln
 
-#     - task: Bash@3
-#       displayName: Build Android App
-#       inputs:
-#         targetType: 'inline'
-#         script: |
-#           cd 6.0/Apps/WeatherTwentyOne/src
-#           dotnet build -f net6.0-android -c Release
+  # https://docs.microsoft.com/en-us/dotnet/maui/android/deployment/overview
+    - task: Bash@3
+      displayName: Build Android App
+      inputs:
+        targetType: 'inline'
+        script: |
+          cd 6.0/Apps/WeatherTwentyOne/src
+          dotnet build -f net6.0-android -c Release
 
-#     - task: CopyFiles@2
-#       inputs:
-#         Contents: |
-#           **\**\6.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\bin\Release\net6.0-android\publish\*.apk
-#           6.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\bin\Release\net6.0-android\publish\*.apk
-#         TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    - task: CopyFiles@2
+      inputs:
+        Contents: |
+          **\**\6.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\bin\Release\net6.0-android\publish\*.apk
+          6.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\bin\Release\net6.0-android\publish\*.apk
+        TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
-#     - task: PublishBuildArtifacts@1
-#       inputs:
-#         PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-#         ArtifactName: 'drop_android'
-#         publishLocation: 'Container'
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'drop_android'
+        publishLocation: 'Container'
 
 - stage: BuildWindows
   jobs:
@@ -87,6 +88,7 @@ stages:
           & dotnet workload install maui --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
           & dotnet workload install android ios maccatalyst tvos macos maui wasm-tools maui-maccatalyst --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
     
+    # https://docs.microsoft.com/en-us/dotnet/maui/windows/deployment/overview
     - task: PowerShell@2
       displayName: Build Windows MSIX
       inputs:
@@ -95,9 +97,11 @@ stages:
           cd 6.0\Apps\WeatherTwentyOne\src\
           dotnet publish -f net6.0-windows10.0.19041.0 -c Release
     
+    # https://docs.microsoft.com/en-us/windows/msix/desktop/cicd-overview
     - task: DownloadSecureFile@1
       inputs:
         secureFile: 'XamCATFidCert.pfx'
+
     - task: CopyFiles@2
       inputs:
         Contents: |
@@ -105,6 +109,7 @@ stages:
           6.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\bin\Release\net6.0-windows10.0.19041.0\win10-x64/**/*.msix
         TargetFolder: '$(Build.ArtifactStagingDirectory)'
    
+   #https://docs.microsoft.com/en-us/windows/msix/desktop/azure-dev-ops
     - script: '"C:\Program Files (x86)\Windows Kits\10\App Certification Kit\SignTool" sign /fd SHA256 /f $(Agent.TempDirectory)/XamCATFidCert.pfx /p $(WindowsCertSecret) $(Build.ArtifactStagingDirectory)\6.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\bin\Release\net6.0-windows10.0.19041.0\win10-x64\AppPackages\WeatherTwentyOne_1.0.0.0_Test\WeatherTwentyOne_1.0.0.0_x64.msix'
       displayName: 'Sign MSIX Package'
 

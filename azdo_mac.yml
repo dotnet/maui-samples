@@ -1,5 +1,5 @@
-# trigger:
-# - main
+trigger:
+- main
 
 variables:
     BuildConfiguration: Release
@@ -40,6 +40,7 @@ stages:
           cd 6.0/Apps/WeatherTwentyOne/src/
           dotnet restore WeatherTwentyOne.sln
 
+    # https://docs.microsoft.com/en-us/dotnet/maui/macos/deployment/overview
     - task: Bash@3
       displayName: Build MacCatalyst App
       inputs:
@@ -73,6 +74,7 @@ stages:
       
     steps:
     
+    # https://docs.microsoft.com/en-us/azure/devops/pipelines/apps/mobile/app-signing?view=azure-devops&tabs=apple-install-during-build#sign-your-apple-ios-macos-tvos-or-watchos-app
     - task: InstallAppleCertificate@2
       inputs:
         certSecureFile: 'SweekyDevCert.p12'
@@ -106,6 +108,7 @@ stages:
           cd 6.0/Apps/WeatherTwentyOne/src/
           dotnet restore WeatherTwentyOne.sln
 
+  # https://docs.microsoft.com/en-us/dotnet/maui/ios/deployment/overview
     - task: Bash@3
       displayName: Build iOS App
       inputs:
