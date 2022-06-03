@@ -50,6 +50,8 @@ stages:
           cd 6.0/Apps/WeatherTwentyOne/src
           dotnet build -f net6.0-android -c Release
 
+    # Signing Android App : https://docs.microsoft.com/en-us/azure/devops/pipelines/apps/mobile/app-signing?view=azure-devops&tabs=apple-install-during-build#sign-your-android-app
+
     - task: CopyFiles@2
       inputs:
         Contents: |

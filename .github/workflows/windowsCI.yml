@@ -107,6 +107,20 @@ jobs:
             cd 6.0/Apps/WeatherTwentyOne/src
             dotnet publish -f:net6.0-android -c:Release
             
+        # # Store Android Signing Keystore and password in Secrets using base64 encoding
+        # # https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/certutil
+        # # commandline util to encode to base64 on windows
+        # - name: Extract Android signing key from env
+        #   shell: bash
+        #   run: |
+        #     echo "${{ secrets.RELEASE_KEYSTORE }}" > android/release.jks.base64
+        #     base64 -d android/release.jks.base64 > android/release.decrypted.jks
+
+        # # check android SDK paths etc in installed VM : https://github.com/actions/virtual-environments#available-environments
+        # - name: Sign dev build
+        #   shell: bash
+        #   run: jarsigner -keystore android/release.decrypted.jks -storepass "${{ secrets.RELEASE_KEYSTORE_PASSWORD }}" -signedjar ./android/app/build/outputs/bundle/release/app-release-signed.aab ./android/app/build/outputs/bundle/release/app-release.aab release
+
   #       - name: Build and Run UnitTests
   #         shell: bash
   #         run: |
