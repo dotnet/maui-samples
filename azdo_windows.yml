@@ -73,16 +73,16 @@ stages:
       
     steps:
     
-    - task: PowerShell@2
-      displayName: Install Visual Studio Preview
-      inputs:
-        targetType: 'inline'
-        script: |
-          Invoke-WebRequest -UseBasicParsing -Uri "https://aka.ms/vs/install/latest/vs_setup.exe" -OutFile "$env:TEMP\dd_vs_setup.exe"
-          & "$env:TEMP\dd_vs_setup.exe" --update --quiet --wait | Out-Null
+    # - task: PowerShell@2
+    #   displayName: Install Visual Studio Preview
+    #   inputs:
+    #     targetType: 'inline'
+    #     script: |
+    #       Invoke-WebRequest -UseBasicParsing -Uri "https://aka.ms/vs/install/latest/vs_setup.exe" -OutFile "$env:TEMP\dd_vs_setup.exe"
+    #       & "$env:TEMP\dd_vs_setup.exe" --update --quiet --wait | Out-Null
                     
-          Invoke-WebRequest -UseBasicParsing -Uri "https://aka.ms/vs/$(VSVERSION)/vs_enterprise.exe" -OutFile "$env:TEMP\dd_vs_enterprise.exe"
-          & "$env:TEMP\dd_vs_enterprise.exe" --quiet --norestart --wait --includeRecommended --add Microsoft.VisualStudio.Workload.NetCrossPlat | Out-Null
+    #       Invoke-WebRequest -UseBasicParsing -Uri "https://aka.ms/vs/$(VSVERSION)/vs_enterprise.exe" -OutFile "$env:TEMP\dd_vs_enterprise.exe"
+    #       & "$env:TEMP\dd_vs_enterprise.exe" --quiet --norestart --wait --includeRecommended --add Microsoft.VisualStudio.Workload.NetCrossPlat | Out-Null
 
     - task: UseDotNet@2
       displayName: .NET Version
