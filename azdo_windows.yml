@@ -105,7 +105,7 @@ stages:
           6.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\bin\Release\net6.0-windows10.0.19041.0\win10-x64/**/*.msix
         TargetFolder: '$(Build.ArtifactStagingDirectory)'
    
-    - script: '"C:\Program Files (x86)\Windows Kits\10\App Certification Kit\SignTool" sign /fd SHA256 /f $(Agent.TempDirectory)/XamCATFidCert.pfx /p $(WindowsCertSecret) $(Build.ArtifactStagingDirectory)/**/**/WeatherTwentyOne_1.0.0.0_x64.msix'
+    - script: '"C:\Program Files (x86)\Windows Kits\10\App Certification Kit\SignTool" sign /fd SHA256 /f $(Agent.TempDirectory)/XamCATFidCert.pfx /p $(WindowsCertSecret) $(Build.ArtifactStagingDirectory)\6.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\bin\Release\net6.0-windows10.0.19041.0\win10-x64\AppPackages\WeatherTwentyOne_1.0.0.0_Test\WeatherTwentyOne_1.0.0.0_x64.msix'
       displayName: 'Sign MSIX Package'
 
 
