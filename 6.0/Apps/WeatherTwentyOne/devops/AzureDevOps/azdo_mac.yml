@@ -75,16 +75,18 @@ stages:
     steps:
     
     # https://docs.microsoft.com/en-us/azure/devops/pipelines/apps/mobile/app-signing?view=azure-devops&tabs=apple-install-during-build#sign-your-apple-ios-macos-tvos-or-watchos-app
+    # Setup Secret Pipeline Variable or Library Secrets Variable for iOS Certificate Password
     - task: InstallAppleCertificate@2
       inputs:
-        certSecureFile: 'SweekyDevCert.p12'
+        certSecureFile: '<IOS_DEVELOPMENT_CERT_P12>'
         certPwd: '$(iOSCertPassword)'
         keychain: 'temp'
 
     - task: InstallAppleProvisioningProfile@1
       inputs:
         provisioningProfileLocation: 'secureFiles'
-        provProfileSecureFile: 'VS_WildCard_Development.mobileprovision'
+        provProfileSecureFile: '<IOS_PROVISIONING_PROFILE>'
+
     - task: UseDotNet@2
       displayName: .NET Version
       inputs:
@@ -115,13 +117,13 @@ stages:
         targetType: 'inline'
         script: |
           cd 6.0/Apps/WeatherTwentyOne/src
-          dotnet build -f net6.0-ios -c Debug /p:packageApp=false /p:buildForSimulator=true /p:ArchiveOnBuild=false
+          dotnet build -f net6.0-ios -c Release
 
     - task: CopyFiles@2
       inputs:
         Contents: |
-          **/**/6.0/Apps/WeatherTwentyOne/src/WeatherTwentyOne/bin/Debug/net6.0-ios/iossimulator-x64/**/*.app
-          6.0/Apps/WeatherTwentyOne/src/WeatherTwentyOne/bin/Debug/net6.0-ios/iossimulator-x64/**/*.app
+          **/**/6.0/Apps/WeatherTwentyOne/src/WeatherTwentyOne/bin/Release/net6.0-ios/iossimulator-x64/**/*.app
+          6.0/Apps/WeatherTwentyOne/src/WeatherTwentyOne/bin/Release/net6.0-ios/iossimulator-x64/**/*.app
         TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
     - task: PublishBuildArtifacts@1

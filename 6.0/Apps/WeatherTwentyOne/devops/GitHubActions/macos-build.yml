@@ -101,10 +101,6 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version:  '${{env.DOTNETVERSION}}'
-          
-      - name: List installed .NET info
-        shell: pwsh
-        run: dotnet --info
 
       - name: Install .NET MAUI
         shell: bash
