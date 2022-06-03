@@ -10,7 +10,7 @@ on:
 
 env:
     DOTNETVERSION: 6.0.300
-    VSVERSION: 17/pre
+#     VSVERSION: 17/pre
     
 jobs:
   buildWindows:
@@ -19,26 +19,27 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Install Visual Studio Preview
-        run: |
-          Invoke-WebRequest -UseBasicParsing -Uri "https://aka.ms/vs/install/latest/vs_setup.exe" -OutFile "$env:TEMP\dd_vs_setup.exe"
-          & "$env:TEMP\dd_vs_setup.exe" --update --quiet --wait | Out-Null
+#       - name: Install Visual Studio Preview
+#         run: |
+#           Invoke-WebRequest -UseBasicParsing -Uri "https://aka.ms/vs/install/latest/vs_setup.exe" -OutFile "$env:TEMP\dd_vs_setup.exe"
+#           & "$env:TEMP\dd_vs_setup.exe" --update --quiet --wait | Out-Null
           
-          Invoke-WebRequest -UseBasicParsing -Uri "https://aka.ms/vs/${{env.VSVERSION}}/vs_enterprise.exe" -OutFile "$env:TEMP\dd_vs_enterprise.exe"
-          & "$env:TEMP\dd_vs_enterprise.exe" --quiet --norestart --wait --includeRecommended --add Microsoft.VisualStudio.Workload.NetCrossPlat | Out-Null
+#           Invoke-WebRequest -UseBasicParsing -Uri "https://aka.ms/vs/${{env.VSVERSION}}/vs_enterprise.exe" -OutFile "$env:TEMP\dd_vs_enterprise.exe"
+#           & "$env:TEMP\dd_vs_enterprise.exe" --quiet --norestart --wait --includeRecommended --add Microsoft.VisualStudio.Workload.NetCrossPlat | Out-Null
+      
       - name: Setup .NET SDK ${{env.DOTNETVERSION}}
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: '${{env.DOTNETVERSION}}'
           
-      - name: List installed .NET info
-        shell: pwsh
-        run: dotnet --info
+#       - name: List installed .NET info
+#         shell: pwsh
+#         run: dotnet --info
 
-      - name: Add msbuild to PATH
-        uses: microsoft/setup-msbuild@v1.1
-        with:
-          vs-prerelease: true
+#       - name: Add msbuild to PATH
+#         uses: microsoft/setup-msbuild@v1.1
+#         with:
+#           vs-prerelease: true
 
       - name: Install .NET MAUI
         shell: pwsh
