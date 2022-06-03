@@ -119,7 +119,9 @@ stages:
 
     - task: CopyFiles@2
       inputs:
-        Contents: '**/*.app'
+        Contents: |
+          **/*.app
+          **/*.ipa
         TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
     - task: PublishBuildArtifacts@1

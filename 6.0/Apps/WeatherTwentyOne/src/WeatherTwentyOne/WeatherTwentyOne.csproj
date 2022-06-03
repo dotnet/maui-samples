@@ -35,6 +35,13 @@
 		<!-- <AppxPackageSigningEnabled>true</AppxPackageSigningEnabled> -->
 	</PropertyGroup>
 
+	<!-- For iOS publish-->
+	<PropertyGroup Condition="$(TargetFramework.Contains('-ios')) and '$(Configuration)' == 'Release'">
+		<RuntimeIdentifier>ios-arm64</RuntimeIdentifier>
+		<!-- <CodesignKey>iPhone Distribution: John Smith (AY2GDE9QM7)</CodesignKey>
+		<CodesignProvision>MyMauiApp</CodesignProvision> -->
+		<ArchiveOnBuild>true</ArchiveOnBuild>
+	</PropertyGroup>
   <ItemGroup>
     <MauiIcon Include="Resources\appicon.svg" ForegroundFile="Resources\appiconfg.svg" Color="#081B25" />
     <MauiSplashScreen Include="Resources\appiconfg.svg" Color="#081B25" />
