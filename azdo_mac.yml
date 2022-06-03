@@ -73,6 +73,16 @@ stages:
       
     steps:
     
+    - task: InstallAppleCertificate@2
+      inputs:
+        certSecureFile: 'SweekyDevCert.p12'
+        certPwd: '$(iOSCertPassword)'
+        keychain: 'temp'
+
+    - task: InstallAppleProvisioningProfile@1
+      inputs:
+        provisioningProfileLocation: 'secureFiles'
+        provProfileSecureFile: 'VS_WildCard_Development.mobileprovision'
     - task: UseDotNet@2
       displayName: .NET Version
       inputs:
