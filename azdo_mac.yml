@@ -115,7 +115,7 @@ stages:
         targetType: 'inline'
         script: |
           cd 6.0/Apps/WeatherTwentyOne/src
-          dotnet build -f net6.0-ios -c Release /p:ArchiveOnBuild=true
+          dotnet publish -f net6.0-ios -c Release
 
     - task: CopyFiles@2
       inputs:
