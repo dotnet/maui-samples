@@ -18,29 +18,12 @@ jobs:
     
     steps:
       - uses: actions/checkout@v2
-
-#       - name: Install Visual Studio Preview
-#         run: |
-#           Invoke-WebRequest -UseBasicParsing -Uri "https://aka.ms/vs/install/latest/vs_setup.exe" -OutFile "$env:TEMP\dd_vs_setup.exe"
-#           & "$env:TEMP\dd_vs_setup.exe" --update --quiet --wait | Out-Null
-          
-#           Invoke-WebRequest -UseBasicParsing -Uri "https://aka.ms/vs/${{env.VSVERSION}}/vs_enterprise.exe" -OutFile "$env:TEMP\dd_vs_enterprise.exe"
-#           & "$env:TEMP\dd_vs_enterprise.exe" --quiet --norestart --wait --includeRecommended --add Microsoft.VisualStudio.Workload.NetCrossPlat | Out-Null
       
       - name: Setup .NET SDK ${{env.DOTNETVERSION}}
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: '${{env.DOTNETVERSION}}'
           
-#       - name: List installed .NET info
-#         shell: pwsh
-#         run: dotnet --info
-
-#       - name: Add msbuild to PATH
-#         uses: microsoft/setup-msbuild@v1.1
-#         with:
-#           vs-prerelease: true
-
       - name: Install .NET MAUI
         shell: pwsh
         run: |
@@ -60,33 +43,28 @@ jobs:
 #           dotnet build <path to unit test csproj>
 #           dotnet test <path to unit test csproj> --no-build --verbosity normal
 
-#       - name: Create signing pfx file from secrets
-#         shell: pwsh
-#         id: secret-file
-#         env:
-#           SECRET_DATA1: ${{ secrets.WIN_SIGN_CERT }}
-#         run: |
-#           $secretFile = "WinSignCert.pfx"; 
-#           $encodedBytes = [System.Convert]::FromBase64String($env:SECRET_DATA1); 
-#           Set-Content $secretFile -Value $encodedBytes -AsByteStream;
-#           Write-Output "::set-output name=SECRET_FILE::$secretFile";
-#           Write-Output " ";
-#           Write-Output "CHECK FILE EXISTS";
-#           Write-Output " ";
-#           ls
+      - name: Create signing pfx file from secrets
+        shell: pwsh
+        id: secret-file
+        env:
+          SECRET_DATA1: ${{ secrets.WIN_SIGN_CERT }}
+        run: |
+          $secretFile = "WinSignCert.pfx"; 
+          $encodedBytes = [System.Convert]::FromBase64String($env:SECRET_DATA1); 
+          Set-Content $secretFile -Value $encodedBytes -AsByteStream;
+          Write-Output "::set-output name=SECRET_FILE::$secretFile";
+          Write-Output " ";
+          Write-Output "CHECK FILE EXISTS";
+          Write-Output " ";
+          ls
 
-      # - name: Pack Windows App
-      #   shell: pwsh
-      #   run: |
-      #     & "C:\Program Files (x86)\Windows Kits\10\App Certification Kit\MakeAppx" pack /v /h SHA256 /d "6.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\bin\Release\net6.0-windows10.0.19041\win10-x64" /p WeatherTwentyOne.msix
-      #     & ls
-
-#       - name: Sign Windows App
-#         shell: pwsh
-#         env:
-#           CERT_PASSWORD: ${{ secrets.WIN_CERT_PASSWORD }}
-#         run: |
-#           & "C:\Program Files (x86)\Windows Kits\10\App Certification Kit\SignTool" sign /a /fd SHA256 /f WinSignCert.pfx /p <YOUR PASSWORD> <PATH TO MSIX>WeatherTwentyOne.msix
+      # https://docs.microsoft.com/en-us/windows/msix/desktop/azure-dev-ops
+      - name: Sign Windows App
+        shell: pwsh
+        env:
+          CERT_PASSWORD: ${{ secrets.WIN_CERT_PASSWORD }}
+        run: |
+          '"C:\Program Files (x86)\Windows Kits\10\App Certification Kit\SignTool" sign /a /fd SHA256 /f WinSignCert.pfx /p ($env:CERT_PASSWORD) 6.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\bin\Release\net6.0-windows10.0.19041.0\win10-x64\**\*.msix'
 
       - uses: actions/upload-artifact@v2
         with:
@@ -102,48 +80,48 @@ jobs:
       #   env:
       #     SECRET_FILE: ${{ steps.secret-file.outputs.SECRET_FILE }}
       
-  buildAndroid:
-      runs-on: windows-2022
+#   buildAndroid:
+#       runs-on: windows-2022
 
-      steps:
-        - uses: actions/checkout@v2
+#       steps:
+#         - uses: actions/checkout@v2
 
-        - name: Setup .NET SDK ${{env.DOTNETVERSION}}
-          uses: actions/setup-dotnet@v1
-          with:
-            dotnet-version:  '${{env.DOTNETVERSION}}'
+#         - name: Setup .NET SDK ${{env.DOTNETVERSION}}
+#           uses: actions/setup-dotnet@v1
+#           with:
+#             dotnet-version:  '${{env.DOTNETVERSION}}'
 
-        - name: List installed .NET info
-          shell: pwsh
-          run: dotnet --info
+#         - name: List installed .NET info
+#           shell: pwsh
+#           run: dotnet --info
 
-        - name: Install .NET MAUI
-          shell: bash
-          run: |
-            dotnet nuget locals all --clear 
-            dotnet workload install maui --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
-            dotnet workload install android ios maccatalyst tvos macos maui wasm-tools --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
+#         - name: Install .NET MAUI
+#           shell: bash
+#           run: |
+#             dotnet nuget locals all --clear 
+#             dotnet workload install maui --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
+#             dotnet workload install android ios maccatalyst tvos macos maui wasm-tools --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
 
-        - name: Restore nuget packages
-          run: |
-            cd 6.0\Apps\WeatherTwentyOne\src
-            dotnet restore WeatherTwentyOne.sln
+#         - name: Restore nuget packages
+#           run: |
+#             cd 6.0\Apps\WeatherTwentyOne\src
+#             dotnet restore WeatherTwentyOne.sln
 
-          # https://docs.microsoft.com/en-us/dotnet/maui/android/deployment/overview
-        - name : Build Android App
-          shell: bash
-          run: |
-            cd 6.0/Apps/WeatherTwentyOne/src
-            dotnet publish -f:net6.0-android -c:Release
+#           # https://docs.microsoft.com/en-us/dotnet/maui/android/deployment/overview
+#         - name : Build Android App
+#           shell: bash
+#           run: |
+#             cd 6.0/Apps/WeatherTwentyOne/src
+#             dotnet publish -f:net6.0-android -c:Release
             
-  #       - name: Build and Run UnitTests
-  #         shell: bash
-  #         run: |
-  #           dotnet build <path to unit test csproj>
-  #           dotnet test <path to unit test csproj> --no-build --verbosity normal
+#   #       - name: Build and Run UnitTests
+#   #         shell: bash
+#   #         run: |
+#   #           dotnet build <path to unit test csproj>
+#   #           dotnet test <path to unit test csproj> --no-build --verbosity normal
 
-        - uses: actions/upload-artifact@v2
-          with:
-            name: artifacts-android
-            path: |
-              6.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\bin\Release\net6.0-android\publish\*.apk
+#         - uses: actions/upload-artifact@v2
+#           with:
+#             name: artifacts-android
+#             path: |
+#               6.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\bin\Release\net6.0-android\publish\*.apk
