@@ -49,53 +49,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Remove="Resources\Fonts\fa-solid-900.ttf" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <PackageReference Include="CommunityToolkit.Maui" Version="1.0.0-rc3" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Compile Update="Pages\CustomAnimationPage.xaml.cs">
-	    <DependentUpon>CustomAnimationPage.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="Pages\TranslatePage.xaml.cs">
-	    <DependentUpon>TranslatePage.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="Pages\RotatePage.xaml.cs">
-	    <DependentUpon>RotatePage.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="Pages\ScalePage.xaml.cs">
-	    <DependentUpon>ScalePage.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="Pages\FadePage.xaml.cs">
-	    <DependentUpon>FadePage.xaml</DependentUpon>
-	  </Compile>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <MauiXaml Update="Pages\EasingEditorPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Pages\EasingsPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Pages\CustomAnimationPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Pages\TranslatePage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Pages\RotatePage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Pages\ScalePage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Resources\Styles\Icons.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
+	  <PackageReference Include="CommunityToolkit.Maui" Version="1.0.0" />
 	</ItemGroup>
 
 </Project>
