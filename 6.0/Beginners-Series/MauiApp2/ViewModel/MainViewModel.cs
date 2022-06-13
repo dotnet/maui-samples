@@ -20,7 +20,7 @@ public partial class MainViewModel : ObservableObject
     [ObservableProperty]
     string text;
 
-    [ICommand]
+    [RelayCommand]
     async Task Add()
     {
         if (string.IsNullOrWhiteSpace(Text))
@@ -37,7 +37,7 @@ public partial class MainViewModel : ObservableObject
         Text = string.Empty;
     }
 
-    [ICommand]
+    [RelayCommand]
     void Delete(string s)
     {
         if(Items.Contains(s))
@@ -46,7 +46,7 @@ public partial class MainViewModel : ObservableObject
         }
     }
 
-    [ICommand]
+    [RelayCommand]
     async Task Tap(string s)
     {
         await Shell.Current.GoToAsync($"{nameof(DetailPage)}?Text={s}");

@@ -9,7 +9,7 @@ public partial class DetailViewModel : ObservableObject
     [ObservableProperty]
     string text;
 
-    [ICommand]
+    [RelayCommand]
     async Task GoBack()
     {
         await Shell.Current.GoToAsync("..");
