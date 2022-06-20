@@ -3,7 +3,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
                     xmlns:app="clr-namespace:WeatherTwentyOne.Resources.Styles"
                     x:Class="WeatherTwentyOne.Resources.Styles.DefaultTheme"
-                    xmlns:android="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;assembly=Microsoft.Maui.Controls">
+                    xmlns:android="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;assembly=Microsoft.Maui.Controls"
+                    xmlns:converter="clr-namespace:WeatherTwentyOne.Converters">
 
     <Color x:Key="Primary">#512BD4</Color>
     <Color x:Key="Secondary">#DFD8F7</Color>
@@ -363,4 +364,48 @@
             </Grid>
         </Frame>
     </DataTemplate>
+
+    <converter:ImageByStateConverter x:Key="ImageByStateConverter"/>
+
+    <Style TargetType="FlyoutItem" x:Key="HomeFlyout">
+        <Style.Triggers>
+            <Trigger TargetType="FlyoutItem"
+                        Property="IsChecked" Value="False">
+                <Setter Property="FlyoutIcon" Value="tab_home.png"/>
+            </Trigger>
+            <Trigger TargetType="FlyoutItem"
+                        Property="IsChecked" Value="True">
+                <Setter Property="FlyoutIcon" Value="tab_home_on.png"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="FlyoutItem" x:Key="FavFlyout">
+        <Style.Triggers>
+            <Trigger TargetType="FlyoutItem"
+                        Property="IsChecked" Value="False">
+                <Setter Property="FlyoutIcon" Value="tab_favorites.png"/>
+            </Trigger>
+            <Trigger TargetType="FlyoutItem"
+                        Property="IsChecked" Value="True">
+                <Setter Property="FlyoutIcon" Value="tab_favorites_on.png"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="FlyoutItem" x:Key="MapFlyout">
+        <Style.Triggers>
+            <Trigger TargetType="FlyoutItem"
+                        Property="IsChecked" Value="False">
+                <Setter Property="FlyoutIcon" Value="tab_map.png"/>
+            </Trigger>
+            <Trigger TargetType="FlyoutItem"
+                        Property="IsChecked" Value="True">
+                <Setter Property="FlyoutIcon" Value="tab_map_on.png"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    
+
 </ResourceDictionary>
