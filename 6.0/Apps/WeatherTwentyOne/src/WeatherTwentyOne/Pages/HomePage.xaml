@@ -5,8 +5,10 @@
     xmlns:v="clr-namespace:WeatherTwentyOne.Views"
     xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
     ios:Page.UseSafeArea="True"
-    Title="St. Louis, Missouri USA"
-    x:Class="WeatherTwentyOne.Pages.HomePage">
+    Title="{OnIdiom 'St. Louis, Missouri USA', Desktop=''}"
+    Shell.NavBarIsVisible="{OnPlatform True, MacCatalyst=False}"
+    x:Class="WeatherTwentyOne.Pages.HomePage"
+    x:Name="this">
 
     <ContentPage.MenuBarItems>
         <MenuBarItem Text="File">

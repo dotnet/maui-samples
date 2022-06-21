@@ -4,6 +4,7 @@
     xmlns:m="clr-namespace:WeatherTwentyOne.Models"
     xmlns:v="clr-namespace:WeatherTwentyOne.Views"
     Title="Wind Map"
+    Shell.NavBarIsVisible="{OnIdiom True, Desktop=False}"
     x:Class="WeatherTwentyOne.Pages.MapPage">
 
     <Grid

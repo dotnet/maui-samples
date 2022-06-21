@@ -12,13 +12,6 @@
             FlyoutWidth="68" FlyoutBackgroundColor="{StaticResource Background_Mid}"
             FlyoutBehavior="{OnIdiom Phone=Disabled, Default=Locked}">
 
-            <!--<Shell.FlyoutHeaderTemplate>
-                <DataTemplate>
-                    <BoxView HeightRequest="68"/>
-                </DataTemplate>
-
-            </Shell.FlyoutHeaderTemplate>-->
-
             <Shell.FlyoutFooterTemplate>
                 <DataTemplate>
                     <Grid RowDefinitions="68">
@@ -40,13 +33,13 @@
             
 
             <!-- Desktop/Tablet-->
-            <FlyoutItem Title="Home" FlyoutIcon="tab_home.png">
+            <FlyoutItem Title="Home" Style="{StaticResource HomeFlyout}">
                 <ShellContent ContentTemplate="{DataTemplate page:HomePage}"/>
             </FlyoutItem>
-            <FlyoutItem Title="Favorites" FlyoutIcon="tab_favorites.png">
+            <FlyoutItem Title="Favorites" Style="{StaticResource FavFlyout}">
                 <ShellContent ContentTemplate="{DataTemplate page:FavoritesPage}"/>
             </FlyoutItem>
-            <FlyoutItem Title="Map" FlyoutIcon="tab_map.png">
+            <FlyoutItem Title="Map" Style="{StaticResource MapFlyout}">
                 <ShellContent ContentTemplate="{DataTemplate page:MapPage}"/>
             </FlyoutItem>
             <FlyoutItem Title="Settings" Route="settings" FlyoutItemIsVisible="False">
