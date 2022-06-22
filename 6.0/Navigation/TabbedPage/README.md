@@ -3,9 +3,11 @@ name: .NET MAUI - TabbedPage
 description: "How to use a TabbedPage to navigate through a collection of pages (navigation)"
 page_type: sample
 languages:
-- csharp, xaml
+- csharp
+- xaml
 products:
-- .NET MAUI
+- dotnet-maui
+- dotnet-core
 urlFragment: navigation-tabbedpage
 ---
 # TabbedPage
