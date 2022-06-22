@@ -23,7 +23,7 @@ namespace TodoREST.Services
             else
                 _client = new HttpClient();
 #else
-            client = new HttpClient();
+            _client = new HttpClient();
 #endif
             _serializerOptions = new JsonSerializerOptions
             {
