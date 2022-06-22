@@ -3,9 +3,11 @@ name: .NET MAUI - Shell Mixed Navigation
 description: "This sample demonstrates how to use Shell with both tabs and a flyout, and navigate between its pages of information (navigation)."
 page_type: sample
 languages:
-- csharp, xaml
+- csharp
+- xaml
 products:
-- .NET MAUI
+- dotnet-maui
+- dotnet-core
 urlFragment: navigation-shellmixed
 ---
 # Shell Mixed Navigation
