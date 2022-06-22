@@ -3,9 +3,11 @@ name: .NET MAUI - Animations
 description: "This sample demonstrates various animations you can do in .NET MAUI."
 page_type: sample
 languages:
-- csharp, xaml
+- csharp
+- xaml
 products:
-- .NET MAUI
+- dotnet-maui
+- dotnet-core
 urlFragment: animations
 ---
 
