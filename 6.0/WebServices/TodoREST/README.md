@@ -10,7 +10,7 @@ products:
 urlFragment: webservices-rest
 ---
 
-# TodoREST
+# Consume a REST-based web service
 
 This sample demonstrates a Todo list application where the data is stored and accessed from a REST-based web service. The web service code is in the TodoAPI project.
 
