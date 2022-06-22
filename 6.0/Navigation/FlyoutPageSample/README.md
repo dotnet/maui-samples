@@ -3,9 +3,11 @@ name: .NET MAUI - FlyoutPage
 description: "This sample demonstrates how to use a FlyoutPage and navigate between its pages of information (navigation)."
 page_type: sample
 languages:
-- csharp, xaml
+- csharp
+- xaml
 products:
-- .NET MAUI
+- dotnet-maui
+- dotnet-core
 urlFragment: navigation-flyoutpage
 ---
 # FlyoutPage
