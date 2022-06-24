@@ -1,5 +1,5 @@
 ---
-name: .NET MAUI - Consume a REST-based web service
+name: .NET MAUI - XAML markup extensions
 description: This sample demonstrates how to use the various XAML markup extensions in .NET MAUI, and how to create your own.
 page_type: sample
 languages:
