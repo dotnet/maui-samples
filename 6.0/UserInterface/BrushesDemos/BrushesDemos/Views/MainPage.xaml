@@ -1,0 +1,30 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns:views="clr-namespace:BrushesDemos.Views"
+             x:Class="BrushesDemos.MainPage"
+			 Title="Brushes demos">
+	<TableView Intent="Menu">
+		<TableRoot>
+			<TableSection Title="Brushes">
+				<TextCell Text="Solid color brush demos"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type views:SolidColorBrushDemoPage}" />
+				<TextCell Text="All solid color brushes"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type views:AllSolidColorBrushesDemoPage}" />
+                <TextCell Text="Linear gradient brush demos"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type views:LinearGradientBrushDemoPage}" />
+                <TextCell Text="Radial gradient brush demos"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type views:RadialGradientBrushDemoPage}" />
+				<TextCell Text="Update brushes at runtime demo"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type views:UpdateBrushDemoPage}" />
+				<TextCell Text="CSS demo"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type views:CSSDemoPage}" />
+			</TableSection>
+		</TableRoot>
+	</TableView>		
+</ContentPage>
