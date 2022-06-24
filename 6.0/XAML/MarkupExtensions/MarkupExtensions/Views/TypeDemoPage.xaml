@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MarkupExtensions.TypeDemoPage"
+             Title="x:Type Demo">    
+    <StackLayout x:Name="stackLayout"
+                 Padding="10, 0">        
+        <Button Text="Create a Slider"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Command="{Binding CreateCommand}"
+                CommandParameter="{x:Type Slider}" />
+        <Button Text="Create a Stepper"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Command="{Binding CreateCommand}"
+                CommandParameter="{x:Type Stepper}" />
+        <Button Text="Create a Switch"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Command="{Binding CreateCommand}"
+                CommandParameter="{x:Type Switch}" />
+    </StackLayout>
+</ContentPage>
