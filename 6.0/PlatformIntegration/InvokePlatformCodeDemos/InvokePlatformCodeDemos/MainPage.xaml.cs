@@ -6,10 +6,10 @@ namespace InvokePlatformCodeDemos;
 
 public partial class MainPage : ContentPage
 {
-	public MainPage()
-	{
-		InitializeComponent();
-	}
+    public MainPage()
+    {
+        InitializeComponent();
+    }
 
     protected override void OnAppearing()
     {
@@ -20,7 +20,7 @@ public partial class MainPage : ContentPage
         conditionalCompilationOrientationLabel.Text = orientation1.ToString();
 
         var deviceOrientationService2 = new PartialMethodsDeviceOrientationService();
-        DeviceOrientation orientation2 = deviceOrientationService1.GetOrientation();
+        DeviceOrientation orientation2 = deviceOrientationService2.GetOrientation();
         partialMethodsOrientationLabel.Text = orientation2.ToString();    
     }
 }
