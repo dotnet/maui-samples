@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="TableViewDemos.MenuIntentPage"
+             Title="Menu page">
+    <TableView Intent="Menu">
+        <TableRoot>
+            <TableSection Title="Chapters">
+                <TextCell Text="1. Introduction to .NET MAUI"
+                          Detail="Learn about .NET MAUI and what it provides." />
+                <TextCell Text="2. Anatomy of an app"
+                          Detail="Learn about the visual elements in .NET MAUI" />
+                <TextCell Text="3. Text"
+                          Detail="Learn about the .NET MAUI controls that display text." />
+                <TextCell Text="4. Dealing with sizes"
+                          Detail="Learn how to size .NET MAUI controls on screen." />
+                <TextCell Text="5. XAML vs code"
+                          Detail="Learn more about creating your UI in XAML." />
+            </TableSection>
+        </TableRoot>
+    </TableView>
+</ContentPage>
