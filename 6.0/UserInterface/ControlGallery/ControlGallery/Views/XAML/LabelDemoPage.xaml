@@ -16,7 +16,7 @@ backed UI toolkit abstraction that allows
 developers to easily create user interfaces
 that can be shared across Android, iOS, macOS,and
 Windows."
-               FontSize="Large"
+               FontSize="20"
                VerticalOptions="CenterAndExpand"
                Margin="10, 0" />
     </StackLayout>

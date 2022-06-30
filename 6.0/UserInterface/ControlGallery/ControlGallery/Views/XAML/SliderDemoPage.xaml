@@ -17,7 +17,7 @@
         <Label Text="{Binding Source={x:Reference slider},
                               Path=Value,
                               StringFormat='Slider value is {0:F1}'}"
-               FontSize="Large"
+               FontSize="20"
                HorizontalOptions="Center"
                VerticalOptions="CenterAndExpand" />
     </StackLayout>
