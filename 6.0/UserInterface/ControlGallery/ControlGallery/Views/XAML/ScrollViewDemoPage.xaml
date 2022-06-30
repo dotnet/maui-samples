@@ -37,7 +37,7 @@ only at runtime, you should probably put it in
 a ScrollView just to be sure your stuff doesn't
 go running off the bottom of the screen."
 
-                FontSize="Large" />
+                FontSize="20" />
         </ScrollView>
     </StackLayout>
 </ContentPage>

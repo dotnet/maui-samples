@@ -10,7 +10,7 @@
                HorizontalOptions="Center" />
 
         <Button Text="Click Me!"
-                FontSize="Large"
+                FontSize="20"
                 BorderWidth="1"
                 HorizontalOptions="Center"
                 VerticalOptions="CenterAndExpand"
@@ -18,7 +18,7 @@
 
         <Label x:Name="label"
                Text="0 button clicks"
-               FontSize="Large"
+               FontSize="20"
                HorizontalOptions="Center"
                VerticalOptions="CenterAndExpand" />
     </StackLayout>

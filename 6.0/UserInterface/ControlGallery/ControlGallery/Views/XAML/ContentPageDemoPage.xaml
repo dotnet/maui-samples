@@ -11,18 +11,18 @@
                HorizontalOptions="Center" />
 
         <Label Text="ContentPage is the simplest type of page."
-               FontSize="Large" />
+               FontSize="20" />
 
         <Label Text=
 "The content of a ContentPage is generally a
 layout of some sort that can then be a parent
 to multiple children."
-               FontSize="Large" />
+               FontSize="20" />
 
         <Label Text=
 "This ContentPage contains a StackLayout, which
 in turn contains four Label views (including the
 large one at the top)."
-               FontSize="Large" />
+               FontSize="20" />
     </StackLayout>
 </ContentPage>

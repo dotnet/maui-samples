@@ -17,25 +17,25 @@
         <StackLayout HorizontalOptions="Center">
 
             <Button Text=" Go to Label Demo Page "
-                    FontSize="Large"
+                    FontSize="20"
                     BorderWidth="1" 
                     StyleId="LabelDemoPage"
                     Clicked="OnButtonClicked" />
 
             <Button Text=" Go to Image Demo Page "
-                    FontSize="Large"
+                    FontSize="20"
                     BorderWidth="1" 
                     StyleId="ImageDemoPage"
                     Clicked="OnButtonClicked" />
 
             <Button Text=" Go to BoxView Demo Page "
-                    FontSize="Large"
+                    FontSize="20"
                     BorderWidth="1" 
                     StyleId="BoxViewDemoPage"
                     Clicked="OnButtonClicked" />
 
             <Button Text=" Go to WebView Demo Page "
-                    FontSize="Large"
+                    FontSize="20"
                     BorderWidth="1" 
                     StyleId="WebViewDemoPage"
                     Clicked="OnButtonClicked" />

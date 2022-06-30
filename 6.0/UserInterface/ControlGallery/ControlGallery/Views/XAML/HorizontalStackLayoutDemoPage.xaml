@@ -13,7 +13,7 @@
                        HeightRequest="30"
                        WidthRequest="30" />
             <Label Text="Red"
-                   FontSize="Large" />
+                   FontSize="20" />
         </HorizontalStackLayout>
     </VerticalStackLayout>
 </ContentPage>

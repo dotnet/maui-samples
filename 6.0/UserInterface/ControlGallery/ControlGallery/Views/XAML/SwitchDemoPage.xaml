@@ -14,7 +14,7 @@
                 VerticalOptions="CenterAndExpand" />
 
         <Label Text="Switch is now False"
-               FontSize="Large"
+               FontSize="20"
                HorizontalOptions="Center"
                VerticalOptions="CenterAndExpand">
             <Label.Triggers>

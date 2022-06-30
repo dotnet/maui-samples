@@ -16,7 +16,7 @@
 
         <Label x:Name="label"
                Text="0 ImageButton clicks"
-               FontSize="Large"
+               FontSize="20"
                HorizontalOptions="Center"
                VerticalOptions="Center" />
     </StackLayout>
