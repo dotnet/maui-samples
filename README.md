@@ -16,6 +16,7 @@ Samples built with .NET Multi-platform App UI (.NET MAUI).
 
 * [Rachel's Recipes App](https://github.com/rachelkang/recipeSearch)
 * [Awesome .NET MAUI](https://github.com/jsuarezruiz/awesome-dotnet-maui)
+* [.NET MAUI samples (.NET MAUI Paint, .NET MAUI Blazor Photo gallery, Kanban board and more)](https://github.com/VladislavAntonyuk/MauiSamples)
 
 ## .NET MAUI Links
 
