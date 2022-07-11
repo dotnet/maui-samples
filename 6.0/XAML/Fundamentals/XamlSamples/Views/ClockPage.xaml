@@ -9,7 +9,7 @@
     </ContentPage.BindingContext>
 
     <Label Text="{Binding DateTime, StringFormat='{0:T}'}"
-           FontSize="Large"
+           FontSize="20"
            HorizontalOptions="Center"
            VerticalOptions="Center" />
 </ContentPage>
