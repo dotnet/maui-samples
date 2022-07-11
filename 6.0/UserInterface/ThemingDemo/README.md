@@ -1,6 +1,6 @@
 ---
 name: .NET MAUI - Theming
-description: This sample demonstrates how create themes for .NET MAUI apps, and change the theme at runtime.
+description: This sample demonstrates how to create themes for .NET MAUI apps, and change the theme at runtime.
 page_type: sample
 languages:
 - csharp
