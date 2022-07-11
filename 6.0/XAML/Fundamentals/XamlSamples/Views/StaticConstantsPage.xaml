@@ -16,7 +16,7 @@
                  HeightRequest="{x:Static sys:Math.E}"
                  Color="Aqua"
                  HorizontalOptions="Center"
-                 VerticalOptions="CenterAndExpand"
+                 VerticalOptions="Center"
                  Scale="100" />
     </StackLayout>
 </ContentPage>

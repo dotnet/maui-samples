@@ -22,7 +22,7 @@
                Text="TEXT"
                Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
                HorizontalOptions="Center"
-               VerticalOptions="CenterAndExpand" />
+               VerticalOptions="Center" />
 
         <!-- Slider and identifying Label for Scale -->
         <Slider x:Name="scaleSlider"

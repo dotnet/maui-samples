@@ -39,7 +39,7 @@
                                CornerRadius="5"
                                Margin="20"
                                HorizontalOptions="Center"
-                               VerticalOptions="StartAndExpand">
+                               VerticalOptions="Start">
                             <Image Source="{Binding ImageUrl}" 
                                    Aspect="AspectFit"
                                    HeightRequest="100"
