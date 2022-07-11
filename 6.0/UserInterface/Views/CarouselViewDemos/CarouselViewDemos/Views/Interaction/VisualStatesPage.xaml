@@ -48,7 +48,7 @@
                            HeightRequest="350"
                            WidthRequest="150"
                            HorizontalOptions="Center"
-                           VerticalOptions="CenterAndExpand">
+                           VerticalOptions="Center">
                         <StackLayout>
                             <Label Text="{Binding Name}" 
                                    FontAttributes="Bold"

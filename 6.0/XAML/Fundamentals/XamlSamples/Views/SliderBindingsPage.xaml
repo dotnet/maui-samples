@@ -8,7 +8,7 @@
                BindingContext="{x:Reference slider}"
                Rotation="{Binding Path=Value}"
                FontAttributes="Bold"
-               FontSize="Large"
+               FontSize="20"
                HorizontalOptions="Center"
                VerticalOptions="Center" />
         <Slider x:Name="slider"

@@ -79,7 +79,7 @@
                     <StackLayout>
                         <Image Source="cat.png"
                                HorizontalOptions="Center"
-                               VerticalOptions="CenterAndExpand" />
+                               VerticalOptions="Center" />
                         <Label Text="Cat"
                                HorizontalOptions="Center"
                                VerticalOptions="End" />
@@ -92,7 +92,7 @@
                     <StackLayout>
                         <Image Source="dog.png"
                                HorizontalOptions="Center"
-                               VerticalOptions="CenterAndExpand" />
+                               VerticalOptions="Center" />
                         <Label Text="Dog"
                                HorizontalOptions="Center"
                                VerticalOptions="End" />
@@ -105,7 +105,7 @@
                     <StackLayout>
                         <Image Source="elephant.png"
                                HorizontalOptions="Center"
-                               VerticalOptions="CenterAndExpand" />
+                               VerticalOptions="Center" />
                         <Label Text="Elephant"
                                HorizontalOptions="Center"
                                VerticalOptions="End" />
@@ -118,7 +118,7 @@
                     <StackLayout>
                         <Image Source="monkey.png"
                                HorizontalOptions="Center"
-                               VerticalOptions="CenterAndExpand" />
+                               VerticalOptions="Center" />
                         <Label Text="Monkey"
                                HorizontalOptions="Center"
                                VerticalOptions="End" />

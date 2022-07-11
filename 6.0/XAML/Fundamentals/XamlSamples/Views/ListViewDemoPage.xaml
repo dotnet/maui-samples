@@ -25,7 +25,7 @@
                                      VerticalOptions="Center">
                             <Label Text="{Binding FriendlyName}"
                                    FontAttributes="Bold"
-                                   FontSize="Medium" />
+                                   FontSize="14" />
                             <StackLayout Orientation="Horizontal"
                                          Spacing="0">
                                 <Label Text="{Binding Red,

@@ -10,7 +10,7 @@
                HorizontalTextAlignment="Center"
                Rotation="-15"
                IsVisible="true"
-               FontSize="Large"
+               FontSize="20"
                FontAttributes="Bold"
                TextColor="Blue" />
 

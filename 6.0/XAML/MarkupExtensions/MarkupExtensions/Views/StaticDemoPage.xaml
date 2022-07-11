@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:sys="clr-namespace:System;assembly=netstandard"
              xmlns:local="clr-namespace:MarkupExtensions"
+             xmlns:device="clr-namespace:Microsoft.Maui.Devices;assembly=Microsoft.Maui.Essentials"
              x:Class="MarkupExtensions.StaticDemoPage"
              Title="x:Static Demo">
     <StackLayout Margin="10, 0">
@@ -26,15 +27,5 @@
                FontSize="{x:Static sys:Math.PI}"
                Scale="{x:Static sys:Math.E}" 
                HorizontalOptions="Center" />
-        <Label HorizontalTextAlignment="Center"
-               FontSize="{x:Static local:AppConstants.NormalFontSize}">
-            <Label.FormattedText>
-                <FormattedString>
-                    <Span Text="Runtime Platform: " />
-                    <Span Text="{x:Static sys:Environment.NewLine}" />
-                    <Span Text="{x:Static Device.RuntimePlatform}" />
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
     </StackLayout>
 </ContentPage>

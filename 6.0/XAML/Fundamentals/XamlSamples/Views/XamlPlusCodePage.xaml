@@ -9,7 +9,7 @@
                 Margin="20,0,20,0" />
         <Label x:Name="valueLabel"
                Text="A simple Label"
-               FontSize="Large"
+               FontSize="20"
                HorizontalOptions="Center"
                VerticalOptions="Center" />
         <Button Text="Click Me!"
