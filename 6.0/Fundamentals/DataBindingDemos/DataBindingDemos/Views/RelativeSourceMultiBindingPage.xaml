@@ -26,7 +26,7 @@
                 <Grid>
                     <Label Text="{Binding CardTitle}"
                            FontAttributes="Bold"
-                           FontSize="Large"
+                           FontSize="20"
                            VerticalTextAlignment="Center"
                            HorizontalTextAlignment="Start" />
                     <Image Source="expand.png"
