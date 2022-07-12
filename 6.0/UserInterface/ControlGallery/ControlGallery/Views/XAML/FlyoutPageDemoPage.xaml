@@ -47,7 +47,7 @@
             <ContentPage.Resources>
                 <ResourceDictionary>
                     <Style TargetType="Label">
-                        <Setter Property="FontSize" Value="Large" />
+                        <Setter Property="FontSize" Value="20" />
                         <Setter Property="HorizontalTextAlignment" Value="End" />
                     </Style>
                 </ResourceDictionary>

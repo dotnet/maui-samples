@@ -25,7 +25,7 @@
                Placeholder="phone" />
         <Button x:Name="button"
                 Text="Save"
-                FontSize="Large"
+                FontSize="20"
                 HorizontalOptions="Center">
             <Button.Triggers>
                 <MultiTrigger TargetType="Button">

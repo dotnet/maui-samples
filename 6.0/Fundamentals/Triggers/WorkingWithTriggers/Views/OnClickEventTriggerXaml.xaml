@@ -14,7 +14,7 @@
                 <Setter Property="BorderWidth"
                         Value="3" />
                 <Setter Property="FontSize"
-                        Value="Large" />
+                        Value="20" />
                 <Style.Triggers>
                     <EventTrigger Event="Clicked">
                         <local:VisualElementPopTriggerAction />

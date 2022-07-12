@@ -45,7 +45,7 @@
                     <Label Grid.Column="1"
                            Text="{Binding CardTitle}"
                            FontAttributes="Bold"
-                           FontSize="Large"
+                           FontSize="20"
                            VerticalTextAlignment="Center"
                            HorizontalTextAlignment="Start" />
                     <BoxView Grid.Row="1"
@@ -63,7 +63,7 @@
             </Frame>
         </ControlTemplate>
     </ContentPage.Resources>
-    <StackLayout Margin="10">        
+    <StackLayout Margin="10">
         <controls:CardView BorderColor="DarkGray"
                            CardTitle="John Doe"
                            CardDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla elit dolor, convallis non interdum."
