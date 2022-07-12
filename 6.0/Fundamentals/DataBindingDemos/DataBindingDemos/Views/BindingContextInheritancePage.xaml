@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DataBindingDemos.BindingContextInheritancePage"
+             Title="BindingContext Inheritance">
+    <StackLayout Padding="10">
+
+        <StackLayout VerticalOptions="Fill"
+                     BindingContext="{x:Reference slider}">
+
+            <Label Text="TEXT"
+                   FontSize="80"
+                   HorizontalOptions="Center"
+                   VerticalOptions="End"
+                   Rotation="{Binding Value}" />
+
+            <BoxView Color="#800000FF"
+                     WidthRequest="180"
+                     HeightRequest="40"
+                     HorizontalOptions="Center"
+                     VerticalOptions="Start"
+                     Rotation="{Binding Value}" />
+        </StackLayout>
+
+        <Slider x:Name="slider" 
+                Maximum="360" />
+        
+    </StackLayout>
+</ContentPage>
