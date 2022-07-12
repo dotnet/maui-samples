@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:DataBindingDemos"
+             x:Class="DataBindingDemos.RgbColorSelectorPage"
+             Title="RGB Color Selector">
+    <ContentPage.BindingContext>
+        <local:RgbColorViewModel Color="Gray" />
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <Style TargetType="Slider">
+            <Setter Property="VerticalOptions" Value="Center" />
+        </Style>
+
+        <Style TargetType="Label">
+            <Setter Property="HorizontalTextAlignment" Value="Center" />
+        </Style>
+
+        <local:FloatToIntConverter x:Key="floatToInt" />
+    </ContentPage.Resources>
+
+    <StackLayout Margin="20">
+        <BoxView Color="{Binding Color}"
+                 HeightRequest="100"
+                 WidthRequest="100"
+                 HorizontalOptions="Center" />
+        <StackLayout Margin="10, 0">
+            <Label Text="{Binding Name}" />
+            <Slider Value="{Binding Red}" />
+            <Label Text="{Binding Red, 
+                                  Converter={StaticResource floatToInt},
+                                  ConverterParameter=255,
+                                  StringFormat='Red = {0:X2}'}" />
+            <Slider Value="{Binding Green}" />
+            <Label Text="{Binding Green, 
+                                  Converter={StaticResource floatToInt},
+                                  ConverterParameter=255,
+                                  StringFormat='Green = {0:X2}'}" />
+            <Slider Value="{Binding Blue}" />
+            <Label>
+                <Label.Text>
+                    <Binding Path="Blue"
+                             StringFormat="Blue = {0:X2}"
+                             Converter="{StaticResource floatToInt}">
+                        <Binding.ConverterParameter>
+                            <x:Single>255</x:Single>
+                        </Binding.ConverterParameter>
+                    </Binding>
+                </Label.Text>
+            </Label>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>    

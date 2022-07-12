@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:DataBindingDemos"             
+             x:Class="DataBindingDemos.MixedBindingsPage"
+             x:DataType="local:HslColorViewModel"
+             Title="Mixed Color Selector">
+    <ContentPage.BindingContext>
+        <local:HslColorViewModel Color="Sienna" />
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Slider">
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout Margin="20">
+        <BoxView Color="{Binding Color}"
+                 HeightRequest="100"
+                 WidthRequest="100"
+                 HorizontalOptions="Center" />
+        <StackLayout x:DataType="{x:Null}"
+                     Margin="10, 0">
+            <Label Text="{Binding Name}" />
+            <Slider Value="{Binding Hue}" />
+            <Label Text="{Binding Hue, StringFormat='Hue = {0:F2}'}" />
+            <Slider Value="{Binding Saturation}" />
+            <Label Text="{Binding Saturation, StringFormat='Saturation = {0:F2}'}" />
+            <Slider Value="{Binding Luminosity}" />
+            <Label Text="{Binding Luminosity, StringFormat='Luminosity = {0:F2}'}" />
+        </StackLayout>
+    </StackLayout>    
+</ContentPage>
