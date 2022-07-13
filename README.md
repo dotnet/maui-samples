@@ -6,6 +6,10 @@ Samples built with .NET Multi-platform App UI (.NET MAUI).
 
 ## Official Samples
 
+Official samples can be accessed via the [Samples browser](https://docs.microsoft.com/samples/browse/?expanded=dotnet&products=dotnet-maui).
+
+Sample highlights include:
+
 * [Weather '21 App](6.0/Apps/WeatherTwentyOne)
 * [Calculator App](6.0/Apps/Calculator)
 * [.NET Podcasts App](https://github.com/microsoft/dotnet-podcasts)
