@@ -16,7 +16,7 @@
             ScrollView scrollView = new ScrollView();
             Label label = new Label
             {
-                FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Label)),
+                FontSize = 20,
                 Text = "Lorem ipsum dolor sit amet, elit rutrum, enim hendrerit augue vitae praesent sed non, lorem aenean quis praesent pede, lacus sodales sed condimentum senectus nunc donec, neque pellentesque curabitur velit eleifend et pulvinar. Dapibus in libero volutpat libero. Condimentum hac nec eget, in aliquet sodales orci duis mauris diam, felis iaculis auctor amet curabitur justo faucibus, voluptate mollis, ipsum arcu in fusce. Felis per commodo tempus, in velit lacinia duis lacinia porttitor volutpat. Praesent eros incidunt. Eros purus arcu in suscipit urna. Condimentum eu, mauris sagittis mauris, augue nulla morbi, vehicula mattis cras vulputate sed. Metus amet, bibendum eget nulla consectetuer. Ipsum eget fusce, sapien aenean a. Sit id pellentesque tincidunt pulvinar ac, justo lacus enim. Consectetuer libero, mi aenean dui rhoncus, rutrum dolor lectus amet, praesent porttitor a varius tempor lorem et. Velit at auctor dolore, purus tellus mauris, magna eu ac erat orci ridiculus, leo luctus ultricies sapien in purus ipsum."
             };
             scrollView.Content = label;
@@ -93,4 +93,3 @@
         }
     }
 }
-
