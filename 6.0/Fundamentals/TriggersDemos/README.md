@@ -7,7 +7,7 @@ languages:
 - xaml
 products:
 - dotnet-maui
-urlFragment: userinterface-triggers
+urlFragment: fundamentals-triggers
 ---
 
 # Triggers
