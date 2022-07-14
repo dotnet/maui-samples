@@ -32,32 +32,22 @@ namespace Xaminals.Controls
 
             if (navigationTarget.Equals("catdetails") || navigationTarget.Equals("dogdetails"))
             {
+                // Navigate, passing a string
                 await Shell.Current.GoToAsync($"{navigationTarget}?name={((Animal)item).Name}");
             }
-            else if (navigationTarget.Equals("monkeydetails"))
+            else
             {
+                string lowerCasePropertyName = navigationTarget.Replace("details", string.Empty);
+                // Capitalise the property name
+                string propertyName = char.ToUpper(lowerCasePropertyName[0]) + lowerCasePropertyName.Substring(1);
+                
                 var navigationParameters = new Dictionary<string, object>
                 {
-                    { "Monkey", animal }
-                };
-                await Shell.Current.GoToAsync($"{navigationTarget}", navigationParameters);
-            }
-            else if (navigationTarget.Equals("elephantdetails"))
-            {
-                var navigationParameter = new Dictionary<string, object>
-                {
-                    { "Elephant", animal }
+                    { propertyName, animal }
                 };
 
-                await Shell.Current.GoToAsync($"{navigationTarget}?name={animal.Name}", navigationParameter);
-            }
-            else if (navigationTarget.Equals("beardetails"))
-            {
-                var navigationParameter = new Dictionary<string, object>
-                {
-                    { "Bear", animal }
-                };
-                await Shell.Current.GoToAsync($"{navigationTarget}", navigationParameter);
+                // Navigate, passing an object
+                await Shell.Current.GoToAsync($"{navigationTarget}", navigationParameters);
             }
         }
 
