@@ -1,0 +1,28 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:DataTemplates"
+             x:Class="DataTemplates.MainPage"
+             Title="Data template demos">
+    <TableView Intent="Menu">
+        <TableRoot>
+            <TableSection Title="Data templates">
+                <TextCell Text="List without a data template"
+                          Detail="Text"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type local:WithoutDataTemplatePage}" />
+                <TextCell Text="List with a data template"
+                          Detail="Inline data template"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type local:WithDataTemplatePage}" />
+                <TextCell Text="List with a data template"
+                          Detail="Data template from a type"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type local:WithDataTemplatePageFromType}" />
+                <TextCell Text="List with a data template selector"
+                          Detail="Data templates defined as resources"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type local:WithDataTemplateSelectorPage}" />
+            </TableSection>
+        </TableRoot>
+    </TableView>
+</ContentPage>

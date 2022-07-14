@@ -7,7 +7,7 @@ languages:
 - xaml
 products:
 - dotnet-maui
-urlFragment: userinterface-databinding
+urlFragment: fundamentals-databinding
 ---
 
 # Data binding
