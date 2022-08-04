@@ -26,7 +26,7 @@
 		<RefreshView IsRefreshing="{Binding IsRefreshing}"
                      RefreshColor="Teal"
                      Command="{Binding RefreshCommand}">
-			<ScrollView>
+            <ScrollView HeightRequest="500">
 				<FlexLayout Direction="Row"
                             Wrap="Wrap"
                             AlignItems="Center"

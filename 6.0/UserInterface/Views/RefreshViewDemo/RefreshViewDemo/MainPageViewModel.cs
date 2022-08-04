@@ -37,7 +37,7 @@ namespace RefreshViewDemo
         {
             for (int i = 0; i < 50; i++)
             {
-                Items.Add(new Item
+                Items.Insert(0, new Item
                 {
                     Color = Color.FromRgb((byte)random.Next(0, 255), (byte)random.Next(0, 255), (byte)random.Next(0, 255)),
                     Name = $"Item {itemNumber++}"
