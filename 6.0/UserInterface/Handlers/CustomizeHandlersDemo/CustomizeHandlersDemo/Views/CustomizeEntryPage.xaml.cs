@@ -15,7 +15,6 @@ public partial class CustomizeEntryPage : ContentPage
 #if ANDROID
             handler.PlatformView.SetSelectAllOnFocus(true);
 #elif IOS || MACCATALYST
-
             handler.PlatformView.EditingDidBegin += (s, e) =>
             {
                 handler.PlatformView.PerformSelector(new ObjCRuntime.Selector("selectAll"), null, 0.0f);

@@ -11,33 +11,33 @@ namespace CustomizeHandlersDemo.Views;
 
 public partial class CustomizeEntryHandlerLifecyclePage : ContentPage
 {
-	public CustomizeEntryHandlerLifecyclePage()
-	{
-		InitializeComponent();
-	}
+    public CustomizeEntryHandlerLifecyclePage()
+    {
+        InitializeComponent();
+    }
 
-	void OnEntryHandlerChanged(object sender, EventArgs e)
-	{
+    void OnEntryHandlerChanged(object sender, EventArgs e)
+    {
 #if ANDROID
-		((sender as Entry).Handler.PlatformView as AppCompatEditText).SetSelectAllOnFocus(true);
+        ((sender as Entry).Handler.PlatformView as AppCompatEditText).SetSelectAllOnFocus(true);
 #elif IOS || MACCATALYST
 		((sender as Entry).Handler.PlatformView as UITextField).EditingDidBegin += OnEditingDidBegin;
 #elif WINDOWS
         ((sender as Entry).Handler.PlatformView as TextBox).GotFocus += OnGotFocus;
 #endif
-	}
+    }
 
-	void OnEntryHandlerChanging(object sender, HandlerChangingEventArgs e)
-	{
-		if (e.OldHandler != null)
-		{
+    void OnEntryHandlerChanging(object sender, HandlerChangingEventArgs e)
+    {
+        if (e.OldHandler != null)
+        {
 #if IOS || MACCATALYST
 			(e.OldHandler.PlatformView as UITextField).EditingDidBegin -= OnEditingDidBegin;
 #elif WINDOWS
 			(e.OldHandler.PlatformView as TextBox).GotFocus -= OnGotFocus;	
 #endif
-		}
-	}
+        }
+    }
 
 #if IOS || MACCATALYST                   
 	void OnEditingDidBegin(object sender, EventArgs e)
