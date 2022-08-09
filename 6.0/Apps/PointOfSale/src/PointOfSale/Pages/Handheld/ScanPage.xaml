@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:z="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI"
+			 xmlns:a="clr-namespace:PointOfSale"
+			 xmlns:i="clr-namespace:Icons"
+             x:Class="PointOfSale.Pages.Handheld.ScanPage"
+             Shell.PresentationMode="ModalAnimated"
+             Title="Scan">
+    <Grid>
+        <z:CameraBarcodeReaderView
+			Grid.Row="0" Grid.RowSpan="3"
+			x:Name="barcodeView"
+			BarcodesDetected="BarcodesDetected"
+			 />
+
+		<Border WidthRequest="240" HeightRequest="240"
+		  VerticalOptions="Center" HorizontalOptions="Center"
+		  Stroke="White"
+		  StrokeThickness="3">
+			<Border.StrokeShape>
+				<RoundRectangle CornerRadius="12"/>
+			</Border.StrokeShape>
+
+		</Border>
+
+		<ImageButton
+			Margin="20,20,0,0"
+			HeightRequest="60" WidthRequest="60"
+			VerticalOptions="Start" HorizontalOptions="Start"
+			Clicked="ImageButton_Clicked"
+			Source="{FontImage FontFamily=Fabric, Color=White, Glyph={x:Static i:FabIconFont.ClosePane},Size=32}"/>
+
+        <!--<Grid
+			Grid.Row="3"
+			BackgroundColor="#aa000000"
+			Padding="20"
+			ColumnDefinitions="Auto,*,Auto">
+
+			<Button Text="🔄️" Grid.Column="0" BackgroundColor="#aa000000" CornerRadius="8" BorderColor="Black" Clicked="SwitchCameraButton_Clicked" />
+
+			<z:BarcodeGeneratorView
+				x:Name="barcodeGenerator"
+				Grid.Column="1"
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				HeightRequest="100"
+				WidthRequest="100"
+				ForegroundColor="DarkBlue"
+				Format="QrCode"
+				Value="Bla"
+				BarcodeMargin="1" />
+
+			<Button Text="💡" Grid.Column="2" BackgroundColor="#aa000000" CornerRadius="8" BorderColor="Black" Clicked="TorchButton_Clicked" />
+		</Grid>-->
+    </Grid>
+</ContentPage>

@@ -1,0 +1,479 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:app="clr-namespace:PointOfSale"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:converters="clr-namespace:WeatherTwentyOne.Converters"
+                    x:Class="PointOfSale.Resources.Styles.Styles">
+
+    <Color x:Key="Primary">#EA7C69</Color>
+    <Color x:Key="Secondary">#393C49</Color>
+    <Color x:Key="Tertiary">#42EA7C69</Color>
+    <Color x:Key="Neutral">#969696</Color>
+    <Color x:Key="NeutralLighter">#E5E5E1</Color>
+    <Color x:Key="NeutralDarker">#505050</Color>
+    <Color x:Key="White">#FFFAFA</Color>
+    <Color x:Key="Black">#1d1d1d</Color>
+    <Color x:Key="Accent">#F7B548</Color>
+    <Color x:Key="Error">#C00</Color>
+    <Color x:Key="Warning">#FFCC00</Color>
+    <Color x:Key="Text_Light">#000000</Color>
+    <Color x:Key="Text_Dark">#FFFFFF</Color>
+    <Color x:Key="TextOnSolid_Light">#FFFFFF</Color>
+    <Color x:Key="TextOnSolid_Dark">#000000</Color>
+    <Color x:Key="TextSecondary_Light">#1d1d1d</Color>
+    <Color x:Key="TextSecondary_Dark">#f1f1f1</Color>
+    <Color x:Key="DarkBg1">#252836</Color>
+    <Color x:Key="DarkBg2">#1F1D2B</Color>
+    <Color x:Key="DarkBg1Transparent">#E6252836</Color>
+    <Color x:Key="TextSecondary">#ABBBC2</Color>
+
+    <SolidColorBrush x:Key="PrimaryBrush" 
+        Color="{StaticResource Primary}"/>
+    <SolidColorBrush x:Key="SecondaryBrush" 
+        Color="{StaticResource Secondary}"/>
+    <SolidColorBrush x:Key="TertiaryBrush" 
+        Color="{StaticResource Tertiary}"/>
+    <SolidColorBrush x:Key="NeutralBrush" 
+        Color="{StaticResource Neutral}"/>
+    <SolidColorBrush x:Key="NeutralLighterBrush" 
+        Color="{StaticResource NeutralLighter}"/>
+    <SolidColorBrush x:Key="NeutralDarkerBrush" 
+        Color="{StaticResource NeutralDarker}"/>
+    <SolidColorBrush x:Key="AccentBrush" 
+        Color="{StaticResource Accent}"/>
+
+    <SolidColorBrush x:Key="BlackBrush" 
+        Color="{StaticResource Black}"/>
+    <SolidColorBrush x:Key="WhiteBrush" 
+        Color="{StaticResource White}"/>
+    <SolidColorBrush x:Key="DarkBg1Brush" Color="{StaticResource DarkBg1}"/>
+    <SolidColorBrush x:Key="DarkBg2Brush" Color="{StaticResource DarkBg2}"/>
+
+
+    <!-- Shell -->
+    <Style x:Key="BaseStyle"
+           TargetType="Element">
+        <Setter Property="Shell.BackgroundColor"
+                Value="{StaticResource DarkBg2}" />
+        <Setter Property="Shell.ForegroundColor"
+                Value="{StaticResource Text_Dark}" />
+        <Setter Property="Shell.TitleColor"
+                Value="{StaticResource Text_Dark}" />
+        <Setter Property="Shell.DisabledColor"
+                Value="Green" />
+        <Setter Property="Shell.UnselectedColor"
+                Value="#CC0000" />
+        <Setter Property="Shell.NavBarHasShadow"
+                Value="False"/>
+    </Style>
+    <Style BasedOn="{StaticResource BaseStyle}"
+           ApplyToDerivedTypes="True"
+           TargetType="FlyoutItem" />
+
+    <Style
+        TargetType="Label"
+        Class="FlyoutItemLabelStyle">
+        <Setter
+            Property="FontSize"
+            Value="18" />
+        <Setter
+            Property="TextColor"
+            Value="White" />
+        <Setter
+            Property="FontFamily"
+            Value="OpenSansRegular"/>
+        <Setter Property="VerticalOptions" Value="Center"/>
+    </Style>
+
+    <Style
+            TargetType="Layout"
+            ApplyToDerivedTypes="True"
+            Class="FlyoutItemGridStyle">
+
+            <Setter
+                Property="HeightRequest"
+                Value="44" />
+            <Setter
+                Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup
+                        x:Name="CommonStates">
+                        <VisualState
+                            x:Name="Normal">
+                            <VisualState.Setters>
+                            <Setter
+                                Property="BackgroundColor"
+                                Value="#FF9900" />
+                        </VisualState.Setters>
+                        </VisualState>
+                        <VisualState
+                            x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter
+                                    Property="BackgroundColor"
+                                    Value="#FF3300" />
+
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState
+                            x:Name="Disabled">
+                            <VisualState.Setters>
+
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+
+    <Style TargetType="Page" ApplyToDerivedTypes="True">
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="Background"
+            Value="{AppThemeBinding
+                Dark={StaticResource DarkBg1Brush},
+                Light={StaticResource WhiteBrush}}"/>
+        <Setter Property="Shell.NavBarIsVisible" Value="True"/>
+    </Style>
+
+    <Style TargetType="Layout" Class="InnerContent">
+        <Setter Property="Margin" Value="15"/>
+    </Style>
+
+    <Style TargetType="Label">
+        <Setter Property="FontFamily" Value="OpenSansRegular"/>
+        <Setter Property="FontSize"
+                Value="17"/>
+        <Setter Property="TextColor" 
+            Value="{AppThemeBinding 
+                Dark={StaticResource White}, 
+                Light={StaticResource Black}}"/>
+    </Style>
+
+    <Style TargetType="Label" x:Key="TypographyMeta">
+        <Setter Property="FontSize"
+                Value="12"/>
+        <Setter Property="TextColor"
+                Value="{AppThemeBinding Dark={StaticResource Text_Dark}, Light={StaticResource Text_Light}}"/>
+    </Style>
+    
+    <Style TargetType="Label"
+           x:Key="LargeTitle">
+        <Setter Property="FontSize"
+                Value="30"/>
+        <Setter Property="FontFamily" Value="OpenSansSemiBold"/>
+    </Style>
+    <Style TargetType="Label"
+            x:Key="Title1">
+        <Setter Property="FontSize"
+                Value="20"/>
+        <Setter Property="FontFamily" Value="OpenSansSemiBold"/>
+    </Style>
+    <Style TargetType="Label"
+            x:Key="Title2">
+        <Setter Property="FontSize"
+                Value="18"/>
+        <Setter Property="FontFamily" Value="OpenSansSemiBold"/>
+    </Style>
+    <Style TargetType="Label"
+            x:Key="Headline">
+        <Setter Property="FontSize"
+                Value="14"/>
+        <Setter Property="FontFamily" Value="OpenSansSemiBold"/>
+    </Style>
+    <Style TargetType="Label"
+            x:Key="PrimaryLabel">
+        <Setter Property="TextColor" Value="{StaticResource Primary}"/>
+    </Style>
+    <Style TargetType="Label"
+            x:Key="SubTitle">
+        <Setter Property="FontSize"
+                Value="12"/>
+        <Setter Property="TextColor" Value="{StaticResource TextSecondary}"/>
+    </Style>
+    <Style TargetType="Label"
+           x:Key="Subhead">
+        <Setter Property="FontSize"
+                Value="12"/>
+        <Setter Property="TextColor" Value="{StaticResource TextSecondary}"/>
+    </Style>
+    <Style TargetType="Label"
+            x:Key="Footnote">
+        <Setter Property="FontSize"
+                Value="13"/>
+    </Style>
+
+    <!-- Text Color Styles -->
+    <Style TargetType="Label"
+            Class="Secondary">
+        <Setter Property="TextColor"
+                Value="{StaticResource Text_Light}"/>
+    </Style>
+    <Style TargetType="Label"
+            Class="Primary">
+        <Setter Property="TextColor"
+                Value="{StaticResource Primary}"/>
+    </Style>
+    <Style TargetType="Label"
+            Class="Error">
+        <Setter Property="TextColor"
+                Value="{StaticResource Error}"/>
+    </Style>
+    <Style TargetType="Label"
+            Class="Warning">
+        <Setter Property="TextColor"
+                Value="{StaticResource Warning}"/>
+    </Style>
+    <Style TargetType="Label"
+            Class="Disabled">
+        <Setter Property="TextColor"
+                Value="{StaticResource Neutral}"/>
+    </Style>
+
+    <Style TargetType="Button">
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="FontFamily" Value="OpenSansRegular"/>
+        <Setter Property="CornerRadius" Value="8"/>
+        <Setter Property="Padding" Value="14,10"/>
+        <Setter Property="HorizontalOptions" Value="Start"/>
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="{StaticResource Neutral}" />
+                            <Setter Property="TextColor" Value="White"/>
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Button" x:Key="PrimaryButtonOutline">
+        <Setter Property="CornerRadius" Value="8"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="TextColor" Value="{StaticResource Primary}"/>
+        <Setter Property="BorderWidth" Value="1"/>
+        <Setter Property="BorderColor" Value="{StaticResource Primary}"/>
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal">
+                        <VisualState.Setters>   
+                            <Setter Property="Background" Value="Transparent" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter Property="BorderColor" Value="{StaticResource Neutral}" />
+                            <Setter Property="TextColor" Value="{StaticResource Neutral}" />
+                            <Setter Property="Background" Value="Transparent"/>
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
+    
+
+    <Style TargetType="Button" x:Key="SecondaryButtonOutline" BasedOn="{StaticResource PrimaryButtonOutline}">
+        <Setter Property="Padding" Value="4"/>
+    </Style>
+    <Style TargetType="Button" x:Key="TertiaryButtonOutline" BasedOn="{StaticResource PrimaryButtonOutline}">
+    </Style>
+    <Style TargetType="Button" x:Key="BorderlessButton">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="TextColor" Value="{StaticResource Primary}"/>
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter Property="TextColor" Value="{StaticResource Neutral}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
+    <Style TargetType="BoxView" x:Key="HRule">
+        <Setter Property="Color" 
+            Value="{AppThemeBinding 
+                Dark={StaticResource Secondary},
+                Light={StaticResource Secondary}}"/>
+        <Setter Property="HeightRequest" Value="2"/>
+    </Style>
+
+    <Style TargetType="StackLayout">
+        <Setter Property="Spacing" Value="10"/>
+    </Style>
+
+    <Style TargetType="StackLayout" Class="CheckBoxContainer">
+        <Setter Property="Orientation" Value="Horizontal"/>
+    </Style>
+
+    <Style TargetType="StackLayout" Class="SwitchContainer">
+            <Setter Property="Orientation" Value="Horizontal"/>
+        </Style>
+
+    <Style TargetType="Entry">
+        <Setter Property="WidthRequest" Value="180"/>
+        <Setter Property="TextColor" Value="Black"/>
+    </Style>
+
+    <Style TargetType="Frame">
+        <Setter Property="HasShadow" Value="False"/>
+    </Style>
+
+    <Style TargetType="Picker" ApplyToDerivedTypes="True">
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="Background" Value="{StaticResource PrimaryBrush}"/>
+    </Style>
+
+    <Style TargetType="Editor">
+        <Setter Property="TextColor" Value="Black"/>
+    </Style>
+
+    <Style TargetType="Slider">
+        <Setter Property="MinimumTrackColor" Value="{StaticResource Primary}"/>
+        <Setter Property="MaximumTrackColor" Value="{StaticResource Neutral}"/>
+        <Setter Property="ThumbColor" Value="{StaticResource Primary}"/>
+    </Style>
+
+    <Style TargetType="Switch">
+        <Setter Property="OnColor" Value="{StaticResource Primary}"/>
+    </Style>
+
+    <Style TargetType="TextCell">
+        <Setter Property="TextColor" Value="Black"/>
+    </Style>
+
+    <Style TargetType="Image">
+        <Setter Property="Aspect" Value="Center"/>
+
+    </Style>
+
+    <Style x:Key="DarkBorderView" TargetType="Border">
+        <Setter Property="Background" Value="{StaticResource DarkBg2Brush}"/>
+        <Setter Property="Stroke" Value="Transparent"/>
+        <Setter Property="StrokeShape" Value="{RoundRectangle CornerRadius=8}"/>
+        <Setter Property="StrokeThickness" Value="1"/>
+    </Style>
+
+    <Style x:Key="LightBorderView" TargetType="Border">
+        <Setter Property="Background" Value="{StaticResource DarkBg1Brush}"/>
+        <Setter Property="Stroke" Value="Transparent"/>
+        <Setter Property="StrokeShape" Value="{RoundRectangle CornerRadius=8}"/>
+        <Setter Property="StrokeThickness" Value="1"/>
+    </Style>
+
+    <converters:CheckedColorConverter x:Key="CheckedColorConverter"/>
+    
+    <ControlTemplate x:Key="OptionTemplate">
+            <Border Background="{StaticResource DarkBg2}"
+                    Stroke="{StaticResource SecondaryBrush}"
+                    StrokeThickness="1"
+            >
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="8"/>
+                </Border.StrokeShape>
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CheckedStates">
+                            <VisualState x:Name="Checked">
+                                <VisualState.Setters>
+                                    <!-- <Setter -->
+                                    <!--             TargetName="DisplayLabel" -->
+                                    <!--             Property="Label.TextColor" -->
+                                    <!--             Value="White" /> -->
+                                    <Setter
+                                            Property="Stroke"
+                                            Value="{StaticResource WhiteBrush}" />
+                                </VisualState.Setters>
+                            </VisualState>
+
+                            <VisualState x:Name="Unchecked">
+                                <VisualState.Setters>
+                                    <!-- <Setter -->
+                                    <!--     TargetName="DisplayLabel" -->
+                                    <!--     Property="Label.TextColor" -->
+                                    <!--     Value="{StaticResource TextSecondary}" /> -->
+                                    <Setter
+                                        Property="Stroke"
+                                        Value="{StaticResource SecondaryBrush}" />
+                                </VisualState.Setters>
+                            </VisualState>
+
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </VisualStateManager.VisualStateGroups>
+
+                <ContentPresenter/>
+            </Border>    
+        </ControlTemplate>
+
+    <ControlTemplate x:Key="ButtonRadioTemplate">
+                            <Border
+                                Stroke="{StaticResource SecondaryBrush}"
+                                StrokeThickness="1"
+                                Background="Transparent"
+                                >
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="8"/>
+                                </Border.StrokeShape>
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroupList>
+                                        <VisualStateGroup x:Name="CheckedStates">
+                                            <VisualState x:Name="Checked">
+                                                <VisualState.Setters>
+                                                    <Setter
+                                                        TargetName="TextLabel"
+                                                        Property="Label.TextColor"
+                                                        Value="{StaticResource White}"/>
+                                                    <Setter
+                                                        Property="Background"
+                                                        Value="{StaticResource PrimaryBrush}"/>
+                                                    <Setter
+                                                        Property="Stroke"
+                                                        Value="{StaticResource PrimaryBrush}"/>
+                                                </VisualState.Setters>
+                                            </VisualState>
+
+                                            <VisualState x:Name="Unchecked">
+                                                <VisualState.Setters>
+                                                    <Setter
+                                                        TargetName="TextLabel"
+                                                        Property="Label.TextColor"
+                                                        Value="{StaticResource Primary}"/>
+                                                    <Setter
+                                                        Property="Background"
+                                                        Value="Transparent"/>
+                                                    <Setter
+                                                        Property="Stroke"
+                                                        Value="{StaticResource SecondaryBrush}"/>
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateGroupList>
+                                </VisualStateManager.VisualStateGroups>
+                                <Label Text="{TemplateBinding Content}"
+                                       Margin="12,7"
+                                       x:Name="TextLabel" />
+                            </Border>
+
+                        </ControlTemplate>
+
+    <x:Array Type="{x:Type x:String}" x:Key="CategoriesArray">
+                            <x:String>Noodles</x:String>
+                            <x:String>Rice</x:String>
+                            <x:String>Appetizers</x:String>
+                            <x:String>Desserts</x:String>
+                            <x:String>Beverages</x:String>
+                        </x:Array>
+</ResourceDictionary>    
