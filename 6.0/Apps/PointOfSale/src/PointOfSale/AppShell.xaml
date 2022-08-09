@@ -87,12 +87,12 @@
                              CheckedChanged="OnMenuItemChanged">
                     <RadioButton.Content>
                         <Image Source="home.png">
-                            <Image.Behaviors>
+                            <!--<Image.Behaviors>
                                 <mct:IconTintColorBehavior
                                     TintColor="{Binding IsChecked,
                                                     Source={RelativeSource AncestorType={x:Type RadioButton}, AncestorLevel=1,Mode=TemplatedParent},
                                     Converter={StaticResource CheckedColorConverter}}"/>
-                            </Image.Behaviors>
+                            </Image.Behaviors>-->
                         </Image>
                     </RadioButton.Content>
                 </RadioButton>
@@ -101,13 +101,13 @@
                                     CheckedChanged="OnMenuItemChanged">
                     <RadioButton.Content>                            
                         <Image Source="graph.png">
-                            <Image.Behaviors>
+                            <!--<Image.Behaviors>
                                 <mct:IconTintColorBehavior
                                     TintColor="{Binding IsChecked,
                                                     Source={RelativeSource AncestorType={x:Type RadioButton}, AncestorLevel=3},
                                     Converter={StaticResource CheckedColorConverter}}"/>
 
-                            </Image.Behaviors>
+                            </Image.Behaviors>-->
                             </Image>
                     </RadioButton.Content>
                 </RadioButton>
@@ -116,13 +116,13 @@
                                 CheckedChanged="OnMenuItemChanged">
                     <RadioButton.Content>                            
                         <Image Source="setting.png">
-                            <Image.Behaviors>
+                            <!--<Image.Behaviors>
                                 <mct:IconTintColorBehavior
                                     TintColor="{Binding IsChecked,
                                                     Source={RelativeSource AncestorType={x:Type RadioButton}, AncestorLevel=1 ,Mode=FindAncestor},
                                     Converter={StaticResource CheckedColorConverter}}"/>
 
-                            </Image.Behaviors>
+                            </Image.Behaviors>-->
                         </Image>
                     </RadioButton.Content>
                 </RadioButton>
@@ -131,13 +131,13 @@
                                 CheckedChanged="OnMenuItemChanged">
                     <RadioButton.Content>                            
                         <Image Source="discount.png">
-                            <Image.Behaviors>
+                            <!--<Image.Behaviors>
                                 <mct:IconTintColorBehavior
                                     TintColor="{Binding IsChecked,
                                                     Source={RelativeSource AncestorType={x:Type RadioButton}, AncestorLevel=2},
                                     Converter={StaticResource CheckedColorConverter}}"/>
 
-                            </Image.Behaviors>
+                            </Image.Behaviors>-->
                             </Image>
                     </RadioButton.Content>
                 </RadioButton>                    
@@ -146,13 +146,13 @@
                                     CheckedChanged="OnMenuItemChanged">
                     <RadioButton.Content>                            
                         <Image Source="message.png">
-                            <Image.Behaviors>
+                            <!--<Image.Behaviors>
                                 <mct:IconTintColorBehavior
                                     TintColor="{Binding IsChecked,
                                                     Source={RelativeSource AncestorType={x:Type RadioButton}, AncestorLevel=4},
                                     Converter={StaticResource CheckedColorConverter}}"/>
 
-                            </Image.Behaviors>
+                            </Image.Behaviors>-->
                             </Image>
                 </RadioButton.Content>
                 </RadioButton>
