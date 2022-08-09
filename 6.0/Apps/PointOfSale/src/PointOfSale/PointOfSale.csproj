@@ -66,10 +66,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="CommunityToolkit.Maui" Version="1.1.0" />
-	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0-preview4" />
+	  <PackageReference Include="CommunityToolkit.Maui" Version="1.2.0" />
+	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
 	  <PackageReference Include="Microcharts" Version="0.9.5.9" />
-	  <PackageReference Include="ZXing.Net.Maui" Version="0.1.0-preview.1" />
+	  <PackageReference Include="Redth.ZXing.Net.Maui" Version="0.1.0-preview.4" />
 	  <PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0-preview.59" />
 	</ItemGroup>
 	<ItemGroup>
