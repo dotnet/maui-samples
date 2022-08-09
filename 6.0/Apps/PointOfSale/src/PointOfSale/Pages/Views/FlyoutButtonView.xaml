@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<RadioButton xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PointOfSale.Pages.Views.FlyoutButtonView"
+             x:Name="this"
+             BindingContext="{x:Reference this}">
+    
+        <RadioButton.Content>
+            <Grid RowDefinitions="Auto">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CheckedStates">
+                            <VisualState x:Name="Checked">
+                                <VisualState.Setters>
+                                    <Setter
+                                                TargetName="OuterBorder"
+                                                Property="Background"
+                                                Value="{StaticResource DarkBg1Brush}" />
+                                    <Setter
+                                                    TargetName="OuterBorder"
+                                                    Property="Border.StrokeThickness"
+                                                    Value="1" />
+                                    <Setter
+                                            TargetName="InnerBorder"
+                                            Property="Background"
+                                            Value="Transparent" />
+                                    <Setter
+                                            TargetName="InnerBorder"
+                                            Property="Border.StrokeThickness"
+                                            Value="1" />
+                                    <Setter TargetName="IconImage"
+                                            Property="Image.Scale"
+                                            Value="0.5"/>
+                                </VisualState.Setters>
+                            </VisualState>
+
+                            <VisualState x:Name="Unchecked">
+                                <VisualState.Setters>
+                                    <Setter
+                                    TargetName="OuterBorder"
+                                    Property="Background"
+                                    Value="Transparent" />
+                                    <Setter
+                                    TargetName="OuterBorder"
+                                    Property="Border.StrokeThickness"
+                                    Value="0" />
+                                    <Setter
+                                    TargetName="InnerBorder"
+                                    Property="Background"
+                                    Value="Transparent" />
+                                    <Setter
+                                    TargetName="InnerBorder"
+                                    Property="Border.StrokeThickness"
+                                    Value="0" />
+                                    <Setter TargetName="IconImage"
+                                            Property="Image.Scale"
+                                            Value="1"/>
+                                </VisualState.Setters>
+                            </VisualState>
+
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </VisualStateManager.VisualStateGroups>
+
+                <Border x:Name="OuterBorder" 
+                        Background="Transparent"
+                        Stroke="{StaticResource DarkBg1Brush}" 
+                        StrokeThickness="0"
+                        HorizontalOptions="Fill"
+                        HeightRequest="70"
+                        Margin="15,0,0,0">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="12,0,12,0" />
+                    </Border.StrokeShape>
+                </Border>
+
+                <Border x:Name="InnerBorder" 
+                        Background="Transparent"
+                        Margin="20" 
+                        HorizontalOptions="Center" 
+                        VerticalOptions="Center"
+                        Stroke="{StaticResource PrimaryBrush}" 
+                        StrokeThickness="0">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="8" />
+                    </Border.StrokeShape>
+                </Border>
+
+                <Image Source="{Binding Icon}" x:Name="IconImage"/>
+            </Grid>            
+        </RadioButton.Content> 
+</RadioButton>
+
