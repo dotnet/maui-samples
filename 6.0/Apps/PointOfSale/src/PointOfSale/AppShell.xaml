@@ -178,5 +178,14 @@
     <FlyoutItem Title="Settings" Route="settings">
         <ShellContent ContentTemplate="{DataTemplate pages:SettingsPage}"/>
     </FlyoutItem>
+    <FlyoutItem Title="Discounts" Route="discount">
+        <ShellContent ContentTemplate="{DataTemplate pages:EmptyPage}"/>
+    </FlyoutItem>
+    <FlyoutItem Title="Messages" Route="message">
+        <ShellContent ContentTemplate="{DataTemplate pages:EmptyPage}"/>
+    </FlyoutItem>
+    <FlyoutItem Title="Notifications" Route="notification">
+        <ShellContent ContentTemplate="{DataTemplate pages:EmptyPage}"/>
+    </FlyoutItem>
     
 </Shell>

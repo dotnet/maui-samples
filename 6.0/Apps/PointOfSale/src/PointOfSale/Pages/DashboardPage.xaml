@@ -15,7 +15,7 @@
         <!-- left column -->
         <VerticalStackLayout Margin="0,24,0,0">
             <Label Text="Dashboard" Style="{StaticResource LargeTitle}"/>
-            <Label Text="Saturday, 9 July 2022"/>
+            <Label Text="{Binding Source={x:Static system:DateTime.Now}, StringFormat='{0:dddd, MMMM dd yyyy}'}"/>
             <BoxView Style="{StaticResource HRule}" Margin="0,24,0,0"/>
         </VerticalStackLayout>
 

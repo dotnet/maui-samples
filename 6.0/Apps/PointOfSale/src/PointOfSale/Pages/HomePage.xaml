@@ -81,7 +81,7 @@
 
         <VerticalStackLayout VerticalOptions="Center">
             <Label Text="Main Menu" Style="{StaticResource LargeTitle}"/>
-            <Label Text="{Binding Source={x:Static system:DateTime.Today}, StringFormat=Date: {0:dddd, MMMM dd yyyy}, FallbackValue='Hello'}"/>
+            <Label Text="{Binding Source={x:Static system:DateTime.Now}, StringFormat='{0:dddd, MMMM dd yyyy}'}"/>
         </VerticalStackLayout>
 
         <Border

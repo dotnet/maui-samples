@@ -76,8 +76,17 @@
 	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Pages\Views\AddProductPage.xaml">
 	    <SubType></SubType>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\EmptyPage.xaml">
+	    <SubType>Designer</SubType>
+	  </MauiXaml>
 	</ItemGroup>
 	<ItemGroup>
 	  <None Remove="TinyMessenger" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Compile Update="Pages\EmptyPage.xaml.cs">
+	    <DependentUpon>EmptyPage.xaml</DependentUpon>
+	    <SubType>Code</SubType>
+	  </Compile>
 	</ItemGroup>
 </Project>
