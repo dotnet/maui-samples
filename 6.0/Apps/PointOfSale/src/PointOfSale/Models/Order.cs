@@ -28,6 +28,9 @@ public partial class Order
 
     [ObservableProperty] 
     private string status;
+
+    [ObservableProperty]
+    private OrderType orderType = OrderType.DineIn;
     
     private static readonly Random _random = new Random();
     

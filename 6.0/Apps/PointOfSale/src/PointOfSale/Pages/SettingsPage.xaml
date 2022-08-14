@@ -131,7 +131,8 @@
                 <VerticalStackLayout Spacing="8">
                     <Grid Margin="24" >
                         <Label Text="Products Management" VerticalOptions="Center"/>
-                        <Button Text="Manage Categories" HorizontalOptions="End" VerticalOptions="Center"/>
+                        <Button Text="Manage Categories" HorizontalOptions="End" VerticalOptions="Center"
+                                Command="{Binding NotImplementedCommand}"/>
                     </Grid>
 
                     <Label Margin="24,8"  Text="All Products" Style="{StaticResource Headline}" TextColor="{StaticResource Primary}"/>

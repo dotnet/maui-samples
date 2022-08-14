@@ -3,10 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:a="clr-namespace:PointOfSale"
              xmlns:system="clr-namespace:System;assembly=netstandard"
-             xmlns:mct="clr-namespace:CommunityToolkit.Maui;assembly=CommunityToolkit.Maui" xmlns:views="clr-namespace:PointOfSale.Pages.Views"
+             xmlns:views="clr-namespace:PointOfSale.Pages.Views"
+             xmlns:pages="clr-namespace:PointOfSale.Pages"
              x:Class="PointOfSale.Pages.DashboardPage"
+             x:DataType="pages:DashboardViewModel"
              Title="DashboardPage"
              Shell.NavBarIsVisible="False">
+
+    <ContentPage.BindingContext>
+        <pages:DashboardViewModel/>
+    </ContentPage.BindingContext>
 
     <Grid RowDefinitions="100,*" RowSpacing="24"
           ColumnDefinitions="*,400"
@@ -130,7 +136,7 @@
                             </HorizontalStackLayout>
 
                             <Border.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                                    <TapGestureRecognizer Command="{Binding ViewAllCommand}"/>
                             </Border.GestureRecognizers>
                         </Border>
                         
@@ -198,6 +204,9 @@
                         <Border.StrokeShape>
                             <RoundRectangle CornerRadius="8"/>
                         </Border.StrokeShape>
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ViewAllCommand}"/>
+                        </Border.GestureRecognizers>
                         <HorizontalStackLayout Margin="14,12" Spacing="12">
                             <Label Text="{x:Static a:IconFont.ChevronDown}" FontFamily="FontAwesome" VerticalOptions="Center"/>
                             <Label Text="Today" VerticalOptions="Center"/>
@@ -235,6 +244,7 @@
                 </VerticalStackLayout>
                 <Button Text="View All" HorizontalOptions="Fill" Margin="0,24,0,0"
                         Style="{StaticResource PrimaryButtonOutline}"
+                        Command="{Binding ViewAllCommand}"
                         Grid.Row="3" />
                 </Grid>
             </Border>
@@ -252,6 +262,9 @@
                         <Border.StrokeShape>
                             <RoundRectangle CornerRadius="8"/>
                         </Border.StrokeShape>
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ViewAllCommand}"/>
+                        </Border.GestureRecognizers>
                         <HorizontalStackLayout Margin="14,12" Spacing="12">
                             <Label Text="{x:Static a:IconFont.ChevronDown}" FontFamily="FontAwesome" VerticalOptions="Center"/>
                             <Label Text="Today" VerticalOptions="Center"/>

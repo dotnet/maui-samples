@@ -1,5 +1,4 @@
-﻿using System;
-namespace PointOfSale.Pages;
+﻿namespace PointOfSale.Pages;
 
 [INotifyPropertyChanged]
 public partial class SettingsViewModel
@@ -12,6 +11,12 @@ public partial class SettingsViewModel
         _products = new ObservableCollection<Item>(
             AppData.Items
         );
+    }
+
+    [RelayCommand]
+    async Task NotImplemented()
+    {
+        await App.Current.MainPage.DisplayAlert("Not Implemented", "Wouldn't it be nice tho?", "Okay");
     }
 }
 

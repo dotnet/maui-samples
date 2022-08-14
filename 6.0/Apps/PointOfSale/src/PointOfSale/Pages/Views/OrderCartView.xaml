@@ -92,7 +92,8 @@
                 </VerticalStackLayout>
             </VerticalStackLayout>
         </ScrollView>
-        <Button Text="Place Order" HorizontalOptions="Fill" Margin="24" Grid.Row="1" />
+        <Button Text="Place Order" HorizontalOptions="Fill" Margin="24" Grid.Row="1"
+                Command="{Binding PlaceOrderCommand}"/>
             
     </Grid>
 </ContentView>
