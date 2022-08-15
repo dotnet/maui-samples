@@ -1,4 +1,4 @@
-﻿#if __IOS__ || MACCATALYST
+﻿#if IOS || MACCATALYST
 using PlatformView = VideoDemos.Platforms.MaciOS.MauiVideoPlayer;
 #elif ANDROID
 using PlatformView = VideoDemos.Platforms.Android.MauiVideoPlayer;
