@@ -6,7 +6,7 @@
              Title="Customize specific Entry">
     <VerticalStackLayout Margin="20"
                          Spacing="10">
-        <Label Text="The Entry's below have their text selected on focus." />
+        <Label Text="The first Entry has its text selected on focus." />
         <controls:MyEntry Text="The quick brown fox jumped over the lazy dog." />
         <Entry Text=".NET MAUI is a cross-platform framework for creating mobile and desktop apps." />
         <Entry Text="Handlers can be custoized to augment the appearance and behavior of cross-platform controls." />
