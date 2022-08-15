@@ -11,7 +11,7 @@ namespace VideoDemos.Platforms.Android
     public class MauiVideoPlayer : CoordinatorLayout
     {
         VideoView _videoView;
-        MediaController _mediaController;    // Used to display transport controls
+        MediaController _mediaController;
         bool _isPrepared;
         Context _context;
         IVideo _video;
@@ -32,13 +32,13 @@ namespace VideoDemos.Platforms.Android
                 }
             };
 
-            // Create a ViedoView and position it in the RelativeLayout
+            // Create a VideoView and position it in the RelativeLayout
             _videoView = new VideoView(context)
             {
                 LayoutParameters = new RelativeLayout.LayoutParams(LayoutParams.MatchParent, LayoutParams.MatchParent)
             };
 
-            // Add the views to the layouts
+            // Add to the layouts
             relativeLayout.AddView(_videoView);
             AddView(relativeLayout);
 
