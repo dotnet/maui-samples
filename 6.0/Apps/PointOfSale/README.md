@@ -23,9 +23,12 @@ This app demonstrates various techniques for building a desktop and mobile appli
 
 ### Credits
 
-Original design: https://www.uplabs.com/posts/foodos-food-point-of-sale
-Various graphics: https://mockup.graphics
-.NET MAUI: http://docs.microsoft.com/dotnet/maui
-CommunityToolkit.Mvvm: https://docs.microsoft.com/en-us/windows/communitytoolkit/mvvm/introduction
-SkiaSharp & Lottie: https://mono.github.io/SkiaSharp.Extended/api/ui-maui/#sklottieview
-MicroCharts: https://github.com/microcharts-dotnet/Microcharts
+* Original design: https://www.uplabs.com/posts/foodos-food-point-of-sale
+* Various graphics: https://mockup.graphics
+
+* .NET MAUI: http://docs.microsoft.com/dotnet/maui
+* CommunityToolkit.Mvvm: https://docs.microsoft.com/en-us/windows/communitytoolkit/mvvm/introduction
+* CommunityToolkit.Maui: https://github.com/CommunityToolkit/Maui
+* SkiaSharp & Lottie: https://mono.github.io/SkiaSharp.Extended/api/ui-maui/#sklottieview
+* MicroCharts: https://github.com/microcharts-dotnet/Microcharts
+* Ril.BlazorSignatureCanvas: https://github.com/ResourceWare/Ril.BlazorSignatureCanvas
