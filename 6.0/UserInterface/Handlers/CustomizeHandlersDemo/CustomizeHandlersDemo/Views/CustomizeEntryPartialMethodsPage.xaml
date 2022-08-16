@@ -6,8 +6,7 @@
     <VerticalStackLayout Margin="20"
                          Spacing="10">
         <Label Text="The Entry below has its text selected on focus." />
-        <Entry x:Name="entry"
-               Text="The quick brown fox jumped over the lazy dog."
+        <Entry Text="The quick brown fox jumped over the lazy dog."
                HandlerChanged="OnEntryHandlerChanged"
                HandlerChanging="OnEntryHandlerChanging" />
     </VerticalStackLayout>
