@@ -9,6 +9,9 @@ public partial class Order
     [ObservableProperty]
     private int table;
 
+    [ObservableProperty]
+    private byte[] signatureData;
+
     [ObservableProperty] 
     private double tip;
 

@@ -34,6 +34,8 @@ public static class MauiProgram
                 fonts.AddFont("fabmdl2.ttf", "Fabric");
             });
 
+        builder.Services.AddMauiBlazorWebView();
+        
 #if WINDOWS
             builder.ConfigureLifecycleEvents(events =>
             {

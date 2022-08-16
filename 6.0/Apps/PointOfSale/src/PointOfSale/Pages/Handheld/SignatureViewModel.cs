@@ -1,3 +1,6 @@
+using CommunityToolkit.Mvvm.Messaging;
+using PointOfSale.Messages;
+
 namespace PointOfSale.Pages.Handheld;
 
 [INotifyPropertyChanged]
@@ -10,6 +13,10 @@ public partial class SignatureViewModel
     [RelayCommand]
     async Task Done()
     {
+        WeakReferenceMessenger.Default.Send<SaveSignatureMessage>(
+            new SaveSignatureMessage(order.Table)
+        );
+
         var navigationParameter = new Dictionary<string, object>
         {
             { "Order", order }
@@ -20,6 +27,8 @@ public partial class SignatureViewModel
     [RelayCommand]
     void Clear()
     {
-        // msg the signature pad
+        WeakReferenceMessenger.Default.Send<ClearSignatureMessage>(
+            new ClearSignatureMessage(true)
+        ); ;
     }
 }

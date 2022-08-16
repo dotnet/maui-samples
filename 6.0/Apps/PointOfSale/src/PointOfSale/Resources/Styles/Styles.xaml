@@ -1,52 +1,9 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
 <ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-                    xmlns:app="clr-namespace:PointOfSale"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:converters="clr-namespace:WeatherTwentyOne.Converters"
-                    x:Class="PointOfSale.Resources.Styles.Styles">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
-    <Color x:Key="Primary">#EA7C69</Color>
-    <Color x:Key="Secondary">#393C49</Color>
-    <Color x:Key="Tertiary">#42EA7C69</Color>
-    <Color x:Key="Neutral">#969696</Color>
-    <Color x:Key="NeutralLighter">#E5E5E1</Color>
-    <Color x:Key="NeutralDarker">#505050</Color>
-    <Color x:Key="White">#FFFAFA</Color>
-    <Color x:Key="Black">#1d1d1d</Color>
-    <Color x:Key="Accent">#F7B548</Color>
-    <Color x:Key="Error">#C00</Color>
-    <Color x:Key="Warning">#FFCC00</Color>
-    <Color x:Key="Text_Light">#000000</Color>
-    <Color x:Key="Text_Dark">#FFFFFF</Color>
-    <Color x:Key="TextOnSolid_Light">#FFFFFF</Color>
-    <Color x:Key="TextOnSolid_Dark">#000000</Color>
-    <Color x:Key="TextSecondary_Light">#1d1d1d</Color>
-    <Color x:Key="TextSecondary_Dark">#f1f1f1</Color>
-    <Color x:Key="DarkBg1">#252836</Color>
-    <Color x:Key="DarkBg2">#1F1D2B</Color>
-    <Color x:Key="DarkBg1Transparent">#E6252836</Color>
-    <Color x:Key="TextSecondary">#ABBBC2</Color>
-
-    <SolidColorBrush x:Key="PrimaryBrush" 
-        Color="{StaticResource Primary}"/>
-    <SolidColorBrush x:Key="SecondaryBrush" 
-        Color="{StaticResource Secondary}"/>
-    <SolidColorBrush x:Key="TertiaryBrush" 
-        Color="{StaticResource Tertiary}"/>
-    <SolidColorBrush x:Key="NeutralBrush" 
-        Color="{StaticResource Neutral}"/>
-    <SolidColorBrush x:Key="NeutralLighterBrush" 
-        Color="{StaticResource NeutralLighter}"/>
-    <SolidColorBrush x:Key="NeutralDarkerBrush" 
-        Color="{StaticResource NeutralDarker}"/>
-    <SolidColorBrush x:Key="AccentBrush" 
-        Color="{StaticResource Accent}"/>
-
-    <SolidColorBrush x:Key="BlackBrush" 
-        Color="{StaticResource Black}"/>
-    <SolidColorBrush x:Key="WhiteBrush" 
-        Color="{StaticResource White}"/>
-    <SolidColorBrush x:Key="DarkBg1Brush" Color="{StaticResource DarkBg1}"/>
-    <SolidColorBrush x:Key="DarkBg2Brush" Color="{StaticResource DarkBg2}"/>
+    
 
 
     <!-- Shell -->
@@ -373,107 +330,9 @@
         <Setter Property="StrokeThickness" Value="1"/>
     </Style>
 
-    <converters:CheckedColorConverter x:Key="CheckedColorConverter"/>
     
-    <ControlTemplate x:Key="OptionTemplate">
-            <Border Background="{StaticResource DarkBg2}"
-                    Stroke="{StaticResource SecondaryBrush}"
-                    StrokeThickness="1"
-            >
-                <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="8"/>
-                </Border.StrokeShape>
-                <VisualStateManager.VisualStateGroups>
-                    <VisualStateGroupList>
-                        <VisualStateGroup x:Name="CheckedStates">
-                            <VisualState x:Name="Checked">
-                                <VisualState.Setters>
-                                    <!-- <Setter -->
-                                    <!--             TargetName="DisplayLabel" -->
-                                    <!--             Property="Label.TextColor" -->
-                                    <!--             Value="White" /> -->
-                                    <Setter
-                                            Property="Stroke"
-                                            Value="{StaticResource WhiteBrush}" />
-                                </VisualState.Setters>
-                            </VisualState>
+    
+    
 
-                            <VisualState x:Name="Unchecked">
-                                <VisualState.Setters>
-                                    <!-- <Setter -->
-                                    <!--     TargetName="DisplayLabel" -->
-                                    <!--     Property="Label.TextColor" -->
-                                    <!--     Value="{StaticResource TextSecondary}" /> -->
-                                    <Setter
-                                        Property="Stroke"
-                                        Value="{StaticResource SecondaryBrush}" />
-                                </VisualState.Setters>
-                            </VisualState>
-
-                        </VisualStateGroup>
-                    </VisualStateGroupList>
-                </VisualStateManager.VisualStateGroups>
-
-                <ContentPresenter/>
-            </Border>    
-        </ControlTemplate>
-
-    <ControlTemplate x:Key="ButtonRadioTemplate">
-                            <Border
-                                Stroke="{StaticResource SecondaryBrush}"
-                                StrokeThickness="1"
-                                Background="Transparent"
-                                >
-                                <Border.StrokeShape>
-                                    <RoundRectangle CornerRadius="8"/>
-                                </Border.StrokeShape>
-                                <VisualStateManager.VisualStateGroups>
-                                    <VisualStateGroupList>
-                                        <VisualStateGroup x:Name="CheckedStates">
-                                            <VisualState x:Name="Checked">
-                                                <VisualState.Setters>
-                                                    <Setter
-                                                        TargetName="TextLabel"
-                                                        Property="Label.TextColor"
-                                                        Value="{StaticResource White}"/>
-                                                    <Setter
-                                                        Property="Background"
-                                                        Value="{StaticResource PrimaryBrush}"/>
-                                                    <Setter
-                                                        Property="Stroke"
-                                                        Value="{StaticResource PrimaryBrush}"/>
-                                                </VisualState.Setters>
-                                            </VisualState>
-
-                                            <VisualState x:Name="Unchecked">
-                                                <VisualState.Setters>
-                                                    <Setter
-                                                        TargetName="TextLabel"
-                                                        Property="Label.TextColor"
-                                                        Value="{StaticResource Primary}"/>
-                                                    <Setter
-                                                        Property="Background"
-                                                        Value="Transparent"/>
-                                                    <Setter
-                                                        Property="Stroke"
-                                                        Value="{StaticResource SecondaryBrush}"/>
-                                                </VisualState.Setters>
-                                            </VisualState>
-                                        </VisualStateGroup>
-                                    </VisualStateGroupList>
-                                </VisualStateManager.VisualStateGroups>
-                                <Label Text="{TemplateBinding Content}"
-                                       Margin="12,7"
-                                       x:Name="TextLabel" />
-                            </Border>
-
-                        </ControlTemplate>
-
-    <x:Array Type="{x:Type x:String}" x:Key="CategoriesArray">
-                            <x:String>Noodles</x:String>
-                            <x:String>Rice</x:String>
-                            <x:String>Appetizers</x:String>
-                            <x:String>Desserts</x:String>
-                            <x:String>Beverages</x:String>
-                        </x:Array>
+    
 </ResourceDictionary>    

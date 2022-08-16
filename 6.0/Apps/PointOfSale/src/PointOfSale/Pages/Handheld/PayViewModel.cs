@@ -8,9 +8,8 @@ public partial class PayViewModel
     Order order;
     
     [RelayCommand]
-    async void Scan()
+    async void Pay()
     {
-        // do something to scan a QR code
         var navigationParameter = new Dictionary<string, object>
         {
             { "Order", order }

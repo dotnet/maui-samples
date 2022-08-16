@@ -1,20 +1,21 @@
+
+
+using PointOfSale.Messages;
+
 namespace PointOfSale.Pages;
 
 public partial class HomePage : ContentPage
 {
-	public HomePage()
+    
+
+    public HomePage()
 	{
 		InitializeComponent();
 
-        MessagingCenter.Subscribe<HomeViewModel, string>(this, "action", async (sender, arg) =>
-        {
-			NavSubContent(arg);
-        });
-
-        MessagingCenter.Subscribe<AddProductViewModel, string>(this, "action", async (sender, arg) =>
-        {
-            NavSubContent(arg);
-        });
+		WeakReferenceMessenger.Default.Register<AddProductMessage>(this, (r, m) =>
+		{
+            NavSubContent(m.Value);
+		});
     }
 
     void MenuFlyoutItem_ParentChanged(System.Object sender, System.EventArgs e)
@@ -25,11 +26,11 @@ public partial class HomePage : ContentPage
 
 	
 
-	public void NavSubContent(string sub)
+	public void NavSubContent(bool show)
 	{
         var displayWidth = DeviceDisplay.Current.MainDisplayInfo.Width;
         
-        if (sub.ToLower() == "add")
+        if (show)
 		{
 			var addForm = new AddProductView();
 			PageGrid.Add(addForm, 1);
@@ -38,7 +39,7 @@ public partial class HomePage : ContentPage
 			addForm.TranslationX = displayWidth - addForm.X;
 			addForm.TranslateTo(0, 0, 800, easing: Easing.CubicOut);
 		}
-		else if(sub.ToLower() == "done")
+		else
 		{
 			// remove the product window
 

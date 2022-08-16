@@ -19,7 +19,7 @@
           RadioButtonGroup.GroupName="PaymentMethod"
           >
         <Grid.GestureRecognizers>
-            <TapGestureRecognizer Command="{Binding ScanCommand}"/>
+            <TapGestureRecognizer Command="{Binding PayCommand}"/>
         </Grid.GestureRecognizers>
         <VerticalStackLayout VerticalOptions="Center" Spacing="8" Grid.ColumnSpan="2">
             <Label Text="Insert, Tap, Swipe" Style="{StaticResource LargeTitle}"/>

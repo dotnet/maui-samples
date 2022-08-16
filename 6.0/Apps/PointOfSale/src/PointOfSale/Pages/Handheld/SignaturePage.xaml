@@ -19,7 +19,12 @@
             <BoxView Style="{StaticResource HRule}"/>
         </VerticalStackLayout>
 
-        <BoxView Grid.Row="1" Color="{StaticResource DarkBg2}" HorizontalOptions="Fill" VerticalOptions="Fill"/>
+        <!--<BoxView Grid.Row="1" Color="{StaticResource DarkBg2}" HorizontalOptions="Fill" VerticalOptions="Fill"/>-->
+        <BlazorWebView HostPage="wwwroot/index.html" Grid.Row="1">
+            <BlazorWebView.RootComponents>
+                <RootComponent Selector="#app" ComponentType="{x:Type local:Main}" x:Name="BlazorComponent" />
+            </BlazorWebView.RootComponents>
+        </BlazorWebView>
         
         <Label Text="This signature is probably not the same one you use normally, and to be honest you could pretty much scribble nonsense."
                Style="{StaticResource SubTitle}"
