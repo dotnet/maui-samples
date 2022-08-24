@@ -6,7 +6,8 @@ namespace CustomizeHandlersDemo.Views
     {
         partial void ChangedHandler(object sender, EventArgs e)
         {
-            ((sender as Entry).Handler.PlatformView as UITextField).EditingDidBegin += OnEditingDidBegin;
+            Entry entry = sender as Entry;
+            (entry.Handler.PlatformView as UITextField).EditingDidBegin += OnEditingDidBegin;
         }
 
         partial void ChangingHandler(object sender, HandlerChangingEventArgs e)

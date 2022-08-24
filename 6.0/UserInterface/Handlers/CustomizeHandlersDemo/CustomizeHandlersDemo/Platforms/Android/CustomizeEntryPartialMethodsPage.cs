@@ -6,7 +6,8 @@ namespace CustomizeHandlersDemo.Views
     {
         partial void ChangedHandler(object sender, EventArgs e)
         {
-            ((sender as Entry).Handler.PlatformView as AppCompatEditText).SetSelectAllOnFocus(true);
+            Entry entry = sender as Entry;
+            (entry.Handler.PlatformView as AppCompatEditText).SetSelectAllOnFocus(true);
         }
     }
 }
