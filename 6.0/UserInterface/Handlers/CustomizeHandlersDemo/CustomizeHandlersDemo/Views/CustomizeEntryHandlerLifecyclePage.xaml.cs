@@ -18,12 +18,13 @@ public partial class CustomizeEntryHandlerLifecyclePage : ContentPage
 
     void OnEntryHandlerChanged(object sender, EventArgs e)
     {
+        Entry entry = sender as Entry;
 #if ANDROID
-        ((sender as Entry).Handler.PlatformView as AppCompatEditText).SetSelectAllOnFocus(true);
+        (entry.Handler.PlatformView as AppCompatEditText).SetSelectAllOnFocus(true);
 #elif IOS || MACCATALYST
-		((sender as Entry).Handler.PlatformView as UITextField).EditingDidBegin += OnEditingDidBegin;
+		(entry.Handler.PlatformView as UITextField).EditingDidBegin += OnEditingDidBegin;
 #elif WINDOWS
-        ((sender as Entry).Handler.PlatformView as TextBox).GotFocus += OnGotFocus;
+        (entry.Handler.PlatformView as TextBox).GotFocus += OnGotFocus;
 #endif
     }
 

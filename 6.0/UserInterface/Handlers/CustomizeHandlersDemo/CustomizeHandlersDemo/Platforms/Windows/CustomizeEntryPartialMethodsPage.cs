@@ -7,7 +7,8 @@ namespace CustomizeHandlersDemo.Views
     {
         partial void ChangedHandler(object sender, EventArgs e)
         {
-            ((sender as Entry).Handler.PlatformView as TextBox).GotFocus += OnGotFocus;
+            Entry entry = sender as Entry;
+            (entry.Handler.PlatformView as TextBox).GotFocus += OnGotFocus;
         }
 
         partial void ChangingHandler(object sender, HandlerChangingEventArgs e)
