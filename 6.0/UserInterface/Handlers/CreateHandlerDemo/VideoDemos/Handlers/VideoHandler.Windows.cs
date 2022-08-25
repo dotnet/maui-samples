@@ -5,15 +5,15 @@ using VideoDemos.Controls;
 
 namespace VideoDemos.Handlers
 {
-    public partial class VideoHandler : ViewHandler<IVideo, FrameworkElement>
+    public partial class VideoHandler : ViewHandler<Video, FrameworkElement>
     {
         protected override FrameworkElement CreatePlatformView() => throw new PlatformNotSupportedException("No MediaElement control on Windows.");
-        public static void MapAreTransportControlsEnabled(IVideoHandler handler, IVideo video) => throw new PlatformNotSupportedException("No MediaElement control on Windows.");
-        public static void MapSource(IVideoHandler handler, IVideo video) => throw new PlatformNotSupportedException("No MediaElement control on Windows.");
-        public static void MapPosition(IVideoHandler handler, IVideo video) => throw new PlatformNotSupportedException("No MediaElement control on Windows.");
-        public static void MapUpdateStatus(IVideoHandler handler, IVideo video, object? arg) => throw new PlatformNotSupportedException("No MediaElement control on Windows.");
-        public static void MapPlayRequested(IVideoHandler handler, IVideo video, object? arg) => throw new PlatformNotSupportedException("No MediaElement control on Windows.");
-        public static void MapPauseRequested(IVideoHandler handler, IVideo video, object? arg) => throw new PlatformNotSupportedException("No MediaElement control on Windows.");
-        public static void MapStopRequested(IVideoHandler handler, IVideo video, object? arg) => throw new PlatformNotSupportedException("No MediaElement control on Windows.");
+        public static void MapAreTransportControlsEnabled(VideoHandler handler, Video video) => throw new PlatformNotSupportedException("No MediaElement control on Windows.");
+        public static void MapSource(VideoHandler handler, Video video) => throw new PlatformNotSupportedException("No MediaElement control on Windows.");
+        public static void MapPosition(VideoHandler handler, Video video) => throw new PlatformNotSupportedException("No MediaElement control on Windows.");
+        public static void MapUpdateStatus(VideoHandler handler, Video video, object? arg) => throw new PlatformNotSupportedException("No MediaElement control on Windows.");
+        public static void MapPlayRequested(VideoHandler handler, Video video, object? arg) => throw new PlatformNotSupportedException("No MediaElement control on Windows.");
+        public static void MapPauseRequested(VideoHandler handler, Video video, object? arg) => throw new PlatformNotSupportedException("No MediaElement control on Windows.");
+        public static void MapStopRequested(VideoHandler handler, Video video, object? arg) => throw new PlatformNotSupportedException("No MediaElement control on Windows.");
     }
 }
