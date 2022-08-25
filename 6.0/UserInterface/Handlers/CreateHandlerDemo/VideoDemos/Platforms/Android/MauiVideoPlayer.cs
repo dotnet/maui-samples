@@ -14,9 +14,9 @@ namespace VideoDemos.Platforms.Android
         MediaController _mediaController;
         bool _isPrepared;
         Context _context;
-        IVideo _video;
+        Video _video;
 
-        public MauiVideoPlayer(Context context, IVideo video) : base(context)
+        public MauiVideoPlayer(Context context, Video video) : base(context)
         {
             _context = context;
             _video = video;

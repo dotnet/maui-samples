@@ -5,7 +5,7 @@ using VideoDemos.Platforms.MaciOS;
 
 namespace VideoDemos.Handlers
 {
-    public partial class VideoHandler : ViewHandler<IVideo, MauiVideoPlayer>
+    public partial class VideoHandler : ViewHandler<Video, MauiVideoPlayer>
     {
         protected override MauiVideoPlayer CreatePlatformView() => new MauiVideoPlayer(VirtualView);
 
@@ -22,27 +22,27 @@ namespace VideoDemos.Handlers
             base.DisconnectHandler(platformView);
         }
 
-        public static void MapAreTransportControlsEnabled(IVideoHandler handler, IVideo video)
+        public static void MapAreTransportControlsEnabled(VideoHandler handler, Video video)
         {
             handler?.PlatformView.UpdateTransportControlsEnabled();
         }
 
-        public static void MapSource(IVideoHandler handler, IVideo video)
+        public static void MapSource(VideoHandler handler, Video video)
         {
             handler?.PlatformView.UpdateSource();
         }
 
-        public static void MapPosition(IVideoHandler handler, IVideo video)
+        public static void MapPosition(VideoHandler handler, Video video)
         {
             handler?.PlatformView.UpdatePosition();
         }
 
-        public static void MapUpdateStatus(IVideoHandler handler, IVideo video, object? args)
+        public static void MapUpdateStatus(VideoHandler handler, Video video, object? args)
         {
             handler.PlatformView?.UpdateStatus();
         }
 
-        public static void MapPlayRequested(IVideoHandler handler, IVideo video, object? args)
+        public static void MapPlayRequested(VideoHandler handler, Video video, object? args)
         {
             if (args is not VideoPositionEventArgs)
                 return;
@@ -51,7 +51,7 @@ namespace VideoDemos.Handlers
             handler.PlatformView?.PlayRequested(position);
         }
 
-        public static void MapPauseRequested(IVideoHandler handler, IVideo video, object? args)
+        public static void MapPauseRequested(VideoHandler handler, Video video, object? args)
         {
             if (args is not VideoPositionEventArgs)
                 return;
@@ -60,7 +60,7 @@ namespace VideoDemos.Handlers
             handler.PlatformView?.PauseRequested(position);
         }
 
-        public static void MapStopRequested(IVideoHandler handler, IVideo video, object? args)
+        public static void MapStopRequested(VideoHandler handler, Video video, object? args)
         {
             if (args is not VideoPositionEventArgs)
                 return;

@@ -2,7 +2,7 @@
 
 namespace VideoDemos.Controls
 {
-    public class Video : View, IVideo, IVideoController
+    public class Video : View, IVideoController
     {
         #region Bindable Properties
 
@@ -115,27 +115,27 @@ namespace VideoDemos.Controls
         {
             VideoPositionEventArgs args = new VideoPositionEventArgs(Position);
             PlayRequested?.Invoke(this, args);
-            Handler?.Invoke(nameof(IVideo.PlayRequested), args);
+            Handler?.Invoke(nameof(Video.PlayRequested), args);
         }
 
         public void Pause()
         {
             VideoPositionEventArgs args = new VideoPositionEventArgs(Position);
             PauseRequested?.Invoke(this, args);
-            Handler?.Invoke(nameof(IVideo.PauseRequested), args);
+            Handler?.Invoke(nameof(Video.PauseRequested), args);
         }
 
         public void Stop()
         {
             VideoPositionEventArgs args = new VideoPositionEventArgs(Position);
             StopRequested?.Invoke(this, args);
-            Handler?.Invoke(nameof(IVideo.StopRequested), args);
+            Handler?.Invoke(nameof(Video.StopRequested), args);
         }
 
         void OnTimerTick(object sender, EventArgs e)
         {
             UpdateStatus?.Invoke(this, EventArgs.Empty);
-            Handler?.Invoke(nameof(IVideo.UpdateStatus));
+            Handler?.Invoke(nameof(Video.UpdateStatus));
         }
 
         void SetTimeToEnd()

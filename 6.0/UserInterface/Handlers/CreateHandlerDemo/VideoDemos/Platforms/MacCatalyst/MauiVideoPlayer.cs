@@ -13,9 +13,9 @@ namespace VideoDemos.Platforms.MaciOS
         AVPlayer _player;
         AVPlayerItem _playerItem;
         AVPlayerViewController _playerViewController;
-        IVideo _video;
+        Video _video;
 
-        public MauiVideoPlayer(IVideo video)
+        public MauiVideoPlayer(Video video)
         {
             _video = video;
 

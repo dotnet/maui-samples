@@ -12,26 +12,22 @@ using Microsoft.Maui.Handlers;
 
 namespace VideoDemos.Handlers
 {
-    public partial class VideoHandler : IVideoHandler
+    public partial class VideoHandler
     {
-        public static IPropertyMapper<IVideo, IVideoHandler> PropertyMapper = new PropertyMapper<IVideo, IVideoHandler>(ViewHandler.ViewMapper)
+        public static IPropertyMapper<Video, VideoHandler> PropertyMapper = new PropertyMapper<Video, VideoHandler>(ViewHandler.ViewMapper)
         {
-            [nameof(IVideo.AreTransportControlsEnabled)] = MapAreTransportControlsEnabled,
-            [nameof(IVideo.Source)] = MapSource,
-            [nameof(IVideo.Position)] = MapPosition
+            [nameof(Video.AreTransportControlsEnabled)] = MapAreTransportControlsEnabled,
+            [nameof(Video.Source)] = MapSource,
+            [nameof(Video.Position)] = MapPosition
         };
 
-        public static CommandMapper<IVideo, IVideoHandler> CommandMapper = new(ViewCommandMapper)
+        public static CommandMapper<Video, VideoHandler> CommandMapper = new(ViewCommandMapper)
         {
-            [nameof(IVideo.UpdateStatus)] = MapUpdateStatus,
-            [nameof(IVideo.PlayRequested)] = MapPlayRequested,
-            [nameof(IVideo.PauseRequested)] = MapPauseRequested,
-            [nameof(IVideo.StopRequested)] = MapStopRequested
+            [nameof(Video.UpdateStatus)] = MapUpdateStatus,
+            [nameof(Video.PlayRequested)] = MapPlayRequested,
+            [nameof(Video.PauseRequested)] = MapPauseRequested,
+            [nameof(Video.StopRequested)] = MapStopRequested
         };
-
-        IVideo IVideoHandler.VirtualView => VirtualView;
-
-        PlatformView IVideoHandler.PlatformView => PlatformView;
 
         public VideoHandler() : base(PropertyMapper, CommandMapper)
         {
