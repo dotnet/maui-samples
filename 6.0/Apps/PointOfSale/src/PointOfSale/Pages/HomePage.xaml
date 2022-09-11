@@ -46,7 +46,20 @@
                                        >
                     <BindableLayout.ItemTemplate>
                         <DataTemplate x:DataType="m:Item">
-                            <Grid RowDefinitions="30,230" WidthRequest="200">
+                            <Grid RowDefinitions="30,230" WidthRequest="200"
+                                ToolTipProperties.Text="{Binding Title}"
+                            >
+                            <FlyoutBase.ContextFlyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem Text="Edit"/>
+                                    <MenuFlyoutItem Text="Duplicate"/>
+                                </MenuFlyout>
+                            </FlyoutBase.ContextFlyout>
+                            <!-- <Grid.GestureRecognizers>
+                                <PointerGestureRecognizer PointerEntered="HoverBegan"
+                                                        PointerExited="HoverEnded"/>
+                            </Grid.GestureRecognizers> -->
+
                                 <Border Background="{StaticResource DarkBg2Brush}"
                                         Stroke="{StaticResource DarkBg2Brush}"
                                         StrokeThickness="1"
