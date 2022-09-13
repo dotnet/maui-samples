@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:HyperlinkDemo"
+             x:Class="HyperlinkDemo.MainPage">
+    <StackLayout Margin="20">
+        <Label Text="Hyperlink Demos"
+               HorizontalOptions="Center"
+               FontAttributes="Bold" />
+        <Label Text="Click the Label below to view .NET MAUI documentation." />
+        <Label Text=".NET MAUI documentation"
+               TextColor="Blue"
+               TextDecorations="Underline"
+               HorizontalOptions="Center">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding TapCommand}"
+                                      CommandParameter="https://docs.microsoft.com/dotnet/maui" />
+            </Label.GestureRecognizers>
+        </Label>
+        <Label>
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="Alternatively, click " />
+                    <Span Text="here"
+                          TextColor="Blue"
+                          TextDecorations="Underline">
+                        <Span.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding TapCommand}"
+                                                  CommandParameter="https://docs.microsoft.com/dotnet/maui" />
+                        </Span.GestureRecognizers>
+                    </Span>
+                    <Span Text=" to view .NET MAUI documentation." />
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+
+        <Label Text="Click the Label below to view .NET documentation." />
+        <local:HyperlinkLabel Text=".NET documentation"
+                              Url="https://docs.microsoft.com/dotnet/"
+                              HorizontalOptions="Center" />
+        <Label>
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="Alternatively, click " />
+                    <local:HyperlinkSpan Text="here"
+                                         Url="https://docs.microsoft.com/dotnet/" />
+                    <Span Text=" to view .NET documentation." />
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+    </StackLayout>
+
+</ContentPage>
