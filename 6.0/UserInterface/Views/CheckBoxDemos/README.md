@@ -16,4 +16,4 @@ The .NET Multi-platform App UI (.NET MAUI) `CheckBox` is a type of button that c
 
 This sample demonstrates how to use a .NET MAUI `CheckBox` in code, XAML with code-behind, and XAML data-binding scenarios.
 
-For more information about this sample, see [.NET MAUI CheckBox](https://docs.microsoft.com/en-gb/dotnet/maui/user-interface/controls/checkbox).
+For more information about this sample, see [.NET MAUI CheckBox](https://docs.microsoft.com/dotnet/maui/user-interface/controls/checkbox).
