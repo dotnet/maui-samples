@@ -6,6 +6,10 @@ Samples built with .NET Multi-platform App UI (.NET MAUI).
 
 ## Official Samples
 
+Official samples can be accessed via the [Samples browser](https://docs.microsoft.com/samples/browse/?expanded=dotnet&products=dotnet-maui).
+
+Sample highlights include:
+
 * [Weather '21 App](6.0/Apps/WeatherTwentyOne)
 * [Calculator App](6.0/Apps/Calculator)
 * [.NET Podcasts App](https://github.com/microsoft/dotnet-podcasts)
@@ -17,6 +21,8 @@ Samples built with .NET Multi-platform App UI (.NET MAUI).
 * [Rachel's Recipes App](https://github.com/rachelkang/recipeSearch)
 * [Awesome .NET MAUI](https://github.com/jsuarezruiz/awesome-dotnet-maui)
 * [MiBocata .NET MAUI](https://github.com/migueBarrera/MiBocata)
+* [.NET MAUI samples (.NET MAUI Paint, .NET MAUI Blazor Photo gallery, Kanban board and more)](https://github.com/VladislavAntonyuk/MauiSamples)
+
 
 ## .NET MAUI Links
 

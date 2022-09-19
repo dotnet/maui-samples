@@ -1,0 +1,65 @@
+﻿<?xml version = "1.0" encoding = "UTF-8" ?>
+<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ThemingDemo"
+             x:Class="ThemingDemo.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary Source="Themes/LightTheme.xaml" />
+
+            <Style TargetType="StackLayout">
+                <Setter Property="Spacing" Value="6" />
+            </Style>
+            <Style TargetType="Grid">
+                <Setter Property="RowSpacing" Value="6" />
+                <Setter Property="ColumnSpacing" Value="6" />
+            </Style>
+
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor"
+                        Value="{DynamicResource NavigationBarColor}" />
+                <Setter Property="BarTextColor"
+                        Value="{DynamicResource SecondaryColor}" />
+            </Style>
+
+            <Style x:Key="ButtonStyle"
+                   TargetType="Button">
+                <Setter Property="BackgroundColor"
+                        Value="{DynamicResource PrimaryColor}" />
+                <Setter Property="TextColor"
+                        Value="{DynamicResource SecondaryColor}" />
+                <Setter Property="HeightRequest"
+                        Value="45" />
+                <Setter Property="WidthRequest"
+                        Value="190" />
+                <Setter Property="CornerRadius"
+                        Value="18" />
+            </Style>
+
+            <Style x:Key="LargeLabelStyle"
+                   TargetType="Label">
+                <Setter Property="TextColor"
+                        Value="{DynamicResource SecondaryTextColor}" />
+                <Setter Property="FontSize"
+                        Value="30" />
+            </Style>
+
+            <Style x:Key="MediumLabelStyle"
+                   TargetType="Label">
+                <Setter Property="TextColor"
+                        Value="{DynamicResource PrimaryTextColor}" />
+                <Setter Property="FontSize"
+                        Value="25" />
+            </Style>
+
+            <Style x:Key="SmallLabelStyle"
+                   TargetType="Label">
+                <Setter Property="TextColor"
+                        Value="{DynamicResource TertiaryTextColor}" />
+                <Setter Property="FontSize"
+                        Value="15" />
+            </Style>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

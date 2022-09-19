@@ -10,14 +10,14 @@
             <Setter Property="Margin" Value="10" />
             <Setter Property="CornerRadius" Value="15" />
         </Style>
-            
+
         <Style TargetType="Label">
             <Setter Property="Margin" Value="0, 4" />
         </Style>
 
         <Style x:Key="headerLabel" TargetType="Label">
             <Setter Property="Margin" Value="0, 8" />
-            <Setter Property="FontSize" Value="Large" />
+            <Setter Property="FontSize" Value="20" />
             <Setter Property="TextColor" Value="Blue" />
         </Style>
 
@@ -28,7 +28,7 @@
 
         <Style TargetType="Button">
             <Setter Property="Text" Value="LEARN MORE" />
-            <Setter Property="FontSize" Value="Large" />
+            <Setter Property="FontSize" Value="20" />
             <Setter Property="TextColor" Value="White" />
             <Setter Property="BackgroundColor" Value="Green" />
             <Setter Property="CornerRadius" Value="20" />
@@ -41,7 +41,7 @@
                    HeightRequest="480">
 
                 <FlexLayout Direction="Column">
-                    <Label Text="Seated Monkey" 
+                    <Label Text="Seated Monkey"
                            Style="{StaticResource headerLabel}" />
                     <Label Text="This monkey is laid back and relaxed, and likes to watch the world go by." />
                     <Label Text="  &#x2022; Doesn't make a lot of noise" />
@@ -71,7 +71,7 @@
                     <Button />
                 </FlexLayout>
             </Frame>
-            
+
             <Frame WidthRequest="300"
                    HeightRequest="480">
 

@@ -41,7 +41,9 @@ namespace FlexLayoutDemos.Views
                     {
                         Image image = new Image
                         {
-                            Source = ImageSource.FromUri(new Uri(photoUri))
+                            Source = ImageSource.FromUri(new Uri(photoUri)),
+                            HeightRequest = 100,
+                            WidthRequest = 100
                         };
                         flexLayout.Children.Add(image);
                     }

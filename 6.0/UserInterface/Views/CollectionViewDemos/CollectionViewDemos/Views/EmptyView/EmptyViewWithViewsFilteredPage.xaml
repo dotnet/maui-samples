@@ -38,8 +38,8 @@
             </CollectionView.ItemTemplate>
             <CollectionView.EmptyView>
                 <ContentView>
-                    <StackLayout HorizontalOptions="CenterAndExpand"
-                                 VerticalOptions="CenterAndExpand">
+                    <StackLayout HorizontalOptions="Center"
+                                 VerticalOptions="Center">
                         <Label Text="No results matched your filter."
                                Margin="10,25,10,10"
                                FontAttributes="Bold"

@@ -41,9 +41,9 @@
             <Label Text="{Binding Source={x:Reference grow2Slider},
                                   Path=Value,
                                   StringFormat='Grow = {0:F2}'}"
-                   Grid.Row="1" Grid.Column="1" 
+                   Grid.Row="1" Grid.Column="1"
                    HorizontalOptions="Center" />
-            
+
             <!-- Controls for Label 4 -->
             <Label Text="Label 4:"
                    Grid.Row="2" Grid.Column="0" />
@@ -55,7 +55,7 @@
             <Label Text="{Binding Source={x:Reference grow4Slider},
                                   Path=Value,
                                   StringFormat='Grow = {0:F2}'}"
-                   Grid.Row="3" Grid.Column="1" 
+                   Grid.Row="3" Grid.Column="1"
                    HorizontalOptions="Center" />
         </Grid>
 
@@ -66,7 +66,7 @@
 
             <FlexLayout.Resources>
                 <Style TargetType="Label">
-                    <Setter Property="FontSize" Value="Large" />
+                    <Setter Property="FontSize" Value="20" />
                 </Style>
             </FlexLayout.Resources>
 

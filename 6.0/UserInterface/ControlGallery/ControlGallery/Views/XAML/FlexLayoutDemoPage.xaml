@@ -17,7 +17,7 @@
 
         <Style x:Key="headerLabel" TargetType="Label">
             <Setter Property="Margin" Value="0, 8" />
-            <Setter Property="FontSize" Value="Large" />
+            <Setter Property="FontSize" Value="20" />
             <Setter Property="TextColor" Value="Blue" />
         </Style>
 
@@ -28,7 +28,7 @@
 
         <Style TargetType="Button">
             <Setter Property="Text" Value="LEARN MORE" />
-            <Setter Property="FontSize" Value="Large" />
+            <Setter Property="FontSize" Value="20" />
             <Setter Property="TextColor" Value="White" />
             <Setter Property="BackgroundColor" Value="Green" />
             <Setter Property="CornerRadius" Value="20" />

@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:m="clr-namespace:PointOfSale.Models"
+             xmlns:vm="clr-namespace:PointOfSale.Pages" xmlns:customlayouts="clr-namespace:CustomLayouts"
+             x:DataType="vm:AddProductViewModel"
+             x:Class="PointOfSale.Pages.AddProductView"
+             Background="{StaticResource DarkBg2Brush}"
+             >
+    <ContentView.BindingContext>
+        <vm:AddProductViewModel/>
+    </ContentView.BindingContext>
+
+    <ContentView.Resources>
+        <Style TargetType="RadioButton">
+            <Setter Property="ControlTemplate" Value="{StaticResource ButtonRadioTemplate}"/>
+        </Style>
+    </ContentView.Resources>
+
+    <Grid RowDefinitions="*,108">
+        <ScrollView>
+            <VerticalStackLayout Spacing="20" Margin="24">
+                <Label Text="Add a Product" Style="{StaticResource Title1}" />
+                <BoxView Style="{StaticResource HRule}"/>
+                <Label Text="Product Name"/>
+                <Border
+                    HeightRequest="48"
+                    HorizontalOptions="Fill"
+                    Background="{StaticResource DarkBg1Brush}"
+                    Stroke="{StaticResource SecondaryBrush}"
+                    StrokeThickness="1"
+                    >
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="8"/>
+                    </Border.StrokeShape>
+            
+                    <Entry Background="Transparent"
+                            Placeholder="Add product name"
+                            Text="{Binding Item.Title}"
+                            PlaceholderColor="{StaticResource TextSecondary}"
+                            TextColor="White"
+                            HorizontalOptions="Start"
+                            MinimumWidthRequest="220"
+                            Margin="8,0"
+                            FontSize="14"/>
+                </Border>
+                <Label Text="Price"/>
+                <Border
+                    HeightRequest="48"
+                    HorizontalOptions="Fill"
+                    Background="{StaticResource DarkBg1Brush}"
+                    Stroke="{StaticResource SecondaryBrush}"
+                    StrokeThickness="1"
+                    >
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="8"/>
+                    </Border.StrokeShape>
+            
+                        <Entry Background="Transparent"
+                               Placeholder="$5.95"
+                               Text="{Binding Item.Price}"
+                               PlaceholderColor="{StaticResource TextSecondary}"
+                               TextColor="White"
+                               HorizontalOptions="Start"
+                               MinimumWidthRequest="220"
+                               Margin="8,0"
+                               FontSize="14"/>
+                </Border>
+                <Label Text="Category"/>
+                <customlayouts:HorizontalWrapLayout
+                    Spacing="8"
+                    RadioButtonGroup.GroupName="ProductItemCategory"
+                    RadioButtonGroup.SelectedValue="{Binding Category}"
+                    >
+                    <BindableLayout.ItemsSource>
+                        <x:Array Type="{x:Type x:String}" >
+                            <x:String>Noodles</x:String>
+                            <x:String>Rice</x:String>
+                            <x:String>Appetizers</x:String>
+                            <x:String>Desserts</x:String>
+                            <x:String>Beverages</x:String>
+                        </x:Array>
+                    </BindableLayout.ItemsSource>
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <RadioButton Content="{Binding .}" Value="{Binding .}"/>
+                        </DataTemplate>
+
+                    </BindableLayout.ItemTemplate>
+
+                </customlayouts:HorizontalWrapLayout>
+
+                <Label Text="Photo (140x140)"/>
+                <Image Source="{Binding ImagePath, FallbackValue=noimage.png, Mode=OneWay}" HorizontalOptions="Start" />
+                <Button Text="Change Image" Style="{StaticResource PrimaryButtonOutline}" Command="{Binding ChangeImageCommand}"/>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <Button Text="Save" Grid.Row="1" Margin="24" Command="{Binding SaveCommand}"
+                HorizontalOptions="Fill"
+                />
+    </Grid>
+</ContentView>

@@ -163,7 +163,7 @@
                        Style="{StaticResource labelHeading}"
                        VerticalTextAlignment="Center" />
                 <Switch Toggled="OnEmptyViewSwitchToggled"
-                        HorizontalOptions="EndAndExpand"                        
+                        HorizontalOptions="End"                        
                         VerticalOptions="End" />
             </StackLayout>
             <StackLayout x:Name="achievementsStackLayout"

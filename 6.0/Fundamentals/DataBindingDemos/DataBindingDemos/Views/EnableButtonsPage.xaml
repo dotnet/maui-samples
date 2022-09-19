@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:DataBindingDemos"
+             x:Class="DataBindingDemos.EnableButtonsPage"
+             Title="Enable Buttons">
+    <ContentPage.Resources>
+        <local:IntToBoolConverter x:Key="intToBool" />
+    </ContentPage.Resources>
+    
+    <StackLayout Padding="10, 0">
+        <Entry x:Name="entry1"
+               Text=""
+               Placeholder="enter search term"
+               VerticalOptions="Center" />
+        <Button Text="Search"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                IsEnabled="{Binding Source={x:Reference entry1},
+                                    Path=Text.Length,
+                                    Converter={StaticResource intToBool}}" />
+        <Entry x:Name="entry2"
+               Text=""
+               Placeholder="enter destination"
+               VerticalOptions="Center" />
+        <Button Text="Submit"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                IsEnabled="{Binding Source={x:Reference entry2},
+                                    Path=Text.Length,
+                                    Converter={StaticResource intToBool}}" />
+    </StackLayout>
+</ContentPage>

@@ -19,13 +19,5 @@
                 </FormattedString>
             </Label.FormattedText>
         </Label>
-        <Label HorizontalTextAlignment="Center">
-            <Label.FormattedText>
-                <FormattedString>
-                    <Span Text="Platform: " />
-                    <Span Text="{x:Static Device.RuntimePlatform}" />
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
     </StackLayout>
 </ContentPage>
