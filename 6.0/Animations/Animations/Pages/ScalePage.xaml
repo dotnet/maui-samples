@@ -19,7 +19,7 @@
                 
             <Button 
                 Text="Say Bye Bye"
-                SemanticProperties.Hint="Counts the number of times you click"
+                SemanticProperties.Hint="Shrinks the dot net bot so it seems to disappear"
                 Clicked="OnClickedAsync"
                 HorizontalOptions="Center" />
 
