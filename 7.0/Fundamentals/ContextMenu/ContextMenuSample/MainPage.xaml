@@ -14,7 +14,7 @@
                 SemanticProperties.HeadingLevel="Level1"
                 FontSize="32"/>
 
-            <Border Background="#F1F1F1" Padding="15"
+            <Border Padding="15"
                     HorizontalOptions="Start"
                     >
                 <Editor
