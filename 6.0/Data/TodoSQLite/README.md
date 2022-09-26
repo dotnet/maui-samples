@@ -14,4 +14,6 @@ urlFragment: database-sqlite
 
 This sample demonstrates how to store data in a local database using SQLite in .NET MAUI applications.
 
+![Todo app on iOS, Android, and Windows](images/todo-list.png)
+
 For more information about the sample see [Local Databases with SQlite documentaiton](https://docs.microsoft.com/dotnet/maui/data-cloud/database-sqlite).
