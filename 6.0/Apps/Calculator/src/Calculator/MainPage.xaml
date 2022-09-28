@@ -71,7 +71,7 @@
         <Button Text="+" Grid.Row="4" Grid.Column="3"
                Clicked="OnSelectOperator" />
 
-
+        <Label Text="Hello World"/>
 
         <Button Text="=" Grid.Row="5" Grid.Column="3" 
                Clicked="OnCalculate" />
