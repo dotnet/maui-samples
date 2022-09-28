@@ -68,7 +68,7 @@ namespace VideoDemos.Platforms.MaciOS
             {
                 string uri = (_video.Source as FileVideoSource).File;
                 if (!string.IsNullOrWhiteSpace(uri))
-                    asset = AVAsset.FromUrl(new NSUrl(uri));
+                    asset = AVAsset.FromUrl(NSUrl.CreateFileUrl(new [] { uri }));
             }
             else if (_video.Source is ResourceVideoSource)
             {
