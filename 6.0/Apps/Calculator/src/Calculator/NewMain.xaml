@@ -75,7 +75,7 @@
         <Button Text="=" Grid.Row="5" Grid.Column="3" 
                Clicked="OnCalculate" />
        
-        <Button Text="sqrt" Grid.Row="1" Grid.Column="4"/>
+        <Button Text="sqrt" Grid.Row="1" Grid.Column="4" Clicked="OnSqrt"/>
         <Button Text="Mod" Grid.Row="2" Grid.Column="4"/>
         <Button Text="(" Grid.Row="3" Grid.Column="4"/>
         <Button Text=")" Grid.Row="4" Grid.Column="4"/>

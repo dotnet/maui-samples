@@ -1,4 +1,5 @@
 ﻿namespace Calculator;
+using System;
 
 public partial class NewMain : ContentPage
 {
@@ -118,6 +119,17 @@ public partial class NewMain : ContentPage
             mathOperator = "×";
             currentState = 2;
             OnCalculate(this, null);
+        }
+    }
+
+    void OnSqrt(object sender, EventArgs e)
+    {
+        if(currentState == 1)
+        {
+            LockNumberValue(resultText.Text);
+            mathOperator = "sqrt";
+            currentState = 2;
+
         }
     }
 }

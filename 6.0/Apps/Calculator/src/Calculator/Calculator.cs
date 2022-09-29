@@ -1,4 +1,5 @@
 ﻿namespace Calculator;
+using System;
 
 public static class Calculator
 {
@@ -20,6 +21,10 @@ public static class Calculator
             case "-":
                 result = value1 - value2;
                 break;
+            case "sqrt":
+                result = Math.Sqrt(value1);
+                break;
+
         }
 
         return result;
