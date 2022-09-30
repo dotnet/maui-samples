@@ -12,4 +12,4 @@ urlFragment: tutorial-notes
 
 # Use local storage to save and load notes
 
-This sample demonstrates how to use local storage to save and load notes to the device. This code was created from following the [Create a .NET MAUI app](https://learn.microsoft.com/en-us/dotnet/maui/tutorials/notes-app/) tutorial.
+This sample demonstrates how to use local storage to save and load notes to and from the user's device. This code was created from following the [Create a .NET MAUI app](https://learn.microsoft.com/en-us/dotnet/maui/tutorials/notes-app/) tutorial.
