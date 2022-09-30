@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Notes.NotePage"
+             Title="Note">
+    <VerticalStackLayout Spacing="10" Margin="5">
+        <Editor x:Name="TextEditor"
+                Placeholder="Enter your note"
+                HeightRequest="100" />
+
+        <Grid ColumnDefinitions="*,*" ColumnSpacing="4">
+            <Button Text="Save"
+                    Clicked="SaveButton_Clicked" />
+
+            <Button Grid.Column="1"
+                    Text="Delete"
+                    Clicked="DeleteButton_Clicked" />
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>
