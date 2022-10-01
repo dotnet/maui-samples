@@ -14,7 +14,7 @@ internal class AllNotes
         Notes.Clear();
 
         // Get the folder where the notes are stored.
-        string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+        string appDataPath = FileSystem.AppDataDirectory;
 
         // Use Linq extensions to load the *.notes.txt files.
         IEnumerable<Note> notes = Directory
