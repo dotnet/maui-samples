@@ -24,10 +24,13 @@ public static class Calculator
             case "sqrt":
                 result = Math.Sqrt(value1);
                 break;
+            case "%":
+                result = value1 % value2;
+                break;
 
         }
 
-        return result;
+        return Math.Abs(result);
     }
 }
 
