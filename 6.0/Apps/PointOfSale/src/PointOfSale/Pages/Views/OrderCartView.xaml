@@ -86,10 +86,12 @@
                         </DataTemplate>
 
                     </BindableLayout.ItemTemplate>
-
-                
-
                 </VerticalStackLayout>
+
+                <Label Text="{Binding Order.Total, StringFormat='Total: ${0}'}"
+                                       Grid.Column="2"
+                                       VerticalOptions="End"/>
+
             </VerticalStackLayout>
         </ScrollView>
         <Button Text="Place Order" HorizontalOptions="Fill" Margin="24" Grid.Row="1"

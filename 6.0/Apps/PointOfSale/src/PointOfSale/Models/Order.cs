@@ -1,5 +1,6 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using PointOfSale.Pages.Handheld;
+using System.ComponentModel;
 
 namespace PointOfSale.Models;
 
@@ -19,7 +20,7 @@ public partial class Order
     {
         get
         {
-            var tot = items.Sum(i => (i.Price * i.Quantity));
+            var tot = items.Sum(i => (i.SubTotal));
             if (tip != 0)
                 tot = tot + (tot * tip);
             return tot.ToString("N2");
@@ -28,6 +29,21 @@ public partial class Order
 
     [ObservableProperty]
     private List<Item> items;
+
+    partial void OnItemsChanged(List<Item> value)
+    {
+        if (value != null)
+            foreach (Item item in value)
+                item.PropertyChanged += Item_PropertyChanged;
+    }
+
+    private void Item_PropertyChanged(object sender, PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName == "Quantity")
+        {
+            OnPropertyChanged(nameof(Total));
+        }
+    }
 
     [ObservableProperty] 
     private string status;
