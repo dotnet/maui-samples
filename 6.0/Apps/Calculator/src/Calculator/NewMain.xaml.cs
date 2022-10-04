@@ -1,6 +1,5 @@
 ﻿namespace Calculator;
 using System;
-using System.Linq.Expressions;
 
 public partial class NewMain : ContentPage
 {
@@ -20,11 +19,9 @@ public partial class NewMain : ContentPage
     Stack<Char> ops = new Stack<char>();
 
 
-
     void OnSelectNumber(object sender, EventArgs e)
     {
        
-
         Button button = (Button)sender;
         string pressed = button.Text;
 
@@ -52,8 +49,7 @@ public partial class NewMain : ContentPage
     }
 
     void OnSelectOperator(object sender, EventArgs e)
-    {
-        
+    {      
         LockNumberValue(resultText.Text);
 
         currentState = -2;
@@ -128,15 +124,6 @@ public partial class NewMain : ContentPage
             return true;
         }
     }
-
-    //public static void applyOp(char op, int b, int a)
-    //{
-    //    switch(op)
-    //    {
-    //        case '+':
-    //            return 
-    //    }
-    //}
 
     private void LockNumberValue(string text)
     {

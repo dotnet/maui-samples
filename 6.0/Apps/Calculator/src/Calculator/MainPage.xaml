@@ -1,11 +1,16 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage x:Class="Calculator.MainPage"
+<ContentPage 
             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:local="clr-namespace:Calculator"
+            x:Class="Calculator.MainPage">
 
-    <Grid Padding="16" RowSpacing="2" ColumnSpacing="2"
+
+    <Grid x:Name="grid_name"
+           Padding="16" RowSpacing="2" ColumnSpacing="2"
           RowDefinitions="2*,*,*,*,*,*"
-          ColumnDefinitions="*,*,*,*">
+          ColumnDefinitions="*,*,*,*"
+          BackgroundColor="Beige">
 
         <Label x:Name="CurrentCalculation"
                FontSize="22"

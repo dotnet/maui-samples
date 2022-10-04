@@ -59,5 +59,14 @@
 	  <MauiXaml Update="FlyoutPage.xaml">
 	    <SubType></SubType>
 	  </MauiXaml>
+	  <MauiXaml Update="FlyoutPageItem.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	  <MauiXaml Update="SchemesMenu.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	  <MauiXaml Update="FlyoutMenuPage.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
 	</ItemGroup>
 </Project>

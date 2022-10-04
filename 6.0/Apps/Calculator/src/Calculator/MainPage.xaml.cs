@@ -10,6 +10,13 @@ public partial class MainPage : ContentPage
 
     }
 
+    public MainPage(Microsoft.Maui.Graphics.Color clr) 
+    {
+        InitializeComponent();
+        OnClear(this, null);
+        this.grid_name.BackgroundColor = clr;
+
+    }
     string currentEntry = "";
     int currentState = 1;
     string mathOperator;

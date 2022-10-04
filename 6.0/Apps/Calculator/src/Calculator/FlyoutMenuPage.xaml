@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Calculator.FlyoutMenuPage"
+             xmlns:local="clr-namespace:Calculator"
+             Title="FlyoutMenuPage" Background="{DynamicResource Cyan100Accent}">
+
+     <CollectionView x:Name="collectionView"
+                    x:FieldModifier="public"
+                    SelectionMode="Single">
+        <CollectionView.ItemsSource>
+
+            <x:Array Type="{x:Type local:FlyoutPageItem}">
+                <local:FlyoutPageItem Title="Default Calculator"
+                                      TargetType="{x:Type local:MainPage}" />
+                <local:FlyoutPageItem Title="Advanced Calculator"
+                                      TargetType="{x:Type local:NewMain}" />
+                <local:FlyoutPageItem Title="About Page"
+                                      TargetType="{x:Type local:About}" />
+                <local:FlyoutPageItem Title="Schemes Menu"
+                                      TargetType="{x:Type local:SchemesMenu}" />
+            </x:Array>
+        </CollectionView.ItemsSource>
+
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <Grid Padding="5,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="1"
+                           Margin="20,0"
+                           Text="{Binding Title}"
+                           FontSize="20"
+                           FontAttributes="Bold"
+                           VerticalOptions="Center" />
+                </Grid>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+     </CollectionView>
+</ContentPage>
