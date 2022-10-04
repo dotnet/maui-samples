@@ -9,8 +9,8 @@
              xmlns:system="clr-namespace:System;assembly=System.Runtime"
              x:DataType="pages:HomeViewModel"
              x:Class="PointOfSale.Pages.HomePage"
-             Shell.NavBarIsVisible="False"
-             Title="HomePage">
+             Shell.NavBarIsVisible="True"
+             Title="">
 
     <ContentPage.BindingContext>
         <pages:HomeViewModel/>
@@ -118,7 +118,7 @@
         <Grid Grid.Row="1">
             <BoxView Style="{StaticResource HRule}"
                      Margin="0,31,0,0"
-                     VerticalOptions="Start"
+                     VerticalOptions="FillAndExpand"
             />
             <HorizontalStackLayout Spacing="20"
                                RadioButtonGroup.GroupName="MenuCategories"
