@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PointOfSale.Messages;
+using System;
 namespace PointOfSale.Pages;
 
 [INotifyPropertyChanged]
@@ -29,12 +30,12 @@ public partial class HomeViewModel
     [RelayCommand]
     async Task Preferences()
     {
-        await Shell.Current.GoToAsync($"{nameof(SettingsPage)}?sub=appearance");
+        await Shell.Current.GoToAsync($"//settings?sub=appearance");
     }
 
     [RelayCommand]
     async Task AddProduct()
     {
-        MessagingCenter.Send<HomeViewModel, string>(this, "action", "add");
+        MessagingCenter.Send<AddProductMessage, string>(new AddProductMessage(true), "action", "true");
     }
 }
