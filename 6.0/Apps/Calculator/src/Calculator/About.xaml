@@ -5,13 +5,15 @@
              Title="About" BackgroundColor="Beige">
     <VerticalStackLayout>
         <Label 
-            Text="Divya Kolagani"
+            Text="Divya Kolagani(G586k429)"
             VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+            HorizontalOptions="Center"
+            FontSize="Large"/>
         <Label 
-            Text="Poojitha Digumarthi"
+            Text="Poojitha Digumarthi(Y485F327)"
             VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+            HorizontalOptions="Center"
+            FontSize="Large"/>
 
     </VerticalStackLayout>
 </ContentPage>

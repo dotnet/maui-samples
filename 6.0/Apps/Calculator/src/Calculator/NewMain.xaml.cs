@@ -8,12 +8,20 @@ public partial class NewMain : ContentPage
 		InitializeComponent();
         OnClear(this, null);
     }
+    public NewMain(Microsoft.Maui.Graphics.Color clr)
+    {
+        InitializeComponent();
+        OnClear(this, null);
+        this.grid_name.BackgroundColor = clr;
+
+    }
     string currentEntry = "";
     int currentState = 1;
     string mathOperator;
     double firstNumber, secondNumber;
     string decimalFormat = "N0";
     bool expression = false;
+    string eval = "";
 
     Stack<double> values = new Stack<double>();
     Stack<Char> ops = new Stack<char>();
@@ -26,9 +34,10 @@ public partial class NewMain : ContentPage
         string pressed = button.Text;
 
         currentEntry += pressed;
+        this.eval += pressed;
 
         if ((this.resultText.Text == "0" && pressed == "0")
-            || (currentEntry.Length <= 1 && pressed != "0")
+            || (this.currentEntry.Length <= 1 && pressed != "0")
             || currentState < 0)
         {
             this.resultText.Text = "";
@@ -41,7 +50,14 @@ public partial class NewMain : ContentPage
             decimalFormat = "N2";
         }
 
-        this.resultText.Text += pressed;
+        if (this.expression)
+        {
+            this.resultText.Text += this.eval;
+        }
+        else
+        {
+            this.resultText.Text += pressed;
+        }
 
         //If current pressed is a number push it the stack
 
@@ -57,18 +73,25 @@ public partial class NewMain : ContentPage
         string pressed = button.Text;
         mathOperator = pressed;
 
-       // if the pressed is a operator then push it onn the stack
+       
+            
+            this.eval += pressed;
+        
+
+        // if the pressed is a operator then push it onn the stack
 
         if (pressed == "(")
         {
             this.ops.Push(char.Parse(pressed));
             expression = true;
+
         }
         else if (pressed == ")")
         {
             while (this.ops.Peek() != '(')
             {
                 this.values.Push(Calculator.Calculate(this.values.Pop(), this.values.Pop(), (this.ops.Pop()).ToString()));
+              
             }
             this.ops.Pop();
         }
@@ -76,37 +99,25 @@ public partial class NewMain : ContentPage
 
         else if (pressed == "+" || pressed == "-" || pressed == "×"  || pressed == "/")
         {
-            // While top of 'ops' has same
-            // or greater precedence to current
-            // token, which is an operator.
-            // Apply operator on top of 'ops'
-            // to top two elements in values stack
+            
 
             while (this.ops.Count > 0 && hasPrecedence(char.Parse(pressed), this.ops.Peek()))
             {
                 this.values.Push(Calculator.Calculate(this.values.Pop(), this.values.Pop(), (this.ops.Pop()).ToString()));
+                
             }
             // push current pressed to ops
 
             this.ops.Push(char.Parse(pressed));
+            
         }
 
-        // Entire expression has been
-        // parsed at this point, apply remaining
-        // ops to remaining values
-        //while (this.ops.Count > 0)
-        //{
-        //    this.values.Push(Calculator.Calculate(this.values.Pop(), this.values.Pop(), (this.ops.Pop()).ToString()));
-        //}
+        this.resultText.Text = this.eval;
 
-        // Top of 'values' contains
-        // result, return it
 
     }
 
-    // Returns true if 'op2' has
-    // higher or same precedence as 'op1',
-    // otherwise returns false.
+    
     public static bool hasPrecedence(char op1,
                                     char op2)
     {
@@ -139,7 +150,7 @@ public partial class NewMain : ContentPage
                 secondNumber = number;
             }
 
-            currentEntry = string.Empty;
+            this.currentEntry = string.Empty;
         }
     }
 
@@ -150,7 +161,10 @@ public partial class NewMain : ContentPage
         currentState = 1;
         decimalFormat = "N0";
         this.resultText.Text = "0";
-        currentEntry = string.Empty;
+        this.currentEntry = string.Empty;
+        this.eval = "";
+        this.expression = false;
+        this.CurrentCalculation.Text = "";
     }
 
     void OnCalculate(object sender, EventArgs e)
@@ -172,6 +186,7 @@ public partial class NewMain : ContentPage
         }
         else if (expression)
         {
+            this.CurrentCalculation.Text = $"{this.eval}";
             this.resultText.Text = this.values.Pop().ToString();
         }
         

@@ -15,7 +15,7 @@ public partial class SchemesMenu : ContentPage
     private void OnButtonClicked(Object sender, EventArgs e)
     {
         Button button = (Button)sender;
-        Navigation.PushAsync(new MainPage(button.BackgroundColor));
+        Navigation.PushAsync(new NewMain(button.BackgroundColor));
 
     }
 }

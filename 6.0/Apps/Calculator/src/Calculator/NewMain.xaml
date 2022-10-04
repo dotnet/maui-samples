@@ -2,8 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Calculator.NewMain"
-             Title="NewMain">
-     <Grid Padding="16" RowSpacing="2" ColumnSpacing="2"
+             Title="NewMain" BackgroundColor="Crimson">
+     <Grid x:Name="grid_name" Padding="16" RowSpacing="2" ColumnSpacing="2"
           RowDefinitions="2*,*,*,*,*,*"
           ColumnDefinitions="*,*,*,*,*">
 

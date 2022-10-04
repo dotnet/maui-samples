@@ -2,34 +2,40 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Calculator.SchemesMenu"
-             Title="Schemes" BackgroundColor="Chocolate">
+             Title="Schemes" BackgroundColor="AntiqueWhite">
     
         
          <StackLayout>
-        <Label Text="Select a scheme from the menu"
+        <Label Text="Select a color scheme from the menu for the calculator"
                VerticalOptions="Center" 
-               HorizontalOptions="Center" />
+               HorizontalOptions="Center"
+               FontSize="Large"/>
      
         <Button Text="Light"
                 VerticalOptions="Center"
                 HorizontalOptions="Center"
                 Clicked="OnButtonClicked"
-                BackgroundColor="Azure"
+                BackgroundColor="LightBlue"
+                
                  />
         <Button Text="Dark"
                 VerticalOptions="Center"
                 HorizontalOptions="Center"
                 Clicked="OnButtonClicked"
-                BackgroundColor="Aqua"/>
+                BackgroundColor="DarkOrange"
+                />
         <Button Text="Pink"
                 VerticalOptions="Center"
                 HorizontalOptions="Center"
                 Clicked="OnButtonClicked"
-                BackgroundColor="PaleGoldenrod"/>
+                BackgroundColor="LightPink"
+                />
         <Button Text="Green"
                 VerticalOptions="Center"
                 HorizontalOptions="Center"
-                Clicked="OnButtonClicked" />
+                Clicked="OnButtonClicked"
+                BackgroundColor="Green"
+                />
         
     </StackLayout>
         
