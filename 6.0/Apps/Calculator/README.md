@@ -1,21 +1,19 @@
----
 name: .NET MAUI - Calculator
 description: Calculator application that demonstrates Grid layout, styling, and event handling.
-page_type: sample
+Team
+1.Divya Kolagani
+github id: divyakolagani
+
+2.Poojitha Digumarthi
+Github id: poojithadigumarthi
+
+
 languages:
 - csharp
 - xaml
-products:
-- dotnet-maui
-urlFragment: apps-calculator
----
-
 # Calculator Sample App
 
 This basic calculator demonstrates using span and spacing features of a Grid layout to achieve a familiar interface.
 
 For more information, see the [Grid documentation](https://docs.microsoft.com/dotnet/maui/user-interface/layouts/grid).
-
-![Calculator Mac application screenshot](images/macos.png "Calculator application screenshot")
-
-![Calculator iOS application screenshot](images/ios.png "Calculator application screenshot")
+![image](https://user-images.githubusercontent.com/114635555/193962331-7d101c3a-7f84-4377-aea6-ad922618bfc7.png)
