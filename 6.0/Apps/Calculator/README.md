@@ -10,6 +10,24 @@ github id: divyakolagani
 Github id: poojithadigumarthi
 
 
+Contributions and Activity of the team
+
+Divya Kolagani
+1. Functionalities :
+
+SQRT
+MODULUS
+LEFT Parenthesis
+Right Paranthesis (To support in evaluating complex expressions like 9*4+5)
+
+
+Poojitha Digumarthi
+
+1. UI changes including FLYOUT features.
+2. Theme change menu
+3. Some Additional work like creating Read me files and documentation.
+
+
 languages:
 - csharp
 - xaml
