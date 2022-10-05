@@ -72,51 +72,42 @@ public partial class NewMain : ContentPage
         Button button = (Button)sender;
         string pressed = button.Text;
         mathOperator = pressed;
-
-       
-            
+                  
             this.eval += pressed;
         
-
         // if the pressed is a operator then push it onn the stack
 
         if (pressed == "(")
         {
             this.ops.Push(char.Parse(pressed));
             expression = true;
-
         }
         else if (pressed == ")")
         {
             while (this.ops.Peek() != '(')
             {
-                this.values.Push(Calculator.Calculate(this.values.Pop(), this.values.Pop(), (this.ops.Pop()).ToString()));
-              
+                this.values.Push(Calculator.Calculate(this.values.Pop(), this.values.Pop(), (this.ops.Pop()).ToString()));             
             }
             this.ops.Pop();
         }
         // If pressed is an operator
 
         else if (pressed == "+" || pressed == "-" || pressed == "×"  || pressed == "/")
-        {
-            
+        {           
 
             while (this.ops.Count > 0 && hasPrecedence(char.Parse(pressed), this.ops.Peek()))
             {
-                this.values.Push(Calculator.Calculate(this.values.Pop(), this.values.Pop(), (this.ops.Pop()).ToString()));
-                
+                this.values.Push(Calculator.Calculate(this.values.Pop(), this.values.Pop(), (this.ops.Pop()).ToString()));               
             }
             // push current pressed to ops
 
-            this.ops.Push(char.Parse(pressed));
-            
+            this.ops.Push(char.Parse(pressed));           
         }
 
         this.resultText.Text = this.eval;
 
 
     }
-
     
     public static bool hasPrecedence(char op1,
                                     char op2)
