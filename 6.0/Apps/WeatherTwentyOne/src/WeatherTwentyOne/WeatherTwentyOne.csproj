@@ -57,10 +57,14 @@
 
 	<ItemGroup>
 	  <None Remove="Platforms\Windows\trayicon.ico" />
+	  <None Remove="Platforms\MacCatalyst\trayicon.png" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <Content Include="Platforms\Windows\trayicon.ico">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="Platforms\MacCatalyst\trayicon.png">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </Content>
 	</ItemGroup>
