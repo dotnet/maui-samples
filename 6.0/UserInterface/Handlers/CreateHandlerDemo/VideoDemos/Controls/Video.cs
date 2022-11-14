@@ -15,6 +15,9 @@ namespace VideoDemos.Controls
         public static readonly BindableProperty AutoPlayProperty =
             BindableProperty.Create(nameof(AutoPlay), typeof(bool), typeof(Video), true);
 
+        public static readonly BindableProperty IsLoopingProperty =
+            BindableProperty.Create(nameof(IsLooping), typeof(bool), typeof(Video), false);
+
         private static readonly BindablePropertyKey StatusPropertyKey =
             BindableProperty.CreateReadOnly(nameof(Status), typeof(VideoStatus), typeof(Video), VideoStatus.NotReady);
 
@@ -52,6 +55,12 @@ namespace VideoDemos.Controls
         {
             get { return (bool)GetValue(AutoPlayProperty); }
             set { SetValue(AutoPlayProperty, value); }
+        }
+
+        public bool IsLooping
+        {
+            get { return (bool)GetValue(IsLoopingProperty); }
+            set { SetValue(IsLoopingProperty, value); }
         }
 
         public VideoStatus Status

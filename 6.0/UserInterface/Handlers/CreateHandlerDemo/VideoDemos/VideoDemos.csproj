@@ -62,6 +62,10 @@
 		<Compile Remove="**\*.Windows.cs" />
 		<None Include="**\*.Windows.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
 	</ItemGroup>
+	
+	<ItemGroup Condition="$(TargetFramework.Contains('-windows'))">
+		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.2.220902.1-preview1" />
+	</ItemGroup>
 
 	<ItemGroup>
 	  <None Remove="Resources\Raw\AndroidVideo.mp4" />

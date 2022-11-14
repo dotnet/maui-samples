@@ -32,6 +32,11 @@ namespace VideoDemos.Handlers
             handler?.PlatformView.UpdateSource();
         }
 
+        public static void MapIsLooping(VideoHandler handler, Video video)
+        {
+            handler.PlatformView?.UpdateIsLooping();
+        }
+
         public static void MapPosition(VideoHandler handler, Video video)
         {
             handler?.PlatformView.UpdatePosition();
