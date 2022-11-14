@@ -1,4 +1,5 @@
 ﻿using Android.Content;
+using Android.Media;
 using Android.Views;
 using Android.Widget;
 using AndroidX.CoordinatorLayout.Widget;
@@ -8,7 +9,7 @@ using Uri = Android.Net.Uri;
 
 namespace VideoDemos.Platforms.Android
 {
-    public class MauiVideoPlayer : CoordinatorLayout
+    public class MauiVideoPlayer : CoordinatorLayout, MediaPlayer.IOnPreparedListener
     {
         VideoView _videoView;
         MediaController _mediaController;
@@ -119,18 +120,24 @@ namespace VideoDemos.Platforms.Android
             }
         }
 
+        public void UpdateIsLooping()
+        {
+            if (_video.IsLooping)
+            {
+                _videoView.SetOnPreparedListener(this);
+            }
+            else
+            {
+                _videoView.SetOnPreparedListener(null);
+            }
+        }
+
         public void UpdatePosition()
         {
             if (Math.Abs(_videoView.CurrentPosition - _video.Position.TotalMilliseconds) > 1000)
             {
                 _videoView.SeekTo((int)_video.Position.TotalMilliseconds);
             }
-        }
-
-        void OnVideoViewPrepared(object sender, EventArgs args)
-        {
-            _isPrepared = true;
-            ((IVideoController)_video).Duration = TimeSpan.FromMilliseconds(_videoView.Duration);
         }
 
         public void UpdateStatus()
@@ -169,6 +176,20 @@ namespace VideoDemos.Platforms.Android
 
             // Ensure the video can be played again
             _videoView.Resume();
+        }
+
+        void OnVideoViewPrepared(object sender, EventArgs args)
+        {
+            _isPrepared = true;
+            ((IVideoController)_video).Duration = TimeSpan.FromMilliseconds(_videoView.Duration);
+        }
+
+        public void OnPrepared(MediaPlayer mp)
+        {
+            if (_video.IsLooping)
+                mp.Looping = true;
+            else
+                mp.Looping = false;
         }
     }
 }

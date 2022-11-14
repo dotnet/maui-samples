@@ -5,7 +5,8 @@
              x:Class="VideoDemos.Views.PlayVideoResourcePage"
              Unloaded="OnContentPageUnloaded"
              Title="Play video resource">
-    <controls:Video x:Name="video">
+    <controls:Video x:Name="video"
+                    IsLooping="true">
         <controls:Video.Source>
             <controls:ResourceVideoSource>
                 <controls:ResourceVideoSource.Path>
@@ -16,7 +17,7 @@
                             Value="AppleVideo.mp4" />
                         <On Platform="MacCatalyst"
                             Value="AppleVideo.mp4" />
-                        <On Platform="Windows"
+                        <On Platform="WinUI"
                             Value="WindowsVideo.mp4" />
                     </OnPlatform>
                 </controls:ResourceVideoSource.Path>
