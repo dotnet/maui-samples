@@ -186,10 +186,7 @@ namespace VideoDemos.Platforms.Android
 
         public void OnPrepared(MediaPlayer mp)
         {
-            if (_video.IsLooping)
-                mp.Looping = true;
-            else
-                mp.Looping = false;
+            mp.Looping = _video.IsLooping;
         }
     }
 }
