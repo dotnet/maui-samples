@@ -1,4 +1,6 @@
 ﻿using System;
+using PointOfSale.Messages;
+
 namespace PointOfSale.Pages;
 
 [INotifyPropertyChanged]
@@ -35,6 +37,6 @@ public partial class HomeViewModel
     [RelayCommand]
     async Task AddProduct()
     {
-        MessagingCenter.Send<HomeViewModel, string>(this, "action", "add");
+        WeakReferenceMessenger.Default.Send<AddProductMessage>(new AddProductMessage(true));
     }
 }

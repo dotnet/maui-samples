@@ -12,10 +12,17 @@ public partial class HomePage : ContentPage
 	{
 		InitializeComponent();
 
-		WeakReferenceMessenger.Default.Register<AddProductMessage>(this, (r, m) =>
-		{
+		
+    }
+
+    protected override void OnNavigatedTo(NavigatedToEventArgs args)
+    {
+        base.OnNavigatedTo(args);
+
+        WeakReferenceMessenger.Default.Register<AddProductMessage>(this, (r, m) =>
+        {
             NavSubContent(m.Value);
-		});
+        });
     }
 
     void MenuFlyoutItem_ParentChanged(System.Object sender, System.EventArgs e)

@@ -12,14 +12,16 @@
         <handheld:OrdersViewModel/>
     </ContentPage.BindingContext>
     
-    <Grid RowDefinitions="120, *, 66" Margin="20">
-        <VerticalStackLayout VerticalOptions="Center" Spacing="8">
+    <Grid RowDefinitions="Auto, *, 66" Margin="20">
+        <VerticalStackLayout VerticalOptions="Start" Spacing="4">
             <Label Text="Orders" Style="{StaticResource LargeTitle}"/>
             <Label Text="{Binding Source={x:Static system:DateTime.Today}, StringFormat=Date: {0:dddd, MMMM dd yyyy}, FallbackValue='Hello'}"/>
             <BoxView Style="{StaticResource HRule}"/>
         </VerticalStackLayout>
 
-        <CollectionView Grid.Row="1" Grid.RowSpan="2" ItemsSource="{Binding Orders}">
+        <CollectionView Grid.Row="1" Grid.RowSpan="2" ItemsSource="{Binding Orders}"
+                        VerticalScrollBarVisibility="Never"
+                        >
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:Order">
                     <Grid ColumnDefinitions="80,100,*" ColumnSpacing="8" Margin="0,8" HeightRequest="70">
@@ -49,6 +51,11 @@
                     <Label Text="Status" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="Start" FontAttributes="Bold"/>
                 </Grid>
             </CollectionView.Header>
+            <CollectionView.Footer>
+                <Grid HeightRequest="66" ColumnSpacing="8">
+                    <!-- buffer for the content to flow behind but above the tabs-->
+                </Grid>
+            </CollectionView.Footer>
         </CollectionView>
 
         <FlexLayout Grid.Row="2" AlignContent="SpaceAround" JustifyContent="SpaceAround"

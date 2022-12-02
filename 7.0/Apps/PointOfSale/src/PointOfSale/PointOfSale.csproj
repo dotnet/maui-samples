@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
 	<PropertyGroup>
-		<TargetFrameworks>net6.0-android;net6.0-ios;net6.0-maccatalyst</TargetFrameworks>
-		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows')) and '$(MSBuildRuntimeType)' == 'Full'">$(TargetFrameworks);net6.0-windows10.0.19041</TargetFrameworks>
+		<TargetFrameworks>net7.0-android;net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows')) and '$(MSBuildRuntimeType)' == 'Full'">$(TargetFrameworks);net7.0-windows10.0.19041</TargetFrameworks>
 		<OutputType>Exe</OutputType>
 		<RootNamespace>PointOfSale</RootNamespace>
 		<UseMaui>true</UseMaui>
@@ -22,9 +22,9 @@
 		<!-- Required for C# Hot Reload -->
 		<UseInterpreter Condition="'$(Configuration)' == 'Debug'">True</UseInterpreter>
 
-		<SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net6.0-ios'">14.2</SupportedOSPlatformVersion>
-		<SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net6.0-maccatalyst'">14.0</SupportedOSPlatformVersion>
-		<SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net6.0-android'">21.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net7.0-ios'">14.2</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net7.0-maccatalyst'">14.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net7.0-android'">21.0</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$(TargetFramework.Contains('-windows'))">10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$(TargetFramework.Contains('-windows'))">10.0.17763.0</TargetPlatformMinVersion>
 		<AssemblyName>Food</AssemblyName>
@@ -41,6 +41,9 @@
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net6.0-ios|AnyCPU'">
 	  <CodesignProvision>Automatic</CodesignProvision>
 	  <CodesignKey>iPhone Developer</CodesignKey>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
+	  <CreatePackage>false</CreatePackage>
 	</PropertyGroup>
 	<ItemGroup>
 		<!-- App Icon -->
@@ -66,12 +69,46 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="CommunityToolkit.Maui" Version="1.2.0" />
+	  <PackageReference Include="CommunityToolkit.Maui" Version="3.0.0" />
 	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
 	  <PackageReference Include="Microcharts" Version="0.9.5.9" />
 	  <PackageReference Include="Redth.ZXing.Net.Maui" Version="0.1.0-preview.4" />
-	  <PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0-preview.59" />
+	  <PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0-preview.61" />
 	  <PackageReference Include="Ril.BlazorSignatureCanvas" Version="0.1.0-alpha" />
 	</ItemGroup>
 	
+	<ItemGroup>
+	  <BundleResource Include="$(NuGetPackageRoot)ril.blazorsignaturecanvas/0.1.0-alpha/contentFiles/any/net6.0/StaticAssets/package-lock.json" Condition="Exists('$(NuGetPackageRoot)ril.blazorsignaturecanvas/0.1.0-alpha/contentFiles/any/net6.0/StaticAssets/package-lock.json')">
+	    <NuGetPackageId>Ril.BlazorSignatureCanvas</NuGetPackageId>
+	    <NuGetPackageVersion>0.1.0-alpha</NuGetPackageVersion>
+	    <NuGetItemType>Content</NuGetItemType>
+	    <Pack>false</Pack>
+	    <Private>False</Private>
+	    <Link>StaticAssets/package-lock.json</Link>
+	  </BundleResource>
+	  <BundleResource Include="$(NuGetPackageRoot)ril.blazorsignaturecanvas/0.1.0-alpha/contentFiles/any/net6.0/StaticAssets/package.json" Condition="Exists('$(NuGetPackageRoot)ril.blazorsignaturecanvas/0.1.0-alpha/contentFiles/any/net6.0/StaticAssets/package.json')">
+	    <NuGetPackageId>Ril.BlazorSignatureCanvas</NuGetPackageId>
+	    <NuGetPackageVersion>0.1.0-alpha</NuGetPackageVersion>
+	    <NuGetItemType>Content</NuGetItemType>
+	    <Pack>false</Pack>
+	    <Private>False</Private>
+	    <Link>StaticAssets/package.json</Link>
+	  </BundleResource>
+	  <BundleResource Include="$(NuGetPackageRoot)ril.blazorsignaturecanvas/0.1.0-alpha/contentFiles/any/net6.0/StaticAssets/tsconfig.json" Condition="Exists('$(NuGetPackageRoot)ril.blazorsignaturecanvas/0.1.0-alpha/contentFiles/any/net6.0/StaticAssets/tsconfig.json')">
+	    <NuGetPackageId>Ril.BlazorSignatureCanvas</NuGetPackageId>
+	    <NuGetPackageVersion>0.1.0-alpha</NuGetPackageVersion>
+	    <NuGetItemType>Content</NuGetItemType>
+	    <Pack>false</Pack>
+	    <Private>False</Private>
+	    <Link>StaticAssets/tsconfig.json</Link>
+	  </BundleResource>
+	  <BundleResource Include="$(NuGetPackageRoot)ril.blazorsignaturecanvas/0.1.0-alpha/contentFiles/any/net6.0/wwwroot/background.png" Condition="Exists('$(NuGetPackageRoot)ril.blazorsignaturecanvas/0.1.0-alpha/contentFiles/any/net6.0/wwwroot/background.png')">
+	    <NuGetPackageId>Ril.BlazorSignatureCanvas</NuGetPackageId>
+	    <NuGetPackageVersion>0.1.0-alpha</NuGetPackageVersion>
+	    <NuGetItemType>Content</NuGetItemType>
+	    <Pack>false</Pack>
+	    <Private>False</Private>
+	    <Link>wwwroot/background.png</Link>
+	  </BundleResource>
+	</ItemGroup>
 </Project>
