@@ -25,11 +25,11 @@
 		</Border>
 
 		<ImageButton
-			Margin="20,20,0,0"
 			HeightRequest="60" WidthRequest="60"
 			VerticalOptions="Start" HorizontalOptions="Start"
 			Clicked="ImageButton_Clicked"
-			Source="{FontImage FontFamily=Fabric, Color=White, Glyph={x:Static i:FabIconFont.ClosePane},Size=32}"/>
+			Aspect="Center"
+			Source="{FontImage FontFamily=Fabric, Color=White, Glyph={x:Static i:FabIconFont.Back},Size=18}"/>
 
         <!--<Grid
 			Grid.Row="3"

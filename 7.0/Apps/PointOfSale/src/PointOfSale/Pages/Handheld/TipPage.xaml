@@ -112,7 +112,8 @@
                 </Label>
             </RadioButton.Content>
         </RadioButton>
-        
-        <Button Grid.Row="5" HorizontalOptions="Fill" Grid.ColumnSpan="2" Text="Continue" Command="{Binding ContinueCommand}"/>
+
+        <Button Grid.Row="5" HorizontalOptions="Fill" Grid.Column="0" Text="Add Coupon" Command="{Binding AddCommand}"/>
+        <Button Grid.Row="5" HorizontalOptions="Fill" Grid.Column="1" Text="Continue" Command="{Binding ContinueCommand}"/>
     </Grid>
 </ContentPage>
