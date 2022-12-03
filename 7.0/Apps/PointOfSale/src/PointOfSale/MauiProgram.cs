@@ -14,6 +14,9 @@ using Windows.Graphics;
 [assembly: Android.App.UsesPermission(Android.Manifest.Permission.Camera)]
 #endif
 
+//api://80669ae9-cf5c-4c78-bc45-32a015184b40/access_as_user
+//app id: 80669ae9-cf5c-4c78-bc45-32a015184b40
+
 namespace PointOfSale;
 
 public static class MauiProgram
@@ -26,6 +29,27 @@ public static class MauiProgram
             .UseBarcodeReader()
 			.UseMauiCommunityToolkit()
             .UseSkiaSharp()
+            .ConfigureLifecycleEvents(events =>
+            {
+#if ANDROID
+                events.AddAndroid(platform =>
+                {
+                    platform.OnActivityResult((activity, rc, result, data) =>
+                    {
+                        AuthenticationContinuationHelper.SetAuthenticationContinuationEventArgs(rc, result, data);
+                    });
+                });
+#endif
+#if IOS
+            events.AddiOS(platform =>
+            {
+                platform.OpenUrl((app, url, options) =>
+                {
+                    return AuthenticationContinuationHelper.SetAuthenticationContinuationEventArgs(url);
+                });
+            });
+#endif
+            })
             .ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

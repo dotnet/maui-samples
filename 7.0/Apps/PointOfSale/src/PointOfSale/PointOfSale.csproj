@@ -14,7 +14,7 @@
 		<ApplicationTitle>Food</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>net.dot.pointofsale</ApplicationId>
+		<ApplicationId>com.simplyprofound.pointofsale</ApplicationId>
 
 		<!-- Versions -->
 		<ApplicationVersion>1</ApplicationVersion>
@@ -43,6 +43,12 @@
 	  <CodesignKey>iPhone Developer</CodesignKey>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
+	  <CreatePackage>false</CreatePackage>
+	  <CodesignProvision>Automatic</CodesignProvision>
+	  <CodesignKey>iPhone Developer</CodesignKey>
+	  <CodesignEntitlements>Platforms\iOS\Entitlements.plist</CodesignEntitlements>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-ios|AnyCPU'">
 	  <CreatePackage>false</CreatePackage>
 	</PropertyGroup>
 	<ItemGroup>
@@ -75,6 +81,7 @@
 	  <PackageReference Include="Redth.ZXing.Net.Maui" Version="0.1.0-preview.4" />
 	  <PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0-preview.61" />
 	  <PackageReference Include="Ril.BlazorSignatureCanvas" Version="0.1.0-alpha" />
+	  <PackageReference Include="Microsoft.Identity.Client" Version="4.48.1" />
 	</ItemGroup>
 	
 	<ItemGroup>
@@ -110,5 +117,116 @@
 	    <Private>False</Private>
 	    <Link>wwwroot/background.png</Link>
 	  </BundleResource>
+	  <BundleResource Include="$(NuGetPackageRoot)ril.blazorsignaturecanvas/0.1.0-alpha/contentFiles/any/net6.0/StaticAssets/package-lock.json" Condition="Exists('$(NuGetPackageRoot)ril.blazorsignaturecanvas/0.1.0-alpha/contentFiles/any/net6.0/StaticAssets/package-lock.json')">
+	    <NuGetPackageId>Ril.BlazorSignatureCanvas</NuGetPackageId>
+	    <NuGetPackageVersion>0.1.0-alpha</NuGetPackageVersion>
+	    <NuGetItemType>Content</NuGetItemType>
+	    <Pack>false</Pack>
+	    <Private>False</Private>
+	    <Link>StaticAssets/package-lock.json</Link>
+	  </BundleResource>
+	  <BundleResource Include="$(NuGetPackageRoot)ril.blazorsignaturecanvas/0.1.0-alpha/contentFiles/any/net6.0/StaticAssets/package.json" Condition="Exists('$(NuGetPackageRoot)ril.blazorsignaturecanvas/0.1.0-alpha/contentFiles/any/net6.0/StaticAssets/package.json')">
+	    <NuGetPackageId>Ril.BlazorSignatureCanvas</NuGetPackageId>
+	    <NuGetPackageVersion>0.1.0-alpha</NuGetPackageVersion>
+	    <NuGetItemType>Content</NuGetItemType>
+	    <Pack>false</Pack>
+	    <Private>False</Private>
+	    <Link>StaticAssets/package.json</Link>
+	  </BundleResource>
+	  <BundleResource Include="$(NuGetPackageRoot)ril.blazorsignaturecanvas/0.1.0-alpha/contentFiles/any/net6.0/StaticAssets/tsconfig.json" Condition="Exists('$(NuGetPackageRoot)ril.blazorsignaturecanvas/0.1.0-alpha/contentFiles/any/net6.0/StaticAssets/tsconfig.json')">
+	    <NuGetPackageId>Ril.BlazorSignatureCanvas</NuGetPackageId>
+	    <NuGetPackageVersion>0.1.0-alpha</NuGetPackageVersion>
+	    <NuGetItemType>Content</NuGetItemType>
+	    <Pack>false</Pack>
+	    <Private>False</Private>
+	    <Link>StaticAssets/tsconfig.json</Link>
+	  </BundleResource>
+	  <BundleResource Include="$(NuGetPackageRoot)ril.blazorsignaturecanvas/0.1.0-alpha/contentFiles/any/net6.0/wwwroot/background.png" Condition="Exists('$(NuGetPackageRoot)ril.blazorsignaturecanvas/0.1.0-alpha/contentFiles/any/net6.0/wwwroot/background.png')">
+	    <NuGetPackageId>Ril.BlazorSignatureCanvas</NuGetPackageId>
+	    <NuGetPackageVersion>0.1.0-alpha</NuGetPackageVersion>
+	    <NuGetItemType>Content</NuGetItemType>
+	    <Pack>false</Pack>
+	    <Private>False</Private>
+	    <Link>wwwroot/background.png</Link>
+	  </BundleResource>
+	  <BundleResource Include="$(NuGetPackageRoot)ril.blazorsignaturecanvas/0.1.0-alpha/contentFiles/any/net6.0/StaticAssets/package-lock.json" Condition="Exists('$(NuGetPackageRoot)ril.blazorsignaturecanvas/0.1.0-alpha/contentFiles/any/net6.0/StaticAssets/package-lock.json')">
+	    <NuGetPackageId>Ril.BlazorSignatureCanvas</NuGetPackageId>
+	    <NuGetPackageVersion>0.1.0-alpha</NuGetPackageVersion>
+	    <NuGetItemType>Content</NuGetItemType>
+	    <Pack>false</Pack>
+	    <Private>False</Private>
+	    <Link>StaticAssets/package-lock.json</Link>
+	  </BundleResource>
+	  <BundleResource Include="$(NuGetPackageRoot)ril.blazorsignaturecanvas/0.1.0-alpha/contentFiles/any/net6.0/StaticAssets/package.json" Condition="Exists('$(NuGetPackageRoot)ril.blazorsignaturecanvas/0.1.0-alpha/contentFiles/any/net6.0/StaticAssets/package.json')">
+	    <NuGetPackageId>Ril.BlazorSignatureCanvas</NuGetPackageId>
+	    <NuGetPackageVersion>0.1.0-alpha</NuGetPackageVersion>
+	    <NuGetItemType>Content</NuGetItemType>
+	    <Pack>false</Pack>
+	    <Private>False</Private>
+	    <Link>StaticAssets/package.json</Link>
+	  </BundleResource>
+	  <BundleResource Include="$(NuGetPackageRoot)ril.blazorsignaturecanvas/0.1.0-alpha/contentFiles/any/net6.0/StaticAssets/tsconfig.json" Condition="Exists('$(NuGetPackageRoot)ril.blazorsignaturecanvas/0.1.0-alpha/contentFiles/any/net6.0/StaticAssets/tsconfig.json')">
+	    <NuGetPackageId>Ril.BlazorSignatureCanvas</NuGetPackageId>
+	    <NuGetPackageVersion>0.1.0-alpha</NuGetPackageVersion>
+	    <NuGetItemType>Content</NuGetItemType>
+	    <Pack>false</Pack>
+	    <Private>False</Private>
+	    <Link>StaticAssets/tsconfig.json</Link>
+	  </BundleResource>
+	  <BundleResource Include="$(NuGetPackageRoot)ril.blazorsignaturecanvas/0.1.0-alpha/contentFiles/any/net6.0/wwwroot/background.png" Condition="Exists('$(NuGetPackageRoot)ril.blazorsignaturecanvas/0.1.0-alpha/contentFiles/any/net6.0/wwwroot/background.png')">
+	    <NuGetPackageId>Ril.BlazorSignatureCanvas</NuGetPackageId>
+	    <NuGetPackageVersion>0.1.0-alpha</NuGetPackageVersion>
+	    <NuGetItemType>Content</NuGetItemType>
+	    <Pack>false</Pack>
+	    <Private>False</Private>
+	    <Link>wwwroot/background.png</Link>
+	  </BundleResource>
+	  <BundleResource Include="$(NuGetPackageRoot)ril.blazorsignaturecanvas/0.1.0-alpha/contentFiles/any/net6.0/StaticAssets/package-lock.json" Condition="Exists('$(NuGetPackageRoot)ril.blazorsignaturecanvas/0.1.0-alpha/contentFiles/any/net6.0/StaticAssets/package-lock.json')">
+	    <NuGetPackageId>Ril.BlazorSignatureCanvas</NuGetPackageId>
+	    <NuGetPackageVersion>0.1.0-alpha</NuGetPackageVersion>
+	    <NuGetItemType>Content</NuGetItemType>
+	    <Pack>false</Pack>
+	    <Private>False</Private>
+	    <Link>StaticAssets/package-lock.json</Link>
+	  </BundleResource>
+	  <BundleResource Include="$(NuGetPackageRoot)ril.blazorsignaturecanvas/0.1.0-alpha/contentFiles/any/net6.0/StaticAssets/package.json" Condition="Exists('$(NuGetPackageRoot)ril.blazorsignaturecanvas/0.1.0-alpha/contentFiles/any/net6.0/StaticAssets/package.json')">
+	    <NuGetPackageId>Ril.BlazorSignatureCanvas</NuGetPackageId>
+	    <NuGetPackageVersion>0.1.0-alpha</NuGetPackageVersion>
+	    <NuGetItemType>Content</NuGetItemType>
+	    <Pack>false</Pack>
+	    <Private>False</Private>
+	    <Link>StaticAssets/package.json</Link>
+	  </BundleResource>
+	  <BundleResource Include="$(NuGetPackageRoot)ril.blazorsignaturecanvas/0.1.0-alpha/contentFiles/any/net6.0/StaticAssets/tsconfig.json" Condition="Exists('$(NuGetPackageRoot)ril.blazorsignaturecanvas/0.1.0-alpha/contentFiles/any/net6.0/StaticAssets/tsconfig.json')">
+	    <NuGetPackageId>Ril.BlazorSignatureCanvas</NuGetPackageId>
+	    <NuGetPackageVersion>0.1.0-alpha</NuGetPackageVersion>
+	    <NuGetItemType>Content</NuGetItemType>
+	    <Pack>false</Pack>
+	    <Private>False</Private>
+	    <Link>StaticAssets/tsconfig.json</Link>
+	  </BundleResource>
+	  <BundleResource Include="$(NuGetPackageRoot)ril.blazorsignaturecanvas/0.1.0-alpha/contentFiles/any/net6.0/wwwroot/background.png" Condition="Exists('$(NuGetPackageRoot)ril.blazorsignaturecanvas/0.1.0-alpha/contentFiles/any/net6.0/wwwroot/background.png')">
+	    <NuGetPackageId>Ril.BlazorSignatureCanvas</NuGetPackageId>
+	    <NuGetPackageVersion>0.1.0-alpha</NuGetPackageVersion>
+	    <NuGetItemType>Content</NuGetItemType>
+	    <Pack>false</Pack>
+	    <Private>False</Private>
+	    <Link>wwwroot/background.png</Link>
+	  </BundleResource>
+	</ItemGroup>
+	<ItemGroup>
+	  <None Remove="Data\" />
+	  <None Remove="Services\" />
+	  <None Remove="Services\MSALClient\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Data\" />
+	  <Folder Include="Services\" />
+	  <Folder Include="Services\MSALClient\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <MauiXaml Update="Pages\Handheld\MobileLoginPage.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
 	</ItemGroup>
 </Project>

@@ -21,7 +21,6 @@
 			<Border.StrokeShape>
 				<RoundRectangle CornerRadius="12"/>
 			</Border.StrokeShape>
-
 		</Border>
 
 		<ImageButton
