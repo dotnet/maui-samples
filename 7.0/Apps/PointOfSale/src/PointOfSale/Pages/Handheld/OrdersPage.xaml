@@ -5,6 +5,7 @@
              xmlns:handheld="clr-namespace:PointOfSale.Pages.Handheld"
              xmlns:system="clr-namespace:System;assembly=System.Runtime"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:ak="clr-namespace:AlohaKit.Animations;assembly=AlohaKit.Animations"
              x:Class="PointOfSale.Pages.Handheld.OrdersPage"
              Shell.NavBarIsVisible="False"
              x:DataType="handheld:OrdersViewModel"
@@ -13,6 +14,17 @@
     <ContentPage.BindingContext>
         <handheld:OrdersViewModel/>
     </ContentPage.BindingContext>
+
+    <!--<ContentPage.Resources>
+        <ak:StoryBoard x:Key="LoadingBoard" Target="{x:Reference ListPreview}">
+            <ak:FadeToAnimation Opacity="0.5" Duration="500"/>
+            <ak:FadeToAnimation Opacity="1" Duration="500"/>
+            <ak:FadeToAnimation Opacity="0.5" Duration="500"/>
+            <ak:FadeToAnimation Opacity="1" Duration="500"/>
+            <ak:FadeToAnimation Opacity="0.5" Duration="500"/>
+            <ak:FadeToAnimation Opacity="1" Duration="500"/>
+        </ak:StoryBoard>
+    </ContentPage.Resources>-->
     
     <Grid RowDefinitions="Auto, *, 66" Margin="20,20,20,0">
         <VerticalStackLayout VerticalOptions="Start" Spacing="4">
@@ -30,7 +42,7 @@
                     <Label Text="Total" Grid.Column="1" VerticalOptions="Center" FontAttributes="Bold"/>
                     <Label Text="Status" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="Start" FontAttributes="Bold"/>
 
-                    <VerticalStackLayout Grid.Row="1" Grid.ColumnSpan="3">
+                    <VerticalStackLayout Grid.Row="1" Grid.ColumnSpan="3" x:Name="ListPreview">
                         <BindableLayout.ItemsSource>
                             <x:Array Type="{x:Type x:String}">
                                 <x:String>one</x:String>
@@ -59,7 +71,31 @@
                             </DataTemplate>
 
                         </BindableLayout.ItemTemplate>
-                    
+                        <VerticalStackLayout.Resources>
+                            <ak:StoryBoard x:Key="LoadingBoard" Target="{x:Reference ListPreview}">
+                                <ak:FadeToAnimation Opacity="0.5" Duration="500"/>
+                                <ak:FadeToAnimation Opacity="1" Duration="500"/>
+                                <ak:FadeToAnimation Opacity="0.5" Duration="500"/>
+                                <ak:FadeToAnimation Opacity="1" Duration="500"/>
+                                <ak:FadeToAnimation Opacity="0.5" Duration="500"/>
+                                <ak:FadeToAnimation Opacity="1" Duration="500"/>
+                            </ak:StoryBoard>
+                        </VerticalStackLayout.Resources>
+                        <VerticalStackLayout.Behaviors>
+                            <ak:EntranceTransition
+	                            Duration="1500"/>
+                        </VerticalStackLayout.Behaviors>
+                        <VerticalStackLayout.Triggers>
+                            <DataTrigger
+                                TargetType="VerticalStackLayout"
+                                    Binding="{Binding PageCurrentState}"
+                                    Value="Loading">
+                                <DataTrigger.EnterActions>
+                                    <ak:BeginAnimation
+                                    Animation="{StaticResource LoadingBoard}" />
+                                </DataTrigger.EnterActions>
+                            </DataTrigger>
+                        </VerticalStackLayout.Triggers>
                     </VerticalStackLayout>
                 </Grid>
                 
