@@ -1,6 +1,8 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Maui.LifecycleEvents;
 using Microsoft.Maui.Platform;
+using MonkeyCache;
+using MonkeyCache.FileStore;
 using SkiaSharp.Views.Maui.Controls.Hosting;
 using ZXing.Net.Maui;
 
@@ -13,9 +15,6 @@ using Windows.Graphics;
 #if ANDROID
 [assembly: Android.App.UsesPermission(Android.Manifest.Permission.Camera)]
 #endif
-
-//api://80669ae9-cf5c-4c78-bc45-32a015184b40/access_as_user
-//app id: 80669ae9-cf5c-4c78-bc45-32a015184b40
 
 namespace PointOfSale;
 
@@ -83,6 +82,8 @@ public static class MauiProgram
 #endif
 
         ModifyEntry();
+
+        Barrel.ApplicationId = "com.simplyprofound.pointofsale";
 
         return builder.Build();
 	}

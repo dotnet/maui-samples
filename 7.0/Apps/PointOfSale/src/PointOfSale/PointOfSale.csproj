@@ -76,12 +76,15 @@
 
 	<ItemGroup>
 	  <PackageReference Include="CommunityToolkit.Maui" Version="3.0.0" />
-	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
+	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0-preview1" />
 	  <PackageReference Include="Microcharts" Version="0.9.5.9" />
 	  <PackageReference Include="Redth.ZXing.Net.Maui" Version="0.1.0-preview.4" />
 	  <PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0-preview.61" />
 	  <PackageReference Include="Ril.BlazorSignatureCanvas" Version="0.1.0-alpha" />
 	  <PackageReference Include="Microsoft.Identity.Client" Version="4.48.1" />
+	  <PackageReference Include="MonkeyCache" Version="2.0.0-beta" />
+	  <PackageReference Include="MonkeyCache.FileStore" Version="2.0.0-beta" />
+	  <PackageReference Include="Microsoft.Datasync.Client" Version="5.0.12" />
 	</ItemGroup>
 	
 	<ItemGroup>

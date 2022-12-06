@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+using Microsoft.Datasync.Client;
 using PointOfSale.Data;
 
 namespace PointOfSale.MSALClient;
@@ -14,6 +15,8 @@ public class PCAWrapper
     /// This is the singleton used by consumers
     /// </summary>
     public static PCAWrapper Instance { get; private set; } = new PCAWrapper();
+
+    public IPublicClientApplication IdentityClient { get; set; }
 
     internal IPublicClientApplication PCA { get; }
 
@@ -47,9 +50,16 @@ public class PCAWrapper
         var accts = await PCA.GetAccountsAsync().ConfigureAwait(false);
         var acct = accts.FirstOrDefault();
 
-        var authResult = await PCA.AcquireTokenSilent(scopes, acct)
-                                    .ExecuteAsync().ConfigureAwait(false);
-        return authResult;
+        if (acct != null)
+        {
+            var authResult = await PCA.AcquireTokenSilent(scopes, acct)
+                                        .ExecuteAsync().ConfigureAwait(false);
+            return authResult;
+        }
+        else
+        {
+            return null;
+        }
 
     }
 
@@ -96,5 +106,74 @@ public class PCAWrapper
         {
             await PCA.RemoveAsync(acct).ConfigureAwait(false);
         }
+    }
+
+    public async Task<AuthenticationToken> GetAuthenticationToken(string[] scopes)
+    {
+        if (IdentityClient == null)
+        {
+#if ANDROID
+            IdentityClient = PublicClientApplicationBuilder
+                .Create(Constants.ApplicationId)
+                .WithAuthority(AzureCloudInstance.AzurePublic, "common")
+                .WithRedirectUri($"msal{Constants.ApplicationId}://auth")
+                .WithParentActivityOrWindow(() => Platform.CurrentActivity)
+                .Build();
+#elif IOS
+        IdentityClient = PublicClientApplicationBuilder
+            .Create(Constants.ApplicationId)
+            .WithAuthority(AzureCloudInstance.AzurePublic, "common")
+            .WithIosKeychainSecurityGroup("com.microsoft.adalcache")
+            .WithRedirectUri($"msal{Constants.ApplicationId}://auth")
+            .Build();
+#else
+        IdentityClient = PublicClientApplicationBuilder
+            .Create(Constants.ApplicationId)
+            .WithAuthority(AzureCloudInstance.AzurePublic, "common")
+            .WithRedirectUri("https://login.microsoftonline.com/common/oauth2/nativeclient")
+            .Build();
+#endif
+        }
+
+        var accounts = await IdentityClient.GetAccountsAsync();
+        AuthenticationResult result = null;
+        bool tryInteractiveLogin = false;
+
+        try
+        {
+            result = await IdentityClient
+                .AcquireTokenSilent(Constants.Scopes, accounts.FirstOrDefault())
+                .ExecuteAsync();
+        }
+        catch (MsalUiRequiredException)
+        {
+            tryInteractiveLogin = true;
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"MSAL Silent Error: {ex.Message}");
+        }
+
+        if (tryInteractiveLogin)
+        {
+            try
+            {
+                result = await IdentityClient
+                    .AcquireTokenInteractive(Constants.Scopes)
+                    .ExecuteAsync();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"MSAL Interactive Error: {ex.Message}");
+            }
+        }
+
+        return new AuthenticationToken
+        {
+            DisplayName = result?.Account?.Username ?? "",
+            ExpiresOn = result?.ExpiresOn ?? DateTimeOffset.MinValue,
+            Token = result?.AccessToken ?? "",
+            UserId = result?.Account?.Username ?? ""
+        };
     }
 }

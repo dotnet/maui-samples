@@ -1,3 +1,4 @@
+using Microsoft.Datasync.Client;
 using PointOfSale.MSALClient;
 
 namespace PointOfSale.Pages.Handheld;

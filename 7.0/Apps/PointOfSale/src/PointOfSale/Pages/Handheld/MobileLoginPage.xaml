@@ -12,7 +12,7 @@
     </ContentPage.BindingContext>
 
     <Grid RowDefinitions="*,140,60,*" RowSpacing="20">
-
+        
         <Image Source="jajangmyeon.png" HorizontalOptions="Center"
                Grid.Row="1"/>
 
