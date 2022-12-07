@@ -14,6 +14,7 @@
     <Grid RowDefinitions="*,140,60,*" RowSpacing="20">
         
         <Image Source="jajangmyeon.png" HorizontalOptions="Center"
+               SemanticProperties.Description="Image of a bowl of noodles"
                Grid.Row="1"/>
 
         <Button
@@ -21,6 +22,7 @@
             Command="{Binding LoginCommand}"
             MinimumWidthRequest="240"
             Grid.Row="2"
+            SemanticProperties.Description="tap this button to login"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
     </Grid>
