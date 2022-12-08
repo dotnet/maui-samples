@@ -1,4 +1,4 @@
-﻿using PointOfSale.MSALClient;
+﻿using MAUI.MSALClient;
 
 namespace PointOfSale.Pages.Handheld;
 
@@ -13,13 +13,19 @@ public partial class MobileLoginPage : ContentPage
     {
         base.OnNavigatedTo(args);
 
-        
-        // if logged in, move on
-        AuthenticationResult result = await PCAWrapper.Instance.AcquireTokenSilentAsync(PCAWrapper.Scopes).ConfigureAwait(false);
-        //var token = await MSALClient.PCAWrapper.Instance.GetAuthenticationToken(MSALClient.PCAWrapper.Scopes).ConfigureAwait(false);
-        if (result != null)
+
+        IAccount cachedUserAccount = Task.Run(async () => await PublicClientSingleton.Instance.MSALClientHelper.FetchSignedInUserFromCache()).Result;
+
+        _ = Dispatcher.DispatchAsync(async () =>
         {
-            await Shell.Current.GoToAsync("//orders");
-        }
+            if (cachedUserAccount == null)
+            {
+                //SignInButton.IsEnabled = true;
+            }
+            else
+            {
+                await Shell.Current.GoToAsync("//orders");
+            }
+        });
     }
 }

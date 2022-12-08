@@ -1,3 +1,11 @@
+using MAUI.MSALClient;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Graph;
+using Microsoft.Identity.Client;
+using System.Net.Http.Headers;
+using System.Reflection;
+
+
 namespace PointOfSale.Pages.Handheld;
 
 [INotifyPropertyChanged]
@@ -7,6 +15,15 @@ public partial class OrdersViewModel
     private ObservableCollection<Order> _orders;
 
     [ObservableProperty]
+    private string displayName;
+
+    [ObservableProperty]
+    private string displayEmail;
+
+    [ObservableProperty]
+    private ImageSource profilePhoto;
+
+    [ObservableProperty]
     private string pageCurrentState = "Loading";
 
     [RelayCommand]
@@ -14,7 +31,7 @@ public partial class OrdersViewModel
     {
         try
         {
-            await PointOfSale.MSALClient.PCAWrapper.Instance.SignOutAsync().ConfigureAwait(false);
+            await PublicClientSingleton.Instance.SignOutAsync();
         }
         catch (Exception ex)
         {
@@ -27,9 +44,42 @@ public partial class OrdersViewModel
     public OrdersViewModel()
     {
         _orders = new ObservableCollection<Order>(AppData.Orders);
-
+        LoadUserProfile();
         DelayedLoad().ConfigureAwait(false);
     }
+
+    private void LoadUserProfile()
+    {
+        _ = GetUserInformationAsync();
+    }
+
+    private async Task GetUserInformationAsync()
+    {
+        try
+        {
+            var user = await PublicClientSingleton.Instance.MSGraphHelper.GetMeAsync();
+            var userPhoto = ImageSource.FromStream(async _ => await PublicClientSingleton.Instance.MSGraphHelper.GetMyPhotoAsync());
+            
+            if (userPhoto is not null)
+            {
+                ProfilePhoto = userPhoto;
+            }
+
+            DisplayName = user.DisplayName;
+            DisplayEmail = user.Mail;
+        }
+        catch (MsalUiRequiredException)
+        {
+            await PublicClientSingleton.Instance.SignOutAsync();
+            //await PublicClientWrapper.Instance.SignOutAsync().ContinueWith((t) =>
+            //{
+            //    return Task.CompletedTask;
+            //});
+
+            await Shell.Current.GoToAsync("//login");
+        }
+    }
+
 
     private async Task DelayedLoad()
     {

@@ -4,20 +4,22 @@ using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
 using PointOfSale.Data;
+using MAUI.MSALClient;
 
 namespace PointOfSale;
 
 [Activity(Theme = "@style/Maui.SplashTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize)]
 public class MainActivity : MauiAppCompatActivity
 {
-    private const string AndroidRedirectURI = $"msale8b7e84c-1cb6-4619-bee9-ace98d4211e5://auth";
-
     protected override void OnCreate(Bundle savedInstanceState)
     {
         base.OnCreate(savedInstanceState);
         // configure platform specific params
-        MSALClient.PlatformConfig.Instance.RedirectUri = AndroidRedirectURI;
-        MSALClient.PlatformConfig.Instance.ParentWindow = this;
+        PlatformConfig.Instance.RedirectUri = $"msal{PublicClientSingleton.Instance.MSALClientHelper.AzureADConfig.ClientId}://auth";
+        PlatformConfig.Instance.ParentWindow = this;
+
+        // Initialize MSAL and platformConfig is set
+        IAccount existinguser = Task.Run(async () => await PublicClientSingleton.Instance.MSALClientHelper.InitializePublicClientAppAsync()).Result;
     }
 
     /// <summary>
@@ -26,7 +28,7 @@ public class MainActivity : MauiAppCompatActivity
     /// </summary>
     /// <param name="requestCode">request code </param>
     /// <param name="resultCode">result code</param>
-    /// <param name="data">intent of the actvity</param>
+    /// <param name="data">intent of the activity</param>
     protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
     {
         base.OnActivityResult(requestCode, resultCode, data);

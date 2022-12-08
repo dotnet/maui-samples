@@ -28,10 +28,13 @@
     
     <Grid RowDefinitions="Auto, *, 66" Margin="20,20,20,0">
         <VerticalStackLayout VerticalOptions="Start" Spacing="4">
+            <Label Text="{Binding DisplayName, StringFormat='Logged in as {0:F2}'}"
+                   Style="{StaticResource SubTitle}" HorizontalOptions="End"/>
             <Label Text="Orders" Style="{StaticResource LargeTitle}"/>
             <Label Text="{Binding Source={x:Static system:DateTime.Today}, StringFormat=Date: {0:dddd, MMMM dd yyyy}, FallbackValue='Hello'}"/>
             <BoxView Style="{StaticResource HRule}"/>
         </VerticalStackLayout>
+
 
         <Grid Grid.Row="1" Grid.RowSpan="2"
               toolkit:StateContainer.CurrentState="{Binding PageCurrentState}">
