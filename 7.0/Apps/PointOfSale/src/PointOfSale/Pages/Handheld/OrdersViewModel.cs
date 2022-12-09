@@ -29,6 +29,10 @@ public partial class OrdersViewModel
     [RelayCommand]
     public async Task LogOut()
     {
+        var result = await App.Current.MainPage.DisplayAlert("", "Do you want to logout?", "Yes", "Ooops, no");
+        if (!result)
+            return;
+
         try
         {
             await PublicClientSingleton.Instance.SignOutAsync();
@@ -58,7 +62,8 @@ public partial class OrdersViewModel
         try
         {
             var user = await PublicClientSingleton.Instance.MSGraphHelper.GetMeAsync();
-            var userPhoto = ImageSource.FromStream(async _ => await PublicClientSingleton.Instance.MSGraphHelper.GetMyPhotoAsync());
+            var photoStream = await PublicClientSingleton.Instance.MSGraphHelper.GetMyPhotoAsync();
+            var userPhoto = ImageSource.FromStream(()=> { return photoStream; });
             
             if (userPhoto is not null)
             {

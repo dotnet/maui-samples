@@ -81,14 +81,20 @@ namespace MAUI.MSALClient
 
             try
             {
+                
                 userPhoto = await _graphServiceClient.Me.Photo.Content.GetAsync();
             }
+            
             catch (ServiceException ex) when (ex.Message.Contains("Continuous access evaluation resulted in claims challenge"))
             {
                 this._graphServiceClient = await SignInAndInitializeGraphServiceClientPostCAE(ex);
 
                 // Call the /me endpoint of Graph again with a fresh token
                 userPhoto = await _graphServiceClient.Me.Photo.Content.GetAsync();
+            }
+            catch (Exception excep)
+            {
+                Debug.WriteLine($"couldn't get image {excep.Message}");
             }
             return userPhoto;
         }

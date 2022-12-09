@@ -33,9 +33,7 @@
     <Grid RowDefinitions="100,70,*"
           ColumnDefinitions="*,400"
           Margin="24,24,0,0"
-          x:Name="PageGrid">
-
-        
+          x:Name="PageGrid">        
 
         <ScrollView Grid.Row="2">
             <Grid RowDefinitions="70,*">
@@ -47,10 +45,41 @@
                     <BindableLayout.ItemTemplate>
                         <DataTemplate x:DataType="m:Item">
                             <Grid RowDefinitions="30,230" WidthRequest="200">
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="DefaultStates">
+                                        <VisualState x:Name="PointerOver">
+                                            <VisualState.Setters>
+                                                <Setter
+                                                    TargetName="CardBg"
+                                                    Property="Border.Background"
+                                                    Value="{StaticResource Primary}"/>
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                        <VisualState x:Name="Normal">
+                                            <VisualState.Setters>
+                                                <Setter
+                                                    TargetName="CardBg"
+                                                    Property="Border.Background"
+                                                    Value="{StaticResource DarkBg2Brush}"/>
+                                            </VisualState.Setters>
+                                        </VisualState>
+
+                                    </VisualStateGroup>
+
+                                </VisualStateManager.VisualStateGroups>
+                                <FlyoutBase.ContextFlyout>
+                                    <MenuFlyout>
+                                        <MenuFlyoutItem Text="Edit Details"
+                                                        CommandParameter="docs" />
+                                        <MenuFlyoutItem Text="Remove"
+                                                        CommandParameter="eng" />
+                                    </MenuFlyout>
+                                </FlyoutBase.ContextFlyout>
                                 <Border Background="{StaticResource DarkBg2Brush}"
                                         Stroke="{StaticResource DarkBg2Brush}"
                                         StrokeThickness="1"
                                         Grid.Row="1"
+                                        x:Name="CardBg"
                                         >
                                     <Border.StrokeShape>
                                         <RoundRectangle CornerRadius="16"/>
@@ -168,6 +197,19 @@
                                                                     Value="Transparent"/>
                                                             </VisualState.Setters>
                                                         </VisualState>
+
+                                                        <VisualState x:Name="PointerOver">
+                                                            <VisualState.Setters>
+                                                                <Setter
+                                                                    TargetName="TextLabel"
+                                                                    Property="Label.TextColor"
+                                                                    Value="{StaticResource Primary}"/>
+                                                                <Setter
+                                                                    TargetName="Indicator"
+                                                                    Property="BoxView.Color"
+                                                                    Value="{StaticResource Primary}"/>
+                                                            </VisualState.Setters>
+                                                        </VisualState>
                                                     </VisualStateGroup>
                                                 </VisualStateGroupList>
                                             </VisualStateManager.VisualStateGroups>
@@ -185,7 +227,18 @@
 
         </Grid>
 
+        <BoxView Color="Black"
+                 Opacity="0"
+                 Grid.RowSpan="3" Grid.ColumnSpan="2"
+                 HorizontalOptions="Fill"
+                 VerticalOptions="Fill"
+                 Margin="-24"
+                 InputTransparent="True"
+                 x:Name="BlockScreen"
+                 />
+        
         <v:OrderCartView Grid.Column="1" Grid.RowSpan="3"/>
         
+
     </Grid>
 </ContentPage>

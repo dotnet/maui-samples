@@ -84,20 +84,17 @@
                        Margin="0,15,0,15"/>                    
 
                 <RadioButton Value="home" IsChecked="True" Grid.Row="1"
+                             ToolTipProperties.Text="Home"
                              CheckedChanged="OnMenuItemChanged">
                     <RadioButton.Content>
                         <Image Source="home.png">
-                            <!--<Image.Behaviors>
-                                <mct:IconTintColorBehavior
-                                    TintColor="{Binding IsChecked,
-                                                    Source={RelativeSource AncestorType={x:Type RadioButton}, AncestorLevel=1,Mode=TemplatedParent},
-                                    Converter={StaticResource CheckedColorConverter}}"/>
-                            </Image.Behaviors>-->
+                            
                         </Image>
                     </RadioButton.Content>
                 </RadioButton>
 
                 <RadioButton Value="dashboard" Grid.Row="2"
+                             ToolTipProperties.Text="Dashboard"
                                     CheckedChanged="OnMenuItemChanged">
                     <RadioButton.Content>                            
                         <Image Source="graph.png">
@@ -113,6 +110,7 @@
                 </RadioButton>
 
                 <RadioButton Value="settings" Grid.Row="3"
+                             ToolTipProperties.Text="Settings"
                                 CheckedChanged="OnMenuItemChanged">
                     <RadioButton.Content>                            
                         <Image Source="setting.png">
@@ -128,6 +126,7 @@
                 </RadioButton>
 
                 <RadioButton Value="discount" Grid.Row="4"
+                             ToolTipProperties.Text="Discount"
                                 CheckedChanged="OnMenuItemChanged">
                     <RadioButton.Content>                            
                         <Image Source="discount.png">
@@ -143,6 +142,7 @@
                 </RadioButton>                    
 
                 <RadioButton Value="message" Grid.Row="5"
+                             ToolTipProperties.Text="Messages"
                                     CheckedChanged="OnMenuItemChanged">
                     <RadioButton.Content>                            
                         <Image Source="message.png">
@@ -158,13 +158,16 @@
                 </RadioButton>
 
                 <RadioButton Value="notification" Grid.Row="6"
+                             ToolTipProperties.Text="Notifications"
                                     CheckedChanged="OnMenuItemChanged">
                     <RadioButton.Content>                            
                         <Image Source="notification.png" />                            
                     </RadioButton.Content>
                 </RadioButton>
 
-                <Image Source="logout.png" Margin="0,15,0,15" Grid.Row="7"/>
+                <Image Source="logout.png"
+                       ToolTipProperties.Text="Logout"
+                       Margin="0,15,0,15" Grid.Row="7"/>
             </Grid>
         </DataTemplate>
     </Shell.FlyoutContentTemplate>

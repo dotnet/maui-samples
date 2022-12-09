@@ -15,17 +15,6 @@
         <handheld:OrdersViewModel/>
     </ContentPage.BindingContext>
 
-    <!--<ContentPage.Resources>
-        <ak:StoryBoard x:Key="LoadingBoard" Target="{x:Reference ListPreview}">
-            <ak:FadeToAnimation Opacity="0.5" Duration="500"/>
-            <ak:FadeToAnimation Opacity="1" Duration="500"/>
-            <ak:FadeToAnimation Opacity="0.5" Duration="500"/>
-            <ak:FadeToAnimation Opacity="1" Duration="500"/>
-            <ak:FadeToAnimation Opacity="0.5" Duration="500"/>
-            <ak:FadeToAnimation Opacity="1" Duration="500"/>
-        </ak:StoryBoard>
-    </ContentPage.Resources>-->
-    
     <Grid RowDefinitions="Auto, *, 66" Margin="20,20,20,0">
         <VerticalStackLayout VerticalOptions="Start" Spacing="4">
             <Label Text="{Binding DisplayName, StringFormat='Logged in as {0:F2}'}"
@@ -95,7 +84,7 @@
                                     Value="Loading">
                                 <DataTrigger.EnterActions>
                                     <ak:BeginAnimation
-                                    Animation="{StaticResource LoadingBoard}" />
+                                        Animation="{StaticResource LoadingBoard}" />
                                 </DataTrigger.EnterActions>
                             </DataTrigger>
                         </VerticalStackLayout.Triggers>

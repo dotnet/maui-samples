@@ -6,13 +6,9 @@ namespace PointOfSale.Pages;
 
 public partial class HomePage : ContentPage
 {
-    
-
     public HomePage()
 	{
 		InitializeComponent();
-
-		
     }
 
     protected override void OnNavigatedTo(NavigatedToEventArgs args)
@@ -33,7 +29,7 @@ public partial class HomePage : ContentPage
 
 	
 
-	public void NavSubContent(bool show)
+	public async void NavSubContent(bool show)
 	{
         var displayWidth = DeviceDisplay.Current.MainDisplayInfo.Width;
         
@@ -44,8 +40,12 @@ public partial class HomePage : ContentPage
 			Grid.SetRowSpan(addForm, 3);
 			// translate off screen right
 			addForm.TranslationX = displayWidth - addForm.X;
-			addForm.TranslateTo(0, 0, 800, easing: Easing.CubicOut);
-		}
+			_ = addForm.TranslateTo(0, 0, 800, easing: Easing.CubicOut);
+
+            _ = BlockScreen.FadeTo(0.8, 800, easing: Easing.CubicOut);
+            BlockScreen.InputTransparent = false;
+
+        }
 		else
 		{
 			// remove the product window
@@ -53,11 +53,14 @@ public partial class HomePage : ContentPage
 			var view = (AddProductView)PageGrid.Children.Where(v => v.GetType() == typeof(AddProductView)).SingleOrDefault();
 
             var x = DeviceDisplay.Current.MainDisplayInfo.Width;
-            view.TranslateTo(displayWidth - view.X, 0, 800, easing: Easing.CubicIn);
+            _ = view.TranslateTo(displayWidth - view.X, 0, 800, easing: Easing.CubicIn);
 
+            _ = BlockScreen.FadeTo(0, 800, easing: Easing.CubicOut);
+            BlockScreen.InputTransparent = true;
+
+            await Task.Delay(800);
             if (view != null)
-				PageGrid.Children.Remove(view);
-
+                PageGrid.Children.Remove(view);
         }
 	}
 }
