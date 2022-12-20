@@ -1,15 +1,5 @@
----
-name: .NET MAUI - A simple note taking app
-description: This sample demonstrates using local storage to create notes. It's used by the Create a .NET MAUI app tutorial.
-page_type: sample
-languages:
-- csharp
-- xaml
-products:
-- dotnet-maui
-urlFragment: tutorial-notes
----
+# .NET MAUI - Upgrade to MVVM - Step 4
 
-# Use local storage to save and load notes
+This folder contains the code a user has after completing the [Upgrade your app with MVVM concepts - Step 4](https://learn.microsoft.com/dotnet/maui/tutorials/notes-mvvm/?tutorial-step=4) tutorial.
 
-This sample demonstrates how to use local storage to save and load notes to and from the user's device. This code was created from following the [Create a .NET MAUI app](https://learn.microsoft.com/en-us/dotnet/maui/tutorials/notes-app/) tutorial.
+[.zip download](../step4_viewmodel_note.zip)
