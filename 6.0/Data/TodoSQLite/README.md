@@ -16,4 +16,4 @@ This sample demonstrates how to store data in a local database using SQLite in .
 
 ![Todo app on iOS, Android, and Windows](images/todo-list.png)
 
-For more information about the sample see [Local Databases with SQlite documentaiton](https://docs.microsoft.com/dotnet/maui/data-cloud/database-sqlite).
+For more information about the sample see [Local Databases with SQlite documentation](https://docs.microsoft.com/dotnet/maui/data-cloud/database-sqlite).
