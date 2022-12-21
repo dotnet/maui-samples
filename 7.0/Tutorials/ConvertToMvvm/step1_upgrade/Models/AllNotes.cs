@@ -27,7 +27,7 @@ internal class AllNotes
                                     {
                                         Filename = filename,
                                         Text = File.ReadAllText(filename),
-                                        Date = File.GetCreationTime(filename)
+                                        Date = File.GetLastWriteTime(filename)
                                     })
 
                                     // With the final collection of notes, order them by date
