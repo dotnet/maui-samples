@@ -28,7 +28,7 @@ internal class NotesViewModel : IQueryAttributable
             await Shell.Current.GoToAsync($"{nameof(Views.NotePage)}?load={note.Identifier}");
     }
 
-    public void ApplyQueryAttributes(IDictionary<string, object> query)
+    void IQueryAttributable.ApplyQueryAttributes(IDictionary<string, object> query)
     {
         if (query.ContainsKey("deleted"))
         {

@@ -28,8 +28,7 @@ internal class NotesViewModel : IQueryAttributable
             await Shell.Current.GoToAsync($"{nameof(Views.NotePage)}?load={note.Identifier}");
     }
 
-    //<query>
-    public void ApplyQueryAttributes(IDictionary<string, object> query)
+    void IQueryAttributable.ApplyQueryAttributes(IDictionary<string, object> query)
     {
         if (query.ContainsKey("deleted"))
         {
@@ -56,5 +55,4 @@ internal class NotesViewModel : IQueryAttributable
                 AllNotes.Insert(0, new NoteViewModel(Models.Note.Load(noteId)));
         }
     }
-    //</query>
 }
