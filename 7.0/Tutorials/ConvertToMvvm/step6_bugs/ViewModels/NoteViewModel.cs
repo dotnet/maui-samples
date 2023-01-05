@@ -59,7 +59,7 @@ internal class NoteViewModel : ObservableObject, IQueryAttributable
         await Shell.Current.GoToAsync($"..?deleted={_note.Filename}");
     }
 
-    public void ApplyQueryAttributes(IDictionary<string, object> query)
+    void IQueryAttributable.ApplyQueryAttributes(IDictionary<string, object> query)
     {
         if (query.ContainsKey("load"))
         {
