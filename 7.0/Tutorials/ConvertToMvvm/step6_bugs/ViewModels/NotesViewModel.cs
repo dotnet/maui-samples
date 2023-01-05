@@ -17,12 +17,12 @@ internal class NotesViewModel : IQueryAttributable
         SelectNoteCommand = new AsyncRelayCommand<NoteViewModel>(SelectNoteAsync);
     }
 
-    public async Task NewNoteAsync()
+    private async Task NewNoteAsync()
     {
         await Shell.Current.GoToAsync(nameof(Views.NotePage));
     }
 
-    public async Task SelectNoteAsync(NoteViewModel note)
+    private async Task SelectNoteAsync(NoteViewModel note)
     {
         if (note != null)
             await Shell.Current.GoToAsync($"{nameof(Views.NotePage)}?load={note.Identifier}");
