@@ -63,6 +63,7 @@
                             </DataTemplate>
 
                         </BindableLayout.ItemTemplate>
+
                         <VerticalStackLayout.Resources>
                             <ak:StoryBoard x:Key="LoadingBoard" Target="{x:Reference ListPreview}">
                                 <ak:FadeToAnimation Opacity="0.5" Duration="500"/>
@@ -73,10 +74,7 @@
                                 <ak:FadeToAnimation Opacity="1" Duration="500"/>
                             </ak:StoryBoard>
                         </VerticalStackLayout.Resources>
-                        <VerticalStackLayout.Behaviors>
-                            <ak:EntranceTransition
-	                            Duration="1500"/>
-                        </VerticalStackLayout.Behaviors>
+                        
                         <VerticalStackLayout.Triggers>
                             <DataTrigger
                                 TargetType="VerticalStackLayout"

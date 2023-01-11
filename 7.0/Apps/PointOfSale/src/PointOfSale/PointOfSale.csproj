@@ -293,6 +293,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Include="appsettings.json" />
+	  <EmbeddedResource Include="appsettings.json" />
 	</ItemGroup>
 </Project>
