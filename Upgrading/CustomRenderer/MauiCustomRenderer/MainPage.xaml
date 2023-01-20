@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:c="clr-namespace:XamarinCustomRenderer.Controls"
+             x:Class="MauiCustomRenderer.MainPage">
+
+    <Grid BackgroundColor="#f1f1f1">
+        <c:PressableView Pressed="Handle_Pressed"
+                         Released="Handle_Released"
+                         HorizontalOptions="Center"
+                         VerticalOptions="Center">
+                <Grid
+                    Background="#202020"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    >
+
+                    <Label Text="Press Me"
+                           FontSize="16"
+                           TextColor="White"
+                           Margin="24,20"
+                           VerticalOptions="Center"
+                           HorizontalTextAlignment="Center" />
+                </Grid>
+            
+        </c:PressableView>
+    </Grid>
+
+</ContentPage>

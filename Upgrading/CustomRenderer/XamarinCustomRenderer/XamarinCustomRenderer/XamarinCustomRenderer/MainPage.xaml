@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:c="clr-namespace:XamarinCustomRenderer.Controls"
+             x:Class="XamarinCustomRenderer.MainPage">
+
+    <Grid BackgroundColor="#f1f1f1">
+        <c:PressableView Pressed="Handle_Pressed"
+                         Released="Handle_Released"
+                         HorizontalOptions="Center"
+                         VerticalOptions="Center">
+            <Frame CornerRadius="20"
+                   BackgroundColor="Transparent"
+                   IsClippedToBounds="true"
+                   Padding="0">
+                <Grid
+                    Background="#202020">
+
+                    <Label Text="Press Me"
+                           FontSize="16"
+                           TextColor="White"
+                           Margin="24,20"
+                           HorizontalTextAlignment="Center" />
+                </Grid>
+            </Frame>
+        </c:PressableView>
+    </Grid>
+
+</ContentPage>
