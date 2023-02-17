@@ -2,10 +2,10 @@
 
 public partial class FlyoutButtonView : RadioButton
 {
-	public FlyoutButtonView()
-	{
-		InitializeComponent();
-	}
+    public FlyoutButtonView()
+    {
+        InitializeComponent();
+    }
 
     public static readonly BindableProperty IconProperty = BindableProperty.Create(nameof(IconProperty), typeof(string), typeof(FlyoutButtonView), string.Empty);
 

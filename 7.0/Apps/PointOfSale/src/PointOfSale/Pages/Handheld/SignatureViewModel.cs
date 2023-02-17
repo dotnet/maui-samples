@@ -4,12 +4,12 @@ using PointOfSale.Messages;
 namespace PointOfSale.Pages.Handheld;
 
 [INotifyPropertyChanged]
-[QueryProperty("Order","Order")]
+[QueryProperty("Order", "Order")]
 public partial class SignatureViewModel
 {
     [ObservableProperty]
     Order order;
-    
+
     [RelayCommand]
     async Task Done()
     {

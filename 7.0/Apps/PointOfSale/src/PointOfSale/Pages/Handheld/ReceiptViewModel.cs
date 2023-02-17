@@ -1,7 +1,7 @@
 namespace PointOfSale.Pages.Handheld;
 
 [INotifyPropertyChanged]
-[QueryProperty("Order","Order")]
+[QueryProperty("Order", "Order")]
 public partial class ReceiptViewModel
 {
     [ObservableProperty]

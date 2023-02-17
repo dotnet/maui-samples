@@ -1,7 +1,7 @@
 namespace PointOfSale.Pages.Handheld;
 
 [INotifyPropertyChanged]
-[QueryProperty("Order","Order")]
+[QueryProperty("Order", "Order")]
 public partial class TipViewModel
 {
     [ObservableProperty]
@@ -25,4 +25,4 @@ public partial class TipViewModel
         };
         await Shell.Current.GoToAsync($"{nameof(PayPage)}", navigationParameter);
     }
-}   
+}

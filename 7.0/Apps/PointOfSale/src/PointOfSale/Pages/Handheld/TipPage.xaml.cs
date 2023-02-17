@@ -2,8 +2,8 @@
 
 public partial class TipPage : ContentPage
 {
-	public TipPage()
-	{
-		InitializeComponent();
-	}
+    public TipPage()
+    {
+        InitializeComponent();
+    }
 }

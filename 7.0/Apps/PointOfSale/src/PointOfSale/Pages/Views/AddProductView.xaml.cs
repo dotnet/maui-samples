@@ -2,8 +2,8 @@
 
 public partial class AddProductView
 {
-	public AddProductView()
-	{
-		InitializeComponent();
-	}
+    public AddProductView()
+    {
+        InitializeComponent();
+    }
 }

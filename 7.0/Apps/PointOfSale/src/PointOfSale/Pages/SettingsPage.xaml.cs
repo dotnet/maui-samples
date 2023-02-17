@@ -2,10 +2,10 @@
 
 public partial class SettingsPage : ContentPage
 {
-	public SettingsPage()
-	{
-		InitializeComponent();
-	}
+    public SettingsPage()
+    {
+        InitializeComponent();
+    }
 
 
     void StateTrigger_IsActiveChanged(System.Object sender, System.EventArgs e)

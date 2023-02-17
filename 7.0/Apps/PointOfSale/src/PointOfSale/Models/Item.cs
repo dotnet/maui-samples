@@ -22,7 +22,8 @@ public partial class Item
 
     public ItemCategory Category { get; set; }
 
-    public double SubTotal {
+    public double SubTotal
+    {
         get
         {
             return Price * Quantity;

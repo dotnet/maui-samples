@@ -5,9 +5,9 @@ namespace PointOfSale.Pages.Handheld;
 
 public partial class ScanPage : ContentPage
 {
-	public ScanPage()
-	{
-		InitializeComponent();
+    public ScanPage()
+    {
+        InitializeComponent();
         barcodeView.Options = new BarcodeReaderOptions
         {
             Formats = BarcodeFormats.All,

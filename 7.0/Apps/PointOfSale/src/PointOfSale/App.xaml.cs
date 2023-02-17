@@ -3,8 +3,8 @@
 public partial class App : Application
 {
     public App()
-	{
-		InitializeComponent();
+    {
+        InitializeComponent();
 
         App.Current.UserAppTheme = AppTheme.Dark;
 
@@ -16,5 +16,5 @@ public partial class App : Application
         {
             MainPage = new AppShell();
         }
-	}
+    }
 }

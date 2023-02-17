@@ -1,12 +1,12 @@
 namespace PointOfSale.Pages.Handheld;
 
 [INotifyPropertyChanged]
-[QueryProperty("Order","Order")]
+[QueryProperty("Order", "Order")]
 public partial class PayViewModel
 {
     [ObservableProperty]
     Order order;
-    
+
     [RelayCommand]
     async void Pay()
     {

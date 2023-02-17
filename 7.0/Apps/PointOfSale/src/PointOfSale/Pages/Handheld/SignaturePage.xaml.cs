@@ -2,9 +2,9 @@
 
 public partial class SignaturePage : ContentPage
 {
-	public SignaturePage()
-	{
-		InitializeComponent();
-	}
+    public SignaturePage()
+    {
+        InitializeComponent();
+    }
 
 }

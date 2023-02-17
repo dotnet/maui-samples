@@ -1,7 +1,7 @@
 namespace PointOfSale.Pages.Handheld;
 
 [INotifyPropertyChanged]
-[QueryProperty("Order","Order")]
+[QueryProperty("Order", "Order")]
 [QueryProperty("Added", "Added")]
 public partial class OrderDetailsViewModel
 {

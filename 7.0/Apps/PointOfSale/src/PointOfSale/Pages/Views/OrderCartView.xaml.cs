@@ -2,8 +2,8 @@
 
 public partial class OrderCartView : ContentView
 {
-	public OrderCartView()
-	{
-		InitializeComponent();
-	}
+    public OrderCartView()
+    {
+        InitializeComponent();
+    }
 }

@@ -14,7 +14,7 @@ namespace CustomLayouts
         {
             _layout = horizontalWrapLayout;
         }
-       
+
         public override Size Measure(double widthConstraint, double heightConstraint)
         {
             var padding = _layout.Padding;
@@ -56,7 +56,7 @@ namespace CustomLayouts
                     currentRowWidth += measure.Width;
                     currentRowHeight = Math.Max(currentRowHeight, measure.Height);
 
-                    if (n < _layout.Count - 1) 
+                    if (n < _layout.Count - 1)
                     {
                         currentRowWidth += _layout.Spacing;
                     }
@@ -98,7 +98,7 @@ namespace CustomLayouts
                     continue;
                 }
 
-                if (currentX + child.DesiredSize.Width > bounds.Right) 
+                if (currentX + child.DesiredSize.Width > bounds.Right)
                 {
                     // Keep track of our maximum width so far
                     maxStackWidth = Math.Max(maxStackWidth, currentX);

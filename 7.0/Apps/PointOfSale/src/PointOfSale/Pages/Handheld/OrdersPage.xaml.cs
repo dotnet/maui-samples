@@ -2,8 +2,8 @@
 
 public partial class OrdersPage : ContentPage
 {
-	public OrdersPage()
-	{
-		InitializeComponent();
-	}
+    public OrdersPage()
+    {
+        InitializeComponent();
+    }
 }

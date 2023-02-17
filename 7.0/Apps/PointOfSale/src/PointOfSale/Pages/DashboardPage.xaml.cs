@@ -5,10 +5,10 @@ namespace PointOfSale.Pages;
 
 public partial class DashboardPage : ContentPage
 {
-	public DashboardPage()
-	{
-		InitializeComponent();
-	}
+    public DashboardPage()
+    {
+        InitializeComponent();
+    }
 
     protected override void OnAppearing()
     {
@@ -43,7 +43,7 @@ public partial class DashboardPage : ContentPage
             }
         };
 
-        
+
     }
 
     async void TapGestureRecognizer_Tapped(System.Object sender, System.EventArgs e)

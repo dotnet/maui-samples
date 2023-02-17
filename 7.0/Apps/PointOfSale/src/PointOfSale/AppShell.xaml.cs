@@ -4,12 +4,12 @@ namespace PointOfSale;
 
 public partial class AppShell : Shell
 {
-	public AppShell()
-	{
-		InitializeComponent();
+    public AppShell()
+    {
+        InitializeComponent();
         BindingContext = this;
         InitRoutes();
-	}
+    }
 
     private void InitRoutes()
     {
@@ -29,7 +29,7 @@ public partial class AppShell : Shell
 
     async void OnMenuItemChanged(System.Object sender, CheckedChangedEventArgs e)
     {
-        if(!String.IsNullOrEmpty(selectedRoute))
+        if (!String.IsNullOrEmpty(selectedRoute))
             await Shell.Current.GoToAsync($"//{selectedRoute}");
     }
 }

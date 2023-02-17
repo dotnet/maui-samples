@@ -12,7 +12,7 @@ public partial class Order
     [ObservableProperty]
     private byte[] signatureData;
 
-    [ObservableProperty] 
+    [ObservableProperty]
     private double tip;
 
     public string Total
@@ -29,14 +29,14 @@ public partial class Order
     [ObservableProperty]
     private List<Item> items;
 
-    [ObservableProperty] 
+    [ObservableProperty]
     private string status;
 
     [ObservableProperty]
     private OrderType orderType = OrderType.DineIn;
-    
+
     private static readonly Random _random = new Random();
-    
+
     private static readonly string[] brushes = new string[] { "#FFB572", "#65B0F6", "#FF7CA3", "#50D1AA", "#9290FE" };
     public static Brush RandomBrush
     {

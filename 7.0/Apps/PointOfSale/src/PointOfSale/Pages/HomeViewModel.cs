@@ -12,17 +12,17 @@ public partial class HomeViewModel
 
     partial void OnCategoryChanged(string cat)
     {
-       ItemCategory category = (ItemCategory)Enum.Parse(typeof(ItemCategory), cat);
-       _products = new ObservableCollection<Item>(
-           AppData.Items.Where(x => x.Category == category).ToList()
-       );
-       OnPropertyChanged(nameof(Products));
+        ItemCategory category = (ItemCategory)Enum.Parse(typeof(ItemCategory), cat);
+        _products = new ObservableCollection<Item>(
+            AppData.Items.Where(x => x.Category == category).ToList()
+        );
+        OnPropertyChanged(nameof(Products));
     }
 
     public HomeViewModel()
     {
         _products = new ObservableCollection<Item>(
-            AppData.Items.Where(x=>x.Category == ItemCategory.Noodles).ToList()
+            AppData.Items.Where(x => x.Category == ItemCategory.Noodles).ToList()
         );
     }
 

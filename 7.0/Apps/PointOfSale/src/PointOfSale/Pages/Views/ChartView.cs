@@ -11,7 +11,7 @@ namespace PointOfSale.Pages.Views
         public event EventHandler<SKPaintSurfaceEventArgs> ChartPainted;
 
         public static readonly BindableProperty ChartProperty = BindableProperty.Create(nameof(Chart), typeof(Chart), typeof(ChartView), null, propertyChanged: OnChartChanged);
-        
+
         public Chart Chart
         {
             get { return (Chart)GetValue(ChartProperty); }

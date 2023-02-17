@@ -4,7 +4,7 @@ public static class AppData
 {
     private static Random random = new Random();
     public static string[] Statuses = new string[] { "Ready to Pay", "Cooking", "Ready to Order" };
-    public static List<int> Tables = new List<int> { 7,8,9,10,11,12,13,14 };
+    public static List<int> Tables = new List<int> { 7, 8, 9, 10, 11, 12, 13, 14 };
 
     public static List<Item> Items = new List<Item>
     {
@@ -19,7 +19,7 @@ public static class AppData
         new Item(){ Title = "Coffee", Price = 4.00, Quantity = 1, Category = ItemCategory.Beverages, Image = "coffee.png"},
         new Item(){ Title = "Milk", Price = 5.00, Quantity = 1, Category = ItemCategory.Beverages, Image = "milk.png"},
     };
-    
+
     public static List<Order> Orders { get; set; } = GenerateOrders();
 
     private static List<Order> GenerateOrders()
@@ -42,7 +42,7 @@ public static class AppData
 
     private static List<Item> GenerateItems()
     {
-        List<Item> items = new List<Item>(); 
+        List<Item> items = new List<Item>();
         int numItems = random.Next(1, Items.Count - 1);
         random.Shuffle(Items);
         for (int i = 0; i < numItems; i++)
@@ -62,10 +62,10 @@ public static class AppData
 
 static class RandomExtensions
 {
-    public static void Shuffle<T> (this Random rng, List<T> array)
+    public static void Shuffle<T>(this Random rng, List<T> array)
     {
         int n = array.Count;
-        while (n > 1) 
+        while (n > 1)
         {
             int k = rng.Next(n--);
             (array[k], array[n]) = (array[n], array[k]);
