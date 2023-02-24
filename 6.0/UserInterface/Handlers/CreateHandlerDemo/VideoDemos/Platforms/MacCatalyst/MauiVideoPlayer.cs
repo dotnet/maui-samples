@@ -17,20 +17,32 @@ namespace VideoDemos.Platforms.MaciOS
         Video _video;
         NSObject? _playedToEndObserver;
 
+
         public MauiVideoPlayer(Video video)
         {
             _video = video;
 
-            // Create AVPlayerViewController
             _playerViewController = new AVPlayerViewController();
-
-            // Set Player property to AVPlayer
             _player = new AVPlayer();
             _playerViewController.Player = _player;
-
-            // Use the View from the controller as the native control
             _playerViewController.View.Frame = this.Bounds;
 
+#if MACCATALYST16_1_OR_GREATER
+            // On Mac Catalyst 16, for Shell-based apps, the AVPlayerViewController has to be added to the parent ViewController, otherwise the transport controls won't be displayed.
+            var viewController = WindowStateManager.Default.GetCurrentUIViewController();
+
+            // If there's no view controller, assume it's not Shell and continue because the transport controls will still be displayed.
+            if (viewController?.View is not null)
+            {
+                // Zero out the safe area insets of the AVPlayerViewController
+                UIEdgeInsets insets = viewController.View.SafeAreaInsets;
+                _playerViewController.AdditionalSafeAreaInsets = new UIEdgeInsets(insets.Top * -1, insets.Left, insets.Bottom * -1, insets.Right);
+
+                // Add the View from the AVPlayerViewController to the parent ViewController
+                viewController.View.AddSubview(_playerViewController.View);
+            }
+#endif
+            // Use the View from the AVPlayerViewController as the native control
             AddSubview(_playerViewController.View);
         }
 
