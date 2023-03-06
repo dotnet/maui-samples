@@ -5,20 +5,20 @@
              Title="RadioButton ControlTemplate demo">
     <ContentPage.Resources>
         <ControlTemplate x:Key="RadioButtonTemplate">
-            <Frame BorderColor="#F3F2F1"
-                   BackgroundColor="#F3F2F1"
-                   HasShadow="False"
-                   HeightRequest="100"
-                   WidthRequest="100"
-                   HorizontalOptions="Start"
-                   VerticalOptions="Start"
-                   Padding="0">
+            <Border Stroke="#F3F2F1"
+                    StrokeThickness="2"
+                    StrokeShape="RoundRectangle 10"
+                    BackgroundColor="#F3F2F1"
+                    HeightRequest="90"
+                    WidthRequest="90"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Start">
                 <VisualStateManager.VisualStateGroups>
                     <VisualStateGroupList>
                         <VisualStateGroup x:Name="CheckedStates">
                             <VisualState x:Name="Checked">
                                 <VisualState.Setters>
-                                    <Setter Property="BorderColor"
+                                    <Setter Property="Stroke"
                                             Value="#FF3300" />
                                     <Setter TargetName="check"
                                             Property="Opacity"
@@ -29,7 +29,7 @@
                                 <VisualState.Setters>
                                     <Setter Property="BackgroundColor"
                                             Value="#F3F2F1" />
-                                    <Setter Property="BorderColor"
+                                    <Setter Property="Stroke"
                                             Value="#F3F2F1" />
                                     <Setter TargetName="check"
                                             Property="Opacity"
@@ -40,8 +40,9 @@
                     </VisualStateGroupList>
                 </VisualStateManager.VisualStateGroups>
                 <Grid Margin="4"
-                      WidthRequest="100">
-                    <Grid WidthRequest="18"
+                      WidthRequest="90">
+                    <Grid Margin="0,0,4,0"
+                          WidthRequest="18"
                           HeightRequest="18"
                           HorizontalOptions="End"
                           VerticalOptions="Start">
@@ -60,7 +61,7 @@
                     </Grid>
                     <ContentPresenter />
                 </Grid>
-            </Frame>
+            </Border>
         </ControlTemplate>
 
         <Style TargetType="RadioButton">
