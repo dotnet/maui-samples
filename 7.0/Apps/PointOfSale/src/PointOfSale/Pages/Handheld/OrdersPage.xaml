@@ -24,11 +24,14 @@
             <BoxView Style="{StaticResource HRule}"/>
         </VerticalStackLayout>
 
-
-        <Grid Grid.Row="1" Grid.RowSpan="2"
+        <Grid Grid.Row="1"
+              ColumnDefinitions="Auto"
               toolkit:StateContainer.CurrentState="{Binding PageCurrentState}">
             <toolkit:StateContainer.StateViews>
-                <Grid ColumnDefinitions="80,100,*" RowDefinitions="40,*" Margin="0,8" ColumnSpacing="8"
+                <Grid ColumnDefinitions="80,100,*" 
+                      RowDefinitions="40,*" 
+                      Margin="0,8" 
+                      ColumnSpacing="8"
                       toolkit:StateView.StateKey="Loading">
                     <Label Text="Table" Grid.Column="0" VerticalOptions="Center" FontAttributes="Bold"/>
                     <Label Text="Total" Grid.Column="1" VerticalOptions="Center" FontAttributes="Bold"/>
@@ -37,6 +40,10 @@
                     <VerticalStackLayout Grid.Row="1" Grid.ColumnSpan="3" x:Name="ListPreview">
                         <BindableLayout.ItemsSource>
                             <x:Array Type="{x:Type x:String}">
+                                <x:String>one</x:String>
+                                <x:String>one</x:String>
+                                <x:String>one</x:String>
+                                <x:String>one</x:String>
                                 <x:String>one</x:String>
                                 <x:String>one</x:String>
                                 <x:String>one</x:String>
@@ -57,9 +64,9 @@
                                     </Border>
 
                                     <BoxView HeightRequest="30"  Grid.Column="1" HorizontalOptions="Fill" VerticalOptions="Center" Color="{StaticResource NeutralLighter}"/>
-                                    <BoxView HeightRequest="30"  Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Center" Color="{StaticResource NeutralLighter}"/>
+                                    <BoxView HeightRequest="30"  Grid.Column="2" HorizontalOptions="Fill" VerticalOptions="Center" Color="{StaticResource NeutralLighter}"/>
+                                    
                                 </Grid>
-
                             </DataTemplate>
 
                         </BindableLayout.ItemTemplate>
@@ -90,6 +97,8 @@
                 </Grid>
                 
                 <CollectionView ItemsSource="{Binding Orders}"
+                                VerticalOptions="Start"
+                                HeightRequest="600"
                                 VerticalScrollBarVisibility="Never"
                                 toolkit:StateView.StateKey="Loaded">
                     <CollectionView.ItemTemplate>
@@ -130,7 +139,9 @@
             </toolkit:StateContainer.StateViews>
         </Grid>
 
-        <FlexLayout Grid.Row="2" AlignContent="SpaceAround" JustifyContent="SpaceAround"
+        <FlexLayout Grid.Row="2" 
+                    AlignContent="SpaceAround" 
+                    JustifyContent="SpaceAround"
                     Background="{StaticResource DarkBg1Transparent}">
             <Image Source="home.png"/>
             <ImageButton Source="logout.png"

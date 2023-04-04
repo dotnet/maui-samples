@@ -3,6 +3,7 @@
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:pages="clr-namespace:PointOfSale.Pages"
        xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+       xmlns:b="clr-namespace:PointOfSale.Common.Behaviors"
        xmlns:v="clr-namespace:PointOfSale.Pages.Views"
        x:Class="PointOfSale.AppShell"
        FlyoutWidth="104" 
@@ -85,6 +86,7 @@
 
                 <RadioButton Value="home" IsChecked="True" Grid.Row="1"
                              ToolTipProperties.Text="Home"
+                             b:CursorBehavior.AttachBehavior="True"
                              CheckedChanged="OnMenuItemChanged">
                     <RadioButton.Content>
                         <Image Source="home.png">

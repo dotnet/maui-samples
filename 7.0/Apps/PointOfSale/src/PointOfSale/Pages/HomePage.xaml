@@ -6,6 +6,7 @@
              xmlns:pages="clr-namespace:PointOfSale.Pages"
              xmlns:m="clr-namespace:PointOfSale.Models"
              xmlns:l="clr-namespace:CustomLayouts"
+             xmlns:b="clr-namespace:PointOfSale.Common.Behaviors"
              xmlns:system="clr-namespace:System;assembly=System.Runtime"
              x:DataType="pages:HomeViewModel"
              x:Class="PointOfSale.Pages.HomePage"
@@ -45,6 +46,9 @@
                     <BindableLayout.ItemTemplate>
                         <DataTemplate x:DataType="m:Item">
                             <Grid RowDefinitions="30,230" WidthRequest="200">
+                                <Grid.Behaviors>
+                                    <b:CursorBehavior/>
+                                </Grid.Behaviors>
                                 <VisualStateManager.VisualStateGroups>
                                     <VisualStateGroup x:Name="DefaultStates">
                                         <VisualState x:Name="PointerOver">
@@ -151,9 +155,7 @@
             />
             <HorizontalStackLayout Spacing="20"
                                RadioButtonGroup.GroupName="MenuCategories"
-                               RadioButtonGroup.SelectedValue="{Binding Category}"
-                                   
-                                   >
+                               RadioButtonGroup.SelectedValue="{Binding Category}">
                 <BindableLayout.ItemsSource>
                         <x:Array Type="{x:Type x:String}">
                             <x:String>Noodles</x:String>
@@ -169,6 +171,9 @@
                                 <RadioButton.ControlTemplate>
                                     <ControlTemplate>
                                         <Grid RowDefinitions="30,4">
+                                            <Grid.Behaviors>
+                                                <b:CursorBehavior/>
+                                            </Grid.Behaviors>
                                             <VisualStateManager.VisualStateGroups>
                                                 <VisualStateGroupList>
                                                     <VisualStateGroup x:Name="CheckedStates">
@@ -198,7 +203,7 @@
                                                             </VisualState.Setters>
                                                         </VisualState>
 
-                                                        <VisualState x:Name="PointerOver">
+                                                        <!-- <VisualState x:Name="PointerOver">
                                                             <VisualState.Setters>
                                                                 <Setter
                                                                     TargetName="TextLabel"
@@ -210,6 +215,19 @@
                                                                     Value="{StaticResource Primary}"/>
                                                             </VisualState.Setters>
                                                         </VisualState>
+
+                                                        <VisualState x:Name="Normal">
+                                                            <VisualState.Setters>
+                                                                <Setter
+                                                                    TargetName="TextLabel"
+                                                                    Property="Label.TextColor"
+                                                                    Value="White"/>
+                                                                <Setter
+                                                                    TargetName="Indicator"
+                                                                    Property="BoxView.Color"
+                                                                    Value="Transparent"/>
+                                                            </VisualState.Setters>
+                                                        </VisualState> -->
                                                     </VisualStateGroup>
                                                 </VisualStateGroupList>
                                             </VisualStateManager.VisualStateGroups>

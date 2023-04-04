@@ -28,27 +28,6 @@ public static class MauiProgram
             .UseBarcodeReader()
 			.UseMauiCommunityToolkit()
             .UseSkiaSharp()
-            .ConfigureLifecycleEvents(events =>
-            {
-#if ANDROID
-                events.AddAndroid(platform =>
-                {
-                    platform.OnActivityResult((activity, rc, result, data) =>
-                    {
-                        AuthenticationContinuationHelper.SetAuthenticationContinuationEventArgs(rc, result, data);
-                    });
-                });
-#endif
-#if IOS
-            events.AddiOS(platform =>
-            {
-                platform.OpenUrl((app, url, options) =>
-                {
-                    return AuthenticationContinuationHelper.SetAuthenticationContinuationEventArgs(url);
-                });
-            });
-#endif
-            })
             .ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

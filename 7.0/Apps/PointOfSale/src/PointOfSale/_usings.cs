@@ -5,4 +5,3 @@ global using CommunityToolkit.Mvvm.ComponentModel;
 global using CommunityToolkit.Mvvm.Input;
 global using PointOfSale.Models;
 global using CommunityToolkit.Mvvm.Messaging;
-global using Microsoft.Identity.Client;

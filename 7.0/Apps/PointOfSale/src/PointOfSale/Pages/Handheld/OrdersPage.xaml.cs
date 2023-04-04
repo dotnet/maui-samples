@@ -1,4 +1,4 @@
-﻿using MAUI.MSALClient;
+﻿
 
 namespace PointOfSale.Pages.Handheld;
 

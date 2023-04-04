@@ -1,4 +1,3 @@
-using MAUI.MSALClient;
 
 namespace PointOfSale.Pages.Handheld;
 
@@ -8,18 +7,6 @@ public partial class MobileLoginViewModel
     [RelayCommand]
     async Task Login()
     {
-        PublicClientSingleton.Instance.UseEmbedded = false; // this.useEmbedded.IsChecked;
-
-        try
-        {
-            await PublicClientSingleton.Instance.AcquireTokenSilentAsync();
-        }
-        catch (MsalClientException ex) when (ex.ErrorCode == MsalError.AuthenticationCanceledError)
-        {
-            await ShowMessage("Login failed", "User cancelled sign in.");
-            return;
-        }
-
         await Shell.Current.GoToAsync("//orders");
     }
 
