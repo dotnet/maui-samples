@@ -27,14 +27,14 @@ jobs:
         shell: pwsh
         run: |
           & dotnet nuget locals all --clear
-          & dotnet workload install maui --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
-          & dotnet workload install android ios maccatalyst tvos macos maui wasm-tools maui-maccatalyst --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
+          & dotnet workload install maui --source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet7/nuget/v3/index.json --source https://api.nuget.org/v3/index.json
+          & dotnet workload install android ios maccatalyst tvos macos maui wasm-tools maui-maccatalyst --source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet7/nuget/v3/index.json --source https://api.nuget.org/v3/index.json
       
       # https://docs.microsoft.com/en-us/dotnet/maui/windows/deployment/overview
       - name: Build Windows MSIX
         run: |
           cd .\6.0\Apps\WeatherTwentyOne\src\
-          dotnet publish -f net6.0-windows10.0.19041.0 -c Release 
+          dotnet publish -f net7.0-windows10.0.19041.0 -c Release 
           
 #       - name: Build and Run UnitTests
 #         shell: bash
@@ -65,7 +65,7 @@ jobs:
         env:
           CERT_PASSWORD: ${{ secrets.WIN_CERT_PASSWORD }}
         run: |
-          '"C:\Program Files (x86)\Windows Kits\10\App Certification Kit\SignTool" sign /a /fd SHA256 /f WinSignCert.pfx /p ($env:CERT_PASSWORD) 6.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\bin\Release\net6.0-windows10.0.19041.0\win10-x64\AppPackages\WeatherTwentyOne_1.0.0.0_TestWeatherTwentyOne_1.0.0.0_x64.msix'
+          '"C:\Program Files (x86)\Windows Kits\10\App Certification Kit\SignTool" sign /a /fd SHA256 /f WinSignCert.pfx /p ($env:CERT_PASSWORD) 6.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\bin\Release\net7.0-windows10.0.19041.0\win10-x64\AppPackages\WeatherTwentyOne_1.0.0.0_TestWeatherTwentyOne_1.0.0.0_x64.msix'
 
       - uses: actions/upload-artifact@v2
         with:
@@ -92,8 +92,8 @@ jobs:
           shell: bash
           run: |
             dotnet nuget locals all --clear 
-            dotnet workload install maui --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
-            dotnet workload install android ios maccatalyst tvos macos maui wasm-tools --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
+            dotnet workload install maui --source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet7/nuget/v3/index.json --source https://api.nuget.org/v3/index.json
+            dotnet workload install android ios maccatalyst tvos macos maui wasm-tools --source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet7/nuget/v3/index.json --source https://api.nuget.org/v3/index.json
 
         - name: Restore nuget packages
           run: |
@@ -105,7 +105,7 @@ jobs:
           shell: bash
           run: |
             cd 6.0/Apps/WeatherTwentyOne/src
-            dotnet publish -f:net6.0-android -c:Release
+            dotnet publish -f:net7.0-android -c:Release
             
         # # Store Android Signing Keystore and password in Secrets using base64 encoding
         # # https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/certutil
@@ -131,4 +131,4 @@ jobs:
           with:
             name: artifacts-android
             path: |
-              6.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\bin\Release\net6.0-android\publish\*.apk
+              6.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\bin\Release\net7.0-android\publish\*.apk

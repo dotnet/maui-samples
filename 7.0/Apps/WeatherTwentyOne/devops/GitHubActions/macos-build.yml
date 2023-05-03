@@ -31,8 +31,8 @@ jobs:
         shell: bash
         run: |
           dotnet nuget locals all --clear 
-          dotnet workload install maui --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
-          dotnet workload install android ios maccatalyst tvos macos maui wasm-tools --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
+          dotnet workload install maui --source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet7/nuget/v3/index.json --source https://api.nuget.org/v3/index.json
+          dotnet workload install android ios maccatalyst tvos macos maui wasm-tools --source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet7/nuget/v3/index.json --source https://api.nuget.org/v3/index.json
     
       - name: Restore nuget packages
         run: |
@@ -44,8 +44,8 @@ jobs:
         shell: bash
         run: |
           cd 6.0/Apps/WeatherTwentyOne/src
-          dotnet build -f net6.0-maccatalyst -c Release -o ./artifacts
-          dotnet publish -f net6.0-maccatalyst -c Release -p:BuildIpa=True -o ./artifacts
+          dotnet build -f net7.0-maccatalyst -c Release -o ./artifacts
+          dotnet publish -f net7.0-maccatalyst -c Release -p:BuildIpa=True -o ./artifacts
 
 #       - name: Build and Run UnitTests
 #         shell: bash
@@ -106,8 +106,8 @@ jobs:
         shell: bash
         run: |
           dotnet nuget locals all --clear 
-          dotnet workload install maui --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
-          dotnet workload install android ios maccatalyst tvos macos maui wasm-tools --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
+          dotnet workload install maui --source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet7/nuget/v3/index.json --source https://api.nuget.org/v3/index.json
+          dotnet workload install android ios maccatalyst tvos macos maui wasm-tools --source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet7/nuget/v3/index.json --source https://api.nuget.org/v3/index.json
     
       - name: Restore nuget packages
         run: |
@@ -119,7 +119,7 @@ jobs:
         shell: bash
         run: |
           cd 6.0/Apps/WeatherTwentyOne/src
-          dotnet build -f net6.0-ios -c Debug /p:packageApp=false /p:buildForSimulator=true /p:ArchiveOnBuild=false
+          dotnet build -f net7.0-ios -c Debug /p:packageApp=false /p:buildForSimulator=true /p:ArchiveOnBuild=false
 
 #       - name: Build and Run UnitTests
 #         shell: bash
@@ -131,5 +131,5 @@ jobs:
         with:
           name: artifacts-ios
           path: |
-            6.0/Apps/WeatherTwentyOne/src/WeatherTwentyOne/bin/Debug/net6.0-ios/iossimulator-x64/**/*.app
+            6.0/Apps/WeatherTwentyOne/src/WeatherTwentyOne/bin/Debug/net7.0-ios/iossimulator-x64/**/*.app
       
