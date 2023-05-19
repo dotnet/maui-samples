@@ -31,16 +31,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<KnownRuntimePack Update="@(KnownRuntimePack)">
-			<LatestRuntimeFrameworkVersion Condition="'%(TargetFramework)' == 'net7.0'">6.0.4</LatestRuntimeFrameworkVersion>
-		</KnownRuntimePack>
-		<KnownFrameworkReference Update="@(KnownFrameworkReference)">
-			<TargetingPackVersion Condition="'%(TargetFramework)' == 'net7.0'">6.0.4</TargetingPackVersion>
-			<LatestRuntimeFrameworkVersion Condition="'%(TargetFramework)' == 'net7.0'">6.0.4</LatestRuntimeFrameworkVersion>
-		</KnownFrameworkReference>
-	</ItemGroup>
-
-	<ItemGroup>
 		<!-- App Icon -->
 		<MauiIcon Include="Resources\appicon.svg" ForegroundFile="Resources\appiconfg.svg" Color="#512BD4" />
 
