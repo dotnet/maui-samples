@@ -63,11 +63,6 @@
 		<None Include="**\*.Windows.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
 	</ItemGroup>
 
-	<ItemGroup Condition="$(TargetFramework.Contains('-windows'))">
-		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.1" />
-		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.2.221209.1" />
-	</ItemGroup>
-
 	<ItemGroup>
 	  <None Remove="Resources\Raw\AndroidVideo.mp4" />
 	  <None Remove="Resources\Raw\AppleVideo.mp4" />
