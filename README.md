@@ -23,7 +23,7 @@ Sample highlights include:
 
 ## .NET MAUI Links
 
-* [.NET MAUI Website](https://dotnet.microsoft.com/en-us/apps/maui)
+* [.NET MAUI Website](https://dotnet.microsoft.com/apps/maui)
 * [.NET MAUI Documentation](https://docs.microsoft.com/dotnet/maui)
 * [.NET MAUI Blog](https://devblogs.microsoft.com/dotnet/category/maui/)
 * [.NET MAUI GitHub](https://github.com/dotnet/maui)
