@@ -29,7 +29,6 @@ stages:
         targetType: 'inline'
         script: |
           dotnet nuget locals all --clear
-          dotnet workload install maui --source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet7/nuget/v3/index.json --source https://api.nuget.org/v3/index.json
           dotnet workload install android ios maccatalyst tvos macos maui wasm-tools --source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet7/nuget/v3/index.json --source https://api.nuget.org/v3/index.json
 
     - task: Bash@3
