@@ -3,6 +3,8 @@ using Font = Microsoft.Maui.Graphics.Font;
 using IImage = Microsoft.Maui.Graphics.IImage;
 #if IOS || ANDROID || MACCATALYST
 using Microsoft.Maui.Graphics.Platform;
+#elif WINDOWS
+using Microsoft.Maui.Graphics.Win2D;
 #endif
 
 namespace GraphicsViewDemos.Drawables
@@ -146,20 +148,22 @@ namespace GraphicsViewDemos.Drawables
     {
         public void Draw(ICanvas canvas, RectF dirtyRect)
         {
-#if IOS || ANDROID || MACCATALYST
             IImage image;
             Assembly assembly = GetType().GetTypeInfo().Assembly;
             using (Stream stream = assembly.GetManifestResourceStream("GraphicsViewDemos.Resources.Images.dotnet_bot.png"))
             {
+#if IOS || ANDROID || MACCATALYST
                 // PlatformImage isn't currently supported on Windows.
                 image = PlatformImage.FromStream(stream);
+#elif WINDOWS
+                image = new W2DImageLoadingService().FromStream(stream);
+#endif
             }
 
             if (image != null)
             {
                 canvas.DrawImage(image, 10, 10, image.Width, image.Height);
             }
-#endif
         }
     }
 
@@ -288,13 +292,16 @@ namespace GraphicsViewDemos.Drawables
     {
         public void Draw(ICanvas canvas, RectF dirtyRect)
         {
-#if IOS || ANDROID || MACCATALYST
             IImage image;
             var assembly = GetType().GetTypeInfo().Assembly;
             using (var stream = assembly.GetManifestResourceStream("GraphicsViewDemos.Resources.Images.dotnet_bot.png"))
             {
+#if IOS || ANDROID || MACCATALYST
                 // PlatformImage isn't currently supported on Windows.
                 image = PlatformImage.FromStream(stream);
+#elif WINDOWS
+                image = new W2DImageLoadingService().FromStream(stream);
+#endif
             }
 
             if (image != null)
@@ -304,7 +311,6 @@ namespace GraphicsViewDemos.Drawables
                 canvas.ClipPath(path);  // Must be called before DrawImage
                 canvas.DrawImage(image, 10, 10, image.Width, image.Height);
             }
-#endif
         }
     }
 
@@ -312,13 +318,16 @@ namespace GraphicsViewDemos.Drawables
     {
         public void Draw(ICanvas canvas, RectF dirtyRect)
         {
-#if IOS || ANDROID || MACCATALYST
             IImage image;
             var assembly = GetType().GetTypeInfo().Assembly;
             using (var stream = assembly.GetManifestResourceStream("GraphicsViewDemos.Resources.Images.dotnet_bot.png"))
             {
+#if IOS || ANDROID || MACCATALYST
                 // PlatformImage isn't currently supported on Windows.
                 image = PlatformImage.FromStream(stream);
+#elif WINDOWS
+                image = new W2DImageLoadingService().FromStream(stream);
+#endif
             }
 
             if (image != null)
@@ -326,7 +335,6 @@ namespace GraphicsViewDemos.Drawables
                 canvas.SubtractFromClip(60, 60, 90, 90);
                 canvas.DrawImage(image, 10, 10, image.Width, image.Height);
             }
-#endif
         }
     }
 }
