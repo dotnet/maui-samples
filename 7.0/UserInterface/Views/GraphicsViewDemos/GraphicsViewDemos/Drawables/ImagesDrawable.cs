@@ -1,5 +1,8 @@
 ﻿#if IOS || ANDROID || MACCATALYST
 using Microsoft.Maui.Graphics.Platform;
+#elif WINDOWS
+using Microsoft.Maui.Graphics.Win2D;
+using System.IO;
 #endif
 using System.Reflection;
 using IImage = Microsoft.Maui.Graphics.IImage;
@@ -10,20 +13,22 @@ namespace GraphicsViewDemos.Drawables
     {
         public void Draw(ICanvas canvas, RectF dirtyRect)
         {
-#if IOS || ANDROID || MACCATALYST
             IImage image;
             Assembly assembly = GetType().GetTypeInfo().Assembly;
             using (Stream stream = assembly.GetManifestResourceStream("GraphicsViewDemos.Resources.Images.dotnet_bot.png"))
             {
+#if IOS || ANDROID || MACCATALYST
                 // PlatformImage isn't currently supported on Windows.
                 image = PlatformImage.FromStream(stream);
+#elif WINDOWS
+                image = new W2DImageLoadingService().FromStream(stream);
+#endif
             }
 
             if (image != null)
             {
                 canvas.DrawImage(image, 10, 10, image.Width, image.Height);
             }
-#endif
         }
     }
 
@@ -31,21 +36,23 @@ namespace GraphicsViewDemos.Drawables
     {
         public void Draw(ICanvas canvas, RectF dirtyRect)
         {
-//#if IOS || ANDROID || MACCATALYST
-//            IImage image;
-//            Assembly assembly = GetType().GetTypeInfo().Assembly;
-//            using (Stream stream = assembly.GetManifestResourceStream("GraphicsViewDemos.Resources.Images.dotnet_bot.png"))
-//            {
-//                // PlatformImage isn't currently supported on Windows.
-//                image = PlatformImage.FromStream(stream);
-//            }
+            //            IImage image;
+            //            Assembly assembly = GetType().GetTypeInfo().Assembly;
+            //            using (Stream stream = assembly.GetManifestResourceStream("GraphicsViewDemos.Resources.Images.dotnet_bot.png"))
+            //            {
+            //#if IOS || ANDROID || MACCATALYST
+            //                // PlatformImage isn't currently supported on Windows.
+            //                image = PlatformImage.FromStream(stream);
+            //#elif WINDOWS
+            //                image = new W2DImageLoadingService().FromStream(stream);
+            //#endif
+            //            }
 
-//            if (image != null)
-//            {
-//                IImage newImage = image.Resize(100, 60, ResizeMode.Stretch, true);
-//                canvas.DrawImage(newImage, 10, 10, newImage.Width, newImage.Height);
-//            }
-//#endif
+            //            if (image != null)
+            //            {
+            //                IImage newImage = image.Resize(100, 60, ResizeMode.Stretch, true);
+            //                canvas.DrawImage(newImage, 10, 10, newImage.Width, newImage.Height);
+            //            }
         }
     }
 
@@ -53,13 +60,16 @@ namespace GraphicsViewDemos.Drawables
     {
         public void Draw(ICanvas canvas, RectF dirtyRect)
         {
-#if IOS || ANDROID || MACCATALYST
             IImage image;
             Assembly assembly = GetType().GetTypeInfo().Assembly;
             using (Stream stream = assembly.GetManifestResourceStream("GraphicsViewDemos.Resources.Images.dotnet_bot.png"))
             {
+#if IOS || ANDROID || MACCATALYST
                 // PlatformImage isn't currently supported on Windows.
                 image = PlatformImage.FromStream(stream);
+#elif WINDOWS
+                image = new W2DImageLoadingService().FromStream(stream);
+#endif
             }
 
             if (image != null)
@@ -67,7 +77,6 @@ namespace GraphicsViewDemos.Drawables
                 IImage newImage = image.Downsize(100, true);
                 canvas.DrawImage(newImage, 10, 10, newImage.Width, newImage.Height);
             }
-#endif
         }
     }
 
@@ -75,13 +84,16 @@ namespace GraphicsViewDemos.Drawables
     {
         public void Draw(ICanvas canvas, RectF dirtyRect)
         {
-#if IOS || ANDROID || MACCATALYST
             IImage image;
             Assembly assembly = GetType().GetTypeInfo().Assembly;
             using (Stream stream = assembly.GetManifestResourceStream("GraphicsViewDemos.Resources.Images.dotnet_bot.png"))
             {
+#if IOS || ANDROID || MACCATALYST
                 // PlatformImage isn't currently supported on Windows.
                 image = PlatformImage.FromStream(stream);
+#elif WINDOWS
+                image = new W2DImageLoadingService().FromStream(stream);
+#endif
             }
 
             // Save image to a memory stream
@@ -94,7 +106,6 @@ namespace GraphicsViewDemos.Drawables
                 }
                 canvas.DrawImage(newImage, 10, 10, newImage.Width, newImage.Height);
             }
-#endif
         }
     }
 }
