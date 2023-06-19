@@ -2,7 +2,6 @@
 using Microsoft.Maui.Graphics.Platform;
 #elif WINDOWS
 using Microsoft.Maui.Graphics.Win2D;
-using System.IO;
 #endif
 using System.Reflection;
 using IImage = Microsoft.Maui.Graphics.IImage;
