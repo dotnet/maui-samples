@@ -7,7 +7,6 @@ languages:
 - xaml
 products:
 - dotnet-maui
-- dotnet-core
 urlFragment: navigation-shelltabs
 ---
 # Shell Tabs
