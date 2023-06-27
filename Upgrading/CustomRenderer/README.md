@@ -7,11 +7,9 @@ languages:
 - xaml
 products:
 - dotnet-maui
-- dotnet-core
 urlFragment: custom-renderers
 ---
 
 # Custom Renderers
 
 These projects show the same custom renderer used in Xamarin.Forms and .NET MAUI.
-
