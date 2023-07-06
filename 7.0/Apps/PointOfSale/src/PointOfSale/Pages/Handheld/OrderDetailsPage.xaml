@@ -11,14 +11,14 @@
         <handheld:OrderDetailsViewModel/>
     </ContentPage.BindingContext>
     
-    <Grid RowDefinitions="Auto, *, 66" Margin="20">
+    <Grid RowDefinitions="Auto, 400, 66" Margin="20">
         <VerticalStackLayout VerticalOptions="Start" Spacing="8">
             <Label Text="Current Order" Style="{StaticResource LargeTitle}"/>
             <Label Text="{Binding Order.Table, StringFormat='TABLE {0}'}"/>
             <BoxView Style="{StaticResource HRule}"/>
         </VerticalStackLayout>
 
-        <CollectionView Grid.Row="1" ItemsSource="{Binding Order.Items}" VerticalScrollBarVisibility="Never">
+        <CollectionView Grid.Row="1" ItemsSource="{Binding Order.Items}" VerticalScrollBarVisibility="Never" Background="Transparent">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:Item">
                     <Grid ColumnDefinitions="160,60,*" ColumnSpacing="8" Margin="0,8" HeightRequest="70">
@@ -38,7 +38,7 @@
             </CollectionView.Header>
         </CollectionView>
 
-        <Grid ColumnSpacing="20" Grid.Row="2">
+        <Grid Grid.Row="2">
             <Button Text="Pay" Command="{Binding PayCommand}" HorizontalOptions="Fill"/>
         </Grid>
 
