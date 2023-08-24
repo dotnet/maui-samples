@@ -1,4 +1,4 @@
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:BehaviorsDemos"
              x:Class="BehaviorsDemos.MainPage"
@@ -19,6 +19,9 @@
                 <TextCell Text="Event to command behavior"
                           Command="{Binding NavigateCommand}"
                           CommandParameter="{x:Type local:EventToCommandBehaviorPage}" />
+                <TextCell Text="Platform behavior"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type local:PlatformBehaviorPage}" />
             </TableSection>
         </TableRoot>
     </TableView>
