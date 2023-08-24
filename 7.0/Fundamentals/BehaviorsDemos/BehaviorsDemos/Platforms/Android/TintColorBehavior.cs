@@ -5,8 +5,8 @@ using Color = Microsoft.Maui.Graphics.Color;
 
 namespace BehaviorsDemos
 {
-	public partial class TintColorBehavior : PlatformBehavior<Image, ImageView>
-	{
+    public partial class TintColorBehavior : PlatformBehavior<Image, ImageView>
+    {
         protected override void OnAttachedTo(Image bindable, ImageView platformView)
         {
             base.OnAttachedTo(bindable, platformView);
