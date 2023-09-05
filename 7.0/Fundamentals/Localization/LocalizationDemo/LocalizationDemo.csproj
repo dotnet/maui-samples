@@ -41,12 +41,6 @@
 		<IPhoneResourcePrefix>Platforms/MacCatalyst/Resources</IPhoneResourcePrefix>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
-	  <CreatePackage>false</CreatePackage>
-	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-ios|AnyCPU'">
-	  <CreatePackage>false</CreatePackage>
-	</PropertyGroup>
 	<ItemGroup>
 		<!-- App Icon -->
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
@@ -130,19 +124,12 @@
 	</ItemGroup>
 	
 	<ItemGroup Condition="$(TargetFramework.Contains('-windows'))">
-	  <Content Include="Platforms\Windows\Assets\Images\de\flag.png" />
-	  <Content Include="Platforms\Windows\Assets\Images\en\flag.png" />
-	  <Content Include="Platforms\Windows\Assets\Images\es\flag.png" />
-	  <Content Include="Platforms\Windows\Assets\Images\fr\flag.png" />
-	  <Content Include="Platforms\Windows\Assets\Images\ja\flag.png" />
-	  <Content Include="Platforms\Windows\Assets\Images\pt-BR\flag.png" />
-	  <Content Include="Platforms\Windows\Assets\Images\pt\flag.png" />
-	  <Content Include="Platforms\Windows\Assets\Images\zh-Hans\flag.png" />
-	  <Content Include="Platforms\Windows\Assets\Images\zh-Hant\flag.png" />
+		<Content Include="Platforms\Windows\Assets\Images\**" TargetPath="%(RecursiveDir)%(Filename)%(Extension)" />
 	</ItemGroup>
-	
+
 	<ItemGroup Condition="$(TargetFramework.Contains('-android'))">
-	  <Folder Include="Platforms\Android\Resources\values-de\" />
+		<Folder Include="Platforms\Android\Resources\**" TargetPath="%(RecursiveDir)%(Filename)%(Extension)" />
+	  <!--<Folder Include="Platforms\Android\Resources\values-de\" />
 	  <Folder Include="Platforms\Android\Resources\values-es\" />
 	  <Folder Include="Platforms\Android\Resources\values-gsw-rCH\" />
 	  <Folder Include="Platforms\Android\Resources\values-ja\" />
@@ -150,7 +137,7 @@
 	  <Folder Include="Platforms\Android\Resources\values-pt\" />
 	  <Folder Include="Platforms\Android\Resources\values-pt-rBR\" />
 	  <Folder Include="Platforms\Android\Resources\values-zh-rCN\" />
-	  <Folder Include="Platforms\Android\Resources\values-zh-rTW\" />
+	  <Folder Include="Platforms\Android\Resources\values-zh-rTW\" />-->
 	</ItemGroup>	
 
 </Project>
