@@ -9,7 +9,6 @@
         <Color x:Key="SectionBorderColor">#C8C8C8</Color>
 
         <Style x:Key="SectionBorderStyle" TargetType="Frame">
-            <!--<Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightBackgroundSecondaryColor}, Dark={StaticResource DarkBackgroundSecondaryColor}}" />-->
             <Setter Property="BorderColor" Value="{StaticResource SectionBorderColor}" />
             <Setter Property="CornerRadius" Value="10" />
             <Setter Property="HasShadow" Value="False" />
