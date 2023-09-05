@@ -6,7 +6,7 @@
              Title="{x:Static strings:AppResources.AddButton}">
     <VerticalStackLayout Margin="20"
                          Spacing="6">
-        <Image Source="{OnPlatform flag.png, WinUI=Platforms/Windows/Assets/Images/flag.png}"
+        <Image Source="flag.png"
                WidthRequest="100" />
         <Label Text="{x:Static strings:AppResources.NotesLabel}"
                WidthRequest="300"
