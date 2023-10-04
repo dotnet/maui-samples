@@ -7,7 +7,7 @@
     <ContentPage.Resources>
         <drawables:TranslateTransformDrawable x:Key="drawable" />
     </ContentPage.Resources>
-    <VerticalStackLayout>
+    <VerticalStackLayout Margin="15">
         <GraphicsView Drawable="{StaticResource drawable}"
                       HeightRequest="500"
                       WidthRequest="400" />

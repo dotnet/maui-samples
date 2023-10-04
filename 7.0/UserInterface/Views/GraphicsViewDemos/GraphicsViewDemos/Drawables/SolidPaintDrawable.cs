@@ -4,7 +4,7 @@
     {
         public void Draw(ICanvas canvas, RectF dirtyRect)
         {
-            SolidPaint solidPaint = new SolidPaint(Colors.Silver);
+            SolidPaint solidPaint = new SolidPaint(App.PrimaryColor);
 
             //SolidPaint solidPaint = new SolidPaint
             //{

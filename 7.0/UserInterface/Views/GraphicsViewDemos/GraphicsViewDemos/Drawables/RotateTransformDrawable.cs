@@ -4,7 +4,7 @@
     {
         public void Draw(ICanvas canvas, RectF dirtyRect)
         {
-            canvas.FontColor = Colors.Blue;
+            canvas.FontColor = App.SecondaryColor;
             canvas.FontSize = 18;
 
             canvas.Rotate(45);

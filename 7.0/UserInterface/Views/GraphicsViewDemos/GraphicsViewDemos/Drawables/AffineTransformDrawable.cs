@@ -20,7 +20,7 @@ namespace GraphicsViewDemos.Drawables
 
             Matrix3x2 transform = new Matrix3x2(1.5f, 1, 0, 1, 150, 150);
             canvas.ConcatenateTransform(transform);
-            canvas.FillColor = Colors.Red;
+            canvas.FillColor = App.SecondaryColor;
             canvas.FillPath(path);
         }
     }

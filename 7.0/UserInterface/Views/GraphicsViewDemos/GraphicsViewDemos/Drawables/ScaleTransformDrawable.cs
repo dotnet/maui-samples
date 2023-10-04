@@ -4,10 +4,10 @@
     {
         public void Draw(ICanvas canvas, RectF dirtyRect)
         {
-            canvas.StrokeColor = Colors.Red;
+            canvas.StrokeColor = App.PrimaryColor;
             canvas.StrokeSize = 4;
             canvas.StrokeDashPattern = new float[] { 2, 2 };
-            canvas.FontColor = Colors.Blue;
+            canvas.FontColor = App.SecondaryColor;
             canvas.FontSize = 18;
 
             canvas.DrawRoundedRectangle(50, 50, 80, 20, 5);

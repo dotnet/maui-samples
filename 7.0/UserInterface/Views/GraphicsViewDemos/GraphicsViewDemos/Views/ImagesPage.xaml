@@ -11,7 +11,7 @@
         <drawables:SaveImageDrawable x:Key="saveImageDrawable" />
     </ContentPage.Resources>
     <ScrollView>
-        <VerticalStackLayout>
+        <VerticalStackLayout Margin="15">
             <Label Text="Load image" />
             <GraphicsView Drawable="{StaticResource loadImageDrawable}"
                           HeightRequest="270"

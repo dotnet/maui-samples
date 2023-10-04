@@ -32,7 +32,7 @@
     </ContentPage.Resources>
     
     <ScrollView>
-        <VerticalStackLayout>
+        <VerticalStackLayout Margin="15">
             <Label Text="Line" />
             <GraphicsView Drawable="{StaticResource lineDrawable}"
                           HeightRequest="120"

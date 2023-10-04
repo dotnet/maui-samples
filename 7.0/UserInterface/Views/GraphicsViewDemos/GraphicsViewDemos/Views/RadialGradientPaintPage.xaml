@@ -10,7 +10,7 @@
         <drawables:BottomRightRadialGradientPaintDrawable x:Key="bottomRightRadialGradientDrawable" />        
     </ContentPage.Resources>
     <ScrollView>
-        <VerticalStackLayout>
+        <VerticalStackLayout Margin="15">
             <Label Text="Centered radial gradient" />
             <GraphicsView Drawable="{StaticResource centeredRadialGradientDrawable}"
                           HeightRequest="120"

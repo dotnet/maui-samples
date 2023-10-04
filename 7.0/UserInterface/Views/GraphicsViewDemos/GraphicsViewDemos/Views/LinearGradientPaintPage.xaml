@@ -11,7 +11,7 @@
         <drawables:FourColorLinearGradientPaintDrawable x:Key="fourColorLinearGradientDrawable" />
     </ContentPage.Resources>
     <ScrollView>
-        <VerticalStackLayout>
+        <VerticalStackLayout Margin="15">
             <Label Text="Horizontal linear gradient" />
             <GraphicsView Drawable="{StaticResource horizontalLinearGradientDrawable}"
                           HeightRequest="120"

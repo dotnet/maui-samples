@@ -13,7 +13,7 @@ namespace GraphicsViewDemos.Drawables
     {
         public void Draw(ICanvas canvas, RectF dirtyRect)
         {
-            canvas.StrokeColor = Colors.Red;
+            canvas.StrokeColor = App.PrimaryColor;
             canvas.StrokeSize = 6;
             // canvas.StrokeDashPattern = new float[] { 2, 2 };
             canvas.DrawLine(10, 10, 90, 100);
@@ -24,7 +24,7 @@ namespace GraphicsViewDemos.Drawables
     {
         public void Draw(ICanvas canvas, RectF dirtyRect)
         {
-            canvas.StrokeColor = Colors.Red;
+            canvas.StrokeColor = App.PrimaryColor;
             canvas.StrokeSize = 4;
             canvas.DrawEllipse(10, 10, 150, 50);
         }
@@ -34,7 +34,7 @@ namespace GraphicsViewDemos.Drawables
     {
         public void Draw(ICanvas canvas, RectF dirtyRect)
         {
-            canvas.FillColor = Colors.Red;
+            canvas.FillColor = App.PrimaryColor;
             canvas.FillEllipse(10, 10, 100, 50);
         }
     }
@@ -43,7 +43,7 @@ namespace GraphicsViewDemos.Drawables
     {
         public void Draw(ICanvas canvas, RectF dirtyRect)
         {
-            canvas.StrokeColor = Colors.Red;
+            canvas.StrokeColor = App.PrimaryColor;
             canvas.StrokeSize = 4;
             canvas.DrawEllipse(10, 10, 100, 100);
         }
@@ -171,7 +171,7 @@ namespace GraphicsViewDemos.Drawables
     {
         public void Draw(ICanvas canvas, RectF dirtyRect)
         {
-            canvas.FontColor = Colors.Blue;
+            canvas.FontColor = App.SecondaryColor;
             canvas.FontSize = 18;
 
             canvas.Font = Font.Default;
@@ -195,7 +195,7 @@ namespace GraphicsViewDemos.Drawables
         {
             //canvas.FontName = "Arial";
             //canvas.FontSize = 18;
-            //canvas.FontColor = Colors.Blue;
+            //canvas.FontColor = App.SecondaryColor;
 
             //string markdownText = @"This is *italic text*, **bold text**, __underline text__, and ***bold italic text***.";
             //IAttributedText attributedText = MarkdownAttributedTextReader.Read(markdownText); // Requires the Microsoft.Maui.Graphics.Text.Markdig package
@@ -212,9 +212,9 @@ namespace GraphicsViewDemos.Drawables
             PathF path = new PathF();
             path.AppendCircle(dirtyRect.Center.X, dirtyRect.Center.Y, radius);
 
-            canvas.StrokeColor = Colors.Blue;
+            canvas.StrokeColor = App.SecondaryColor;
             canvas.StrokeSize = 10;
-            canvas.FillColor = Colors.Red;
+            canvas.FillColor = App.PrimaryColor;
 
             canvas.FillPath(path);
             canvas.DrawPath(path);
@@ -225,7 +225,7 @@ namespace GraphicsViewDemos.Drawables
     {
         public void Draw(ICanvas canvas, RectF dirtyRect)
         {
-            canvas.FillColor = Colors.Red;
+            canvas.FillColor = App.PrimaryColor;
             canvas.SetShadow(new SizeF(10, 10), 4, Colors.Grey);
             canvas.FillRectangle(10, 10, 90, 100);
 
@@ -233,7 +233,7 @@ namespace GraphicsViewDemos.Drawables
             canvas.SetShadow(new SizeF(10, -10), 4, Colors.Grey);
             canvas.FillEllipse(110, 10, 90, 100);
 
-            canvas.FillColor = Colors.Blue;
+            canvas.FillColor = App.SecondaryColor;
             canvas.SetShadow(new SizeF(-10, 10), 4, Colors.Grey);
             canvas.FillRoundedRectangle(210, 10, 90, 100, 25);
         }
@@ -243,7 +243,7 @@ namespace GraphicsViewDemos.Drawables
     {
         public void Draw(ICanvas canvas, RectF dirtyRect)
         {
-            canvas.StrokeColor = Colors.Red;
+            canvas.StrokeColor = App.PrimaryColor;
             canvas.StrokeSize = 4;
             canvas.StrokeDashPattern = new float[] { 2, 2 };
             canvas.DrawRectangle(10, 10, 90, 100);
@@ -254,7 +254,7 @@ namespace GraphicsViewDemos.Drawables
     {
         public void Draw(ICanvas canvas, RectF dirtyRect)
         {
-            canvas.StrokeColor = Colors.Red;
+            canvas.StrokeColor = App.PrimaryColor;
             canvas.StrokeSize = 4;
             canvas.StrokeDashPattern = new float[] { 4, 4, 1, 4 };
             canvas.DrawRectangle(10, 10, 90, 100);
@@ -266,7 +266,7 @@ namespace GraphicsViewDemos.Drawables
         public void Draw(ICanvas canvas, RectF dirtyRect)
         {
             canvas.StrokeSize = 10;
-            canvas.StrokeColor = Colors.Red;
+            canvas.StrokeColor = App.PrimaryColor;
             canvas.StrokeLineCap = LineCap.Round;
             canvas.DrawLine(10, 10, 110, 110);
         }
@@ -282,7 +282,7 @@ namespace GraphicsViewDemos.Drawables
             path.LineTo(10, 110);
 
             canvas.StrokeSize = 20;
-            canvas.StrokeColor = Colors.Blue;
+            canvas.StrokeColor = App.SecondaryColor;
             canvas.StrokeLineJoin = LineJoin.Round;
             canvas.DrawPath(path);
         }
