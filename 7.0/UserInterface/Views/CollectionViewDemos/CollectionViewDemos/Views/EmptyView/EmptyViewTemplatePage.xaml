@@ -4,12 +4,12 @@
              xmlns:controls="clr-namespace:CollectionViewDemos.Controls"
              x:Class="CollectionViewDemos.Views.EmptyViewTemplatePage"
              Title="EmptyView (template)">
-    <StackLayout Margin="20">
+    <Grid Margin="20" RowDefinitions="Auto,*">
         <SearchBar x:Name="searchBar"
                    SearchCommand="{Binding FilterCommand}"
                    SearchCommandParameter="{Binding Source={x:Reference searchBar}, Path=Text}"
                    Placeholder="Filter" />
-        <CollectionView ItemsSource="{Binding Monkeys}">
+        <CollectionView ItemsSource="{Binding Monkeys}" Grid.Row="1">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Grid Padding="10">
@@ -51,5 +51,5 @@
                 </DataTemplate>
             </CollectionView.EmptyViewTemplate>
         </CollectionView>
-    </StackLayout>
+    </Grid>
 </ContentPage>
