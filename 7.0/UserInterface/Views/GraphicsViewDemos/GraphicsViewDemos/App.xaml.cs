@@ -2,7 +2,11 @@
 
 public partial class App : Application
 {
-	public App()
+    public static Color PrimaryColor { get; private set; }
+    public static Color SecondaryColor { get; private set; }
+    public static Color TertiaryColor { get; private set; }
+
+    public App()
 	{
 		InitializeComponent();
 
@@ -19,9 +23,4 @@ public partial class App : Application
 		App.Current.Resources.TryGetValue(resourceName, out color);
 		return (Color)color;
 	}
-
-    public static Color PrimaryColor { get; private set;}
-    public static Color SecondaryColor { get; private set; }
-
-	public static Color TertiaryColor { get; private set; }
 }
