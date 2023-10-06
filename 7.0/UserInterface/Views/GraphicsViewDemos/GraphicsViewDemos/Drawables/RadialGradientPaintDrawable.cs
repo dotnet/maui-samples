@@ -6,7 +6,7 @@
         {
             RadialGradientPaint radialGradientPaint = new RadialGradientPaint
             {
-                StartColor = Colors.Red,
+                StartColor = App.PrimaryColor,
                 EndColor = Colors.DarkBlue
                 // Center is already (0.5,0.5)
                 // Radius is already 0.5
@@ -25,7 +25,7 @@
         {
             RadialGradientPaint radialGradientPaint = new RadialGradientPaint
             {
-                StartColor = Colors.Red,
+                StartColor = App.PrimaryColor,
                 EndColor = Colors.DarkBlue,
                 Center = new Point(0.0, 0.0)
                 // Radius is already 0.5
@@ -44,7 +44,7 @@
         {
             RadialGradientPaint radialGradientPaint = new RadialGradientPaint
             {
-                StartColor = Colors.Red,
+                StartColor = App.PrimaryColor,
                 EndColor = Colors.DarkBlue,
                 Center = new Point(1.0, 1.0)
                 // Radius is already 0.5

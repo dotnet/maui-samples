@@ -16,7 +16,7 @@
                     path.LineTo(point);
             }
 
-            canvas.FillColor = Colors.Red;
+            canvas.FillColor = App.PrimaryColor;
             canvas.Translate(150, 150);
             canvas.FillPath(path);
         }

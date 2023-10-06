@@ -18,8 +18,8 @@
 
             canvas.StrokeSize = 15;
             canvas.StrokeLineJoin = LineJoin.Round;
-            canvas.StrokeColor = Colors.Red;
-            canvas.FillColor = Colors.Blue;
+            canvas.StrokeColor = App.PrimaryColor;
+            canvas.FillColor = App.SecondaryColor;
             canvas.FillPath(path, WindingMode.EvenOdd);
             canvas.DrawPath(path);
         }

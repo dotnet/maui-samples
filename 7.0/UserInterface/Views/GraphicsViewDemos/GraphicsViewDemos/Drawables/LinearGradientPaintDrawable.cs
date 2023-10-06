@@ -69,8 +69,8 @@
                 EndPoint = new Point(1, 1)
             };
 
-            linearGradientPaint.AddOffset(0.25f, Colors.Red);
-            linearGradientPaint.AddOffset(0.75f, Colors.Blue);
+            linearGradientPaint.AddOffset(0.25f, App.PrimaryColor);
+            linearGradientPaint.AddOffset(0.75f, App.SecondaryColor);
 
             RectF linearRectangle = new RectF(10, 10, 200, 100);
             canvas.SetFillPaint(linearGradientPaint, linearRectangle);
