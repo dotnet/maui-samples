@@ -31,17 +31,18 @@
         </ContentView>
     </ContentPage.Resources>
     
-    <StackLayout Margin="20">
+    <Grid Margin="20" RowDefinitions="Auto,Auto,*">
         <SearchBar x:Name="searchBar"
                    SearchCommand="{Binding FilterCommand}"
                    SearchCommandParameter="{Binding Source={x:Reference searchBar}, Path=Text}"
                    Placeholder="Filter" />
-        <StackLayout Orientation="Horizontal">
+        <StackLayout Orientation="Horizontal" Grid.Row="1">
             <Label Text="Toggle EmptyViews" />
             <Switch Toggled="OnEmptyViewSwitchToggled" />
         </StackLayout>
         <CollectionView x:Name="collectionView"
-                        ItemsSource="{Binding Monkeys}">
+                        ItemsSource="{Binding Monkeys}"
+                        Grid.Row="2">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Grid Padding="10">
@@ -70,5 +71,5 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-    </StackLayout>
+    </Grid>
 </ContentPage>

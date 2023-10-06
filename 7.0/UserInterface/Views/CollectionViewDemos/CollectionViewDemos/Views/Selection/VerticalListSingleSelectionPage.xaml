@@ -3,16 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CollectionViewDemos.Views.VerticalListSingleSelectionPage"
              Title="Vertical list (single selection)">
-    <StackLayout Margin="20">
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
+    <Grid Margin="20" RowDefinitions="Auto,Auto,*" ColumnDefinitions="Auto,Auto">
+        
             <Label Text="Previous selected item:" />
             <Label x:Name="previousSelectedItemLabel"
                    Grid.Column="1" />
@@ -21,10 +13,12 @@
             <Label x:Name="currentSelectedItemLabel"
                    Grid.Row="1"
                    Grid.Column="1" />
-        </Grid>
+        
         <CollectionView ItemsSource="{Binding Monkeys}"
                         SelectionMode="Single"
-                        SelectionChanged="OnCollectionViewSelectionChanged">
+                        SelectionChanged="OnCollectionViewSelectionChanged"
+                        Grid.Row="2"
+                        Grid.ColumnSpan="2">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Grid Padding="10">
@@ -53,5 +47,5 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-    </StackLayout>
+    </Grid>
 </ContentPage>

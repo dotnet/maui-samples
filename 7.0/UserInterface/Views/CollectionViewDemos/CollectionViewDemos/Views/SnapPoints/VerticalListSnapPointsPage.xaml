@@ -4,28 +4,31 @@
              xmlns:controls="clr-namespace:CollectionViewDemos.Controls"
              x:Class="CollectionViewDemos.Views.VerticalListSnapPointsPage"
              Title="Vertical list (snap points)">
-    <StackLayout Margin="20">
-        <StackLayout Orientation="Horizontal"
-                     HorizontalOptions="Center">
-            <Label Text="SnapPointsType: "
-                   VerticalTextAlignment="Center" />
-            <controls:EnumPicker x:Name="snapPointsTypeEnumPicker"
-                              EnumType="{x:Type SnapPointsType}"
-                              SelectedIndex="0"
-                              SelectedIndexChanged="OnSnapPointsTypeSelectedIndexChanged" />
-        </StackLayout>
-        <StackLayout Orientation="Horizontal"
-                     HorizontalOptions="Center">
-            <Label Grid.Row="1" 
-                   Text="SnapPointsAlignment: "
-                   VerticalTextAlignment="Center" />
-            <controls:EnumPicker x:Name="snapPointsAlignmentEnumPicker"
-                             EnumType="{x:Type SnapPointsAlignment}"
-                             SelectedIndex="0"
-                             SelectedIndexChanged="OnSnapPointsAlignmentSelectedIndexChanged" />
-        </StackLayout>
+    <Grid Margin="20" RowDefinitions="Auto,*">
+        <VerticalStackLayout>
+            <StackLayout Orientation="Horizontal"
+                        HorizontalOptions="Center">
+                <Label Text="SnapPointsType: "
+                    VerticalTextAlignment="Center" />
+                <controls:EnumPicker x:Name="snapPointsTypeEnumPicker"
+                                EnumType="{x:Type SnapPointsType}"
+                                SelectedIndex="0"
+                                SelectedIndexChanged="OnSnapPointsTypeSelectedIndexChanged" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal"
+                        HorizontalOptions="Center">
+                <Label Grid.Row="1" 
+                    Text="SnapPointsAlignment: "
+                    VerticalTextAlignment="Center" />
+                <controls:EnumPicker x:Name="snapPointsAlignmentEnumPicker"
+                                EnumType="{x:Type SnapPointsAlignment}"
+                                SelectedIndex="0"
+                                SelectedIndexChanged="OnSnapPointsAlignmentSelectedIndexChanged" />
+            </StackLayout>
+        </VerticalStackLayout>
         <CollectionView x:Name="collectionView"
-                        ItemsSource="{Binding Monkeys}">
+                        ItemsSource="{Binding Monkeys}"
+                        Grid.Row="1">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Grid Padding="10">
@@ -54,5 +57,5 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-    </StackLayout>
+    </Grid>
 </ContentPage>

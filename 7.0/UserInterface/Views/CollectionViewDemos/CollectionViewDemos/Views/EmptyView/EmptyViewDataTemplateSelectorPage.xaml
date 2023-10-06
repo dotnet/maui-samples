@@ -35,14 +35,15 @@
                                                  OtherTemplate="{StaticResource BasicTemplate}" />
     </ContentPage.Resources>
     
-    <StackLayout Margin="20">
+    <Grid Margin="20" RowDefinitions="Auto,*">
         <SearchBar x:Name="searchBar"
                    SearchCommand="{Binding FilterCommand}"
                    SearchCommandParameter="{Binding Source={x:Reference searchBar}, Path=Text}"
                    Placeholder="Filter" />
         <CollectionView ItemsSource="{Binding Monkeys}"
                         EmptyView="{Binding Source={x:Reference searchBar}, Path=Text}"
-                        EmptyViewTemplate="{StaticResource SearchSelector}">
+                        EmptyViewTemplate="{StaticResource SearchSelector}"
+                        Grid.Row="1">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Grid Padding="10">
@@ -71,5 +72,5 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-    </StackLayout>
+    </Grid>
 </ContentPage>
