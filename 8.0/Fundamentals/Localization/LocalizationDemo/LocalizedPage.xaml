@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:strings="clr-namespace:LocalizationDemo.Resources.Strings"
+             x:Class="LocalizationDemo.LocalizedPage"
+             Title="{x:Static strings:AppResources.AddButton}">
+    <VerticalStackLayout Margin="20"
+                         Spacing="6">
+        <Image Source="flag.png"
+               WidthRequest="100" />
+        <Label Text="{x:Static strings:AppResources.NotesLabel}"
+               WidthRequest="300"
+               HorizontalOptions="Center"
+               VerticalOptions="Start" />
+        <Entry Placeholder="{x:Static strings:AppResources.NotesPlaceholder}"
+               WidthRequest="300"
+               HorizontalOptions="Center"
+               VerticalOptions="Start" />
+        <Button Text="{x:Static strings:AppResources.AddButton}"
+                WidthRequest="300"
+                HorizontalOptions="Center"
+                VerticalOptions="Start" />
+    </VerticalStackLayout>
+</ContentPage>

@@ -1,0 +1,185 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:v="clr-namespace:WeatherTwentyOne.Views"
+             xmlns:m="clr-namespace:WeatherTwentyOne.Models"
+             xmlns:c="clr-namespace:WeatherClient2021"
+             xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+             ios:Page.UseSafeArea="True"
+             Title="Favorites"
+             Shell.NavBarIsVisible="{OnIdiom True, Desktop=False}"
+             x:Class="WeatherTwentyOne.Pages.FavoritesPage"
+             >
+    <ContentPage.Resources>
+        <DataTemplate x:Key="FavTemplate">
+            <Frame
+                Padding="0"
+                CornerRadius="20"
+                HasShadow="False"
+                x:DataType="c:Location"
+                BackgroundColor="{AppThemeBinding Light={StaticResource LightGray}, Dark={StaticResource Background_Mid}}">
+                <Grid
+                                RowDefinitions="42,40,*"
+                                Padding="20">
+                    <Image
+                                    Source="{Binding Icon}"
+                                    WidthRequest="36"
+                                    HeightRequest="36"
+                                    VerticalOptions="Start"
+                                    HorizontalOptions="End"/>
+
+                    <Label Text="{Binding Value}" class="LargeTitle"
+                                           />
+
+                    <VerticalStackLayout
+                                    Spacing="0"
+                                    Grid.RowSpan="3" 
+                                    VerticalOptions="Center">
+                        <Label Text="{Binding Name}" class="Subhead" />
+                        <Label Text="{Binding WeatherStation}" class="SubContent"/>
+                    </VerticalStackLayout>
+
+                    <HorizontalStackLayout
+                                Grid.Row="2"
+                                Spacing="10"
+                                VerticalOptions="End">
+                        <Image Source="solid_umbrella.png" VerticalOptions="Center"
+                                       WidthRequest="20" HeightRequest="20"/>
+                        <Label Text="13%" class="Small" VerticalOptions="Center"/>
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout
+                                    Grid.Row="2"
+                                    Spacing="10"
+                                    HorizontalOptions="End"
+                                    VerticalOptions="End">
+                        <Image Source="solid_humidity.png" VerticalOptions="Center"
+                                       WidthRequest="20" HeightRequest="20"/>
+                        <Label Text="45%" class="Small" VerticalOptions="Center"/>
+                    </HorizontalStackLayout>
+                </Grid>
+            </Frame>
+
+            
+
+        </DataTemplate>
+
+        <DataTemplate x:Key="FavBorderTemplate">
+            <Border
+                            Margin="{OnIdiom Phone=15,Default=25}"
+                            Padding="0"
+                            HorizontalOptions="Start"
+                            HeightRequest="154"
+                            WidthRequest="154"
+                            Stroke="Transparent"
+                            StrokeThickness="1"
+                            BackgroundColor="{StaticResource Background_Mid}"
+                            x:DataType="c:Location"
+                            >
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="40"/>
+                </Border.StrokeShape>
+                <Grid
+                                RowDefinitions="42,40,*"
+                                Padding="20">
+                    <Image
+                                    Source="{Binding Icon}"
+                                    WidthRequest="36"
+                                    HeightRequest="36"
+                                    VerticalOptions="Start"
+                                    HorizontalOptions="End"/>
+
+                    <Label Text="{Binding Value}" class="LargeTitle"
+                                           />
+
+                    <VerticalStackLayout
+                                    Spacing="0"
+                                    Grid.RowSpan="3" 
+                                    VerticalOptions="Center">
+                        <Label Text="{Binding Name}" class="Subhead" />
+                        <Label Text="{Binding WeatherStation}" class="SubContent"/>
+                    </VerticalStackLayout>
+
+                    <HorizontalStackLayout
+                                Grid.Row="2"
+                                Spacing="10"
+                                VerticalOptions="End">
+                        <Image Source="solid_umbrella.png" VerticalOptions="Center"
+                                       WidthRequest="20" HeightRequest="20"/>
+                        <Label Text="13%" class="Small" VerticalOptions="Center"/>
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout
+                                    Grid.Row="2"
+                                    Spacing="10"
+                                    HorizontalOptions="End"
+                                    VerticalOptions="End">
+                        <Image Source="solid_humidity.png" VerticalOptions="Center"
+                                       WidthRequest="20" HeightRequest="20"/>
+                        <Label Text="45%" class="Small" VerticalOptions="Center"/>
+                    </HorizontalStackLayout>
+                </Grid>
+            </Border>
+        </DataTemplate>
+    </ContentPage.Resources>
+    
+    
+        <!-- Main Section -->
+        <ScrollView>
+            <VerticalStackLayout>
+
+                <!-- Search Box -->
+                <HorizontalStackLayout
+                    VerticalOptions="Start"
+                    Spacing="18"
+                    Padding="{OnIdiom Phone='15,15,15,15', Default='25,25,25,0'}"
+                    >
+                    <Image
+                        Source="search_icon.png"
+                        VerticalOptions="Center"
+                        HeightRequest="22"
+                        WidthRequest="22"/>
+                    <Label
+                        Text="Search"
+                        TextColor="#637989"
+                        FontSize="18"
+                        WidthRequest="240"
+                        VerticalOptions="Center"/>
+                </HorizontalStackLayout>
+
+                <!-- Actual Content -->
+            <CollectionView
+                Margin="15"
+                ItemsSource="{Binding Favorites}"
+                ItemTemplate="{StaticResource FavTemplate}">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"
+                                     Span="2"
+                                     VerticalItemSpacing="8"
+                                     HorizontalItemSpacing="8"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.FooterTemplate>
+                    <DataTemplate>
+                        <Border
+                            HeightRequest="132"
+                            WidthRequest="132"
+                            HorizontalOptions="Start"
+                            Margin="{OnIdiom Phone=15,Default=25}"
+                            Stroke="Transparent"
+                            StrokeThickness="1"
+                            BackgroundColor="{StaticResource Background_Mid}">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="60"/>
+                            </Border.StrokeShape>
+                            <ImageButton
+                                BackgroundColor="Transparent"
+                                Source="add_icon.png"
+                                VerticalOptions="Center" HorizontalOptions="Center"/>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.FooterTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+        </ScrollView>
+
+</ContentPage>

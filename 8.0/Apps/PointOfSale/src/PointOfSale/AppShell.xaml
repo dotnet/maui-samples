@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:pages="clr-namespace:PointOfSale.Pages"
+       xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+       xmlns:v="clr-namespace:PointOfSale.Pages.Views"
+       x:Class="PointOfSale.AppShell"
+       FlyoutWidth="104" 
+       FlyoutBehavior="Locked">
+
+    <Shell.Resources>
+        <Color x:Key="IconTintColor">White</Color>
+
+        <ControlTemplate x:Key="MenuItemTemplate">
+            <Grid RowDefinitions="Auto">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CheckedStates">
+                            <VisualState x:Name="Checked">
+                                <VisualState.Setters>
+                                    <Setter TargetName="OuterBorder" Property="Background" Value="{StaticResource DarkBg1Brush}" />
+                                    <Setter TargetName="OuterBorder" Property="Border.StrokeThickness" Value="1" />
+                                    <Setter TargetName="InnerBorder" Property="Background" Value="Transparent" />
+                                    <Setter TargetName="InnerBorder" Property="Border.StrokeThickness" Value="1" />
+                                </VisualState.Setters>
+                            </VisualState>
+
+                            <VisualState x:Name="Unchecked">
+                                <VisualState.Setters>
+                                    <Setter TargetName="OuterBorder" Property="Background" Value="Transparent" />
+                                    <Setter TargetName="OuterBorder" Property="Border.StrokeThickness" Value="0" />
+                                    <Setter TargetName="InnerBorder" Property="Background" Value="Transparent" />
+                                    <Setter TargetName="InnerBorder" Property="Border.StrokeThickness" Value="0" />
+                                </VisualState.Setters>
+                            </VisualState>
+
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </VisualStateManager.VisualStateGroups>
+
+                <Border x:Name="OuterBorder" 
+                        Background="Transparent"
+                        Stroke="{StaticResource DarkBg1Brush}" 
+                        StrokeThickness="0"
+                        HorizontalOptions="Fill"
+                        HeightRequest="70"
+                        Margin="15,0,0,0">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="12,0,12,0" />
+                    </Border.StrokeShape>
+                </Border>
+
+                <Border x:Name="InnerBorder" 
+                        Background="Transparent"
+                        Margin="20" 
+                        HorizontalOptions="Center" 
+                        VerticalOptions="Center"
+                        Stroke="{StaticResource PrimaryBrush}" 
+                        StrokeThickness="0">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="8" />
+                    </Border.StrokeShape>
+                </Border>
+
+                <ContentPresenter x:Name="CP"/>
+            </Grid>
+        </ControlTemplate>
+     </Shell.Resources>
+
+    <Shell.FlyoutContentTemplate>
+        <DataTemplate>
+            <Grid Background="{StaticResource DarkBg2Brush}"
+                  RowDefinitions="*,*,*,*,*,*,*,*"
+                  RadioButtonGroup.GroupName="Menu"
+                  RadioButtonGroup.SelectedValue="{Binding SelectedRoute}">
+                <Grid.Resources>
+                    <Style TargetType="RadioButton">
+                        <Setter Property="ControlTemplate" Value="{StaticResource MenuItemTemplate}"/>
+                    </Style>
+                </Grid.Resources>
+
+                <Image Source="logo.png"
+                       Grid.Row="0"
+                       Margin="0,15,0,15"/>                    
+
+                <RadioButton Value="home" IsChecked="True" Grid.Row="1"
+                             CheckedChanged="OnMenuItemChanged">
+                    <RadioButton.Content>
+                        <Image Source="home.png">
+                            <!--<Image.Behaviors>
+                                <mct:IconTintColorBehavior
+                                    TintColor="{Binding IsChecked,
+                                                    Source={RelativeSource AncestorType={x:Type RadioButton}, AncestorLevel=1,Mode=TemplatedParent},
+                                    Converter={StaticResource CheckedColorConverter}}"/>
+                            </Image.Behaviors>-->
+                        </Image>
+                    </RadioButton.Content>
+                </RadioButton>
+
+                <RadioButton Value="dashboard" Grid.Row="2"
+                                    CheckedChanged="OnMenuItemChanged">
+                    <RadioButton.Content>                            
+                        <Image Source="graph.png">
+                            <!--<Image.Behaviors>
+                                <mct:IconTintColorBehavior
+                                    TintColor="{Binding IsChecked,
+                                                    Source={RelativeSource AncestorType={x:Type RadioButton}, AncestorLevel=3},
+                                    Converter={StaticResource CheckedColorConverter}}"/>
+
+                            </Image.Behaviors>-->
+                            </Image>
+                    </RadioButton.Content>
+                </RadioButton>
+
+                <RadioButton Value="settings" Grid.Row="3"
+                                CheckedChanged="OnMenuItemChanged">
+                    <RadioButton.Content>                            
+                        <Image Source="setting.png">
+                            <!--<Image.Behaviors>
+                                <mct:IconTintColorBehavior
+                                    TintColor="{Binding IsChecked,
+                                                    Source={RelativeSource AncestorType={x:Type RadioButton}, AncestorLevel=1 ,Mode=FindAncestor},
+                                    Converter={StaticResource CheckedColorConverter}}"/>
+
+                            </Image.Behaviors>-->
+                        </Image>
+                    </RadioButton.Content>
+                </RadioButton>
+
+                <RadioButton Value="discount" Grid.Row="4"
+                                CheckedChanged="OnMenuItemChanged">
+                    <RadioButton.Content>                            
+                        <Image Source="discount.png">
+                            <!--<Image.Behaviors>
+                                <mct:IconTintColorBehavior
+                                    TintColor="{Binding IsChecked,
+                                                    Source={RelativeSource AncestorType={x:Type RadioButton}, AncestorLevel=2},
+                                    Converter={StaticResource CheckedColorConverter}}"/>
+
+                            </Image.Behaviors>-->
+                            </Image>
+                    </RadioButton.Content>
+                </RadioButton>                    
+
+                <RadioButton Value="message" Grid.Row="5"
+                                    CheckedChanged="OnMenuItemChanged">
+                    <RadioButton.Content>                            
+                        <Image Source="message.png">
+                            <!--<Image.Behaviors>
+                                <mct:IconTintColorBehavior
+                                    TintColor="{Binding IsChecked,
+                                                    Source={RelativeSource AncestorType={x:Type RadioButton}, AncestorLevel=4},
+                                    Converter={StaticResource CheckedColorConverter}}"/>
+
+                            </Image.Behaviors>-->
+                            </Image>
+                </RadioButton.Content>
+                </RadioButton>
+
+                <RadioButton Value="notification" Grid.Row="6"
+                                    CheckedChanged="OnMenuItemChanged">
+                    <RadioButton.Content>                            
+                        <Image Source="notification.png" />                            
+                    </RadioButton.Content>
+                </RadioButton>
+
+                <Image Source="logout.png" Margin="0,15,0,15" Grid.Row="7"/>
+            </Grid>
+        </DataTemplate>
+    </Shell.FlyoutContentTemplate>
+
+    <FlyoutItem Title="Home" Route="home">
+        <ShellContent ContentTemplate="{DataTemplate pages:HomePage}"/>
+    </FlyoutItem>
+    <FlyoutItem Title="Dashboard" Route="dashboard">
+        <ShellContent ContentTemplate="{DataTemplate pages:DashboardPage}"/>
+    </FlyoutItem>
+    <FlyoutItem Title="Settings" Route="settings">
+        <ShellContent ContentTemplate="{DataTemplate pages:SettingsPage}"/>
+    </FlyoutItem>
+    <FlyoutItem Title="Discounts" Route="discount">
+        <ShellContent ContentTemplate="{DataTemplate pages:EmptyPage}"/>
+    </FlyoutItem>
+    <FlyoutItem Title="Messages" Route="message">
+        <ShellContent ContentTemplate="{DataTemplate pages:EmptyPage}"/>
+    </FlyoutItem>
+    <FlyoutItem Title="Notifications" Route="notification">
+        <ShellContent ContentTemplate="{DataTemplate pages:EmptyPage}"/>
+    </FlyoutItem>
+    
+</Shell>

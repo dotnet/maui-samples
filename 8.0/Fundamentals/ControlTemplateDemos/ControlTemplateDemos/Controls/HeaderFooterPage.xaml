@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:ControlTemplateDemos.Controls"
+             x:Class="ControlTemplateDemos.Controls.HeaderFooterPage">
+    <ContentPage.Resources>
+        <Style TargetType="Entry">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="FontSize"
+                                        Value="18" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Focused">
+                            <VisualState.Setters>
+                                <Setter Property="FontSize"
+                                        Value="36" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+
+        <ControlTemplate x:Key="SecondaryColorTemplate">
+            <Grid RowDefinitions="0.1*,0.8*,0.1*">
+                <BoxView Color="{StaticResource Secondary}" />
+                <Label Margin="20,0,0,0"
+                       Text="{TemplateBinding HeaderText}"
+                       TextColor="{StaticResource Primary}"
+                       FontSize="24"
+                       VerticalOptions="Center" />
+                <ContentPresenter Grid.Row="1" />
+                <BoxView Grid.Row="2"
+                         Color="{StaticResource Secondary}" />
+                <Label x:Name="changeThemeLabel"
+                       Grid.Row="2"
+                       Margin="20,0,0,0"
+                       Text="Change Theme"
+                       TextColor="{StaticResource Primary}"
+                       HorizontalOptions="Start"
+                       VerticalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnChangeThemeLabelTapped" />
+                    </Label.GestureRecognizers>
+                </Label>
+                <controls:HyperlinkLabel Grid.Row="2"
+                                         Margin="0,0,20,0"
+                                         Text="Help"
+                                         TextColor="{StaticResource Primary}"
+                                         Url="https://docs.microsoft.com/dotnet/maui"
+                                         HorizontalOptions="End"
+                                         VerticalOptions="Center" />
+            </Grid>
+        </ControlTemplate>
+
+        <ControlTemplate x:Key="TertiaryColorTemplate">
+            <Grid RowDefinitions="0.1*,0.8*,0.1*">
+                <BoxView Color="{StaticResource Tertiary}" />
+                <Label Margin="20,0,0,0"
+                       Text="{TemplateBinding HeaderText}"
+                       TextColor="Black"
+                       FontSize="24"
+                       VerticalOptions="Center" />
+                <ContentPresenter Grid.Row="1" />
+                <BoxView Grid.Row="2"
+                         Color="{StaticResource Tertiary}" />
+                <Label x:Name="changeThemeLabel"
+                       Grid.Row="2" 
+                       Margin="20,0,0,0"
+                       Text="Change Theme"
+                       TextColor="Black"
+                       HorizontalOptions="Start"
+                       VerticalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnChangeThemeLabelTapped" />
+                    </Label.GestureRecognizers>
+                </Label>
+                <controls:HyperlinkLabel Grid.Row="2"
+                                         Margin="0,0,20,0"
+                                         Text="Help"
+                                         TextColor="Black"
+                                         Url="https://docs.microsoft.com/dotnet/maui"
+                                         HorizontalOptions="End"
+                                         VerticalOptions="Center" />
+            </Grid>
+        </ControlTemplate>
+
+    </ContentPage.Resources>
+</ContentPage>

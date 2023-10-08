@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:handheld="clr-namespace:PointOfSale.Pages.Handheld"
+             xmlns:local="clr-namespace:PointOfSale"
+             x:Class="PointOfSale.Pages.Handheld.SignaturePage"
+             Shell.NavBarIsVisible="False"
+             x:DataType="handheld:SignatureViewModel">
+    <ContentPage.BindingContext>
+        <handheld:SignatureViewModel/>
+    </ContentPage.BindingContext>
+    
+    <Grid RowDefinitions="120,180,60,*,66"
+          RowSpacing="20"
+          Margin="20">
+
+        <VerticalStackLayout VerticalOptions="Center" Spacing="8">
+            <Label Text="Add Signature" Style="{StaticResource LargeTitle}"/>
+            <BoxView Style="{StaticResource HRule}"/>
+        </VerticalStackLayout>
+
+        <!--<BoxView Grid.Row="1" Color="{StaticResource DarkBg2}" HorizontalOptions="Fill" VerticalOptions="Fill"/>-->
+        <BlazorWebView HostPage="wwwroot/index.html" Grid.Row="1">
+            <BlazorWebView.RootComponents>
+                <RootComponent Selector="#app" ComponentType="{x:Type local:Main}" x:Name="BlazorComponent" />
+            </BlazorWebView.RootComponents>
+        </BlazorWebView>
+        
+        <Label Text="This signature is probably not the same one you use normally, and to be honest you could pretty much scribble nonsense."
+               Style="{StaticResource SubTitle}"
+               Grid.Row="2"
+               HorizontalTextAlignment="Center" />
+
+        <Grid ColumnSpacing="20" ColumnDefinitions="*,*" Grid.Row="4">
+            <Button Text="Clear" Grid.Column="0" Command="{Binding ClearCommand}" Style="{StaticResource PrimaryButtonOutline}" HorizontalOptions="Fill"/>
+            <Button Text="Done" Grid.Column="1" Command="{Binding DoneCommand}" HorizontalOptions="Fill"/>
+        </Grid>
+    </Grid>
+</ContentPage>

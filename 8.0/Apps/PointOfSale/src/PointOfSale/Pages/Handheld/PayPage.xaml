@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:PointOfSale.Models"
+             xmlns:handheld="clr-namespace:PointOfSale.Pages.Handheld"
+             xmlns:system="clr-namespace:System;assembly=System.Runtime"
+             xmlns:views="clr-namespace:PointOfSale.Pages.Views" xmlns:controls="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
+             x:Class="PointOfSale.Pages.Handheld.PayPage"
+             Shell.NavBarIsVisible="False"
+             x:DataType="handheld:PayViewModel"
+             Title="Pay">
+    <ContentPage.BindingContext>
+        <handheld:PayViewModel/>
+    </ContentPage.BindingContext>
+    
+    <Grid RowDefinitions="120,*"
+          RowSpacing="20"
+          Margin="20"
+          RadioButtonGroup.GroupName="PaymentMethod"
+          >
+        <Grid.GestureRecognizers>
+            <TapGestureRecognizer Command="{Binding PayCommand}"/>
+        </Grid.GestureRecognizers>
+        <VerticalStackLayout VerticalOptions="Center" Spacing="8" Grid.ColumnSpan="2">
+            <Label Text="Insert, Tap, Swipe" Style="{StaticResource LargeTitle}"/>
+            <BoxView Style="{StaticResource HRule}"/>
+        </VerticalStackLayout>
+        
+        <VerticalStackLayout Grid.Row="1" Spacing="30">
+            <Label Text="{Binding Order.Total, StringFormat='${0}'}"
+                   Style="{StaticResource LargeTitle}" HorizontalOptions="Center"/>
+
+            <controls:SKLottieView
+                x:Name="skiaView"
+                Source="payment2.json"
+                VerticalOptions="Fill"
+                HorizontalOptions="Fill"
+                HeightRequest="300"
+                Background="Transparent"/>
+
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

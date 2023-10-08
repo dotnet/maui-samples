@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:ControlGallery.Models"
+             x:Class="ControlGallery.Views.XAML.ListViewDemoPage"
+             Title="ListView Demo">
+    <StackLayout>
+        <Label Text="ListView"
+               FontSize="50"
+               FontAttributes="Bold"
+               HorizontalOptions="Center" />
+
+        <ListView Margin="10, 0">
+            <ListView.ItemsSource>
+                <x:Array Type="{x:Type models:Person}">
+                    <models:Person Name="Abigail" Birthday="01/15/1975" FavoriteColor="Aqua" />
+                    <models:Person Name="Bob" Birthday="02/20/1976" FavoriteColor="Black" />
+                    <models:Person Name="Cathy" Birthday="03/10/1977" FavoriteColor="Blue" />
+                    <models:Person Name="David" Birthday="04/25/1978" FavoriteColor="Fuchsia" />
+                    <models:Person Name="Eugenie" Birthday="05/05/1979" FavoriteColor="Gray" />
+                    <models:Person Name="Freddie" Birthday="06/30/1980" FavoriteColor="Green" />
+                    <models:Person Name="Greta" Birthday="07/15/1981" FavoriteColor="Lime" />
+                    <models:Person Name="Harold" Birthday="08/10/1982" FavoriteColor="Maroon" />
+                    <models:Person Name="Irene" Birthday="09/25/1983" FavoriteColor="Navy" />
+                    <models:Person Name="Jonathan" Birthday="10/10/1984" FavoriteColor="Olive" />
+                    <models:Person Name="Kathy" Birthday="11/20/1985" FavoriteColor="Purple" />
+                    <models:Person Name="Larry" Birthday="12/05/1986" FavoriteColor="Red" />
+                    <models:Person Name="Monica" Birthday="01/05/1975" FavoriteColor="Silver" />
+                    <models:Person Name="Nick" Birthday="02/10/1976" FavoriteColor="Teal" />
+                    <models:Person Name="Olive" Birthday="03/20/1977" FavoriteColor="White" />
+                    <models:Person Name="Pendleton" Birthday="04/10/1978" FavoriteColor="Yellow" />
+                    <models:Person Name="Queenie" Birthday="05/15/1979" FavoriteColor="Aqua" />
+                    <models:Person Name="Rob" Birthday="06/30/1980" FavoriteColor="Blue" />
+                    <models:Person Name="Sally" Birthday="07/05/1981" FavoriteColor="Fuchsia" />
+                    <models:Person Name="Timothy" Birthday="08/30/1982" FavoriteColor="Green" />
+                    <models:Person Name="Uma" Birthday="09/10/1983" FavoriteColor="Lime" />
+                    <models:Person Name="Victor" Birthday="10/20/1984" FavoriteColor="Maroon" />
+                    <models:Person Name="Wendy" Birthday="11/05/1985" FavoriteColor="Navy" />
+                    <models:Person Name="Xavier" Birthday="12/30/1986" FavoriteColor="Olive" />
+                    <models:Person Name="Yvonne" Birthday="01/10/1987" FavoriteColor="Purple" />
+                    <models:Person Name="Zachary" Birthday="02/05/1988" FavoriteColor="Red" />
+                </x:Array>
+            </ListView.ItemsSource>
+                
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="0, 5"
+                                     Orientation="Horizontal" 
+                                     Spacing="6">
+                            <BoxView Color="{Binding FavoriteColor}"
+                                     HeightRequest="60" 
+                                     WidthRequest="60" />
+                            <StackLayout VerticalOptions="Center">
+                                <Label Text="{Binding Name}" />
+                                <Label Text="{Binding Birthday, StringFormat='Born {0:d}'}" />
+                            </StackLayout>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>

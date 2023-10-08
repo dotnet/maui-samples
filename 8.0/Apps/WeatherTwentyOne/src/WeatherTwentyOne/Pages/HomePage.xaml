@@ -1,0 +1,74 @@
+﻿<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:m="clr-namespace:WeatherTwentyOne.Models"
+    xmlns:v="clr-namespace:WeatherTwentyOne.Views"
+    xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+    ios:Page.UseSafeArea="True"
+    Title="{OnIdiom 'St. Louis, Missouri USA', Desktop=''}"
+    Shell.NavBarIsVisible="{OnPlatform True, MacCatalyst=False}"
+    x:Class="WeatherTwentyOne.Pages.HomePage"
+    x:Name="this">
+
+    <ContentPage.MenuBarItems>
+        <MenuBarItem Text="File">
+            <MenuFlyoutItem Text="Quit" Command="{Binding QuitCommand}"/>
+        </MenuBarItem>
+        <MenuBarItem Text="Locations">
+            <MenuFlyoutSubItem Text="Change Location">
+                <MenuFlyoutItem Text="Boston, MA"/>
+                <MenuFlyoutItem Text="Redmond, WA"/>
+                <MenuFlyoutItem Text="St. Louis, MO"/>
+            </MenuFlyoutSubItem>
+            <MenuFlyoutItem Text="Add a Location" Command="{Binding AddLocationCommand}"/>
+        </MenuBarItem>
+        <MenuBarItem Text="View">
+            <MenuFlyoutItem Text="Refresh" Command="{Binding RefreshCommand}"/>
+            <MenuFlyoutItem Text="Toggle Light/Dark Mode" Command="{Binding ToggleModeCommand}"/>
+        </MenuBarItem>
+    </ContentPage.MenuBarItems>
+
+    <Grid
+        ColumnDefinitions="{OnIdiom Phone='*', Default='*,500'}"
+        RowDefinitions="*"
+        >
+
+        <!-- Main content -->
+        <ScrollView Grid.Column="0">
+            <VerticalStackLayout
+                Padding="{OnIdiom Phone='0,50',Default='0,50'}"
+                Spacing="{OnIdiom Phone=25,Default=50}">
+                
+                <!-- Top widgets -->
+                <FlexLayout
+                    IsVisible="{OnIdiom Phone=False, Default=True}"
+                    MinimumHeightRequest="360"
+                    AlignItems="Center"
+                    AlignContent="Center"
+                    JustifyContent="SpaceEvenly">
+                    <v:CurrentWidget
+                        WidthRequest="200" />
+                    <v:WindLiveWidget 
+                        x:Name="WindWidget"
+                        WidthRequest="200" />
+                    
+                </FlexLayout>
+
+                <v:CurrentWidget
+                    IsVisible="{OnIdiom Phone=True, Default=False}"/>
+    
+                <BoxView HeightRequest="1" />
+
+                <v:Next24HrWidget />
+                <v:Next7DWidget />
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Widget panel -->
+        <v:WidgetsPanel Grid.Column="{OnIdiom Phone=0, Default=1}"
+                        IsVisible="{OnIdiom Phone=False, Default=True}"/>
+
+    </Grid>
+
+</ContentPage>
