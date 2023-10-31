@@ -16,7 +16,6 @@
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.refreshviewdemo</ApplicationId>
-		<ApplicationIdGuid>5C768DEE-1DF2-472B-8E04-1D7E01A02EDB</ApplicationIdGuid>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>

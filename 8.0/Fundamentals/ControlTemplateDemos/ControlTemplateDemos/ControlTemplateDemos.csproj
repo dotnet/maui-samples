@@ -16,7 +16,6 @@
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.controltemplatedemos</ApplicationId>
-		<ApplicationIdGuid>FA1585E0-F7D2-48D7-AE3B-DF5EB411617D</ApplicationIdGuid>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>

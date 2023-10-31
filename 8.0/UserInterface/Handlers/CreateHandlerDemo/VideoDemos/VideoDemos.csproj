@@ -16,7 +16,6 @@
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.videodemos</ApplicationId>
-		<ApplicationIdGuid>E81C8EBC-9B0B-499B-8DD0-7BA486E8A8E7</ApplicationIdGuid>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
@@ -68,7 +67,7 @@
 	  <None Remove="Resources\Raw\AppleVideo.mp4" />
 	  <None Remove="Resources\Raw\WindowsVideo.mp4" />
 	</ItemGroup>
-		
+
 	<ItemGroup>
 	  <MauiXaml Update="Views\BindToVideoPlayerPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>

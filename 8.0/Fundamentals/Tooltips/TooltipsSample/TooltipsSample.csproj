@@ -16,7 +16,6 @@
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.tooltipssample</ApplicationId>
-		<ApplicationIdGuid>358309e5-0a96-4832-8b21-718365bc2260</ApplicationIdGuid>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>

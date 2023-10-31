@@ -16,7 +16,6 @@
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.workingwithmaps</ApplicationId>
-		<ApplicationIdGuid>7e34e122-9742-491c-b653-d8d5d44d77e0</ApplicationIdGuid>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>

@@ -16,7 +16,6 @@
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.bindablelayoutdemos</ApplicationId>
-		<ApplicationIdGuid>46A0DC96-29F6-4FE1-A3F2-6FF3A496141C</ApplicationIdGuid>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>

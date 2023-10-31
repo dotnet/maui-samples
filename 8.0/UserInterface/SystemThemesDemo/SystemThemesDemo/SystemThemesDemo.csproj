@@ -16,7 +16,6 @@
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.systemthemesdemo</ApplicationId>
-		<ApplicationIdGuid>3BDC1E6F-978D-4157-B485-B38F9D796F1D</ApplicationIdGuid>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>

@@ -16,7 +16,6 @@
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.datatemplates</ApplicationId>
-		<ApplicationIdGuid>CD0CAA8E-666C-4725-B314-D843BA913B55</ApplicationIdGuid>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>

@@ -16,7 +16,6 @@
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.stacklayoutdemos</ApplicationId>
-		<ApplicationIdGuid>2A20CB3C-BB4B-4983-B4F5-7170C5F8742D</ApplicationIdGuid>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>

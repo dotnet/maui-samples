@@ -16,7 +16,6 @@
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.shellflyoutsample</ApplicationId>
-		<ApplicationIdGuid>E9A20C87-8009-4780-8C29-7E4D74AFC9B7</ApplicationIdGuid>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>

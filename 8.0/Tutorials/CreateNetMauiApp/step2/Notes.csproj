@@ -16,7 +16,6 @@
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.notes</ApplicationId>
-		<ApplicationIdGuid>d656cfd3-d70c-439a-bc43-b90ff2fd6523</ApplicationIdGuid>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>

@@ -16,7 +16,6 @@
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.databindingdemos</ApplicationId>
-		<ApplicationIdGuid>DCBAB833-ADB5-43F4-BE88-4B024995751D</ApplicationIdGuid>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>

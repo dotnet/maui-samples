@@ -16,7 +16,6 @@
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.flexlayoutdemos</ApplicationId>
-		<ApplicationIdGuid>42FA8AB1-CE9B-44F1-BB52-F9B82B867A01</ApplicationIdGuid>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>

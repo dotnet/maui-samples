@@ -16,7 +16,6 @@
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.radiobuttondemos</ApplicationId>
-		<ApplicationIdGuid>B8F1FBE5-CA75-46E0-8ADA-AF8158A78905</ApplicationIdGuid>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>

@@ -16,7 +16,6 @@
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.listviewdemos</ApplicationId>
-		<ApplicationIdGuid>A2AB6080-FB29-4281-A682-F3BCBE9F370A</ApplicationIdGuid>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>

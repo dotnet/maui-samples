@@ -11,13 +11,12 @@
 		<SingleProject>true</SingleProject>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<EnableDefaultCssItems>false</EnableDefaultCssItems>
-		
+
 		<!-- Display name -->
 		<ApplicationTitle>ControlGallery</ApplicationTitle>
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.controlgallery</ApplicationId>
-		<ApplicationIdGuid>66443669-5C0B-49FA-9D23-EE57B5C5F90A</ApplicationIdGuid>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>

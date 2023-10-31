@@ -16,7 +16,6 @@
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.behaviorsdemos</ApplicationId>
-		<ApplicationIdGuid>E2989CB9-5FF8-4F9D-88C3-EA4A6E8397C6</ApplicationIdGuid>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>

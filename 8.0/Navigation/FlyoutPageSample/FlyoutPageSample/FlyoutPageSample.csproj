@@ -16,7 +16,6 @@
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.flyoutpagesample</ApplicationId>
-		<ApplicationIdGuid>02635DA1-7F53-46D3-8D93-713A92554E0B</ApplicationIdGuid>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>

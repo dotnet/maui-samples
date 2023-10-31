@@ -16,7 +16,6 @@
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.shellmixedsample</ApplicationId>
-		<ApplicationIdGuid>F5CA55D7-41A3-43E3-A34C-83E9E9205ED5</ApplicationIdGuid>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>

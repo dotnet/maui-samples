@@ -16,7 +16,6 @@
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.markupextensions</ApplicationId>
-		<ApplicationIdGuid>63875997-8745-4F0E-AF38-97D207A3DF44</ApplicationIdGuid>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>

@@ -16,7 +16,6 @@
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.hyperlinkdemo</ApplicationId>
-		<ApplicationIdGuid>0FCC77CB-1C93-446E-83C7-54AEB85EB1F5</ApplicationIdGuid>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>

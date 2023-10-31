@@ -16,7 +16,6 @@
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.scrollviewdemos</ApplicationId>
-		<ApplicationIdGuid>B54EF46F-2957-4AA5-976A-B193DE8F4D6E</ApplicationIdGuid>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>

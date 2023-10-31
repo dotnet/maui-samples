@@ -16,7 +16,6 @@
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.brushesdemos</ApplicationId>
-		<ApplicationIdGuid>0DD03C3F-2096-4422-B383-F48C4892A661</ApplicationIdGuid>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>

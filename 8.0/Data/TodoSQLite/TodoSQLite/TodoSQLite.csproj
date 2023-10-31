@@ -16,7 +16,6 @@
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.todosqlite</ApplicationId>
-		<ApplicationIdGuid>64673058-d486-410a-9ec4-643fc8187170</ApplicationIdGuid>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>

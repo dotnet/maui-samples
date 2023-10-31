@@ -16,7 +16,6 @@
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.workingwithtriggers</ApplicationId>
-		<ApplicationIdGuid>E0CB20D0-3897-4F43-BAC1-9CF672D8EF3D</ApplicationIdGuid>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>

@@ -16,7 +16,6 @@
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.customizehandlersdemo</ApplicationId>
-		<ApplicationIdGuid>03AFFDA2-5F1B-4AA7-A150-5A140F0370D2</ApplicationIdGuid>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>

@@ -16,7 +16,6 @@
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.indicatorviewdemos</ApplicationId>
-		<ApplicationIdGuid>DD751BB8-DD5F-4D4E-BE66-A03DDBC29535</ApplicationIdGuid>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>

@@ -16,7 +16,6 @@
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.shelltabbarsample</ApplicationId>
-		<ApplicationIdGuid>D7E2EC09-0F9D-4046-9392-4AEA95DE19B3</ApplicationIdGuid>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>

@@ -16,7 +16,6 @@
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.collectionviewdemos</ApplicationId>
-		<ApplicationIdGuid>62843BC0-41BA-4648-8D82-900FA7861216</ApplicationIdGuid>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>

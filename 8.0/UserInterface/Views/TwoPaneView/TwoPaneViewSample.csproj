@@ -16,7 +16,6 @@
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.mauitwopaneviewdemo</ApplicationId>
-		<ApplicationIdGuid>7f2dee2d-3733-4bed-9b25-5ad62422912d</ApplicationIdGuid>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>

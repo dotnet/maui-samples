@@ -16,7 +16,6 @@
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.xamlsamples</ApplicationId>
-		<ApplicationIdGuid>941CC5C6-4A30-4122-8464-A875A5619336</ApplicationIdGuid>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>

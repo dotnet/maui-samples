@@ -16,7 +16,6 @@
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.graphicsviewdemos</ApplicationId>
-		<ApplicationIdGuid>8C99F5E7-6B72-478C-AC98-AABC7DBABCFF</ApplicationIdGuid>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>

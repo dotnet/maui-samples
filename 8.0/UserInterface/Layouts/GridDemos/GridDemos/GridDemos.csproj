@@ -16,7 +16,6 @@
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.griddemos</ApplicationId>
-		<ApplicationIdGuid>AA2B0D1C-6651-4D20-A686-6D1C4A956D03</ApplicationIdGuid>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>

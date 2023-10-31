@@ -16,7 +16,6 @@
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.themingdemo</ApplicationId>
-		<ApplicationIdGuid>9D84AC4B-8ED4-4629-83CA-C283378E2357</ApplicationIdGuid>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>

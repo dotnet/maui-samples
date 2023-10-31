@@ -16,7 +16,6 @@
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.checkboxdemos</ApplicationId>
-		<ApplicationIdGuid>5DA8DB32-9711-4DDF-A586-56414D9EA292</ApplicationIdGuid>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>

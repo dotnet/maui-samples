@@ -16,7 +16,6 @@
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.invokeplatformcodedemos</ApplicationId>
-		<ApplicationIdGuid>836ADB90-CFF6-44F0-81CC-48B9CE63888F</ApplicationIdGuid>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>

@@ -16,7 +16,6 @@
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.switchdemos</ApplicationId>
-		<ApplicationIdGuid>0b507bfc-f6c1-40a1-a625-ae040d2cd0f4</ApplicationIdGuid>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>

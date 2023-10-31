@@ -16,7 +16,6 @@
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.contextmenusample</ApplicationId>
-		<ApplicationIdGuid>9ad04a9e-0e64-4ebc-b555-84565aca04ca</ApplicationIdGuid>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>

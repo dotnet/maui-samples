@@ -16,7 +16,6 @@
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.animations</ApplicationId>
-		<ApplicationIdGuid>6C677897-63D9-4B45-AB9A-927D87084550</ApplicationIdGuid>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>

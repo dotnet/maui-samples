@@ -16,7 +16,6 @@
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.todorest</ApplicationId>
-		<ApplicationIdGuid>E03E5DF4-5752-4412-BCE6-4B2BDFF9FAE6</ApplicationIdGuid>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>

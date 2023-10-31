@@ -16,7 +16,6 @@
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.tableviewdemos</ApplicationId>
-		<ApplicationIdGuid>A701DA2B-CDCB-4E15-B14B-08DC49746925</ApplicationIdGuid>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>

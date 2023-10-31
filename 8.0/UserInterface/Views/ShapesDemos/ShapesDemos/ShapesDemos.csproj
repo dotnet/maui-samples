@@ -16,7 +16,6 @@
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.shapesdemos</ApplicationId>
-		<ApplicationIdGuid>35236B3D-0EC7-4CFF-A977-2FAD7C12C4D2</ApplicationIdGuid>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>

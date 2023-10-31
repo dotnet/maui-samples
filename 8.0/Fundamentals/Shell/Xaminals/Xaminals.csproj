@@ -16,7 +16,6 @@
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.xaminals</ApplicationId>
-		<ApplicationIdGuid>E3F72D29-3C07-4EA0-A687-ED233B4E6984</ApplicationIdGuid>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
