@@ -1,0 +1,27 @@
+name: Build All C# Projects
+
+on:
+  pull_request:
+    types:
+      - opened
+  workflow_dispatch:
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [windows-latest, macos-latest]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Find and build C# projects
+      run: |
+        find . -name '*.csproj' -type f | while read csproj; do
+          echo "Building $csproj"
+          dotnet build "$csproj"
+        done
+      shell: bash
