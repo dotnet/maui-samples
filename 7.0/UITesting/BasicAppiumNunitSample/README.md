@@ -7,10 +7,10 @@ languages:
 - xaml
 products:
 - dotnet-maui
-urlFragment: uitest-appium
+urlFragment: uitest-appium-nunit
 ---
 
-# UI testing with Appium and .NET MAUI
+# .NET MAUI UI testing with Appium and NUnit
 
 This project serves as a bare bones project structure that can be used as an example on how to get started with UI tests using Appium and .NET Multi-platform App UI (.NET MAUI).
 
