@@ -56,11 +56,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Remove="Resources\Images\dotnet_bot.png" />
-	  <None Remove="Resources\Images\xbox.png" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <MauiXaml Update="Views\DataIntentPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

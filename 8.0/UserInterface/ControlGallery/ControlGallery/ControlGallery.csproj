@@ -57,15 +57,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Remove="Resources\Images\banana.jpg" />
-	  <None Remove="Resources\Images\dotnet_bot.png" />
-	  <None Remove="Resources\Images\facepalm.jpg" />
-	  <None Remove="Resources\Images\icon.png" />
-	  <None Remove="Resources\Images\seatedmonkey.jpg" />
-	  <None Remove="Resources\Images\xamarinlogo.png" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <MauiXaml Update="Views\XAML\AbsoluteLayoutDemoPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
