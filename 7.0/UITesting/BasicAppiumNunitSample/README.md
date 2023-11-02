@@ -66,7 +66,7 @@ These prerequisites are:
 
 <!-- TODO: Link to instructions -->
 
-## Writing rests
+## Writing tests
 
 Ideally the majority of your tests will be under the `UITests.Shared` project. The goal of .NET MAUI is to write your code once and deploy to all the different platforms. As a result, the tests should also be able to run from a single codebase and still test your app on all targeted platforms.
 
