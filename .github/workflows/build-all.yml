@@ -1,0 +1,62 @@
+name: Build All C# Projects in Repo
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, macos-13]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Install .NET MAUI Workload
+      run: dotnet workload install maui
+      if: runner.os == 'macOS'
+      
+    - name: Find and build all C# projects
+      run: |
+        $failedProjectCount=0
+        $jobSummaryFile=$env:GITHUB_STEP_SUMMARY
+        
+        Write-Output "# .NET MAUI Sample Apps Build Status (${{ runner.os }})" | Out-File -FilePath $jobSummaryFile -Append
+        Write-Output "| Project | Build Status |" | Out-File -FilePath $jobSummaryFile -Append
+        Write-Output "|---|---|" | Out-File -FilePath $jobSummaryFile -Append
+        
+        Get-ChildItem -Path . -Filter *.csproj -File -Recurse | ForEach-Object {
+            $csproj = $_.FullName
+            Write-Output "::group:: Building $csproj"
+
+            dotnet build $csproj
+        
+            if ($LASTEXITCODE -gt 0) {
+                Write-Output "::error:: Build failed for $csproj"
+                Write-Output "| $csproj | :x: |" | Out-File -FilePath $jobSummaryFile -Append
+        
+                $failedProjectCount++
+            }
+            else {
+                Write-Output "Build succeeded for $csproj"
+                Write-Output "| $csproj | :white_check_mark: |" | Out-File -FilePath $jobSummaryFile -Append
+            }
+        
+            $proj_dir = [System.IO.Path]::GetDirectoryName($csproj)
+            Write-Output "Cleaning up bin & obj in $proj_dir"
+            Get-ChildItem -Path $proj_dir -Directory -Recurse -Include bin,obj | Remove-Item -Recurse -Force
+        
+            Write-Output "::endgroup::"
+        }
+        
+        if ($failedProjectCount -gt 0) {
+            Write-Output "" | Out-File -FilePath $jobSummaryFile -Append
+            Write-Output "# Failed builds: $failedProjectCount" | Out-File -FilePath $jobSummaryFile -Append
+            
+            exit $failedProjectCount
+        }
+      shell: powershell
