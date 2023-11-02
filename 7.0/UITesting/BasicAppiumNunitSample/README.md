@@ -48,7 +48,7 @@ In each of the platform-specific projects, there are (invisible) links to the fi
 
 Typically, you should not notice any of this or have to worry about it.
 
-## Getting atarted
+## Getting started
 
 Tests are executed through [Appium](https://appium.io/). Appium works by having a server execute the tests on a client application that runs on the target device. This means that running the tests will require an Appium server to run. In this example, code is provided to automatically start and stop the Appium server as part of the test run. However, you will still need to install Appium and its pre-requisites on the machine that you want to run the tests on.
 
@@ -113,7 +113,7 @@ Tests can be ran from the Visual Studio Test Explorer or by running `dotnet test
 
 To run the tests, an Appium server needs to be available and running, and that in turn should be able to reach the emulators, Simulator or physical devices as needed.
 
-> ![NOTE]
+> [!NOTE]
 > For all platforms apart from macOS, you typically want to have your app deployed on the device that you want to test on. Make sure you have the latest app version is deployed to your device. Tests will be ran against that app. The way this sample is set up, it will **not** deploy the app for you as part of the test run.
 
 This sample does automatically start and stop the Appium server for you as part of the test run. This assumes that all of the pre-requisites are installed correctly.
