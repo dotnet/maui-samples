@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
+             xmlns:maps="http://schemas.microsoft.com/dotnet/2021/maui/maps"
              xmlns:sensors="clr-namespace:Microsoft.Maui.Devices.Sensors;assembly=Microsoft.Maui.Essentials"
              x:Class="WorkingWithMaps.Views.PolygonsPage"
              Title="Polygon/Polyline demo">
     <maps:Map>
         <x:Arguments>
-            <MapSpan>
+            <maps:MapSpan>
                 <x:Arguments>
                     <sensors:Location>
                         <x:Arguments>
@@ -18,7 +18,7 @@
                     <x:Double>0.1</x:Double>
                     <x:Double>0.1</x:Double>
                 </x:Arguments>
-            </MapSpan>
+            </maps:MapSpan>
         </x:Arguments>
         <maps:Map.MapElements>
             <maps:Polygon StrokeColor="#FF9900"

@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
+             xmlns:maps="http://schemas.microsoft.com/dotnet/2021/maui/maps"
              xmlns:sensors="clr-namespace:Microsoft.Maui.Devices.Sensors;assembly=Microsoft.Maui.Essentials"
              x:Class="WorkingWithMaps.Views.CirclePage"
              Title="Circle demo">
     <maps:Map>
         <x:Arguments>
-            <MapSpan>
+            <maps:MapSpan>
                 <x:Arguments>
                     <sensors:Location>
                         <x:Arguments>
@@ -18,7 +18,7 @@
                     <x:Double>0.01</x:Double>
                     <x:Double>0.01</x:Double>
                 </x:Arguments>
-            </MapSpan>
+            </maps:MapSpan>
         </x:Arguments>
         <maps:Map.MapElements>
             <maps:Circle StrokeColor="#88FF0000"
@@ -33,11 +33,11 @@
                     </sensors:Location>
                 </maps:Circle.Center>
                 <maps:Circle.Radius>
-                    <Distance>
+                    <maps:Distance>
                         <x:Arguments>
                             <x:Double>250</x:Double>
                         </x:Arguments>
-                    </Distance>
+                    </maps:Distance>
                 </maps:Circle.Radius>
             </maps:Circle>             
         </maps:Map.MapElements>
