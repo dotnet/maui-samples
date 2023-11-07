@@ -12,17 +12,17 @@ urlFragment: uitest-appium-nunit
 
 # .NET MAUI UI testing with Appium and NUnit
 
-This project serves as a bare bones project structure that can be used as an example on how to get started with UI tests using Appium and .NET Multi-platform App UI (.NET MAUI).
+This project serves as a bare-bones project structure that can be used as an example of how to get started with UI tests using Appium and .NET Multi-platform App UI (.NET MAUI).
 
-As a test framework [NUnit](https://nunit.org/) has been chosen for this example. The tests are ran through Appium. This code uses the release candidate of the Appium v5 NuGet. During development this has proven to be very stable and the code has become significantly cleaner.
+As a test framework [NUnit](https://nunit.org/) has been chosen for this example. The tests are run through Appium. This code uses the release candidate of the Appium v5 NuGet. During development, this has proven to be very stable and the code has become significantly cleaner.
 
 ## Project Structure
 
 Below you will find an overview of all the projects found in this solution and a brief description of what they contain and how they fit together.
 
-* BasicAppiumSample: a File > New .NET MAUI project, meaning, a .NET MAUI project as you would start a new one from Visual Studio or the command-line. The only change is that the `Button` in the `MainPage.xaml` received an additional attribute: `AutomationId`. This is the identifier used to locate the button in our UI tests.
+* BasicAppiumSample: a File > New .NET MAUI project, meaning, a .NET MAUI project as you would start a new one from Visual Studio or the command line. The only change is that the `Button` in the `MainPage.xaml` received an additional attribute: `AutomationId`. This is the identifier used to locate the button in our UI tests.
 
-* UITests.Shared: contains code that is shared across all the platforms as well as tests that will run on all the platforms targeted. For example, this project contains the `MainPageTests.cs`. The tests in this class are platform agnostic and will run for Android, iOS, macOS and Windows.
+* UITests.Shared: contains code that is shared across all the platforms as well as tests that will run on all the platforms targeted. For example, this project contains the `MainPageTests.cs`. The tests in this class are platform-agnostic and will run for Android, iOS, macOS, and Windows.
 
   This shared project also includes `AppiumServerHelper.cs` which contains code to start and stop the Appium server as part of running the tests.
 
@@ -68,9 +68,9 @@ These prerequisites are:
 
 ## Writing tests
 
-Ideally the majority of your tests will be under the `UITests.Shared` project. The goal of .NET MAUI is to write your code once and deploy to all the different platforms. As a result, the tests should also be able to run from a single codebase and still test your app on all targeted platforms.
+Ideally, the majority of your tests will be under the `UITests.Shared` project. The goal of .NET MAUI is to write your code once and deploy it to all the different platforms. As a result, the tests should also be able to run from a single codebase and still test your app on all targeted platforms.
 
-However, there might be scenarios where you need platform specific tests. These can be placed under each respective platform project.
+However, there might be scenarios where you need platform-specific tests. These can be placed under each respective platform project.
 
 The NUnit framework is used in this solution, so writing tests will use all the features that NUnit has to offer. For example, consider `MainPageTests.cs` under `UITests.Shared`:
 
@@ -103,21 +103,21 @@ public class MainPageTests : BaseTest
 
 This class inherits from `BaseTest`. This base class contains the `App` field, which you can use to interact with your app. This field is used to call the `GetScreenshot` method to capture a screenshot of your app while running the test. This is (purposely) similar to how Xamarin.UITest interacts with the app under test.
 
-The `App` field can also be used to find user interface elements. You can use multiple approaches to identify an element, but where possible make sure to add the `AutomationId` property to your .NET MAUI element and identify your element through that in your test. The `BaseTest` class also includes a `FindUIElement` helper method. Because Windows uses a different way of identifying UI elements, this helper method is there to unify the API and ensure that tests run without any issue on all platforms. Under the hood this code executes: `App.FindElement(MobileBy.Id(id));` where `id` is the value for `AutomationId` in your .NET MAUI app.
+The `App` field can also be used to find user interface elements. You can use multiple approaches to identify an element, but where possible make sure to add the `AutomationId` property to your .NET MAUI element and identify your element through that in your test. The `BaseTest` class also includes a `FindUIElement` helper method. Because Windows uses a different way of identifying UI elements, this helper method is there to unify the API and ensure that tests run without any issues on all platforms. Under the hood, this code executes: `App.FindElement(MobileBy.Id(id));` where `id` is the value for `AutomationId` in your .NET MAUI app.
 
-Each method is adorned with a `[Test]` attribute. This marks the method as a test that can be discovered and ran. Then inside the test methods you can write your test code. Use the `App` object to interact with your .NET MAUI app and use the NUnit assert statements to verify the outcome.
+Each method is adorned with a `[Test]` attribute. This marks the method as a test that can be discovered and run. Then inside the test methods, you can write your test code. Use the `App` object to interact with your .NET MAUI app and use the NUnit assert statements to verify the outcome.
 
 ## Running tests locally
 
-Tests can be ran from the Visual Studio Test Explorer or by running `dotnet test` from the command-line.
+Tests can be run from the Visual Studio Test Explorer or by running `dotnet test` from the command line.
 
 To run the tests, an Appium server needs to be available and running, and that in turn should be able to reach the emulators, Simulator or physical devices as needed.
 
 > [!NOTE]
-> For all platforms apart from macOS, you typically want to have your app deployed on the device that you want to test on. Make sure you have the latest app version is deployed to your device. Tests will be ran against that app. The way this sample is set up, it will **not** deploy the app for you as part of the test run.
+> For all platforms apart from macOS, you typically want to have your app deployed on the device that you want to test on. Make sure you have the latest app version deployed to your device. Tests will be run against that app. The way this sample is set up, it will **not** deploy the app for you as part of the test run.
 
-This sample does automatically start and stop the Appium server for you as part of the test run. This assumes that all of the pre-requisites are installed correctly.
+This sample automatically starts and stops the Appium server for you as part of the test run. This assumes that all of the prerequisites are installed correctly.
 
 If you want to start the Appium server manually, go into each `AppiumSetup.cs` file in each of the platform projects and comment out the lines that call `AppiumServerHelper`. There are two: one to start the server and one to stop it.
 
-You will have to make sure the Appium server is started before running the tests and optionally configure the Appium drivers used in code to be able to reach your own server.
+You will have to make sure the Appium server is started before running the tests and optionally configure the Appium drivers used in the code to be able to reach your own server.
