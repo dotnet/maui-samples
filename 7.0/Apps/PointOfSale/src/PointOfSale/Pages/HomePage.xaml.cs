@@ -1,5 +1,6 @@
 
 
+using Microsoft.Maui.Platform;
 using PointOfSale.Messages;
 
 namespace PointOfSale.Pages;
@@ -63,4 +64,29 @@ public partial class HomePage : ContentPage
                 PageGrid.Children.Remove(view);
         }
 	}
+
+    void OnDragStarting(object sender, DragStartingEventArgs e)
+    {
+    #if IOS || MACCATALYST
+        // Func<UIKit.UIDragPreview> action = () =>
+        // {
+        //     var image = new Image{
+        //         Source = ImageSource.FromFile("hunter.png")
+        //     };
+        //     UIKit.UIImageView imageView = new UIKit.UIImageView((UIImage)image.ToPlatform());
+        //     imageView.ContentMode = UIKit.UIViewContentMode.Center;
+        //     imageView.Frame = new CoreGraphics.CGRect(0, 0, 250, 250);
+        //     return new UIKit.UIDragPreview(imageView);
+        // };
+
+        // e.PlatformArgs.SetPreviewProvider(action);
+    #endif
+    }
+
+    void OnDragOver(object sender, DragEventArgs e)
+    {
+    #if IOS || MACCATALYST
+        e.PlatformArgs.SetDropProposal(new UIKit.UIDropProposal(UIKit.UIDropOperation.Copy));
+    #endif
+    }
 }
