@@ -65,7 +65,7 @@
 		<MauiSplashScreen Include="Resources\Images\food_01.png" Color="#252836" />
 
 		<!-- Images -->
-		<MauiImage Include="Resources\Images\*" />
+		<MauiImage Include="Resources\Images\*" Exclude="$(DefaultItemExcludes)"/>
 
 		<!-- Custom Fonts -->
 		<MauiFont Include="Resources\Fonts\*" />

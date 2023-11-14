@@ -1,7 +1,11 @@
 
 
+using Microsoft.Maui.Controls.Platform;
 using Microsoft.Maui.Platform;
 using PointOfSale.Messages;
+#if IOS || MACCATALYST
+using UIKit;
+#endif
 
 namespace PointOfSale.Pages;
 
@@ -67,19 +71,39 @@ public partial class HomePage : ContentPage
 
     void OnDragStarting(object sender, DragStartingEventArgs e)
     {
-    #if IOS || MACCATALYST
-        // Func<UIKit.UIDragPreview> action = () =>
-        // {
-        //     var image = new Image{
-        //         Source = ImageSource.FromFile("hunter.png")
-        //     };
-        //     UIKit.UIImageView imageView = new UIKit.UIImageView((UIImage)image.ToPlatform());
-        //     imageView.ContentMode = UIKit.UIViewContentMode.Center;
-        //     imageView.Frame = new CoreGraphics.CGRect(0, 0, 250, 250);
-        //     return new UIKit.UIDragPreview(imageView);
-        // };
+        WeakReferenceMessenger.Default.Send<DragProductMessage>(new DragProductMessage(true));
 
-        // e.PlatformArgs.SetPreviewProvider(action);
+        Item item = (Item)(sender as Element).Parent.BindingContext;
+        e.Data.Properties.Add("Product", item);
+
+        var previewImage = string.Empty;
+        if(item.Title == "Soda") {
+            previewImage = "hunter.png";
+        } else if(item.Title == "Hot Tea") {
+            previewImage = "maddy.png";
+        } else if(item.Title == "Milk") {
+            previewImage = "sweeky.png";
+        } else if(item.Title == "Coffee") {
+            previewImage = "david.png";
+        } else if(item.Title == "Iced Tea") {
+            previewImage = "beth.png";
+        } else if(item.Title == "Juice") {
+            previewImage = "rachel.png";
+        } else {
+            return;
+        }
+    
+    #if IOS || MACCATALYST
+        Func<UIKit.UIDragPreview> action = () =>
+        {
+            var image = UIImage.FromBundle(previewImage);
+            UIKit.UIImageView imageView = new UIKit.UIImageView(image);
+            imageView.ContentMode = UIKit.UIViewContentMode.Center;
+            imageView.Frame = new CoreGraphics.CGRect(0, 0, 250, 250);
+            return new UIKit.UIDragPreview(imageView);
+        };
+
+        e.PlatformArgs.SetPreviewProvider(action);
     #endif
     }
 
@@ -88,5 +112,36 @@ public partial class HomePage : ContentPage
     #if IOS || MACCATALYST
         e.PlatformArgs.SetDropProposal(new UIKit.UIDropProposal(UIKit.UIDropOperation.Copy));
     #endif
+    }
+
+    void OnDropCompleted(object sender, DropCompletedEventArgs e)
+    {
+        WeakReferenceMessenger.Default.Send<DragProductMessage>(new DragProductMessage(false));
+    }
+
+    void OnDrop(object sender, DropEventArgs e)
+    {
+        Item product = (Item)e.Data.Properties["Product"];
+        Debug.WriteLine($"{product.Title}");
+        WeakReferenceMessenger.Default.Send<AddToOrderMessage>(new AddToOrderMessage(product));
+        // Perform logic to take action based on retrieved value.
+    }
+
+    IDispatcherTimer timer;
+
+    void OnPointerPressed(object sender, PointerEventArgs e)
+    {
+        timer = Dispatcher.CreateTimer();
+        timer.Interval = TimeSpan.FromMilliseconds(2000);
+        timer.Tick += (s, e) =>
+        {
+            timer.Stop();
+            WeakReferenceMessenger.Default.Send<AddProductMessage>(new AddProductMessage(true));
+        };
+    }
+
+    void OnPointerReleased(object sender, PointerEventArgs e)
+    {
+        timer.Stop();
     }
 }

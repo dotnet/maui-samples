@@ -26,19 +26,28 @@
             <MenuFlyoutItem Text="Add Product" 
                             Command="{Binding AddProductCommand}">
                 <MenuFlyoutItem.KeyboardAccelerators>
-                    <KeyboardAccelerator Key="A" Modifiers="Cmd"/>
+                    <KeyboardAccelerator Key="A" Modifiers="Cmd,Shift"/>
+                    <KeyboardAccelerator Key="A" Modifiers="Ctrl"/>
                 </MenuFlyoutItem.KeyboardAccelerators>
+                <MenuFlyoutItem.IconImageSource>
+                    <FontImageSource Glyph="&#xECDC;"
+                                     Size="12" 
+                                     Color="Black"
+                                     FontFamily="Fabric" />
+                </MenuFlyoutItem.IconImageSource>
             </MenuFlyoutItem>
-            <MenuFlyoutItem Text="Add Product Category"/>
+            <MenuFlyoutItem Text="Add Product Category"
+                IconImageSource="{FontImage &#xF12B;, FontFamily=Fabric, Color=Black, Size=12}"
+            />
         </MenuBarItem>
     </ContentPage.MenuBarItems>
 
 
     <Grid RowDefinitions="100,70,*"
           ColumnDefinitions="*,400"
-          Margin="24,24,0,0"
-          x:Name="PageGrid">        
-
+          Margin="24,24,0,0" 
+          x:Name="PageGrid">  
+             
         <ScrollView Grid.Row="2">
             <Grid RowDefinitions="70,*">
                 <Label Text="Choose Dishes" Style="{StaticResource Title1}"/>
@@ -55,6 +64,7 @@
                                 <Grid.GestureRecognizers>
                                     <DragGestureRecognizer
                                         DragStarting="OnDragStarting"
+                                        DropCompleted="OnDropCompleted"
                                     />
                                 </Grid.GestureRecognizers>
                                 <VisualStateManager.VisualStateGroups>
@@ -116,7 +126,6 @@
                      </BindableLayout.ItemTemplate>
                 </l:HorizontalWrapLayout>
                 
-
             </Grid>
 
         </ScrollView>
@@ -250,8 +259,6 @@
                         </DataTemplate>
                      </BindableLayout.ItemTemplate>
             </HorizontalStackLayout>
-            
-
         </Grid>
 
         <BoxView Color="Black"
@@ -266,7 +273,9 @@
         
         <v:OrderCartView Grid.Column="1" Grid.RowSpan="3">
             <v:OrderCartView.GestureRecognizers>
-                <DropGestureRecognizer DragOver="OnDragOver" />
+                <DropGestureRecognizer 
+                    DragOver="OnDragOver" 
+                    Drop="OnDrop"/>
             </v:OrderCartView.GestureRecognizers>
         </v:OrderCartView>
         
