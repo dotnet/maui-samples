@@ -10,11 +10,12 @@ Official samples can be accessed via the [Samples browser](https://docs.microsof
 
 Sample highlights include:
 
-* [Weather '21 App](7.0/Apps/WeatherTwentyOne)
-* [Calculator App](7.0/Apps/Calculator)
+* [Point of Sale](8.0/Apps/PointOfSale)
+* [Weather '21 App](8.0/Apps/WeatherTwentyOne)
+* [Calculator App](8.0/Apps/Calculator)
 * [.NET Podcasts App](https://github.com/microsoft/dotnet-podcasts)
-* [Navigation Samples](7.0/Navigation)
-* [Beginner's Series Task App Sample](7.0/Beginners-Series)
+* [Navigation Samples](8.0/Navigation)
+* [Beginner's Series Task App Sample](8.0/Beginners-Series)
 
 ## Community Samples
 
