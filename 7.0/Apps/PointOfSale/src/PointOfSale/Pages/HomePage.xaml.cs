@@ -64,8 +64,9 @@ public partial class HomePage : ContentPage
             BlockScreen.InputTransparent = true;
 
             await Task.Delay(800);
-            if (view != null)
+            if (view != null){
                 PageGrid.Children.Remove(view);
+            }
         }
 	}
 

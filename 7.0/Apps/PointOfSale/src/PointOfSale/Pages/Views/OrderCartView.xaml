@@ -98,7 +98,7 @@
                                             <FormattedString>
                                                 <Span Text="{Binding Title}"/>
                                                 <Span Text="{x:Static system:Environment.NewLine}"/>
-                                                <Span TextColor="{StaticResource TextSecondary}" FontSize="12" Text="{Binding Price, StringFormat='${0}'}"/>
+                                                <Span TextColor="{StaticResource TextSecondary}" FontSize="12" Text="{Binding Price, StringFormat='{0:C}'}"/>
                                             </FormattedString>
                                         </Label.FormattedText>
                                     </Label>

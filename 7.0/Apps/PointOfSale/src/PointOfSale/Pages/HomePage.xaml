@@ -106,15 +106,13 @@
                                     <Border.StrokeShape>
                                         <RoundRectangle CornerRadius="16"/>
                                     </Border.StrokeShape>
-
-
                                 </Border>
                                 <VerticalStackLayout Grid.RowSpan="2" Margin="20,0,20,10"
                                                      VerticalOptions="End"
                                                      Spacing="6">
                                     
                                     <Label Text="{Binding Title}" HorizontalOptions="Center" Style="{StaticResource Title2}" HorizontalTextAlignment="Center"/>
-                                    <Label Text="{Binding Price, StringFormat='${0}'}" HorizontalOptions="Center"/>
+                                    <Label Text="{Binding Price, StringFormat='{0:C}'}" HorizontalOptions="Center"/>
                                 </VerticalStackLayout>
                                 <Image
                                     Grid.RowSpan="2" VerticalOptions="Start"

@@ -3,6 +3,7 @@ using Microsoft.Maui.LifecycleEvents;
 using Microsoft.Maui.Platform;
 using MonkeyCache;
 using MonkeyCache.FileStore;
+using Plugin.Maui.KeyListener;
 using SkiaSharp.Views.Maui.Controls.Hosting;
 using ZXing.Net.Maui;
 
@@ -28,6 +29,7 @@ public static class MauiProgram
             .UseBarcodeReader()
 			.UseMauiCommunityToolkit()
             .UseSkiaSharp()
+            .UseKeyListener()
             .ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
