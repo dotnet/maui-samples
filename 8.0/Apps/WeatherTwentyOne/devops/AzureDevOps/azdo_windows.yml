@@ -55,8 +55,8 @@ stages:
     - task: CopyFiles@2
       inputs:
         Contents: |
-          **\**\8.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\bin\Release\net7.0-android\publish\*.apk
-          8.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\bin\Release\net7.0-android\publish\*.apk
+          **\**\8.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\bin\Release\net8.0-android\publish\*.apk
+          8.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\bin\Release\net8.0-android\publish\*.apk
         TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
     - task: PublishBuildArtifacts@1
@@ -107,8 +107,8 @@ stages:
     - task: CopyFiles@2
       inputs:
         Contents: |
-          **\**\8.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\bin\Release\net7.0-windows10.0.19041.0\win10-x64/**/*.msix
-          8.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\bin\Release\net7.0-windows10.0.19041.0\win10-x64/**/*.msix
+          **\**\8.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\bin\Release\net8.0-windows10.0.19041.0\win10-x64/**/*.msix
+          8.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\bin\Release\net8.0-windows10.0.19041.0\win10-x64/**/*.msix
         TargetFolder: '$(Build.ArtifactStagingDirectory)'
    
    #https://docs.microsoft.com/en-us/windows/msix/desktop/azure-dev-ops
