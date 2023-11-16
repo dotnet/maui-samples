@@ -3,7 +3,7 @@ trigger:
 
 variables:
     BuildConfiguration: Release
-    DotNetVersion: 6.0.300
+    DotNetVersion: 8.0.100
     VSVERSION: 17/pre
 
 stages:
@@ -38,7 +38,7 @@ stages:
       inputs:
         targetType: 'inline'
         script: |
-          cd 6.0/Apps/WeatherTwentyOne/src/
+          cd 8.0/Apps/WeatherTwentyOne/src/
           dotnet restore WeatherTwentyOne.sln
 
   # https://docs.microsoft.com/en-us/dotnet/maui/android/deployment/overview
@@ -47,7 +47,7 @@ stages:
       inputs:
         targetType: 'inline'
         script: |
-          cd 6.0/Apps/WeatherTwentyOne/src
+          cd 8.0/Apps/WeatherTwentyOne/src
           dotnet build -f net7.0-android -c Release
 
     # Signing Android App : https://docs.microsoft.com/en-us/azure/devops/pipelines/apps/mobile/app-signing?view=azure-devops&tabs=apple-install-during-build#sign-your-android-app
@@ -55,8 +55,8 @@ stages:
     - task: CopyFiles@2
       inputs:
         Contents: |
-          **\**\6.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\bin\Release\net7.0-android\publish\*.apk
-          6.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\bin\Release\net7.0-android\publish\*.apk
+          **\**\8.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\bin\Release\net8.0-android\publish\*.apk
+          8.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\bin\Release\net8.0-android\publish\*.apk
         TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
     - task: PublishBuildArtifacts@1
@@ -96,7 +96,7 @@ stages:
       inputs:
         targetType: 'inline'
         script: |
-          cd 6.0\Apps\WeatherTwentyOne\src\
+          cd 8.0\Apps\WeatherTwentyOne\src\
           dotnet publish -f net7.0-windows10.0.19041.0 -c Release
     
     # https://docs.microsoft.com/en-us/windows/msix/desktop/cicd-overview
@@ -107,13 +107,13 @@ stages:
     - task: CopyFiles@2
       inputs:
         Contents: |
-          **\**\6.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\bin\Release\net7.0-windows10.0.19041.0\win10-x64/**/*.msix
-          6.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\bin\Release\net7.0-windows10.0.19041.0\win10-x64/**/*.msix
+          **\**\8.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\bin\Release\net8.0-windows10.0.19041.0\win10-x64/**/*.msix
+          8.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\bin\Release\net8.0-windows10.0.19041.0\win10-x64/**/*.msix
         TargetFolder: '$(Build.ArtifactStagingDirectory)'
    
    #https://docs.microsoft.com/en-us/windows/msix/desktop/azure-dev-ops
    #Create secret pipeline variable WindowsCertSecret with cert password
-    - script: '"C:\Program Files (x86)\Windows Kits\10\App Certification Kit\SignTool" sign /fd SHA256 /f $(Agent.TempDirectory)/XamCATFidCert.pfx /p $(WindowsCertSecret) $(Build.ArtifactStagingDirectory)\6.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\bin\Release\net7.0-windows10.0.19041.0\win10-x64\AppPackages\WeatherTwentyOne_1.0.0.0_Test\WeatherTwentyOne_1.0.0.0_x64.msix'
+    - script: '"C:\Program Files (x86)\Windows Kits\10\App Certification Kit\SignTool" sign /fd SHA256 /f $(Agent.TempDirectory)/XamCATFidCert.pfx /p $(WindowsCertSecret) $(Build.ArtifactStagingDirectory)\8.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\bin\Release\net7.0-windows10.0.19041.0\win10-x64\AppPackages\WeatherTwentyOne_1.0.0.0_Test\WeatherTwentyOne_1.0.0.0_x64.msix'
       displayName: 'Sign MSIX Package'
 
 
