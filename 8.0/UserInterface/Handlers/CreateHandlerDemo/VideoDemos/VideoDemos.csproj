@@ -56,13 +56,13 @@
 	</ItemGroup>
 
 	<ItemGroup Condition="$(TargetFramework.StartsWith('net8.0-android')) != true">
-		<Compile Remove="**\**\*.Android.cs" />
-		<None Include="**\**\*.Android.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
+		<Compile Remove="**\*.Android.cs" />
+		<None Include="**\*.Android.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
 	</ItemGroup>
 
 	<ItemGroup Condition="$(TargetFramework.StartsWith('net8.0-ios')) != true AND $(TargetFramework.StartsWith('net8.0-maccatalyst')) != true">
-		<Compile Remove="**\**\*.MaciOS.cs" />
-		<None Include="**\**\*.MaciOS.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
+		<Compile Remove="**\*.MaciOS.cs" />
+		<None Include="**\*.MaciOS.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
 	</ItemGroup>
 
 	<ItemGroup Condition="$(TargetFramework.Contains('-windows')) != true ">
