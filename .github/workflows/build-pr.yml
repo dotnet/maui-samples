@@ -63,7 +63,7 @@ jobs:
             } else {
               $currentFolder = (Get-Item -LiteralPath (Resolve-Path -Path "$file")).Directory
               
-              while ($currentFolder -ne $null) {
+              while ($currentFolder -ne $null -and '' -ne $currentFolder) {
                 $csprojFiles = Get-ChildItem -Path $currentFolder -Filter '*.csproj' -File
 
                 if ($csprojFiles.Count -gt 0) {
@@ -72,9 +72,9 @@ jobs:
                 $currentFolder = Split-Path -Parent $currentFolder
               }
 
-              $projectToBuild = $csprojFiles[0].FullName
-              Write-Output "Project to build: $projectToBuild"
-
+              if ($csprojFiles.Count -gt 0) {
+                $projectToBuild = $csprojFiles[0].FullName
+              }
             }
 
             # Only proceed when his project has not been built yet
