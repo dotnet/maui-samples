@@ -1,6 +1,6 @@
 ---
 name: .NET MAUI - Mandelbrot Animation
-description: "This sample demonstrates bitmap animation using SkiaSharp."
+description: "This sample demonstrates bitmap animation using SkiaSharp in a .NET MAUI app."
 page_type: sample
 languages:
 - csharp
@@ -12,7 +12,7 @@ urlFragment: skiasharpmaui-mandelbrotanimation
 
 # Mandelbrot Animation
 
-This program demonstrates bitmap animation using SkiaSharp. Running the sample requires some patience because it first needs to create up to 50 bitmaps of various zoom levels of the famous Mandelbrot Set. After that's finished, however, the program animates those bitmaps to simulate a continuous zoom.
+This sample demonstrates the use of SkiaSharp bitmap animations in a .NET Multi-platform App UI (.NET MAUI) app. Running the sample requires some patience because it first needs to create up to 50 bitmaps of various zoom levels of the famous Mandelbrot Set. After that's finished, however, the program animates those bitmaps to simulate a continuous zoom.
 
 As the sample is creating the 50 bitmaps, it stores them in application local storage as PNG files. This allows the sample to access those PNG files the next time that you run the program, so you don't have to wait for them to be created. However, these 50 bitmaps occupy over 20 megabytes of storage on your device.
 
@@ -31,6 +31,6 @@ When you first run the program, the `Label` at the top of the program shows whic
 > [!NOTE]
 > On some devices, the animation runs smoother if the sample is not being run under control of Visual Studio's debugger.
 
-![Mandelbrot Animation application screenshot](Screenshots/MandelbrotAnimation.png "Mandelbrot Animation application screenshot")
+![Mandelbrot Animation app screenshot](Screenshots/MandelbrotAnimation.png "Mandelbrot Animation app screenshot")
 
 [!INCLUDE [Install SkiaSharp](../includes/install-skiasharp.md)]
