@@ -33,7 +33,8 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>XSAppIconAssets</key>
-	<key>NSPhotoLibraryAddUsageDescription</key>	
+	<string>Assets.xcassets/appicon.appiconset</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>This app needs access to the photo gallery for picking photos and videos.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>This app needs access to the photo gallery for picking photos and videos.</string>
