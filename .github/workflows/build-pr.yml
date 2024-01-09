@@ -78,7 +78,7 @@ jobs:
             }
 
             # Only proceed when his project has not been built yet
-            if (-not ($processedProjects -contains $file)) {
+            if (-not ($processedProjects -contains $projectToBuild)) {
               if ([string]::IsNullOrEmpty($projectToBuild)) {
                   Write-Output "::warning:: Found no csproj for file $file"
               }
