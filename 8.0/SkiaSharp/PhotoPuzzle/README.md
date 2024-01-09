@@ -16,6 +16,6 @@ This sample demonstrates the use of SkiaSharp in a .NET Multi-platform App UI (.
 
 After pressing the **Randomize** button, just tap a tile to move it into an empty position. You can *tap* any tile in the row or column of the empty position to move one, two, or three tiles at once. Use the numbers in the lower-right corner of each tile as a guide.
 
-![Photo Puzzle app screenshot](Screenshots/PhotoPuzzle-randomimzed.png "Photo Puzzle app screenshot")
+![Photo Puzzle app screenshot](Screenshots/PhotoPuzzle-randomized.png "Photo Puzzle app screenshot")   
 
 [!INCLUDE [Install SkiaSharp](../includes/install-skiasharp.md)]
