@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:skia="clr-namespace:SkiaSharp.Views.Maui.Controls;assembly=SkiaSharp.Views.Maui.Controls"
+             x:Class="SkiaSharpDemos.Effects.LightenAndDarkenPage"
+             Title="Lighten And Darken">
+    <Grid RowDefinitions="*,Auto,*,Auto">
+        <skia:SKCanvasView x:Name="lightenCanvasView"
+                           VerticalOptions="Fill"
+                           PaintSurface="OnCanvasViewPaintSurface" />
+        <Slider x:Name="lightenSlider"
+                Grid.Row="1"
+                Margin="10"
+                ValueChanged="OnSliderValueChanged" />
+        <skia:SKCanvasView x:Name="darkenCanvasView"
+                           Grid.Row="2"
+                           VerticalOptions="Fill"
+                           PaintSurface="OnCanvasViewPaintSurface" />
+        <Slider x:Name="darkenSlider"
+                Grid.Row="3"
+                Margin="10"
+                ValueChanged="OnSliderValueChanged" />
+    </Grid>
+</ContentPage>
