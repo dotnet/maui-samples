@@ -77,14 +77,14 @@ jobs:
               }
             }
 
+            $projectToBuild = (Resolve-Path -Path $projectToBuild -Relative).Replace("\", "/")
+
             # Only proceed when his project has not been built yet
             if (-not ($processedProjects -contains $projectToBuild)) {
               if ([string]::IsNullOrEmpty($projectToBuild)) {
                   Write-Output "::warning:: Found no csproj for file $file"
               }
               else {
-                $projectToBuild = (Resolve-Path -Path $projectToBuild -Relative).Replace("\", "/")
-
                 if ($excluded_projects -contains $projectToBuild) {
                     Write-Output "::notice:: Skipping build for excluded project: $projectToBuild"
                     Write-Output "| $projectToBuild | Skipped |" | Out-File -FilePath $jobSummaryFile -Append
