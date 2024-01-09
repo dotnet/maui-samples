@@ -77,18 +77,15 @@ jobs:
               }
             }
 
-            # Only proceed when this project has not been built yet
-            if (-not ($processedProjects -contains $projectToBuild)) {
-              Write-Output "::notice:: $projectToBuild is not in processed builds yet"
+            if (-not [string]::IsNullOrEmpty($projectToBuild)) {
+              $projectToBuild = (Resolve-Path -Path $projectToBuild -Relative).Replace("\", "/")
 
-              if ([string]::IsNullOrEmpty($projectToBuild)) {
-                  Write-Output "::warning:: Found no csproj for file $file"
-              }
-              else {
+              # Only proceed when this project has not been built yet
+              if (-not ($processedProjects -contains $projectToBuild)) {
+                Write-Output "::notice:: $projectToBuild is not in processed builds yet"
+
                 $processedProjects += $projectToBuild
                 Write-Output "::notice:: Added $projectToBuild to processed builds"
-
-                $projectToBuild = (Resolve-Path -Path $projectToBuild -Relative).Replace("\", "/")
 
                 if ($excluded_projects -contains $projectToBuild) {
                     Write-Output "::notice:: Skipping build for excluded project: $projectToBuild"
@@ -119,6 +116,9 @@ jobs:
                   Write-Output "::endgroup::"
                 }
               }
+            }
+            else {
+              Write-Output "::warning:: Found no csproj for file $file"
             }
           }
 
