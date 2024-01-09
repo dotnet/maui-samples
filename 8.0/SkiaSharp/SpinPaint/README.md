@@ -6,7 +6,7 @@ languages:
 - csharp
 - xaml
 products:
-- dotnetmaui
+- dotnet-maui
 urlFragment: skiasharpmaui-spinpaint
 ---
 

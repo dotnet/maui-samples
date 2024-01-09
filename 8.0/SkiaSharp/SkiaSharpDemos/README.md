@@ -6,8 +6,7 @@ languages:
 - csharp
 - xaml
 products:
-- xamarin
-- dotnetmaui
+- dotnet-maui
 urlFragment: skiasharpmaui-demos
 ---
 
