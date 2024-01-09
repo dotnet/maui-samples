@@ -77,13 +77,16 @@ jobs:
               }
             }
 
-            # Only proceed when his project has not been built yet
+            # Only proceed when this project has not been built yet
             if (-not ($processedProjects -contains $projectToBuild)) {
+              Write-Output "::notice:: $projectToBuild is not in processed builds yet"
+
               if ([string]::IsNullOrEmpty($projectToBuild)) {
                   Write-Output "::warning:: Found no csproj for file $file"
               }
               else {
                 $processedProjects += $projectToBuild
+                Write-Output "::notice:: Added $projectToBuild to processed builds"
 
                 $projectToBuild = (Resolve-Path -Path $projectToBuild -Relative).Replace("\", "/")
 
