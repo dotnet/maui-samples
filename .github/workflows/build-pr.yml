@@ -39,7 +39,7 @@ jobs:
       run: |
         $failedProjectCount=0
         # Get the list of changed files
-        $changedFiles = git diff --name-only -r HEAD^1 HEAD
+        $changedFiles = git diff --name-only -r --diff-filter=d HEAD^1 HEAD
 
         $excluded_projects_file="./eng/excluded_projects_" + "${{ runner.os }}".ToLower() + ".txt"
         $excluded_projects=@()
