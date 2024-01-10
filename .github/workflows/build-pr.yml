@@ -3,7 +3,7 @@ name: Build Changed C# Projects for PR
 on:
   pull_request:
     paths-ignore:
-      - '**.md'
+      - '**/*.md'
 
 jobs:
   build:
