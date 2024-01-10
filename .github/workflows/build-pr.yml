@@ -1,9 +1,10 @@
 name: Build Changed C# Projects for PR
 
 on:
-  pull_request:
+  push:
     paths-ignore:
       - '**.md'
+  pull_request:
 
 jobs:
   build:
