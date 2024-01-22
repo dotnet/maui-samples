@@ -28,7 +28,7 @@ namespace CustomLayoutDemos.Layouts
                 maxRow = Math.Max(grid.GetRow(child), maxRow);
             }
 
-            // Add more rows if we need them
+            // Add more rows if needed
             for (int n = grid.RowDefinitions.Count; n <= maxRow; n++)
             {
                 grid.RowDefinitions.Add(new RowDefinition(GridLength.Star));
