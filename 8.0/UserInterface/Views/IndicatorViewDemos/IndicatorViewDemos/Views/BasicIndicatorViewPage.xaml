@@ -7,9 +7,9 @@
     <ContentPage.BindingContext>
         <viewmodels:MonkeysViewModel />
     </ContentPage.BindingContext>
-    <StackLayout Margin="10">
-        <CarouselView HeightRequest="400"
-                      ItemsSource="{Binding Monkeys}"
+    <Grid Margin="10"
+          RowDefinitions="*,Auto">
+        <CarouselView ItemsSource="{Binding Monkeys}"
                       IndicatorView="indicatorView">
             <CarouselView.ItemTemplate>
                 <DataTemplate>
@@ -46,10 +46,11 @@
             </CarouselView.ItemTemplate>
         </CarouselView>
         <IndicatorView x:Name="indicatorView"
+                       Grid.Row="1"
                        MaximumVisible="6"
                        Margin="0,0,0,40"
                        IndicatorColor="LightGray"
                        SelectedIndicatorColor="DarkGray"
                        HorizontalOptions="Center" />
-    </StackLayout>
+    </Grid>
 </ContentPage>
