@@ -8,20 +8,9 @@
     <ContentPage.BindingContext>
         <viewmodels:MonkeysViewModel />
     </ContentPage.BindingContext>
-    <Grid Margin="10">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.5*" />
-            <ColumnDefinition Width="0.5*" />
-        </Grid.ColumnDefinitions>
+    <Grid Margin="10"
+          RowDefinitions="Auto,Auto,Auto,Auto,Auto,*,Auto"
+          ColumnDefinitions="0.5*,0.5*">
         <Label Text="IndicatorColor:"
                HorizontalOptions="End"
                VerticalTextAlignment="Center" />

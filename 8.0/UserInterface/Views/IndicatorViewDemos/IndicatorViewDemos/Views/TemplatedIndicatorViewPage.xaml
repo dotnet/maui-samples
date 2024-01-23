@@ -32,9 +32,9 @@
         </Style>
     </ContentPage.Resources>
 
-    <StackLayout Margin="10">
-        <CarouselView HeightRequest="400"
-                      ItemsSource="{Binding Monkeys}"
+    <Grid Margin="10"
+          RowDefinitions="*,Auto">
+        <CarouselView ItemsSource="{Binding Monkeys}"
                       IndicatorView="indicatorView">
             <CarouselView.ItemTemplate>
                 <DataTemplate>
@@ -72,7 +72,9 @@
         </CarouselView>
 
         <IndicatorView x:Name="indicatorView"
+                       Grid.Row="1"
                        Margin="0,0,0,40"
+                       MaximumVisible="12"
                        IndicatorColor="Transparent"
                        SelectedIndicatorColor="Transparent"
                        HorizontalOptions="Center">
@@ -85,5 +87,5 @@
                 </DataTemplate>
             </IndicatorView.IndicatorTemplate>
         </IndicatorView>
-    </StackLayout>
+    </Grid>
 </ContentPage>
