@@ -10,8 +10,8 @@
         <Label Grid.Row="2"
                Text="Notice that the Grid doesn't explicitly specify a RowDefinitions collection." />
         <Label Grid.Row="3"
-               Text="In MauiProgram.cs, we've added an instance of an ILayoutManagerFactory which replaces the default GridLayoutManager. The custom manager will automatically add the necessary RowDefinitions at runtime." />
+               Text="In MauiProgram.cs, an instance of an ILayoutManagerFactory has been added that replaces the default GridLayoutManager. The custom manager will automatically add the necessary RowDefinitions at runtime." />
         <Label Grid.Row="5"
-               Text="We can even skip some rows, and it will add the intervening ones for us. (Notice the gap between the previous label and this one.)" />
+               Text="We can even skip some rows, and it will add the intervening ones for us (notice the gap between the previous label and this one)." />
     </Grid>
 </ContentPage>

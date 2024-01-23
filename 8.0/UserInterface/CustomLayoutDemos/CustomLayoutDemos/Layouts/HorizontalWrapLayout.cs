@@ -2,7 +2,7 @@
 
 namespace CustomLayoutDemos.Layouts
 {
-    public class HorizontalWrapLayout : StackLayout
+    public class HorizontalWrapLayout : HorizontalStackLayout
     {
         protected override ILayoutManager CreateLayoutManager()
         {
@@ -10,4 +10,3 @@ namespace CustomLayoutDemos.Layouts
         }
     }
 }
-

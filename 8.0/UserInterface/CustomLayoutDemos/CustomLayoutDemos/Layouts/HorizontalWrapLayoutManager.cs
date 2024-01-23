@@ -1,9 +1,9 @@
 ﻿using Microsoft.Maui.Layouts;
-using StackLayoutManager = Microsoft.Maui.Layouts.StackLayoutManager;
+using HorizontalStackLayoutManager = Microsoft.Maui.Layouts.HorizontalStackLayoutManager;
 
 namespace CustomLayoutDemos.Layouts
 {
-    public class HorizontalWrapLayoutManager : StackLayoutManager
+    public class HorizontalWrapLayoutManager : HorizontalStackLayoutManager
     {
         HorizontalWrapLayout _layout;
 
@@ -26,7 +26,6 @@ namespace CustomLayoutDemos.Layouts
             for (int n = 0; n < _layout.Count; n++)
             {
                 var child = _layout[n];
-
                 if (child.Visibility == Visibility.Collapsed)
                 {
                     continue;
@@ -65,12 +64,12 @@ namespace CustomLayoutDemos.Layouts
             totalWidth += padding.HorizontalThickness;
             totalHeight += padding.VerticalThickness;
 
+            // Ensure that the total size of the layout fits within its constraints
             var finalWidth = ResolveConstraints(widthConstraint, Stack.Width, totalWidth, Stack.MinimumWidth, Stack.MaximumWidth);
             var finalHeight = ResolveConstraints(heightConstraint, Stack.Height, totalHeight, Stack.MinimumHeight, Stack.MaximumHeight);
 
             return new Size(finalWidth, finalHeight);
         }
-
 
         public override Size ArrangeChildren(Rect bounds)
         {
@@ -87,7 +86,6 @@ namespace CustomLayoutDemos.Layouts
             for (int n = 0; n < _layout.Count; n++)
             {
                 var child = _layout[n];
-
                 if (child.Visibility == Visibility.Collapsed)
                 {
                     continue;
@@ -113,6 +111,7 @@ namespace CustomLayoutDemos.Layouts
 
             var actual = new Size(maxStackWidth, currentRowTop + currentRowHeight);
 
+            // Adjust the size if the layout is set to fill its container
             return actual.AdjustForFill(bounds, Stack);
         }
     }
