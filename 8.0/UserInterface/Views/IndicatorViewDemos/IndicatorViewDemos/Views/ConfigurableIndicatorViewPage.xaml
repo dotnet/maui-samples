@@ -84,7 +84,6 @@
         </Picker>
         <CarouselView Grid.Row="5"
                       Grid.ColumnSpan="2"
-                      HeightRequest="320"
                       ItemsSource="{Binding Monkeys}"
                       IndicatorView="indicatorView">
             <CarouselView.ItemTemplate>

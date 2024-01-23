@@ -33,8 +33,7 @@
     </ContentPage.Resources>
 
     <StackLayout Margin="10">
-        <CarouselView HeightRequest="400"
-                      ItemsSource="{Binding Monkeys}"
+        <CarouselView ItemsSource="{Binding Monkeys}"
                       IndicatorView="indicatorView">
             <CarouselView.ItemTemplate>
                 <DataTemplate>
