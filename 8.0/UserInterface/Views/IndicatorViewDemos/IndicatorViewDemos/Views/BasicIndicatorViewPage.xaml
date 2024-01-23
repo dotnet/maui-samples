@@ -8,7 +8,8 @@
         <viewmodels:MonkeysViewModel />
     </ContentPage.BindingContext>
     <StackLayout Margin="10">
-        <CarouselView ItemsSource="{Binding Monkeys}"
+        <CarouselView HeightRequest="400"
+                      ItemsSource="{Binding Monkeys}"
                       IndicatorView="indicatorView">
             <CarouselView.ItemTemplate>
                 <DataTemplate>
