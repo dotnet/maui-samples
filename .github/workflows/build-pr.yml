@@ -2,6 +2,8 @@ name: Build Changed C# Projects for PR
 
 on:
   pull_request:
+    paths-ignore:
+      - '**.md'
 
 jobs:
   build:
@@ -36,7 +38,7 @@ jobs:
       run: |
         $failedProjectCount=0
         # Get the list of changed files
-        $changedFiles = git diff --name-only -r HEAD^1 HEAD
+        $changedFiles = git diff --name-only -r --diff-filter=d HEAD^1 HEAD
 
         $excluded_projects_file="./eng/excluded_projects_" + "${{ runner.os }}".ToLower() + ".txt"
         $excluded_projects=@()
@@ -77,13 +79,15 @@ jobs:
               }
             }
 
-            # Only proceed when his project has not been built yet
-            if (-not ($processedProjects -contains $file)) {
-              if ([string]::IsNullOrEmpty($projectToBuild)) {
-                  Write-Output "::warning:: Found no csproj for file $file"
-              }
-              else {
-                $projectToBuild = (Resolve-Path -Path $projectToBuild -Relative).Replace("\", "/")
+            if (-not [string]::IsNullOrEmpty($projectToBuild)) {
+              $projectToBuild = (Resolve-Path -Path $projectToBuild -Relative).Replace("\", "/")
+
+              # Only proceed when this project has not been built yet
+              if (-not ($processedProjects -contains $projectToBuild)) {
+                Write-Output "::notice:: $projectToBuild is not in processed builds yet"
+
+                $processedProjects += $projectToBuild
+                Write-Output "::notice:: Added $projectToBuild to processed builds"
 
                 if ($excluded_projects -contains $projectToBuild) {
                     Write-Output "::notice:: Skipping build for excluded project: $projectToBuild"
@@ -95,7 +99,6 @@ jobs:
                   Write-Output "::group:: Building $projectToBuild"
 
                   dotnet build $projectToBuild
-                  $processedProjects += $projectToBuild
 
                   if ($LASTEXITCODE -gt 0) {
                     Write-Output "::error:: Build failed for $projectToBuild"
@@ -115,6 +118,9 @@ jobs:
                   Write-Output "::endgroup::"
                 }
               }
+            }
+            else {
+              Write-Output "::warning:: Found no csproj for file $file"
             }
           }
 

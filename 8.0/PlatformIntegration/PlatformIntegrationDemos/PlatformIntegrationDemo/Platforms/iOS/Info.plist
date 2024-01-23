@@ -47,6 +47,10 @@
 	<string>Camera Photos</string>
 	<key>NSCalendarsUsageDescription</key>
 	<string>Calendar Access</string>
+	<key>NSCalendarsFullAccessUsageDescription</key>
+	<string>Full access to the Calendar is needed to sign you up for parties!</string>
+	<key>NSCalendarsWriteOnlyAccessUsageDescription</key>
+	<string>Just writing events to the Calendar, nothing to see here.</string>	
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Get Location</string>
 	<key>NSLocationAlwaysUsageDescription</key>
