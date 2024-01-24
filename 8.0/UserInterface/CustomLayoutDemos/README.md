@@ -33,3 +33,5 @@ In some situations you may find that you want to change the behavior of an exist
 
 > [!NOTE]
 > These layouts are not intended as production-ready layouts.
+
+For more information about custom layouts, see [Custom layouts](https://learn.microsoft.com/dotnet/maui/user-interface/layouts/custom).
