@@ -1,0 +1,11 @@
+# Add projects with relative paths and use forward slashes, for example: ./8.0/Sample/App/Project.csproj
+# This file excludes projects only for projects that are built on a Windows build host
+
+# Don't build all intermediate step projects. Only some projects actually build. This is intentional.
+./8.0/Tutorials/ConvertToMvvm/step2_model/Notes.csproj
+./8.0/Tutorials/ConvertToMvvm/step3_viewmodel_about/Notes.csproj
+./8.0/Tutorials/ConvertToMvvm/step4_viewmodel_note/Notes.csproj
+
+# Xamarin projects need to be built different, effort to set that up vs gain isn't worth doing that, so exclude
+./Upgrading/CustomRenderer/XamarinCustomRenderer/XamarinCustomRenderer/XamarinCustomRenderer.Android/XamarinCustomRenderer.Android.csproj
+./Upgrading/CustomRenderer/XamarinCustomRenderer/XamarinCustomRenderer/XamarinCustomRenderer.iOS/XamarinCustomRenderer.iOS.csproj

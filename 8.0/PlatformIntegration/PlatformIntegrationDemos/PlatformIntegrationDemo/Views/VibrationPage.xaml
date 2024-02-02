@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:views="clr-namespace:PlatformIntegrationDemo.Views"
+                xmlns:viewmodels="clr-namespace:PlatformIntegrationDemo.ViewModels"
+                x:Class="PlatformIntegrationDemo.Views.VibrationPage"
+                Title="Vibration">
+    <views:BasePage.BindingContext>
+        <viewmodels:VibrationViewModel />
+    </views:BasePage.BindingContext>
+
+    <Grid RowDefinitions="Auto,*">
+        <Label Text="Quickly and easily make the device vibrate."
+               FontAttributes="Bold"
+               Margin="12" />
+
+        <ScrollView Grid.Row="1">
+            <StackLayout Padding="12,0,12,12"
+                         Spacing="6">
+                <Slider Minimum="0"
+                        Maximum="5000"
+                        Value="{Binding Duration}" />
+                <Button Text="Vibrate"
+                        Command="{Binding VibrateCommand}" />
+                <Button Text="Cancel"
+                        Command="{Binding CancelCommand}" />
+                <Label Text="Vibration is not supported."
+                       TextColor="Red"
+                       FontAttributes="Italic"
+                       IsVisible="{Binding IsSupported, Converter={StaticResource InverterConverter}}" />
+            </StackLayout>
+        </ScrollView>
+    </Grid>
+</views:BasePage>

@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:ControlTemplateDemos.Controls"
+             x:Class="ControlTemplateDemos.ReplaceTemplateCardViewPage"
+             Title="Redefine CardView UI">
+    <ContentPage.Resources>
+        <ControlTemplate x:Key="CardViewCompressed">
+            <Grid RowDefinitions="100" ColumnDefinitions="100,*">
+                <Image Source="{TemplateBinding IconImageSource}"
+                        BackgroundColor="{TemplateBinding IconBackgroundColor}"
+                        WidthRequest="100"
+                        HeightRequest="100"
+                        Aspect="AspectFill"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center" />
+                <VerticalStackLayout Grid.Column="1" Spacing="12">
+                    <Label Text="{TemplateBinding CardTitle}"
+                           FontSize="Large"
+                           FontAttributes="Bold" />
+                    <Label Text="{TemplateBinding CardDescription}" />
+                </VerticalStackLayout>
+            </Grid>
+        </ControlTemplate>
+    </ContentPage.Resources>
+    <VerticalStackLayout Margin="30" Spacing="30">
+        <controls:CardViewUI BorderColor="DarkGray"
+                             CardTitle="John Doe"
+                             CardDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla elit dolor, convallis non interdum."
+                             IconBackgroundColor="SlateGray"
+                             IconImageSource="user.png"
+                             ControlTemplate="{StaticResource CardViewCompressed}" />
+        <controls:CardViewUI BorderColor="DarkGray"
+                             CardTitle="Jane Doe"
+                             CardDescription="Phasellus eu convallis mi. In tempus augue eu dignissim fermentum. Morbi ut lacus vitae eros lacinia."
+                             IconBackgroundColor="SlateGray"
+                             IconImageSource="user.png"
+                             ControlTemplate="{StaticResource CardViewCompressed}" />
+        <controls:CardViewUI BorderColor="DarkGray"
+                             CardTitle=".NET Bot"
+                             CardDescription="Aliquam sagittis, odio lacinia fermentum dictum, mi erat scelerisque erat, quis aliquet arcu."
+                             IconBackgroundColor="SlateGray"
+                             IconImageSource="user.png"
+                             ControlTemplate="{StaticResource CardViewCompressed}" />
+    </VerticalStackLayout>
+</ContentPage>

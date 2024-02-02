@@ -4,25 +4,19 @@
              xmlns:c="clr-namespace:XamarinCustomRenderer.Controls"
              x:Class="MauiCustomRenderer.MainPage">
 
-    <Grid BackgroundColor="#f1f1f1">
+    <Grid Background="{StaticResource PrimaryBrush}">
         <c:PressableView Pressed="Handle_Pressed"
                          Released="Handle_Released"
-                         HorizontalOptions="Center"
-                         VerticalOptions="Center">
-                <Grid
-                    Background="#202020"
-                    HorizontalOptions="Center"
-                    VerticalOptions="Center"
-                    >
-
-                    <Label Text="Press Me"
-                           FontSize="16"
-                           TextColor="White"
-                           Margin="24,20"
-                           VerticalOptions="Center"
-                           HorizontalTextAlignment="Center" />
-                </Grid>
-            
+                         HorizontalOptions="Fill"
+                         VerticalOptions="Fill">
+            <Label Text="Press Me"
+                   FontSize="16"
+                   TextColor="White"
+                   Background="#000000"
+                   VerticalOptions="Fill"
+                   HorizontalOptions="Fill"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center"/>
         </c:PressableView>
     </Grid>
 

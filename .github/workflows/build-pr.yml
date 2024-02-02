@@ -1,0 +1,134 @@
+name: Build Changed C# Projects for PR
+
+on:
+  pull_request:
+    paths-ignore:
+      - '**.md'
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, macos-13]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 2
+
+    # Remove when .NET 8 is default on hosted runners
+    - name: Install .NET 8
+      uses: actions/setup-dotnet@v3.2.0
+      with:
+        dotnet-version: 8.0
+
+    - name: Install .NET MAUI Workload
+      run: dotnet workload install maui
+      # if: runner.os == 'macOS' # reenable when .NET 8 is default on hosted runners
+
+    - name: Select Xcode Version
+      run: sudo xcode-select -s /Applications/Xcode_15.2.app
+      if: runner.os == 'macOS' # Remove when Xcode 15+ is default on the hosted runners
+
+    - name: Find and build changed projects
+      run: |
+        $failedProjectCount=0
+        # Get the list of changed files
+        $changedFiles = git diff --name-only -r --diff-filter=d HEAD^1 HEAD
+
+        $excluded_projects_file="./eng/excluded_projects_" + "${{ runner.os }}".ToLower() + ".txt"
+        $excluded_projects=@()
+        $processedProjects=@()
+
+        $jobSummaryFile=$env:GITHUB_STEP_SUMMARY
+
+        if (Test-Path $excluded_projects_file) {
+            $excluded_projects = Get-Content -Path $excluded_projects_file | Where-Object { $_ -notmatch "^\s*#" -and $_ -match "\S" }
+        }
+
+        Write-Output "# .NET MAUI Sample Apps Build Status (${{ runner.os }})" | Out-File -FilePath $jobSummaryFile -Append
+        Write-Output "Only projects that have changes are built." | Out-File -FilePath $jobSummaryFile -Append
+        Write-Output "| Project | Build Status |" | Out-File -FilePath $jobSummaryFile -Append
+        Write-Output "|---|---|" | Out-File -FilePath $jobSummaryFile -Append
+
+        # Determine the corresponding project for each changed file
+        foreach ($file in $changedFiles) {
+            $projectToBuild=""
+
+            # Check if the file is a .csproj file
+            if ($file -like '*.csproj') {
+              $projectToBuild = $file
+            } else {
+              $currentFolder = (Get-Item -LiteralPath (Resolve-Path -Path "$file")).Directory
+              
+              while ($currentFolder -ne $null -and '' -ne $currentFolder) {
+                $csprojFiles = Get-ChildItem -Path $currentFolder -Filter '*.csproj' -File
+
+                if ($csprojFiles.Count -gt 0) {
+                  break
+                }
+                $currentFolder = Split-Path -Parent $currentFolder
+              }
+
+              if ($csprojFiles.Count -gt 0) {
+                $projectToBuild = $csprojFiles[0].FullName
+              }
+            }
+
+            if (-not [string]::IsNullOrEmpty($projectToBuild)) {
+              $projectToBuild = (Resolve-Path -Path $projectToBuild -Relative).Replace("\", "/")
+
+              # Only proceed when this project has not been built yet
+              if (-not ($processedProjects -contains $projectToBuild)) {
+                Write-Output "::notice:: $projectToBuild is not in processed builds yet"
+
+                $processedProjects += $projectToBuild
+                Write-Output "::notice:: Added $projectToBuild to processed builds"
+
+                if ($excluded_projects -contains $projectToBuild) {
+                    Write-Output "::notice:: Skipping build for excluded project: $projectToBuild"
+                    Write-Output "| $projectToBuild | Skipped |" | Out-File -FilePath $jobSummaryFile -Append
+
+                    $skippedProjectCount++
+                }
+                else {
+                  Write-Output "::group:: Building $projectToBuild"
+
+                  dotnet build $projectToBuild
+
+                  if ($LASTEXITCODE -gt 0) {
+                    Write-Output "::error:: Build failed for $projectToBuild"
+                    Write-Output "| $projectToBuild | :x: |" | Out-File -FilePath $jobSummaryFile -Append
+
+                    $failedProjectCount++
+                  }
+                  else {
+                    Write-Output "Build succeeded for $projectToBuild"
+                    Write-Output "| $projectToBuild | :white_check_mark: |" | Out-File -FilePath $jobSummaryFile -Append
+                  }
+
+                  $proj_dir = [System.IO.Path]::GetDirectoryName($projectToBuild)
+                  Write-Output "Cleaning up bin & obj in $proj_dir"
+                  Get-ChildItem -Path $proj_dir -Directory -Recurse -Include bin,obj | Remove-Item -Recurse -Force
+
+                  Write-Output "::endgroup::"
+                }
+              }
+            }
+            else {
+              Write-Output "::warning:: Found no csproj for file $file"
+            }
+          }
+
+        if ($failedProjectCount -gt 0) {
+            Write-Output "" | Out-File -FilePath $jobSummaryFile -Append
+            Write-Output "# Failed builds: $failedProjectCount" | Out-File -FilePath $jobSummaryFile -Append
+            Write-Output "# Skipped builds: $skippedProjectCount" | Out-File -FilePath $jobSummaryFile -Append
+            
+            exit $failedProjectCount
+        }
+      shell: powershell

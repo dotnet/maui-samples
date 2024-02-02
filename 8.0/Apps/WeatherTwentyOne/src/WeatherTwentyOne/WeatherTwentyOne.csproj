@@ -1,0 +1,87 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net8.0-ios;net8.0-maccatalyst;net8.0-android</TargetFrameworks>
+	  <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net8.0-windows10.0.19041.0</TargetFrameworks>
+
+    <!-- Note for MacCatalyst:
+		The default runtime is maccatalyst-x64, except in Release config, in which case the default is maccatalyst-x64;maccatalyst-arm64.
+		When specifying both architectures, use the plural <RuntimeIdentifiers> instead of the singular <RuntimeIdentifier>.
+		The Mac App Store will NOT accept apps with ONLY maccatalyst-arm64 indicated;
+		either BOTH runtimes must be indicated or ONLY macatalyst-x64. -->
+		<!-- For example: <RuntimeIdentifiers>maccatalyst-x64;maccatalyst-arm64</RuntimeIdentifiers> -->
+
+    <OutputType>Exe</OutputType>
+    <SingleProject>true</SingleProject>
+    <UseMaui>true</UseMaui>
+    <RootNamespace>WeatherTwentyOne</RootNamespace>
+    <ApplicationTitle>WeatherTwentyOne</ApplicationTitle>
+    <ApplicationId>com.companyname.WeatherTwentyOne</ApplicationId>
+    <EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
+    <SingleProject>true</SingleProject>
+    <ApplicationVersion>1</ApplicationVersion>
+
+	<!-- (Optional) Pin to a specific version -->
+	<!--<MauiVersion>6.0.101-preview.11.2349</MauiVersion>-->
+
+    <!-- Required for C# Hot Reload -->
+	<UseInterpreter Condition="'$(Configuration)' == 'Debug'">True</UseInterpreter>
+
+  <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">11.0</SupportedOSPlatformVersion>
+  <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">13.1</SupportedOSPlatformVersion>
+  <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+  <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+  <TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+  <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+
+  </PropertyGroup>
+
+	<!-- To generate MSIX as part of dotnet publish -->
+	<PropertyGroup Condition="$(TargetFramework.Contains('-windows')) and '$(Configuration)' == 'Release'">
+		<GenerateAppxPackageOnBuild>true</GenerateAppxPackageOnBuild>
+		<!-- <AppxPackageSigningEnabled>true</AppxPackageSigningEnabled> -->
+	</PropertyGroup>
+
+	<!-- For iOS publish-->
+	<PropertyGroup Condition="$(TargetFramework.Contains('-ios')) and '$(Configuration)' == 'Release'">
+		<RuntimeIdentifier>ios-arm64</RuntimeIdentifier>
+		<!-- <CodesignKey>iPhone Distribution: John Smith (AY2GDE9QM7)</CodesignKey>
+		<CodesignProvision>MyMauiApp</CodesignProvision> -->
+		<ArchiveOnBuild>true</ArchiveOnBuild>
+	</PropertyGroup>
+  <ItemGroup>
+    <MauiIcon Include="Resources\appicon.svg" ForegroundFile="Resources\appiconfg.svg" Color="#081B25" />
+    <MauiSplashScreen Include="Resources\appiconfg.svg" Color="#081B25" />
+    <MauiImage Include="Resources\Images\*" />
+    <MauiFont Include="Resources\Fonts\*" />
+	<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+  </ItemGroup>
+
+	<ItemGroup Condition="$(TargetFramework.Contains('-windows'))">
+		<PackageReference Include="Microsoft.Toolkit.Uwp.Notifications" Version="7.0.1" />
+		<PackageReference Include="PInvoke.User32" Version="0.7.104" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Platforms\Windows\trayicon.ico" />
+	  <None Remove="Platforms\MacCatalyst\trayicon.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="Platforms\Windows\trayicon.ico">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="Platforms\MacCatalyst\trayicon.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	</ItemGroup>
+
+  <ItemGroup>
+		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
+	</ItemGroup>
+
+   <ProjectExtensions><VisualStudio><UserProperties XamarinHotReloadGenericExceptionInfoBarWeatherTwentyOneHideInfoBar="True" /></VisualStudio></ProjectExtensions>
+
+</Project>
