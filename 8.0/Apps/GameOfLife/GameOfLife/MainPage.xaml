@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GameOfLife.MainPage"
+             Title="Game of Life">
+    <Grid RowDefinitions="*,Auto">
+        <AbsoluteLayout x:Name="absoluteLayout"
+                        BackgroundColor="Gray"
+                        SizeChanged="OnLayoutSizeChanged" />
+        <HorizontalStackLayout Grid.Row="1"
+                               Margin="5"
+                               Spacing="6">
+            <Button x:Name="runButton"
+                    Text="Run!"
+                    Clicked="OnRunButtonClicked" />
+            <Button x:Name="clearButton"
+                    Text="Clear"
+                    Clicked="OnClearButtonClicked" />
+            <Button Text="About"
+                    Clicked="OnAboutButtonClicked" />
+        </HorizontalStackLayout>
+    </Grid>
+</ContentPage>
