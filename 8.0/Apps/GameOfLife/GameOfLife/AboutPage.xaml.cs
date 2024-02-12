@@ -2,10 +2,10 @@
 
 public partial class AboutPage : ContentPage
 {
-	public AboutPage()
-	{
-		InitializeComponent();
-	}
+    public AboutPage()
+    {
+        InitializeComponent();
+    }
 
     async void OnHyperlinkTapped(object sender, EventArgs args)
     {
@@ -14,7 +14,7 @@ public partial class AboutPage : ContentPage
     }
 
     async void OnCloseButtonClicked(object sender, EventArgs e)
-	{
-		await Navigation.PopModalAsync();
-	}
+    {
+        await Navigation.PopModalAsync();
+    }
 }
