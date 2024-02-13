@@ -71,7 +71,14 @@ public partial class MainPage : ContentPage
         absoluteLayout.WidthRequest = NUM * squareSize;
         absoluteLayout.HeightRequest = NUM * squareSize;
 
-        double multiplier = (DeviceInfo.Current.Idiom == DeviceIdiom.Desktop ? 0.4 : 0.5);
+#if ANDROID || IOS
+        double multiplier = 0.4;
+#elif WINDOWS
+        double multiplier = 0.5;
+#elif MACCATALYST
+        double multiplier = 0.6;
+#endif
+
         foreach (View view in absoluteLayout)
         {
             GameSquare square = (GameSquare)view;

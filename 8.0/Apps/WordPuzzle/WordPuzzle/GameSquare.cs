@@ -24,10 +24,16 @@
                 VerticalOptions = LayoutOptions.Center
             };
 
+#if MACCATALYST || WINDOWS
+            double fontSize = 14;
+#elif ANDROID || IOS
+            double fontSize = 10;
+#endif
+
             Label tinyLabel = new Label
             {
                 Text = (index + 1).ToString(),
-                FontSize = (DeviceInfo.Current.Idiom == DeviceIdiom.Desktop ? 10 : 14),
+                FontSize = fontSize,
                 HorizontalOptions = LayoutOptions.End,
                 VerticalOptions = LayoutOptions.End
             };
