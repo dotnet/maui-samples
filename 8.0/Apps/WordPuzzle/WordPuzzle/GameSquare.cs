@@ -27,7 +27,7 @@
             Label tinyLabel = new Label
             {
                 Text = (index + 1).ToString(),
-                FontSize = 10,
+                FontSize = (DeviceInfo.Current.Idiom == DeviceIdiom.Desktop ? 10 : 14),
                 HorizontalOptions = LayoutOptions.End,
                 VerticalOptions = LayoutOptions.End
             };

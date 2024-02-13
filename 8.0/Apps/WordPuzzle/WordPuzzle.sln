@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 25.0.1706.8
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordPuzzle", "WordPuzzle\WordPuzzle.csproj", "{747910C7-A402-4ABC-A2D3-F3F20708463A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WordPuzzle", "WordPuzzle\WordPuzzle.csproj", "{747910C7-A402-4ABC-A2D3-F3F20708463A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,6 +13,7 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{747910C7-A402-4ABC-A2D3-F3F20708463A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{747910C7-A402-4ABC-A2D3-F3F20708463A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{747910C7-A402-4ABC-A2D3-F3F20708463A}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{747910C7-A402-4ABC-A2D3-F3F20708463A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{747910C7-A402-4ABC-A2D3-F3F20708463A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection

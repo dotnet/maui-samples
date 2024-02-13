@@ -71,10 +71,11 @@ public partial class MainPage : ContentPage
         absoluteLayout.WidthRequest = NUM * squareSize;
         absoluteLayout.HeightRequest = NUM * squareSize;
 
+        double multiplier = (DeviceInfo.Current.Idiom == DeviceIdiom.Desktop ? 0.4 : 0.5);
         foreach (View view in absoluteLayout)
         {
             GameSquare square = (GameSquare)view;
-            square.SetLabelFont(0.4 * squareSize, FontAttributes.Bold);
+            square.SetLabelFont(multiplier * squareSize, FontAttributes.Bold);
 
             AbsoluteLayout.SetLayoutBounds(square,
                 new Rect(square.Col * squareSize,
