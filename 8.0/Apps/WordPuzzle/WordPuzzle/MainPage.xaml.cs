@@ -84,11 +84,10 @@ public partial class MainPage : ContentPage
             GameSquare square = (GameSquare)view;
             square.SetLabelFont(multiplier * squareSize, FontAttributes.Bold);
 
-            AbsoluteLayout.SetLayoutBounds(square,
-                new Rect(square.Col * squareSize,
-                    square.Row * squareSize,
-                    squareSize,
-                    squareSize));
+            AbsoluteLayout.SetLayoutBounds(square, new Rect(square.Col * squareSize,
+                                                            square.Row * squareSize,
+                                                            squareSize,
+                                                            squareSize));
         }
     }
 
@@ -166,6 +165,7 @@ public partial class MainPage : ContentPage
         // This is the actual animation call.
         await animaSquare.LayoutTo(rect, length);
 
+        // Set layout bounds to same Rectangle.
         AbsoluteLayout.SetLayoutBounds(animaSquare, rect);
 
         // Set several variables and properties for new layout.

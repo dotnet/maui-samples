@@ -1,4 +1,6 @@
-﻿namespace WordPuzzle
+﻿using Microsoft.Maui.Controls.Shapes;
+
+namespace WordPuzzle
 {
     class GameSquare : ContentView
     {
@@ -39,19 +41,20 @@
             };
 
             this.Padding = new Thickness(5);
-            this.Content = new Frame
+            this.Content = new Border
             {
-                BorderColor = Colors.Black,
-                HasShadow = true,
+                Stroke = Colors.Black,
+                StrokeThickness = 1,
+                StrokeShape = new RoundRectangle
+                {
+                    CornerRadius = new CornerRadius(5)
+                },
                 Padding = new Thickness(5, 10, 5, 0),
                 Content = new VerticalStackLayout
                 {
-                    label, tinyLabel,
+                    label, tinyLabel
                 }
             };
-
-            // Don't let touch pass us by.
-            this.BackgroundColor = Colors.Transparent;
         }
 
         public async Task AnimateWinAsync(bool isReverse)
