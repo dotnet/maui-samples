@@ -1,7 +1,7 @@
 name: "bulk quest import"
 on:
   schedule:
-    - cron: '0 6 * * *' # UTC time, that's 6pm EST, 1pm EST.
+    - cron: '0 6 * * *' # UTC time, that's 6pm UTC, 1pm EST.
   workflow_dispatch:
     inputs:
       reason:
