@@ -15,10 +15,10 @@
                     HorizontalOptions="Center"
                     VerticalOptions="Center" />
             <Label x:Name="timeLabel"
-                    FontSize="26"
-                    FontAttributes="Bold"
-                    HorizontalOptions="Center"
-                    VerticalOptions="Center" />
+                   FontSize="26"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center" />
         </VerticalStackLayout>
         <AbsoluteLayout x:Name="absoluteLayout" />
     </StackLayout>

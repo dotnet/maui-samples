@@ -1,10 +1,10 @@
-﻿namespace WordPuzzle;
-
-public partial class AppShell : Shell
+﻿namespace WordPuzzle
 {
-	public AppShell()
-	{
-		InitializeComponent();
-	}
+    public partial class AppShell : Shell
+    {
+        public AppShell()
+        {
+            InitializeComponent();
+        }
+    }
 }
-
