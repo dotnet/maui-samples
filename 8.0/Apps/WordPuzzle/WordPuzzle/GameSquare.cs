@@ -18,7 +18,7 @@ namespace WordPuzzle
             this.normText = normChar.ToString();
             this.winText = winChar.ToString();
 
-            // A Frame surrounding two Labels.
+            // A Border surrounding two Labels.
             label = new Label
             {
                 Text = this.normText,
