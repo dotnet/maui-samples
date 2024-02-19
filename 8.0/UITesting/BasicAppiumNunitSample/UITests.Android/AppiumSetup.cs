@@ -39,7 +39,7 @@ public class AppiumSetup
         // If you're running your tests against debug builds you'll need to set NoReset to true
         // otherwise appium will delete all the libraries used for Fast Deployment on Android
         // Release builds have Fast Deployment disabled
-        // https://learn.microsoft.com/en-us/xamarin/android/deploy-test/building-apps/build-process#fast-deployment
+        // https://learn.microsoft.com/xamarin/android/deploy-test/building-apps/build-process#fast-deployment
         androidOptions.AddAdditionalAppiumOption(MobileCapabilityType.NoReset, "true");
         androidOptions.AddAdditionalAppiumOption(AndroidMobileCapabilityType.AppPackage, "com.companyname.basicappiumsample");
 
