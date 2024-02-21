@@ -111,7 +111,7 @@ Each method is adorned with a `[Test]` attribute. This marks the method as a tes
 
 Tests can be ran from the Visual Studio Test Explorer or by running `dotnet test` from the command-line.
 
-To run the tests, an Appium server needs to be available and running, and that in turn should be able to reach the emulators, Simulator or physical devices as needed.
+To run the tests, an Appium server needs to be available and running, and that in turn should be able to reach the emulators, Simulator or physical devices as needed. For Android, make sure to either specify the emulator to be used in the configuration, or have an emulator already running/device already connected. If no emulator/device is detected, the tests will not run and throw an exception specifying that no connected Android device could be found.
 
 > [!NOTE]
 > For all platforms apart from macOS, you typically want to have your app deployed on the device that you want to test on. Make sure you have the latest app version is deployed to your device. Tests will be ran against that app. The way this sample is set up, it will **not** deploy the app for you as part of the test run.
@@ -121,3 +121,9 @@ This sample does automatically start and stop the Appium server for you as part 
 If you want to start the Appium server manually, go into each `AppiumSetup.cs` file in each of the platform projects and comment out the lines that call `AppiumServerHelper`. There are two: one to start the server and one to stop it.
 
 You will have to make sure the Appium server is started before running the tests and optionally configure the Appium drivers used in code to be able to reach your own server.
+
+### Android Debug vs Release Build
+
+On Android there is the concept of [Fast Deployment](https://learn.microsoft.com/xamarin/android/deploy-test/building-apps/build-process#fast-deployment) and because of that needs some special configuration when running with Appium.
+
+In the `AppiumSetup.cs` of the `UITest.Android` project there are inline comments with instructions. However, this part of the configuration is very much dependent on how you setup your testing. If you use a Debug configuration build, evertyhing is setup as it should. When you want to test your resulting apk/aab binary file (or the Release configuration build), you will want to comment out the Debug configuration code and uncomment the Release configuration code and make sure the path to your app binary is correct.
