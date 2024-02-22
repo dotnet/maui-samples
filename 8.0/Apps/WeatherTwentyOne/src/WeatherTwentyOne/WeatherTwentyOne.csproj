@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFrameworks>net8.0-ios;net8.0-maccatalyst;net8.0-android</TargetFrameworks>
@@ -19,10 +19,13 @@
     <ApplicationId>com.companyname.WeatherTwentyOne</ApplicationId>
     <EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
     <SingleProject>true</SingleProject>
+
+    <!-- Versions -->
+    <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
     <ApplicationVersion>1</ApplicationVersion>
 
 	<!-- (Optional) Pin to a specific version -->
-	<!--<MauiVersion>6.0.101-preview.11.2349</MauiVersion>-->
+	<MauiVersion>8.0.7</MauiVersion>
 
     <!-- Required for C# Hot Reload -->
 	<UseInterpreter Condition="'$(Configuration)' == 'Debug'">True</UseInterpreter>
@@ -35,13 +38,6 @@
   <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
 
   </PropertyGroup>
-
-	<!-- To generate MSIX as part of dotnet publish -->
-	<PropertyGroup Condition="$(TargetFramework.Contains('-windows')) and '$(Configuration)' == 'Release'">
-		<GenerateAppxPackageOnBuild>true</GenerateAppxPackageOnBuild>
-		<!-- <AppxPackageSigningEnabled>true</AppxPackageSigningEnabled> -->
-	</PropertyGroup>
-
 	<!-- For iOS publish-->
 	<PropertyGroup Condition="$(TargetFramework.Contains('-ios')) and '$(Configuration)' == 'Release'">
 		<RuntimeIdentifier>ios-arm64</RuntimeIdentifier>
