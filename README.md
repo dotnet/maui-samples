@@ -10,6 +10,7 @@ Official samples can be accessed via the [Samples browser](https://docs.microsof
 
 Sample highlights include:
 
+* [.NET eShop Reference Application - "Northern Mountains"](https://github.com/dotnet/eShop)
 * [Point of Sale](8.0/Apps/PointOfSale)
 * [Weather '21 App](8.0/Apps/WeatherTwentyOne)
 * [Calculator App](8.0/Apps/Calculator)
