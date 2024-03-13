@@ -1,0 +1,7 @@
+﻿<resources>
+	<style name="AppTheme" parent="Theme.MaterialComponents.Light">
+		<item name="colorPrimary">@color/primaryColor</item>
+		<item name="colorPrimaryDark">@color/primaryDarkColor</item>
+		<item name="colorAccent">@color/accentColor</item>
+	</style>
+</resources>
