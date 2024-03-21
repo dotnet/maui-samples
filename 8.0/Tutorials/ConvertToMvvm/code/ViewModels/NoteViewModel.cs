@@ -31,17 +31,13 @@ internal class NoteViewModel : ObservableObject, IQueryAttributable
     public NoteViewModel()
     {
         _note = new Models.Note();
-        SetupCommands();
+        SaveCommand = new AsyncRelayCommand(Save);
+        DeleteCommand = new AsyncRelayCommand(Delete);
     }
-    
+
     public NoteViewModel(Models.Note note)
     {
         _note = note;
-        SetupCommands();
-    }
-
-    private void SetupCommands()
-    {
         SaveCommand = new AsyncRelayCommand(Save);
         DeleteCommand = new AsyncRelayCommand(Delete);
     }

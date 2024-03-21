@@ -1,4 +1,3 @@
-//<full>
 namespace Notes.Views;
 
 public partial class AllNotesPage : ContentPage
@@ -8,11 +7,8 @@ public partial class AllNotesPage : ContentPage
         InitializeComponent();
     }
 
-    //<event>
     private void ContentPage_NavigatedTo(object sender, NavigatedToEventArgs e)
     {
         notesCollection.SelectedItem = null;
     }
-    //</event>
 }
-//</full>
