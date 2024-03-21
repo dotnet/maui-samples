@@ -18,6 +18,20 @@ public partial class NotePage : ContentPage
         LoadNote(Path.Combine(appDataPath, randomFileName));
     }
 
+    private void LoadNote(string fileName)
+    {
+        Models.Note noteModel = new Models.Note();
+        noteModel.Filename = fileName;
+
+        if (File.Exists(fileName))
+        {
+            noteModel.Date = File.GetCreationTime(fileName);
+            noteModel.Text = File.ReadAllText(fileName);
+        }
+
+        BindingContext = noteModel;
+    }
+
     private async void SaveButton_Clicked(object sender, EventArgs e)
     {
         if (BindingContext is Models.Note note)
@@ -36,19 +50,5 @@ public partial class NotePage : ContentPage
         }
 
         await Shell.Current.GoToAsync("..");
-    }
-
-    private void LoadNote(string fileName)
-    {
-        Models.Note noteModel = new Models.Note();
-        noteModel.Filename = fileName;
-
-        if (File.Exists(fileName))
-        {
-            noteModel.Date = File.GetCreationTime(fileName);
-            noteModel.Text = File.ReadAllText(fileName);
-        }
-
-        BindingContext = noteModel;
     }
 }
