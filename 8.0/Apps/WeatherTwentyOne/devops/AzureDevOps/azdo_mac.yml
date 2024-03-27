@@ -3,7 +3,7 @@ trigger:
 
 variables:
     BuildConfiguration: Release
-    DotNetVersion: 6.0.300
+    DotNetVersion: 8.0.100
 
 stages:
 - stage: BuildMacCatalyst
