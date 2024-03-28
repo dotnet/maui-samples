@@ -1,0 +1,197 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:cl="clr-namespace:CustomLayouts"
+             xmlns:pages="clr-namespace:PointOfSale.Pages"
+             xmlns:m="clr-namespace:PointOfSale.Models"
+             x:DataType="pages:SettingsViewModel"
+             x:Class="PointOfSale.Pages.SettingsPage"
+             Shell.NavBarIsVisible="False">
+
+    <ContentPage.BindingContext>
+        <pages:SettingsViewModel/>
+    </ContentPage.BindingContext>
+
+    <VisualStateManager.VisualStateGroups>
+        <VisualStateGroupList>
+            <VisualStateGroup x:Name="CommonStates">
+                <VisualState x:Name="Hidden">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter
+                            TargetName="MainGrid"
+                            Property="Grid.ColumnDefinitions"
+                            Value="0,*" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Shown">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1250" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter
+                            TargetName="MainGrid"
+                            Property="Grid.ColumnDefinitions"
+                            Value="275,*" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateGroupList>
+    </VisualStateManager.VisualStateGroups>
+
+    <ContentPage.Resources>
+        <Style TargetType="Image">
+            <Setter Property="HorizontalOptions" Value="Start"/>
+            <Setter Property="VerticalOptions" Value="Start"/>
+        </Style>               
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <Grid RowDefinitions="70,*" 
+              ColumnDefinitions="275,*"
+              ColumnSpacing="24"
+              Padding="24"
+              x:Name="MainGrid">
+            <Label Text="Settings" Style="{StaticResource LargeTitle}"
+                   Grid.ColumnSpan="2"
+                   />
+
+            <Border Background="{StaticResource DarkBg2Brush}"
+                    Stroke="{StaticResource DarkBg2Brush}"
+                    StrokeThickness="1"
+                    Grid.Row="1"
+                    >
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="12"/>
+                </Border.StrokeShape>
+                <VerticalStackLayout Padding="0,12">
+                    
+                    <Grid ColumnDefinitions="Auto,Auto" ColumnSpacing="8"
+                          RowDefinitions="Auto, Auto" RowSpacing="4"
+                          Padding="26"
+                          >
+                        <Image Source="heart.png" />
+                        <Label Text="Appearance" Grid.Column="1" Style="{StaticResource Headline}" />
+                        <Label Text="Dark and Light mode, Font size" Grid.Column="1" Grid.Row="1" Style="{StaticResource Subhead}"/>
+                    </Grid>
+
+                    <Grid ColumnDefinitions="20,Auto" ColumnSpacing="8"
+                          RowDefinitions="Auto, Auto" RowSpacing="4"
+                          Padding="26">
+                        <Image Source="store.png"/>
+                        <Label Text="Your Restaurant" Grid.Column="1" Style="{StaticResource Headline}" />
+                        <Label Text="Lorem ipsum dolor sit amet" Grid.Column="1" Grid.Row="1" Style="{StaticResource Subhead}"/>
+                    </Grid>
+
+                    <Grid ColumnDefinitions="20,Auto" ColumnSpacing="8"
+                          RowDefinitions="Auto, Auto" RowSpacing="4"
+                          Padding="26"
+                          Background="{StaticResource TertiaryBrush}"
+                          >
+                        <Image Source="discount.png"/>
+                        <Label Text="Products Management" Grid.Column="1" Style="{StaticResource Headline}" TextColor="{StaticResource Primary}" />
+                        <Label Text="Manage your products, pricing..." Grid.Column="1" Grid.Row="1" Style="{StaticResource Subhead}"/>
+                    </Grid>
+
+                    <Grid ColumnDefinitions="20,Auto" ColumnSpacing="8"
+                          RowDefinitions="Auto, Auto" RowSpacing="4"
+                          Padding="26">
+                        <Image Source="notification.png"/>
+                        <Label Text="Notifications" Grid.Column="1" Style="{StaticResource Headline}" />
+                        <Label Text="Customize your notifications" Grid.Column="1" Grid.Row="1" Style="{StaticResource Subhead}"/>
+                    </Grid>
+
+                    <Grid ColumnDefinitions="20,Auto" ColumnSpacing="8"
+                          RowDefinitions="Auto, Auto" RowSpacing="4"
+                          Padding="26">
+                        <Image Source="unlock.png"/>
+                        <Label Text="Security" Grid.Column="1" Style="{StaticResource Headline}" />
+                        <Label Text="Configure password, PIN..." Grid.Column="1" Grid.Row="1" Style="{StaticResource Subhead}"/>
+                    </Grid>
+
+                    <Grid ColumnDefinitions="20,Auto" ColumnSpacing="8"
+                          RowDefinitions="Auto, Auto" RowSpacing="4"
+                          Padding="26">
+                        <Image Source="info.png"/>
+                        <Label Text="About Us" Grid.Column="1" Style="{StaticResource Headline}" />
+                        <Label Text="Lorem ipsum dolor sit amet" Grid.Column="1" Grid.Row="1" Style="{StaticResource Subhead}"/>
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Background="{StaticResource DarkBg2Brush}"
+                    Stroke="{StaticResource DarkBg2Brush}"
+                    StrokeThickness="1"
+                    Grid.Row="1"
+                    Grid.Column="1">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="12"/>
+                </Border.StrokeShape>
+                <VerticalStackLayout Spacing="8">
+                    <Grid Margin="24" >
+                        <Label Text="Products Management" VerticalOptions="Center"/>
+                        <Button Text="Manage Categories" HorizontalOptions="End" VerticalOptions="Center"
+                                Command="{Binding NotImplementedCommand}"/>
+                    </Grid>
+
+                    <Label Margin="24,8"  Text="All Products" Style="{StaticResource Headline}" TextColor="{StaticResource Primary}"/>
+                    <BoxView Style="{StaticResource HRule}"/>
+                    <ScrollView>
+                        <cl:HorizontalWrapLayout
+                            Margin="24" 
+                            VerticalOptions="Fill" 
+                            HorizontalOptions="Fill"
+                            BindableLayout.ItemsSource="{Binding Products}"
+                            Spacing="24">
+
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate x:DataType="m:Item">
+                                    <Frame CornerRadius="12"
+                                           BorderColor="{StaticResource Neutral}"
+                                           BackgroundColor="Transparent" Padding="0"
+                                           HeightRequest="300"
+                                           WidthRequest="260">
+                                        <Grid RowDefinitions="2*,1*,44" RowSpacing="8" 
+                                              >
+                                            <Image Source="{Binding Image}" Margin="22"
+                                                   HorizontalOptions="Center"
+                                                   VerticalOptions="Center"
+                                                   />
+                                            <Label 
+                                                Grid.Row="1"
+                                                Margin="22,0"
+                                                Text="{Binding Title}" HorizontalOptions="Center" VerticalOptions="End"/>
+                                            <Grid Background="{StaticResource TertiaryBrush}" 
+                                                  IsClippedToBounds="True"
+                                                                   Grid.Row="2">
+                                                <Label Text="Edit" TextColor="{StaticResource Primary}" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                            </Grid>
+                                        </Grid>
+                                    </Frame>
+
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+
+                            <Border Stroke="{StaticResource PrimaryBrush}"
+                                    StrokeThickness="1"
+                                    StrokeDashOffset="5" Background="Transparent"
+                                    StrokeDashArray="5,5"
+                                    HeightRequest="300"
+                                    WidthRequest="260">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="12"/>
+                                </Border.StrokeShape>
+                                <Grid HeightRequest="300" VerticalOptions="Fill">
+                                    <Label Text="Add New" TextColor="{StaticResource Primary}" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                </Grid>
+                            </Border>
+
+                        
+                        </cl:HorizontalWrapLayout>
+                    </ScrollView>
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+    </ScrollView>
+</ContentPage>
