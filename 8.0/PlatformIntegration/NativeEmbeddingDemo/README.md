@@ -22,4 +22,6 @@ The process for consuming a .NET MAUI control in a native app is as follows:
 1. Initialize .NET MAUI by calling the `UseMauiEmbedding` extension method.
 1. Create the .NET MAUI UI and convert it to the appropriate native type with the `ToPlatformEmbedding` extension method.
 
+You must disable hot reload in Visual Studio to run this sample, or run the sample without debugging.
+
 For more information about the sample see [Native embedding](https://learn.microsoft.com/dotnet/maui/platform-integration/native-embedding).
