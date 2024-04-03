@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net8.0-android</TargetFramework>
+		<SupportedOSPlatformVersion>21</SupportedOSPlatformVersion>
+		<OutputType>Exe</OutputType>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+
+		<UseMaui>true</UseMaui>
+		<MauiEnablePlatformUsings>true</MauiEnablePlatformUsings>
+
+		<ApplicationId>com.companyname.nativeembeddingdemo</ApplicationId>
+		<ApplicationVersion>1</ApplicationVersion>
+		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\NativeEmbeddingDemo.Library\NativeEmbeddingDemo.Library.csproj" />
+		<ProjectReference Include="..\NativeEmbeddingDemo\NativeEmbeddingDemo.csproj" />
+	</ItemGroup>
+
+	<ProjectExtensions><VisualStudio><UserProperties XamarinHotReloadDebuggerTimeoutExceptionNativeEmbeddingDemoDroidHideInfoBar="True" /></VisualStudio></ProjectExtensions>
+
+</Project>
