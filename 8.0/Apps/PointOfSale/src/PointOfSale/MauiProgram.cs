@@ -24,6 +24,11 @@ public static class MauiProgram
 			.UseMauiApp<App>()
 			.UseMauiCommunityToolkit()
             .UseSkiaSharp()
+            .ConfigureMauiHandlers(handlers =>
+            {
+                ModifyEntry();
+            }
+            )
             .ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -56,7 +61,7 @@ public static class MauiProgram
             });
 #endif
 
-        ModifyEntry();
+        
 
         return builder.Build();
 	}
@@ -70,7 +75,9 @@ public static class MauiProgram
 #elif IOS || MACCATALYST
             handler.PlatformView.BorderStyle = UIKit.UITextBorderStyle.None;
 #elif WINDOWS
+            // how can I remove the bottom border of the Entry?
             handler.PlatformView.FontWeight = Microsoft.UI.Text.FontWeights.Thin;
+            handler.PlatformView.BorderThickness = new Microsoft.UI.Xaml.Thickness(0);
 #endif
         });
     }

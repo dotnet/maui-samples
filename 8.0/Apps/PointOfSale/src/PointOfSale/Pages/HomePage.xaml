@@ -9,8 +9,8 @@
              xmlns:system="clr-namespace:System;assembly=System.Runtime"
              x:DataType="pages:HomeViewModel"
              x:Class="PointOfSale.Pages.HomePage"
-             Shell.NavBarIsVisible="False"
-             Title="HomePage">
+             Shell.NavBarIsVisible="{OnPlatform False, WinUI=True}"
+             Title="">
 
     <ContentPage.BindingContext>
         <pages:HomeViewModel/>
@@ -30,9 +30,10 @@
     </ContentPage.MenuBarItems>
 
 
-    <Grid RowDefinitions="100,70,*"
-          ColumnDefinitions="*,400"
-          Margin="24,24,0,0"
+    <Grid RowDefinitions="100,Auto,*"
+          RowSpacing="10"
+          ColumnDefinitions="{OnPlatform '*,400', WinUI='*,440'}"
+          Margin="24,0,0,0"
           x:Name="PageGrid">
 
         
@@ -117,13 +118,13 @@
         <!-- Tab Control -->
         <Grid Grid.Row="1">
             <BoxView Style="{StaticResource HRule}"
-                     Margin="0,31,0,0"
-                     VerticalOptions="Start"
+                     Margin="0,0,0,0"
+                     VerticalOptions="End"
             />
             <HorizontalStackLayout Spacing="20"
                                RadioButtonGroup.GroupName="MenuCategories"
                                RadioButtonGroup.SelectedValue="{Binding Category}"
-                                   
+                                   VerticalOptions="End"
                                    >
                 <BindableLayout.ItemsSource>
                         <x:Array Type="{x:Type x:String}">
@@ -171,7 +172,7 @@
                                                     </VisualStateGroup>
                                                 </VisualStateGroupList>
                                             </VisualStateManager.VisualStateGroups>
-                                            <Label Text="{TemplateBinding Content}" x:Name="TextLabel" />
+                                            <Label Text="{TemplateBinding Content}" x:Name="TextLabel" HorizontalTextAlignment="{OnPlatform Start, WinUI=Center}" />
                                             <BoxView x:Name="Indicator" Grid.Row="1" Color="Transparent"/>
                                         </Grid>
                                     </ControlTemplate>

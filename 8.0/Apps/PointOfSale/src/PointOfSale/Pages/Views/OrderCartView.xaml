@@ -23,6 +23,8 @@
                         
                         <Style TargetType="RadioButton">
                             <Setter Property="ControlTemplate" Value="{StaticResource ButtonRadioTemplate}"/>
+                            <Setter Property="HorizontalOptions" Value="Start"/>
+                            <Setter Property="WidthRequest" Value="50"/>
                         </Style>
 
                     </HorizontalStackLayout.Resources>
@@ -60,9 +62,9 @@
                                 </HorizontalStackLayout>
 
                                 <Border
-                                    Grid.Column="1"
+                                    Grid.Column="1" HorizontalOptions="Start"
                                     HeightRequest="44"
-                                    WidthRequest="44"
+                                    WidthRequest="46"
                                     Background="{StaticResource DarkBg1Brush}"
                                     Stroke="{StaticResource SecondaryBrush}"
                                     StrokeThickness="1">

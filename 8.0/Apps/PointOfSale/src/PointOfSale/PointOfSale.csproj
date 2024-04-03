@@ -19,7 +19,7 @@
 		<EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
 
 		<!-- Display name -->
-		<ApplicationTitle>Food</ApplicationTitle>
+		<ApplicationTitle>Point of Sale</ApplicationTitle>
 
 		<!-- App Identifier -->
 		<ApplicationId>net.dot.pointofsale</ApplicationId>
