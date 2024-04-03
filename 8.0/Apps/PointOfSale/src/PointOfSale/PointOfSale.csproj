@@ -13,8 +13,7 @@
 		<ApplicationTitle>Food</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.simplyprofound.pointofsale</ApplicationId>
-		<ApplicationIdGuid>919dc1f9-17a9-48b3-81f8-0b8016bdfbf7</ApplicationIdGuid>
+		<ApplicationId>net.dot.pointofsale</ApplicationId>
 		
 		<!-- Versions -->
 		<ApplicationVersion>1</ApplicationVersion>
@@ -40,7 +39,7 @@
 		<MauiSplashScreen Include="Resources\Images\food_01.png" Color="#252836" />
 
 		<!-- Images -->
-		<MauiImage Include="Resources\Images\*" Exclude="$(DefaultItemExcludes)"/>
+		<MauiImage Include="Resources\Images\*"/>
 
 		<!-- Custom Fonts -->
 		<MauiFont Include="Resources\Fonts\*" />
