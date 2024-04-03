@@ -10,11 +10,11 @@
         <handheld:SignatureViewModel/>
     </ContentPage.BindingContext>
     
-    <Grid RowDefinitions="120,180,60,*,66"
+    <Grid RowDefinitions="Auto,180,60,*,66"
           RowSpacing="20"
           Margin="20">
 
-        <VerticalStackLayout VerticalOptions="Center" Spacing="8">
+        <VerticalStackLayout VerticalOptions="Start" Spacing="8">
             <Label Text="Add Signature" Style="{StaticResource LargeTitle}"/>
             <BoxView Style="{StaticResource HRule}"/>
         </VerticalStackLayout>

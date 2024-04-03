@@ -27,10 +27,4 @@ public partial class OrderDetailsViewModel
             Debug.WriteLine(ex.Message);
         }
     }
-
-    [RelayCommand]
-    async Task Add()
-    {
-        // await Shell.Current.GoToAsync($"{nameof(ScanPage)}");
-    }
 }

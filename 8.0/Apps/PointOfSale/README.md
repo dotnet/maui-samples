@@ -7,6 +7,7 @@ languages:
 - xaml
 products:
 - dotnet-maui
+- dotnet-core
 urlFragment: apps-pointofsale
 ---
 

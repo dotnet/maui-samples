@@ -1,4 +1,6 @@
 ﻿using System;
+using PointOfSale.Messages;
+
 namespace PointOfSale.Pages;
 
 [INotifyPropertyChanged]
@@ -17,16 +19,22 @@ public partial class AddProductViewModel
     ImageSource image;
 
     [RelayCommand]
-    async void Save()
+    void Save()
     {
         ItemCategory cat = (ItemCategory)Enum.Parse(typeof(ItemCategory), category);
         item.Category = cat;
         AppData.Items.Add(item);
 
-        MessagingCenter.Send<AddProductViewModel, string>(this, "action", "done");
+        WeakReferenceMessenger.Default.Send<AddProductMessage>(new AddProductMessage(false));
     }
 
     [RelayCommand]
+    void Cancel()
+    {
+        WeakReferenceMessenger.Default.Send<AddProductMessage>(new AddProductMessage(false));
+    }
+
+        [RelayCommand]
     async Task ChangeImage()
     {
         PickOptions options = new()

@@ -25,4 +25,10 @@ public partial class TipViewModel
         };
         await Shell.Current.GoToAsync($"{nameof(PayPage)}", navigationParameter);
     }
+
+    [RelayCommand]
+    async Task Add()
+    {
+        await Shell.Current.GoToAsync($"{nameof(ScanPage)}");
+    }
 }   

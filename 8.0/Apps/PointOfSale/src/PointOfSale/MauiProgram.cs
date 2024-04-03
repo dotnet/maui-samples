@@ -1,7 +1,11 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Maui.LifecycleEvents;
 using Microsoft.Maui.Platform;
+using MonkeyCache;
+using MonkeyCache.FileStore;
+using Plugin.Maui.KeyListener;
 using SkiaSharp.Views.Maui.Controls.Hosting;
+using ZXing.Net.Maui;
 
 #if WINDOWS
 using Microsoft.UI;
@@ -22,8 +26,10 @@ public static class MauiProgram
 		var builder = MauiApp.CreateBuilder();
 		builder
 			.UseMauiApp<App>()
+            .UseBarcodeReader()
 			.UseMauiCommunityToolkit()
             .UseSkiaSharp()
+            .UseKeyListener()
             .ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -57,6 +63,8 @@ public static class MauiProgram
 #endif
 
         ModifyEntry();
+
+        Barrel.ApplicationId = "com.simplyprofound.pointofsale";
 
         return builder.Build();
 	}

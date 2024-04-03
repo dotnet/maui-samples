@@ -4,5 +4,7 @@
              xmlns:p="clr-namespace:PointOfSale.Pages.Handheld"
              x:Class="PointOfSale.AppShellMobile"
              Title="AppShellMobile">
+
+    <ShellContent ContentTemplate="{DataTemplate p:MobileLoginPage}" Route="login"/>
     <ShellContent ContentTemplate="{DataTemplate p:OrdersPage}" Route="orders"/>
 </Shell>
