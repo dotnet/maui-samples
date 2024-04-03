@@ -5,8 +5,7 @@ using System.Reflection;
 
 namespace PointOfSale.Pages.Handheld;
 
-[INotifyPropertyChanged]
-public partial class OrdersViewModel
+public partial class OrdersViewModel : ObservableObject
 {
     [ObservableProperty]
     private ObservableCollection<Order> _orders;

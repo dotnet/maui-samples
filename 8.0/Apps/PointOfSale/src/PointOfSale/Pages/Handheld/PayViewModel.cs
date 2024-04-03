@@ -1,18 +1,17 @@
 namespace PointOfSale.Pages.Handheld;
 
-[INotifyPropertyChanged]
 [QueryProperty("Order","Order")]
-public partial class PayViewModel
+public partial class PayViewModel : ObservableObject
 {
     [ObservableProperty]
     Order order;
     
     [RelayCommand]
-    async void Pay()
+    async Task Pay()
     {
         var navigationParameter = new Dictionary<string, object>
         {
-            { "Order", order }
+            { "Order", Order }
         };
         await Shell.Current.GoToAsync($"{nameof(SignaturePage)}", navigationParameter);
     }

@@ -1,8 +1,7 @@
 
 namespace PointOfSale.Pages.Handheld;
 
-[INotifyPropertyChanged]
-public partial class MobileLoginViewModel
+public partial class MobileLoginViewModel : ObservableObject
 {
     [RelayCommand]
     async Task Login()

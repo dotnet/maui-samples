@@ -1,8 +1,7 @@
 ﻿using System;
 namespace PointOfSale.Pages.Views;
 
-[INotifyPropertyChanged]
-public partial class OrderCartViewModel
+public partial class OrderCartViewModel : ObservableObject
 {
     [ObservableProperty]
     Order order;

@@ -3,8 +3,7 @@ using PointOfSale.Pages.Handheld;
 
 namespace PointOfSale.Models;
 
-[INotifyPropertyChanged]
-public partial class Order
+public partial class Order : ObservableObject
 {
     [ObservableProperty]
     private int table;
@@ -19,9 +18,9 @@ public partial class Order
     {
         get
         {
-            var tot = items.Sum(i => (i.Price * i.Quantity));
-            if (tip != 0)
-                tot = tot + (tot * tip);
+            var tot = Items.Sum(i => (i.Price * i.Quantity));
+            if (Tip != 0)
+                tot = tot + (tot * Tip);
             return tot.ToString("N2");
         }
     }
@@ -48,7 +47,7 @@ public partial class Order
     }
 
     [RelayCommand]
-    private async void Pay()
+    private async Task Pay()
     {
         try
         {

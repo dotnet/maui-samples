@@ -3,9 +3,8 @@ using PointOfSale.Messages;
 
 namespace PointOfSale.Pages.Handheld;
 
-[INotifyPropertyChanged]
 [QueryProperty("Order","Order")]
-public partial class SignatureViewModel
+public partial class SignatureViewModel : ObservableObject
 {
     [ObservableProperty]
     Order order;
@@ -14,21 +13,23 @@ public partial class SignatureViewModel
     async Task Done()
     {
         WeakReferenceMessenger.Default.Send<SaveSignatureMessage>(
-            new SaveSignatureMessage(order.Table)
+            new SaveSignatureMessage(Order.Table)
         );
 
         var navigationParameter = new Dictionary<string, object>
         {
-            { "Order", order }
+            { "Order", Order }
         };
         await Shell.Current.GoToAsync($"{nameof(ReceiptPage)}", navigationParameter);
     }
 
     [RelayCommand]
-    void Clear()
+    Task Clear()
     {
         WeakReferenceMessenger.Default.Send<ClearSignatureMessage>(
             new ClearSignatureMessage(true)
-        ); ;
+        );
+
+        return Task.CompletedTask;
     }
 }
