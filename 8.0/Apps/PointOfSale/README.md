@@ -21,6 +21,12 @@ This app demonstrates various techniques for building a desktop and mobile appli
 
 ![food-mobile-2](https://user-images.githubusercontent.com/41873/183740348-7f55d10d-8f79-4ee0-a71e-64b317cbd64f.png)
 
+## Local Testing
+
+If you want to test the full functionality of this app locally for iOS, make sure to rename the `Platforms/iOS/EntitlementsSample.plist` file to ``Platforms/iOS/Entitlements.plist`.
+
+By doing so, you will need a matching provisioning profile in your Apple Developer accound in order for everything to work correctly.
+
 ### Credits
 
 * Original design: https://www.uplabs.com/posts/foodos-food-point-of-sale
