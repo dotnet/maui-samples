@@ -85,6 +85,7 @@
             </VisualStateManager.VisualStateGroups>
             <Label Text="{TemplateBinding Content}"
                     Margin="12,7"
+                    HorizontalTextAlignment="{OnPlatform Start, WinUI=Center}"
                     x:Name="TextLabel" />
         </Border>
 

@@ -18,10 +18,10 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 
 		<!-- Display name -->
-		<ApplicationTitle>Food</ApplicationTitle>
+		<ApplicationTitle>Point of Sale</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>net.dot.pointofsale</ApplicationId>
+		<ApplicationId>com.simplyprofound.pointofsale</ApplicationId>
 		
 		<!-- Versions -->
 		<ApplicationVersion>1</ApplicationVersion>
@@ -39,18 +39,6 @@
 		<AssemblyName>Food</AssemblyName>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-ios|AnyCPU'">
-	  <CodesignProvision>dPOSDev</CodesignProvision>
-	  <CodesignKey>Apple Development: Created via API (2NJFZDD9ZM)</CodesignKey>
-	</PropertyGroup>
-	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-	  <WarningLevel>4</WarningLevel>
-	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-ios|AnyCPU'">
-	  <CodesignProvision>Automatic</CodesignProvision>
-	  <CodesignKey>iPhone Developer</CodesignKey>
-	</PropertyGroup>
-	
 	<ItemGroup>
 		<!-- App Icon -->
 		<MauiIcon Include="Resources\appicon.svg" ForegroundFile="Resources\appiconfg.svg" Color="#252836" />

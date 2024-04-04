@@ -10,8 +10,8 @@
              xmlns:system="clr-namespace:System;assembly=System.Runtime"
              x:DataType="pages:HomeViewModel"
              x:Class="PointOfSale.Pages.HomePage"
-             Shell.NavBarIsVisible="False"
-             Title="HomePage">
+             Shell.NavBarIsVisible="{OnPlatform False, WinUI=True}"
+             Title="">
 
     <ContentPage.BindingContext>
         <pages:HomeViewModel/>
@@ -43,9 +43,10 @@
     </ContentPage.MenuBarItems>
 
 
-    <Grid RowDefinitions="100,70,*"
-          ColumnDefinitions="*,400"
-          Margin="24,24,0,0" 
+    <Grid RowDefinitions="100,Auto,*"
+          RowSpacing="10"
+          ColumnDefinitions="{OnPlatform '*,400', WinUI='*,440'}"
+          Margin="24,0,0,0"
           x:Name="PageGrid">  
              
         <ScrollView Grid.Row="2">
@@ -166,12 +167,13 @@
         <!-- Tab Control -->
         <Grid Grid.Row="1">
             <BoxView Style="{StaticResource HRule}"
-                     Margin="0,31,0,0"
-                     VerticalOptions="Start"
+                     Margin="0,0,0,0"
+                     VerticalOptions="End"
             />
             <HorizontalStackLayout Spacing="20"
                                RadioButtonGroup.GroupName="MenuCategories"
-                               RadioButtonGroup.SelectedValue="{Binding Category}">
+                               RadioButtonGroup.SelectedValue="{Binding Category}"
+                               VerticalOptions="End">
                 <BindableLayout.ItemsSource>
                         <x:Array Type="{x:Type x:String}">
                             <x:String>Noodles</x:String>
