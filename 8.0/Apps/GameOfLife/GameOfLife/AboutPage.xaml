@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GameOfLife.AboutPage"
+             Title="About">
+    <VerticalStackLayout Padding="20"
+                         BackgroundColor="White">
+        <Label Text="The Game of Life"
+               FontSize="Large"
+               HorizontalTextAlignment="Center" />
+        <Label Text="This is an implementation of the Game of Life for .NET MAUI. Life is a cellular automaton invented by mathematician John Conway in 1970 and popularized in Scientific American." />
+        <Label Text="Tap cells to make them &quot;alive&quot;. A clustered population of live cells works the best. Then press the Run! button. Rules are applied to the live cells to generate successive populations. A population might grow, or shrink, or stagnate, or disappear." />
+        <Label Text="For more information, see the Wikipedia article:" />
+        <Label Text="https://en.wikipedia.org/wiki/Conway's_Game_of_Life"
+                TextColor="Blue"
+                FontAttributes="Italic"
+                HorizontalTextAlignment="Center">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnHyperlinkTapped" />
+            </Label.GestureRecognizers>
+        </Label>
+        <Button Text="OK"
+                Clicked="OnCloseButtonClicked" />
+    </VerticalStackLayout>
+</ContentPage>

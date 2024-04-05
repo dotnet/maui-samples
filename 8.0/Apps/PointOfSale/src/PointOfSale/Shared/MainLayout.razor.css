@@ -4,6 +4,10 @@
     flex-direction: column;
 }
 
+.my-special-styling-class {
+    background-color: #0a58ca;
+}
+
 main {
     flex: 1;
 }

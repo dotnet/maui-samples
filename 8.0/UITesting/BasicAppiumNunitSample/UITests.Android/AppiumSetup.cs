@@ -2,6 +2,7 @@
 
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
+using OpenQA.Selenium.Appium.Enums;
 
 namespace UITests;
 
@@ -25,21 +26,36 @@ public class AppiumSetup
 			AutomationName = "UIAutomator2",
 			// Always Android for Android
 			PlatformName = "Android",
-			// This is the Android version, not API level
-			// This is ignored if you use the avd option below
-			PlatformVersion = "13",
-			// The full path to the .apk file to test or the package name if the app is already installed on the device
-			App = "com.companyname.basicappiumsample",
+
+			// RELEASE BUILD SETUP
+			// The full path to the .apk file
+			// This only works with release builds because debug builds have fast deployment enabled
+			// and Appium isn't compatible with fast deployment
+			// App = Path.Join(TestContext.CurrentContext.TestDirectory, "../../../../MauiApp/bin/Release/net8.0-android/com.companyname.basicappiumsample-Signed.apk"),
+			// END RELEASE BUILD SETUP
 		};
 
-		// Specifying the avd option will boot the emulator for you
-		// make sure there is an emulator with the name below
-		// If not specified, make sure you have an emulator booted
-		//androidOptions.AddAdditionalAppiumOption("avd", "pixel_5_-_api_33");
+		// DEBUG BUILD SETUP
+        // If you're running your tests against debug builds you'll need to set NoReset to true
+        // otherwise appium will delete all the libraries used for Fast Deployment on Android
+        // Release builds have Fast Deployment disabled
+        // https://learn.microsoft.com/xamarin/android/deploy-test/building-apps/build-process#fast-deployment
+        androidOptions.AddAdditionalAppiumOption(MobileCapabilityType.NoReset, "true");
+        androidOptions.AddAdditionalAppiumOption(AndroidMobileCapabilityType.AppPackage, "com.companyname.basicappiumsample");
 
-		// Note there are many more options that you can use to influence the app under test according to your needs
+        //Make sure to set [Register("com.companyname.basicappiumsample.MainActivity")] on the MainActivity of your android application
+		androidOptions.AddAdditionalAppiumOption(AndroidMobileCapabilityType.AppActivity, $"com.companyname.basicappiumsample.MainActivity");
+        // END DEBUG BUILD SETUP
 
-		driver = new AndroidDriver(androidOptions);
+
+        // Specifying the avd option will boot the emulator for you
+        // make sure there is an emulator with the name below
+        // If not specified, make sure you have an emulator booted
+        //androidOptions.AddAdditionalAppiumOption("avd", "pixel_5_-_api_33");
+
+        // Note there are many more options that you can use to influence the app under test according to your needs
+
+        driver = new AndroidDriver(androidOptions);
 	}
 
 	[OneTimeTearDown]

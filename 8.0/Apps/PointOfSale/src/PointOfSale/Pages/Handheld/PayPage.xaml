@@ -13,7 +13,7 @@
         <handheld:PayViewModel/>
     </ContentPage.BindingContext>
     
-    <Grid RowDefinitions="120,*"
+    <Grid RowDefinitions="Auto,*"
           RowSpacing="20"
           Margin="20"
           RadioButtonGroup.GroupName="PaymentMethod"
@@ -21,7 +21,7 @@
         <Grid.GestureRecognizers>
             <TapGestureRecognizer Command="{Binding PayCommand}"/>
         </Grid.GestureRecognizers>
-        <VerticalStackLayout VerticalOptions="Center" Spacing="8" Grid.ColumnSpan="2">
+        <VerticalStackLayout VerticalOptions="Start" Spacing="8" Grid.ColumnSpan="2">
             <Label Text="Insert, Tap, Swipe" Style="{StaticResource LargeTitle}"/>
             <BoxView Style="{StaticResource HRule}"/>
         </VerticalStackLayout>

@@ -1,8 +1,7 @@
 namespace PointOfSale.Pages.Handheld;
 
-[INotifyPropertyChanged]
 [QueryProperty("Order","Order")]
-public partial class TipViewModel
+public partial class TipViewModel : ObservableObject
 {
     [ObservableProperty]
     Order order;
@@ -12,17 +11,23 @@ public partial class TipViewModel
 
     partial void OnTipChanged(double value)
     {
-        order.Tip = value;
+        Order.Tip = value;
         OnPropertyChanged(nameof(Order));
     }
 
     [RelayCommand]
-    async void Continue()
+    async Task Continue()
     {
         var navigationParameter = new Dictionary<string, object>
         {
-            { "Order", order }
+            { "Order", Order }
         };
         await Shell.Current.GoToAsync($"{nameof(PayPage)}", navigationParameter);
+    }
+
+    [RelayCommand]
+    async Task Add()
+    {
+        await Shell.Current.GoToAsync($"{nameof(ScanPage)}");
     }
 }   

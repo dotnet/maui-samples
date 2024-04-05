@@ -1,8 +1,9 @@
 ﻿using System;
+using PointOfSale.Messages;
+
 namespace PointOfSale.Pages;
 
-[INotifyPropertyChanged]
-public partial class HomeViewModel
+public partial class HomeViewModel : ObservableObject
 {
     [ObservableProperty]
     ObservableCollection<Item> _products;
@@ -10,10 +11,10 @@ public partial class HomeViewModel
     [ObservableProperty]
     string category = ItemCategory.Noodles.ToString();
 
-    partial void OnCategoryChanged(string cat)
+    partial void OnCategoryChanged(string value)
     {
-       ItemCategory category = (ItemCategory)Enum.Parse(typeof(ItemCategory), cat);
-       _products = new ObservableCollection<Item>(
+       ItemCategory category = (ItemCategory)Enum.Parse(typeof(ItemCategory), value);
+       Products = new ObservableCollection<Item>(
            AppData.Items.Where(x => x.Category == category).ToList()
        );
        OnPropertyChanged(nameof(Products));
@@ -21,7 +22,7 @@ public partial class HomeViewModel
 
     public HomeViewModel()
     {
-        _products = new ObservableCollection<Item>(
+        Products = new ObservableCollection<Item>(
             AppData.Items.Where(x=>x.Category == ItemCategory.Noodles).ToList()
         );
     }
@@ -33,8 +34,8 @@ public partial class HomeViewModel
     }
 
     [RelayCommand]
-    async Task AddProduct()
+    void AddProduct()
     {
-        MessagingCenter.Send<HomeViewModel, string>(this, "action", "add");
+        WeakReferenceMessenger.Default.Send<AddProductMessage>(new AddProductMessage(true));
     }
 }

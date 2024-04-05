@@ -1,7 +1,6 @@
 ﻿namespace PointOfSale.Pages;
 
-[INotifyPropertyChanged]
-public partial class DashboardViewModel
+public partial class DashboardViewModel : ObservableObject
 {
 	[RelayCommand]
 	async Task ViewAll()

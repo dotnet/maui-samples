@@ -19,7 +19,7 @@
         </Style>
     </ContentPage.Resources>
     
-    <Grid RowDefinitions="120,160,160,160,*,66"
+    <Grid RowDefinitions="Auto,160,160,160,*,66"
           RowSpacing="20"
           ColumnDefinitions="*,*" 
           ColumnSpacing="20"
@@ -27,7 +27,7 @@
           RadioButtonGroup.GroupName="TipAmount"
           RadioButtonGroup.SelectedValue="{Binding Tip}"
     >
-        <VerticalStackLayout VerticalOptions="Center" Spacing="8" Grid.ColumnSpan="2">
+        <VerticalStackLayout VerticalOptions="Start" Spacing="8" Grid.ColumnSpan="2">
             <Label Text="Add a Tip" Style="{StaticResource LargeTitle}"/>
             <Label Text="{Binding Order.Total, StringFormat='Your Bill: ${0}'}"/>
             <BoxView Style="{StaticResource HRule}"/>
@@ -112,7 +112,8 @@
                 </Label>
             </RadioButton.Content>
         </RadioButton>
-        
-        <Button Grid.Row="5" HorizontalOptions="Fill" Grid.ColumnSpan="2" Text="Continue" Command="{Binding ContinueCommand}"/>
+
+        <Button Grid.Row="5" HorizontalOptions="Fill" Grid.Column="0" Text="Add Coupon" Command="{Binding AddCommand}" Style="{StaticResource SecondaryButtonOutline}"/>
+        <Button Grid.Row="5" HorizontalOptions="Fill" Grid.Column="1" Text="Continue" Command="{Binding ContinueCommand}"/>
     </Grid>
 </ContentPage>

@@ -17,8 +17,8 @@
         </Style>
     </ContentView.Resources>
 
-    <Grid RowDefinitions="*,108">
-        <ScrollView>
+    <Grid RowDefinitions="*,108" ColumnDefinitions="*,*" ColumnSpacing="0">
+        <ScrollView Grid.ColumnSpan="2">
             <VerticalStackLayout Spacing="20" Margin="24">
                 <Label Text="Add a Product" Style="{StaticResource Title1}" />
                 <BoxView Style="{StaticResource HRule}"/>
@@ -96,7 +96,14 @@
             </VerticalStackLayout>
         </ScrollView>
 
-        <Button Text="Save" Grid.Row="1" Margin="24" Command="{Binding SaveCommand}"
+        <Button Text="Cancel" 
+                Grid.Row="1" Grid.Column="0" 
+                Margin="24,24,12,24" 
+                Style="{StaticResource SecondaryButtonOutline}" 
+                HorizontalOptions="Fill"
+                Command="{Binding CancelCommand}" />
+
+        <Button Text="Save" Grid.Row="1" Grid.Column="1" Margin="12,24,24,24" Command="{Binding SaveCommand}"
                 HorizontalOptions="Fill"
                 />
     </Grid>

@@ -22,14 +22,14 @@
         
     </ContentPage.Resources>
     
-    <Grid RowDefinitions="120,180,40,120,120,*,66"
+    <Grid RowDefinitions="Auto,180,40,120,120,*,66"
           RowSpacing="20"
           ColumnDefinitions="*,*" 
           ColumnSpacing="20"
           Margin="20"
           RadioButtonGroup.GroupName="ReceiptOption"
           >
-        <VerticalStackLayout VerticalOptions="Center" Spacing="8" Grid.ColumnSpan="2">
+        <VerticalStackLayout VerticalOptions="Start" Spacing="8" Grid.ColumnSpan="2">
             <Label Text="Payment Successful" Style="{StaticResource LargeTitle}"/>
             <Label Text="{Binding Order.Total, StringFormat='Your Bill: ${0}'}"/>
             <BoxView Style="{StaticResource HRule}"/>

@@ -18,6 +18,7 @@ public static class AppData
         new Item(){ Title = "Hot Tea", Price = 4.00, Quantity = 1, Category = ItemCategory.Beverages, Image = "tea.png"},
         new Item(){ Title = "Coffee", Price = 4.00, Quantity = 1, Category = ItemCategory.Beverages, Image = "coffee.png"},
         new Item(){ Title = "Milk", Price = 5.00, Quantity = 1, Category = ItemCategory.Beverages, Image = "milk.png"},
+        new Item(){ Title = "Juice", Price = 50.00, Quantity = 1, Category = ItemCategory.Beverages, Image = "juice.png"},
     };
     
     public static List<Order> Orders { get; set; } = GenerateOrders();
