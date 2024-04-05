@@ -1,7 +1,6 @@
 namespace PointOfSale.Models;
 
-[INotifyPropertyChanged]
-public partial class Item
+public partial class Item : ObservableObject
 {
     [ObservableProperty]
     string title;

@@ -30,5 +30,7 @@
 	<string>Assets.xcassets/appicon.appiconset</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Barcode Scanning</string>
+	<key>UIRequiresPersistentWiFi</key>
+	<true/>
 </dict>
 </plist>

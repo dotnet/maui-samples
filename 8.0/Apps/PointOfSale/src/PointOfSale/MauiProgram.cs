@@ -1,7 +1,11 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Maui.LifecycleEvents;
 using Microsoft.Maui.Platform;
+using MonkeyCache;
+using MonkeyCache.FileStore;
+using Plugin.Maui.KeyListener;
 using SkiaSharp.Views.Maui.Controls.Hosting;
+using ZXing.Net.Maui;
 
 #if WINDOWS
 using Microsoft.UI;
@@ -22,14 +26,20 @@ public static class MauiProgram
 		var builder = MauiApp.CreateBuilder();
 		builder
 			.UseMauiApp<App>()
+            .UseBarcodeReader()
 			.UseMauiCommunityToolkit()
             .UseSkiaSharp()
+            .UseKeyListener()
             .ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("opensans_semibold.ttf", "OpenSansSemiBold");
                 fonts.AddFont("fa_solid.ttf", "FontAwesome");
                 fonts.AddFont("fabmdl2.ttf", "Fabric");
+            })
+            .ConfigureMauiHandlers(handlers =>
+            {
+                ModifyEntry();
             });
 
         builder.Services.AddMauiBlazorWebView();
@@ -56,7 +66,7 @@ public static class MauiProgram
             });
 #endif
 
-        ModifyEntry();
+        Barrel.ApplicationId = "com.simplyprofound.pointofsale";
 
         return builder.Build();
 	}
@@ -70,7 +80,9 @@ public static class MauiProgram
 #elif IOS || MACCATALYST
             handler.PlatformView.BorderStyle = UIKit.UITextBorderStyle.None;
 #elif WINDOWS
+            // how can I remove the bottom border of the Entry?
             handler.PlatformView.FontWeight = Microsoft.UI.Text.FontWeights.Thin;
+            handler.PlatformView.BorderThickness = new Microsoft.UI.Xaml.Thickness(0);
 #endif
         });
     }

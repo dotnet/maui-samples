@@ -1,7 +1,6 @@
 ﻿namespace PointOfSale.Pages;
 
-[INotifyPropertyChanged]
-public partial class SettingsViewModel
+public partial class SettingsViewModel : ObservableObject
 {
     [ObservableProperty]
     ObservableCollection<Item> _products;

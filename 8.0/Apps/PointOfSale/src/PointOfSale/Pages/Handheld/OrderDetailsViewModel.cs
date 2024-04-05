@@ -1,9 +1,8 @@
 namespace PointOfSale.Pages.Handheld;
 
-[INotifyPropertyChanged]
 [QueryProperty("Order","Order")]
 [QueryProperty("Added", "Added")]
-public partial class OrderDetailsViewModel
+public partial class OrderDetailsViewModel : ObservableObject
 {
     [ObservableProperty]
     Order order;
@@ -18,7 +17,7 @@ public partial class OrderDetailsViewModel
         {
             var navigationParameter = new Dictionary<string, object>
             {
-                { "Order", order }
+                { "Order", Order }
             };
             await Shell.Current.GoToAsync($"{nameof(TipPage)}", navigationParameter);
         }
@@ -26,11 +25,5 @@ public partial class OrderDetailsViewModel
         {
             Debug.WriteLine(ex.Message);
         }
-    }
-
-    [RelayCommand]
-    async Task Add()
-    {
-        // await Shell.Current.GoToAsync($"{nameof(ScanPage)}");
     }
 }

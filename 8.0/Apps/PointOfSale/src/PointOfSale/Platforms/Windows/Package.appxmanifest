@@ -7,9 +7,8 @@
   IgnorableNamespaces="uap rescap">
 
   <Identity
-    Name="8D1C6CD3-CA27-4254-B76F-15B91335C418"
     Publisher="CN=User Name"
-    Version="1.0.0.0" />
+    Version="1.0.0.0" Name="a045a695-05e1-4353-a3d0-5cd58ec52a45"/>
 
   <Properties>
     <DisplayName>PointOfSale</DisplayName>

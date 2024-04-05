@@ -1,8 +1,9 @@
 ﻿using System;
+using PointOfSale.Messages;
+
 namespace PointOfSale.Pages;
 
-[INotifyPropertyChanged]
-public partial class AddProductViewModel
+public partial class AddProductViewModel : ObservableObject
 {
     [ObservableProperty]
     Item item = new Item();
@@ -17,13 +18,21 @@ public partial class AddProductViewModel
     ImageSource image;
 
     [RelayCommand]
-    async void Save()
+    void Save()
     {
-        ItemCategory cat = (ItemCategory)Enum.Parse(typeof(ItemCategory), category);
-        item.Category = cat;
-        AppData.Items.Add(item);
+        ItemCategory cat = (ItemCategory)Enum.Parse(typeof(ItemCategory), Category);
+        Item.Category = cat;
+        AppData.Items.Add(Item);
 
-        MessagingCenter.Send<AddProductViewModel, string>(this, "action", "done");
+        WeakReferenceMessenger.Default.Send<AddProductMessage>(new AddProductMessage(false));
+    }
+
+    [RelayCommand]
+    Task Cancel()
+    {
+        WeakReferenceMessenger.Default.Send<AddProductMessage>(new AddProductMessage(false));
+
+        return Task.CompletedTask;
     }
 
     [RelayCommand]
@@ -58,6 +67,7 @@ public partial class AddProductViewModel
         catch (Exception ex)
         {
             // The user canceled or something went wrong
+            Console.WriteLine(ex);
         }
 
         return null;

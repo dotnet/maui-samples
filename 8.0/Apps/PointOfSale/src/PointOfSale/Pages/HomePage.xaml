@@ -6,11 +6,12 @@
              xmlns:pages="clr-namespace:PointOfSale.Pages"
              xmlns:m="clr-namespace:PointOfSale.Models"
              xmlns:l="clr-namespace:CustomLayouts"
+             xmlns:b="clr-namespace:PointOfSale.Common.Behaviors"
              xmlns:system="clr-namespace:System;assembly=System.Runtime"
              x:DataType="pages:HomeViewModel"
              x:Class="PointOfSale.Pages.HomePage"
-             Shell.NavBarIsVisible="False"
-             Title="HomePage">
+             Shell.NavBarIsVisible="{OnPlatform False, WinUI=True}"
+             Title="">
 
     <ContentPage.BindingContext>
         <pages:HomeViewModel/>
@@ -19,24 +20,35 @@
     <ContentPage.MenuBarItems>
         <MenuBarItem Text="File">
             <MenuFlyoutItem Text="Preferences"
-                            ParentChanged="MenuFlyoutItem_ParentChanged"
                             Command="{Binding PreferencesCommand}" />
         </MenuBarItem>
         <MenuBarItem Text="Products">
-            <MenuFlyoutItem Text="Add Product" Command="{Binding AddProductCommand}"
-                            ParentChanged="MenuFlyoutItem_ParentChanged"/>
-            <MenuFlyoutItem Text="Add Product Category"/>
+            <MenuFlyoutItem Text="Add Product" 
+                            Command="{Binding AddProductCommand}">
+                <MenuFlyoutItem.KeyboardAccelerators>
+                    <KeyboardAccelerator Key="A" Modifiers="Cmd,Shift"/>
+                    <KeyboardAccelerator Key="A" Modifiers="Ctrl"/>
+                </MenuFlyoutItem.KeyboardAccelerators>
+                <MenuFlyoutItem.IconImageSource>
+                    <FontImageSource Glyph="&#xECDC;"
+                                     Size="12" 
+                                     Color="Black"
+                                     FontFamily="Fabric" />
+                </MenuFlyoutItem.IconImageSource>
+            </MenuFlyoutItem>
+            <MenuFlyoutItem Text="Add Product Category"
+                IconImageSource="{FontImage &#xF12B;, FontFamily=Fabric, Color=Black, Size=12}"
+            />
         </MenuBarItem>
     </ContentPage.MenuBarItems>
 
 
-    <Grid RowDefinitions="100,70,*"
-          ColumnDefinitions="*,400"
-          Margin="24,24,0,0"
-          x:Name="PageGrid">
-
-        
-
+    <Grid RowDefinitions="100,Auto,*"
+          RowSpacing="10"
+          ColumnDefinitions="{OnPlatform '*,400', WinUI='*,440'}"
+          Margin="24,0,0,0"
+          x:Name="PageGrid">  
+             
         <ScrollView Grid.Row="2">
             <Grid RowDefinitions="70,*">
                 <Label Text="Choose Dishes" Style="{StaticResource Title1}"/>
@@ -47,34 +59,72 @@
                     <BindableLayout.ItemTemplate>
                         <DataTemplate x:DataType="m:Item">
                             <Grid RowDefinitions="30,230" WidthRequest="200">
+                                <Grid.Behaviors>
+                                    <b:CursorBehavior/>
+                                </Grid.Behaviors>
+                                <Grid.GestureRecognizers>
+                                    <DragGestureRecognizer
+                                        DragStarting="OnDragStarting"
+                                        DropCompleted="OnDropCompleted"
+                                    />
+                                </Grid.GestureRecognizers>
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="DefaultStates">
+                                        <VisualState x:Name="PointerOver">
+                                            <VisualState.Setters>
+                                                <Setter
+                                                    TargetName="CardBg"
+                                                    Property="Border.Background"
+                                                    Value="{StaticResource Primary}"/>
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                        <VisualState x:Name="Normal">
+                                            <VisualState.Setters>
+                                                <Setter
+                                                    TargetName="CardBg"
+                                                    Property="Border.Background"
+                                                    Value="{StaticResource DarkBg2Brush}"/>
+                                            </VisualState.Setters>
+                                        </VisualState>
+
+                                    </VisualStateGroup>
+
+                                </VisualStateManager.VisualStateGroups>
+                                <FlyoutBase.ContextFlyout>
+                                    <MenuFlyout>
+                                        <MenuFlyoutItem Text="Edit Details"
+                                                        CommandParameter="docs" />
+                                        <MenuFlyoutItem Text="Remove"
+                                                        CommandParameter="eng" />
+                                    </MenuFlyout>
+                                </FlyoutBase.ContextFlyout>
                                 <Border Background="{StaticResource DarkBg2Brush}"
                                         Stroke="{StaticResource DarkBg2Brush}"
                                         StrokeThickness="1"
                                         Grid.Row="1"
+                                        x:Name="CardBg"
                                         >
                                     <Border.StrokeShape>
                                         <RoundRectangle CornerRadius="16"/>
                                     </Border.StrokeShape>
-
-
                                 </Border>
-                                <VerticalStackLayout Grid.RowSpan="2" Margin="20,0,20,20"
+                                <VerticalStackLayout Grid.RowSpan="2" Margin="20,0,20,10"
                                                      VerticalOptions="End"
                                                      Spacing="6">
                                     
                                     <Label Text="{Binding Title}" HorizontalOptions="Center" Style="{StaticResource Title2}" HorizontalTextAlignment="Center"/>
-                                    <Label Text="{Binding Price, StringFormat='${0}'}" HorizontalOptions="Center"/>
-                                    <!--<Label Text="20 Bowls available" HorizontalOptions="Center" Style="{StaticResource Subhead}"/>-->
+                                    <Label Text="{Binding Price, StringFormat='{0:C}'}" HorizontalOptions="Center"/>
                                 </VerticalStackLayout>
                                 <Image
                                     Grid.RowSpan="2" VerticalOptions="Start"
-                                    Source="{Binding Image, FallbackValue=food_01.png}" HorizontalOptions="Center"/>
+                                    Margin="0,-20,0,0"
+                                    Source="{Binding Image, FallbackValue=food_01.png}" 
+                                    HorizontalOptions="Center"/>
                             </Grid>
                         </DataTemplate>
                      </BindableLayout.ItemTemplate>
                 </l:HorizontalWrapLayout>
                 
-
             </Grid>
 
         </ScrollView>
@@ -117,14 +167,13 @@
         <!-- Tab Control -->
         <Grid Grid.Row="1">
             <BoxView Style="{StaticResource HRule}"
-                     Margin="0,31,0,0"
-                     VerticalOptions="Start"
+                     Margin="0,0,0,0"
+                     VerticalOptions="End"
             />
             <HorizontalStackLayout Spacing="20"
                                RadioButtonGroup.GroupName="MenuCategories"
                                RadioButtonGroup.SelectedValue="{Binding Category}"
-                                   
-                                   >
+                               VerticalOptions="End">
                 <BindableLayout.ItemsSource>
                         <x:Array Type="{x:Type x:String}">
                             <x:String>Noodles</x:String>
@@ -140,6 +189,9 @@
                                 <RadioButton.ControlTemplate>
                                     <ControlTemplate>
                                         <Grid RowDefinitions="30,4">
+                                            <Grid.Behaviors>
+                                                <b:CursorBehavior/>
+                                            </Grid.Behaviors>
                                             <VisualStateManager.VisualStateGroups>
                                                 <VisualStateGroupList>
                                                     <VisualStateGroup x:Name="CheckedStates">
@@ -168,6 +220,32 @@
                                                                     Value="Transparent"/>
                                                             </VisualState.Setters>
                                                         </VisualState>
+
+                                                        <!-- <VisualState x:Name="PointerOver">
+                                                            <VisualState.Setters>
+                                                                <Setter
+                                                                    TargetName="TextLabel"
+                                                                    Property="Label.TextColor"
+                                                                    Value="{StaticResource Primary}"/>
+                                                                <Setter
+                                                                    TargetName="Indicator"
+                                                                    Property="BoxView.Color"
+                                                                    Value="{StaticResource Primary}"/>
+                                                            </VisualState.Setters>
+                                                        </VisualState>
+
+                                                        <VisualState x:Name="Normal">
+                                                            <VisualState.Setters>
+                                                                <Setter
+                                                                    TargetName="TextLabel"
+                                                                    Property="Label.TextColor"
+                                                                    Value="White"/>
+                                                                <Setter
+                                                                    TargetName="Indicator"
+                                                                    Property="BoxView.Color"
+                                                                    Value="Transparent"/>
+                                                            </VisualState.Setters>
+                                                        </VisualState> -->
                                                     </VisualStateGroup>
                                                 </VisualStateGroupList>
                                             </VisualStateManager.VisualStateGroups>
@@ -181,11 +259,26 @@
                         </DataTemplate>
                      </BindableLayout.ItemTemplate>
             </HorizontalStackLayout>
-            
-
         </Grid>
 
-        <v:OrderCartView Grid.Column="1" Grid.RowSpan="3"/>
+        <BoxView Color="Black"
+                 Opacity="0"
+                 Grid.RowSpan="3" Grid.ColumnSpan="2"
+                 HorizontalOptions="Fill"
+                 VerticalOptions="Fill"
+                 Margin="-24"
+                 InputTransparent="True"
+                 x:Name="BlockScreen"
+                 />
         
+        <v:OrderCartView Grid.Column="1" Grid.RowSpan="3">
+            <v:OrderCartView.GestureRecognizers>
+                <DropGestureRecognizer 
+                    DragOver="OnDragOver" 
+                    Drop="OnDrop"/>
+            </v:OrderCartView.GestureRecognizers>
+        </v:OrderCartView>
+        
+
     </Grid>
 </ContentPage>
