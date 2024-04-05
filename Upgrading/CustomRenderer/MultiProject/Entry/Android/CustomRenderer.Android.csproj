@@ -11,7 +11,7 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <PropertyGroup>
-    <TargetFramework>net7.0-android</TargetFramework>
+    <TargetFramework>net8.0-android</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\CustomRenderer\CustomRenderer.csproj" />
