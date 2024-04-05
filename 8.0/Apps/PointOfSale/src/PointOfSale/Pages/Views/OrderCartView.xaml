@@ -70,7 +70,7 @@
                         <Style TargetType="RadioButton">
                             <Setter Property="ControlTemplate" Value="{StaticResource ButtonRadioTemplate}"/>
                             <Setter Property="HorizontalOptions" Value="Start"/>
-                            <Setter Property="WidthRequest" Value="50"/>
+                            
                         </Style>
                     </HorizontalStackLayout.Resources>
                     <RadioButton Content="Dine In" IsChecked="True"/>
