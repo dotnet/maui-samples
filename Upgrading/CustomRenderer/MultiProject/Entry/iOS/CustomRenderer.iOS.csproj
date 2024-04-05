@@ -36,7 +36,7 @@
     <CodesignKey>iPhone Distribution</CodesignKey>
   </PropertyGroup>
   <PropertyGroup>
-    <TargetFramework>net7.0-ios</TargetFramework>
+    <TargetFramework>net8.0-ios</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\CustomRenderer\CustomRenderer.csproj" />
