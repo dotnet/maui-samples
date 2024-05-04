@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WorkingWithTriggers.DataTriggerXaml"
              Padding="20, 50, 20, 0">
-    <StackLayout Spacing="20">
+    <VerticalStackLayout Spacing="20">
         <Label FontSize="20"
                Text="DataTrigger Example" />
         <Label Text="Entry requires length>0 before button is enabled"
@@ -26,5 +26,5 @@
                 </DataTrigger>
             </Button.Triggers>
         </Button>
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

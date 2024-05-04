@@ -7,12 +7,12 @@
     <ContentPage.BindingContext>
         <viewmodels:MonkeysViewModel />
     </ContentPage.BindingContext>
-    <StackLayout Margin="20">
+    <VerticalStackLayout Margin="20">
         <Label Text="Tap each image to dynamically change its size." />
         <CarouselView ItemsSource="{Binding Monkeys}">
             <CarouselView.ItemTemplate>
                 <DataTemplate>
-                    <StackLayout>
+                    <VerticalStackLayout>
                         <Frame HasShadow="True"
                                BorderColor="DarkGray"
                                CornerRadius="5"
@@ -20,7 +20,7 @@
                                HeightRequest="300"
                                HorizontalOptions="Center"
                                VerticalOptions="Center">
-                            <StackLayout>
+                            <VerticalStackLayout>
                                 <Label Text="{Binding Name}" 
                                        FontAttributes="Bold"
                                        FontSize="20"
@@ -42,11 +42,11 @@
                                        HorizontalOptions="Center"
                                        MaxLines="5"
                                        LineBreakMode="TailTruncation" />
-                            </StackLayout>
+                            </VerticalStackLayout>
                         </Frame>
-                    </StackLayout>
+                    </VerticalStackLayout>
                 </DataTemplate>
             </CarouselView.ItemTemplate>
         </CarouselView>
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

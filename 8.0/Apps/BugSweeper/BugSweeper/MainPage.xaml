@@ -72,7 +72,7 @@
                        TextColor="Red" />
                 <Label Text="!"
                        TextColor="Red" />
-            </StackLayout>
+            </VerticalStackLayout>
             <HorizontalStackLayout x:Name="consolationText"
                                    HorizontalOptions="Center">
                 <Label Text="T"

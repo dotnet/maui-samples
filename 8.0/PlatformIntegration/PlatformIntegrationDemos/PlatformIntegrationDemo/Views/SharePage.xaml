@@ -15,7 +15,7 @@
                Margin="12" />
 
         <ScrollView Grid.Row="1">
-            <StackLayout Padding="12,0,12,12"
+            <VerticalStackLayout Padding="12,0,12,12"
                          Spacing="6">
 
                 <Label Text="Share Text"
@@ -28,28 +28,28 @@
                 <Label Text="Subject (Optional)" />
                 <Entry Text="{Binding Subject}" />
 
-                <StackLayout Orientation="Horizontal">
+                <HorizontalStackLayout>
                     <Label Text="Text"
                            HorizontalOptions="StartAndExpand"
                            VerticalOptions="End" />
                     <Switch HorizontalOptions="End"
                             IsToggled="{Binding ShareText}"
                             VerticalOptions="End" />
-                </StackLayout>
+                </HorizontalStackLayout>
 
                 <Editor Text="{Binding Text}"
                         Placeholder="Enter text to share here."
                         Keyboard="Chat"
                         AutoSize="TextChanges" />
 
-                <StackLayout Orientation="Horizontal">
+                <HorizontalStackLayout>
                     <Label Text="URI"
                            HorizontalOptions="StartAndExpand"
                            VerticalOptions="End" />
                     <Switch HorizontalOptions="End"
                             IsToggled="{Binding ShareUri}"
                             VerticalOptions="End" />
-                </StackLayout>
+                </HorizontalStackLayout>
 
                 <Entry Text="{Binding Uri}"
                        Placeholder="Enter URI to share here." />
@@ -112,7 +112,7 @@
                         Command="{Binding RequestFilesCommand}"
                         CommandParameter="{Binding Source={RelativeSource Self}}" />
 
-            </StackLayout>
+            </VerticalStackLayout>
         </ScrollView>
     </Grid>
 </views:BasePage>

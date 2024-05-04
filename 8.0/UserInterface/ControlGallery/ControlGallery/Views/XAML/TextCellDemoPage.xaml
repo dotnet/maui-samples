@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ControlGallery.Views.XAML.TextCellDemoPage"
              Title="TextCell Demo">
-    <StackLayout>
+    <VerticalStackLayout>
         <Label Text="TextCell"
                FontSize="50"
                FontAttributes="Bold"
@@ -18,5 +18,5 @@
                 </TableSection>
             </TableRoot>
         </TableView>
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

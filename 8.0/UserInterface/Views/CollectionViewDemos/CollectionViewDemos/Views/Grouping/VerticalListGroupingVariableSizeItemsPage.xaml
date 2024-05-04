@@ -5,14 +5,13 @@
              x:Class="CollectionViewDemos.Views.VerticalListGroupingVariableSizeItemsPage"
              Title="Grouping with variable sized items">
     <Grid Margin="20" RowDefinitions="50,*">
-        <StackLayout Orientation="Horizontal"
-                     HorizontalOptions="Center">
+        <HorizontalStackLayout HorizontalOptions="Center">
             <Label Text="ItemSizingStrategy:"
                    VerticalTextAlignment="Center" />
             <controls:EnumPicker x:Name="enumPicker"
                                  EnumType="{x:Type ItemSizingStrategy}"
                                  SelectedIndex="0" />
-        </StackLayout>
+        </HorizontalStackLayout>
         <CollectionView
                         Grid.Row="1"
                         ItemsSource="{Binding Animals}"

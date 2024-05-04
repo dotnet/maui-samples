@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ControlGallery.Views.XAML.EditorDemoPage"
              Title="Editor">
-    <StackLayout>
+    <VerticalStackLayout>
         <Label Text="Editor"
                FontSize="50"
                FontAttributes="Bold"
@@ -11,5 +11,5 @@
 
         <Editor VerticalOptions="FillAndExpand"
                 Margin="10" />
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

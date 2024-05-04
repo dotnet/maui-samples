@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SwipeViewDemos.SwipeViewProgrammaticPage"
              Title="SwipeView open and close demo">
-    <StackLayout Margin="10">
+    <VerticalStackLayout Margin="10">
         <Button Text="Open SwipeView"
                 Clicked="OnOpenSwipeViewClicked" />
         <Button Text="Close SwipeView"
@@ -29,5 +29,5 @@
                        VerticalOptions="Center" />
             </Grid>
         </SwipeView>
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

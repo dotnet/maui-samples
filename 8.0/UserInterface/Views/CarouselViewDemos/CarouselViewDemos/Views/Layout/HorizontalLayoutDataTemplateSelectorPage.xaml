@@ -7,7 +7,7 @@
              Title="Horizontal layout (DataTemplateSelector)">
     <ContentPage.Resources>
         <DataTemplate x:Key="AmericanMonkeyTemplate">
-            <StackLayout>
+            <VerticalStackLayout>
                 <Frame HasShadow="True"
                        BorderColor="DarkGray"
                        CornerRadius="5"
@@ -15,7 +15,7 @@
                        HeightRequest="300"
                        HorizontalOptions="Center"
                        VerticalOptions="Center">
-                    <StackLayout>
+                    <VerticalStackLayout>
                         <Label Text="{Binding Name}" 
                                FontAttributes="Bold"
                                FontSize="20"
@@ -33,13 +33,13 @@
                                HorizontalOptions="Center"
                                MaxLines="5"
                                LineBreakMode="TailTruncation" />
-                    </StackLayout>
+                    </VerticalStackLayout>
                 </Frame>
-            </StackLayout>
+            </VerticalStackLayout>
         </DataTemplate>
 
         <DataTemplate x:Key="OtherMonkeyTemplate">
-            <StackLayout>
+            <VerticalStackLayout>
                 <Frame HasShadow="True"
                        BorderColor="DarkGray"
                        CornerRadius="5"
@@ -47,7 +47,7 @@
                        HeightRequest="300"
                        HorizontalOptions="Center"
                        VerticalOptions="Center">
-                    <StackLayout>
+                    <VerticalStackLayout>
                         <Label Text="{Binding Name}"
                                TextColor="Silver"
                                FontAttributes="Bold"
@@ -69,9 +69,9 @@
                                HorizontalOptions="Center"
                                MaxLines="5"
                                LineBreakMode="TailTruncation" />
-                    </StackLayout>
+                    </VerticalStackLayout>
                 </Frame>
-            </StackLayout>
+            </VerticalStackLayout>
         </DataTemplate>
 
         <controls:MonkeyDataTemplateSelector x:Key="MonkeySelector"

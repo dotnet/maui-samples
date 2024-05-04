@@ -7,7 +7,7 @@
     <ContentPage.BindingContext>
         <viewmodels:AnimalsViewModel />
     </ContentPage.BindingContext>
-    <StackLayout Margin="20">
+    <VerticalStackLayout Margin="20">
         <Label Text="Pull the items down to refresh the CarouselView." />
         <Label Text="{Binding Animals.Count, StringFormat='Number of items: {0}'}" />
         <RefreshView IsRefreshing="{Binding IsRefreshing}"
@@ -18,7 +18,7 @@
                 </CarouselView.ItemsLayout>
                 <CarouselView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout>
+                        <VerticalStackLayout>
                             <Frame HasShadow="True"
                                    BorderColor="DarkGray"
                                    CornerRadius="5"
@@ -26,7 +26,7 @@
                                    HeightRequest="300"
                                    HorizontalOptions="Center"
                                    VerticalOptions="Center">
-                                <StackLayout>
+                                <VerticalStackLayout>
                                     <Label Text="{Binding Name}" 
                                            FontAttributes="Bold"
                                            FontSize="20"
@@ -44,12 +44,12 @@
                                            HorizontalOptions="Center"
                                            MaxLines="5"
                                            LineBreakMode="TailTruncation" />
-                                </StackLayout>
+                                </VerticalStackLayout>
                             </Frame>
-                        </StackLayout>
+                        </VerticalStackLayout>
                     </DataTemplate>
                 </CarouselView.ItemTemplate>
             </CarouselView>
         </RefreshView>
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

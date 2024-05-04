@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ControlGallery.Views.XAML.TableViewFormDemoPage"
              Title="TableView Form Demo">
-    <StackLayout>
+    <VerticalStackLayout>
         <Label Text="TableView for a form"
                FontSize="30"
                FontAttributes="Bold"
@@ -38,5 +38,5 @@
                 </TableSection>
             </TableRoot>
         </TableView>
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

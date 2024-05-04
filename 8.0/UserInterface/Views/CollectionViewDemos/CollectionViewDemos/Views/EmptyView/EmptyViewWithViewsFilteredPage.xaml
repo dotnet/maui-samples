@@ -40,7 +40,7 @@
             </CollectionView.ItemTemplate>
             <CollectionView.EmptyView>
                 <ContentView>
-                    <StackLayout HorizontalOptions="Center"
+                    <VerticalStackLayout HorizontalOptions="Center"
                                  VerticalOptions="Center">
                         <Label Text="No results matched your filter."
                                Margin="10,25,10,10"
@@ -53,7 +53,7 @@
                                FontSize="12"
                                HorizontalOptions="Fill"
                                HorizontalTextAlignment="Center" />
-                    </StackLayout>
+                    </VerticalStackLayout>
                 </ContentView>
             </CollectionView.EmptyView>
         </CollectionView>

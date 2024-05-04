@@ -17,7 +17,7 @@
 			</Grid>
 		</DataTemplate>
 	</ContentPage.Resources>
-	<StackLayout Margin="10,35,10,10">
+	<VerticalStackLayout Margin="10,35,10,10">
 		<Label Text="RefreshView Demo"
                FontAttributes="Bold"
                HorizontalOptions="Center" />
@@ -35,5 +35,5 @@
                             BindableLayout.ItemTemplate="{StaticResource ColorItemTemplate}" />
 			</ScrollView>
 		</RefreshView>
-	</StackLayout>	
+	</VerticalStackLayout>	
 </ContentPage>

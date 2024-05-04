@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SwitchDemos.SwitchXamlPage"
              Title="Switch XAML Demo">
-    <StackLayout>
+    <VerticalStackLayout>
         <Label x:Name="switchStateLabel"
                 Text="The switch is off"
                 VerticalOptions="Center" 
@@ -15,5 +15,5 @@
                 ThumbColor="Green"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

@@ -4,22 +4,20 @@
              xmlns:controls="clr-namespace:ListViewDemos.Controls"
              x:Class="ListViewDemos.ScrollByItemWithGroupingPage"
              Title="Scroll by item with grouping">
-    <StackLayout Margin="20">
-        <StackLayout Orientation="Horizontal"
-                     HorizontalOptions="Center">
+    <VerticalStackLayout Margin="20">
+        <HorizontalStackLayout HorizontalOptions="Center">
             <Label Text="ScrollToPosition: "
                    VerticalTextAlignment="Center" />
             <controls:EnumPicker x:Name="enumPicker"
                                  EnumType="{x:Type ScrollToPosition}"
                                  SelectedIndex="0" />
-        </StackLayout>
-        <StackLayout Orientation="Horizontal"
-                     HorizontalOptions="Center">
+        </HorizontalStackLayout>
+        <HorizontalStackLayout HorizontalOptions="Center">
             <Label Text="Animate scroll: "
                    VerticalTextAlignment="Center" />
             <Switch x:Name="animateSwitch"
                     IsToggled="true" />
-        </StackLayout>
+        </HorizontalStackLayout>
         <Button Text="Scroll to Proboscis Monkey"
                 Clicked="OnButtonClicked" />
         <ListView x:Name="listView"
@@ -56,5 +54,5 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

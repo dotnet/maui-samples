@@ -7,20 +7,20 @@
         <CollectionView ItemsSource="{Binding Monkeys}"
                         ItemsLayout="HorizontalGrid, 2">
             <CollectionView.Header>
-                <StackLayout BackgroundColor="LightGray">
+                <VerticalStackLayout BackgroundColor="LightGray">
                     <Label Margin="10,0,0,0"
                            Text="Monkeys"
                            FontSize="12"
                            FontAttributes="Bold" />
-                </StackLayout>
+                </VerticalStackLayout>
             </CollectionView.Header>
             <CollectionView.Footer>
-                <StackLayout BackgroundColor="LightGray">
+                <VerticalStackLayout BackgroundColor="LightGray">
                     <Label Margin="10,0,0,0"
                            Text="Friends of Xamarin Monkey"
                            FontSize="12"
                            FontAttributes="Bold" />
-                </StackLayout>
+                </VerticalStackLayout>
             </CollectionView.Footer>
             <CollectionView.ItemTemplate>
                 <DataTemplate>

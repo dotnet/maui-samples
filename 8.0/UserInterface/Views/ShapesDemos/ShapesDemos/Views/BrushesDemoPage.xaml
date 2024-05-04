@@ -47,7 +47,7 @@
     </ContentPage.Resources>
 
     <ScrollView>
-        <StackLayout Margin="20">
+        <VerticalStackLayout Margin="20">
             <Label Text="Ellipse with a LinearGradientBrush" />
             <Ellipse Stroke="{StaticResource LinearGradientBrushStroke}"
                      Fill="{StaticResource LinearGradientBrushFill}"
@@ -96,6 +96,6 @@
                   HorizontalOptions="Start"
                   HeightRequest="100"
                   WidthRequest="100" />
-        </StackLayout>
+        </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ControlGallery.Views.XAML.IndicatorViewDemoPage"
              Title="IndicatorView Demo">
-    <StackLayout Margin="20">
+    <VerticalStackLayout Margin="20">
         <Label Text="IndicatorView"
                FontSize="50"
                FontAttributes="Bold"
@@ -12,7 +12,7 @@
                       IndicatorView="indicatorView">
             <CarouselView.ItemTemplate>
                 <DataTemplate>
-                    <StackLayout>
+                    <VerticalStackLayout>
                         <Frame HasShadow="True"
                                BorderColor="DarkGray"
                                CornerRadius="5"
@@ -20,7 +20,7 @@
                                HeightRequest="300"
                                HorizontalOptions="Center"
                                VerticalOptions="CenterAndExpand">
-                            <StackLayout>
+                            <VerticalStackLayout>
                                 <Label Text="{Binding Name}" 
                                        FontAttributes="Bold"
                                        FontSize="20"
@@ -38,9 +38,9 @@
                                        HorizontalOptions="Center"
                                        MaxLines="5"
                                        LineBreakMode="TailTruncation" />
-                            </StackLayout>
+                            </VerticalStackLayout>
                         </Frame>
-                    </StackLayout>
+                    </VerticalStackLayout>
                 </DataTemplate>
             </CarouselView.ItemTemplate>
         </CarouselView>
@@ -49,5 +49,5 @@
                        IndicatorColor="LightGray"
                        SelectedIndicatorColor="DarkGray"
                        HorizontalOptions="Center" />
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

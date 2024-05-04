@@ -14,7 +14,7 @@
                    HorizontalOptions="Center"
                    Aspect="AspectFit" />
             <ScrollView Grid.Row="1">
-                <StackLayout Orientation="Vertical" 
+                <VerticalStackLayout Orientation="Vertical" 
                              Padding="16,40,16,40"
                              Spacing="10">
                     <Label FontSize="22">
@@ -56,7 +56,7 @@
                             CommandParameter="https://docs.microsoft.com/dotnet/maui"
                             BackgroundColor="{StaticResource Primary}"
                             TextColor="White" />
-                </StackLayout>
+                </VerticalStackLayout>
             </ScrollView>
         </Grid>
     </ScrollView>

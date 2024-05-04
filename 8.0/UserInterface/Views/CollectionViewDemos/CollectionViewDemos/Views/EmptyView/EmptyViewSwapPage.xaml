@@ -5,17 +5,17 @@
              Title="EmptyView (swap)">
     <ContentPage.Resources>
         <ContentView x:Key="BasicEmptyView">
-            <StackLayout>
+            <VerticalStackLayout>
                 <Label Text="No items to display."
                        Margin="10,25,10,10"
                        FontAttributes="Bold"
                        FontSize="18"
                        HorizontalOptions="Fill"
                        HorizontalTextAlignment="Center" />
-            </StackLayout>
+            </VerticalStackLayout>
         </ContentView>
         <ContentView x:Key="AdvancedEmptyView">
-            <StackLayout>
+            <VerticalStackLayout>
                 <Label Text="No results matched your filter."
                        Margin="10,25,10,10"
                        FontAttributes="Bold"
@@ -27,7 +27,7 @@
                        FontSize="12"
                        HorizontalOptions="Fill"
                        HorizontalTextAlignment="Center" />
-            </StackLayout>
+            </VerticalStackLayout>
         </ContentView>
     </ContentPage.Resources>
     

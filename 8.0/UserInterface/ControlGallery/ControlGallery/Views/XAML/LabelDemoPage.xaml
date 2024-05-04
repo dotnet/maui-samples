@@ -4,7 +4,7 @@
              x:Class="ControlGallery.Views.XAML.LabelDemoPage"
              Title="Label Demo"
              Padding="10, 0">
-    <StackLayout>
+    <VerticalStackLayout>
         <Label Text="Label"
                FontSize="50"
                FontAttributes="Bold"
@@ -19,5 +19,5 @@ Windows."
                FontSize="20"
                VerticalOptions="CenterAndExpand"
                Margin="10, 0" />
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ControlGallery.Views.XAML.ImageDemoPage"
              Title="Image Demo">
-    <StackLayout>
+    <VerticalStackLayout>
         <Label Text="Image"
                FontSize="50"
                FontAttributes="Bold"
@@ -12,5 +12,5 @@
         <Image Source="https://aka.ms/campus.jpg"
                HorizontalOptions="Center"
                VerticalOptions="CenterAndExpand" />
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

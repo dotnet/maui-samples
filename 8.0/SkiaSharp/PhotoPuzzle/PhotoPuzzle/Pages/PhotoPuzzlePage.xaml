@@ -4,7 +4,7 @@
              x:Class="PhotoPuzzle.PhotoPuzzlePage"
              Title="Photo Puzzle">
     <ContentView SizeChanged="OnContentViewSizeChanged">
-        <StackLayout x:Name="stackLayout">
+        <VerticalStackLayout x:Name="stackLayout">
             <Button Margin="0,20,0,20"
                     Text="Randomize"
                     Clicked="OnRandomizeButtonClicked"
@@ -12,6 +12,6 @@
                     VerticalOptions="Center" />
             <AbsoluteLayout x:Name="absoluteLayout"
                             BackgroundColor="Black" />
-        </StackLayout>
+        </VerticalStackLayout>
     </ContentView>
 </ContentPage>

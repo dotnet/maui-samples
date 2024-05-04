@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:WorkingWithTriggers;assembly=WorkingWithTriggers"
              x:Class="WorkingWithTriggers.EventTriggerXaml"
              Padding="20, 50, 20, 0">
-    <StackLayout>
+    <VerticalStackLayout>
         <Label FontSize="20"
                Text="EventTrigger Example" />
         <Label Text="Text must be a valid double or it will turn red." />
@@ -15,5 +15,5 @@
                 </EventTrigger>
             </Entry.Triggers>
         </Entry>
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

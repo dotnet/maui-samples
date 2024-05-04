@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ControlGallery.Views.XAML.WebViewDemoPage"
              Title="WebView Demo">
-    <StackLayout>
+    <VerticalStackLayout>
         <Label Text="WebView"
                FontSize="50"
                FontAttributes="Bold"
@@ -11,5 +11,5 @@
 
         <WebView Source="https://www.microsoft.com"
                  VerticalOptions="FillAndExpand" />
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

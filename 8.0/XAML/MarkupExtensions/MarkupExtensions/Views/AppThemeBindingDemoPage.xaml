@@ -11,10 +11,10 @@
         </Style>
     </ContentPage.Resources>
     
-    <StackLayout Margin="20">
+    <VerticalStackLayout Margin="20">
         <Label Text="This text is green in light mode, and red in dark mode."
                TextColor="{AppThemeBinding Light=Green, Dark=Red}" />
         <Label Text="This text is black by default, blue in light mode, and teal in dark mode."
                Style="{StaticResource labelStyle}" />
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:HyperlinkDemo"
              x:Class="HyperlinkDemo.MainPage">
-    <StackLayout Margin="20">
+    <VerticalStackLayout Margin="20">
         <Label Text="Hyperlink Demos"
                HorizontalOptions="Center"
                FontAttributes="Bold" />
@@ -48,6 +48,6 @@
                 </FormattedString>
             </Label.FormattedText>
         </Label>
-    </StackLayout>
+    </VerticalStackLayout>
 
 </ContentPage>

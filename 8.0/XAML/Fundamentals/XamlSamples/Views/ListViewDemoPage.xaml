@@ -15,19 +15,17 @@
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
-                    <StackLayout Padding="5, 5, 0, 5"
-                                 Orientation="Horizontal"
+                    <HorizontalStackLayout Padding="5, 5, 0, 5"
                                  Spacing="15">
                         <BoxView WidthRequest="{StaticResource boxSize}"
                                  HeightRequest="{StaticResource boxSize}"
                                  Color="{Binding Color}" />
-                        <StackLayout Padding="5, 0, 0, 0"
+                        <VerticalStackLayout Padding="5, 0, 0, 0"
                                      VerticalOptions="Center">
                             <Label Text="{Binding FriendlyName}"
                                    FontAttributes="Bold"
                                    FontSize="14" />
-                            <StackLayout Orientation="Horizontal"
-                                         Spacing="0">
+                            <HorizontalStackLayout Spacing="0">
                                 <Label Text="{Binding Red,
                                        Converter={StaticResource intConverter},
                                        ConverterParameter=255,
@@ -40,9 +38,9 @@
                                        Converter={StaticResource intConverter},
                                        ConverterParameter=255,
                                        StringFormat=', B={0:X2}'}" />
-                            </StackLayout>
-                        </StackLayout>
-                    </StackLayout>
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
                 </ViewCell>
             </DataTemplate>
         </ListView.ItemTemplate>

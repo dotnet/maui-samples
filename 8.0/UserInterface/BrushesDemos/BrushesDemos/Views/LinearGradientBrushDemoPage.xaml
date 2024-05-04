@@ -4,7 +4,7 @@
              x:Class="BrushesDemos.Views.LinearGradientBrushDemoPage"
              Title="Linear gradient brush demos">
     <ScrollView>
-        <StackLayout Margin="20">
+        <VerticalStackLayout Margin="20">
             <Label Text="LinearGradientBrush (Horizontal)"
                    FontAttributes="Bold" />
             <Frame Margin="0,20,0,0"
@@ -62,6 +62,6 @@
                     </LinearGradientBrush>
                 </Frame.Background>
             </Frame>                           
-        </StackLayout>
+        </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

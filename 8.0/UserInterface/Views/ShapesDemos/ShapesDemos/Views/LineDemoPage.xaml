@@ -4,7 +4,7 @@
              x:Class="ShapesDemos.Views.LineDemoPage"
              Title="Line demos">
     <ScrollView>
-        <StackLayout Margin="20">
+        <VerticalStackLayout Margin="20">
             <Label Text="Line" />
             <Line X1="40"
                   Y1="0"
@@ -51,6 +51,6 @@
                   StrokeLineCap="Round"
                   Stroke="Red"
                   StrokeThickness="12" />
-        </StackLayout>
+        </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

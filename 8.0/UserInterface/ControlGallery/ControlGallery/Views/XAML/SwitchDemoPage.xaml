@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ControlGallery.Views.XAML.SwitchDemoPage"
              Title="Switch Demo">
-    <StackLayout>
+    <VerticalStackLayout>
         <Label Text="Switch"
                FontSize="50"
                FontAttributes="Bold"
@@ -26,5 +26,5 @@
                 </DataTrigger>
             </Label.Triggers>
         </Label>
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

@@ -4,7 +4,7 @@
              x:Class="BrushesDemos.Views.SolidColorBrushDemoPage"
              Title="Solid color brush demos">
     <ScrollView>
-        <StackLayout Margin="20"
+        <VerticalStackLayout Margin="20"
                      Spacing="6">
             <Label Text="SolidColorBrush (Predefined Brush)"
                    FontAttributes="Bold" />
@@ -47,7 +47,7 @@
                     <SolidColorBrush Color="LightSteelBlue" />
                 </Frame.Background>
             </Frame>
-        </StackLayout>
+        </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
 

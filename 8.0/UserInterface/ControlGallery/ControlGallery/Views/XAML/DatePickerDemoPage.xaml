@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ControlGallery.Views.XAML.DatePickerDemoPage"
              Title="DatePicker Demo">
-    <StackLayout>
+    <VerticalStackLayout>
         <Label Text="DatePicker"
                FontSize="50"
                FontAttributes="Bold"
@@ -13,5 +13,5 @@
                     VerticalOptions="CenterAndExpand"
                     Margin="10, 0" />
 
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

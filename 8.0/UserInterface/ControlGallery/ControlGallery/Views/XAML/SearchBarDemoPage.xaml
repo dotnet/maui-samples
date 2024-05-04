@@ -4,7 +4,7 @@
              x:Class="ControlGallery.Views.XAML.SearchBarDemoPage"
              Title="SearchBar Demo"
              Padding="10, 0">
-    <StackLayout>
+    <VerticalStackLayout>
         <Label Text="SearchBar"
                FontSize="50"
                FontAttributes="Bold"
@@ -16,5 +16,5 @@
         <ScrollView VerticalOptions="FillAndExpand">
             <Label x:Name="resultsLabel" />
         </ScrollView>
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

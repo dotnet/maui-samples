@@ -21,13 +21,13 @@
         </Grid.RowDefinitions>
         <BoxView Color="{Binding Color}"
                  Grid.Row="0" />
-        <StackLayout Grid.Row="1"
+        <VerticalStackLayout Grid.Row="1"
                      Margin="10, 0">
             <Label Text="{Binding Name}"
                    HorizontalTextAlignment="Center" />
             <Slider Value="{Binding Hue}" />    
             <Slider Value="{Binding Saturation}" />
             <Slider Value="{Binding Luminosity}" />
-        </StackLayout>
+        </VerticalStackLayout>
     </Grid>
 </ContentPage>
