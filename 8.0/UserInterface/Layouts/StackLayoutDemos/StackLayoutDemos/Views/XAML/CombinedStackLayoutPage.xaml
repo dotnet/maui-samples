@@ -34,7 +34,7 @@
                 <Label Text="Blue"
                        FontSize="20"
                        VerticalOptions="Center" />
-            </VerticalStackLayout>
+            </HorizontalStackLayout>
         </Frame>
         <Label Text="Secondary colors" />
         <Frame BorderColor="Black"

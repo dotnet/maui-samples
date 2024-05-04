@@ -9,16 +9,13 @@
                         MinWideModeWidth="{Binding Source={x:Reference MinWideModeWidth}, Path=Value}"
                         TallModeConfiguration="{Binding Source={x:Reference TallModeConfiguration}, Path=SelectedItem}"
                         WideModeConfiguration="{Binding Source={x:Reference WideModeConfiguration}, Path=SelectedItem}"
-                        PanePriority="{Binding Source={x:Reference PanePriority}, Path=SelectedItem, Mode=TwoWay}"
-        >
+                        PanePriority="{Binding Source={x:Reference PanePriority}, Path=SelectedItem, Mode=TwoWay}">
         <foldable:TwoPaneView.Pane1
             BackgroundColor="#dddddd">
             <Frame BorderColor="Red">
                 <VerticalStackLayout BackgroundColor="Blue"
-                                 Orientation="Vertical"
                                  VerticalOptions="StartAndExpand"
-                                 Padding="5"
-                                 >
+                                 Padding="5">
 
                     <Label Text="ScreenSize" x:Name="sizeLabel"/>
                     <Label Text="SinglePane" x:Name="spanLabel"/>
