@@ -7,11 +7,11 @@
              HeaderText="MyApp"
              ControlTemplate="{StaticResource SecondaryColorTemplate}">
 
-    <StackLayout Margin="10">
+    <VerticalStackLayout Margin="10">
         <Entry Placeholder="Enter username" />
         <Entry Placeholder="Enter password"
                 IsPassword="True" />
         <Button Text="Login" />
-    </StackLayout>
+    </VerticalStackLayout>
 
 </controls:HeaderFooterPage>

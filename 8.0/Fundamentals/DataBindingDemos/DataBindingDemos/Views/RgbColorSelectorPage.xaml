@@ -19,12 +19,12 @@
         <local:FloatToIntConverter x:Key="floatToInt" />
     </ContentPage.Resources>
 
-    <StackLayout Margin="20">
+    <VerticalStackLayout Margin="20">
         <BoxView Color="{Binding Color}"
                  HeightRequest="100"
                  WidthRequest="100"
                  HorizontalOptions="Center" />
-        <StackLayout Margin="10, 0">
+        <VerticalStackLayout Margin="10, 0">
             <Label Text="{Binding Name}" />
             <Slider Value="{Binding Red}" />
             <Label Text="{Binding Red, 
@@ -48,6 +48,6 @@
                     </Binding>
                 </Label.Text>
             </Label>
-        </StackLayout>
-    </StackLayout>
+        </VerticalStackLayout>
+    </VerticalStackLayout>
 </ContentPage>    

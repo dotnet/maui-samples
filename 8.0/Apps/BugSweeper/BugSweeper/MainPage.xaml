@@ -37,9 +37,9 @@
         <Grid Grid.Row="1"
               SizeChanged="OnBoardGridSizeChanged">
             <local:Board x:Name="board" />
-            <StackLayout x:Name="congratulationsText"
-                         Orientation="Horizontal"
-                         HorizontalOptions="Center">
+            <HorizontalStackLayout
+              x:Name="congratulationsText"
+              HorizontalOptions="Center">
                 <Label Text="C"
                        TextColor="Red" />
                 <Label Text="O"

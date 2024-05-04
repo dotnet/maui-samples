@@ -16,10 +16,10 @@
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
-    <StackLayout Padding="10,50,10,0">
+    <VerticalStackLayout Padding="10,50,10,0">
         <Label Text="Red when the number isn't valid"
                FontSize="12" />
         <Entry Placeholder="Enter a System.Double"
                Style="{StaticResource NumericValidationStyle}" />
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

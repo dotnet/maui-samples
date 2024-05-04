@@ -12,7 +12,7 @@
             <local:SelectedItemEventArgsToSelectedItemConverter x:Key="SelectedItemConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
-    <StackLayout Margin="20">
+    <Grid Margin="20" RowDefinitions="*,20">
         <ListView ItemsSource="{Binding People}">
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -25,6 +25,6 @@
                                               Converter="{StaticResource SelectedItemConverter}" />
             </ListView.Behaviors>
         </ListView>
-        <Label Text="{Binding SelectedItemText}" />
-    </StackLayout>
+        <Label Grid.Row="1" Text="{Binding SelectedItemText}" />
+    </Grid>
 </ContentPage>

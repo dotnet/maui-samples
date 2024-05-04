@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="CollectionViewDemos.Views.VerticalListMultipleSelectionPage"
              Title="Vertical list (multiple selection)">
-    <StackLayout Margin="20">
+    <Grid Margin="20" RowDefinitions="*,*">
         <ScrollView HeightRequest="150">
             <Grid>
                 <Grid.RowDefinitions>
@@ -24,7 +24,9 @@
                            Grid.Column="1" />
             </Grid>
         </ScrollView>
-        <CollectionView ItemsSource="{Binding Monkeys}"
+        <CollectionView
+                        Grid.Row="1"
+                        ItemsSource="{Binding Monkeys}"
                         SelectionMode="Multiple"
                         SelectionChanged="OnCollectionViewSelectionChanged">
             <CollectionView.ItemTemplate>
@@ -55,5 +57,5 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-    </StackLayout>
+    </Grid>
 </ContentPage>

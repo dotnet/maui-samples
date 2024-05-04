@@ -125,7 +125,7 @@
     
         <!-- Main Section -->
         <ScrollView>
-            <VerticalStackLayout>
+            <Grid>
 
                 <!-- Search Box -->
                 <HorizontalStackLayout
@@ -147,39 +147,39 @@
                 </HorizontalStackLayout>
 
                 <!-- Actual Content -->
-            <CollectionView
-                Margin="15"
-                ItemsSource="{Binding Favorites}"
-                ItemTemplate="{StaticResource FavTemplate}">
-                <CollectionView.ItemsLayout>
-                    <GridItemsLayout Orientation="Vertical"
-                                     Span="2"
-                                     VerticalItemSpacing="8"
-                                     HorizontalItemSpacing="8"/>
-                </CollectionView.ItemsLayout>
-                <CollectionView.FooterTemplate>
-                    <DataTemplate>
-                        <Border
-                            HeightRequest="132"
-                            WidthRequest="132"
-                            HorizontalOptions="Start"
-                            Margin="{OnIdiom Phone=15,Default=25}"
-                            Stroke="Transparent"
-                            StrokeThickness="1"
-                            BackgroundColor="{StaticResource Background_Mid}">
-                            <Border.StrokeShape>
-                                <RoundRectangle CornerRadius="60"/>
-                            </Border.StrokeShape>
-                            <ImageButton
-                                BackgroundColor="Transparent"
-                                Source="add_icon.png"
-                                VerticalOptions="Center" HorizontalOptions="Center"/>
-                        </Border>
-                    </DataTemplate>
-                </CollectionView.FooterTemplate>
-            </CollectionView>
+                <CollectionView
+                    Margin="15"
+                    ItemsSource="{Binding Favorites}"
+                    ItemTemplate="{StaticResource FavTemplate}">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical"
+                                        Span="2"
+                                        VerticalItemSpacing="8"
+                                        HorizontalItemSpacing="8"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.FooterTemplate>
+                        <DataTemplate>
+                            <Border
+                                HeightRequest="132"
+                                WidthRequest="132"
+                                HorizontalOptions="Start"
+                                Margin="{OnIdiom Phone=15,Default=25}"
+                                Stroke="Transparent"
+                                StrokeThickness="1"
+                                BackgroundColor="{StaticResource Background_Mid}">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="60"/>
+                                </Border.StrokeShape>
+                                <ImageButton
+                                    BackgroundColor="Transparent"
+                                    Source="add_icon.png"
+                                    VerticalOptions="Center" HorizontalOptions="Center"/>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.FooterTemplate>
+                </CollectionView>
 
-        </VerticalStackLayout>
+            </Grid>
         </ScrollView>
 
 </ContentPage>

@@ -8,7 +8,7 @@
         <local:IntToBoolConverter x:Key="intToBool" />
     </ContentPage.Resources>
     
-    <StackLayout Padding="10, 0">
+    <VerticalStackLayout Padding="10, 0">
         <Entry x:Name="entry1"
                Text=""
                Placeholder="enter search term"
@@ -29,5 +29,5 @@
                 IsEnabled="{Binding Source={x:Reference entry2},
                                     Path=Text.Length,
                                     Converter={StaticResource intToBool}}" />
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

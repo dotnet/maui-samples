@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CollectionViewDemos.Views.VerticalListSingleSelectionPage"
              Title="Vertical list (single selection)">
-    <StackLayout Margin="20">
+    <Grid Margin="20" RowDefinitions="50, *">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -22,7 +22,9 @@
                    Grid.Row="1"
                    Grid.Column="1" />
         </Grid>
-        <CollectionView ItemsSource="{Binding Monkeys}"
+        <CollectionView
+                        Grid.Row="1"
+                        ItemsSource="{Binding Monkeys}"
                         SelectionMode="Single"
                         SelectionChanged="OnCollectionViewSelectionChanged">
             <CollectionView.ItemTemplate>
@@ -53,5 +55,5 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-    </StackLayout>
+    </Grid>
 </ContentPage>

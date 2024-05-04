@@ -4,10 +4,11 @@
              xmlns:controls="clr-namespace:CollectionViewDemos.Controls"
              x:Class="CollectionViewDemos.Views.HorizontalListSpacingPage"
              Title="Horizontal list (spacing)">
-    <StackLayout Margin="20">
+    <Grid Margin="20" RowDefinitions="30,*">
         <controls:SpacingModifier CV="{x:Reference collectionView}"
                                   SpacingText="0" />
         <CollectionView x:Name="collectionView"
+                        Grid.Row="1"
                         ItemsSource="{Binding Monkeys}"
                         ItemsLayout="HorizontalList">
             <CollectionView.ItemTemplate>
@@ -40,5 +41,5 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-    </StackLayout>
+    </Grid>
 </ContentPage>

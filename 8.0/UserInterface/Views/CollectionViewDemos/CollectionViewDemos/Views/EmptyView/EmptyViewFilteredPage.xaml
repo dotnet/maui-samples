@@ -3,12 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="CollectionViewDemos.Views.EmptyViewFilteredPage"
              Title="EmptyView (string)">
-    <StackLayout Margin="20">
+    <Grid Margin="20" RowDefinitions="50,*">
         <SearchBar x:Name="searchBar"
                    SearchCommand="{Binding FilterCommand}"
                    SearchCommandParameter="{Binding Source={x:Reference searchBar}, Path=Text}"
                    Placeholder="Filter" />
-        <CollectionView ItemsSource="{Binding Monkeys}"
+        <CollectionView Grid.Row="1"
+                        ItemsSource="{Binding Monkeys}"
                         EmptyView="No items match your filter.">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
@@ -38,5 +39,5 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-    </StackLayout>
+    </Grid>
 </ContentPage>

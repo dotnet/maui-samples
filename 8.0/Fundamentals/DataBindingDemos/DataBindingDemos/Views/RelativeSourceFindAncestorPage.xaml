@@ -5,7 +5,7 @@
              x:Class="DataBindingDemos.RelativeSourceFindAncestorPage"
              Title="RelativeSource FindAncestor Mode"
              BindingContext="{Binding Source={RelativeSource Self}, Path=DefaultViewModel}">
-    <StackLayout Margin="10">
+    <Grid Margin="10">
         <!--
         In this example, the page's BindingContext is bound to its own DefaultViewModel property.
         -->        
@@ -30,5 +30,5 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-    </StackLayout>
+    </Grid>
 </ContentPage>

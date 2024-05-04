@@ -20,12 +20,12 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <StackLayout Margin="20">
+    <VerticalStackLayout Margin="20">
         <BoxView Color="{Binding Color}"
                  HeightRequest="100"
                  WidthRequest="100"
                  HorizontalOptions="Center" />
-        <StackLayout Margin="10, 0">
+        <VerticalStackLayout Margin="10, 0">
             <Label Text="{Binding Name}" />
             <Slider Value="{Binding Hue}" />
             <Label Text="{Binding Hue, StringFormat='Hue = {0:F2}'}" />
@@ -33,6 +33,6 @@
             <Label Text="{Binding Saturation, StringFormat='Saturation = {0:F2}'}" />
             <Slider Value="{Binding Luminosity}" />
             <Label Text="{Binding Luminosity, StringFormat='Luminosity = {0:F2}'}" />
-        </StackLayout>
-    </StackLayout>
+        </VerticalStackLayout>
+    </VerticalStackLayout>
 </ContentPage>    

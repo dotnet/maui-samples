@@ -16,7 +16,7 @@
             BindableLayout.ItemsSource="{Binding Hours}">
             <BindableLayout.ItemTemplate>
                 <DataTemplate>
-                    <StackLayout>
+                    <VerticalStackLayout>
                         <Label
                             Text="{Binding DateTime, StringFormat='{0:h tt}'}"
                             class="Small"
@@ -30,7 +30,7 @@
                             Text="{Binding Temperature.Minimum.Value, StringFormat='{0:F0}°'}"
                             class="Subhead"
                             HorizontalOptions="Center"/>
-                    </StackLayout>
+                    </VerticalStackLayout>
                 </DataTemplate>
             </BindableLayout.ItemTemplate>
         </HorizontalStackLayout>
