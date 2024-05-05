@@ -165,6 +165,6 @@
                     </VerticalStackLayout>
                 </BindableLayout.EmptyView>
             </HorizontalStackLayout>
-        </HorizontalStackLayout>
+        </VerticalStackLayout>
     </VerticalStackLayout>
 </ContentPage>
