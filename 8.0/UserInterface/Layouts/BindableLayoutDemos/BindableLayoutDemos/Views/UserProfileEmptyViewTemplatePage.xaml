@@ -161,6 +161,6 @@
                     </DataTemplate>
                 </BindableLayout.EmptyViewTemplate>
             </HorizontalStackLayout>
-        </HorizontalStackLayout>
+        </VerticalStackLayout>
     </VerticalStackLayout>
 </ContentPage>
