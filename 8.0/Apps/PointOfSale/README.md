@@ -23,7 +23,7 @@ This app demonstrates various techniques for building a desktop and mobile appli
 
 ## Local Testing
 
-If you want to test the full functionality of this app locally for iOS, make sure to rename the `Platforms/iOS/EntitlementsSample.plist` file to ``Platforms/iOS/Entitlements.plist`.
+If you want to test the full functionality of this app locally for iOS, make sure to rename the `Platforms/iOS/EntitlementsSample.plist` file to `Platforms/iOS/Entitlements.plist`.
 
 By doing so, you will need a matching provisioning profile in your Apple Developer accound in order for everything to work correctly.
 
