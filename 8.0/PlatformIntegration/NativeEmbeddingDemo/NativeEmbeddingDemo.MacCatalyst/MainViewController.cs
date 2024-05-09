@@ -69,6 +69,8 @@ namespace NativeEmbeddingDemo.MacCatalyst
 
             // Create native view
             var nativeView = mauiView.ToPlatformEmbedded(mauiContext);
+            nativeView.WidthAnchor.ConstraintEqualTo(View.Frame.Width).Active = true;
+            nativeView.HeightAnchor.ConstraintEqualTo(500).Active = true;
 
             // Add native view to layout
             stackView.AddArrangedSubview(nativeView);
