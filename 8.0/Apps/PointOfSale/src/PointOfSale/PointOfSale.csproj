@@ -69,7 +69,7 @@
 	  <PackageReference Include="Redth.ZXing.Net.Maui" Version="0.1.0-preview.4" />
 	  <PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0-preview.92" />
 	  <PackageReference Include="Ril.BlazorSignatureCanvas" Version="0.1.0-alpha" />
-	  <PackageReference Include="Microsoft.Identity.Client" Version="4.48.1" />
+	  <PackageReference Include="Microsoft.Identity.Client" Version="4.59.1" />
 	  <PackageReference Include="MonkeyCache" Version="2.0.0-beta" />
 	  <PackageReference Include="MonkeyCache.FileStore" Version="2.0.0-beta" />
 	  <PackageReference Include="AlohaKit.Animations" Version="1.0.0" />
