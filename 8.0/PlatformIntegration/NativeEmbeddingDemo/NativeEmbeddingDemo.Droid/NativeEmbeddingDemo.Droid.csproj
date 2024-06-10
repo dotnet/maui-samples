@@ -24,6 +24,4 @@
 		<ProjectReference Include="..\NativeEmbeddingDemo\NativeEmbeddingDemo.csproj" />
 	</ItemGroup>
 
-	<ProjectExtensions><VisualStudio><UserProperties XamarinHotReloadDebuggerTimeoutExceptionNativeEmbeddingDemoDroidHideInfoBar="True" /></VisualStudio></ProjectExtensions>
-
 </Project>

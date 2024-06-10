@@ -1,9 +1,9 @@
-﻿namespace NativeEmbeddingDemo.MacCatalyst;
+﻿namespace NativeEmbeddingDemo.iOS;
 
 public class NewTaskViewController : UIViewController
 {
-    UITextField taskTitleTextField = null;
-    UITextField notesTextField = null;
+    private UITextField taskTitleTextField = null!;
+    private UITextField notesTextField = null!;
 
     public override void ViewDidLoad()
     {
@@ -11,6 +11,7 @@ public class NewTaskViewController : UIViewController
 
         View!.BackgroundColor = UIColor.SystemBackground;
 
+        // StackView
         var stackView = new UIStackView
         {
             Axis = UILayoutConstraintAxis.Vertical,
@@ -29,38 +30,37 @@ public class NewTaskViewController : UIViewController
             stackView.BottomAnchor.ConstraintLessThanOrEqualTo(View.SafeAreaLayoutGuide.BottomAnchor, -20)
         });
 
-        // Title text field
+        // Title Text Field
         taskTitleTextField = CreateTextField("Title");
         stackView.AddArrangedSubview(taskTitleTextField);
 
-        // Notes text field
+        // Notes Text Field
         notesTextField = CreateTextField("Notes");
         stackView.AddArrangedSubview(notesTextField);
 
-        // Create task button
+        // Create Task Button
         var createTaskButton = new UIButton(UIButtonType.System);
         createTaskButton.SetTitle("Create Task", UIControlState.Normal);
         createTaskButton.TouchUpInside += CreateTaskButtonTapped;
         stackView.AddArrangedSubview(createTaskButton);
     }
 
-    UITextField CreateTextField(string placeholder)
+    private UITextField CreateTextField(string placeholder)
     {
-        var uiTextField = new UITextField
+        var textField = new UITextField
         {
             Placeholder = placeholder,
             BorderStyle = UITextBorderStyle.RoundedRect,
             TranslatesAutoresizingMaskIntoConstraints = false
         };
-        uiTextField.HeightAnchor.ConstraintEqualTo(40).Active = true;
-        return uiTextField;
+        textField.HeightAnchor.ConstraintEqualTo(40).Active = true;
+        return textField;
     }
 
-    void CreateTaskButtonTapped(object? sender, EventArgs e)
+    private void CreateTaskButtonTapped(object? sender, EventArgs e)
     {
-        Console.WriteLine("Create button tapped.");
+        Console.WriteLine("Create button tapped");
 
-        // Implement your logic here for creating a task.
+        // Implement your logic here for creating a task
     }
 }
-
