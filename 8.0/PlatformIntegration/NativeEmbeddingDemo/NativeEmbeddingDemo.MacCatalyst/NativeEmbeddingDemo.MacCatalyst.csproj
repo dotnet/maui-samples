@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFramework>net8.0-maccatalyst</TargetFramework>
@@ -9,6 +9,9 @@
 		<SupportedOSPlatformVersion>14.2</SupportedOSPlatformVersion>
 		<UseMaui>true</UseMaui>
 		<MauiEnablePlatformUsings>true</MauiEnablePlatformUsings>
+
+		<!-- Visual Studio doesn't support Hot Reload in non-MAUI apps -->
+		<EnableHotReload>false</EnableHotReload>
 	</PropertyGroup>
 
 	<ItemGroup>

@@ -28,5 +28,15 @@
                 SemanticProperties.Hint="Counts the number of times you click"
                 Clicked="OnCounterClicked"
                 HorizontalOptions="Fill" />
+
+        <Label Text="This is a MAIN app only feature!"
+               HorizontalOptions="Center"
+               Style="{StaticResource MainAppOnlyStyle}"
+               SemanticProperties.HeadingLevel="Level2" />
+
+        <Label Text="This is a TEST app only feature!"
+               HorizontalOptions="Center"
+               Style="{StaticResource TestAppOnlyStyle}"
+               SemanticProperties.HeadingLevel="Level2" />
     </VerticalStackLayout>
 </ContentView>

@@ -24,4 +24,14 @@ The process for consuming a .NET MAUI control in a native app is as follows:
 
 You must disable hot reload in Visual Studio to run this sample, or run the sample without debugging.
 
+This sample contains multiple projects:
+
+- NativeEmbeddingDemo - the .NET MAUI UIs for your native app.
+- NativeEmbeddingDemo.Droid - the native app project for Android.
+- NativeEmbeddingDemo.iOS - the native app project for iOS.
+- NativeEmbeddingDemo.Library - helper code for native embedding scenarios.
+- NativeEmbeddingDemo.MacCatalyst - the native app project for Mac Catalyst.
+- NativeEmbeddingDemo.WinUI -the native app project for WinUI.
+- TestHarnessApp - a test app that can be used to test .NET MAUI UI without having to launch the native apps. This enables you to iterate faster on your .NET MAUI UI by using XAML hot reload.
+
 For more information about the sample see [Native embedding](https://learn.microsoft.com/dotnet/maui/platform-integration/native-embedding).

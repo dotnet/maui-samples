@@ -1,26 +1,39 @@
 ﻿using Microsoft.Extensions.Logging;
 
-namespace NativeEmbeddingDemo
+namespace NativeEmbeddingDemo;
+
+public static class MauiProgram
 {
-    public static class MauiProgram
+    /// <summary>
+    /// Create a new MauiApp using the default application.
+    /// </summary>
+    /// <param name="additional"></param>
+    /// <returns></returns>
+    public static MauiApp CreateMauiApp(Action<MauiAppBuilder>? additional = null) =>
+        CreateMauiApp<App>(additional);
+
+    /// <summary>
+    /// Create a new MauiAPp using the specified application.
+    /// </summary>
+    /// <typeparam name="TApp"></typeparam>
+    /// <param name="additional"></param>
+    /// <returns></returns>
+    public static MauiApp CreateMauiApp<TApp>(Action<MauiAppBuilder>? additional = null) where TApp : App
     {
-        public static MauiApp CreateMauiApp(Action<MauiAppBuilder>? additional = null)
-        {
-            var builder = MauiApp.CreateBuilder();
-            builder
-                .UseMauiApp<App>()
-                .ConfigureFonts(fonts =>
-                {
-                    fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-                    fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-                });
+        var builder = MauiApp.CreateBuilder();
+        builder
+            .UseMauiApp<TApp>()
+            .ConfigureFonts(fonts =>
+            {
+                fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+                fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+            });
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+		builder.Logging.AddDebug();
 #endif
-            additional?.Invoke(builder);
+        additional?.Invoke(builder);
 
-            return builder.Build();
-        }
+        return builder.Build();
     }
 }

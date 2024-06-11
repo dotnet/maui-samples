@@ -17,6 +17,9 @@
 		<UseMaui>true</UseMaui>
 		<MauiEnablePlatformUsings>true</MauiEnablePlatformUsings>
 		<EnableDefaultMauiItems>false</EnableDefaultMauiItems>
+
+		<!-- Visual Studio doesn't support Hot Reload in non-MAUI apps -->
+		<EnableHotReload>false</EnableHotReload>
 	</PropertyGroup>
 
 	<ItemGroup>
