@@ -9,6 +9,9 @@
 		<UseMaui>true</UseMaui>
 		<MauiEnablePlatformUsings>true</MauiEnablePlatformUsings>
 
+		<!-- Visual Studio doesn't support Hot Reload in non-MAUI apps -->
+		<EnableHotReload>false</EnableHotReload>
+
 		<ApplicationId>com.companyname.nativeembeddingdemo</ApplicationId>
 		<ApplicationVersion>1</ApplicationVersion>
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>

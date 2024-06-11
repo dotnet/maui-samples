@@ -7,6 +7,9 @@
 		<SupportedOSPlatformVersion>13.0</SupportedOSPlatformVersion>
 		<UseMaui>true</UseMaui>
 		<MauiEnablePlatformUsings>true</MauiEnablePlatformUsings>
+
+		<!-- Visual Studio doesn't support Hot Reload in non-MAUI apps -->
+		<EnableHotReload>false</EnableHotReload>
 	</PropertyGroup>
 
 	<ItemGroup>
