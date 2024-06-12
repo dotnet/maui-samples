@@ -22,8 +22,6 @@ The process for consuming a .NET MAUI control in a native app is as follows:
 1. Initialize .NET MAUI by calling the `UseMauiEmbedding` extension method.
 1. Create the .NET MAUI UI and convert it to the appropriate native type with the `ToPlatformEmbedding` extension method.
 
-You must disable hot reload in Visual Studio to run this sample, or run the sample without debugging.
-
 This sample contains multiple projects:
 
 - NativeEmbeddingDemo - the .NET MAUI UIs for your native app.
@@ -33,5 +31,7 @@ This sample contains multiple projects:
 - NativeEmbeddingDemo.MacCatalyst - the native app project for Mac Catalyst.
 - NativeEmbeddingDemo.WinUI -the native app project for WinUI.
 - TestHarnessApp - a test app that can be used to test .NET MAUI UI without having to launch the native apps. This enables you to iterate faster on your .NET MAUI UI by using XAML hot reload.
+
+You must disable hot reload in Visual Studio to run the native app projects, or run them without debugging.
 
 For more information about the sample see [Native embedding](https://learn.microsoft.com/dotnet/maui/platform-integration/native-embedding).
