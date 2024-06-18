@@ -23,7 +23,7 @@ This app demonstrates various techniques for building a desktop and mobile appli
 
 ## Local Testing
 
-If you want to test the full functionality of this app locally for iOS, make sure to rename the `Platforms/iOS/EntitlementsSample.plist` file to ``Platforms/iOS/Entitlements.plist`.
+If you want to test the full functionality of this app locally for iOS, make sure to rename the `Platforms/iOS/EntitlementsSample.plist` file to `Platforms/iOS/Entitlements.plist`.
 
 By doing so, you will need a matching provisioning profile in your Apple Developer accound in order for everything to work correctly.
 
@@ -32,8 +32,8 @@ By doing so, you will need a matching provisioning profile in your Apple Develop
 * Original design: https://www.uplabs.com/posts/foodos-food-point-of-sale
 * Various graphics: https://mockup.graphics
 
-* .NET MAUI: http://docs.microsoft.com/dotnet/maui
-* CommunityToolkit.Mvvm: https://docs.microsoft.com/en-us/windows/communitytoolkit/mvvm/introduction
+* .NET MAUI: http://learn.microsoft.com/dotnet/maui
+* CommunityToolkit.Mvvm: https://learn.microsoft.com/windows/communitytoolkit/mvvm/introduction
 * CommunityToolkit.Maui: https://github.com/CommunityToolkit/Maui
 * SkiaSharp & Lottie: https://mono.github.io/SkiaSharp.Extended/api/ui-maui/#sklottieview
 * MicroCharts: https://github.com/microcharts-dotnet/Microcharts
