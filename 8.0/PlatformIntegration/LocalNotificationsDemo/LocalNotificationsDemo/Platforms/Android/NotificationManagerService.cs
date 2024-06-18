@@ -47,7 +47,7 @@ public class NotificationManagerService : INotificationManagerService
             Intent intent = new Intent(Platform.AppContext, typeof(AlarmHandler));
             intent.PutExtra(TitleKey, title);
             intent.PutExtra(MessageKey, message);
-            intent.SetFlags(ActivityFlags.NewTask | ActivityFlags.ClearTask);
+            intent.SetFlags(ActivityFlags.SingleTop | ActivityFlags.ClearTop);
 
             var pendingIntentFlags = (Build.VERSION.SdkInt >= BuildVersionCodes.S)
                 ? PendingIntentFlags.CancelCurrent | PendingIntentFlags.Immutable
@@ -80,7 +80,6 @@ public class NotificationManagerService : INotificationManagerService
         intent.PutExtra(TitleKey, title);
         intent.PutExtra(MessageKey, message);
         intent.SetFlags(ActivityFlags.SingleTop | ActivityFlags.ClearTop);
-        //intent.SetFlags(ActivityFlags.NewTask | ActivityFlags.ClearTask);
 
         var pendingIntentFlags = (Build.VERSION.SdkInt >= BuildVersionCodes.S)
             ? PendingIntentFlags.UpdateCurrent | PendingIntentFlags.Immutable
