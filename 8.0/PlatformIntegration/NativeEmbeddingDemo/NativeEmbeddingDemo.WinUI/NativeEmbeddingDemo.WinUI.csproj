@@ -17,6 +17,9 @@
 		<UseMaui>true</UseMaui>
 		<MauiEnablePlatformUsings>true</MauiEnablePlatformUsings>
 		<EnableDefaultMauiItems>false</EnableDefaultMauiItems>
+
+		<!-- Visual Studio doesn't support Hot Reload in non-MAUI apps -->
+		<EnableHotReload>false</EnableHotReload>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -30,7 +33,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.4.230913002" />
+		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.5.240428000" />
 		<Manifest Include="$(ApplicationManifest)" />
 	</ItemGroup>
 

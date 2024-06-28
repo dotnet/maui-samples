@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NativeEmbeddingDemo.Library
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NativeEmbeddingDemo.Droid", "NativeEmbeddingDemo.Droid\NativeEmbeddingDemo.Droid.csproj", "{76B43FBB-1DEA-4260-8802-7DC0015A916F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NativeEmbeddingDemo.MacCatalyst", "NativeEmbeddingDemo.MacCatalyst\NativeEmbeddingDemo.MacCatalyst.csproj", "{A63220BF-4101-4D60-A75D-CF2693646A6A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NativeEmbeddingDemo.MacCatalyst", "NativeEmbeddingDemo.MacCatalyst\NativeEmbeddingDemo.MacCatalyst.csproj", "{A63220BF-4101-4D60-A75D-CF2693646A6A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestHarnessApp", "TestHarnessApp\TestHarnessApp.csproj", "{B14E3633-E1E0-4CD7-A2BC-E8FE76F53560}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -163,6 +165,23 @@ Global
 		{A63220BF-4101-4D60-A75D-CF2693646A6A}.Release|x86.ActiveCfg = Release|Any CPU
 		{A63220BF-4101-4D60-A75D-CF2693646A6A}.Release|x86.Build.0 = Release|Any CPU
 		{A63220BF-4101-4D60-A75D-CF2693646A6A}.Release|x86.Deploy.0 = Release|Any CPU
+		{B14E3633-E1E0-4CD7-A2BC-E8FE76F53560}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B14E3633-E1E0-4CD7-A2BC-E8FE76F53560}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B14E3633-E1E0-4CD7-A2BC-E8FE76F53560}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{B14E3633-E1E0-4CD7-A2BC-E8FE76F53560}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{B14E3633-E1E0-4CD7-A2BC-E8FE76F53560}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{B14E3633-E1E0-4CD7-A2BC-E8FE76F53560}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B14E3633-E1E0-4CD7-A2BC-E8FE76F53560}.Debug|x64.Build.0 = Debug|Any CPU
+		{B14E3633-E1E0-4CD7-A2BC-E8FE76F53560}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B14E3633-E1E0-4CD7-A2BC-E8FE76F53560}.Debug|x86.Build.0 = Debug|Any CPU
+		{B14E3633-E1E0-4CD7-A2BC-E8FE76F53560}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B14E3633-E1E0-4CD7-A2BC-E8FE76F53560}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B14E3633-E1E0-4CD7-A2BC-E8FE76F53560}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{B14E3633-E1E0-4CD7-A2BC-E8FE76F53560}.Release|ARM64.Build.0 = Release|Any CPU
+		{B14E3633-E1E0-4CD7-A2BC-E8FE76F53560}.Release|x64.ActiveCfg = Release|Any CPU
+		{B14E3633-E1E0-4CD7-A2BC-E8FE76F53560}.Release|x64.Build.0 = Release|Any CPU
+		{B14E3633-E1E0-4CD7-A2BC-E8FE76F53560}.Release|x86.ActiveCfg = Release|Any CPU
+		{B14E3633-E1E0-4CD7-A2BC-E8FE76F53560}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -47,9 +47,7 @@
 #elif IOS
         public bool IsHttpsLocalhost(NSUrlSessionHandler sender, string url, Security.SecTrust trust)
         {
-            if (url.StartsWith("https://localhost"))
-                return true;
-            return false;
+            return url.StartsWith("https://localhost");
         }
 #endif
     }
