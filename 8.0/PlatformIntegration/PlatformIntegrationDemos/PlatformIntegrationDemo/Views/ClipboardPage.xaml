@@ -15,7 +15,7 @@
                Margin="12" />
 
         <ScrollView Grid.Row="1">
-            <StackLayout Padding="12,0,12,12"
+            <VerticalStackLayout Padding="12,0,12,12"
                          Spacing="6">
                 <Label Text="Enter some text:" />
                 <Entry Placeholder="Enter text..."
@@ -27,7 +27,7 @@
                 <Button Text="Check Status"
                         Command="{Binding CheckCommand}" />
                 <Label Text="{Binding LastCopied}" />
-            </StackLayout>
+            </VerticalStackLayout>
         </ScrollView>
     </Grid>
 </views:BasePage>

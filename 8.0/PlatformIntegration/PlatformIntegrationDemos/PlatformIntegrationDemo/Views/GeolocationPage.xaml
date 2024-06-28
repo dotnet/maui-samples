@@ -15,7 +15,7 @@
                Margin="12" />
 
         <ScrollView Grid.Row="1">
-            <StackLayout Padding="12,0,12,12"
+            <VerticalStackLayout Padding="12,0,12,12"
                          Spacing="6">
                 <ActivityIndicator IsVisible="{Binding IsBusy}"
                                    IsRunning="{Binding IsBusy}" />
@@ -44,8 +44,7 @@
                 <Label Text="Foreground listener for Location:"
                        FontAttributes="Bold"
                        Margin="0,6,0,0" />
-                <StackLayout Orientation="Horizontal"
-                             Spacing="6">
+                <HorizontalStackLayout Spacing="6">
                     <Button Text="Start Listening"
                             HorizontalOptions="FillAndExpand"
                             Command="{Binding StartListeningCommand}"
@@ -54,10 +53,10 @@
                             HorizontalOptions="FillAndExpand"
                             Command="{Binding StopListeningCommand}"
                             IsEnabled="{Binding IsListening}" />
-                </StackLayout>
+                </HorizontalStackLayout>
                 <Label Text="{Binding ListeningLocationStatus}" />
                 <Label Text="{Binding ListeningLocation}" />
-            </StackLayout>
+            </VerticalStackLayout>
         </ScrollView>
     </Grid>
 </views:BasePage>

@@ -4,27 +4,28 @@
              xmlns:controls="clr-namespace:CollectionViewDemos.Controls"
              x:Class="CollectionViewDemos.Views.VerticalListSnapPointsPage"
              Title="Vertical list (snap points)">
-    <StackLayout Margin="20">
-        <StackLayout Orientation="Horizontal"
-                     HorizontalOptions="Center">
+    <Grid Margin="20" RowDefinitions="30,30,*">
+        <HorizontalStackLayout HorizontalOptions="Center">
             <Label Text="SnapPointsType: "
                    VerticalTextAlignment="Center" />
             <controls:EnumPicker x:Name="snapPointsTypeEnumPicker"
                               EnumType="{x:Type SnapPointsType}"
                               SelectedIndex="0"
                               SelectedIndexChanged="OnSnapPointsTypeSelectedIndexChanged" />
-        </StackLayout>
-        <StackLayout Orientation="Horizontal"
-                     HorizontalOptions="Center">
-            <Label Grid.Row="1" 
-                   Text="SnapPointsAlignment: "
-                   VerticalTextAlignment="Center" />
+        </HorizontalStackLayout>
+        <HorizontalStackLayout
+            Grid.Row="1"
+            HorizontalOptions="Center">
+            <Label
+                Text="SnapPointsAlignment: "
+                VerticalTextAlignment="Center" />
             <controls:EnumPicker x:Name="snapPointsAlignmentEnumPicker"
                              EnumType="{x:Type SnapPointsAlignment}"
                              SelectedIndex="0"
                              SelectedIndexChanged="OnSnapPointsAlignmentSelectedIndexChanged" />
-        </StackLayout>
+        </HorizontalStackLayout>
         <CollectionView x:Name="collectionView"
+                        Grid.Row="2"
                         ItemsSource="{Binding Monkeys}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
@@ -54,5 +55,5 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-    </StackLayout>
+    </Grid>
 </ContentPage>

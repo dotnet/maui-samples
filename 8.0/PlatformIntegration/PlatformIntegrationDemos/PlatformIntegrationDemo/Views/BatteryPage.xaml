@@ -15,7 +15,7 @@
                Margin="12" />
 
         <ScrollView Grid.Row="1">
-            <StackLayout Padding="12,0,12,12"
+            <VerticalStackLayout Padding="12,0,12,12"
                          Spacing="6">
                 <Label Text="Battery State:"
                        FontAttributes="Bold"
@@ -24,7 +24,7 @@
                 <Label Text="{Binding State, StringFormat='State: {0}'}" />
                 <Label Text="{Binding PowerSource, StringFormat='Power Source: {0}'}" />
                 <Label Text="{Binding EnergySaverStatus, StringFormat='Energy Saver: {0}'}" />
-            </StackLayout>
+            </VerticalStackLayout>
         </ScrollView>
     </Grid>
 </views:BasePage>

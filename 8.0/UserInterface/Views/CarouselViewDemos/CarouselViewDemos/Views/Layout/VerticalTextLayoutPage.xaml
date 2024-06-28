@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CarouselViewDemos.Views.VerticalTextLayoutPage"
              Title="Vertical layout (text)">
-    <StackLayout Margin="10">
+    <VerticalStackLayout Margin="10">
         <CarouselView>
             <CarouselView.ItemsLayout>
                 <LinearItemsLayout Orientation="Vertical" />
@@ -30,5 +30,5 @@
                 </x:Array>
             </CarouselView.ItemsSource>
         </CarouselView>
-    </StackLayout> 
+    </VerticalStackLayout> 
 </ContentPage>

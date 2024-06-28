@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ControlGallery.Views.XAML.PathDemoPage"
              Title="Path Demo">
-    <StackLayout>
+    <VerticalStackLayout>
         <Label Text="Path"
                FontSize="50"
                FontAttributes="Bold"
@@ -21,5 +21,5 @@
                     L11.9,14.2 0,14.2 0,3.3Z
                     M32,0
                     L32,14.2 13.9,14.2 13.9,1.8Z" />
-       </StackLayout>
+       </VerticalStackLayout>
 </ContentPage>

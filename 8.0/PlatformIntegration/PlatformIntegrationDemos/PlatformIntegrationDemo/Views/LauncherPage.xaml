@@ -37,7 +37,7 @@
                         Text="Launch Mail"
                         Command="{Binding LaunchMailCommand}" />
 
-                <StackLayout Grid.Row="3"
+                <VerticalStackLayout Grid.Row="3"
                              Grid.ColumnSpan="2">
                     <Label Text="Open File"
                            FontAttributes="Bold"
@@ -51,7 +51,7 @@
                     <Button Text="Open File"
                             Command="{Binding LaunchFileCommand}"
                             CommandParameter="{Binding Source={RelativeSource Self}}" />
-                </StackLayout>
+                </VerticalStackLayout>
             </Grid>
         </ScrollView>
     </Grid>

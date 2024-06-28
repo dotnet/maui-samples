@@ -5,7 +5,7 @@
              x:Class="DataBindingDemos.RelativeSourceSelfPage"
              Title="RelativeSource Self Mode"
              BindingContext="{Binding Source={RelativeSource Self}, Path=Person}">
-    <StackLayout Margin="10">
+    <VerticalStackLayout Margin="10">
         <!--
         In this example, the WidthRequest property is set to a fixed value, and the HeightRequest property binds to the WidthRequest property.
         -->
@@ -19,5 +19,5 @@
         -->        
         <Label Text="{Binding Fullname, StringFormat='Name: {0}'}"
                HorizontalOptions="Center" />
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

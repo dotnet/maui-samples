@@ -18,7 +18,7 @@
         </OnPlatform>
     </ContentPage.Resources>
 
-    <StackLayout>
+    <VerticalStackLayout>
         <Button Text="Do this!"
                 HorizontalOptions="{StaticResource horzOptions}"
                 VerticalOptions="{StaticResource vertOptions}"
@@ -40,5 +40,5 @@
                 Rotation="{StaticResource rotationAngle}"
                 TextColor="{StaticResource textColor}"
                 FontSize="{StaticResource fontSize}" />
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

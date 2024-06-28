@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MarkupExtensions.TypeDemoPage"
              Title="x:Type Demo">    
-    <StackLayout x:Name="stackLayout"
+    <VerticalStackLayout x:Name="stackLayout"
                  Padding="10, 0">        
         <Button Text="Create a Slider"
                 HorizontalOptions="Center"
@@ -20,5 +20,5 @@
                 VerticalOptions="Center"
                 Command="{Binding CreateCommand}"
                 CommandParameter="{x:Type Switch}" />
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

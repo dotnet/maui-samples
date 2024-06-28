@@ -13,7 +13,7 @@
         </Style>
     </ContentPage.Resources>
 
-    <StackLayout Margin="10, 0">
+    <VerticalStackLayout Margin="10, 0">
         <Label Text="Select a time:" />
 
         <TimePicker x:Name="timePicker" />
@@ -48,5 +48,5 @@
         <Label Text="{Binding Source={x:Reference page},
                               Path=Content.Children[2].Text.Length,
                               StringFormat='The second Label has {0} characters'}" />
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

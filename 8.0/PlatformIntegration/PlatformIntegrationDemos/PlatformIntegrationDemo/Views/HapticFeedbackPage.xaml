@@ -15,7 +15,7 @@
                Margin="12" />
 
         <ScrollView Grid.Row="1">
-            <StackLayout Padding="12,0,12,12"
+            <VerticalStackLayout Padding="12,0,12,12"
                          Spacing="6">
                 <Button Text="Click"
                         Command="{Binding ClickCommand}" />
@@ -25,7 +25,7 @@
                        TextColor="Red"
                        FontAttributes="Italic"
                        IsVisible="{Binding IsSupported, Converter={StaticResource InverterConverter}}" />
-            </StackLayout>
+            </VerticalStackLayout>
         </ScrollView>
     </Grid>
 </views:BasePage>

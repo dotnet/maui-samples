@@ -4,14 +4,14 @@
              xmlns:maps="http://schemas.microsoft.com/dotnet/2021/maui/maps"
              x:Class="WorkingWithMaps.Views.MapTypesPage"
              Title="Map types demo">
-    <StackLayout Margin="10">
+    <VerticalStackLayout Margin="10">
         <maps:Map x:Name="map" />
         <Slider Margin="20,0,20,0"
                 Maximum="18"
                 Minimum="1"
                 Value="12"
                 ValueChanged="OnSliderValueChanged" />
-        <StackLayout Orientation="Horizontal"
+        <HorizontalStackLayout
                      HorizontalOptions="Center"
                      Spacing="30">
             <Button Text="Street"
@@ -20,6 +20,6 @@
                     Clicked="OnButtonClicked" />
             <Button Text="Hybrid"
                     Clicked="OnButtonClicked" />
-        </StackLayout>
-    </StackLayout>
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
 </ContentPage>

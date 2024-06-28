@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ListViewDemos.PullToRefreshPage"
              Title="Pull to refresh list">
-    <StackLayout Margin="20">
+    <VerticalStackLayout Margin="20">
         <Label Text="Pull the items down to refresh the ListView." />
         <Label Text="{Binding Animals.Count, StringFormat='Number of items: {0}'}" />
         <ListView ItemsSource="{Binding Animals}"
@@ -40,5 +40,5 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

@@ -4,7 +4,7 @@
              xmlns:maps="http://schemas.microsoft.com/dotnet/2021/maui/maps"
              x:Class="WorkingWithMaps.Views.MapPropertiesPage"
              Title="Map properties demo">
-    <StackLayout Margin="10">
+    <VerticalStackLayout Margin="10">
         <maps:Map x:Name="map"
                   MapClicked="OnMapClicked" />
         <Grid ColumnDefinitions="0.8*,0.2*"
@@ -36,5 +36,5 @@
                       x:Name="showTrafficCheckBox"
                       CheckedChanged="OnCheckBoxCheckedChanged" />
         </Grid>
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SwipeViewDemos.SwipeViewCustomItemPage"
              Title="Custom SwipeViewItem demo">
-    <StackLayout Margin="20">
+    <VerticalStackLayout Margin="20">
         <Label Text="Questions"
                FontAttributes="Bold"
                HorizontalOptions="Center" />
@@ -47,7 +47,7 @@
                 <SwipeItems>
                     <SwipeItemView Command="{Binding CheckAnswerCommand}"
                                    CommandParameter="{Binding Source={x:Reference resultEntry}, Path=Text}">
-                        <StackLayout Margin="10"
+                        <VerticalStackLayout Margin="10"
                                      WidthRequest="300">
                             <Entry x:Name="resultEntry"
                                    Placeholder="Enter answer"
@@ -55,7 +55,7 @@
                             <Label Text="Check"
                                    FontAttributes="Bold"
                                    HorizontalOptions="Center" />
-                        </StackLayout>
+                        </VerticalStackLayout>
                     </SwipeItemView>
                 </SwipeItems>
             </SwipeView.LeftItems>
@@ -68,5 +68,5 @@
             </Grid>
         </SwipeView>
 
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

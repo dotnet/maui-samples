@@ -6,7 +6,7 @@
              xmlns:device="clr-namespace:Microsoft.Maui.Devices;assembly=Microsoft.Maui.Essentials"
              x:Class="MarkupExtensions.StaticDemoPage"
              Title="x:Static Demo">
-    <StackLayout Margin="10, 0">
+    <VerticalStackLayout Margin="10, 0">
         <Label Text="Label No. 1">
             <Label.FontSize>
                 <x:StaticExtension Member="local:AppConstants.NormalFontSize" />
@@ -27,5 +27,5 @@
                FontSize="{x:Static sys:Math.PI}"
                Scale="{x:Static sys:Math.E}" 
                HorizontalOptions="Center" />
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

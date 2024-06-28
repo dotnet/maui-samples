@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BrushesDemos.Views.UpdateBrushDemoPage"
              Title="Update Brush demo">
-    <StackLayout Margin="20">
+    <VerticalStackLayout Margin="20">
         <Label Text="SolidColorBrush"
                FontAttributes="Bold" />
         <Frame x:Name="solidColorFrame"
@@ -36,5 +36,5 @@
         <Label Margin="0,40,0,0"
                Text="Brushes are updated every second."
                HorizontalOptions="Center" />
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

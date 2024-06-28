@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RadioButtonDemos.RadioButtonsExplainedPage"
              Title="RadioButton Content demos">
-    <StackLayout Margin="10">
+    <VerticalStackLayout Margin="10">
         <Label Text="When RadioButton.Content is a string, it will be translated to text on each platform:" />
         <RadioButton Content="RadioButton containing a string" />
 
@@ -13,11 +13,11 @@
                 <!-- iOS and UWP can assign a View to RadioButton.Content. -->
                 <RadioButton>
                     <RadioButton.Content>
-                        <StackLayout Orientation="Horizontal">
+                        <HorizontalStackLayout>
                             <Image Source="monkey.png" />
                             <Label Text="Monkey"
                                     VerticalTextAlignment="Center" />
-                        </StackLayout>
+                        </HorizontalStackLayout>
                     </RadioButton.Content>
                 </RadioButton>
             </On>
@@ -40,5 +40,5 @@
                 <Image Source="cat.png" />
             </RadioButton.Content>
         </RadioButton>
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

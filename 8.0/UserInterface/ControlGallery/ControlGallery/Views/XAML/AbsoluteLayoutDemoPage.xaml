@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ControlGallery.Views.XAML.AbsoluteLayoutDemoPage"
              Title="AbsoluteLayout Demo">
-    <StackLayout>
+    <VerticalStackLayout>
         <Label Text="AbsoluteLayout"
                FontSize="40"
                FontAttributes="Bold"
@@ -23,5 +23,5 @@
                    TextColor="Black"
                    AbsoluteLayout.LayoutFlags="PositionProportional" />
         </AbsoluteLayout>
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

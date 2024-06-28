@@ -2,8 +2,7 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CollectionViewDemos.Controls.SpacingModifier">
-    <StackLayout Orientation="Horizontal"
-                 HorizontalOptions="Center">
+    <HorizontalStackLayout HorizontalOptions="Center">
         <Label Text="Spacing:"
                VerticalTextAlignment="Center" />
         <Entry x:Name="entry"
@@ -11,5 +10,5 @@
                WidthRequest="100" />
         <Button Text="Update"
                 Clicked="OnUpdateButtonClicked" />
-    </StackLayout>
+    </HorizontalStackLayout>
 </ContentView>

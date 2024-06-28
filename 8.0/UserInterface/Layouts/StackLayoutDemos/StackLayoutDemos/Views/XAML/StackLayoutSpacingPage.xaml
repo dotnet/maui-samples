@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="StackLayoutDemos.Views.XAML.StackLayoutSpacingPage"
              Title="StackLayout Spacing demo">
-    <StackLayout Margin="20"
+    <VerticalStackLayout Margin="20"
                  Spacing="6">
         <Label Text="Primary colors" />
         <BoxView Color="Red"
@@ -19,5 +19,5 @@
                  HeightRequest="40" />
         <BoxView Color="Purple"
                  HeightRequest="40" />
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

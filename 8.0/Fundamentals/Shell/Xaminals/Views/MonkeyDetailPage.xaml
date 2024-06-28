@@ -12,7 +12,7 @@
     </Shell.BackButtonBehavior>-->
    
     <ScrollView>
-        <StackLayout Margin="20">
+        <VerticalStackLayout Margin="20">
             <Label Text="{Binding Monkey.Name}" 
                    HorizontalOptions="Center" 
                    Style="{DynamicResource TitleStyle}" />
@@ -25,6 +25,6 @@
                    HorizontalOptions="Center" />
             <Label Text="{Binding Monkey.Details}" 
                    Style="{DynamicResource BodyStyle}" />
-        </StackLayout>
+        </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

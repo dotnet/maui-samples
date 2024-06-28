@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RadioButtonDemos.GroupedRadioButtonsViewModelPage"
              Title="Grouped RadioButtons ViewModel demo">
-    <StackLayout Margin="10"
+    <VerticalStackLayout Margin="10"
                  RadioButtonGroup.GroupName="{Binding GroupName}"
                  RadioButtonGroup.SelectedValue="{Binding Selection}">
         <Label Text="What's your favorite animal?" />
@@ -23,5 +23,5 @@
                 </FormattedString>
             </Label.FormattedText>
         </Label>
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

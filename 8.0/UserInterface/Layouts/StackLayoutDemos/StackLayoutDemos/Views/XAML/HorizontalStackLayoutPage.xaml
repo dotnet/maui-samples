@@ -3,8 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="StackLayoutDemos.Views.XAML.HorizontalStackLayoutPage"
              Title="Horizontal StackLayout demo">
-    <StackLayout Margin="20"
-                 Orientation="Horizontal"
+    <HorizontalStackLayout Margin="20"
                  HorizontalOptions="Center">
         <BoxView Color="Red"
                  WidthRequest="40" />
@@ -18,6 +17,6 @@
                  WidthRequest="40" />
         <BoxView Color="Purple"
                  WidthRequest="40" />
-    </StackLayout>
+    </HorizontalStackLayout>
 </ContentPage>
 

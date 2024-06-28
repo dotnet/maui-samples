@@ -7,14 +7,14 @@
     <ContentPage.BindingContext>
         <viewmodels:MonkeysViewModel />
     </ContentPage.BindingContext>
-    <StackLayout Margin="20">
+    <VerticalStackLayout Margin="20">
         <SearchBar SearchCommand="{Binding FilterCommand}"
                    SearchCommandParameter="{Binding Source={RelativeSource Self}, Path=Text}"
                    Placeholder="Filter" />
         <CarouselView ItemsSource="{Binding Monkeys}">
             <CarouselView.EmptyView>
                 <ContentView>
-                    <StackLayout HorizontalOptions="Center"
+                    <VerticalStackLayout HorizontalOptions="Center"
                                  VerticalOptions="Center">
                         <Label Text="No results matched your filter."
                                Margin="10,25,10,10"
@@ -27,12 +27,12 @@
                                FontSize="12"
                                HorizontalOptions="Fill"
                                HorizontalTextAlignment="Center" />
-                    </StackLayout>
+                    </VerticalStackLayout>
                 </ContentView>
             </CarouselView.EmptyView>
             <CarouselView.ItemTemplate>
                 <DataTemplate>
-                    <StackLayout>
+                    <VerticalStackLayout>
                         <Frame HasShadow="True"
                                BorderColor="DarkGray"
                                CornerRadius="5"
@@ -40,7 +40,7 @@
                                HeightRequest="300"
                                HorizontalOptions="Center"
                                VerticalOptions="Center">
-                            <StackLayout>
+                            <VerticalStackLayout>
                                 <Label Text="{Binding Name}" 
                                        FontAttributes="Bold"
                                        FontSize="20"
@@ -58,11 +58,11 @@
                                        HorizontalOptions="Center"
                                        MaxLines="5"
                                        LineBreakMode="TailTruncation" />
-                            </StackLayout>
+                            </VerticalStackLayout>
                         </Frame>
-                    </StackLayout>
+                    </VerticalStackLayout>
                 </DataTemplate>
             </CarouselView.ItemTemplate>
         </CarouselView>
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

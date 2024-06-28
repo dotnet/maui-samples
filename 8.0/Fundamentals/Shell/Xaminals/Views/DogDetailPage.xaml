@@ -4,7 +4,7 @@
              x:Class="Xaminals.Views.DogDetailPage"
              Title="Dog Details">
     <ScrollView>
-        <StackLayout Margin="20">
+        <VerticalStackLayout Margin="20">
             <Label Text="{Binding Name}" 
                    HorizontalOptions="Center" 
                    Style="{DynamicResource TitleStyle}" />
@@ -17,6 +17,6 @@
                    HorizontalOptions="Center" />
             <Label Text="{Binding Details}" 
                    Style="{DynamicResource BodyStyle}" />
-        </StackLayout>
+        </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

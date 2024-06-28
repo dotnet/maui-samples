@@ -31,7 +31,7 @@
                            WidthRequest="100" />
                 </Frame>
             </Grid>
-            <StackLayout Grid.Row="1"
+            <VerticalStackLayout Grid.Row="1"
                          Margin="10">
                 <Label Text="This monkey reacts appropriately to ridiculous assertions and actions."
                        Style="{StaticResource SmallLabelStyle}" />
@@ -41,7 +41,7 @@
                        Style="{StaticResource SmallLabelStyle}" />
                 <Label Text="  &#x2022; Doesn't laugh at your jokes."
                        Style="{StaticResource SmallLabelStyle}" />
-            </StackLayout>
+            </VerticalStackLayout>
             <Button Grid.Row="2"
                     Text="MORE INFO"
                     Clicked="OnNavigationInvoked"

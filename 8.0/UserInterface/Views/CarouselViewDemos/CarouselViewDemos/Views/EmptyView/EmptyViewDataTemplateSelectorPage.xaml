@@ -11,7 +11,7 @@
 
     <ContentPage.Resources>
         <DataTemplate x:Key="AdvancedTemplate">
-            <StackLayout>
+            <VerticalStackLayout>
                 <Label Text="No results matched your filter."
                        Margin="10,25,10,10"
                        FontAttributes="Bold"
@@ -23,7 +23,7 @@
                        FontSize="12"
                        HorizontalOptions="Fill"
                        HorizontalTextAlignment="Center" />
-            </StackLayout>
+            </VerticalStackLayout>
         </DataTemplate>
         
         <DataTemplate x:Key="BasicTemplate">
@@ -40,7 +40,7 @@
                                                  OtherTemplate="{StaticResource BasicTemplate}" />
     </ContentPage.Resources>
 
-    <StackLayout Margin="20">
+    <VerticalStackLayout Margin="20">
         <SearchBar x:Name="searchBar"
                    SearchCommand="{Binding FilterCommand}"
                    SearchCommandParameter="{Binding Source={RelativeSource Self}, Path=Text}"
@@ -50,7 +50,7 @@
                       EmptyViewTemplate="{StaticResource SearchSelector}">
             <CarouselView.ItemTemplate>
                 <DataTemplate>
-                    <StackLayout>
+                    <VerticalStackLayout>
                         <Frame HasShadow="True"
                                BorderColor="DarkGray"
                                CornerRadius="5"
@@ -58,7 +58,7 @@
                                HeightRequest="300"
                                HorizontalOptions="Center"
                                VerticalOptions="Center">
-                            <StackLayout>
+                            <VerticalStackLayout>
                                 <Label Text="{Binding Name}" 
                                        FontAttributes="Bold"
                                        FontSize="20"
@@ -76,11 +76,11 @@
                                        HorizontalOptions="Center"
                                        MaxLines="5"
                                        LineBreakMode="TailTruncation" />
-                            </StackLayout>
+                            </VerticalStackLayout>
                         </Frame>
-                    </StackLayout>
+                    </VerticalStackLayout>
                 </DataTemplate>
             </CarouselView.ItemTemplate>
         </CarouselView>
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

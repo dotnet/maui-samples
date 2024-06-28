@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SwipeViewDemos.SwipeViewEventsPage"
              Title="SwipeView events demo">
-    <StackLayout Margin="20">
+    <VerticalStackLayout Margin="20">
         <SwipeView x:Name="swipeView"
                    SwipeStarted="OnSwipeStarted"
                    SwipeChanging="OnSwipeChanging"
@@ -31,5 +31,5 @@
         </SwipeView>
         <Button Text="Close Swipe"
                 Clicked="OnCloseButtonClicked" />
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

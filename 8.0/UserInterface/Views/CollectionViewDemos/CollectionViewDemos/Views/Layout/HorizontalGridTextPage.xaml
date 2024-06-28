@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="CollectionViewDemos.Views.HorizontalGridTextPage"
              Title="Horizontal grid (text)">
-    <StackLayout Margin="20">
+    <Grid Margin="20">
         <CollectionView ItemsLayout="HorizontalGrid, 4">
             <CollectionView.ItemsSource>
                 <x:Array Type="{x:Type x:String}">
@@ -27,5 +27,5 @@
                 </x:Array>
             </CollectionView.ItemsSource>
         </CollectionView>
-    </StackLayout>
+    </Grid>
 </ContentPage>

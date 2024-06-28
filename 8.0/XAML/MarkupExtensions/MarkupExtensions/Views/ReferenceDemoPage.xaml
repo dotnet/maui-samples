@@ -4,7 +4,7 @@
              x:Class="MarkupExtensions.ReferenceDemoPage"
              x:Name="page"
              Title="x:Reference Demo">    
-    <StackLayout Margin="10, 0">        
+    <VerticalStackLayout Margin="10, 0">        
         <Label Text="{Binding Source={x:Reference page},
                               StringFormat='The type of this page is {0}'}"
                FontSize="18"
@@ -19,5 +19,5 @@
                FontSize="24"
                HorizontalOptions="Center"
                VerticalOptions="Center" />        
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

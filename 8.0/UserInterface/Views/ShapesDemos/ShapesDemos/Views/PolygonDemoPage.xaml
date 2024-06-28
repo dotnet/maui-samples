@@ -4,7 +4,7 @@
              x:Class="ShapesDemos.Views.PolygonDemoPage"
              Title="Polygon demos">
     <ScrollView>
-        <StackLayout Margin="20">
+        <VerticalStackLayout Margin="20">
             <Label Text="Polygon" />
             <Polygon Points="40,10 70,80 10,50"
                      Fill="AliceBlue"
@@ -29,6 +29,6 @@
                      FillRule="Nonzero"
                      Stroke="Yellow"
                      StrokeThickness="3" />
-        </StackLayout>
+        </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

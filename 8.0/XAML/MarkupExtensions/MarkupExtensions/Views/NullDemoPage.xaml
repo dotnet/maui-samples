@@ -10,12 +10,12 @@
         </Style>
     </ContentPage.Resources>
 
-    <StackLayout Padding="10, 0">
+    <VerticalStackLayout Padding="10, 0">
         <Label Text="Text 1" />
         <Label Text="Text 2" />
         <Label Text="Text 3"
                    FontFamily="{x:Null}" />
         <Label Text="Text 4" />
         <Label Text="Text 5" />
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>    

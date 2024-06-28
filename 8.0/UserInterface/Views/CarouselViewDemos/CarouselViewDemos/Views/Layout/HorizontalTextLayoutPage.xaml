@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CarouselViewDemos.Views.HorizontalTextLayoutPage"
              Title="Horizontal layout (text)">
-    <StackLayout Margin="10">
+    <VerticalStackLayout Margin="10">
         <CarouselView>
             <CarouselView.ItemsSource>
                 <x:Array Type="{x:Type x:String}">
@@ -27,5 +27,5 @@
                 </x:Array>
             </CarouselView.ItemsSource>
         </CarouselView>
-    </StackLayout> 
+    </VerticalStackLayout> 
 </ContentPage>

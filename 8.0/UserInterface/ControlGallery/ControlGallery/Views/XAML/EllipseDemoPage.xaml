@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ControlGallery.Views.XAML.EllipseDemoPage"
              Title="Ellipse Demo">
-    <StackLayout>
+    <VerticalStackLayout>
         <Label Text="Ellipse"
                FontSize="50"
                FontAttributes="Bold"
@@ -17,5 +17,5 @@
                  WidthRequest="150"
                  HeightRequest="150"
                  HorizontalOptions="Center" />
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

@@ -3,13 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ControlGallery.Views.XAML.SwipeViewDemoPage"
              Title="SwipeView Demo">
-    <StackLayout Margin="20">
+    <Grid Margin="20" RowDefinitions="50,*">
         <Label Text="SwipeView"
                FontSize="50"
                FontAttributes="Bold"
                HorizontalOptions="Center" />
         
         <CollectionView x:Name="collectionView"
+                        Grid.Row="1"
                         ItemsSource="{Binding Monkeys}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
@@ -51,5 +52,5 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-    </StackLayout>
+    </Grid>
 </ContentPage>

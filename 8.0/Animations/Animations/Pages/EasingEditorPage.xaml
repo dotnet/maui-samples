@@ -43,8 +43,8 @@
                 
                 
             
-                <ScrollView Grid.Row="2">
-                <StackLayout Spacing="0">
+            <ScrollView Grid.Row="2">
+                <VerticalStackLayout Spacing="0">
                     <FlexLayout HorizontalOptions="Center" AlignItems="Center"
                                 BackgroundColor="#1d1d1d">
                         <BoxView FlexLayout.Grow="1" />
@@ -90,8 +90,8 @@
                         </TableSection>
                     </TableView>
                     
-                </StackLayout>
+                </VerticalStackLayout>
             </ScrollView>
-            </Grid>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

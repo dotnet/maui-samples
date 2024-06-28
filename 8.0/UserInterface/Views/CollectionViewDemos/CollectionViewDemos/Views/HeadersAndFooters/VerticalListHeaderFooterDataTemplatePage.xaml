@@ -3,28 +3,28 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CollectionViewDemos.Views.VerticalListHeaderFooterDataTemplatePage"
              Title="Header and footer (DataTemplate)">
-    <StackLayout Margin="20">
+    <Grid Margin="20">
         <CollectionView ItemsSource="{Binding Monkeys}"
                         Header="{Binding .}"
                         Footer="{Binding .}">
             <CollectionView.HeaderTemplate>
                 <DataTemplate>
-                    <StackLayout BackgroundColor="LightGray">
+                    <VerticalStackLayout BackgroundColor="LightGray">
                         <Label Margin="10,0,0,0"
                                Text="Monkeys"
                                FontSize="12"
                                FontAttributes="Bold" />
-                    </StackLayout>
+                    </VerticalStackLayout>
                 </DataTemplate>
             </CollectionView.HeaderTemplate>
             <CollectionView.FooterTemplate>
                 <DataTemplate>
-                    <StackLayout BackgroundColor="LightGray">
+                    <VerticalStackLayout BackgroundColor="LightGray">
                         <Label Margin="10,0,0,0"
                                Text="Friends of Xamarin Monkey"
                                FontSize="12"
                                FontAttributes="Bold" />
-                    </StackLayout>
+                    </VerticalStackLayout>
                 </DataTemplate>
             </CollectionView.FooterTemplate>
             <CollectionView.ItemTemplate>
@@ -55,5 +55,5 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-    </StackLayout>
+    </Grid>
 </ContentPage>

@@ -48,12 +48,13 @@
                                           InvalidTemplate="{StaticResource invalidPersonTemplate}" />
     </ContentPage.Resources>
 
-    <StackLayout Margin="20">
+    <Grid Margin="20" RowDefinitions="50,*">
         <Label Text="CollectionView with a DataTemplateSelector"
                FontAttributes="Bold"
                HorizontalOptions="Center" />
         <CollectionView x:Name="collectionView"
+                        Grid.Row="1"
                         Margin="0,20,0,0"
                         ItemTemplate="{StaticResource personDataTemplateSelector}" />
-    </StackLayout>
+    </Grid>
 </ContentPage>

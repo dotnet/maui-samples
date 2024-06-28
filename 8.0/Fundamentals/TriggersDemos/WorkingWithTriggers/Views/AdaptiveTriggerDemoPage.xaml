@@ -32,10 +32,10 @@
         </Style>
     </ContentPage.Resources>
     
-    <StackLayout Margin="20">
+    <VerticalStackLayout Margin="20">
         <Label Text="This page contains four Label objects in a StackLayout." />
         <Label Text="When the window width is >= 800 the StackLayout orientation will change." />
         <Label Text="This is achieved with an AdaptiveTrigger." />
         <Label Text="This page is most easily demonstrated on Windows." />
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

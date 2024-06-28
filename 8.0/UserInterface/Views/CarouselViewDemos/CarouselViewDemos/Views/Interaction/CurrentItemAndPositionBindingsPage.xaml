@@ -7,7 +7,7 @@
     <ContentPage.BindingContext>
         <viewmodels:MonkeysViewModel />
     </ContentPage.BindingContext>
-    <StackLayout Margin="10">
+    <VerticalStackLayout Margin="10">
         <Label Text="{Binding PreviousMonkey.Name, StringFormat='Previous item: {0}', FallbackValue='Previous item:'}" />
         <Label Text="{Binding CurrentMonkey.Name, StringFormat='Current item: {0}', FallbackValue='Current item:'}" />
         <Label Text="{Binding PreviousPosition, StringFormat='Previous position: {0}'}" />
@@ -19,7 +19,7 @@
                       PositionChangedCommandParameter="{Binding Source={RelativeSource Self}, Path=Position}">
             <CarouselView.ItemTemplate>
                 <DataTemplate>
-                    <StackLayout>
+                    <VerticalStackLayout>
                         <Frame HasShadow="True"
                                BorderColor="DarkGray"
                                CornerRadius="5"
@@ -27,7 +27,7 @@
                                HeightRequest="300"
                                HorizontalOptions="Center"
                                VerticalOptions="Center">
-                            <StackLayout>
+                            <VerticalStackLayout>
                                 <Label Text="{Binding Name}" 
                                        FontAttributes="Bold"
                                        FontSize="20"
@@ -45,11 +45,11 @@
                                        HorizontalOptions="Center"
                                        MaxLines="5"
                                        LineBreakMode="TailTruncation" />
-                            </StackLayout>
+                            </VerticalStackLayout>
                         </Frame>
-                    </StackLayout>
+                    </VerticalStackLayout>
                 </DataTemplate>
             </CarouselView.ItemTemplate>
         </CarouselView>
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>
