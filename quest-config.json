@@ -6,10 +6,16 @@
     },
     "ImportTriggerLabel": ":world_map: reQUEST",
     "ImportedLabel": ":pushpin: seQUESTered",
+    "ParentNodes": [
+        {
+            "Label": "okr-curation",
+            "ParentNodeId": 237271
+        }
+    ],
     "DefaultParentNode": 227487,
     "WorkItemTags": [
         {
-            "Label": ":label: content-curation",
+            "Label": "okr-curation",
             "Tag": "content-curation"
         }
     ]
