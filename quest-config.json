@@ -6,5 +6,11 @@
     },
     "ImportTriggerLabel": ":world_map: reQUEST",
     "ImportedLabel": ":pushpin: seQUESTered",
-    "DefaultParentNode": 227487
+    "DefaultParentNode": 227487,
+    "WorkItemTags": [
+        {
+            "Label": ":label: content-curation",
+            "Tag": "content-curation"
+        }
+    ]
 }
