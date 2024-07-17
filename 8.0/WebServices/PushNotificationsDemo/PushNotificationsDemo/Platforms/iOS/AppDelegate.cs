@@ -26,7 +26,7 @@ public class AppDelegate : MauiUIApplicationDelegate
     protected override MauiApp CreateMauiApp() => MauiProgram.CreateMauiApp();
 
     [Export("application:didFinishLaunchingWithOptions:")]
-    public bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
+    public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
     {
         if (DeviceInstallationService.NotificationsSupported)
         {
@@ -37,7 +37,12 @@ public class AppDelegate : MauiUIApplicationDelegate
                 (approvalGranted, error) =>
                 {
                     if (approvalGranted && error == null)
-                        RegisterForRemoteNotifications();
+                    {
+                        MainThread.BeginInvokeOnMainThread(() =>
+                        {
+                            UIApplication.SharedApplication.RegisterForRemoteNotifications();
+                        });
+                    }
                 });
         }
 
@@ -70,21 +75,6 @@ public class AppDelegate : MauiUIApplicationDelegate
     public void ReceivedRemoteNotification(UIApplication application, NSDictionary userInfo)
     {
         ProcessNotificationActions(userInfo);
-    }
-
-    void RegisterForRemoteNotifications()
-    {
-        MainThread.BeginInvokeOnMainThread(() =>
-        {
-            var pushSettings = UIUserNotificationSettings.GetSettingsForTypes(
-                UIUserNotificationType.Alert |
-                UIUserNotificationType.Badge |
-                UIUserNotificationType.Sound,
-                new NSSet());
-
-            UIApplication.SharedApplication.RegisterUserNotificationSettings(pushSettings);
-            UIApplication.SharedApplication.RegisterForRemoteNotifications();
-        });
     }
 
     Task CompleteRegistrationAsync(NSData deviceToken)
