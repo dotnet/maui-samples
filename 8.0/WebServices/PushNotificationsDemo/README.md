@@ -33,7 +33,7 @@ In this sample, registration and de-registration is performed in response to use
 To run this sample, you'll require:
 
 - An [Azure account with an active subscription](https://azure.microsoft.com/free/dotnet/).
-- A PC running the latest version of Visual Studio with the .NET Multi-platform App UI development workload and the ASP.NET and web development workloads installed.
+- A PC or Mac running the latest version of Visual Studio/Visual Studio Code with the .NET Multi-platform App UI development workload and the ASP.NET and web development workloads installed.
 
 For Android, you must have:
 
