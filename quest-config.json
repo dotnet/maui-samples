@@ -10,6 +10,14 @@
         {
             "Label": "okr-curation",
             "ParentNodeId": 237271
+        },
+        {
+            "Label": "sfi-ropc",
+            "ParentNodeId": 271716
+        },
+        {
+            "Label": "sfi-admin",
+            "ParentNodeId": 271716
         }
     ],
     "DefaultParentNode": 227487,
