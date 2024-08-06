@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="CollectionViewDemos.Views.VerticalGridTextPage"
              Title="Vertical grid (text)">
-    <StackLayout Margin="20">
+    <Grid Margin="20">
         <CollectionView ItemsLayout="VerticalGrid, 2">
             <CollectionView.ItemsSource>
                 <x:Array Type="{x:Type x:String}">
@@ -27,5 +27,5 @@
                 </x:Array>
             </CollectionView.ItemsSource>
         </CollectionView>
-    </StackLayout>
+    </Grid>
 </ContentPage>

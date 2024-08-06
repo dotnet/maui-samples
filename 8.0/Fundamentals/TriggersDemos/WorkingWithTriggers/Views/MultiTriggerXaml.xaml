@@ -11,7 +11,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <StackLayout>
+    <VerticalStackLayout>
         <Label FontSize="20"
                Text="MultiTrigger Example" />
         <Label Text="You must provide either an email or phone number (or both):" />
@@ -83,5 +83,5 @@
         </Button>
         <Label FontSize="10"
                Text="Uses a converter on BindingConditions" />
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

@@ -4,7 +4,7 @@
              x:Class="ShapesDemos.Views.PathGeometryDemoPage"
              Title="Path geometry demos">
     <ScrollView>
-        <StackLayout Margin="20">
+        <VerticalStackLayout Margin="20">
             <Label Text="EllipseGeometry" />
             <Path Fill="Blue"
                   Stroke="Red">
@@ -338,6 +338,6 @@
                     </GeometryGroup>
                 </Path.Data>
             </Path>
-        </StackLayout>
+        </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

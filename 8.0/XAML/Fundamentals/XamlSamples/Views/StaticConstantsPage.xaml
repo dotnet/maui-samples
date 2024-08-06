@@ -5,7 +5,7 @@
              x:Class="XamlSamples.StaticConstantsPage"
              Title="Static Constants Page"
              Padding="5,25,5,0">
-    <StackLayout>
+    <VerticalStackLayout>
         <Label Text="Hello, XAML!"
                TextColor="Aqua"
                BackgroundColor="Brown"
@@ -18,5 +18,5 @@
                  HorizontalOptions="Center"
                  VerticalOptions="Center"
                  Scale="100" />
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

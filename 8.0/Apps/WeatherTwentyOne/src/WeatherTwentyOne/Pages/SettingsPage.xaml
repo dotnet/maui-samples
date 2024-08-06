@@ -200,17 +200,16 @@
 
                 <Grid>
                     <Label Text="Theme" class="Subhead"/>
-                    <StackLayout
+                    <HorizontalStackLayout
                         HorizontalOptions="End"
                         Spacing="12"
-                        Orientation="Horizontal"
-                         RadioButtonGroup.GroupName="AppTheme"
-                         RadioButtonGroup.SelectedValue="{Binding SelectedTheme}">
-                        <StackLayout.Resources>
+                        RadioButtonGroup.GroupName="AppTheme"
+                        RadioButtonGroup.SelectedValue="{Binding SelectedTheme}">
+                        <HorizontalStackLayout.Resources>
                             <Style TargetType="RadioButton">
                                 <Setter Property="ControlTemplate" Value="{StaticResource ThemeRadioTemplate}"/>
                             </Style>
-                        </StackLayout.Resources>
+                        </HorizontalStackLayout.Resources>
                         <RadioButton Value="{x:Static am:AppTheme.Unspecified}"
                                      IsChecked="True"
                                      CheckedChanged="RadioButton_CheckedChanged"
@@ -287,7 +286,7 @@
                                 </Grid>
                             </RadioButton.Content>
                         </RadioButton>
-                    </StackLayout>
+                    </HorizontalStackLayout>
                 </Grid>
 
                 </VerticalStackLayout>

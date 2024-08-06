@@ -11,7 +11,7 @@
                Margin="12" />
 
         <ScrollView Grid.Row="1">
-            <StackLayout Padding="0,0,0,12"
+            <VerticalStackLayout Padding="0,0,0,12"
                          Spacing="6">
 
                 <Label Text="Accelerometer"
@@ -274,7 +274,7 @@
                                 IsEnabled="{Binding IsActive}" />
                     </Grid>
                 </Grid>
-            </StackLayout>
+            </VerticalStackLayout>
         </ScrollView>
     </Grid>
 </views:BasePage>

@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ControlGallery.Views.XAML.ImageButtonDemoPage"
              Title="ImageButton Demo">
-    <StackLayout>
+    <VerticalStackLayout>
         <Label Text="ImageButton"
                FontSize="50"
                FontAttributes="Bold"
@@ -19,5 +19,5 @@
                FontSize="20"
                HorizontalOptions="Center"
                VerticalOptions="Center" />
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

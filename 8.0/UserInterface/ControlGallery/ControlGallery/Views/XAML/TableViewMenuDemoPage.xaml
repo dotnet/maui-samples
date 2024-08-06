@@ -4,7 +4,7 @@
              xmlns:views="clr-namespace:ControlGallery.Views.XAML"
              x:Class="ControlGallery.Views.XAML.TableViewMenuDemoPage"
              Title="TableView for a menu Demo">
-    <StackLayout>
+    <VerticalStackLayout>
         <Label Text="TableView Menu"
                FontSize="30"
                FontAttributes="Bold"
@@ -36,5 +36,5 @@
                 </TableSection>
             </TableRoot>
         </TableView>
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

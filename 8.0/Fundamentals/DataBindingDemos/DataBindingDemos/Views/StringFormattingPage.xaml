@@ -17,7 +17,7 @@
         </Style>
     </ContentPage.Resources>
 
-    <StackLayout Margin="10">
+    <VerticalStackLayout Margin="10">
         <Slider x:Name="slider" />
         <Label Text="{Binding Source={x:Reference slider},
                               Path=Value,
@@ -39,20 +39,20 @@
 
         <BoxView />
 
-        <StackLayout BindingContext="{x:Static sys:DateTime.Now}">
+        <VerticalStackLayout BindingContext="{x:Static sys:DateTime.Now}">
             <Label Text="{Binding}" />
             <Label Text="{Binding Path=Ticks, 
                                   StringFormat='{0:N0} ticks since 1/1/1'}" />
             <Label Text="{Binding StringFormat='The {{0:MMMM}} specifier produces {0:MMMM}'}" />
             <Label Text="{Binding StringFormat='The long date is {0:D}'}" />
-        </StackLayout>
+        </VerticalStackLayout>
 
         <BoxView />
 
-        <StackLayout BindingContext="{x:Static sys:Math.PI}">
+        <VerticalStackLayout BindingContext="{x:Static sys:Math.PI}">
             <Label Text="{Binding}" />
             <Label Text="{Binding StringFormat='PI to 4 decimal points = {0:F4}'}" />
             <Label Text="{Binding StringFormat='PI in scientific notation = {0:E7}'}" />
-        </StackLayout>
-    </StackLayout>
+        </VerticalStackLayout>
+    </VerticalStackLayout>
 </ContentPage>

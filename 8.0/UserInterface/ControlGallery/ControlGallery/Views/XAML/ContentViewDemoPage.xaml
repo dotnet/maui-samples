@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ControlGallery.Views.XAML.ContentViewDemoPage"
              Title="ContentView Demo">
-    <StackLayout>
+    <VerticalStackLayout>
         <Label Text="ContentView"
                FontSize="50"
                FontAttributes="Bold"
@@ -25,5 +25,5 @@ color or giving a little margin to its
 child through its own Padding property."
                    TextColor="Purple" />
         </ContentView>
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

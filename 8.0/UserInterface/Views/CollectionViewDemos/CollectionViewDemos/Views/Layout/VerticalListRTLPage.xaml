@@ -4,7 +4,7 @@
              x:Class="CollectionViewDemos.Views.VerticalListRTLPage"
              Title="Vertical list (RTL FlowDirection)"
              FlowDirection="RightToLeft">
-    <StackLayout Margin="20">
+    <Grid Margin="20">
         <CollectionView ItemsSource="{Binding Monkeys}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
@@ -34,5 +34,5 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-    </StackLayout>
+    </Grid>
 </ContentPage>

@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SwipeViewDemos.SwipeViewDirectionPage"
              Title="SwipeView swipe direction demo">
-    <StackLayout Margin="20">
+    <VerticalStackLayout Margin="20">
          <SwipeView>
             <SwipeView.RightItems>
                 <SwipeItems>
@@ -115,5 +115,5 @@
                        VerticalOptions="Center" />
             </Grid>
         </SwipeView>
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

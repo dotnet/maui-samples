@@ -14,14 +14,14 @@
                FontAttributes="Bold"
                Margin="12" />
 
-        <StackLayout Padding="12,0,12,12"
+        <VerticalStackLayout Padding="12,0,12,12"
                      Spacing="6"
                      Grid.Row="1">
             <Button Command="{Binding GetContactCommand}"
                     Text="Pick Contact" />
             <Button Command="{Binding GetAllContactCommand}"
                     Text="Get All Contacts" />
-        </StackLayout>
+        </VerticalStackLayout>
 
         <ListView ItemsSource="{Binding ContactsList}"
                   SelectedItem="{Binding SelectedContact}"

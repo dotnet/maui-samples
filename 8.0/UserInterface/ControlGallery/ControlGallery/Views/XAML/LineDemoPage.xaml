@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ControlGallery.Views.XAML.LineDemoPage"
              Title="Line Demo">
-    <StackLayout>
+    <VerticalStackLayout>
         <Label Text="Line"
                FontSize="50"
                FontAttributes="Bold"
@@ -14,5 +14,5 @@
               Y2="120"
               Stroke="Red"
               HorizontalOptions="Center" />
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

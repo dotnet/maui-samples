@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="CollectionViewDemos.Views.VerticalListGroupingPage"
              Title="Grouping (with DataTemplates)">
-    <StackLayout Margin="20">
+    <Grid Margin="20">
         <CollectionView ItemsSource="{Binding Animals}"
                         IsGrouped="true">
             <CollectionView.ItemTemplate>
@@ -48,5 +48,5 @@
                 </DataTemplate>
             </CollectionView.GroupFooterTemplate>
         </CollectionView>
-    </StackLayout>
+    </Grid>
 </ContentPage>

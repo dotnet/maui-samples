@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:sys="clr-namespace:System;assembly=netstandard"
              x:Class="Xaminals.Controls.FlyoutFooter">
-    <StackLayout>
+    <VerticalStackLayout>
         <Label Text="Xaminals"
                TextColor="GhostWhite"
                FontAttributes="Bold"
@@ -11,5 +11,5 @@
         <Label Text="{Binding Source={x:Static sys:DateTime.Now}, StringFormat='{0:MMMM dd, yyyy}'}"
                TextColor="GhostWhite"
                HorizontalOptions="Center" />
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentView>

@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ListViewDemos.TextListPage"
              Title="Text">
-    <StackLayout Margin="20">
+    <VerticalStackLayout Margin="20">
         <ListView>
             <ListView.ItemsSource>
                 <x:Array Type="{x:Type x:String}">
@@ -27,5 +27,5 @@
                 </x:Array>
             </ListView.ItemsSource>
         </ListView>
-    </StackLayout>    
+    </VerticalStackLayout>    
 </ContentPage>

@@ -4,7 +4,7 @@
              x:Class="ControlGallery.Views.XAML.ImageCellDemoPage"
              Title="ImageCell Demo"
              Padding="10, 0">
-    <StackLayout>
+    <VerticalStackLayout>
         <Label Text="ImageCell"
                FontSize="50"
                FontAttributes="Bold"
@@ -20,5 +20,5 @@
                 </TableSection>
             </TableRoot>
         </TableView>
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

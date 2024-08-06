@@ -3,13 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ControlGallery.Views.XAML.StackLayoutDemoPage"
              Title="StackLayout">
-    <StackLayout>
+    <VerticalStackLayout>
         <Label Text="StackLayout"
                FontSize="50"
                FontAttributes="Bold"
                HorizontalOptions="Center" />
 
-        <StackLayout Spacing="0"
+        <VerticalStackLayout Spacing="0"
                      VerticalOptions="FillAndExpand"
                      Margin="10">
             <Label Text="StackLayout"
@@ -41,14 +41,12 @@ to the height of its parent."
                    VerticalOptions="CenterAndExpand"
                    HorizontalOptions="End" />
 
-            <StackLayout Spacing="0"
-                         Orientation="Horizontal">
-
+            <HorizontalStackLayout Spacing="0">
                 <Label Text="Stacking" />
                 <Label Text="can also be"
                        HorizontalOptions="CenterAndExpand" />
                 <Label Text="horizontal." />
-            </StackLayout>
-        </StackLayout>
-    </StackLayout>
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </VerticalStackLayout>
 </ContentPage>

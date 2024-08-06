@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ControlGallery.Views.XAML.BoxViewDemoPage"
              Title="BoxView Demo">
-    <StackLayout>
+    <VerticalStackLayout>
         <Label Text="BoxView"
                FontSize="50"
                FontAttributes="Bold"
@@ -14,5 +14,5 @@
                  HeightRequest="150"
                  HorizontalOptions="Center"
                  VerticalOptions="CenterAndExpand" />
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

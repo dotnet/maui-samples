@@ -26,28 +26,28 @@
                     </ResourceDictionary>
                 </ContentPage.Resources>
 
-                <StackLayout>
-                    <StackLayout HorizontalOptions="Center"
+                <VerticalStackLayout>
+                    <VerticalStackLayout HorizontalOptions="Center"
                                  VerticalOptions="CenterAndExpand">
 
                         <Label Text="{Binding Color.R, StringFormat='R = {0:F2}'}" />
                         <Label Text="{Binding Color.G, StringFormat='G = {0:F2}'}" />
                         <Label Text="{Binding Color.B, StringFormat='B = {0:F2}'}" />
-                    </StackLayout>
+                    </VerticalStackLayout>
 
                     <BoxView Color="{Binding Color}"
                          WidthRequest="100"
                          HeightRequest="100"
                          HorizontalOptions="Center" />
 
-                    <StackLayout HorizontalOptions="Center"
+                    <VerticalStackLayout HorizontalOptions="Center"
                                  VerticalOptions="CenterAndExpand">
 
                         <Label Text="{Binding Color.Hue, StringFormat='Hue = {0:F2}'}" />
                         <Label Text="{Binding Color.Saturation, StringFormat='Saturation = {0:F2}'}" />
                         <Label Text="{Binding Color.Luminosity, StringFormat='Luminosity = {0:F2}'}" />
-                    </StackLayout>
-                </StackLayout>
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
             </ContentPage>
         </DataTemplate>
     </TabbedPage.ItemTemplate>

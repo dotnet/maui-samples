@@ -17,7 +17,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="local:NamedColor">
                     <ViewCell>
-                        <StackLayout Orientation="Horizontal">
+                        <HorizontalStackLayout>
                             <BoxView Color="{Binding Color}"
                                      HeightRequest="32"
                                      WidthRequest="32"
@@ -26,7 +26,7 @@
                             <Label Text="{Binding FriendlyName}"
                                    FontSize="24"
                                    VerticalOptions="Center" />
-                        </StackLayout>
+                        </HorizontalStackLayout>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>

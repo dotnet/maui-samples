@@ -67,7 +67,7 @@
             </Path>
         </Grid>
         <ScrollView Grid.Row="1">
-            <StackLayout>
+            <VerticalStackLayout>
                 <Label Text="RotateTransform"
                        Style="{StaticResource HeaderStyle}" />
                 <Label Text="{Binding Source={x:Reference rotation}, Path=Value, StringFormat='Rotation: {0:F0}'}"
@@ -126,7 +126,7 @@
                 <Slider x:Name="translateY"
                         Minimum="0"
                         Maximum="200" />
-            </StackLayout>
+            </VerticalStackLayout>
         </ScrollView>
     </Grid>
 

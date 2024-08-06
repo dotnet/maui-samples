@@ -13,7 +13,7 @@
         </Style>
     </ContentPage.Resources>
     
-    <StackLayout>
+    <VerticalStackLayout>
         <BoxView>
             <BoxView.Color>
                 <local:HslColorExtension H="0" S="1" L="0.5" A="1" />
@@ -27,5 +27,5 @@
         <BoxView Color="{local:HslColorExtension H=0.67, S=1, L=0.5}" />
         <BoxView Color="{local:HslColor H=0, S=0, L=0.5}" />
         <BoxView Color="{local:HslColor A=0.5}" />
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

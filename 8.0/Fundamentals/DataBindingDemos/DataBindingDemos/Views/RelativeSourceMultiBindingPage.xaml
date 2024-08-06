@@ -80,7 +80,7 @@
         <local:GroupViewModel />
     </ContentPage.BindingContext>
 
-    <StackLayout Margin="20">
+    <VerticalStackLayout Margin="20">
         <Label Text="Expanders vanish upon collapse." />
         <controls:CardViewExpander BorderColor="DarkGray"
                                    CardTitle="John Doe"
@@ -103,5 +103,5 @@
                                    IconImageSource="user.png"
                                    ControlTemplate="{StaticResource CardViewExpanderControlTemplate}"
                                    IsExpanded="True" />
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

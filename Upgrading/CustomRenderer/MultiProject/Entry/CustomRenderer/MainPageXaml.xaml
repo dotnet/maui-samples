@@ -4,8 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:CustomRenderer;assembly=CustomRenderer"
     x:Class="CustomRenderer.MainPageXaml">
-    <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+    <VerticalStackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
 	    <Label Text="Hello, Custom Renderer!" />
         <local:MyEntry Text="In Shared Code" />
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

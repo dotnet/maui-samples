@@ -61,7 +61,7 @@
             </Border>
         </ControlTemplate>
     </ContentPage.Resources>
-    <StackLayout Margin="30" Spacing="30">
+    <VerticalStackLayout Margin="30" Spacing="30">
         <controls:CardView BorderColor="DarkGray"
                            CardTitle="John Doe"
                            CardDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla elit dolor, convallis non interdum."
@@ -80,5 +80,5 @@
                            IconBackgroundColor="SlateGray"
                            IconImageSource="user.png"
                            ControlTemplate="{StaticResource CardViewControlTemplate}" />
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

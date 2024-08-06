@@ -39,12 +39,12 @@
                Margin="24"
                HorizontalOptions="Center"
                VerticalOptions="Center">
-            <StackLayout Orientation="Horizontal">
+            <HorizontalStackLayout>
                 <CheckBox x:Name="checkBox"
                           VerticalOptions="Center" />
                 <Label Text="Check the CheckBox to modify the Grid background color."
                        VerticalOptions="Center" />
-            </StackLayout>
+            </HorizontalStackLayout>
         </Frame>
     </Grid>
 </ContentPage>

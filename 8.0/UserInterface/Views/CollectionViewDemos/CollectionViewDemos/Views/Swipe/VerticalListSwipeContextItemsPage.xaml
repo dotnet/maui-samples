@@ -4,7 +4,7 @@
              xmlns:viewmodels="clr-namespace:CollectionViewDemos.ViewModels"
              x:Class="CollectionViewDemos.Views.VerticalListSwipeContextItemsPage"
              Title="Context menu items">
-    <StackLayout Margin="20">
+    <Grid Margin="20">
         <CollectionView x:Name="collectionView"
                         ItemsSource="{Binding Monkeys}">
             <CollectionView.ItemTemplate>
@@ -52,5 +52,5 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-    </StackLayout>
+    </Grid>
 </ContentPage>

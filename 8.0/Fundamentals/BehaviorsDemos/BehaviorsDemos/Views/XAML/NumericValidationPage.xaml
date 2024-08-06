@@ -5,7 +5,7 @@
              x:Class="BehaviorsDemos.NumericValidationPage"
              Title=".NET MAUI behavior demo"
              IconImageSource="xaml.png">
-    <StackLayout Padding="10,50,10,0">
+    <VerticalStackLayout Padding="10,50,10,0">
         <Label Text="Red when the number isn't valid"
                FontSize="12" />
         <Entry Placeholder="Enter a System.Double">
@@ -13,5 +13,5 @@
                 <local:NumericValidationBehavior />
             </Entry.Behaviors>
         </Entry>
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

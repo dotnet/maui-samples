@@ -3,13 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ControlGallery.Views.XAML.CollectionViewDemoPage"
              Title="CollectionView Demo">
-    <StackLayout Margin="20">
+    <Grid Margin="20" RowDefinitions="50,*">
         <Label Text="CollectionView"
                FontSize="50"
                FontAttributes="Bold"
                HorizontalOptions="Center" />
         
-        <CollectionView ItemsSource="{Binding Monkeys}"
+        <CollectionView
+                        Grid.Row="1"
+                        ItemsSource="{Binding Monkeys}"
                         ItemsLayout="VerticalGrid, 2">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
@@ -41,5 +43,5 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-    </StackLayout>
+    </Grid>
 </ContentPage>

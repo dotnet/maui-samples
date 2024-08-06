@@ -354,13 +354,13 @@
                                    VerticalOptions="Start"
                                      HorizontalOptions="End"/>
 
-                <StackLayout HorizontalOptions="Start"
+                <VerticalStackLayout HorizontalOptions="Start"
                                      Spacing="0"
                                      VerticalOptions="End">
                     <Label Text="2%" class="LargeTitle"/>
                     <Label Text="From" class="Subhead"/>
                     <Label Text="Pond Elementary" class="SubContent"/>
-                </StackLayout>
+                </VerticalStackLayout>
             </Grid>
         </Frame>
     </DataTemplate>

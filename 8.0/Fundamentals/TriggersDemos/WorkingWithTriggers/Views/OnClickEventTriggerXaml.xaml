@@ -24,12 +24,12 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <StackLayout>
+    <VerticalStackLayout>
         <Label Text="EventTrigger in Style"
                FontSize="10" />
         <Button Text=" Do this! "
                 Clicked="OnDoThisClick" />
         <Button Text=" Do that! "
                 Clicked="OnDoThatClick" />
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

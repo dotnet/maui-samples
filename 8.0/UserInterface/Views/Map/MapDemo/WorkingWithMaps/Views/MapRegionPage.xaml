@@ -5,7 +5,7 @@
              xmlns:sensors="clr-namespace:Microsoft.Maui.Devices.Sensors;assembly=Microsoft.Maui.Essentials"
              x:Class="WorkingWithMaps.Views.MapRegionPage"
              Title="Map region demo">
-    <StackLayout Margin="10">
+    <VerticalStackLayout Margin="10">
         <maps:Map>
             <x:Arguments>
                 <maps:MapSpan>
@@ -22,6 +22,6 @@
                 </maps:MapSpan>
             </x:Arguments>
         </maps:Map>
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>
     

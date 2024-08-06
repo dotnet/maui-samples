@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ControlGallery.Views.XAML.SliderDemoPage"
              Title="Slider Demo">
-    <StackLayout>
+    <VerticalStackLayout>
         <Label Text="Slider"
                FontSize="50"
                FontAttributes="Bold"
@@ -20,5 +20,5 @@
                FontSize="20"
                HorizontalOptions="Center"
                VerticalOptions="CenterAndExpand" />
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

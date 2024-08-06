@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CollectionViewDemos.Views.VerticalListHeaderFooterStringPage"
              Title="Header and footer (string)">
-    <StackLayout Margin="20">
+    <Grid Margin="20">
         <CollectionView ItemsSource="{Binding Monkeys}"
                         Header="Monkeys"
                         Footer="2019">
@@ -35,5 +35,5 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-    </StackLayout>
+    </Grid>
 </ContentPage>

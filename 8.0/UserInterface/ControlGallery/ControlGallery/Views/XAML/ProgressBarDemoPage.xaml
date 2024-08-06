@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ControlGallery.Views.XAML.ProgressBarDemoPage"
              Title="ProgressBar">
-    <StackLayout>
+    <VerticalStackLayout>
         <Label Text="ProgressBar"
                FontSize="50"
                FontAttributes="Bold"
@@ -12,5 +12,5 @@
         <ProgressBar x:Name="progressBar"
                      VerticalOptions="CenterAndExpand"
                      Margin="10, 0" />
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:ThemingDemo"
              xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
              x:Class="ThemingDemo.ThemeSelectionPage">
-    <StackLayout Margin="20"
+    <VerticalStackLayout Margin="20"
                  VerticalOptions="Center">
         <local:EnumPicker ios:Picker.UpdateMode="WhenFinished"
                           EnumType="{x:Type local:Theme}"
@@ -12,5 +12,5 @@
                           SelectedIndexChanged="OnPickerSelectionChanged" />
         <Label x:Name="statusLabel"
                HorizontalOptions="Center" />
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

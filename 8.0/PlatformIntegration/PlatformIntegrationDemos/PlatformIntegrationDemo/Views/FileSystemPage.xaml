@@ -15,7 +15,7 @@
                Margin="12" />
 
         <ScrollView Grid.Row="1">
-            <StackLayout Padding="12,0,12,12"
+            <VerticalStackLayout Padding="12,0,12,12"
                          Spacing="6">
                 <Label Text="Paths:"
                        FontAttributes="Bold"
@@ -26,8 +26,7 @@
                 <Label Text="Operations:"
                        FontAttributes="Bold"
                        Margin="0,6,0,0" />
-                <StackLayout Orientation="Horizontal"
-                             Spacing="6">
+                <HorizontalStackLayout Spacing="6">
                     <Button Text="Load"
                             Command="{Binding LoadFileCommand}"
                             HorizontalOptions="FillAndExpand" />
@@ -37,12 +36,12 @@
                     <Button Text="Delete"
                             Command="{Binding DeleteFileCommand}"
                             HorizontalOptions="FillAndExpand" />
-                </StackLayout>
+                </HorizontalStackLayout>
 
                 <Label Text="Edit the contents of the file:" />
                 <Editor Text="{Binding CurrentContents}"
                         AutoSize="TextChanges" />
-            </StackLayout>
+            </VerticalStackLayout>
         </ScrollView>
     </Grid>
 </views:BasePage>

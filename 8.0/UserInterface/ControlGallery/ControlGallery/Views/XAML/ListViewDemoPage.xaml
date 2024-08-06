@@ -4,7 +4,7 @@
              xmlns:models="clr-namespace:ControlGallery.Models"
              x:Class="ControlGallery.Views.XAML.ListViewDemoPage"
              Title="ListView Demo">
-    <StackLayout>
+    <VerticalStackLayout>
         <Label Text="ListView"
                FontSize="50"
                FontAttributes="Bold"
@@ -45,20 +45,19 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout Padding="0, 5"
-                                     Orientation="Horizontal" 
+                        <HorizontalStackLayout Padding="0, 5"
                                      Spacing="6">
                             <BoxView Color="{Binding FavoriteColor}"
                                      HeightRequest="60" 
                                      WidthRequest="60" />
-                            <StackLayout VerticalOptions="Center">
+                            <VerticalStackLayout VerticalOptions="Center">
                                 <Label Text="{Binding Name}" />
                                 <Label Text="{Binding Birthday, StringFormat='Born {0:d}'}" />
-                            </StackLayout>
-                        </StackLayout>
+                            </VerticalStackLayout>
+                        </HorizontalStackLayout>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>
