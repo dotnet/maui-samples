@@ -1,4 +1,5 @@
-﻿using Xaminals.Models;
+﻿using Xaminals.Extensions;
+using Xaminals.Models;
 
 namespace Xaminals.Views
 {
@@ -11,6 +12,9 @@ namespace Xaminals.Views
 
         async void OnCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (((CollectionView)sender).ClearSelection())
+                return;
+
             Animal animal = e.CurrentSelection.FirstOrDefault() as Animal;
 
             var navigationParameter = new Dictionary<string, object>
