@@ -1,9 +1,5 @@
 ﻿using PushNotificationsDemo.Services;
 
-#if ANDROID
-using PushNotificationsDemo.Platforms.Android;
-#endif
-
 namespace PushNotificationsDemo
 {
     public partial class MainPage : ContentPage
@@ -22,7 +18,7 @@ namespace PushNotificationsDemo
         {
             base.OnAppearing();
 
-            PermissionStatus status = await Permissions.RequestAsync<PushNotificationPermission>();
+            PermissionStatus status = await Permissions.RequestAsync<Permissions.PostNotifications>();
         }
 #endif
 
