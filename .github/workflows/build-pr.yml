@@ -10,7 +10,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [windows-latest, macos-13]
+        os: [windows-latest, macos-14]
 
     runs-on: ${{ matrix.os }}
 
@@ -22,7 +22,7 @@ jobs:
 
     # Remove when .NET 8 is default on hosted runners
     - name: Install .NET 8
-      uses: actions/setup-dotnet@v3.2.0
+      uses: actions/setup-dotnet@v4.0.1
       with:
         dotnet-version: 8.0
 
@@ -31,8 +31,8 @@ jobs:
       # if: runner.os == 'macOS' # reenable when .NET 8 is default on hosted runners
 
     - name: Select Xcode Version
-      run: sudo xcode-select -s /Applications/Xcode_15.2.app
-      if: runner.os == 'macOS' # Remove when Xcode 15+ is default on the hosted runners
+      run: sudo xcode-select -s /Applications/Xcode_15.4.app
+      if: runner.os == 'macOS'
 
     - name: Find and build changed projects
       run: |
