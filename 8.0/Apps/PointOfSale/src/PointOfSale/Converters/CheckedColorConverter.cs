@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace WeatherTwentyOne.Converters;
+namespace PointOfSale.Converters;
 
 public class CheckedColorConverter : IValueConverter
 {
