@@ -1,34 +1,39 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<ContentPage x:Class="PointOfSale.Pages.Handheld.ScanPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:z="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI"
-			 xmlns:a="clr-namespace:PointOfSale"
-			 xmlns:i="clr-namespace:Icons"
-             x:Class="PointOfSale.Pages.Handheld.ScanPage"
-             Shell.PresentationMode="ModalAnimated"
-             Title="Scan">
+             xmlns:a="clr-namespace:PointOfSale"
+             xmlns:i="clr-namespace:Icons"
+             xmlns:z="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI.Controls"
+             Title="Scan"
+             Shell.PresentationMode="ModalAnimated">
     <Grid>
-        <z:CameraBarcodeReaderView
-			Grid.Row="0" Grid.RowSpan="3"
-			x:Name="barcodeView"
-			BarcodesDetected="BarcodesDetected"
-			 />
+        <z:CameraBarcodeReaderView x:Name="barcodeView"
+                                   Grid.Row="0"
+                                   Grid.RowSpan="3"
+                                   BarcodesDetected="BarcodesDetected"/>
 
-		<Border WidthRequest="240" HeightRequest="240"
-		  VerticalOptions="Center" HorizontalOptions="Center"
-		  Stroke="White"
-		  StrokeThickness="3">
-			<Border.StrokeShape>
-				<RoundRectangle CornerRadius="12"/>
-			</Border.StrokeShape>
-		</Border>
+        <Border WidthRequest="240"
+                HeightRequest="240"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Stroke="White"
+                StrokeThickness="3">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="12"/>
+            </Border.StrokeShape>
+        </Border>
 
-		<ImageButton
-			HeightRequest="60" WidthRequest="60"
-			VerticalOptions="Start" HorizontalOptions="Start"
-			Clicked="ImageButton_Clicked"
-			Aspect="Center"
-			Source="{FontImage FontFamily=Fabric, Color=White, Glyph={x:Static i:FabIconFont.Back},Size=18}"/>
+        <ImageButton WidthRequest="60"
+                     HeightRequest="60"
+                     HorizontalOptions="Start"
+                     VerticalOptions="Start"
+                     Aspect="Center"
+                     Clicked="ImageButton_Clicked"
+                     Source="{FontImage FontFamily=Fabric,
+                                        Color=White,
+                                        Glyph={x:Static i:FabIconFont.Back},
+                                        Size=18}"/>
 
         <!--<Grid
 			Grid.Row="3"

@@ -63,22 +63,22 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="CommunityToolkit.Maui" Version="3.0.0" />
+	  <PackageReference Include="CommunityToolkit.Maui" Version="9.0.3" />
 	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
 	  <PackageReference Include="Microcharts" Version="0.9.5.9" />
-	  <PackageReference Include="Redth.ZXing.Net.Maui" Version="0.1.0-preview.4" />
-	  <PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0-preview.92" />
+	  <PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0" />
 	  <PackageReference Include="Ril.BlazorSignatureCanvas" Version="0.1.0-alpha" />
-	  <PackageReference Include="Microsoft.Identity.Client" Version="4.61.3" />
-	  <PackageReference Include="MonkeyCache" Version="2.0.0-beta" />
-	  <PackageReference Include="MonkeyCache.FileStore" Version="2.0.0-beta" />
-	  <PackageReference Include="AlohaKit.Animations" Version="1.0.0" />
-	  <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.0" />
+	  <PackageReference Include="Microsoft.Identity.Client" Version="4.64.0" />
+	  <PackageReference Include="MonkeyCache" Version="2.1.1" />
+	  <PackageReference Include="MonkeyCache.FileStore" Version="2.1.1" />
+	  <PackageReference Include="AlohaKit.Animations" Version="1.1.0" />
+	  <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.2" />
 	  <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
-	  <PackageReference Include="AsyncAwaitBestPractices" Version="6.0.6" />
+	  <PackageReference Include="AsyncAwaitBestPractices" Version="8.0.0" />
 	  <PackageReference Include="Plugin.Maui.KeyListener" Version="1.0.0-preview1" />
-	  <PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
-	  <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
-	  <PackageReference Include="Microsoft.AspNetCore.Components.WebView.Maui" Version="$(MauiVersion)" />
+	  <PackageReference Include="Microsoft.Maui.Controls" Version="8.0.80" />
+	  <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.80" />
+	  <PackageReference Include="Microsoft.AspNetCore.Components.WebView.Maui" Version="8.0.80" />
+	  <PackageReference Include="ZXing.Net.Maui.Controls" Version="0.4.0" />
 	</ItemGroup>
 </Project>

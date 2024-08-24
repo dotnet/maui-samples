@@ -6,6 +6,7 @@ using MonkeyCache.FileStore;
 using Plugin.Maui.KeyListener;
 using SkiaSharp.Views.Maui.Controls.Hosting;
 using ZXing.Net.Maui;
+using ZXing.Net.Maui.Controls;
 
 #if WINDOWS
 using Microsoft.UI;
