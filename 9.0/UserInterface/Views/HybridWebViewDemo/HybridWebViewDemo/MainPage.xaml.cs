@@ -72,5 +72,7 @@ public partial class MainPage : ContentPage
     [JsonSerializable(typeof(Dictionary<string, string>))]
     internal partial class HybridSampleJSContext : JsonSerializerContext
     {
+        // This type's attributes specify JSON serialization info to preserve type structure
+        // for trimmed builds.    
     }
 }
