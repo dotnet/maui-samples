@@ -22,16 +22,46 @@ public class FirstFragment : Fragment
         base.OnViewCreated(view, savedInstanceState);
 
         // Create Android button
-        var androidButton = new Android.Widget.Button(this);
-        androidButton.Text = "Android button above .NET MAUI controls";
-        androidButton.Click += OnAndroidButtonClicked;
-        rootLayout.AddView(androidButton, new LinearLayout.LayoutParams(MatchParent, WrapContent));
+        var androidButton = view.FindViewById<Button>(Resource.Id.button_first)!;
+        androidButton.Click += (s, e) =>
+        {
+            NavHostFragment.FindNavController(this).Navigate(Resource.Id.action_FirstFragment_to_SecondFragment);
+        };
 
+        var animateButton = view.FindViewById<Button>(Resource.Id.button_animate);
+        animateButton.Click += OnAndroidButtonClicked;
+
+        // App context
+        // Ensure .NET MAUI app is built before creating .NET MAUI views
+        var mauiApp = MauiProgram.CreateMauiApp();
+
+        // Create .NET MAUI context
+        var mauiContext = new MauiContext(mauiApp.Services, this);
+
+        // Create .NET MAUI content
+        _mauiView = new MyMauiContent();
+
+        // Create native view
+        _nativeView = _mauiView.ToPlatformEmbedded(mauiContext);
+
+        // Add native view to layout
+        var rootLayout = view.FindViewById<LinearLayout>(Resource.Id.layout_first)!;
+        rootLayout.AddView(_nativeView, 1, new LinearLayout.LayoutParams(MatchParent, WrapContent));
     }
 
     public override void OnDestroyView()
     {
         base.OnDestroyView();
+
+        // Remove the view from the UI
+        var rootLayout = View!.FindViewById<LinearLayout>(Resource.Id.layout_first)!;
+        rootLayout.RemoveView(_nativeView);
+
+        // Cleanup any Window
+        if (_mauiView?.Window is IWindow window)
+            window.Destroying();
+
+        base.OnStop();
     }
 
     async void OnAndroidButtonClicked(object? sender, EventArgs e)

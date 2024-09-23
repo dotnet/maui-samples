@@ -1,10 +1,18 @@
-using static Android.Views.ViewGroup.LayoutParams;
+using Android.Views;
+using AndroidX.AppCompat.App;
+using AndroidX.Navigation;
+using AndroidX.Navigation.UI;
+using Google.Android.Material.AppBar;
+using Google.Android.Material.FloatingActionButton;
+using Google.Android.Material.Snackbar;
 
 namespace NativeEmbeddingDemo.Droid
 {
     [Activity(Label = "@string/app_name", MainLauncher = true, Theme = "@style/AppTheme")]
-    public class MainActivity : Activity
+    public class MainActivity : AppCompatActivity
     {
+        AppBarConfiguration? appBarConfiguration;
+
         protected override void OnCreate(Bundle? savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -12,26 +20,21 @@ namespace NativeEmbeddingDemo.Droid
             // Set the view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
 
-            var rootLayout = FindViewById<LinearLayout>(Resource.Id.rootLayout)!;
+            var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+            SetSupportActionBar(toolbar);
 
+            var navController = Navigation.FindNavController(this, Resource.Id.nav_host_fragment_content_main);
+            appBarConfiguration = new AppBarConfiguration.Builder(navController.Graph).Build();
+            NavigationUI.SetupActionBarWithNavController(this, navController, appBarConfiguration);
 
-            // Ensure .NET MAUI app is built before creating .NET MAUI views
-            var mauiApp = MainActivity.MauiApp.Value;
-
-            // Create .NET MAUI context
-            var mauiContext = UseWindowContext
-                ? mauiApp.CreateEmbeddedWindowContext(this) // Create window context
-                : new MauiContext(mauiApp.Services, this);  // Create app context
-
-            // Create .NET MAUI content
-            mauiView = new MyMauiContent();
-
-            // Create native view
-            var nativeView = mauiView.ToPlatformEmbedded(mauiContext);
-
-            // Add native view to layout
-            rootLayout.AddView(nativeView, new LinearLayout.LayoutParams(MatchParent, WrapContent));
+            var fab = FindViewById<FloatingActionButton>(Resource.Id.fab)!;
+            fab.Click += (s, e) =>
+            {
+                var snackBar = snackBar.Make(fab, "Replace with your own action", SnackBar.LengthLong);
+                snackBar.SetAnchorView(Resource.Id.fab);
+                snackBar.SetAction("Action", _ => { });
+                snackBar.Show();
+            };
         }
-
     }
 }
