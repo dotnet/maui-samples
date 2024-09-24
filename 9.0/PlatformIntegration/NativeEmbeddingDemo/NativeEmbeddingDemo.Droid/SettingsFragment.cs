@@ -12,8 +12,13 @@ namespace NativeEmbeddingDemo.Droid;
 [Register("com.companyname.nativeembeddingdemo." + nameof(SettingsFragment))]
 public class SettingsFragment : Fragment
 {
+    Activity? _window;
+    IMauiContext? _windowContext;
     MyMauiContent? _mauiView;
     Android.Views.View? _nativeView;
+
+    public IMauiContext WindowContext =>
+        _windowContext ??= MyEmbeddedMauiApp.Shared.CreateEmbeddedWindowContext(_window ?? throw new InvalidOperationException());
 
     public override View? OnCreateView(LayoutInflater inflater, ViewGroup? container, Bundle? savedInstanceState) =>
         inflater.Inflate(Resource.Layout.fragment_settings, container, false);
@@ -21,6 +26,7 @@ public class SettingsFragment : Fragment
     public override void OnViewCreated(View view, Bundle? savedInstanceState)
     {
         base.OnViewCreated(view, savedInstanceState);
+        _window ??= Activity;
 
         var settingsButton = view.FindViewById<Button>(Resource.Id.button_settings)!;
         settingsButton.Click += (s, e) =>
@@ -28,21 +34,31 @@ public class SettingsFragment : Fragment
             NavHostFragment.FindNavController(this).NavigateUp();
         };
 
-        var animateButton = view.FindViewById<Button>(Resource.Id.button_animate);
+        var animateButton = view.FindViewById<Button>(Resource.Id.button_animate)!;
         animateButton.Click += OnAndroidButtonClicked;
 
-        // App context
-        // Ensure .NET MAUI app is built before creating .NET MAUI views
-        var mauiApp = MauiProgram.CreateMauiApp();
+        //// App context
+        //// Ensure .NET MAUI app is built before creating .NET MAUI views
+        //var mauiApp = MauiProgram.CreateMauiApp();
 
-        // Create .NET MAUI context
-        var mauiContext = new MauiContext(mauiApp.Services, Activity);
+        //// Create .NET MAUI context
+        //var mauiContext = new MauiContext(mauiApp.Services, Activity);
+
+        //// Create .NET MAUI content
+        //_mauiView = new MyMauiContent();
+
+        //// Create native view
+        //_nativeView = _mauiView.ToPlatformEmbedded(mauiContext);
+
+        // Window context
+        // Create MAUI embedded window context
+        var context = WindowContext;
 
         // Create .NET MAUI content
         _mauiView = new MyMauiContent();
 
         // Create native view
-        _nativeView = _mauiView.ToPlatformEmbedded(mauiContext);
+        _nativeView = _mauiView.ToPlatformEmbedded(context);
 
         // Add native view to layout
         var rootLayout = view.FindViewById<LinearLayout>(Resource.Id.layout_settings)!;
