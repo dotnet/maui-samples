@@ -33,25 +33,13 @@
             android:id="@+id/layout_settings"
             android:padding="8dp">
 
-            <Button
-                android:id="@+id/button1"
+			<Button
+                android:id="@+id/button_animate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Android Button Above MAUI" />
+                android:text="Android button above .NET MAUI controls" />
 
             <!-- TODO: The MAUI content will go here. -->
-
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Android Button Below MAUI" />
-
-            <Button
-                android:id="@+id/button3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Android Button Magic" />
 
         </LinearLayout>
 

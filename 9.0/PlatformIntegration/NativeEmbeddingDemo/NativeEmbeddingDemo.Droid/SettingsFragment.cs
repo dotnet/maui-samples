@@ -1,6 +1,7 @@
 ﻿using Android.Runtime;
 using Android.Views;
 using AndroidX.Navigation.Fragment;
+using Microsoft.Maui.Controls.Embedding;
 using static Android.Views.ViewGroup.LayoutParams;
 using Button = Android.Widget.Button;
 using Fragment = AndroidX.Fragment.App.Fragment;
@@ -35,7 +36,7 @@ public class SettingsFragment : Fragment
         var mauiApp = MauiProgram.CreateMauiApp();
 
         // Create .NET MAUI context
-        var mauiContext = new MauiContext(mauiApp.Services, this);
+        var mauiContext = new MauiContext(mauiApp.Services, Activity);
 
         // Create .NET MAUI content
         _mauiView = new MyMauiContent();

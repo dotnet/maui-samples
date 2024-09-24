@@ -16,6 +16,10 @@
 		<ApplicationVersion>1</ApplicationVersion>
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
 	</PropertyGroup>
+	<ItemGroup>
+	  <None Remove="Resources\values\dimens.xml" />
+	  <None Remove="Resources\values\themes.xml" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
