@@ -1,5 +1,6 @@
 ﻿namespace MarkupExtensions
 {
+    [AcceptEmptyServiceProvider]
     public class HslColorExtension : IMarkupExtension<Color>
     {
         public float H { get; set; }
