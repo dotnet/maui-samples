@@ -9,22 +9,39 @@
     "ParentNodes": [
         {
             "Label": "okr-curation",
+            "Semester": "Selenium",
+            "ParentNodeId": 268038
+        },
+        {
+            "Semester": "Selenium",
+            "ParentNodeId": 286016
+        },
+        {
+            "Label": "okr-curation",
+            "Semester": "Dilithium",
             "ParentNodeId": 237271
         },
         {
             "Label": "sfi-ropc",
+            "Semester": "Dilithium",
             "ParentNodeId": 271716
         },
         {
             "Label": "sfi-admin",
+            "Semester": "Dilithium",
             "ParentNodeId": 271716
         },
         {
             "Label": "sfi-images",
+            "Semester": "Dilithium",
             "ParentNodeId": 286370
+        },
+        {
+            "Semester": "Dilithium",
+            "ParentNodeId": 227487
         }
     ],
-    "DefaultParentNode": 227487,
+    "DefaultParentNode": 286016,
     "WorkItemTags": [
         {
             "Label": "okr-curation",
