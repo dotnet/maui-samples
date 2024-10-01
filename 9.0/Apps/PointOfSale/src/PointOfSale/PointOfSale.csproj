@@ -22,7 +22,7 @@
 
 		<!-- App Identifier -->
 		<ApplicationId>com.simplyprofound.pointofsale</ApplicationId>
-		
+
 		<!-- Versions -->
 		<ApplicationVersion>1</ApplicationVersion>
 
@@ -78,7 +78,6 @@
 	  <PackageReference Include="AsyncAwaitBestPractices" Version="6.0.6" />
 	  <PackageReference Include="Plugin.Maui.KeyListener" Version="1.0.0-preview1" />
 	  <PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
-	  <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
 	  <PackageReference Include="Microsoft.AspNetCore.Components.WebView.Maui" Version="$(MauiVersion)" />
 	</ItemGroup>
 </Project>
