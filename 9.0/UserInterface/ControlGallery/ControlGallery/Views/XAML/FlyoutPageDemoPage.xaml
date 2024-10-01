@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<FlyoutPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:models="clr-namespace:ControlGallery.Models"
+                  x:Class="ControlGallery.Views.XAML.FlyoutPageDemoPage"
+                  Title="FlyoutPage Demo">
+    <FlyoutPage.Flyout>
+        <ContentPage Title="Color List">
+            <StackLayout>
+                <Label Text="FlyoutPage"
+                       FontSize="30"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center" />
+
+                <ListView x:Name="listView"
+                          Margin="10, 0"
+                          ItemTapped="OnListViewItemTapped">
+                    <ListView.ItemsSource>
+                        <x:Array Type="{x:Type models:NamedColor}">
+                            <models:NamedColor Name="Aqua" Color="Aqua" />
+                            <models:NamedColor Name="Black" Color="Black" />
+                            <models:NamedColor Name="Blue" Color="Blue" />
+                            <models:NamedColor Name="Fuchsia" Color="Fuchsia" />
+                            <models:NamedColor Name="Gray" Color="Gray" />
+                            <models:NamedColor Name="Green" Color="Green" />
+                            <models:NamedColor Name="Lime" Color="Lime" />
+                            <models:NamedColor Name="Maroon" Color="Maroon" />
+                            <models:NamedColor Name="Navy" Color="Navy" />
+                            <models:NamedColor Name="Olive" Color="Olive" />
+                            <models:NamedColor Name="Purple" Color="Purple" />
+                            <models:NamedColor Name="Red" Color="Red" />
+                            <models:NamedColor Name="Silver" Color="Silver" />
+                            <models:NamedColor Name="Teal" Color="Teal" />
+                            <models:NamedColor Name="White" Color="White" />
+                            <models:NamedColor Name="Yellow" Color="Yellow" />
+                        </x:Array>
+                    </ListView.ItemsSource>
+                </ListView>
+            </StackLayout>
+        </ContentPage>
+    </FlyoutPage.Flyout>
+
+    <FlyoutPage.Detail>
+        <ContentPage Title="{Binding Name}"
+                     BindingContext="{Binding Source={x:Reference listView},
+                                              Path=SelectedItem}">
+            <ContentPage.Resources>
+                <ResourceDictionary>
+                    <Style TargetType="Label">
+                        <Setter Property="FontSize" Value="20" />
+                        <Setter Property="HorizontalTextAlignment" Value="End" />
+                    </Style>
+                </ResourceDictionary>
+            </ContentPage.Resources>
+
+            <StackLayout>
+                <Label Text="{Binding Name}"
+                       FontSize="50"
+                       HorizontalOptions="Center" />
+
+                <StackLayout HorizontalOptions="Center"
+                             VerticalOptions="CenterAndExpand">
+
+                    <Label Text="{Binding Color.R, StringFormat='R = {0:F2}'}" />
+                    <Label Text="{Binding Color.G, StringFormat='G = {0:F2}'}" />
+                    <Label Text="{Binding Color.B, StringFormat='B = {0:F2}'}" />
+                </StackLayout>
+
+                <BoxView Color="{Binding Color}"
+                         WidthRequest="100"
+                         HeightRequest="100"
+                         HorizontalOptions="Center" />
+
+                <StackLayout HorizontalOptions="Center"
+                             VerticalOptions="CenterAndExpand">
+
+                    <Label Text="{Binding Color.Hue, StringFormat='Hue = {0:F2}'}" />
+                    <Label Text="{Binding Color.Saturation, StringFormat='Saturation = {0:F2}'}" />
+                    <Label Text="{Binding Color.Luminosity, StringFormat='Luminosity = {0:F2}'}" />
+                </StackLayout>
+            </StackLayout>
+        </ContentPage>
+    </FlyoutPage.Detail>
+</FlyoutPage>

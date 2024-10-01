@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:p="clr-namespace:PointOfSale.Pages.Handheld"
+             x:Class="PointOfSale.AppShellMobile"
+             Title="AppShellMobile">
+
+    <ShellContent ContentTemplate="{DataTemplate p:MobileLoginPage}" Route="login"/>
+    <ShellContent ContentTemplate="{DataTemplate p:OrdersPage}" Route="orders"/>
+</Shell>

@@ -1,0 +1,284 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:a="clr-namespace:PointOfSale"
+             xmlns:v="clr-namespace:PointOfSale.Pages.Views"
+             xmlns:pages="clr-namespace:PointOfSale.Pages"
+             xmlns:m="clr-namespace:PointOfSale.Models"
+             xmlns:l="clr-namespace:CustomLayouts"
+             xmlns:b="clr-namespace:PointOfSale.Common.Behaviors"
+             xmlns:system="clr-namespace:System;assembly=System.Runtime"
+             x:DataType="pages:HomeViewModel"
+             x:Class="PointOfSale.Pages.HomePage"
+             Shell.NavBarIsVisible="{OnPlatform False, WinUI=True}"
+             Title="">
+
+    <ContentPage.BindingContext>
+        <pages:HomeViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.MenuBarItems>
+        <MenuBarItem Text="File">
+            <MenuFlyoutItem Text="Preferences"
+                            Command="{Binding PreferencesCommand}" />
+        </MenuBarItem>
+        <MenuBarItem Text="Products">
+            <MenuFlyoutItem Text="Add Product" 
+                            Command="{Binding AddProductCommand}">
+                <MenuFlyoutItem.KeyboardAccelerators>
+                    <KeyboardAccelerator Key="A" Modifiers="Cmd,Shift"/>
+                    <KeyboardAccelerator Key="A" Modifiers="Ctrl"/>
+                </MenuFlyoutItem.KeyboardAccelerators>
+                <MenuFlyoutItem.IconImageSource>
+                    <FontImageSource Glyph="&#xECDC;"
+                                     Size="12" 
+                                     Color="Black"
+                                     FontFamily="Fabric" />
+                </MenuFlyoutItem.IconImageSource>
+            </MenuFlyoutItem>
+            <MenuFlyoutItem Text="Add Product Category"
+                IconImageSource="{FontImage &#xF12B;, FontFamily=Fabric, Color=Black, Size=12}"
+            />
+        </MenuBarItem>
+    </ContentPage.MenuBarItems>
+
+
+    <Grid RowDefinitions="100,Auto,*"
+          RowSpacing="10"
+          ColumnDefinitions="{OnPlatform '*,400', WinUI='*,440'}"
+          Margin="24,0,0,0"
+          x:Name="PageGrid">  
+             
+        <ScrollView Grid.Row="2">
+            <Grid RowDefinitions="70,*">
+                <Label Text="Choose Dishes" Style="{StaticResource Title1}"/>
+
+                <l:HorizontalWrapLayout Grid.Row="1" Spacing="20"
+                                       BindableLayout.ItemsSource="{Binding Products}"
+                                       >
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate x:DataType="m:Item">
+                            <Grid RowDefinitions="30,230" WidthRequest="200">
+                                <Grid.Behaviors>
+                                    <b:CursorBehavior/>
+                                </Grid.Behaviors>
+                                <Grid.GestureRecognizers>
+                                    <DragGestureRecognizer
+                                        DragStarting="OnDragStarting"
+                                        DropCompleted="OnDropCompleted"
+                                    />
+                                </Grid.GestureRecognizers>
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="DefaultStates">
+                                        <VisualState x:Name="PointerOver">
+                                            <VisualState.Setters>
+                                                <Setter
+                                                    TargetName="CardBg"
+                                                    Property="Border.Background"
+                                                    Value="{StaticResource Primary}"/>
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                        <VisualState x:Name="Normal">
+                                            <VisualState.Setters>
+                                                <Setter
+                                                    TargetName="CardBg"
+                                                    Property="Border.Background"
+                                                    Value="{StaticResource DarkBg2Brush}"/>
+                                            </VisualState.Setters>
+                                        </VisualState>
+
+                                    </VisualStateGroup>
+
+                                </VisualStateManager.VisualStateGroups>
+                                <FlyoutBase.ContextFlyout>
+                                    <MenuFlyout>
+                                        <MenuFlyoutItem Text="Edit Details"
+                                                        CommandParameter="docs" />
+                                        <MenuFlyoutItem Text="Remove"
+                                                        CommandParameter="eng" />
+                                    </MenuFlyout>
+                                </FlyoutBase.ContextFlyout>
+                                <Border Background="{StaticResource DarkBg2Brush}"
+                                        Stroke="{StaticResource DarkBg2Brush}"
+                                        StrokeThickness="1"
+                                        Grid.Row="1"
+                                        x:Name="CardBg"
+                                        >
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="16"/>
+                                    </Border.StrokeShape>
+                                </Border>
+                                <VerticalStackLayout Grid.RowSpan="2" Margin="20,0,20,10"
+                                                     VerticalOptions="End"
+                                                     Spacing="6">
+                                    
+                                    <Label Text="{Binding Title}" HorizontalOptions="Center" Style="{StaticResource Title2}" HorizontalTextAlignment="Center"/>
+                                    <Label Text="{Binding Price, StringFormat='{0:C}'}" HorizontalOptions="Center"/>
+                                </VerticalStackLayout>
+                                <Image
+                                    Grid.RowSpan="2" VerticalOptions="Start"
+                                    Margin="0,-20,0,0"
+                                    Source="{Binding Image, FallbackValue=food_01.png}" 
+                                    HorizontalOptions="Center"/>
+                            </Grid>
+                        </DataTemplate>
+                     </BindableLayout.ItemTemplate>
+                </l:HorizontalWrapLayout>
+                
+            </Grid>
+
+        </ScrollView>
+
+        <VerticalStackLayout VerticalOptions="Center">
+            <Label Text="Main Menu" Style="{StaticResource LargeTitle}"/>
+            <Label Text="{Binding Source={x:Static system:DateTime.Now}, StringFormat='{0:dddd, MMMM dd yyyy}'}"/>
+        </VerticalStackLayout>
+
+        <Border
+            HorizontalOptions="End"
+            Margin="0,0,24,0"
+            HeightRequest="48"
+            WidthRequest="300"
+            Background="{StaticResource DarkBg1Brush}"
+            Stroke="{StaticResource SecondaryBrush}"
+            StrokeThickness="1"
+            >
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="8"/>
+            </Border.StrokeShape>
+            <HorizontalStackLayout>
+                <Image Source="{FontImage Color=White, FontFamily=FontAwesome, Glyph={x:Static a:IconFont.Search},Size=14}"
+                       Margin="14,0"
+                       VerticalOptions="Center"
+                       />
+                <Entry Background="Transparent"
+                       Placeholder="Search for food, coffee, etc."
+                       PlaceholderColor="{StaticResource TextSecondary}"
+                       TextColor="White"
+                       VerticalOptions="Center"
+                       WidthRequest="250"
+                       FontSize="14"/>
+            </HorizontalStackLayout>
+            
+
+
+        </Border>
+
+        <!-- Tab Control -->
+        <Grid Grid.Row="1">
+            <BoxView Style="{StaticResource HRule}"
+                     Margin="0,0,0,0"
+                     VerticalOptions="End"
+            />
+            <HorizontalStackLayout Spacing="20"
+                               RadioButtonGroup.GroupName="MenuCategories"
+                               RadioButtonGroup.SelectedValue="{Binding Category}"
+                               VerticalOptions="End">
+                <BindableLayout.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Noodles</x:String>
+                            <x:String>Rice</x:String>
+                            <x:String>Appetizers</x:String>
+                            <x:String>Desserts</x:String>
+                            <x:String>Beverages</x:String>
+                        </x:Array>
+                    </BindableLayout.ItemsSource>
+                <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <RadioButton Content="{Binding .}" Value="{Binding .}">
+                                <RadioButton.ControlTemplate>
+                                    <ControlTemplate>
+                                        <Grid RowDefinitions="30,4">
+                                            <Grid.Behaviors>
+                                                <b:CursorBehavior/>
+                                            </Grid.Behaviors>
+                                            <VisualStateManager.VisualStateGroups>
+                                                <VisualStateGroupList>
+                                                    <VisualStateGroup x:Name="CheckedStates">
+                                                        <VisualState x:Name="Checked">
+                                                            <VisualState.Setters>
+                                                                <Setter
+                                                                    TargetName="TextLabel"
+                                                                    Property="Label.TextColor"
+                                                                    Value="{StaticResource Primary}"/>
+                                                                <Setter
+                                                                    TargetName="Indicator"
+                                                                    Property="BoxView.Color"
+                                                                    Value="{StaticResource Primary}"/>
+                                                            </VisualState.Setters>
+                                                        </VisualState>
+
+                                                        <VisualState x:Name="Unchecked">
+                                                            <VisualState.Setters>
+                                                                <Setter
+                                                                    TargetName="TextLabel"
+                                                                    Property="Label.TextColor"
+                                                                    Value="White"/>
+                                                                <Setter
+                                                                    TargetName="Indicator"
+                                                                    Property="BoxView.Color"
+                                                                    Value="Transparent"/>
+                                                            </VisualState.Setters>
+                                                        </VisualState>
+
+                                                        <!-- <VisualState x:Name="PointerOver">
+                                                            <VisualState.Setters>
+                                                                <Setter
+                                                                    TargetName="TextLabel"
+                                                                    Property="Label.TextColor"
+                                                                    Value="{StaticResource Primary}"/>
+                                                                <Setter
+                                                                    TargetName="Indicator"
+                                                                    Property="BoxView.Color"
+                                                                    Value="{StaticResource Primary}"/>
+                                                            </VisualState.Setters>
+                                                        </VisualState>
+
+                                                        <VisualState x:Name="Normal">
+                                                            <VisualState.Setters>
+                                                                <Setter
+                                                                    TargetName="TextLabel"
+                                                                    Property="Label.TextColor"
+                                                                    Value="White"/>
+                                                                <Setter
+                                                                    TargetName="Indicator"
+                                                                    Property="BoxView.Color"
+                                                                    Value="Transparent"/>
+                                                            </VisualState.Setters>
+                                                        </VisualState> -->
+                                                    </VisualStateGroup>
+                                                </VisualStateGroupList>
+                                            </VisualStateManager.VisualStateGroups>
+                                            <Label Text="{TemplateBinding Content}" x:Name="TextLabel" />
+                                            <BoxView x:Name="Indicator" Grid.Row="1" Color="Transparent"/>
+                                        </Grid>
+                                    </ControlTemplate>
+
+                                </RadioButton.ControlTemplate>
+                            </RadioButton>
+                        </DataTemplate>
+                     </BindableLayout.ItemTemplate>
+            </HorizontalStackLayout>
+        </Grid>
+
+        <BoxView Color="Black"
+                 Opacity="0"
+                 Grid.RowSpan="3" Grid.ColumnSpan="2"
+                 HorizontalOptions="Fill"
+                 VerticalOptions="Fill"
+                 Margin="-24"
+                 InputTransparent="True"
+                 x:Name="BlockScreen"
+                 />
+        
+        <v:OrderCartView Grid.Column="1" Grid.RowSpan="3">
+            <v:OrderCartView.GestureRecognizers>
+                <DropGestureRecognizer 
+                    DragOver="OnDragOver" 
+                    Drop="OnDrop"/>
+            </v:OrderCartView.GestureRecognizers>
+        </v:OrderCartView>
+        
+
+    </Grid>
+</ContentPage>

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ControlGallery.Views.XAML.SearchBarDemoPage"
+             Title="SearchBar Demo"
+             Padding="10, 0">
+    <StackLayout>
+        <Label Text="SearchBar"
+               FontSize="50"
+               FontAttributes="Bold"
+               HorizontalOptions="Center" />
+
+        <SearchBar Placeholder=".NET MAUI property"
+                   SearchButtonPressed="OnSearchBarButtonPressed" />
+
+        <ScrollView VerticalOptions="FillAndExpand">
+            <Label x:Name="resultsLabel" />
+        </ScrollView>
+    </StackLayout>
+</ContentPage>

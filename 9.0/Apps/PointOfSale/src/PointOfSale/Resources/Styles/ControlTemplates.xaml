@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <ControlTemplate x:Key="OptionTemplate">
+            <Border Background="{StaticResource DarkBg2}"
+                    Stroke="{StaticResource SecondaryBrush}"
+                    StrokeThickness="1"
+            >
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="8"/>
+                </Border.StrokeShape>
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CheckedStates">
+                            <VisualState x:Name="Checked">
+                                <VisualState.Setters>
+                                    <Setter
+                                            Property="Stroke"
+                                            Value="{StaticResource WhiteBrush}" />
+                                </VisualState.Setters>
+                            </VisualState>
+
+                            <VisualState x:Name="Unchecked">
+                                <VisualState.Setters>
+                                    <Setter
+                                        Property="Stroke"
+                                        Value="{StaticResource SecondaryBrush}" />
+                                </VisualState.Setters>
+                            </VisualState>
+
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </VisualStateManager.VisualStateGroups>
+
+                <ContentPresenter/>
+            </Border>    
+        </ControlTemplate>
+
+    <ControlTemplate x:Key="ButtonRadioTemplate">
+        <Border
+            Stroke="{StaticResource SecondaryBrush}"
+            StrokeThickness="1"
+            Background="Transparent"
+            >
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="8"/>
+            </Border.StrokeShape>
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CheckedStates">
+                        <VisualState x:Name="Checked">
+                            <VisualState.Setters>
+                                <Setter
+                                    TargetName="TextLabel"
+                                    Property="Label.TextColor"
+                                    Value="{StaticResource White}"/>
+                                <Setter
+                                    Property="Background"
+                                    Value="{StaticResource PrimaryBrush}"/>
+                                <Setter
+                                    Property="Stroke"
+                                    Value="{StaticResource PrimaryBrush}"/>
+                            </VisualState.Setters>
+                        </VisualState>
+
+                        <VisualState x:Name="Unchecked">
+                            <VisualState.Setters>
+                                <Setter
+                                    TargetName="TextLabel"
+                                    Property="Label.TextColor"
+                                    Value="{StaticResource Primary}"/>
+                                <Setter
+                                    Property="Background"
+                                    Value="Transparent"/>
+                                <Setter
+                                    Property="Stroke"
+                                    Value="{StaticResource SecondaryBrush}"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </VisualStateManager.VisualStateGroups>
+            <Label Text="{TemplateBinding Content}"
+                    Margin="12,7"
+                    HorizontalTextAlignment="{OnPlatform Start, WinUI=Center}"
+                    x:Name="TextLabel" />
+        </Border>
+
+    </ControlTemplate>
+
+</ResourceDictionary>

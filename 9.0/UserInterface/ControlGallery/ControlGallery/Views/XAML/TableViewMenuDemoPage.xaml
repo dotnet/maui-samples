@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:ControlGallery.Views.XAML"
+             x:Class="ControlGallery.Views.XAML.TableViewMenuDemoPage"
+             Title="TableView for a menu Demo">
+    <StackLayout>
+        <Label Text="TableView Menu"
+               FontSize="30"
+               FontAttributes="Bold"
+               HorizontalOptions="Center" />
+
+        <TableView Intent="Menu">
+            <TableRoot>
+                <TableSection Title="Views for Presentation">
+
+                    <TextCell Text="Label"
+                              Detail="Display a text string"
+                              Command="{Binding NavigateCommand}"
+                              CommandParameter="{x:Type views:LabelDemoPage}" />
+
+                    <TextCell Text="Image"
+                              Detail="Display a bitmap"
+                              Command="{Binding NavigateCommand}"
+                              CommandParameter="{x:Type views:ImageDemoPage}" />
+
+                    <TextCell Text="BoxView"
+                              Detail="Display a colored rectangle"
+                              Command="{Binding NavigateCommand}"
+                              CommandParameter="{x:Type views:BoxViewDemoPage}" />
+
+                    <TextCell Text="WebView"
+                              Detail="Display a Web page"
+                              Command="{Binding NavigateCommand}"
+                              CommandParameter="{x:Type views:WebViewDemoPage}" />
+                </TableSection>
+            </TableRoot>
+        </TableView>
+    </StackLayout>
+</ContentPage>

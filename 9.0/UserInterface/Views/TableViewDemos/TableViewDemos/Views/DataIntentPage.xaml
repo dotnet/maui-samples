@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="TableViewDemos.DataIntentPage" 
+             Title="Data page">
+    <TableView Intent="Data" 
+               HasUnevenRows="true" >
+        <TableRoot>
+            <TableSection>
+                <TextCell Text="This TableView uses the data intent." 
+                          Detail="However, data is often better presented in a ListView." />
+                <ImageCell Text="Images can also be displayed."
+                           Detail="HasUnevenRows is set to true."
+                           ImageSource="dotnet_bot.png" />
+                <ViewCell x:Name="viewCell" 
+                          Tapped="OnViewCellTapped">
+                    <Grid Margin="15,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Label Text="Tap this cell." />
+                        <Label x:Name="target" 
+                               Grid.Row="1"
+                               Text="The cell has changed size." 
+                               IsVisible="false" />
+                    </Grid>
+                </ViewCell>
+            </TableSection>
+        </TableRoot>
+    </TableView>
+</ContentPage>

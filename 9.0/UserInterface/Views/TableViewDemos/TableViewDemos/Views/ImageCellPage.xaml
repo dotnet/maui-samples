@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TableViewDemos.ImageCellPage"
+             Title="Image cell page">
+    <TableView Intent="Menu">
+        <TableRoot>
+            <TableSection Title="Learn how to use your Xbox">
+                <ImageCell Text="1. Introduction"
+                           Detail="Learn about your Xbox and its capabilities."
+                           ImageSource="xbox.png" />
+                <ImageCell Text="2. Turn it on"
+                           Detail="Learn how to turn on your Xbox."
+                           ImageSource="xbox.png" />
+                <ImageCell Text="3. Connect your controller"
+                           Detail="Learn how to connect your wireless controller."
+                           ImageSource="xbox.png" />
+                <ImageCell Text="4. Launch a game"
+                           Detail="Learn how to launch a game."
+                           ImageSource="xbox.png" />
+            </TableSection>
+        </TableRoot>
+    </TableView>
+</ContentPage>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:ListViewDemos.Controls"
+             x:Class="ListViewDemos.ScrollByItemWithGroupingPage"
+             Title="Scroll by item with grouping">
+    <StackLayout Margin="20">
+        <StackLayout Orientation="Horizontal"
+                     HorizontalOptions="Center">
+            <Label Text="ScrollToPosition: "
+                   VerticalTextAlignment="Center" />
+            <controls:EnumPicker x:Name="enumPicker"
+                                 EnumType="{x:Type ScrollToPosition}"
+                                 SelectedIndex="0" />
+        </StackLayout>
+        <StackLayout Orientation="Horizontal"
+                     HorizontalOptions="Center">
+            <Label Text="Animate scroll: "
+                   VerticalTextAlignment="Center" />
+            <Switch x:Name="animateSwitch"
+                    IsToggled="true" />
+        </StackLayout>
+        <Button Text="Scroll to Proboscis Monkey"
+                Clicked="OnButtonClicked" />
+        <ListView x:Name="listView"
+                  ItemsSource="{Binding Animals}"
+                  IsGroupingEnabled="True"
+                  Scrolled="OnListViewScrolled">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.RowSpan="2" 
+                                   Source="{Binding ImageUrl}" 
+                                   Aspect="AspectFill"
+                                   HeightRequest="60" 
+                                   WidthRequest="60" />
+                            <Label Grid.Column="1" 
+                                   Text="{Binding Name}" 
+                                   FontAttributes="Bold" />
+                            <Label Grid.Row="1"
+                                   Grid.Column="1" 
+                                   Text="{Binding Location}"
+                                   FontAttributes="Italic" 
+                                   VerticalOptions="End" />
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>
