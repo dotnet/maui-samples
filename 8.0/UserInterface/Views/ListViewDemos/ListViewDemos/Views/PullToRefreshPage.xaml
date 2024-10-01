@@ -3,13 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ListViewDemos.PullToRefreshPage"
              Title="Pull to refresh list">
-    <StackLayout Margin="20">
+    <Grid RowDefinitions="Auto, Auto, *" 
+          Margin="20">
         <Label Text="Pull the items down to refresh the ListView." />
-        <Label Text="{Binding Animals.Count, StringFormat='Number of items: {0}'}" />
+        <Label Text="{Binding Animals.Count, StringFormat='Number of items: {0}'}"
+               Grid.Row="1"/>
         <ListView ItemsSource="{Binding Animals}"
                   IsPullToRefreshEnabled="true"
                   RefreshCommand="{Binding RefreshCommand}"
-                  IsRefreshing="{Binding IsRefreshing}">
+                  IsRefreshing="{Binding IsRefreshing}"
+                  Grid.Row="2">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -40,5 +43,5 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-    </StackLayout>
+    </Grid>
 </ContentPage>
