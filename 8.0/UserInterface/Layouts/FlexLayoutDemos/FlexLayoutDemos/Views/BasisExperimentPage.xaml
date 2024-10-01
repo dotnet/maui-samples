@@ -45,7 +45,7 @@
             <Label Text="Label 2:"
                    Grid.Row="0" Grid.Column="0" />
 
-            <StackLayout Grid.Row="0" Grid.Column="1">
+            <VerticalStackLayout Grid.Row="0" Grid.Column="1">
 
                 <Label Text="Auto" />
 
@@ -53,9 +53,9 @@
                         IsToggled="True"
                         Toggled="OnLabel2AutoSwitchToggled" />
                 
-            </StackLayout>
+            </VerticalStackLayout>
 
-            <StackLayout Grid.Row="0" Grid.Column="2">
+            <VerticalStackLayout Grid.Row="0" Grid.Column="2">
                 <Label Text="Is Relative"
                        IsEnabled="{Binding Source={x:Reference autoSwitch2},
                                            Path=IsToggled,
@@ -67,7 +67,7 @@
                         IsEnabled="{Binding Source={x:Reference autoSwitch2},
                                             Path=IsToggled,
                                             Converter={StaticResource booleanInverse}}" />
-            </StackLayout>
+            </VerticalStackLayout>
 
             <Slider x:Name="slider2"
                     ValueChanged="OnLabel2SliderValueChanged"
@@ -89,7 +89,7 @@
             <Label Text="Label 4:"
                    Grid.Row="3" Grid.Column="0" />
 
-            <StackLayout Grid.Row="3" Grid.Column="1">
+            <VerticalStackLayout Grid.Row="3" Grid.Column="1">
 
                 <Label Text="Auto" />
 
@@ -97,9 +97,9 @@
                         IsToggled="True"
                         Toggled="OnLabel4AutoSwitchToggled" />
 
-            </StackLayout>
+            </VerticalStackLayout>
 
-            <StackLayout Grid.Row="3" Grid.Column="2">
+            <VerticalStackLayout Grid.Row="3" Grid.Column="2">
                 <Label Text="Is Relative"
                        IsEnabled="{Binding Source={x:Reference autoSwitch4},
                                            Path=IsToggled,
@@ -111,7 +111,7 @@
                         IsEnabled="{Binding Source={x:Reference autoSwitch4},
                                             Path=IsToggled,
                                             Converter={StaticResource booleanInverse}}" />
-            </StackLayout>
+            </VerticalStackLayout>
 
             <Slider x:Name="slider4"
                     ValueChanged="OnLabel4SliderValueChanged"

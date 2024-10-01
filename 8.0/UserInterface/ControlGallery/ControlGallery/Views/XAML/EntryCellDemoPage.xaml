@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ControlGallery.Views.XAML.EntryCellDemoPage"
              Title="EntryCell Demo">
-    <StackLayout>
+    <VerticalStackLayout>
         <Label Text="EntryCell"
                FontSize="50"
                FontAttributes="Bold"
@@ -18,5 +18,5 @@
                 </TableSection>
             </TableRoot>
         </TableView>
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

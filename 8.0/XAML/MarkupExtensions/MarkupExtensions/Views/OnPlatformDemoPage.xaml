@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="MarkupExtensions.OnPlatformDemoPage"
              Title="OnPlatform Demo">
-    <StackLayout Margin="20">
+    <VerticalStackLayout Margin="20">
         <BoxView x:Name="boxView"
                  Color="{OnPlatform iOS=Red, Android=Green, WinUI=Blue}" 
                  WidthRequest="{OnPlatform iOS=200, Android=300, WinUI=400}"  
@@ -19,5 +19,5 @@
                 </FormattedString>
             </Label.FormattedText>
         </Label>
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

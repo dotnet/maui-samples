@@ -9,16 +9,13 @@
                         MinWideModeWidth="{Binding Source={x:Reference MinWideModeWidth}, Path=Value}"
                         TallModeConfiguration="{Binding Source={x:Reference TallModeConfiguration}, Path=SelectedItem}"
                         WideModeConfiguration="{Binding Source={x:Reference WideModeConfiguration}, Path=SelectedItem}"
-                        PanePriority="{Binding Source={x:Reference PanePriority}, Path=SelectedItem, Mode=TwoWay}"
-        >
+                        PanePriority="{Binding Source={x:Reference PanePriority}, Path=SelectedItem, Mode=TwoWay}">
         <foldable:TwoPaneView.Pane1
             BackgroundColor="#dddddd">
             <Frame BorderColor="Red">
-                <StackLayout BackgroundColor="Blue"
-                                 Orientation="Vertical"
+                <VerticalStackLayout BackgroundColor="Blue"
                                  VerticalOptions="StartAndExpand"
-                                 Padding="5"
-                                 >
+                                 Padding="5">
 
                     <Label Text="ScreenSize" x:Name="sizeLabel"/>
                     <Label Text="SinglePane" x:Name="spanLabel"/>
@@ -44,7 +41,7 @@
                     <Label Text=""/>
                     <Label Text="Jetpack Window Manager 1.0.0"/>
                     <Button Text="Reset TwoPaneView" Clicked="OnReset" HorizontalOptions="Center"/>
-                </StackLayout>
+                </VerticalStackLayout>
             </Frame>
         </foldable:TwoPaneView.Pane1>
         <foldable:TwoPaneView.Pane2>

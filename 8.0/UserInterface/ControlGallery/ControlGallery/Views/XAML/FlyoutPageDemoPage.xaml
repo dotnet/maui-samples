@@ -6,7 +6,7 @@
                   Title="FlyoutPage Demo">
     <FlyoutPage.Flyout>
         <ContentPage Title="Color List">
-            <StackLayout>
+            <VerticalStackLayout>
                 <Label Text="FlyoutPage"
                        FontSize="30"
                        FontAttributes="Bold"
@@ -36,7 +36,7 @@
                         </x:Array>
                     </ListView.ItemsSource>
                 </ListView>
-            </StackLayout>
+            </VerticalStackLayout>
         </ContentPage>
     </FlyoutPage.Flyout>
 
@@ -53,32 +53,32 @@
                 </ResourceDictionary>
             </ContentPage.Resources>
 
-            <StackLayout>
+            <VerticalStackLayout>
                 <Label Text="{Binding Name}"
                        FontSize="50"
                        HorizontalOptions="Center" />
 
-                <StackLayout HorizontalOptions="Center"
+                <VerticalStackLayout HorizontalOptions="Center"
                              VerticalOptions="CenterAndExpand">
 
                     <Label Text="{Binding Color.R, StringFormat='R = {0:F2}'}" />
                     <Label Text="{Binding Color.G, StringFormat='G = {0:F2}'}" />
                     <Label Text="{Binding Color.B, StringFormat='B = {0:F2}'}" />
-                </StackLayout>
+                </VerticalStackLayout>
 
                 <BoxView Color="{Binding Color}"
                          WidthRequest="100"
                          HeightRequest="100"
                          HorizontalOptions="Center" />
 
-                <StackLayout HorizontalOptions="Center"
+                <VerticalStackLayout HorizontalOptions="Center"
                              VerticalOptions="CenterAndExpand">
 
                     <Label Text="{Binding Color.Hue, StringFormat='Hue = {0:F2}'}" />
                     <Label Text="{Binding Color.Saturation, StringFormat='Saturation = {0:F2}'}" />
                     <Label Text="{Binding Color.Luminosity, StringFormat='Luminosity = {0:F2}'}" />
-                </StackLayout>
-            </StackLayout>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
         </ContentPage>
     </FlyoutPage.Detail>
 </FlyoutPage>

@@ -5,11 +5,13 @@
              x:Class="DataTemplates.WithDataTemplatePageFromType"
              Title="With a Data Template (Type)"
              IconImageSource="xaml.png">
-    <StackLayout Margin="20">
+    <Grid Margin="20" Grid.RowDefinitions="50,*">
         <Label Text="CollectionView with a Data Template (Type)"
                FontAttributes="Bold"
                HorizontalOptions="Center" />
-        <CollectionView Margin="0,20,0,0">
+        <CollectionView 
+            Grid.Row="1"
+            Margin="0,20,0,0">
             <CollectionView.ItemsSource>
                 <x:Array Type="{x:Type local:Person}">
                     <local:Person Name="Steve"
@@ -38,5 +40,5 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-    </StackLayout>
+    </Grid>
 </ContentPage>

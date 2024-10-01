@@ -29,7 +29,7 @@
             </Setter>
         </Style>
     </ContentPage.Resources>
-    <StackLayout Margin="10">
+    <VerticalStackLayout Margin="10">
         <Label Text="What's your favorite mode of transport?" />
         <RadioButton Content="Car"
                      CheckedChanged="OnRadioButtonCheckedChanged" />
@@ -41,5 +41,5 @@
                      CheckedChanged="OnRadioButtonCheckedChanged" />
         <Label x:Name="resultLabel"
                Text="You have chosen:" />
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

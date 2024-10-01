@@ -43,8 +43,7 @@
         </maps:Map>
         <ScrollView Grid.Row="1"
                     Orientation="Horizontal">
-            <StackLayout Orientation="Horizontal"
-                         HorizontalOptions="Center">
+            <HorizontalStackLayout HorizontalOptions="Center">
                 <Button Text="Add"
                         Command="{Binding AddLocationCommand}" />
                 <Button Text="Remove"
@@ -55,7 +54,7 @@
                         Command="{Binding UpdateLocationsCommand}" />
                 <Button Text="Replace"
                         Command="{Binding ReplaceLocationCommand}" />
-            </StackLayout>
+            </HorizontalStackLayout>
         </ScrollView>
     </Grid>
 </ContentPage>

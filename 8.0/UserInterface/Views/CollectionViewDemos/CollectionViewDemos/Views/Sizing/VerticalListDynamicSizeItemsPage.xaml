@@ -3,9 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CollectionViewDemos.Views.VerticalListDynamicSizeItemsPage"
              Title="Vertical list (dynamic item sizing)">
-    <StackLayout Margin="20">
+    <Grid Margin="20" RowDefinitions="20,*">
         <Label Text="Tap each image to dynamically change its size." />
-        <CollectionView ItemsSource="{Binding Monkeys}">
+        <CollectionView 
+            Grid.Row="1"
+            ItemsSource="{Binding Monkeys}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Grid Padding="10">
@@ -38,5 +40,5 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-    </StackLayout>
+    </Grid>
 </ContentPage>

@@ -4,7 +4,7 @@
              x:Class="ControlGallery.Views.XAML.EntryDemoPage"
              Title="Entry"
              Padding="10, 0">
-    <StackLayout>
+    <VerticalStackLayout>
         <Label Text="Entry"
                FontSize="50"
                FontAttributes="Bold"
@@ -22,5 +22,5 @@
         <Entry Keyboard="Telephone"
                Placeholder="Enter phone number"
                VerticalOptions="CenterAndExpand" />
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

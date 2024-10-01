@@ -9,22 +9,21 @@
         <viewmodels:MonkeysViewModelWithDelay />
     </ContentPage.BindingContext>
 
-    <StackLayout Margin="20">
-        <StackLayout Orientation="Horizontal"
-                     HorizontalOptions="Center">
+    <VerticalStackLayout Margin="20">
+        <HorizontalStackLayout HorizontalOptions="Center">
             <Label Text="UpdatingScrollMode: "
                    VerticalTextAlignment="Center" />
             <controls:EnumPicker x:Name="enumPicker"
                                  EnumType="{x:Type ItemsUpdatingScrollMode}"
                                  SelectedIndex="0"
                                  SelectedIndexChanged="OnItemsUpdatingScrollModeChanged" />
-        </StackLayout>
+        </HorizontalStackLayout>
         <Label Text="{Binding Monkeys.Count, StringFormat='Number of items: {0}'}" />
         <CarouselView x:Name="carouselView"
                       ItemsSource="{Binding Monkeys}">
             <CarouselView.ItemTemplate>
                 <DataTemplate>
-                    <StackLayout>
+                    <VerticalStackLayout>
                         <Frame HasShadow="True"
                                BorderColor="DarkGray"
                                CornerRadius="5"
@@ -32,7 +31,7 @@
                                HeightRequest="300"
                                HorizontalOptions="Center"
                                VerticalOptions="Center">
-                            <StackLayout>
+                            <VerticalStackLayout>
                                 <Label Text="{Binding Name}" 
                                         FontAttributes="Bold"
                                         FontSize="20"
@@ -50,11 +49,11 @@
                                         HorizontalOptions="Center"
                                         MaxLines="5"
                                         LineBreakMode="TailTruncation" />
-                            </StackLayout>
+                            </VerticalStackLayout>
                         </Frame>
-                    </StackLayout>
+                    </VerticalStackLayout>
                 </DataTemplate>
             </CarouselView.ItemTemplate>
         </CarouselView>
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

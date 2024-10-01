@@ -8,18 +8,16 @@
     <ContentPage.BindingContext>
         <viewmodels:MonkeysViewModel />
     </ContentPage.BindingContext>
-    <StackLayout Margin="20">
-        <StackLayout Orientation="Horizontal"
-                     HorizontalOptions="Center">
+    <VerticalStackLayout Margin="20">
+        <HorizontalStackLayout HorizontalOptions="Center">
             <Label Text="SnapPointsType: "
                    VerticalTextAlignment="Center" />
             <controls:EnumPicker x:Name="snapPointsTypeEnumPicker"
                                  EnumType="{x:Type SnapPointsType}"
                                  SelectedIndex="2"
                                  SelectedIndexChanged="OnSnapPointsTypeSelectedIndexChanged" />
-        </StackLayout>
-        <StackLayout Orientation="Horizontal"
-                     HorizontalOptions="Center">
+        </HorizontalStackLayout>
+        <HorizontalStackLayout HorizontalOptions="Center">
             <Label Grid.Row="1" 
                    Text="SnapPointsAlignment: "
                    VerticalTextAlignment="Center" />
@@ -27,13 +25,13 @@
                                  EnumType="{x:Type SnapPointsAlignment}"
                                  SelectedIndex="1"
                                  SelectedIndexChanged="OnSnapPointsAlignmentSelectedIndexChanged" />
-        </StackLayout>
+        </HorizontalStackLayout>
         <CarouselView x:Name="carouselView"
                       ItemsSource="{Binding Monkeys}"
                       PeekAreaInsets="100">
             <CarouselView.ItemTemplate>
                 <DataTemplate>
-                    <StackLayout>
+                    <VerticalStackLayout>
                         <Frame HasShadow="True"
                                BorderColor="DarkGray"
                                CornerRadius="5"
@@ -46,9 +44,9 @@
                                    WidthRequest="100"
                                    HorizontalOptions="Center" />
                         </Frame>
-                    </StackLayout>
+                    </VerticalStackLayout>
                 </DataTemplate>
             </CarouselView.ItemTemplate>
         </CarouselView>
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

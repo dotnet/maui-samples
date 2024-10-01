@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ControlGallery.Views.XAML.RadioButtonDemoPage"
              Title="RadioButton Demo">
-    <StackLayout Margin="10">
+    <VerticalStackLayout Margin="10">
         <Label Text="RadioButton"
                FontSize="50"
                FontAttributes="Bold"
@@ -41,5 +41,5 @@
                      CheckedChanged="OnFruitsRadioButtonCheckedChanged" />
         <Label x:Name="fruitLabel"
                Text="You have chosen:" />
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

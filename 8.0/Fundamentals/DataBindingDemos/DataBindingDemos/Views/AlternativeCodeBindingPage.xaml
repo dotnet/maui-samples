@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DataBindingDemos.AlternativeCodeBindingPage"
              Title="Alternative Code Binding">
-    <StackLayout Padding="10, 0">
+    <VerticalStackLayout Padding="10, 0">
         <Label x:Name="label"
                Text="TEXT"
                FontSize="40"
@@ -14,5 +14,5 @@
                 Minimum="-2"
                 Maximum="2"
                 VerticalOptions="Center" />
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

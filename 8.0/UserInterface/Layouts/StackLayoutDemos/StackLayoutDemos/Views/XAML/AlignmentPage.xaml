@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="StackLayoutDemos.Views.XAML.AlignmentPage"
              Title="Alignment demo">
-    <StackLayout Margin="20"
+    <VerticalStackLayout Margin="20"
                  Spacing="6">
         <Label Text="Start"
                BackgroundColor="Gray"
@@ -17,5 +17,5 @@
         <Label Text="Fill"
                BackgroundColor="Gray"
                HorizontalOptions="Fill" />
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

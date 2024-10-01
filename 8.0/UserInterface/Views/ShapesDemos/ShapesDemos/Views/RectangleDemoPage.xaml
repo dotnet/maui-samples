@@ -4,7 +4,7 @@
              x:Class="ShapesDemos.Views.RectangleDemoPage"
              Title="Rectangle demos">
     <ScrollView>
-        <StackLayout Margin="20">
+        <VerticalStackLayout Margin="20">
             <Label Text="Filled rectangle" />
             <Rectangle Fill="Red"
                        WidthRequest="150"
@@ -47,6 +47,6 @@
                        WidthRequest="200"
                        HeightRequest="100"
                        HorizontalOptions="Start" />
-        </StackLayout>
+        </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

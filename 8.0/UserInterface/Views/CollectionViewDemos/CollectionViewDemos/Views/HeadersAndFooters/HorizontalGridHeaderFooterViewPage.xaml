@@ -3,24 +3,24 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CollectionViewDemos.Views.HorizontalGridHeaderFooterViewPage"
              Title="Grid header and footer (View)">
-    <StackLayout Margin="20">
+    <Grid Margin="20">
         <CollectionView ItemsSource="{Binding Monkeys}"
                         ItemsLayout="HorizontalGrid, 2">
             <CollectionView.Header>
-                <StackLayout BackgroundColor="LightGray">
+                <VerticalStackLayout BackgroundColor="LightGray">
                     <Label Margin="10,0,0,0"
                            Text="Monkeys"
                            FontSize="12"
                            FontAttributes="Bold" />
-                </StackLayout>
+                </VerticalStackLayout>
             </CollectionView.Header>
             <CollectionView.Footer>
-                <StackLayout BackgroundColor="LightGray">
+                <VerticalStackLayout BackgroundColor="LightGray">
                     <Label Margin="10,0,0,0"
                            Text="Friends of Xamarin Monkey"
                            FontSize="12"
                            FontAttributes="Bold" />
-                </StackLayout>
+                </VerticalStackLayout>
             </CollectionView.Footer>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
@@ -50,5 +50,5 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-    </StackLayout>
+    </Grid>
 </ContentPage>

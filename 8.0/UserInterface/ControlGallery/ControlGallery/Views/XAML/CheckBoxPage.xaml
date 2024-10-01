@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ControlGallery.Views.XAML.CheckBoxPage"
              Title="CheckBox Demo">
-    <StackLayout>
+    <VerticalStackLayout>
         <Label Text="CheckBox"
                FontSize="50"
                FontAttributes="Bold"
@@ -27,5 +27,5 @@
                 </DataTrigger>
             </Label.Triggers>
         </Label>
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

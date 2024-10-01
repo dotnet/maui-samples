@@ -15,7 +15,7 @@
                        Invoked="OnDeleteSwipeItemInvoked" />
         </SwipeItems>
     </ContentPage.Resources>
-    <StackLayout Margin="20">
+    <VerticalStackLayout Margin="20">
         <SwipeView LeftItems="{StaticResource SwipeItems}">
             <Grid HeightRequest="60"
                   WidthRequest="300"
@@ -34,5 +34,5 @@
                        VerticalOptions="Center" />
             </Grid>
         </SwipeView>
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

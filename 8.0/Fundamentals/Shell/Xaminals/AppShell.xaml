@@ -87,7 +87,7 @@
     <!-- Not required, as the FlyoutFooter is set above -->
     <!--<Shell.FlyoutFooterTemplate>
         <DataTemplate>
-            <StackLayout>
+            <VerticalStackLayout>
                 <Label Text="Xaminals"
                        TextColor="GhostWhite"
                        FontAttributes="Bold"
@@ -95,7 +95,7 @@
                 <Label Text="{Binding Source={x:Static sys:DateTime.Now}, StringFormat='{0:MMMM dd, yyyy}'}"
                        TextColor="GhostWhite"
                        HorizontalOptions="Center" />
-            </StackLayout>
+            </VerticalStackLayout>
         </DataTemplate>
     </Shell.FlyoutFooterTemplate>-->
 

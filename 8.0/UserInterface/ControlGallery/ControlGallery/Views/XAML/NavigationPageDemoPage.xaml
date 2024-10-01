@@ -8,13 +8,13 @@
          function as a NavigationPage because the HomePage
          is launched as an ApplicationPage in App. -->
 
-    <StackLayout>
+    <VerticalStackLayout>
         <Label Text="NavigationPage"
                FontSize="40"
                FontAttributes="Bold"
                HorizontalOptions="Center" />
 
-        <StackLayout HorizontalOptions="Center">
+        <VerticalStackLayout HorizontalOptions="Center">
 
             <Button Text=" Go to Label Demo Page "
                     FontSize="20"
@@ -39,6 +39,6 @@
                     BorderWidth="1" 
                     StyleId="WebViewDemoPage"
                     Clicked="OnButtonClicked" />
-        </StackLayout>
-    </StackLayout>
+        </VerticalStackLayout>
+    </VerticalStackLayout>
 </ContentPage>

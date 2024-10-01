@@ -10,17 +10,17 @@
 
     <ContentPage.Resources>
         <ContentView x:Key="BasicEmptyView">
-            <StackLayout>
+            <VerticalStackLayout>
                 <Label Text="No items to display."
                        Margin="10,25,10,10"
                        FontAttributes="Bold"
                        FontSize="18"
                        HorizontalOptions="Fill"
                        HorizontalTextAlignment="Center" />
-            </StackLayout>
+            </VerticalStackLayout>
         </ContentView>
         <ContentView x:Key="AdvancedEmptyView">
-            <StackLayout>
+            <VerticalStackLayout>
                 <Label Text="No results matched your filter."
                        Margin="10,25,10,10"
                        FontAttributes="Bold"
@@ -32,23 +32,23 @@
                        FontSize="12"
                        HorizontalOptions="Fill"
                        HorizontalTextAlignment="Center" />
-            </StackLayout>
+            </VerticalStackLayout>
         </ContentView>
     </ContentPage.Resources>
 
-    <StackLayout Margin="20">
+    <VerticalStackLayout Margin="20">
         <SearchBar SearchCommand="{Binding FilterCommand}"
                    SearchCommandParameter="{Binding Source={RelativeSource Self}, Path=Text}"
                    Placeholder="Filter" />
-        <StackLayout Orientation="Horizontal">
+        <HorizontalStackLayout>
             <Label Text="Toggle EmptyViews" />
             <Switch Toggled="OnEmptyViewSwitchToggled" />
-        </StackLayout>
+        </HorizontalStackLayout>
         <CarouselView x:Name="carouselView"
                       ItemsSource="{Binding Monkeys}">
             <CarouselView.ItemTemplate>
                 <DataTemplate>
-                    <StackLayout>
+                    <VerticalStackLayout>
                         <Frame HasShadow="True"
                                BorderColor="DarkGray"
                                CornerRadius="5"
@@ -56,7 +56,7 @@
                                HeightRequest="300"
                                HorizontalOptions="Center"
                                VerticalOptions="Center">
-                            <StackLayout>
+                            <VerticalStackLayout>
                                 <Label Text="{Binding Name}" 
                                        FontAttributes="Bold"
                                        FontSize="20"
@@ -74,12 +74,12 @@
                                        HorizontalOptions="Center"
                                        MaxLines="5"
                                        LineBreakMode="TailTruncation" />
-                            </StackLayout>
+                            </VerticalStackLayout>
                         </Frame>
-                    </StackLayout>
+                    </VerticalStackLayout>
                 </DataTemplate>
             </CarouselView.ItemTemplate>
         </CarouselView>
-    </StackLayout>
+    </VerticalStackLayout>
 
 </ContentPage>

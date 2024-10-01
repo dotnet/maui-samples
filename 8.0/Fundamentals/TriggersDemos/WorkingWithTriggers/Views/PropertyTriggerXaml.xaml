@@ -15,7 +15,7 @@
         </Style>
     </ContentPage.Resources>
 
-    <StackLayout Spacing="20">
+    <VerticalStackLayout Spacing="20">
         <Label Text="Property Trigger" FontSize="20" />
         <Label Text="BackgroundColor property change triggered by IsFocused" FontSize="10" />
         <Entry Placeholder="enter name">
@@ -28,5 +28,5 @@
         </Entry>
         <Entry Placeholder="enter address" />
         <Entry Placeholder="enter city and state" />
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

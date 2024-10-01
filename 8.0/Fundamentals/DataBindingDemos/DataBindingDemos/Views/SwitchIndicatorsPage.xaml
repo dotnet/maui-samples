@@ -15,9 +15,8 @@
         </Style>
     </ContentPage.Resources>
 
-    <StackLayout Padding="10, 0">
-        <StackLayout Orientation="Horizontal"
-                     VerticalOptions="Center">
+    <VerticalStackLayout Padding="10, 0">
+        <HorizontalStackLayout VerticalOptions="Center">
             <Label Text="Subscribe?" />
             <Switch x:Name="switch1" />
             <Label>
@@ -32,10 +31,9 @@
                     </Binding>
                 </Label.Text>
             </Label>
-        </StackLayout>
+        </HorizontalStackLayout>
 
-        <StackLayout Orientation="Horizontal"
-                     VerticalOptions="Center">
+        <HorizontalStackLayout VerticalOptions="Center">
             <Label Text="Allow popups?" />
             <Switch x:Name="switch2" />
             <Label>
@@ -60,10 +58,9 @@
                     </Binding>
                 </Label.TextColor>
             </Label>
-        </StackLayout>
+        </HorizontalStackLayout>
 
-        <StackLayout Orientation="Horizontal"
-                     VerticalOptions="Center">
+        <HorizontalStackLayout VerticalOptions="Center">
             <Label Text="Learn more?" />
             <Switch x:Name="switch3" />
             <Label FontSize="18"
@@ -93,6 +90,6 @@
                     </Binding>
                 </Label.Style>
             </Label>
-        </StackLayout>
-    </StackLayout>
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
 </ContentPage>

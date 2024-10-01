@@ -5,10 +5,10 @@
              x:Class="ScrollViewDemos.Views.XAML.ColorListPage"
              Title="ScrollView demo">
     <ScrollView Margin="20">
-        <StackLayout BindableLayout.ItemsSource="{x:Static local:NamedColor.All}">
+        <VerticalStackLayout BindableLayout.ItemsSource="{x:Static local:NamedColor.All}">
             <BindableLayout.ItemTemplate>
                 <DataTemplate>
-                    <StackLayout Orientation="Horizontal">
+                    <HorizontalStackLayout>
                         <BoxView Color="{Binding Color}"
                                  HeightRequest="32"
                                  WidthRequest="32"
@@ -16,9 +16,9 @@
                         <Label Text="{Binding FriendlyName}"
                                FontSize="24"
                                VerticalOptions="Center" />
-                    </StackLayout>
+                    </HorizontalStackLayout>
                 </DataTemplate>
             </BindableLayout.ItemTemplate>
-        </StackLayout>
+        </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

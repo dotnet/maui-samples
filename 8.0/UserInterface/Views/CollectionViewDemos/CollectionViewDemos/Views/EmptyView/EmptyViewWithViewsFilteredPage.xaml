@@ -3,12 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CollectionViewDemos.Views.EmptyViewWithViewsFilteredPage"
              Title="EmptyView (multiple views)">
-    <StackLayout Margin="20">
+    <Grid Margin="20" RowDefinitions="50,*">
         <SearchBar x:Name="searchBar"
                    SearchCommand="{Binding FilterCommand}"
                    SearchCommandParameter="{Binding Source={x:Reference searchBar}, Path=Text}"
                    Placeholder="Filter" />
-        <CollectionView ItemsSource="{Binding Monkeys}">
+        <CollectionView
+            Grid.Row="1"
+            ItemsSource="{Binding Monkeys}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Grid Padding="10">
@@ -38,7 +40,7 @@
             </CollectionView.ItemTemplate>
             <CollectionView.EmptyView>
                 <ContentView>
-                    <StackLayout HorizontalOptions="Center"
+                    <VerticalStackLayout HorizontalOptions="Center"
                                  VerticalOptions="Center">
                         <Label Text="No results matched your filter."
                                Margin="10,25,10,10"
@@ -51,9 +53,9 @@
                                FontSize="12"
                                HorizontalOptions="Fill"
                                HorizontalTextAlignment="Center" />
-                    </StackLayout>
+                    </VerticalStackLayout>
                 </ContentView>
             </CollectionView.EmptyView>
         </CollectionView>
-    </StackLayout>
+    </Grid>
 </ContentPage>

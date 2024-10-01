@@ -39,8 +39,7 @@
             <Label Text="Number of items:"
                    Grid.Row="0" Grid.Column="0" />
         
-            <StackLayout Orientation="Horizontal"
-                         Grid.Row="0" Grid.Column="1">
+            <HorizontalStackLayout Grid.Row="0" Grid.Column="1">
                 
                 <Label Text="{Binding Source={x:Reference numberStepper},           
                                       Path=Value,
@@ -52,7 +51,7 @@
                          Increment="1"
                          Value="3"
                          ValueChanged="OnNumberStepperValueChanged" />
-            </StackLayout>
+            </HorizontalStackLayout>
 
             <Label Text="Direction:"
                    Grid.Row="1" Grid.Column="0" />

@@ -3,9 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DataBindingDemos.BindingContextInheritancePage"
              Title="BindingContext Inheritance">
-    <StackLayout Padding="10">
+    <VerticalStackLayout Padding="10">
 
-        <StackLayout VerticalOptions="Fill"
+        <VerticalStackLayout VerticalOptions="Fill"
                      BindingContext="{x:Reference slider}">
 
             <Label Text="TEXT"
@@ -20,10 +20,10 @@
                      HorizontalOptions="Center"
                      VerticalOptions="Start"
                      Rotation="{Binding Value}" />
-        </StackLayout>
+        </VerticalStackLayout>
 
         <Slider x:Name="slider" 
                 Maximum="360" />
         
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

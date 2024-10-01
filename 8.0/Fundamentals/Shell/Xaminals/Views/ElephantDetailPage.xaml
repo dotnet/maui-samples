@@ -4,7 +4,7 @@
              x:Class="Xaminals.Views.ElephantDetailPage"
              Title="Elephant Details">
     <ScrollView>
-        <StackLayout Margin="20">
+        <VerticalStackLayout Margin="20">
             <Label Text="{Binding Elephant.Name}" 
                    HorizontalOptions="Center" 
                    Style="{DynamicResource TitleStyle}" />
@@ -17,6 +17,6 @@
                    HorizontalOptions="Center" />
             <Label Text="{Binding Elephant.Details}" 
                    Style="{DynamicResource BodyStyle}" />
-        </StackLayout>
+        </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

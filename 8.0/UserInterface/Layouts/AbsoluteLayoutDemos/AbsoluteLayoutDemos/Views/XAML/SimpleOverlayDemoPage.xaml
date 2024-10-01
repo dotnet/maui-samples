@@ -4,13 +4,13 @@
              x:Class="AbsoluteLayoutDemos.Views.XAML.SimpleOverlayDemoPage"
              Title="Simple overlay demo">
     <AbsoluteLayout>
-        <StackLayout Margin="20"
+        <VerticalStackLayout Margin="20"
                      AbsoluteLayout.LayoutBounds="0,0,1,1"
                      AbsoluteLayout.LayoutFlags="All">
             <Label Text="This might be a page of UI objects except that the only functional UI object on the page is a Button." />
             <Button Text="Simulate 5-second work item"
                     Clicked="OnButtonClicked" />
-        </StackLayout>
+        </VerticalStackLayout>
 
         <!-- Overlay -->
         <ContentView x:Name="overlay"

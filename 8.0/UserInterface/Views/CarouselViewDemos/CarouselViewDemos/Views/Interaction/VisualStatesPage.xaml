@@ -12,7 +12,7 @@
                   PeekAreaInsets="100">
         <CarouselView.ItemTemplate>
             <DataTemplate>
-                <StackLayout>
+                <VerticalStackLayout>
                     <VisualStateManager.VisualStateGroups>
                         <VisualStateGroup x:Name="CommonStates">
                             <VisualState x:Name="CurrentItem">
@@ -49,7 +49,7 @@
                            WidthRequest="150"
                            HorizontalOptions="Center"
                            VerticalOptions="Center">
-                        <StackLayout>
+                        <VerticalStackLayout>
                             <Label Text="{Binding Name}" 
                                    FontAttributes="Bold"
                                    FontSize="20"
@@ -67,9 +67,9 @@
                                    HorizontalOptions="Center"
                                    MaxLines="5"
                                    LineBreakMode="TailTruncation" />
-                        </StackLayout>
+                        </VerticalStackLayout>
                     </Frame>
-                </StackLayout>
+                </VerticalStackLayout>
             </DataTemplate>
         </CarouselView.ItemTemplate>
     </CarouselView>

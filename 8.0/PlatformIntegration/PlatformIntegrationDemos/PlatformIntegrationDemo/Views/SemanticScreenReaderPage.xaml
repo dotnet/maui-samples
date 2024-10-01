@@ -10,7 +10,7 @@
                Margin="12" />
 
         <ScrollView Grid.Row="1">
-            <StackLayout Padding="12,0,12,12"
+            <VerticalStackLayout Padding="12,0,12,12"
                          Spacing="6">
                 <Label Text="We hope the SemanticScreenReader APIs will further enable you to improve the accessibility of your apps"
                        TextColor="RoyalBlue"
@@ -25,7 +25,7 @@
                 <Button Text="Activate to hear announcement text"
                         HorizontalOptions="Center"
                         Clicked="Announce_Clicked" />
-            </StackLayout>
+            </VerticalStackLayout>
         </ScrollView>
     </Grid>
 </views:BasePage>

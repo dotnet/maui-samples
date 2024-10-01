@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RadioButtonDemos.GroupedRadioButtonsPage"
              Title="Grouped RadioButtons demo">
-    <StackLayout Margin="10">
+    <VerticalStackLayout Margin="10">
         <Label Text="What's your favorite color?" />
         <RadioButton Content="Red"
                      GroupName="colors"
@@ -23,7 +23,7 @@
         <Label x:Name="colorLabel"
                Text="You have chosen:" />
         <Label Text="What's your favorite fruit?" />
-        <StackLayout RadioButtonGroup.GroupName="fruits">
+        <VerticalStackLayout RadioButtonGroup.GroupName="fruits">
             <!-- All of the RadioButtons in this StackLayout will automatically be given the
                  GroupName 'fruits' -->
             <RadioButton Content="Apple"
@@ -34,9 +34,9 @@
                          CheckedChanged="OnFruitsRadioButtonCheckedChanged" />
             <RadioButton Content="Other"
                          CheckedChanged="OnFruitsRadioButtonCheckedChanged" />
-        </StackLayout>
+        </VerticalStackLayout>
         <Label x:Name="fruitLabel"
                Text="You have chosen:" />
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>
 

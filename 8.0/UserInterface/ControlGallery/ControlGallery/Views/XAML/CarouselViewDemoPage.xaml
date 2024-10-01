@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ControlGallery.Views.XAML.CarouselViewDemoPage"
              Title="CarouselView Demo">
-    <StackLayout Margin="20">
+    <VerticalStackLayout Margin="20">
         <Label Text="CarouselView"
                FontSize="50"
                FontAttributes="Bold"
@@ -11,7 +11,7 @@
         <CarouselView ItemsSource="{Binding Monkeys}">
             <CarouselView.ItemTemplate>
                 <DataTemplate>
-                    <StackLayout>
+                    <VerticalStackLayout>
                         <Frame HasShadow="True"
                                BorderColor="DarkGray"
                                CornerRadius="5"
@@ -19,7 +19,7 @@
                                HeightRequest="300"
                                HorizontalOptions="Center"
                                VerticalOptions="CenterAndExpand">
-                            <StackLayout>
+                            <VerticalStackLayout>
                                 <Label Text="{Binding Name}" 
                                        FontAttributes="Bold"
                                        FontSize="20"
@@ -37,11 +37,11 @@
                                        HorizontalOptions="Center"
                                        MaxLines="5"
                                        LineBreakMode="TailTruncation" />
-                            </StackLayout>
+                            </VerticalStackLayout>
                         </Frame>
-                    </StackLayout>
+                    </VerticalStackLayout>
                 </DataTemplate>
             </CarouselView.ItemTemplate>
         </CarouselView>
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

@@ -39,13 +39,12 @@
                 <Entry Text="{Binding Name}" 
                        Grid.Row="0" Grid.Column="1" />
                 <Label Text="Age: " Grid.Row="1" Grid.Column="0" />
-                <StackLayout Orientation="Horizontal" 
-                             Grid.Row="1" Grid.Column="1">
+                <HorizontalStackLayout Grid.Row="1" Grid.Column="1">
                     <Stepper Value="{Binding Age}"
                              Maximum="100" />
                     <Label Text="{Binding Age, StringFormat='{0} years old'}"
                            VerticalOptions="Center" />
-                </StackLayout>
+                </HorizontalStackLayout>
                 <Label Text="Skills: " Grid.Row="2" Grid.Column="0" />
                 <Entry Text="{Binding Skills}"
                        Grid.Row="2" Grid.Column="1" />

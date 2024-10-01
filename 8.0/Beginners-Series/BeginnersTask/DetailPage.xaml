@@ -5,7 +5,7 @@
              xmlns:viewmodel="clr-namespace:BeginnersTasks.ViewModel"
              x:DataType="viewmodel:DetailViewModel"
              Title="DetailPage">
-    <StackLayout Padding="20">
+    <VerticalStackLayout Padding="20">
         <Label Text="{Binding Text}"
                FontSize="25"
                VerticalOptions="Center" 
@@ -13,5 +13,5 @@
 
         <Button Text="Go Back"
                 Command="{Binding GoBackCommand}"/>
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

@@ -5,7 +5,7 @@
              xmlns:sensors="clr-namespace:Microsoft.Maui.Devices.Sensors;assembly=Microsoft.Maui.Essentials"
              x:Class="WorkingWithMaps.Views.PinPage"
              Title="Pins demo">
-    <StackLayout Margin="10">
+    <VerticalStackLayout Margin="10">
         <maps:Map x:Name="map">
             <x:Arguments>
                 <maps:MapSpan>
@@ -38,5 +38,5 @@
         </maps:Map>
         <Button Text="Add more pins"
                 Clicked="OnButtonClicked" />
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

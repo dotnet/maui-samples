@@ -9,7 +9,7 @@
                FontAttributes="Bold"
                Margin="12" />
 
-        <StackLayout Padding="12,0,12,12"
+        <VerticalStackLayout Padding="12,0,12,12"
                      Spacing="6"
                      Grid.Row="1">
 
@@ -39,7 +39,7 @@
 
             <Label FontAttributes="Bold"
                    Text="Numbers:" />
-            <StackLayout BindableLayout.ItemsSource="{Binding Contact.Phones}">
+            <VerticalStackLayout BindableLayout.ItemsSource="{Binding Contact.Phones}">
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
                         <Label>
@@ -51,11 +51,11 @@
                         </Label>
                     </DataTemplate>
                 </BindableLayout.ItemTemplate>
-            </StackLayout>
+            </VerticalStackLayout>
 
             <Label FontAttributes="Bold"
                    Text="Emails:" />
-            <StackLayout BindableLayout.ItemsSource="{Binding Contact.Emails}">
+            <VerticalStackLayout BindableLayout.ItemsSource="{Binding Contact.Emails}">
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
                         <Label>
@@ -67,8 +67,8 @@
                         </Label>
                     </DataTemplate>
                 </BindableLayout.ItemTemplate>
-            </StackLayout>
+            </VerticalStackLayout>
 
-        </StackLayout>
+        </VerticalStackLayout>
     </Grid>
 </views:BasePage>

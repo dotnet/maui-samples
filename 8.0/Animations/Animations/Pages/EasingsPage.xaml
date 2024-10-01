@@ -7,7 +7,7 @@
              x:Class="Animations.EasingsPage">
 
     <ScrollView>
-        <StackLayout Margin="15" Spacing="30">
+        <VerticalStackLayout Margin="15" Spacing="30">
             <Label Text="Easing functions specify the rate of change of a parameter over time.&lt;br&gt;&lt;br&gt;Explore the easing functions below. Double-tap to visit the easing editor for more options."
                 TextType="Html"
             />
@@ -220,6 +220,6 @@
                           Stroke="{StaticResource InOutGradient}"/>
                 </controls:EasingCard>
             </FlexLayout>
-        </StackLayout>
+        </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

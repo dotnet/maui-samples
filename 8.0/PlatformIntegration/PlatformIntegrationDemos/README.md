@@ -57,3 +57,9 @@ This sample demonstrates the following functionality:
   - Secure storage
 
 For more information about the sample see [Platform integration](https://learn.microsoft.com/dotnet/maui/platform-integration/).
+
+## Local Testing
+
+If you want to test the full functionality of this app locally for iOS, make sure to rename the `Platforms/iOS/EntitlementsSample.plist` file to `Platforms/iOS/Entitlements.plist`.
+
+By doing so, you will need a matching provisioning profile in your Apple Developer accound in order for everything to work correctly.

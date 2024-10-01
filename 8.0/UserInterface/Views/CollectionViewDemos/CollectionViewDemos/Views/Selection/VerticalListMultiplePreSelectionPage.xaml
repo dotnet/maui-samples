@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CollectionViewDemos.Views.VerticalListMultiplePreSelectionPage"
              Title="Vertical list (multiple pre-selection)">
-    <StackLayout Margin="20">
+    <Grid Margin="20">
         <CollectionView x:Name="collectionView"
                         ItemsSource="{Binding Monkeys}"
                         SelectionMode="Multiple"
@@ -36,5 +36,5 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-    </StackLayout>
+    </Grid>
 </ContentPage>

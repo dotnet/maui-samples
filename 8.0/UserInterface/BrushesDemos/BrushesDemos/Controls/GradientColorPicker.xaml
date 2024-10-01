@@ -15,7 +15,7 @@
                BackgroundColor="White"
                HorizontalOptions="Center"
                VerticalOptions="Center">
-            <StackLayout Spacing="10">
+            <VerticalStackLayout Spacing="10">
                 <ScrollView>
                     <FlexLayout x:Name="colorsLayout"
                                 Direction="Row"
@@ -45,7 +45,7 @@
                         </BindableLayout.ItemTemplate>
                     </FlexLayout>
                 </ScrollView>
-                <StackLayout Orientation="Horizontal"
+                <HorizontalStackLayout
                              HorizontalOptions="End"
                              Spacing="6">
                     <Button Text="Cancel"
@@ -58,8 +58,8 @@
                             FontAttributes="Bold"
                             TextColor="Purple"
                             Clicked="OnOKButtonClicked" />
-                </StackLayout>
-            </StackLayout>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
         </Frame>
     </Grid>
 </ContentView>
