@@ -10,9 +10,6 @@
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
-            <Style TargetType="StackLayout">
-                <Setter Property="Spacing" Value="6" />
-            </Style>
             <Style TargetType="Grid">
                 <Setter Property="RowSpacing" Value="6" />
                 <Setter Property="ColumnSpacing" Value="6" />
