@@ -20,11 +20,10 @@ jobs:
       with:
         fetch-depth: 2
 
-    # Remove when .NET 8 is default on hosted runners
-    - name: Install .NET 8
+    - name: Install .NET 9
       uses: actions/setup-dotnet@v4.0.1
       with:
-        dotnet-version: 8.0
+        dotnet-version: 9.0
 
     - name: Install .NET MAUI Workload
       run: dotnet workload install maui
