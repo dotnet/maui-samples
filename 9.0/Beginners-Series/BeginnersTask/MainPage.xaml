@@ -12,7 +12,7 @@
           ColumnSpacing="10">
 
         <Image Grid.ColumnSpan="2"
-                Source="logo.png"
+               Source="logo.png"
                BackgroundColor="Transparent"/>
 
         <Entry Placeholder="Enter task"
@@ -32,7 +32,8 @@
                     <SwipeView>
                         <SwipeView.RightItems>
                             <SwipeItems>
-                                <SwipeItem Text="Delete"
+                                <SwipeItem x:DataType="{x:Null}"
+                                           Text="Delete"
                                            BackgroundColor="Red"
                                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=DeleteCommand}"
                                            CommandParameter="{Binding .}"/>
@@ -42,6 +43,7 @@
                             <Frame>
                                 <Frame.GestureRecognizers>
                                     <TapGestureRecognizer 
+                                           x:DataType="{x:Null}"
                                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=TapCommand}"
                                            CommandParameter="{Binding .}"/>
                                 </Frame.GestureRecognizers>

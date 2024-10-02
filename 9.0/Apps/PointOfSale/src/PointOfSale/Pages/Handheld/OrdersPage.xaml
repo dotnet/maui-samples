@@ -18,7 +18,7 @@
     <Grid RowDefinitions="Auto, *, 66" Margin="20,20,20,0">
         <VerticalStackLayout VerticalOptions="Start" Spacing="4">
             <Label Text="Orders" Style="{StaticResource LargeTitle}"/>
-            <Label Text="{Binding Source={x:Static system:DateTime.Today}, StringFormat=Date: {0:dddd, MMMM dd yyyy}, FallbackValue='Hello'}"/>
+            <Label x:DataType="{x:Null}" Text="{Binding Source={x:Static system:DateTime.Today}, StringFormat='Date: {0:dddd, MMMM dd yyyy}', FallbackValue='Hello'}"/>
             <BoxView Style="{StaticResource HRule}"/>
         </VerticalStackLayout>
 
