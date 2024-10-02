@@ -30,7 +30,7 @@ jobs:
       # if: runner.os == 'macOS' # reenable when .NET 8 is default on hosted runners
 
     - name: Select Xcode Version
-      run: sudo xcode-select -s /Applications/Xcode_15.4.app
+      run: sudo xcode-select -s /Applications/Xcode_16.0.app
       if: runner.os == 'macOS'
 
     - name: Find and build changed projects
@@ -63,7 +63,7 @@ jobs:
               $projectToBuild = $file
             } else {
               $currentFolder = (Get-Item -LiteralPath (Resolve-Path -Path "$file")).Directory
-              
+
               while ($currentFolder -ne $null -and '' -ne $currentFolder) {
                 $csprojFiles = Get-ChildItem -Path $currentFolder -Filter '*.csproj' -File
 
@@ -127,7 +127,7 @@ jobs:
             Write-Output "" | Out-File -FilePath $jobSummaryFile -Append
             Write-Output "# Failed builds: $failedProjectCount" | Out-File -FilePath $jobSummaryFile -Append
             Write-Output "# Skipped builds: $skippedProjectCount" | Out-File -FilePath $jobSummaryFile -Append
-            
+
             exit $failedProjectCount
         }
       shell: powershell
