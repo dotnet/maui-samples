@@ -6,25 +6,23 @@
              Title="Vertical list (snap points)">
     <Grid RowDefinitions="Auto, Auto, *"
           Margin="20">
-        <StackLayout Orientation="Horizontal"
-                     HorizontalOptions="Center">
+        <HorizontalStackLayout HorizontalOptions="Center">
             <Label Text="SnapPointsType: "
                    VerticalTextAlignment="Center" />
             <controls:EnumPicker x:Name="snapPointsTypeEnumPicker"
                               EnumType="{x:Type SnapPointsType}"
                               SelectedIndex="0"
                               SelectedIndexChanged="OnSnapPointsTypeSelectedIndexChanged" />
-        </StackLayout>
-        <StackLayout Orientation="Horizontal"
-                     HorizontalOptions="Center"
-                     Grid.Row="1">
+        </HorizontalStackLayout>
+        <HorizontalStackLayout HorizontalOptions="Center"
+                               Grid.Row="1">
             <Label Text="SnapPointsAlignment: "
                    VerticalTextAlignment="Center" />
             <controls:EnumPicker x:Name="snapPointsAlignmentEnumPicker"
                              EnumType="{x:Type SnapPointsAlignment}"
                              SelectedIndex="0"
                              SelectedIndexChanged="OnSnapPointsAlignmentSelectedIndexChanged" />
-        </StackLayout>
+        </HorizontalStackLayout>
         <CollectionView x:Name="collectionView"
                         ItemsSource="{Binding Monkeys}"
                         Grid.Row="2">
