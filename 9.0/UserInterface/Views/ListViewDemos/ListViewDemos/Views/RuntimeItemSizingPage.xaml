@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ListViewDemos.RuntimeItemSizingPage"
              Title="Runtime item sizing">
-    <StackLayout Margin="20">
+    <Grid Margin="20">
         <ListView ItemsSource="{Binding Monkeys}"
                   HasUnevenRows="True">
             <ListView.ItemTemplate>
@@ -40,5 +40,5 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-    </StackLayout>
+    </Grid>
 </ContentPage>

@@ -3,28 +3,28 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ListViewDemos.TemplatedHeaderFooterPage"
               Title="Templated header and footer">
-    <StackLayout Margin="20">
+    <Grid Margin="20">
         <ListView ItemsSource="{Binding Monkeys}"
                   Header="{Binding .}"
                   Footer="{Binding .}">
             <ListView.HeaderTemplate>
                 <DataTemplate>
-                    <StackLayout BackgroundColor="LightGray">
+                    <Grid BackgroundColor="LightGray">
                         <Label Margin="10,0,0,0"
                                Text="Monkeys"
                                FontSize="12"
                                FontAttributes="Bold" />
-                    </StackLayout>
+                    </Grid>
                 </DataTemplate>
             </ListView.HeaderTemplate>
             <ListView.FooterTemplate>
                 <DataTemplate>
-                    <StackLayout BackgroundColor="LightGray">
+                    <Grid BackgroundColor="LightGray">
                         <Label Margin="10,0,0,0"
                                Text="Friends of Monkey"
                                FontSize="12"
                                FontAttributes="Bold" />
-                    </StackLayout>
+                    </Grid>
                 </DataTemplate>
             </ListView.FooterTemplate>
             <ListView.ItemTemplate>
@@ -57,5 +57,5 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-    </StackLayout>
+    </Grid>
 </ContentPage>

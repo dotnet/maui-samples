@@ -4,7 +4,7 @@
              x:Class="ListViewDemos.RightToLeftListPage"
              Title="Right to left list"
              FlowDirection="RightToLeft">
-    <StackLayout Margin="20">
+    <Grid Margin="20">
         <ListView ItemsSource="{Binding Monkeys}">
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -36,5 +36,5 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-    </StackLayout>
+    </Grid>
 </ContentPage>
