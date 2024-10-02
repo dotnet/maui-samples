@@ -6,15 +6,14 @@
              Title="Scroll mode when adding items">
     <Grid RowDefinitions="Auto, *"
           Margin="20" >
-        <StackLayout Orientation="Horizontal"
-                     HorizontalOptions="Center">
+        <HorizontalStackLayout HorizontalOptions="Center">
             <Label Text="UpdatingScrollMode: "
                    VerticalTextAlignment="Center" />
             <controls:EnumPicker x:Name="enumPicker"
                                  EnumType="{x:Type ItemsUpdatingScrollMode}"
                                  SelectedIndex="0"
                                  SelectedIndexChanged="OnItemsUpdatingScrollModeChanged" />
-        </StackLayout>
+        </HorizontalStackLayout>
         <CollectionView x:Name="collectionView"
                         ItemsSource="{Binding Monkeys}"
                         Grid.Row="1">

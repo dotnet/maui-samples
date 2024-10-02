@@ -6,22 +6,20 @@
              Title="Scroll to object">
     <Grid RowDefinitions="Auto, Auto, Auto, *"
           Margin="20">
-        <StackLayout Orientation="Horizontal"
-                     HorizontalOptions="Center">
+        <HorizontalStackLayout HorizontalOptions="Center">
             <Label Text="ScrollToPosition: "
                    VerticalTextAlignment="Center" />
             <controls:EnumPicker x:Name="enumPicker"
                                  EnumType="{x:Type ScrollToPosition}"
                                  SelectedIndex="0" />
-        </StackLayout>
-        <StackLayout Orientation="Horizontal"
-                     HorizontalOptions="Center"
-                     Grid.Row="1">
+        </HorizontalStackLayout>
+        <HorizontalStackLayout HorizontalOptions="Center"
+                               Grid.Row="1">
             <Label Text="Animate scroll: "
                    VerticalTextAlignment="Center" />
             <Switch x:Name="animateSwitch"
                     IsToggled="true" />
-        </StackLayout>
+        </HorizontalStackLayout>
         <Button Text="Scroll to Proboscis Monkey"
                 Clicked="OnButtonClicked"
                 Grid.Row="2" />
