@@ -4,8 +4,8 @@
              xmlns:controls="clr-namespace:CollectionViewDemos.Controls"
              x:Class="CollectionViewDemos.Views.ScrollToByObjectPage"
              Title="Scroll to object">
-    <Grid Margin="20"
-          RowDefinitions="Auto, Auto, Auto, *">
+    <Grid RowDefinitions="Auto, Auto, Auto, *"
+          Margin="20">
         <StackLayout Orientation="Horizontal"
                      HorizontalOptions="Center">
             <Label Text="ScrollToPosition: "

@@ -4,7 +4,8 @@
              xmlns:controls="clr-namespace:CollectionViewDemos.Controls"
              x:Class="CollectionViewDemos.Views.VerticalListSnapPointsPage"
              Title="Vertical list (snap points)">
-    <StackLayout Margin="20">
+    <Grid RowDefinitions="Auto, Auto, *"
+          Margin="20">
         <StackLayout Orientation="Horizontal"
                      HorizontalOptions="Center">
             <Label Text="SnapPointsType: "
@@ -15,9 +16,9 @@
                               SelectedIndexChanged="OnSnapPointsTypeSelectedIndexChanged" />
         </StackLayout>
         <StackLayout Orientation="Horizontal"
-                     HorizontalOptions="Center">
-            <Label Grid.Row="1" 
-                   Text="SnapPointsAlignment: "
+                     HorizontalOptions="Center"
+                     Grid.Row="1">
+            <Label Text="SnapPointsAlignment: "
                    VerticalTextAlignment="Center" />
             <controls:EnumPicker x:Name="snapPointsAlignmentEnumPicker"
                              EnumType="{x:Type SnapPointsAlignment}"
@@ -25,7 +26,8 @@
                              SelectedIndexChanged="OnSnapPointsAlignmentSelectedIndexChanged" />
         </StackLayout>
         <CollectionView x:Name="collectionView"
-                        ItemsSource="{Binding Monkeys}">
+                        ItemsSource="{Binding Monkeys}"
+                        Grid.Row="2">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Grid Padding="10">
@@ -54,5 +56,5 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-    </StackLayout>
+    </Grid>
 </ContentPage>
