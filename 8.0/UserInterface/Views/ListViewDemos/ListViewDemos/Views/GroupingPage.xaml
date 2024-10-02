@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ListViewDemos.GroupingPage"
              Title="Grouping">
-    <StackLayout Margin="20">
+    <Grid Margin="20">
         <ListView ItemsSource="{Binding Animals}"
                   IsGroupingEnabled="True">
             <ListView.GroupHeaderTemplate>
@@ -46,5 +46,5 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-    </StackLayout>
+    </Grid>
 </ContentPage>

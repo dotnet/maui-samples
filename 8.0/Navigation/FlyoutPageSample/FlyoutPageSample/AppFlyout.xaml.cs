@@ -15,7 +15,12 @@ public partial class AppFlyout : FlyoutPage
         if (item != null)
         {
             Detail = new NavigationPage((Page)Activator.CreateInstance(item.TargetType));
-            IsPresented = false;
+
+            // Checking ShouldShowSplitMode is to fix the issue: https://github.com/dotnet/maui-samples/issues/219
+            if (!((IFlyoutPageController)this).ShouldShowSplitMode)
+            {
+                IsPresented = false;
+            }
         }
     }
 }

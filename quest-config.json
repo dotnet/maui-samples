@@ -14,7 +14,7 @@
         },
         {
             "Semester": "Selenium",
-            "ParentNodeId": 286016
+            "ParentNodeId": 308204
         },
         {
             "Label": "okr-curation",
@@ -41,7 +41,7 @@
             "ParentNodeId": 227487
         }
     ],
-    "DefaultParentNode": 286016,
+    "DefaultParentNode": 308204,
     "WorkItemTags": [
         {
             "Label": "okr-curation",
