@@ -4,7 +4,8 @@
              xmlns:controls="clr-namespace:CollectionViewDemos.Controls"
              x:Class="CollectionViewDemos.Views.ScrollToByObjectPage"
              Title="Scroll to object">
-    <StackLayout Margin="20">
+    <Grid Margin="20"
+          RowDefinitions="Auto, Auto, Auto, *">
         <StackLayout Orientation="Horizontal"
                      HorizontalOptions="Center">
             <Label Text="ScrollToPosition: "
@@ -14,17 +15,20 @@
                                  SelectedIndex="0" />
         </StackLayout>
         <StackLayout Orientation="Horizontal"
-                     HorizontalOptions="Center">
+                     HorizontalOptions="Center"
+                     Grid.Row="1">
             <Label Text="Animate scroll: "
                    VerticalTextAlignment="Center" />
             <Switch x:Name="animateSwitch"
                     IsToggled="true" />
         </StackLayout>
         <Button Text="Scroll to Proboscis Monkey"
-                Clicked="OnButtonClicked" />
+                Clicked="OnButtonClicked"
+                Grid.Row="2" />
         <CollectionView x:Name="collectionView"
                         ItemsSource="{Binding Monkeys}"
-                        Scrolled="OnCollectionViewScrolled">
+                        Scrolled="OnCollectionViewScrolled"
+                        Grid.Row="3">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Grid Padding="10">
@@ -53,5 +57,5 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-    </StackLayout>
+    </Grid>
 </ContentPage>

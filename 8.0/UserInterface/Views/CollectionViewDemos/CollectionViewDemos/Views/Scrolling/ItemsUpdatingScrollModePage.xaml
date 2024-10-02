@@ -4,7 +4,7 @@
              xmlns:controls="clr-namespace:CollectionViewDemos.Controls"
              x:Class="CollectionViewDemos.Views.ItemsUpdatingScrollModePage"
              Title="Scroll mode when adding items">
-    <StackLayout Margin="20">
+    <Grid Margin="20" RowDefinitions="Auto, *">
         <StackLayout Orientation="Horizontal"
                      HorizontalOptions="Center">
             <Label Text="UpdatingScrollMode: "
@@ -15,7 +15,8 @@
                                  SelectedIndexChanged="OnItemsUpdatingScrollModeChanged" />
         </StackLayout>
         <CollectionView x:Name="collectionView"
-                        ItemsSource="{Binding Monkeys}">
+                        ItemsSource="{Binding Monkeys}"
+                        Grid.Row="1">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Grid Padding="10">
@@ -44,5 +45,5 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-    </StackLayout>
+    </Grid>
 </ContentPage>
