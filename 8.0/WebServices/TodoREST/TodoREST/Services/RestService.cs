@@ -9,19 +9,14 @@ namespace TodoREST.Services
     {
         HttpClient _client;
         JsonSerializerOptions _serializerOptions;
-        IHttpsClientHandlerService _httpsClientHandlerService;
 
         public List<TodoItem> Items { get; private set; }
 
-        public RestService(IHttpsClientHandlerService service)
+        public RestService()
         {
 #if DEBUG
-            _httpsClientHandlerService = service;
-            HttpMessageHandler handler = _httpsClientHandlerService.GetPlatformMessageHandler();
-            if (handler != null)
-                _client = new HttpClient(handler);
-            else
-                _client = new HttpClient();
+            HttpClientHandler insecureHandler = GetInsecureHandler();
+            _client = new HttpClient(insecureHandler);
 #else
             _client = new HttpClient();
 #endif
@@ -30,6 +25,18 @@ namespace TodoREST.Services
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
                 WriteIndented = true
             };
+        }
+
+        private HttpClientHandler GetInsecureHandler()
+        {
+            HttpClientHandler handler = new HttpClientHandler();
+            handler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) =>
+            {
+                if (cert != null && cert.Issuer.Equals("CN=localhost"))
+                    return true;
+                return errors == System.Net.Security.SslPolicyErrors.None;
+            };
+            return handler;
         }
 
         public async Task<List<TodoItem>> RefreshDataAsync()
