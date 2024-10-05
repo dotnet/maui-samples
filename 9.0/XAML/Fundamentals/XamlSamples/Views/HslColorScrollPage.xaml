@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:XamlSamples"
+             x:Class="XamlSamples.HslColorScrollPage"
+             Title="HSL Color Scroll Page">
+    <ContentPage.BindingContext>
+        <local:HslViewModel Color="Aqua" />
+    </ContentPage.BindingContext>
+
+    <VerticalStackLayout Padding="10, 0, 10, 30">
+        <BoxView Color="{Binding Color}"
+                 HeightRequest="100"
+                 WidthRequest="100"
+                 HorizontalOptions="Center" />
+        <Label Text="{Binding Hue, StringFormat='Hue = {0:F2}'}"
+               HorizontalOptions="Center" />
+        <Slider Value="{Binding Hue}"
+                Margin="20,0,20,0" />
+        <Label Text="{Binding Saturation, StringFormat='Saturation = {0:F2}'}"
+               HorizontalOptions="Center" />
+        <Slider Value="{Binding Saturation}"
+                Margin="20,0,20,0" />
+        <Label Text="{Binding Luminosity, StringFormat='Luminosity = {0:F2}'}"
+               HorizontalOptions="Center" />
+        <Slider Value="{Binding Luminosity}"
+                Margin="20,0,20,0" />
+    </VerticalStackLayout>
+</ContentPage>

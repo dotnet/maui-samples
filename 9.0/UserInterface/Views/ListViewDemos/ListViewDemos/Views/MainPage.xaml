@@ -1,0 +1,58 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:ListViewDemos"
+             x:Class="ListViewDemos.MainPage"
+             Title="ListView demos">
+    <TableView Intent="Menu">
+        <TableRoot>
+            <TableSection Title="Basics">
+                <TextCell Text="Text ListView"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type views:TextListPage}" />
+                <TextCell Text="ListView with DataTemplate"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type views:VerticalListPage}" />
+                <TextCell Text="ListView with DataTemplateSelector"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type views:DataTemplateSelectorPage}" />
+                <TextCell Text="ListView selection"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type views:SelectionPage}" />
+                <TextCell Text="Runtime row sizing"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type views:RuntimeItemSizingPage}" />
+                <TextCell Text="ListView grouping"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type views:GroupingPage}" />
+                <TextCell Text="ListView context menu items"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type views:ContextMenuItemsPage}" />
+                <TextCell Text="ListView pull-to-refresh"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type views:PullToRefreshPage}" />
+                <TextCell Text="Right to left ListView"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type views:RightToLeftListPage}" />
+            </TableSection>
+            <TableSection Title="Scrolling">
+                <TextCell Text="Scroll by item"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type views:ScrollByItemPage}" />
+                <TextCell Text="Scroll by item with grouping"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type views:ScrollByItemWithGroupingPage}" />
+            </TableSection>
+            <TableSection Title="Header and footer">
+                <TextCell Text="Text header and footer"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type views:TextHeaderFooterPage}" />
+                <TextCell Text="View header and footer"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type views:ViewHeaderFooterPage}" />
+                <TextCell Text="Templated header and footer"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type views:TemplatedHeaderFooterPage}" />
+            </TableSection>
+        </TableRoot>
+    </TableView>
+</ContentPage>

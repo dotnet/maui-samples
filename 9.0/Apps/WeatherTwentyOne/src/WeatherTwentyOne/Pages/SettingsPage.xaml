@@ -1,0 +1,340 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:WeatherTwentyOne.Resources.Styles"
+             xmlns:am="clr-namespace:Microsoft.Maui.ApplicationModel;assembly=Microsoft.Maui.Essentials"
+             xmlns:v="clr-namespace:WeatherTwentyOne.Views"
+             xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+             ios:Page.UseSafeArea="True"
+             Title="Settings"
+             Shell.NavBarIsVisible="{OnIdiom True, Desktop=False}"
+             x:Class="WeatherTwentyOne.Pages.SettingsPage">
+
+    <ContentPage.Resources>
+        <ControlTemplate x:Key="ThemeRadioTemplate">
+            <Frame
+                          BorderColor="{StaticResource Background_Mid}"
+                          BackgroundColor="Transparent"
+                          HasShadow="False"
+                          HeightRequest="120"
+                          WidthRequest="100"
+                          HorizontalOptions="Start"
+                          VerticalOptions="Start"
+                          Padding="0">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroupList>
+                        <VisualStateGroup
+                                        x:Name="CheckedStates">
+
+                            <VisualState
+                                            x:Name="Checked">
+                                <VisualState.Setters>
+                                    <Setter
+                                                  Property="BorderColor"
+                                                  Value="{StaticResource Primary}" />
+                                    <Setter
+                                                  TargetName="Check"
+                                                  Property="Opacity"
+                                                  Value="1" />
+                                </VisualState.Setters>
+                            </VisualState>
+
+                            <VisualState
+                                            x:Name="Unchecked">
+                                <VisualState.Setters>
+                                    <Setter
+                                                    Property="BorderColor"
+                                                    Value="{StaticResource Background_Mid}" />
+                                    <Setter
+                                                    TargetName="Check"
+                                                    Property="Opacity"
+                                                    Value="0" />
+                                </VisualState.Setters>
+                            </VisualState>
+
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </VisualStateManager.VisualStateGroups>
+
+                <Grid
+                                
+                                >
+                    <Grid
+                                      WidthRequest="18"
+                                      HeightRequest="18"
+                                      Margin="0,8,8,0"
+                                      HorizontalOptions="End"
+                                      VerticalOptions="Start">
+                        <Ellipse
+                                            Stroke="{StaticResource DarkGray}"
+                                            WidthRequest="16"
+                                            HeightRequest="16"
+                                            StrokeThickness="0.5"
+                                            VerticalOptions="Center"
+                                            HorizontalOptions="Center"
+                                            Fill="White" />
+                        <Ellipse
+                                            x:Name="Check"
+                                            WidthRequest="8"
+                                            HeightRequest="8"
+                                            Stroke="{StaticResource Primary}"
+                                            Fill="{StaticResource Primary}"
+                                            VerticalOptions="Center"
+                                            HorizontalOptions="Center" />
+                    </Grid>
+                    <ContentPresenter></ContentPresenter>
+                </Grid>
+            </Frame>
+        </ControlTemplate>
+
+        
+    </ContentPage.Resources>
+
+    
+        <Grid
+            ColumnDefinitions="*"
+            RowDefinitions="{OnIdiom Phone='100,*', Default='100,*,0'}"
+            >
+            <ScrollView Grid.Row="1"
+                        Margin="{OnIdiom Phone=15, Default=25}"
+                        >
+                <VerticalStackLayout Spacing="8">
+                    <VerticalStackLayout Spacing="8">
+                        <Image 
+                            HeightRequest="115"
+                            Aspect="AspectFit"
+                            Source="fluent_weather_moon_16_filled.png"/>
+                        <Label Text="{Binding Temperature}" 
+                                HorizontalOptions="Center"
+                                class="Title1"/>
+                        <Border
+                            HeightRequest="30"
+                            VerticalOptions="Start"
+                            HorizontalOptions="Center"
+                            Padding="15,0"
+                            Stroke="Transparent"
+                            
+                            BackgroundColor="{StaticResource Primary}">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="60"/>
+                        </Border.StrokeShape>
+                            <Label Text="Clear"
+                                   HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                TextColor="{StaticResource White}"
+                            />
+                        </Border>
+                    </VerticalStackLayout>
+                    
+                    <Label Text="Units" class="SectionTitle"/>
+
+                    <Grid RowDefinitions="30,30">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SelectUnits}"
+                                                  CommandParameter="imperial"/>
+                        </Grid.GestureRecognizers>
+                        <Label Grid.Row="0" Text="Imperial" class="Subhead"/>
+                        <Label Grid.Row="1"
+                            Text="˚F / mph / miles / inches" class="SubContent"/>
+                        <Image
+                            x:Name="Imperial"
+                            Grid.RowSpan="2"
+                            Aspect="Center"
+                            IsVisible="{Binding IsImperial}"
+                            Source="checkmark_icon.png"
+                            HorizontalOptions="End"
+                            VerticalOptions="Center"/>
+                        
+                    </Grid>
+                    <BoxView class="HRule"/>
+
+                <Grid RowDefinitions="30,30">
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding SelectUnits}"
+                                              CommandParameter="metric"/>
+                    </Grid.GestureRecognizers>
+                    <Label Grid.Row="0"
+                            Text="Metric" class="Subhead"/>
+                        <Label Grid.Row="1"
+                            Text="˚C / kmh / km / millimeters / milibars" class="SubContent"/>
+                    <Image x:Name="Metric"
+                            Grid.RowSpan="2"
+                           Aspect="Center"
+                            IsVisible="{Binding IsMetric}"
+                            Source="checkmark_icon.png"
+                            HorizontalOptions="End"
+                            VerticalOptions="Center"/>
+                </Grid>
+                    <BoxView class="HRule"/>
+
+                <Grid RowDefinitions="30,30">
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding SelectUnits}"
+                                              CommandParameter="hybrid"/>
+                    </Grid.GestureRecognizers>
+                    <Label Grid.Row="0"
+                            Text="Hybrid" class="Subhead"/>
+                        <Label Grid.Row="1"
+                            Text="˚C / mph / miles / millimeters / millibars" class="SubContent"/>
+                    <Image x:Name="Hybrid"
+                            Grid.RowSpan="2"
+                           Aspect="Center"
+                            IsVisible="{Binding IsHybrid}"
+                            Source="checkmark_icon.png"
+                            HorizontalOptions="End"
+                            VerticalOptions="Center"/>
+                </Grid>
+                <BoxView class="HRule"/>
+
+                <Label Text="More" class="SectionTitle"/>
+
+                <Label Grid.Row="0"
+                                Text="Support" class="Subhead">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnSupportTapped"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+
+                <BoxView class="HRule"/>
+
+                <Grid>
+                    <Label Text="Theme" class="Subhead"/>
+                    <StackLayout
+                        HorizontalOptions="End"
+                        Spacing="12"
+                        Orientation="Horizontal"
+                         RadioButtonGroup.GroupName="AppTheme"
+                         RadioButtonGroup.SelectedValue="{Binding SelectedTheme}">
+                        <StackLayout.Resources>
+                            <Style TargetType="RadioButton">
+                                <Setter Property="ControlTemplate" Value="{StaticResource ThemeRadioTemplate}"/>
+                            </Style>
+                        </StackLayout.Resources>
+                        <RadioButton Value="{x:Static am:AppTheme.Unspecified}"
+                                     IsChecked="True"
+                                     CheckedChanged="RadioButton_CheckedChanged"
+                                     >
+                            <RadioButton.Content>
+                                <Grid RowDefinitions="*">
+                                    <Image
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="Center"
+                                        WidthRequest="50"
+                                        HeightRequest="50"
+                                        Margin="0,-8,0,0"
+                                        Source="{FontImage
+                                        FontFamily=FontAwesome,
+                                        Glyph={x:Static local:IconFont.Mobile},
+                                        Color={StaticResource MidGray},
+                                        Size=42}"/>
+                                    <Label
+                                        Text="Default"
+                                        VerticalOptions="End"
+                                        HorizontalOptions="Center"
+                                        FontSize="12"
+                                        Margin="0,0,0,10"/>
+                                </Grid>
+                            </RadioButton.Content>
+                        </RadioButton>
+                        <RadioButton Value="{x:Static am:AppTheme.Dark}"
+                                     CheckedChanged="RadioButton_CheckedChanged">
+                            <RadioButton.Content>
+                                <Grid RowDefinitions="*">
+                                    <Image
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="Center"
+                                        WidthRequest="50"
+                                        HeightRequest="50"
+                                        Margin="0,-8,0,0"
+                                        Source="{FontImage
+                                        FontFamily=FontAwesome,
+                                        Glyph={x:Static local:IconFont.Lightbulb},
+                                        Color=Black,
+                                        Size=42}"/>
+                                    <Label
+                                        Text="Dark"
+                                        VerticalOptions="End"
+                                        Margin="0,0,0,10"
+                                        HorizontalOptions="Center"
+                                        FontSize="12"
+                                        />
+                                </Grid>
+                            </RadioButton.Content>
+                        </RadioButton>
+                        <RadioButton Value="{x:Static am:AppTheme.Light}"
+                                     CheckedChanged="RadioButton_CheckedChanged"
+                                     >
+                            <RadioButton.Content>
+                                <Grid RowDefinitions="*">
+                                    <Image
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="Center"
+                                        WidthRequest="50"
+                                        HeightRequest="50"
+                                        Margin="0,-8,0,0"
+                                        Source="{FontImage
+                                        FontFamily=FontAwesome,
+                                        Glyph={x:Static local:IconFont.Lightbulb},
+                                        Color=White,
+                                        Size=42}"/>
+                                    <Label
+                                        Text="Light"
+                                        FontSize="12"
+                                        VerticalOptions="End"
+                                        HorizontalOptions="Center"
+                                        Margin="0,0,0,10"/>
+                                </Grid>
+                            </RadioButton.Content>
+                        </RadioButton>
+                    </StackLayout>
+                </Grid>
+
+                </VerticalStackLayout>
+
+            </ScrollView>
+
+            <Grid 
+                Grid.Row="0" 
+                Grid.ColumnDefinitions="16,75,16,*,100,16"
+                >
+
+            <!--<BoxView Color="Red" 
+                     HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        WidthRequest="75"
+                        HeightRequest="75"
+                     Grid.Column="1">
+                <BoxView.Clip>
+                    <EllipseGeometry 
+                                Center="75,75"
+                                RadiusX="75"
+                                RadiusY="75"/>
+                </BoxView.Clip>
+            </BoxView>-->
+
+            <Image  HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Grid.Column="1"
+                        WidthRequest="75"
+                        HeightRequest="75"
+                        Aspect="AspectFill"
+                        Source="https://devblogs.microsoft.com/xamarin/wp-content/uploads/sites/44/2019/03/Screen-Shot-2017-01-03-at-3.35.53-PM-150x150.png">
+                    <Image.Clip>
+                        <EllipseGeometry 
+                                Center="36,36"
+                                RadiusX="36"
+                                RadiusY="36"/>
+                    </Image.Clip>
+                </Image>
+
+            <Label Text="David Ortinau" Grid.Column="3" LineBreakMode="WordWrap" VerticalOptions="Center" />
+
+                <Button Text="Sign Out" Clicked="OnSignOut" Grid.Column="4" HorizontalOptions="End" VerticalOptions="Center"/>
+
+                <BoxView Grid.ColumnSpan="6" Color="{StaticResource NeutralDarker}" HeightRequest="1" VerticalOptions="End"/>
+            </Grid>
+        </Grid>
+    
+
+</ContentPage>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:BehaviorsDemos"
+             x:Class="BehaviorsDemos.EventToCommandBehaviorPage"
+             Title="EventToCommand demo">
+    <ContentPage.BindingContext>
+        <local:HomePageViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:SelectedItemEventArgsToSelectedItemConverter x:Key="SelectedItemConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout Margin="20">
+        <ListView ItemsSource="{Binding People}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Name}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.Behaviors>
+                <local:EventToCommandBehavior EventName="ItemSelected"
+                                              Command="{Binding OutputAgeCommand}"
+                                              Converter="{StaticResource SelectedItemConverter}" />
+            </ListView.Behaviors>
+        </ListView>
+        <Label Text="{Binding SelectedItemText}" />
+    </StackLayout>
+</ContentPage>

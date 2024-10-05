@@ -1,0 +1,16 @@
+﻿<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PointOfSale.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources\Styles\Colors.xaml"/>
+                <ResourceDictionary Source="Resources\Styles\Converters.xaml"/>
+                <ResourceDictionary Source="Resources\Styles\Styles.xaml"/>
+                <ResourceDictionary Source="Resources\Styles\ControlTemplates.xaml"/>
+                <ResourceDictionary Source="Resources\Styles\Data.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+
+</Application>

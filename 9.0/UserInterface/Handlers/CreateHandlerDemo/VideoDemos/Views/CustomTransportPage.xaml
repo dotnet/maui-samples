@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:VideoDemos.Controls"
+             x:Class="VideoDemos.Views.CustomTransportPage"
+             Unloaded="OnContentPageUnloaded"
+             Title="Custom transport controls">
+    <Grid RowDefinitions="*,Auto">
+        <controls:Video x:Name="video"
+                        AutoPlay="False"
+                        AreTransportControlsEnabled="False"
+                        Source="{StaticResource BigBuckBunny}" />
+        <ActivityIndicator Color="Gray"
+                           IsVisible="False">
+            <ActivityIndicator.Triggers>
+                <DataTrigger TargetType="ActivityIndicator"
+                             Binding="{Binding Source={x:Reference video}, 
+                                               Path=Status}"
+                             Value="{x:Static controls:VideoStatus.NotReady}">
+                    <Setter Property="IsVisible"
+                            Value="True" />
+                    <Setter Property="IsRunning"
+                            Value="True" />
+                </DataTrigger>
+            </ActivityIndicator.Triggers>
+        </ActivityIndicator>
+        <Grid Grid.Row="1"
+              Margin="0,10"
+              ColumnDefinitions="0.5*,0.5*"
+              BindingContext="{x:Reference video}">
+            <Button Text="&#x25B6;&#xFE0F; Play"
+                    HorizontalOptions="Center"
+                    Clicked="OnPlayPauseButtonClicked">
+                <Button.Triggers>
+                    <DataTrigger TargetType="Button"
+                                 Binding="{Binding Status}"
+                                 Value="{x:Static controls:VideoStatus.Playing}">
+                        <Setter Property="Text"
+                                Value="&#x23F8; Pause" />
+                    </DataTrigger>
+                    <DataTrigger TargetType="Button"
+                                 Binding="{Binding Status}"
+                                 Value="{x:Static controls:VideoStatus.NotReady}">
+                        <Setter Property="IsEnabled"
+                                Value="False" />
+                    </DataTrigger>
+                </Button.Triggers>
+            </Button>
+            <Button Grid.Column="1"
+                    Text="&#x23F9; Stop"
+                    HorizontalOptions="Center"
+                    Clicked="OnStopButtonClicked">
+                <Button.Triggers>
+                    <DataTrigger TargetType="Button"
+                                 Binding="{Binding Status}"
+                                 Value="{x:Static controls:VideoStatus.NotReady}">
+                        <Setter Property="IsEnabled"
+                                Value="False" />
+                    </DataTrigger>
+                </Button.Triggers>
+            </Button>
+        </Grid>
+    </Grid>
+</ContentPage>

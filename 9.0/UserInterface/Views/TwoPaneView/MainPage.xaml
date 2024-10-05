@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:foldable="clr-namespace:Microsoft.Maui.Controls.Foldable;assembly=Microsoft.Maui.Controls.Foldable"
+             x:Class="MauiTwoPaneViewDemo.MainPage">
+
+    <foldable:TwoPaneView x:Name="twoPaneView"
+                        MinTallModeHeight="{Binding Source={x:Reference MinTallModeHeight}, Path=Value}"
+                        MinWideModeWidth="{Binding Source={x:Reference MinWideModeWidth}, Path=Value}"
+                        TallModeConfiguration="{Binding Source={x:Reference TallModeConfiguration}, Path=SelectedItem}"
+                        WideModeConfiguration="{Binding Source={x:Reference WideModeConfiguration}, Path=SelectedItem}"
+                        PanePriority="{Binding Source={x:Reference PanePriority}, Path=SelectedItem, Mode=TwoWay}"
+        >
+        <foldable:TwoPaneView.Pane1
+            BackgroundColor="#dddddd">
+            <Frame BorderColor="Red">
+                <StackLayout BackgroundColor="Blue"
+                                 Orientation="Vertical"
+                                 VerticalOptions="StartAndExpand"
+                                 Padding="5"
+                                 >
+
+                    <Label Text="ScreenSize" x:Name="sizeLabel"/>
+                    <Label Text="SinglePane" x:Name="spanLabel"/>
+                    <Label Text="Hinge" x:Name="hingeLabel"/>
+
+                    <Label Text=""/>
+                    <Label Text="MinTallModeHeight"/>
+                    <Slider x:Name="MinTallModeHeight" Maximum="2000" />
+                    <Label Text="MinWideModeWidth"/>
+                    <Slider x:Name="MinWideModeWidth" Maximum="2000" />
+
+                    <Label Text=""/>
+                    <Label Text="Pane1Length"/>
+                    <Slider x:Name="Pane1Length" Maximum="1" Value="0.5" />
+                    <Label Text="Pane2Length"/>
+                    <Slider x:Name="Pane2Length" Maximum="1" Value="0.5" />
+
+                    <Label Text=""/>
+                    <Picker x:Name="PanePriority" Title="PanePriority" SelectedIndex="0" />
+                    <Picker x:Name="TallModeConfiguration" Title="TallModeConfiguration" SelectedIndex="1" />
+                    <Picker x:Name="WideModeConfiguration" Title="WideModeConfiguration" SelectedIndex="1" />
+
+                    <Label Text=""/>
+                    <Label Text="Jetpack Window Manager 1.0.0"/>
+                    <Button Text="Reset TwoPaneView" Clicked="OnReset" HorizontalOptions="Center"/>
+                </StackLayout>
+            </Frame>
+        </foldable:TwoPaneView.Pane1>
+        <foldable:TwoPaneView.Pane2>
+            <ScrollView>
+                <VerticalStackLayout
+                    Spacing="25"
+                    Padding="30,0"
+                    VerticalOptions="Center">
+
+                    <Image
+                        Source="dotnet_bot.png"
+                        SemanticProperties.Description="Cute dot net bot waving hi to you!"
+                        HeightRequest="200"
+                        HorizontalOptions="Center" />
+
+                    <Label
+                        Text="Hello, foldable!"
+                        SemanticProperties.HeadingLevel="Level1"
+                        FontSize="32"
+                        HorizontalOptions="Center" />
+
+                    <Label
+                        Text="Welcome to .NET Multi-platform App UI"
+                        SemanticProperties.HeadingLevel="Level2"
+                        SemanticProperties.Description="Welcome to dot net Multi platform App U I"
+                        FontSize="18"
+                        HorizontalOptions="Center" />
+
+                    <Button
+                        x:Name="CounterBtn"
+                        Text="Click me"
+                        SemanticProperties.Hint="Counts the number of times you click"
+                        Clicked="OnCounterClicked"
+                        HorizontalOptions="Center" />
+
+                    <Button Text="Reset TwoPaneView" Clicked="OnReset"
+                        HorizontalOptions="Center"/>
+
+                </VerticalStackLayout>
+            </ScrollView>
+        </foldable:TwoPaneView.Pane2>
+    </foldable:TwoPaneView>
+</ContentPage>

@@ -1,0 +1,63 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:GraphicsViewDemos.Views"
+             x:Class="GraphicsViewDemos.Views.MainPage"
+             Title="GraphicsView Demos">
+    <TableView Intent="Menu">
+        <TableRoot>
+            <TableSection Title="">
+                <TextCell Text="Draw shapes"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type views:DrawShapesPage}" />
+                <TextCell Text="Image operations"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type views:ImagesPage}" />
+                <TextCell Text="Blend modes"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type views:BlendModesPage}" />
+            </TableSection>
+            <TableSection Title="Paint">
+                <TextCell Text="Solid paint"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type views:SolidPaintPage}" />
+                <TextCell Text="Image paint"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type views:ImagePaintPage}" />
+                <TextCell Text="Pattern paint"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type views:PatternPaintPage}" />
+                <TextCell Text="Linear gradient paint"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type views:LinearGradientPaintPage}" />
+                <TextCell Text="Radial gradient paint"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type views:RadialGradientPaintPage}" />                
+            </TableSection>
+            <TableSection Title="Transforms">
+                <TextCell Text="Translate"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type views:TranslateTransformPage}" />
+                <TextCell Text="Scale"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type views:ScaleTransformPage}" />
+                <TextCell Text="Rotate"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type views:RotateTransformPage}" />
+                <TextCell Text="Combine transforms"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type views:CombineTransformsPage}" />
+                <TextCell Text="Affine"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type views:AffineTransformPage}" />
+            </TableSection>
+            <TableSection Title="Winding modes">
+                <TextCell Text="Non zero"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type views:NonZeroWindingModePage}" />
+                <TextCell Text="Even odd"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type views:EvenOddWindingModePage}" />                
+            </TableSection>
+        </TableRoot>
+    </TableView>
+</ContentPage>

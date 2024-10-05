@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ContextMenuSample.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Spacing="25"
+            Padding="15"
+            VerticalOptions="Start">
+
+            <Label
+                Text="Add a Comment!"
+                SemanticProperties.HeadingLevel="Level1"
+                FontSize="32"/>
+
+            <Border Padding="15"
+                    HorizontalOptions="Start"
+                    >
+                <Editor
+                    x:Name="commentField"
+                    HorizontalOptions="Start"
+                    Placeholder="Type here. Right-click for options."
+                    ToolTipProperties.Text="Right-click for options"
+                    SemanticProperties.Hint="An editor text field with a right click context menu"
+                    FontSize="14"
+                    MinimumHeightRequest="100"
+                    MinimumWidthRequest="320">
+                    <FlyoutBase.ContextFlyout>
+                        <MenuFlyout>
+                            <MenuFlyoutItem Text="Increase font" Clicked="OnIncrease"/>
+                            <MenuFlyoutItem Text="Decrease font" Clicked="OnDecrease"/>
+                            <MenuFlyoutItem Text="Clear" Clicked="OnClear"/>
+                        </MenuFlyout>
+                    </FlyoutBase.ContextFlyout>
+                </Editor>
+            </Border>
+            <Button
+                Text="Save"
+                HorizontalOptions="Start"
+                ToolTipProperties.Text="This button does nothing"
+                SemanticProperties.Hint="A button that does nothing for this sample"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
+

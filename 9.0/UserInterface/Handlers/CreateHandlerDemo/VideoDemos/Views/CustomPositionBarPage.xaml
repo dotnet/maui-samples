@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:VideoDemos.Controls"
+             x:Class="VideoDemos.Views.CustomPositionBarPage"
+             Unloaded="OnContentPageUnloaded"
+             Title="Custom position bar">
+    <Grid RowDefinitions="*,Auto,Auto">
+        <controls:Video x:Name="video"
+                        AreTransportControlsEnabled="False"
+                        Source="{StaticResource ElephantsDream}" />
+        <ActivityIndicator Color="Gray"
+                           IsVisible="False">
+            <ActivityIndicator.Triggers>
+                <DataTrigger TargetType="ActivityIndicator"
+                             Binding="{Binding Source={x:Reference video}, 
+                                               Path=Status}"
+                             Value="{x:Static controls:VideoStatus.NotReady}">
+                    <Setter Property="IsVisible"
+                            Value="True" />
+                    <Setter Property="IsRunning"
+                            Value="True" />
+                </DataTrigger>
+            </ActivityIndicator.Triggers>
+        </ActivityIndicator>
+        <Grid Grid.Row="1"
+              Margin="10,0"
+              ColumnDefinitions="0.25*,0.25*,0.25*,0.25*"
+              BindingContext="{x:Reference video}">
+            <Label Text="{Binding Path=Position,
+                                  StringFormat='{0:hh\\:mm\\:ss}'}"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center" />
+            <Button Grid.Column="1"
+                    Text="&#x25B6;&#xFE0F; Play"
+                    HorizontalOptions="Center"
+                    Clicked="OnPlayPauseButtonClicked">
+                <Button.Triggers>
+                    <DataTrigger TargetType="Button"
+                                 Binding="{Binding Status}"
+                                 Value="{x:Static controls:VideoStatus.Playing}">
+                        <Setter Property="Text"
+                                Value="&#x23F8; Pause" />
+                    </DataTrigger>
+                    <DataTrigger TargetType="Button"
+                                 Binding="{Binding Status}"
+                                 Value="{x:Static controls:VideoStatus.NotReady}">
+                        <Setter Property="IsEnabled"
+                                Value="False" />
+                    </DataTrigger>
+                </Button.Triggers>
+            </Button>
+            <Button Grid.Column="2"
+                    Text="&#x23F9; Stop"
+                    HorizontalOptions="Center"
+                    Clicked="OnStopButtonClicked">
+                <Button.Triggers>
+                    <DataTrigger TargetType="Button"
+                                 Binding="{Binding Status}"
+                                 Value="{x:Static controls:VideoStatus.NotReady}">
+                        <Setter Property="IsEnabled"
+                                Value="False" />
+                    </DataTrigger>
+                </Button.Triggers>
+            </Button>
+            <Label Grid.Column="3"
+                   Text="{Binding Path=TimeToEnd,
+                                  StringFormat='{0:hh\\:mm\\:ss}'}"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center" />
+        </Grid>
+        <controls:PositionSlider Grid.Row="2"
+                                 Margin="10,0,10,10"
+                                 BindingContext="{x:Reference video}"
+                                 Duration="{Binding Duration}"
+                                 Position="{Binding Position}">
+            <controls:PositionSlider.Triggers>
+                <DataTrigger TargetType="controls:PositionSlider"
+                             Binding="{Binding Status}"
+                             Value="{x:Static controls:VideoStatus.NotReady}">
+                    <Setter Property="IsEnabled"
+                            Value="False" />
+                </DataTrigger>
+            </controls:PositionSlider.Triggers>
+        </controls:PositionSlider>
+    </Grid>
+</ContentPage>

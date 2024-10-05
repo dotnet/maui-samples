@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LocalNotificationsDemo.MainPage"
+             Title="Local notifications"
+             Padding="10">
+    <VerticalStackLayout x:Name="verticalStackLayout"
+                         Spacing="6">
+        <Label Text="Click the button below to create a local notification."
+               HorizontalOptions="Center"
+               VerticalOptions="Start" />
+        <Button Text="Create Notification"
+                HorizontalOptions="Center"
+                VerticalOptions="Start"
+                Clicked="OnSendClick" />
+        <Label Text="Click the button below to schedule a local notification for in 10 seconds time."
+               HorizontalOptions="Center"
+               VerticalOptions="Start" />
+        <Button Text="Create Notification"
+                HorizontalOptions="Center"
+                VerticalOptions="Start"
+                Clicked="OnScheduleClick" />
+    </VerticalStackLayout>
+</ContentPage>

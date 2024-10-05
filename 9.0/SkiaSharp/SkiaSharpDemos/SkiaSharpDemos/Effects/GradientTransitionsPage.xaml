@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:skia="clr-namespace:SkiaSharp.Views.Maui.Controls;assembly=SkiaSharp.Views.Maui.Controls"
+             x:Class="SkiaSharpDemos.Effects.GradientTransitionsPage"
+             Title="Gardient Transitions">
+    <Grid RowDefinitions="*,Auto,Auto,Auto">
+        <skia:SKCanvasView x:Name="canvasView"
+                           VerticalOptions="Fill"
+                           PaintSurface="OnCanvasViewPaintSurface" />
+        <Slider x:Name="progressSlider"
+                Grid.Row="1"
+                Margin="10, 0"
+                ValueChanged="OnSliderValueChanged" />
+        <Label Grid.Row="2"
+               Text="{Binding Source={x:Reference progressSlider},
+                              Path=Value,
+                              StringFormat='Progress = {0:F2}'}"
+               HorizontalTextAlignment="Center" />
+        <Picker x:Name="transitionPicker"
+                Grid.Row="2"
+                Title="Transition" 
+                Margin="10"
+                SelectedIndexChanged="OnPickerSelectedIndexChanged" />        
+    </Grid>
+</ContentPage>

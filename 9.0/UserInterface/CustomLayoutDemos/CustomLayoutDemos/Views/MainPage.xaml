@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:CustomLayoutDemos.Views"
+             x:Class="CustomLayoutDemos.MainPage">
+    <TableView Intent="Menu">
+        <TableRoot>
+            <TableSection Title="Custom layouts">
+                <TextCell Text="Cascade layout"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type views:CascadeLayoutPage}" />
+                <TextCell Text="Column layout"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type views:ColumnLayoutPage}" />
+                <TextCell Text="Content column layout"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type views:ContentColumnLayoutPage}" />
+                <TextCell Text="Customized grid layout"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type views:CustomizedGridPage}" />
+                <TextCell Text="Horizontal wrap layout"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type views:HorizontalWrapLayoutPage}" />
+                <TextCell Text="ZStack layout"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type views:ZStackLayoutPage}" />
+            </TableSection>
+        </TableRoot>
+    </TableView>
+</ContentPage>
+

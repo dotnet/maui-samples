@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34607.119
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordPuzzle", "WordPuzzle\WordPuzzle.csproj", "{ABAD6B8E-A804-4008-AF5B-EBBFFF1FAAFE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ABAD6B8E-A804-4008-AF5B-EBBFFF1FAAFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABAD6B8E-A804-4008-AF5B-EBBFFF1FAAFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABAD6B8E-A804-4008-AF5B-EBBFFF1FAAFE}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{ABAD6B8E-A804-4008-AF5B-EBBFFF1FAAFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABAD6B8E-A804-4008-AF5B-EBBFFF1FAAFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABAD6B8E-A804-4008-AF5B-EBBFFF1FAAFE}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {75A834AF-1866-46F9-852F-5552FC651EC4}
+	EndGlobalSection
+EndGlobal

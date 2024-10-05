@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:VideoDemos.Controls"
+             x:Class="VideoDemos.Views.BindToVideoPlayerPage"
+             Unloaded="OnContentPageUnloaded"
+             Title="Bind to Video control">
+    <Grid RowDefinitions="0.8*,0.2*">
+        <controls:Video x:Name="video"
+                        Source="{Binding Source={x:Reference collectionView},
+                                         Path=SelectedItem.VideoSource}" />
+        <CollectionView x:Name="collectionView"
+                        SelectionMode="Single"
+                        Grid.Row="1">
+            <CollectionView.ItemsSource>
+                <x:Array Type="{x:Type controls:VideoInfo}">
+                    <controls:VideoInfo DisplayName="Elephant's Dream"
+                                        VideoSource="{StaticResource ElephantsDream}" />
+                    <controls:VideoInfo DisplayName="Big Buck Bunny"
+                                        VideoSource="{StaticResource BigBuckBunny}" />
+                    <controls:VideoInfo DisplayName="Sintel"
+                                        VideoSource="{StaticResource Sintel}" />
+                </x:Array>
+            </CollectionView.ItemsSource>
+        </CollectionView>
+    </Grid>
+</ContentPage>

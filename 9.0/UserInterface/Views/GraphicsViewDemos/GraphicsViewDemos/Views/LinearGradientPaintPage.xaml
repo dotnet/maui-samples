@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:drawables="clr-namespace:GraphicsViewDemos.Drawables"
+             x:Class="GraphicsViewDemos.Views.LinearGradientPaintPage"
+             Title="Linear gradient paint demo">
+    <ContentPage.Resources>
+        <drawables:HorizontalLinearGradientPaintDrawable x:Key="horizontalLinearGradientDrawable" />
+        <drawables:VerticalLinearGradientPaintDrawable x:Key="verticalLinearGradientDrawable" />
+        <drawables:DiagonalLinearGradientPaintDrawable x:Key="diagonalLinearGradientDrawable" />
+        <drawables:FourColorLinearGradientPaintDrawable x:Key="fourColorLinearGradientDrawable" />
+    </ContentPage.Resources>
+    <ScrollView>
+        <VerticalStackLayout Margin="15">
+            <Label Text="Horizontal linear gradient" />
+            <GraphicsView Drawable="{StaticResource horizontalLinearGradientDrawable}"
+                          HeightRequest="120"
+                          WidthRequest="400" />
+            <Label Text="Vertical linear gradient" />
+            <GraphicsView Drawable="{StaticResource verticalLinearGradientDrawable}"
+                          HeightRequest="120"
+                          WidthRequest="400" />
+            <Label Text="Diagonal linear gradient" />
+            <GraphicsView Drawable="{StaticResource diagonalLinearGradientDrawable}"
+                          HeightRequest="120"
+                          WidthRequest="400" />
+            <Label Text="Four color diagonal linear gradient" />
+            <GraphicsView Drawable="{StaticResource fourColorLinearGradientDrawable}"
+                          HeightRequest="120"
+                          WidthRequest="400" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

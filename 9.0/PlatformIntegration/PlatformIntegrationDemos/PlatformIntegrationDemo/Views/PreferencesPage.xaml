@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:views="clr-namespace:PlatformIntegrationDemo.Views"
+                xmlns:viewmodels="clr-namespace:PlatformIntegrationDemo.ViewModels"
+                x:Class="PlatformIntegrationDemo.Views.PreferencesPage"
+                Title="Preferences">
+    <views:BasePage.BindingContext>
+        <viewmodels:PreferencesViewModel />
+    </views:BasePage.BindingContext>
+
+    <Grid RowDefinitions="Auto,*">
+        <Label Text="Quickly and easily add persistent preferences."
+               FontAttributes="Bold"
+               Margin="12" />
+
+        <ScrollView Grid.Row="1">
+            <StackLayout Padding="12,0,12,12"
+                         Spacing="6">
+                <Label Text="Enter some text to save:" />
+                <Editor Placeholder="Enter text..."
+                        Text="{Binding PreferenceValue}"
+                        AutoSize="TextChanges" />
+            </StackLayout>
+        </ScrollView>
+    </Grid>
+</views:BasePage>

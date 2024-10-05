@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FlexLayoutDemos.Views.SimpleStackPage"
+             Title="Simple Stack">    
+    <FlexLayout Direction="Column"
+                AlignItems="Center"
+                JustifyContent="SpaceEvenly">        
+        <Label Text="FlexLayout in Action"
+               FontSize="20" />
+        <Image Source="dotnet_bot_branded.png"
+               HeightRequest="300" />
+        <Button Text="Do-Nothing Button" />
+        <Label Text="Another Label" />
+    </FlexLayout>
+</ContentPage>
