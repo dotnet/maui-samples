@@ -1,0 +1,72 @@
+name: Build Windows Packaged Release
+
+on:
+  push:
+    branches: [ main, actions ]
+
+env:
+    DOTNETVERSION: 8.0.201
+    CONFIGURATION: Release # Values: Debug, Release
+    PLATFORM: x64
+    VERSIONNUMBER: 1.${{ github.run_number }}.${{ github.run_attempt }}
+    
+jobs:
+  buildWindowsPackaged:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup .NET SDK ${{env.DOTNETVERSION}}
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: '${{env.DOTNETVERSION}}'
+
+      - name: List installed .NET info
+        shell: pwsh
+        run: dotnet --info
+
+      - name: Install MAUI Workload
+        run: dotnet workload install maui --ignore-failed-sources
+
+      - uses: managedcode/MAUIAppVersion@v1
+        with:
+          csproj: '8.0/Apps/WeatherTwentyOne/src/WeatherTwentyOne/WeatherTwentyOne.csproj'
+          version: 0 # Revision number must be 0 on Windows to be allowed on MS Store https://learn.microsoft.com/en-us/windows/apps/publish/publish-your-app/package-version-numbering?pivots=store-installer-msix#version-numbering-for-windows10-packages
+          displayVersion: '${{ env.VERSIONNUMBER }}'
+          printFile: true # optional
+
+      # https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/certutil
+      # commandline util to encode to base64 on windows
+      # openssl enc -base64 -a -in WinSignCert.pfx -out WinSignCert_base64.txt
+      - name: Create signing pfx file from secrets
+        shell: pwsh
+        id: secret-file
+        env:
+          SECRET_DATA1: ${{ secrets.WIN_SIGN_CERT }}
+        run: |
+          $secretFile = "WinSignCert.pfx"; 
+          $encodedBytes = [System.Convert]::FromBase64String($env:SECRET_DATA1); 
+          Set-Content $secretFile -Value $encodedBytes -AsByteStream;
+          Write-Output "::set-output name=SECRET_FILE::$secretFile";
+          Write-Output " ";
+          Write-Output "CHECK FILE EXISTS";
+          Write-Output " ";
+          ls
+
+      - name: Add Cert to Store
+        run: |
+          certutil -user -q -p ${{ secrets.WIN_CERT_PASSWORD }} -importpfx WinSignCert.pfx NoRoot
+
+      # https://docs.microsoft.com/en-us/dotnet/maui/windows/deployment/overview
+      - name: Build Windows MSIX
+        run: |
+          cd .\8.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\
+          dotnet publish -f net8.0-windows10.0.19041.0 -c:${{ env.CONFIGURATION }} -p:PackageCertificateThumbprint=${{ secrets.WIN_CERT_THUMBPRINT }} -p:AppxPackageSigningEnabled=true -p:WindowsPackageType=MSIX --self-contained
+
+      - name: Upload Windows Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: artifacts-windows
+          path: |
+            8.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\bin\${{ env.PLATFORM }}\${{ env.CONFIGURATION }}\net8.0-windows10.0.19041.0\win10-x64\AppPackages\**\*
