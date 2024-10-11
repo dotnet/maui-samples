@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Window xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+        xmlns:local="clr-namespace:TitleBarDemo"
+        x:Class="TitleBarDemo.MainWindow">
+    <Window.BindingContext>
+        <local:MainWindowViewModel />
+    </Window.BindingContext>
+    <Window.Page>
+        <local:AppShell />
+    </Window.Page>
+    <Window.TitleBar>
+        <TitleBar x:Name="titleBar"
+                  Title="{Binding Title}"
+                  Subtitle="{Binding Subtitle}"
+                  IsVisible="{Binding ShowTitleBar}"
+                  BackgroundColor="#512BD4"
+                  ForegroundColor="White"                  
+                  HeightRequest="48">
+            <TitleBar.Content>
+                <SearchBar Placeholder="Search"
+                           PlaceholderColor="White"
+                           MaximumWidthRequest="300"
+                           HorizontalOptions="Fill"
+                           VerticalOptions="Center" />
+            </TitleBar.Content>            
+        </TitleBar>
+    </Window.TitleBar>
+</Window>
