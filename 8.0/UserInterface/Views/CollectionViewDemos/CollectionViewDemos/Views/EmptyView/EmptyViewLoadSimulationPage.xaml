@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="CollectionViewDemos.Views.EmptyViewLoadSimulationPage"
              Title="EmptyView (load simulation)">
-    <StackLayout Margin="20">
+    <Grid Margin="20">
         <CollectionView x:Name="collectionView"
                         EmptyView="Loading items simulation.">
             <CollectionView.ItemTemplate>
@@ -34,5 +34,5 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-    </StackLayout>
+    </Grid>
 </ContentPage>

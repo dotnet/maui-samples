@@ -67,8 +67,8 @@
                                              OtherMonkey="{StaticResource OtherMonkeyTemplate}" />
     </ContentPage.Resources>
     
-    <StackLayout Margin="20">
+    <Grid Margin="20">
         <CollectionView ItemsSource="{Binding Monkeys}"
                         ItemTemplate="{StaticResource MonkeySelector}" />
-    </StackLayout>
+    </Grid>
 </ContentPage>

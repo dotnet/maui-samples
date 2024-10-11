@@ -148,7 +148,7 @@ namespace CollectionViewDemos.ViewModels
             Animals.Add(new Animal
             {
                 Name = "Abyssinian",
-                Location = "Ethopia",
+                Location = "Ethiopia",
                 Details = "The Abyssinian is a breed of domestic short-haired cat with a distinctive tickedtabby coat, in which individual hairs are banded with different colors. The breed is named for Abyssinia (now called Ethiopia), where it is believed to have originated.",
                 ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Gustav_chocolate.jpg/168px-Gustav_chocolate.jpg"
             });

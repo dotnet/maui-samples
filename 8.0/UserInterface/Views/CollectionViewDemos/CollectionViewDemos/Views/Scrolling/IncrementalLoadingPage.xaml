@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CollectionViewDemos.Views.IncrementalLoadingPage"
              Title="Incremental loading on scroll">
-    <StackLayout Margin="20">
+    <Grid Margin="20">
         <CollectionView ItemsSource="{Binding Animals}"
                         RemainingItemsThreshold="5"
                         RemainingItemsThresholdReached="OnCollectionViewRemainingItemsThresholdReached"
@@ -36,5 +36,5 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-    </StackLayout>
+    </Grid>
 </ContentPage>

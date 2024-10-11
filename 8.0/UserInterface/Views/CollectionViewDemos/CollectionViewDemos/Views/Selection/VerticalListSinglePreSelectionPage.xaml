@@ -3,12 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="CollectionViewDemos.Views.VerticalListSinglePreSelectionPage"
              Title="Vertical list (single pre-selection)">
-<StackLayout Margin="20">
+    <Grid RowDefinitions="Auto, *" 
+          Margin="20">
         <Label Text="{Binding SelectedMonkeyMessage}" />
         <CollectionView ItemsSource="{Binding Monkeys}"
                         SelectionMode="Single"
                         SelectedItem="{Binding SelectedMonkey}"
-                        SelectionChangedCommand="{Binding MonkeySelectionChangedCommand}">
+                        SelectionChangedCommand="{Binding MonkeySelectionChangedCommand}"
+                        Grid.Row="1">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Grid Padding="10">
@@ -37,5 +39,5 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-    </StackLayout>
+    </Grid>
 </ContentPage>
