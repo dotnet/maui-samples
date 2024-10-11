@@ -4,18 +4,19 @@
              xmlns:controls="clr-namespace:CollectionViewDemos.Controls"
              x:Class="CollectionViewDemos.Views.VerticalListGroupingVariableSizeItemsPage"
              Title="Grouping with variable sized items">
-    <StackLayout Margin="20">
-        <StackLayout Orientation="Horizontal"
-                     HorizontalOptions="Center">
+    <Grid RowDefinitions="Auto, *" 
+          Margin="20">
+        <HorizontalStackLayout HorizontalOptions="Center">
             <Label Text="ItemSizingStrategy:"
                    VerticalTextAlignment="Center" />
             <controls:EnumPicker x:Name="enumPicker"
                                  EnumType="{x:Type ItemSizingStrategy}"
                                  SelectedIndex="0" />
-        </StackLayout>
+        </HorizontalStackLayout>
         <CollectionView ItemsSource="{Binding Animals}"
                         IsGrouped="true"
-                        ItemSizingStrategy="{Binding Source={x:Reference enumPicker}, Path=SelectedItem}">
+                        ItemSizingStrategy="{Binding Source={x:Reference enumPicker}, Path=SelectedItem}"
+                        Grid.Row="1">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Grid Padding="10">
@@ -56,7 +57,7 @@
                 </DataTemplate>
             </CollectionView.GroupFooterTemplate>
         </CollectionView>
-    </StackLayout>
+    </Grid>
 </ContentPage>
 
 
