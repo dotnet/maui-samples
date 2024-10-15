@@ -4,7 +4,7 @@
 		<OutputType>Exe</OutputType>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>true</ImplicitUsings>
-		<SupportedOSPlatformVersion>13.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion>15.0</SupportedOSPlatformVersion>
 		<UseMaui>true</UseMaui>
 		<MauiEnablePlatformUsings>true</MauiEnablePlatformUsings>
 
