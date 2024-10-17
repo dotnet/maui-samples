@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+			 x:Class="TableViewDemos.FormIntentPage"
+			 Title="Form page">
+    <TableView Intent="Form">
+        <TableRoot>
+            <TableSection Title="Login details">
+                <EntryCell Label="Login"
+                           Placeholder="username" />
+                <EntryCell Label="Password"
+                           Placeholder="password" />
+            </TableSection>
+            <TableSection Title="Contact details">
+                <EntryCell Label="Name"
+                           Placeholder="name" />
+                <EntryCell Label="Address"
+                           Placeholder="address" />
+                <EntryCell Label="Phone number"
+                           Placeholder="mobile number" />
+            </TableSection>
+        </TableRoot>
+    </TableView>
+</ContentPage>

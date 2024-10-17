@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SkiaSharpDemos.Bitmaps.PhotoCroppingPage"
+             Title="Photo Cropping">
+    <Grid RowDefinitions="*,Auto">
+        <Grid x:Name="canvasViewHost"
+              Grid.Row="0"
+              BackgroundColor="Gray"
+              Padding="5" />
+        <Button Text="Done"
+                Grid.Row="1"
+                HorizontalOptions="Center"
+                Margin="5"
+                Clicked="OnDoneButtonClicked" />
+    </Grid>
+</ContentPage>

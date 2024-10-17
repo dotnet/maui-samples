@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<local:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:local="clr-namespace:SkiaSharpDemos"
+                x:Class="SkiaSharpDemos.MainPage">
+    <TableView Intent="Menu">
+        <TableRoot>
+            <TableSection>
+                <TextCell Text="SkiaSharp Drawing Basics"
+                          Detail="Learn basic graphics concepts and coordinates"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type local:Basics.BasicsMenuPage}" />
+                <TextCell Text="SkiaSharp Lines and Path"
+                          Detail="Use SkiaSharp to draw lines and graphics paths"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type local:Paths.PathsMenuPage}" />
+                <TextCell Text="SkiaSharp Transforms"
+                          Detail="Learn about transforms for modifying graphics"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type local:Transforms.TransformsMenuPage}" />
+                <TextCell Text="SkiaSharp Curves and Paths"
+                          Detail="Discover how to draw curves and use path features"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type local:Curves.CurvesMenuPage}" />
+                <TextCell Text="SkiaSharp Bitmaps"
+                          Detail="Create, draw on, save, and animate bitmaps"                          
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type local:Bitmaps.BitmapsMenuPage}" />
+                <TextCell Text="SkiaSharp Effects"
+                          Detail="Use gradients, bitmap tiling, blur, and drop shadow"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type local:Effects.EffectsMenuPage}" />
+            </TableSection>
+        </TableRoot>
+    </TableView>
+</local:BasePage>
+

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:layouts="clr-namespace:CustomLayoutDemos.Layouts"
+             x:Class="CustomLayoutDemos.Views.ColumnLayoutPage"
+             Title="Column layout">
+    <layouts:ColumnLayout x:Name="columnLayout">
+        <Label Text="Top"
+               Margin="10" />
+        <!-- Mark the middle section of the column as "expand to fill the available space" using the attached property -->
+        <Label x:Name="middle"
+               layouts:ColumnLayout.Fill="true"
+               Text="This column is using a custom class (ColumnLayout) which subclasses VerticalStackLayout. It adds an attached property 'Fill' which can mark an item as 'fill up the remaining available space'. It uses a custom layout manager which converts it at layout time into a single-column Grid with rows for each child; by default each row uses GridLength.Auto, but the items marked as 'Fill' have their rows marked as GridLength.Star. The final result is a single column filling the page."
+               VerticalTextAlignment="Center"
+               LineBreakMode="WordWrap"
+               BackgroundColor="LightBlue"
+               Padding="10" />
+        <Label Text="Bottom"
+               Margin="10" />
+    </layouts:ColumnLayout>
+</ContentPage>

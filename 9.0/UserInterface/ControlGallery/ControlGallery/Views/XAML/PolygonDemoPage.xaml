@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ControlGallery.Views.XAML.PolygonDemoPage"
+             Title="Polygon Demo">
+    <StackLayout>
+        <Label Text="Polygon"
+               FontSize="50"
+               FontAttributes="Bold"
+               HorizontalOptions="Center" />
+        <Polygon Points="0 48, 0 144, 96 150, 100 0, 192 0, 192 96, 50 96, 48 192, 150 200 144 48"
+                 Fill="Blue"
+                 Stroke="Red"
+                 StrokeThickness="3"
+                 HorizontalOptions="Center" />
+    </StackLayout>
+</ContentPage>
+

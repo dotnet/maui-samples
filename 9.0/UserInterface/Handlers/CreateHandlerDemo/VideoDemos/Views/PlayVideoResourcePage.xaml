@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:VideoDemos.Controls"
+             x:Class="VideoDemos.Views.PlayVideoResourcePage"
+             Unloaded="OnContentPageUnloaded"
+             Title="Play video resource">
+    <controls:Video x:Name="video"
+                    IsLooping="true">
+        <controls:Video.Source>
+            <controls:ResourceVideoSource>
+                <controls:ResourceVideoSource.Path>
+                    <OnPlatform x:TypeArguments="x:String">
+                        <On Platform="Android"
+                            Value="AndroidVideo.mp4" />
+                        <On Platform="iOS"
+                            Value="AppleVideo.mp4" />
+                        <On Platform="MacCatalyst"
+                            Value="AppleVideo.mp4" />
+                        <On Platform="WinUI"
+                            Value="WindowsVideo.mp4" />
+                    </OnPlatform>
+                </controls:ResourceVideoSource.Path>
+            </controls:ResourceVideoSource>
+        </controls:Video.Source>
+    </controls:Video>
+</ContentPage>

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CustomLayoutDemos.Views.CustomizedGridPage"
+             Title="Customized grid">
+    <Grid Margin="20">
+        <Label Text="This page demonstrates replacing the LayoutManager for an existing layout type." />
+        <Label Grid.Row="1"
+               Text="In this case, it's a LayoutManager for Grid which automatically adds enough rows to accommodate the rows specified in the child views' attached properties." />
+        <Label Grid.Row="2"
+               Text="Notice that the Grid doesn't explicitly specify a RowDefinitions collection." />
+        <Label Grid.Row="3"
+               Text="In MauiProgram.cs, an instance of an ILayoutManagerFactory has been added that replaces the default GridLayoutManager. The custom manager will automatically add the necessary RowDefinitions at runtime." />
+        <Label Grid.Row="5"
+               Text="We can even skip some rows, and it will add the intervening ones for us (notice the gap between the previous label and this one)." />
+    </Grid>
+</ContentPage>

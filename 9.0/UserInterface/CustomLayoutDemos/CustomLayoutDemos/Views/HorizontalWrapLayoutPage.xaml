@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:layouts="clr-namespace:CustomLayoutDemos.Layouts"
+             x:Class="CustomLayoutDemos.Views.HorizontalWrapLayoutPage"
+             Title="Horizontal wrap layout">
+    <ScrollView Margin="20">
+        <layouts:HorizontalWrapLayout Spacing="20">
+            <Image Source="img_0074.jpg"
+                   WidthRequest="150" />
+            <Image Source="img_0078.jpg"
+                   WidthRequest="150" />
+            <Image Source="img_0308.jpg"
+                   WidthRequest="150" />
+            <Image Source="img_0437.jpg"
+                   WidthRequest="150" />
+            <Image Source="img_0475.jpg"
+                   WidthRequest="150" />
+            <Image Source="img_0613.jpg"
+                   WidthRequest="150" />
+            <Image Source="img_0718.jpg"
+                   WidthRequest="150" />
+            <Image Source="img_0866.jpg"
+                   WidthRequest="150" />
+            <Image Source="img_1480.jpg"
+                   WidthRequest="150" />
+            <Image Source="img_2225.jpg"
+                   WidthRequest="150" />
+            <Image Source="img_2261.jpg"
+                   WidthRequest="150" />
+            <Image Source="img_2267.jpg"
+                   WidthRequest="150" />
+            <Image Source="img_2268.jpg"
+                   WidthRequest="150" />
+            <Image Source="img_2313.jpg"
+                   WidthRequest="150" />
+            <Image Source="img_2350.jpg"
+                   WidthRequest="150" />
+            <Image Source="img_2361.jpg"
+                   WidthRequest="150" />
+            <Image Source="img_2412.jpg"
+                   WidthRequest="150" />
+            <Image Source="img_3535.jpg"
+                   WidthRequest="150" />
+            <Image Source="img_3673.jpg"
+                   WidthRequest="150" />
+            <Image Source="img_3686.jpg"
+                   WidthRequest="150" />
+        </layouts:HorizontalWrapLayout>
+    </ScrollView>
+</ContentPage>

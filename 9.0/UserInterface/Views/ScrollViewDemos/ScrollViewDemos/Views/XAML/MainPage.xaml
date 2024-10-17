@@ -1,0 +1,32 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns:views="clr-namespace:ScrollViewDemos.Views.XAML"
+			 xmlns:codeViews="clr-namespace:ScrollViewDemos.Views.Code"
+             x:Class="ScrollViewDemos.MainPage"
+			 Title="ScrollView demos">
+	<TableView Intent="Menu">
+		<TableRoot>
+			<TableSection Title="XAML">
+				<TextCell Text="ScrollView as the root layout"
+                          Detail="Color list"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type views:ColorListPage}" />
+				<TextCell Text="ScrollView as a child layout"
+                          Detail="The Black Cat short story"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type views:BlackCatPage}" />
+			</TableSection>
+			<TableSection Title="C#">
+				<TextCell Text="ScrollView as the root layout"
+                          Detail="Color list"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type codeViews:ColorListPage}" />
+				<TextCell Text="ScrollView as a child layout"
+                          Detail="The Black Cat short story"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type codeViews:BlackCatPage}" />
+			</TableSection>
+		</TableRoot>
+	</TableView>
+</ContentPage>
+

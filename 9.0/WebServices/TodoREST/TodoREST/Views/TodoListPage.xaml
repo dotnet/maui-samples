@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="TodoREST.Views.TodoListPage"
+             Title="Todo">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add Item" Clicked="OnAddItemClicked">
+            <ToolbarItem.IconImageSource>
+                <OnPlatform x:TypeArguments="ImageSource">
+                    <On Platform="Android, WinUI" Value="plus.png" />
+                </OnPlatform>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <CollectionView x:Name="collectionView"
+                    Margin="20"
+                    SelectionMode="Single"
+                    SelectionChanged="OnSelectionChanged">
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <Grid Padding="20,0,0,0"
+                      ColumnDefinitions="0.9*, 0.1*">
+                    <Label Text="{Binding Name}" 
+                           VerticalTextAlignment="Center" />
+                    <Image Grid.Column="1"
+                           Source="check.png" 
+                           IsVisible="{Binding Done}"
+                           HorizontalOptions="End" />
+                </Grid>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+</ContentPage>
