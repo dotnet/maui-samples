@@ -22,7 +22,7 @@ public partial class MainPage : ContentPage
         double x = 123d;
         double y = 321d;
 
-        var result = await hybridWebView.InvokeJavaScriptAsync<ComputationResult>(
+        ComputationResult result = await hybridWebView.InvokeJavaScriptAsync<ComputationResult>(
             "AddNumbers", // JavaScript method name
             HybridSampleJSContext.Default.ComputationResult, // JSON serialization info for return type
             [x, y], // Parameter values
@@ -40,7 +40,7 @@ public partial class MainPage : ContentPage
     {
         string statusResult = string.Empty;
 
-        var asyncResult = await hybridWebView.InvokeJavaScriptAsync<Dictionary<string, string>>(
+        Dictionary<string,string> asyncResult = await hybridWebView.InvokeJavaScriptAsync<Dictionary<string, string>>(
             "EvaluateMeWithParamsAndAsyncReturn", // JavaScript method name
             HybridSampleJSContext.Default.DictionaryStringString, // JSON serialization info for return type
             ["new_key", "new_value"], // Parameter values
