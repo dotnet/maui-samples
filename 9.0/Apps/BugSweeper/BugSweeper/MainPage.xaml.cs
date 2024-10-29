@@ -68,7 +68,7 @@ public partial class MainPage : ContentPage
 
         // Because IsVisible has been false, the text might not have a size yet,
         // in which case Measure will return a size.
-        double congratulationsTextWidth = congratulationsText.Measure(Double.PositiveInfinity, Double.PositiveInfinity).Request.Width;
+        double congratulationsTextWidth = congratulationsText.Measure(Double.PositiveInfinity, Double.PositiveInfinity).Width;
 
         congratulationsText.Rotation = 0;
         congratulationsText.RotateTo(3 * 360, 1000, Easing.CubicOut);
@@ -95,7 +95,7 @@ public partial class MainPage : ContentPage
 
         // Because IsVisible has been false, the text might not have a size yet,
         // in which case Measure will return a size.
-        double consolationTextWidth = consolationText.Measure(Double.PositiveInfinity, Double.PositiveInfinity).Request.Width;
+        double consolationTextWidth = consolationText.Measure(Double.PositiveInfinity, Double.PositiveInfinity).Width;
 
         double maxScale = 0.9 * board.Width / consolationTextWidth;
         await consolationText.ScaleTo(maxScale, 5000);
@@ -110,7 +110,7 @@ public partial class MainPage : ContentPage
 
         // Because IsVisible has been false, the text might not have a size yet,
         // in which case Measure will return a size.
-        double playAgainButtonWidth = playAgainButton.Measure(Double.PositiveInfinity, Double.PositiveInfinity).Request.Width;
+        double playAgainButtonWidth = playAgainButton.Measure(Double.PositiveInfinity, Double.PositiveInfinity).Width;
 
         double maxScale = board.Width / playAgainButtonWidth;
         await playAgainButton.ScaleTo(maxScale, 1000, Easing.SpringOut);
