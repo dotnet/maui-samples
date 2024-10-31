@@ -25,9 +25,4 @@ public partial class PlayLibraryVideoPage : ContentPage
 
         button.IsEnabled = true;
     }
-
-    void OnContentPageUnloaded(object sender, EventArgs e)
-    {
-        video.Handler?.DisconnectHandler();
-    }
 }

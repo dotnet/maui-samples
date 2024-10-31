@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:VideoDemos.Controls"
              x:Class="VideoDemos.Views.CustomPositionBarPage"
-             Unloaded="OnContentPageUnloaded"
              Title="Custom position bar">
     <Grid RowDefinitions="*,Auto,Auto">
         <controls:Video x:Name="video"

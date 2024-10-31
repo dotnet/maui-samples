@@ -6,10 +6,4 @@ public partial class PlayVideoResourcePage : ContentPage
     {
         InitializeComponent();
     }
-
-    void OnContentPageUnloaded(object sender, EventArgs e)
-    {
-        video.Handler?.DisconnectHandler();
-    }
-
 }

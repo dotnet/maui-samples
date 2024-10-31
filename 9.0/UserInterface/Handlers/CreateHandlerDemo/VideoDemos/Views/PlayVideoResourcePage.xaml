@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:VideoDemos.Controls"
              x:Class="VideoDemos.Views.PlayVideoResourcePage"
-             Unloaded="OnContentPageUnloaded"
              Title="Play video resource">
     <controls:Video x:Name="video"
                     IsLooping="true">

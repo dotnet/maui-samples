@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:VideoDemos.Controls"
              x:Class="VideoDemos.Views.PlayWebVideoPage"
-             Unloaded="OnContentPageUnloaded"
              Title="Play web video">
     <controls:Video x:Name="video"
                     Source="https://archive.org/download/BigBuckBunny_328/BigBuckBunny_512kb.mp4" />

@@ -6,9 +6,4 @@ public partial class BindToVideoPlayerPage : ContentPage
     {
         InitializeComponent();
     }
-
-    void OnContentPageUnloaded(object sender, EventArgs e)
-    {
-        video.Handler?.DisconnectHandler();
-    }
 }

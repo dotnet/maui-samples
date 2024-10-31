@@ -14,9 +14,4 @@ public partial class SelectWebVideoPage : ContentPage
         string key = ((string)e.CurrentSelection.FirstOrDefault()).Replace(" ", "").Replace("'", "");
         video.Source = (UriVideoSource)Application.Current.Resources[key];
     }
-
-    void OnContentPageUnloaded(object sender, EventArgs e)
-    {
-        video.Handler?.DisconnectHandler();
-    }
 }

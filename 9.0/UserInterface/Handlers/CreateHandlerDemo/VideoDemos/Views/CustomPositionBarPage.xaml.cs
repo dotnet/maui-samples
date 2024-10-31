@@ -25,9 +25,4 @@ public partial class CustomPositionBarPage : ContentPage
     {
         video.Stop();
     }
-
-    void OnContentPageUnloaded(object sender, EventArgs e)
-    {
-        video.Handler?.DisconnectHandler();
-    }
 }
