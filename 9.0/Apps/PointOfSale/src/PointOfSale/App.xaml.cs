@@ -3,18 +3,21 @@
 public partial class App : Application
 {
     public App()
-	{
-		InitializeComponent();
+  	{
+  		  InitializeComponent();
 
         App.Current.UserAppTheme = AppTheme.Dark;
+  	}
 
+    protected override Window CreateWindow(IActivationState? activationState)
+    {
         if (DeviceInfo.Idiom == DeviceIdiom.Phone)
         {
-            MainPage = new AppShellMobile();
+            return new Window(new AppShellMobile());
         }
         else
         {
-            MainPage = new AppShell();
+            return new Window(new AppShell());
         }
-	}
+    }
 }

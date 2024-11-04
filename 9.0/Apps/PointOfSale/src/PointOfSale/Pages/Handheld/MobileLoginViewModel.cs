@@ -12,9 +12,9 @@ public partial class MobileLoginViewModel : ObservableObject
     // display the message
     private async Task ShowMessage(string title, string message)
     {
-        _ = App.Current.MainPage.Dispatcher.Dispatch(async () =>
+        _ = App.Current.Windows[0].Page.Dispatcher.Dispatch(async () =>
         {
-            await App.Current.MainPage.DisplayAlert(title, message, "OK").ConfigureAwait(false);
+            await App.Current.Windows[0].Page.DisplayAlert(title, message, "OK").ConfigureAwait(false);
         });
     }
 }

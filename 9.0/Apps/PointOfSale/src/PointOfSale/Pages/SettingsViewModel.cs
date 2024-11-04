@@ -15,7 +15,6 @@ public partial class SettingsViewModel : ObservableObject
     [RelayCommand]
     async Task NotImplemented()
     {
-        await App.Current.MainPage.DisplayAlert("Not Implemented", "Wouldn't it be nice tho?", "Okay");
+        await App.Current.Windows[0].Page.DisplayAlert("Not Implemented", "Wouldn't it be nice tho?", "Okay");
     }
 }
-

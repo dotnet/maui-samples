@@ -2,10 +2,13 @@
 
 public partial class App : Application
 {
-	public App()
-	{
-		InitializeComponent();
+		public App()
+		{
+				InitializeComponent();
+		}
 
-		MainPage = new AppTabbedPage();
-	}
+		protected override Window CreateWindow(IActivationState? activationState)
+		{
+				return new Window(new AppShell());
+		}
 }

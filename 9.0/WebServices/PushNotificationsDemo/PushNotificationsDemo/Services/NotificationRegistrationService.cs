@@ -15,7 +15,7 @@ public class NotificationRegistrationService : INotificationRegistrationService
     IDeviceInstallationService _deviceInstallationService;
 
     IDeviceInstallationService DeviceInstallationService =>
-        _deviceInstallationService ?? (_deviceInstallationService = Application.Current.MainPage.Handler.MauiContext.Services.GetService<IDeviceInstallationService>());
+        _deviceInstallationService ?? (_deviceInstallationService = Application.Current.Windows[0].Page.Handler.MauiContext.Services.GetService<IDeviceInstallationService>());
 
     public NotificationRegistrationService(string baseApiUri, string apiKey)
     {
@@ -100,4 +100,3 @@ public class NotificationRegistrationService : INotificationRegistrationService
         response.EnsureSuccessStatusCode();
     }
 }
-

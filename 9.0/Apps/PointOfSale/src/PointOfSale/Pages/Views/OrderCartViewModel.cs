@@ -41,7 +41,7 @@ public partial class OrderCartViewModel : ObservableObject
     [RelayCommand]
     async Task PlaceOrder()
     {
-        await App.Current.MainPage.DisplayAlert("Not Implemented", "Wouldn't it be cool tho?", "Okay");
+        await App.Current.Windows[0].Page.DisplayAlert("Not Implemented", "Wouldn't it be cool tho?", "Okay");
         if(index < (AppData.Orders.Count - 1))
             index++;
         else

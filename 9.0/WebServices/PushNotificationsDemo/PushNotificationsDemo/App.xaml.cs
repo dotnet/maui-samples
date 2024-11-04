@@ -13,8 +13,11 @@ public partial class App : Application
 
         _actionService = service;
         _actionService.ActionTriggered += NotificationActionTriggered;
+    }
 
-        MainPage = new AppShell();
+    protected override Window CreateWindow(IActivationState? activationState)
+    {
+        return new Window(new AppShell());
     }
 
     void NotificationActionTriggered(object sender, PushDemoAction e)
@@ -26,7 +29,7 @@ public partial class App : Application
     {
         MainThread.BeginInvokeOnMainThread(() =>
         {
-            MainPage?.DisplayAlert("Push notifications demo", $"{action} action received.", "OK")
+            Windows[0].Page?.DisplayAlert("Push notifications demo", $"{action} action received.", "OK")
                 .ContinueWith((task) =>
                 {
                     if (task.IsFaulted)
