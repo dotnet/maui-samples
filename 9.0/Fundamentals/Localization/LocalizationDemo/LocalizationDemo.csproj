@@ -43,13 +43,14 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
 	</PropertyGroup>
 
+	<!-- No longer necessary due to https://github.com/dotnet/maui/pull/23269
 	<PropertyGroup Condition="$(TargetFramework.Contains('-ios'))">
 		<IPhoneResourcePrefix>Platforms/iOS/Resources</IPhoneResourcePrefix>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="$(TargetFramework.Contains('-maccatalyst'))">
 		<IPhoneResourcePrefix>Platforms/MacCatalyst/Resources</IPhoneResourcePrefix>
-	</PropertyGroup>
+	</PropertyGroup>-->
 
 	<ItemGroup>
 		<!-- App Icon -->
