@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StackLayoutDemos.Views.XAML.CombinedStackLayoutPage"
+             Title="Combined StackLayouts demo">
+    <StackLayout Margin="20">
+        <Label Text="Primary colors" />
+        <Frame BorderColor="Black"
+               Padding="5">
+            <StackLayout Orientation="Horizontal"
+                         Spacing="15">
+                <BoxView Color="Red"
+                         WidthRequest="40" />
+                <Label Text="Red"
+                       FontSize="20"
+                       VerticalOptions="Center" />
+            </StackLayout>
+        </Frame>
+        <Frame BorderColor="Black"
+               Padding="5">
+            <StackLayout Orientation="Horizontal"
+                         Spacing="15">
+                <BoxView Color="Yellow"
+                         WidthRequest="40" />
+                <Label Text="Yellow"
+                       FontSize="20"
+                       VerticalOptions="Center" />
+            </StackLayout>
+        </Frame>
+        <Frame BorderColor="Black"
+               Padding="5">
+            <StackLayout Orientation="Horizontal"
+                         Spacing="15">
+                <BoxView Color="Blue"
+                         WidthRequest="40" />
+                <Label Text="Blue"
+                       FontSize="20"
+                       VerticalOptions="Center" />
+            </StackLayout>
+        </Frame>
+        <Label Text="Secondary colors" />
+        <Frame BorderColor="Black"
+               Padding="5">
+            <StackLayout Orientation="Horizontal"
+                         Spacing="15">
+                <BoxView Color="Green"
+                         WidthRequest="40" />
+                <Label Text="Green"
+                       FontSize="20"
+                       VerticalOptions="Center" />
+            </StackLayout>
+        </Frame>
+        <Frame BorderColor="Black"
+               Padding="5">
+            <StackLayout Orientation="Horizontal"
+                         Spacing="15">
+                <BoxView Color="Orange"
+                         WidthRequest="40" />
+                <Label Text="Orange"
+                       FontSize="20"
+                       VerticalOptions="Center" />
+            </StackLayout>
+        </Frame>
+        <Frame BorderColor="Black"
+               Padding="5">
+            <StackLayout Orientation="Horizontal"
+                         Spacing="15">
+                <BoxView Color="Purple"
+                         WidthRequest="40" />
+                <Label Text="Purple"
+                       FontSize="20"
+                       VerticalOptions="Center" />
+            </StackLayout>
+        </Frame>
+    </StackLayout>
+</ContentPage>

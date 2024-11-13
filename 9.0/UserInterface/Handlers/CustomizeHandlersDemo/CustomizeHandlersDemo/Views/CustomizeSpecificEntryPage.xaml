@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:CustomizeHandlersDemo.Controls"
+             x:Class="CustomizeHandlersDemo.Views.CustomizeSpecificEntryPage"
+             Title="Customize specific Entry">
+    <VerticalStackLayout Margin="20"
+                         Spacing="10">
+        <Label Text="The first Entry has its text selected on focus." />
+        <controls:MyEntry Text="The quick brown fox jumped over the lazy dog." />
+        <Entry Text=".NET MAUI is a cross-platform framework for creating mobile and desktop apps." />
+        <Entry Text="Handlers can be custoized to augment the appearance and behavior of cross-platform controls." />
+    </VerticalStackLayout>
+</ContentPage>

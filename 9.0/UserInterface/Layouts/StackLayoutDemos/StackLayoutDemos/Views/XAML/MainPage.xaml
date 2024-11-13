@@ -1,0 +1,55 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:StackLayoutDemos.Views.XAML"
+             xmlns:codeViews="clr-namespace:StackLayoutDemos.Views.Code"
+             x:Class="StackLayoutDemos.MainPage"
+             Title="StackLayout demos">
+    <TableView Intent="Menu">
+        <TableRoot>
+            <TableSection Title="XAML">
+                <TextCell Text="Default StackLayout"
+                          Detail="Vertical"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type views:VerticalStackLayoutPage}" />
+                <TextCell Text="Horizontal StackLayout"
+                          Detail="Orientation property"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type views:HorizontalStackLayoutPage}" />
+                <TextCell Text="Child spacing"
+                          Detail="Spacing property"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type views:StackLayoutSpacingPage}" />
+                <TextCell Text="Combined StackLayouts"
+                          Detail="Vertical and Horizontal"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type views:CombinedStackLayoutPage}" />
+                <TextCell Text="Alignment in a vertical StackLayout"
+                          Detail="HorizontalOptions property"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type views:AlignmentPage}" />
+            </TableSection>
+            <TableSection Title="C#">
+                <TextCell Text="Default StackLayout"
+                          Detail="Vertical"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type codeViews:VerticalStackLayoutPage}" />
+                <TextCell Text="Horizontal StackLayout"
+                          Detail="Orientation property"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type codeViews:HorizontalStackLayoutPage}" />
+                <TextCell Text="Child spacing"
+                          Detail="Spacing property"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type codeViews:StackLayoutSpacingPage}" />
+                <TextCell Text="Combined StackLayouts"
+                          Detail="Vertical and Horizontal"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type codeViews:CombinedStackLayoutPage}" />
+                <TextCell Text="Alignment in a vertical StackLayout"
+                          Detail="HorizontalOptions property"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type codeViews:AlignmentPage}" />
+            </TableSection>
+        </TableRoot>
+    </TableView>
+</ContentPage>

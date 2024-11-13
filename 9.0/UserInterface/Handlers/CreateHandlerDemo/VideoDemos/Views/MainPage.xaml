@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:VideoDemos.Views"
+             x:Class="VideoDemos.Views.MainPage"
+             Title="VideoPlayer demos">
+    <TableView Intent="Menu">
+        <TableRoot>
+            <TableSection>
+                <TextCell Text="Play web video"
+                          Detail="Play a video by specifying a URL"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type local:PlayWebVideoPage}" />
+                <TextCell Text="Select web video"
+                          Detail="Select a video from a CollectionView"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type local:SelectWebVideoPage}" />
+                <TextCell Text="Bind to Video control"
+                          Detail="Select a video with a CollectionView binding"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type local:BindToVideoPlayerPage}" />
+                <TextCell Text="Play video resource"
+                          Detail="Play a video saved as a resource"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type local:PlayVideoResourcePage}" />
+                <TextCell Text="Play library video"
+                          Detail="Play a video from the photos/videos library"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type local:PlayLibraryVideoPage}" />
+                <TextCell Text="Custom transport controls"
+                          Detail="Play a video with custom Play and Pause buttons"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type local:CustomTransportPage}" />
+                <TextCell Text="Custom position bar"
+                          Detail="Play a video with a custom position bar"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type local:CustomPositionBarPage}" />
+            </TableSection>
+        </TableRoot>
+    </TableView>
+</ContentPage>

@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+			 x:Class="TableViewDemos.SettingsIntentPage"
+			 Title="Settings page">
+    <TableView Intent="Settings">
+        <TableRoot>
+            <TableSection>
+                <SwitchCell Text="Airplane Mode"
+                            On="False" />
+                <SwitchCell Text="Notifications"
+                            On="True" />
+            </TableSection>
+            <TableSection>
+                <EntryCell Label="Login"
+                           Placeholder="username" />
+                <EntryCell Label="Password"
+                           Placeholder="password" />
+            </TableSection>
+            <TableSection Title="Silent">
+                <ViewCell>
+                    <Grid RowDefinitions="Auto,Auto"
+                          ColumnDefinitions="0.5*,0.5*">
+                        <Label Text="Vibrate"
+                               Margin="10,10,0,0"/>
+                        <Switch Grid.Column="1"
+                                HorizontalOptions="End" />
+                        <Slider Grid.Row="1"
+                                Grid.ColumnSpan="2"
+                                Margin="10"
+                                Minimum="0"
+                                Maximum="10"
+                                Value="3" />
+                    </Grid>
+                </ViewCell>
+            </TableSection>
+        </TableRoot>
+    </TableView>
+</ContentPage>

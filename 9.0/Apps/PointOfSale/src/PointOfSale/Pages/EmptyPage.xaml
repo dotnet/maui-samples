@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:a="clr-namespace:PointOfSale"
+             xmlns:system="clr-namespace:System;assembly=netstandard"
+             xmlns:mct="clr-namespace:CommunityToolkit.Maui;assembly=CommunityToolkit.Maui" xmlns:views="clr-namespace:PointOfSale.Pages.Views"
+             x:Class="PointOfSale.Pages.EmptyPage"
+             Title="Empty"
+             Shell.NavBarIsVisible="False">
+
+    <Grid RowDefinitions="100,*" RowSpacing="24"
+          ColumnDefinitions="*,400"
+          Margin="24,0,0,0">
+
+        <!-- left column -->
+        <VerticalStackLayout Margin="0,24,0,0">
+            <Label Text="Empty" Style="{StaticResource LargeTitle}"/>
+            <Label Text="{Binding Source={x:Static system:DateTime.Now}, StringFormat='{0:dddd, MMMM dd yyyy}'}"/>
+            <BoxView Style="{StaticResource HRule}" Margin="0,24,0,0"/>
+        </VerticalStackLayout>
+
+        <ScrollView Grid.Row="1" Margin="0,24,0,24">
+            <Grid RowDefinitions="150,*" RowSpacing="24"
+                  ColumnDefinitions="*,*,*" ColumnSpacing="24">
+                
+            </Grid>
+        </ScrollView>
+    </Grid>
+</ContentPage>
+

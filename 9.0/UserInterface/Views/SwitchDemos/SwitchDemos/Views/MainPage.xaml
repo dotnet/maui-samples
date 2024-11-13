@@ -1,0 +1,28 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns:local="clr-namespace:SwitchDemos"
+             x:Class="SwitchDemos.MainPage"
+	         Title="Switch Demos">
+	<TableView Intent="Menu">
+		<TableRoot>
+			<TableSection>
+				<TextCell Text="Switch XAML"
+                          Detail="Implement a Switch in XAML"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type local:SwitchXamlPage}" />
+				<TextCell Text="Switch Code"
+                          Detail="Implement a Switch in code"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type local:SwitchCodePage}" />
+				<TextCell Text="Switch Bindings"
+                          Detail="Implement a Switch with bindings"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type local:SwitchBindingsPage}" />
+				<TextCell Text="Switch Visual States"
+                          Detail="IsToggled visual states"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type local:SwitchVisualStatesPage}" />
+			</TableSection>
+		</TableRoot>
+	</TableView>
+</ContentPage>

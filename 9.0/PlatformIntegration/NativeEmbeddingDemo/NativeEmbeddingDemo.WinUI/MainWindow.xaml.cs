@@ -33,11 +33,13 @@ namespace NativeEmbeddingDemo.WinUI
             _window ??= this;
         }
 
-        private void OnRootLayoutLoaded(object? sender, RoutedEventArgs e)
+        private async void OnRootLayoutLoaded(object? sender, RoutedEventArgs e)
         {
             // Handle the event firing multiple times
             if (_nativeView is not null)
                 return;
+
+            await Task.Yield();
 
             // Create WinUI button
             var nativeButton = new Microsoft.UI.Xaml.Controls.Button();

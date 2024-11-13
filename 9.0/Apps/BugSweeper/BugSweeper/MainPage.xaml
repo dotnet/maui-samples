@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:BugSweeper"
+             x:Class="BugSweeper.MainPage"
+             Title="Bug Sweeper">
+    <Grid RowDefinitions="Auto,*">
+        <VerticalStackLayout>
+            <Label Text="Tap to flag/unflag a potential bug."
+                   HorizontalTextAlignment="Center" />
+            <Label Text="Double-tap if you're sure it's not a bug."
+                   Margin="0,10,0,0"
+                   VerticalOptions="Center"
+                   HorizontalTextAlignment="Center" />
+            <Label Text="The first double-tap is always safe!"
+                   Margin="0,10,0,0"
+                   VerticalOptions="Center"
+                   HorizontalTextAlignment="Center" />
+            <Label Margin="0,10,0,0"
+                   HorizontalTextAlignment="Center">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="{Binding FlaggedTileCount, StringFormat='Flagged {0} '}"
+                              BindingContext="{x:Reference board}" />
+                        <Span Text="{Binding BugCount, StringFormat=' out of {0} bugs.'}"
+                              BindingContext="{x:Reference board}" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label x:Name="timeLabel"
+                   Text="0:00"
+                   Margin="0,10,0,0"
+                   HorizontalTextAlignment="Center" />
+        </VerticalStackLayout>
+
+        <!-- Single-cell Grid for Board and overlays. -->
+        <Grid Grid.Row="1"
+              SizeChanged="OnBoardGridSizeChanged">
+            <local:Board x:Name="board" />
+            <StackLayout x:Name="congratulationsText"
+                         Orientation="Horizontal"
+                         HorizontalOptions="Center">
+                <Label Text="C"
+                       TextColor="Red" />
+                <Label Text="O"
+                       TextColor="Red" />
+                <Label Text="N"
+                       TextColor="Red" />
+                <Label Text="G"
+                       TextColor="Red" />
+                <Label Text="R"
+                       TextColor="Red" />
+                <Label Text="A"
+                       TextColor="Red" />
+                <Label Text="T"
+                       TextColor="Red" />
+                <Label Text="U"
+                       TextColor="Red" />
+                <Label Text="L"
+                       TextColor="Red" />
+                <Label Text="A"
+                       TextColor="Red" />
+                <Label Text="T"
+                       TextColor="Red" />
+                <Label Text="I"
+                       TextColor="Red" />
+                <Label Text="O"
+                       TextColor="Red" />
+                <Label Text="N"
+                       TextColor="Red" />
+                <Label Text="S"
+                       TextColor="Red" />
+                <Label Text="!"
+                       TextColor="Red" />
+            </StackLayout>
+            <HorizontalStackLayout x:Name="consolationText"
+                                   HorizontalOptions="Center">
+                <Label Text="T"
+                       TextColor="Red" />
+                <Label Text="O"
+                       TextColor="Red" />
+                <Label Text="O"
+                       TextColor="Red" />
+                <Label Text=" "
+                       TextColor="Red" />
+                <Label Text="B"
+                       TextColor="Red" />
+                <Label Text="A"
+                       TextColor="Red" />
+                <Label Text="D"
+                       TextColor="Red" />
+                <Label Text="!"
+                       TextColor="Red" />
+            </HorizontalStackLayout>
+            <Button x:Name="playAgainButton"
+                    Text=" Play Another Game? "
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Clicked="OnplayAgainButtonClicked"
+                    BorderColor="Black"
+                    BorderWidth="2"
+                    BackgroundColor="White"
+                    TextColor="Black" />
+        </Grid>
+    </Grid>
+</ContentPage>

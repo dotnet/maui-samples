@@ -1,0 +1,411 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+                    xmlns:app="clr-namespace:WeatherTwentyOne.Resources.Styles"
+                    x:Class="WeatherTwentyOne.Resources.Styles.DefaultTheme"
+                    xmlns:android="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;assembly=Microsoft.Maui.Controls"
+                    xmlns:converter="clr-namespace:WeatherTwentyOne.Converters">
+
+    <Color x:Key="Primary">#512BD4</Color>
+    <Color x:Key="Secondary">#DFD8F7</Color>
+    <Color x:Key="Tertiary">#2B0B98</Color>
+    <Color x:Key="Neutral">#969696</Color>
+    <Color x:Key="NeutralLighter">#E5E5E1</Color>
+    <Color x:Key="NeutralDarker">#505050</Color>
+    <Color x:Key="White">#FFFFFF</Color>
+    <Color x:Key="Black">#000000</Color>
+    <Color x:Key="Accent">#F7B548</Color>
+    <Color x:Key="Error">#C00</Color>
+    <Color x:Key="Warning">#FFCC00</Color>
+    <Color x:Key="Text_Light">#000000</Color>
+    <Color x:Key="Text_Dark">#FFFFFF</Color>
+    <Color x:Key="TextOnSolid_Light">#FFFFFF</Color>
+    <Color x:Key="TextOnSolid_Dark">#000000</Color>
+    <Color x:Key="TextSecondary_Light">#1d1d1d</Color>
+    <Color x:Key="TextSecondary_Dark">#f1f1f1</Color>
+    <Color x:Key="Background_Dark">#081B25</Color>
+    <Color x:Key="Background_Mid">#152C39</Color>
+    <Color x:Key="Accent_Yellow100">#F7B548</Color>
+    <Color x:Key="Accent_Yellow200">#FFD590</Color>
+    <Color x:Key="Accent_Blue100">#3E8EED</Color>
+    <Color x:Key="Accent_Blue200">#72ACF1</Color>
+    <Color x:Key="TabOff">#91A7B7</Color>
+
+    <!-- light theme alternatives -->
+    <Color x:Key="DarkGray">#212125</Color>
+    <Color x:Key="MidGray">#CFCFD3</Color>
+    <Color x:Key="LightGray">#EFEFEF</Color>
+
+
+
+    <FontImageSource
+                x:Key="SearchIcon"
+                FontFamily="FontAwesome"
+                Glyph="{x:Static app:IconFont.Search}"
+                Color="{StaticResource Background_Mid}"
+                Size="16"/>
+
+     <!-- SHELL -->
+    <Style x:Key="BaseStyle"
+           TargetType="Element">
+            <Setter Property="Shell.FlyoutBackgroundColor"
+                        Value="{StaticResource Background_Mid}"/>
+            <Setter Property="Shell.BackgroundColor"
+                    Value="{AppThemeBinding 
+                        Light={StaticResource LightGray}, 
+                        Dark={StaticResource Background_Mid}}" />
+            <Setter Property="Shell.ForegroundColor"
+                Value="{AppThemeBinding 
+                        Light={StaticResource DarkGray}, 
+                        Dark={StaticResource White}}" />
+            <Setter Property="Shell.TitleColor"
+                Value="{AppThemeBinding 
+                        Light={StaticResource DarkGray}, 
+                        Dark={StaticResource White}}" />
+            <!--<Setter Property="Shell.DisabledColor"
+                Value="#B4000000" />
+            <Setter Property="Shell.UnselectedColor"
+                Value="#CC0000" />-->
+            <Setter Property="Shell.NavBarHasShadow"
+                Value="False"/>
+
+    </Style>
+
+    <Style BasedOn="{StaticResource BaseStyle}"
+           ApplyToDerivedTypes="True"
+           TargetType="ShellItem" />
+
+    <Style TargetType="TabBar">
+        <Setter Property="Shell.TabBarBackgroundColor"
+            Value="{AppThemeBinding 
+                                Light={StaticResource LightGray}, 
+                                Dark={StaticResource Background_Mid}}" />
+        <Setter Property="Shell.TabBarTitleColor"
+            Value="{AppThemeBinding 
+                        Light={StaticResource DarkGray}, 
+                        Dark={StaticResource White}}" />
+        <Setter Property="Shell.TabBarUnselectedColor"
+            Value="{StaticResource TabOff}" />
+        <Setter Property="Shell.TabBarForegroundColor"
+            Value="{StaticResource Accent}" />
+    </Style>
+
+    <Style TargetType="Page" ApplyToDerivedTypes="True">
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding 
+            Light={StaticResource MidGray},
+            Dark={StaticResource Background_Dark}}"/>
+    </Style>
+
+    <Style TargetType="NavigationPage" ApplyToDerivedTypes="True">
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding 
+            Light={StaticResource LightGray},
+            Dark={StaticResource Background_Dark}}"/>
+        <Setter Property="BarBackgroundColor" Value="{AppThemeBinding 
+            Light={StaticResource LightGray},
+            Dark={StaticResource Background_Dark}}"/>
+        <Setter Property="BarTextColor" Value="{AppThemeBinding 
+                                                Light={StaticResource DarkGray}, 
+                                                Dark={StaticResource White}}"/>
+    </Style>
+
+    <Style TargetType="Label">
+        <Setter Property="FontFamily" Value="OpenSansRegular"/>
+        <Setter Property="FontSize"
+                Value="17"/>
+        <Setter Property="TextColor"
+                Value="{AppThemeBinding Light={StaticResource DarkGray}, Dark={StaticResource White}}"/>
+    </Style>
+    <Style TargetType="Label"
+            Class="LargeTitle">
+        <Setter Property="FontSize"
+                Value="24"/>
+        <Setter Property="FontFamily" Value="OpenSansRegular"/>
+    </Style>
+    <Style TargetType="Label"
+            Class="SectionTitle">
+        <Setter Property="FontSize"
+                Value="27"/>
+        <Setter Property="TextColor" Value="{StaticResource Accent_Blue100}"/>
+        <Setter Property="FontFamily" Value="OpenSansRegular"/>
+    </Style>
+    <Style TargetType="Label"
+            Class="Title1">
+        <Setter Property="FontSize"
+                Value="26"/>
+        <Setter Property="FontFamily" Value="OpenSansSemiBold"/>
+    </Style>
+    <Style TargetType="Label"
+            Class="Headline">
+        <Setter Property="FontSize"
+                Value="17"/>
+        <Setter Property="FontFamily" Value="OpenSansSemiBold"/>
+    </Style>
+    <Style TargetType="Label"
+            Class="Subhead">
+        <Setter Property="FontSize"
+                Value="14"/>
+    </Style>
+    <Style TargetType="Label"
+            Class="SubContent">
+        <Setter Property="FontSize"
+                Value="12"/>
+        <Setter Property="TextColor"
+                Value="{AppThemeBinding Light={StaticResource DarkGray}, Dark={StaticResource TabOff}}"/>
+    </Style>
+    <Style TargetType="Label"
+            Class="Footnote">
+        <Setter Property="FontSize"
+                Value="13"/>
+    </Style>
+    <Style TargetType="Label"
+            Class="Small">
+        <Setter Property="FontSize"
+                Value="10"/>
+    </Style>
+
+    <!-- Text Color Styles -->
+    <Style TargetType="Label"
+            Class="Secondary">
+        <Setter Property="TextColor"
+                Value="{StaticResource Secondary}"/>
+    </Style>
+    <Style TargetType="Label"
+            Class="Primary">
+        <Setter Property="TextColor"
+                Value="{StaticResource Primary}"/>
+    </Style>
+    <Style TargetType="Label"
+            Class="Error">
+        <Setter Property="TextColor"
+                Value="{StaticResource Error}"/>
+    </Style>
+    <Style TargetType="Label"
+            Class="Warning">
+        <Setter Property="TextColor"
+                Value="{StaticResource Warning}"/>
+    </Style>
+    <Style TargetType="Label"
+            Class="Disabled">
+        <Setter Property="TextColor"
+                Value="{StaticResource Neutral}"/>
+    </Style>
+
+    <FontImageSource
+        x:Key="CircleIcon"
+        FontFamily="FontAwesome"
+        Glyph="{x:Static app:IconFont.DotCircle}"
+        Color="{StaticResource TextOnSolid_Light}"
+        Size="16"/>
+
+    <FontImageSource
+        x:Key="CircleIconDisabled"
+        FontFamily="FontAwesome"
+        Glyph="{x:Static app:IconFont.DotCircle}"
+        Color="{StaticResource TextOnSolid_Light}"
+        Size="16"/>
+
+    <FontImageSource
+        x:Key="CircleIconAlt"
+        FontFamily="FontAwesome"
+        Glyph="{x:Static app:IconFont.DotCircle}"
+        Color="{StaticResource Primary}"
+        Size="16"/>
+    <FontImageSource
+        x:Key="CircleIconAltDisabled"
+        FontFamily="FontAwesome"
+        Glyph="{x:Static app:IconFont.DotCircle}"
+        Color="{StaticResource Neutral}"
+        Size="16"/>
+
+    <Style TargetType="Button">
+        <Setter Property="TextColor" Value="White"></Setter>
+        <Setter Property="FontFamily" Value="OpenSansRegular"/>
+        <Setter Property="CornerRadius" Value="8"/>
+        <Setter Property="Padding" Value="14,10"/>
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="{StaticResource Neutral}" />
+                            <Setter Property="TextColor" Value="White"/>
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Button" x:Key="PrimaryButtonOutline">
+        <Setter Property="CornerRadius" Value="8"/>
+        <Setter Property="BackgroundColor" Value="Transparent"/>
+        <Setter Property="TextColor" Value="{StaticResource Primary}"/>
+        <Setter Property="BorderWidth" Value="1"/>
+        <Setter Property="BorderColor" Value="{StaticResource Primary}"/>
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter Property="BorderColor" Value="{StaticResource Neutral}" />
+                            <Setter Property="TextColor" Value="{StaticResource Neutral}" />
+                            <Setter Property="BackgroundColor" Value="Transparent"/>
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Button" x:Key="PrimaryButtonOutlineIcon" BasedOn="{StaticResource PrimaryButtonOutline}">
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter Property="ImageSource" Value="{StaticResource CircleIconAltDisabled}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Button" x:Key="SecondaryButtonOutline" BasedOn="{StaticResource PrimaryButtonOutline}">
+        <Setter Property="Padding" Value="4"/>
+    </Style>
+    <Style TargetType="Button" x:Key="TertiaryButtonOutline" BasedOn="{StaticResource PrimaryButtonOutline}">
+    </Style>
+    <Style TargetType="Button" x:Key="BorderlessButton">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="TextColor" Value="{StaticResource Primary}"/>
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter Property="TextColor" Value="{StaticResource Neutral}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
+    <Style TargetType="ImageButton">
+        <Setter Property="BackgroundColor"
+                Value="Transparent"/>
+        <Setter Property="BorderColor"
+                Value="Transparent"/>
+        <Setter Property="android:ImageButton.ShadowColor"
+                Value="Transparent"/>
+    </Style>
+
+    <Style TargetType="StackLayout" Class="CheckBoxContainer">
+        <Setter Property="Spacing" Value="0"/>
+        <Setter Property="Orientation" Value="Horizontal"/>
+    </Style>
+
+    <Style TargetType="StackLayout" Class="SwitchContainer">
+        <Setter Property="Spacing" Value="0"/>
+        <Setter Property="Orientation" Value="Horizontal"/>
+    </Style>
+
+    <Style TargetType="ScrollView">
+        <Setter Property="VerticalScrollBarVisibility"
+                Value="Never"/>
+        <Setter Property="HorizontalScrollBarVisibility"
+                Value="Never"/>
+    </Style>
+
+    <!-- Misc -->
+    <Style TargetType="BoxView">
+        <Setter Property="BackgroundColor" Value="Transparent"/>
+    </Style>
+    <Style Class="HRule"
+           TargetType="BoxView">
+        <Setter Property="HeightRequest" Value="1"/>
+        <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+        <Setter Property="BackgroundColor" Value="{StaticResource Background_Mid}"/>
+    </Style>
+
+    <!-- <x:String x:Key="LineBreak">&#x0a;</x:String> -->
+    
+    <!-- data templates -->
+    <DataTemplate x:Key="WeatherWidgetTemplate">
+        <Frame
+            HorizontalOptions="Start"
+            HeightRequest="164"
+            WidthRequest="164"
+            Padding="0"
+            CornerRadius="20"
+            HasShadow="False"
+            BackgroundColor="{StaticResource Background_Mid}">
+            <Grid HeightRequest="144"
+                  WidthRequest="144"
+                  Padding="20">
+                <Image Source="{Binding .}"
+                                   VerticalOptions="Start"
+                                     HorizontalOptions="End"/>
+
+                <StackLayout HorizontalOptions="Start"
+                                     Spacing="0"
+                                     VerticalOptions="End">
+                    <Label Text="2%" class="LargeTitle"/>
+                    <Label Text="From" class="Subhead"/>
+                    <Label Text="Pond Elementary" class="SubContent"/>
+                </StackLayout>
+            </Grid>
+        </Frame>
+    </DataTemplate>
+
+    <converter:ImageByStateConverter x:Key="ImageByStateConverter"/>
+
+    <Style TargetType="FlyoutItem" x:Key="HomeFlyout">
+        <Style.Triggers>
+            <Trigger TargetType="FlyoutItem"
+                        Property="IsChecked" Value="False">
+                <Setter Property="FlyoutIcon" Value="tab_home.png"/>
+            </Trigger>
+            <Trigger TargetType="FlyoutItem"
+                        Property="IsChecked" Value="True">
+                <Setter Property="FlyoutIcon" Value="tab_home_on.png"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="FlyoutItem" x:Key="FavFlyout">
+        <Style.Triggers>
+            <Trigger TargetType="FlyoutItem"
+                        Property="IsChecked" Value="False">
+                <Setter Property="FlyoutIcon" Value="tab_favorites.png"/>
+            </Trigger>
+            <Trigger TargetType="FlyoutItem"
+                        Property="IsChecked" Value="True">
+                <Setter Property="FlyoutIcon" Value="tab_favorites_on.png"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="FlyoutItem" x:Key="MapFlyout">
+        <Style.Triggers>
+            <Trigger TargetType="FlyoutItem"
+                        Property="IsChecked" Value="False">
+                <Setter Property="FlyoutIcon" Value="tab_map.png"/>
+            </Trigger>
+            <Trigger TargetType="FlyoutItem"
+                        Property="IsChecked" Value="True">
+                <Setter Property="FlyoutIcon" Value="tab_map_on.png"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    
+
+</ResourceDictionary>
