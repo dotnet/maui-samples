@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.Build.NoTargets/3.7.0">
-    
+
   <PropertyGroup>
-    <TargetFrameworks>net8.0</TargetFrameworks>
+    <TargetFrameworks>net9.0</TargetFrameworks>
     <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
     <GenerateMSBuildEditorConfigFile>False</GenerateMSBuildEditorConfigFile>
     <RootNamespace>UITests</RootNamespace>

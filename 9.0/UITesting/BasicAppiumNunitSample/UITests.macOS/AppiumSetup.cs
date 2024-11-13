@@ -27,7 +27,7 @@ public class AppiumSetup
 			// Always Mac for Mac
 			PlatformName = "Mac",
 			// The full path to the .app file to test
-			App = "/path/to/MauiApp/bin/Debug/net8.0-maccatalyst/maccatalyst-x64/BasicAppiumSample.app",
+			App = "/path/to/MauiApp/bin/Debug/net9.0-maccatalyst/maccatalyst-x64/BasicAppiumSample.app",
 		};
 
 		// Setting the Bundle ID is required, else the automation will run on Finder
