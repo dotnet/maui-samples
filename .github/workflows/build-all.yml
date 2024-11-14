@@ -27,7 +27,7 @@ jobs:
 
     - name: Select Xcode Version
       run: sudo xcode-select -s /Applications/Xcode_16.app
-      if: runner.os == 'macOS' # Remove when Xcode 15+ is default on the hosted runners
+      if: runner.os == 'macOS'
 
     - name: Find and build all C# projects
       run: |
