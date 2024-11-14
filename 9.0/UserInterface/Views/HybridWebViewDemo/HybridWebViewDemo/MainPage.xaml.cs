@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Diagnostics;
+using System.Text.Json.Serialization;
 
 namespace HybridWebViewDemo;
 
@@ -9,6 +10,7 @@ public partial class MainPage : ContentPage
     public MainPage()
     {
         InitializeComponent();
+        hybridWebView.SetInvokeJavaScriptTarget<DotNetMethods>(new DotNetMethods(this));
     }
 
     private void OnSendMessageButtonClicked(object sender, EventArgs e)
@@ -22,7 +24,7 @@ public partial class MainPage : ContentPage
         double x = 123d;
         double y = 321d;
 
-        ComputationResult result = await hybridWebView.InvokeJavaScriptAsync<ComputationResult>(
+        ComputationResult? result = await hybridWebView.InvokeJavaScriptAsync<ComputationResult>(
             "AddNumbers", // JavaScript method name
             HybridSampleJSContext.Default.ComputationResult, // JSON serialization info for return type
             [x, y], // Parameter values
@@ -40,7 +42,7 @@ public partial class MainPage : ContentPage
     {
         string statusResult = string.Empty;
 
-        Dictionary<string,string> asyncResult = await hybridWebView.InvokeJavaScriptAsync<Dictionary<string, string>>(
+        Dictionary<string,string>? asyncResult = await hybridWebView.InvokeJavaScriptAsync<Dictionary<string, string>>(
             "EvaluateMeWithParamsAndAsyncReturn", // JavaScript method name
             HybridSampleJSContext.Default.DictionaryStringString, // JSON serialization info for return type
             ["new_key", "new_value"], // Parameter values
@@ -74,5 +76,47 @@ public partial class MainPage : ContentPage
     {
         // This type's attributes specify JSON serialization info to preserve type structure
         // for trimmed builds.    
+    }
+
+    private class DotNetMethods
+    {
+        MainPage _mainPage;
+
+        public DotNetMethods(MainPage mainPage)
+        {
+            _mainPage = mainPage;
+        }
+
+        public void DoSyncWork()
+        {
+            Debug.WriteLine("DoSyncWork");
+        }
+
+        public void DoSyncWorkParams(int i, string s)
+        {
+            Debug.WriteLine($"DoSyncWorkParams: {i}, {s}");
+        }
+
+        public string DoSyncWorkReturn()
+        {
+            Debug.WriteLine("DoSyncWorkReturn");
+            return "Hello from C#!";
+        }
+
+        public SyncReturn DoSyncWorkParamsReturn(int i, string s)
+        {
+            Debug.WriteLine($"DoSyncWorkParamReturn: {i}, {s}");
+            return new SyncReturn
+            {
+                Message = "Hello from C#!" + s,
+                Value = i
+            };
+        }
+    }
+
+    public class SyncReturn
+    {
+        public string? Message { get; set; }
+        public int Value { get; set; }
     }
 }
