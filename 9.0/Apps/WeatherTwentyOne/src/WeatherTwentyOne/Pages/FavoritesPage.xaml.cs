@@ -29,11 +29,11 @@ public partial class FavoritesPage : ContentPage
     }
 
     int tileCount = 0;
-    List<Frame> tiles = new List<Frame>();
+    List<Border> tiles = new List<Border>();
     void OnHandlerChanged(object sender, EventArgs e)
     {
-        Frame f = (Frame)sender;
-        tiles.Add(f);
+        Border b = (Border)sender;
+        tiles.Add(b);
         tileCount++;
     }
 }
