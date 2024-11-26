@@ -79,10 +79,6 @@
                           Detail="Present two pages with a list and an item"
                           Command="{Binding NavigateCommand}"
                           CommandParameter="{x:Type views:FlyoutPageDemoPage}" />
-                <TextCell Text="Frame"
-                          Detail="Show a rectangle around a single child"
-                          Command="{Binding NavigateCommand}"
-                          CommandParameter="{x:Type views:FrameDemoPage}" />
                 <TextCell Text="GraphicsView"
                           Detail="Draw 2D graphics on a canvas"
                           Command="{Binding NavigateCommand}"

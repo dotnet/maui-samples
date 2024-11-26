@@ -8,8 +8,7 @@
               BackgroundColor="Black"
               ColumnSpacing="6"
               RowSpacing="6" />
-        <Frame CornerRadius="12"
-               HasShadow="false"
+        <Border StrokeShape="RoundRectangle 12"
                Margin="35,25"
                Padding="12"
                BackgroundColor="White"
@@ -60,6 +59,6 @@
                             Clicked="OnOKButtonClicked" />
                 </StackLayout>
             </StackLayout>
-        </Frame>
+        </Border>
     </Grid>
 </ContentView>

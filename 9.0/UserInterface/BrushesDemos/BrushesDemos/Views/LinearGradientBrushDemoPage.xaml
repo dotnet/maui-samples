@@ -7,32 +7,30 @@
         <StackLayout Margin="20">
             <Label Text="LinearGradientBrush (Horizontal)"
                    FontAttributes="Bold" />
-            <Frame Margin="0,20,0,0"
-                   BorderColor="LightGray"
-                   HasShadow="True"
-                   CornerRadius="12"
-                   HeightRequest="120"
-                   WidthRequest="120">                
-                <Frame.Background>
+            <Border Margin="0,20,0,0"
+                    Stroke="LightGray"
+                    StrokeShape="RoundRectangle 15"
+                    HeightRequest="120"
+                    WidthRequest="120">
+                <Border.Background>
                     <!-- StartPoint defaults to (0,0) -->
                     <LinearGradientBrush EndPoint="1,0">
                         <GradientStop Color="Yellow"
                                       Offset="0.1" />
                         <GradientStop Color="Green"
-                                      Offset="1.0" />                                                        
+                                      Offset="1.0" />
                     </LinearGradientBrush>
-                </Frame.Background>
-            </Frame>    
+                </Border.Background>
+            </Border>
             <Label Margin="0,20,0,0"
                    Text="LinearGradientBrush (Vertical)"
-                   FontAttributes="Bold" />        
-            <Frame Margin="0,20,0,0"
-                   BorderColor="LightGray"
-                   HasShadow="True"
-                   CornerRadius="12"
-                   HeightRequest="120"
-                   WidthRequest="120">
-                <Frame.Background>
+                   FontAttributes="Bold" />
+            <Border Margin="0,20,0,0"
+                    Stroke="LightGray"
+                    StrokeShape="RoundRectangle 15"
+                    HeightRequest="120"
+                    WidthRequest="120">
+                <Border.Background>
                     <!-- StartPoint defaults to (0,0) -->
                     <LinearGradientBrush EndPoint="0,1">
                         <GradientStop Color="Yellow"
@@ -40,18 +38,17 @@
                         <GradientStop Color="Green"
                                       Offset="1.0" />
                     </LinearGradientBrush>
-                </Frame.Background>
-            </Frame>                    
+                </Border.Background>
+            </Border>
             <Label Margin="0,20,0,0"
                    Text="LinearGradientBrush (Diagonal)"
-                   FontAttributes="Bold" />        
-            <Frame Margin="0,20,0,0"
-                   BorderColor="LightGray"
-                   HasShadow="True"
-                   CornerRadius="12"
-                   HeightRequest="120"
-                   WidthRequest="120">
-                <Frame.Background>
+                   FontAttributes="Bold" />
+            <Border Margin="0,20,0,0"
+                    Stroke="LightGray"
+                    StrokeShape="RoundRectangle 15"
+                    HeightRequest="120"
+                    WidthRequest="120">
+                <Border.Background>
                     <!-- StartPoint defaults to (0,0)      
                          Endpoint defaults to (1,1) -->
                     <LinearGradientBrush>
@@ -60,8 +57,8 @@
                         <GradientStop Color="Green"
                                       Offset="1.0" />
                     </LinearGradientBrush>
-                </Frame.Background>
-            </Frame>                           
+                </Border.Background>
+            </Border>
         </StackLayout>
     </ScrollView>
 </ContentPage>

@@ -5,8 +5,8 @@
              Title="Combined StackLayouts demo">
     <StackLayout Margin="20">
         <Label Text="Primary colors" />
-        <Frame BorderColor="Black"
-               Padding="5">
+        <Border Stroke="Black"
+                Padding="5">
             <StackLayout Orientation="Horizontal"
                          Spacing="15">
                 <BoxView Color="Red"
@@ -15,9 +15,9 @@
                        FontSize="20"
                        VerticalOptions="Center" />
             </StackLayout>
-        </Frame>
-        <Frame BorderColor="Black"
-               Padding="5">
+        </Border>
+        <Border Stroke="Black"
+                Padding="5">
             <StackLayout Orientation="Horizontal"
                          Spacing="15">
                 <BoxView Color="Yellow"
@@ -26,9 +26,9 @@
                        FontSize="20"
                        VerticalOptions="Center" />
             </StackLayout>
-        </Frame>
-        <Frame BorderColor="Black"
-               Padding="5">
+        </Border>
+        <Border Stroke="Black"
+                Padding="5">
             <StackLayout Orientation="Horizontal"
                          Spacing="15">
                 <BoxView Color="Blue"
@@ -37,10 +37,10 @@
                        FontSize="20"
                        VerticalOptions="Center" />
             </StackLayout>
-        </Frame>
+        </Border>
         <Label Text="Secondary colors" />
-        <Frame BorderColor="Black"
-               Padding="5">
+        <Border Stroke="Black"
+                Padding="5">
             <StackLayout Orientation="Horizontal"
                          Spacing="15">
                 <BoxView Color="Green"
@@ -49,9 +49,9 @@
                        FontSize="20"
                        VerticalOptions="Center" />
             </StackLayout>
-        </Frame>
-        <Frame BorderColor="Black"
-               Padding="5">
+        </Border>
+        <Border Stroke="Black"
+                Padding="5">
             <StackLayout Orientation="Horizontal"
                          Spacing="15">
                 <BoxView Color="Orange"
@@ -60,9 +60,9 @@
                        FontSize="20"
                        VerticalOptions="Center" />
             </StackLayout>
-        </Frame>
-        <Frame BorderColor="Black"
-               Padding="5">
+        </Border>
+        <Border Stroke="Black"
+                Padding="5">
             <StackLayout Orientation="Horizontal"
                          Spacing="15">
                 <BoxView Color="Purple"
@@ -71,6 +71,6 @@
                        FontSize="20"
                        VerticalOptions="Center" />
             </StackLayout>
-        </Frame>
+        </Border>
     </StackLayout>
 </ContentPage>

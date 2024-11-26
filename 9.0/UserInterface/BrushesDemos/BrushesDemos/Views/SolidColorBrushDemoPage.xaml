@@ -8,45 +8,41 @@
                      Spacing="6">
             <Label Text="SolidColorBrush (Predefined Brush)"
                    FontAttributes="Bold" />
-             <Frame Margin="0,20,0,0"
+            <Border Margin="0,20,0,0"
                     Background="{x:Static Brush.Indigo}"
-                    BorderColor="LightGray"
-                    HasShadow="True"
-                    CornerRadius="12"
+                    Stroke="LightGray"
+                    StrokeShape="RoundRectangle 12"
                     HeightRequest="120"
-                    WidthRequest="120" />                   
+                    WidthRequest="120" />
             <Label Text="SolidColorBrush (Color)"
                    FontAttributes="Bold" />
-            <Frame Margin="0,20,0,0"
-                   Background="DarkBlue"
-                   BorderColor="LightGray"
-                   HasShadow="True"
-                   CornerRadius="12"
-                   HeightRequest="120"
-                   WidthRequest="120" /> 
+            <Border Margin="0,20,0,0"
+                    Background="DarkBlue"
+                    Stroke="LightGray"
+                    StrokeShape="RoundRectangle 12"
+                    HeightRequest="120"
+                    WidthRequest="120" />
             <Label Margin="0,20,0,0"
                    Text="SolidColorBrush (Hex)"
-                   FontAttributes="Bold" />        
-            <Frame Margin="0,20,0,0"
-                   BorderColor="LightGray"
-                   Background="#FF9988"
-                   HasShadow="True"
-                   CornerRadius="12"
-                   HeightRequest="120"
-                   WidthRequest="120" />      
+                   FontAttributes="Bold" />
+            <Border Margin="0,20,0,0"
+                    Stroke="LightGray"
+                    Background="#FF9988"
+                    StrokeShape="RoundRectangle 12"
+                    HeightRequest="120"
+                    WidthRequest="120" />
             <Label Margin="0,20,0,0"
                    Text="SolidColorBrush (Property Tag Syntax)"
                    FontAttributes="Bold" />
-            <Frame Margin="0,20,0,0"
-                   BorderColor="LightGray"
-                   HasShadow="True"
-                   CornerRadius="12"
-                   HeightRequest="120"
-                   WidthRequest="120">
-                <Frame.Background>
+            <Border Margin="0,20,0,0"
+                    Stroke="LightGray"
+                    StrokeShape="RoundRectangle 12"
+                    HeightRequest="120"
+                    WidthRequest="120">
+                <Border.Background>
                     <SolidColorBrush Color="LightSteelBlue" />
-                </Frame.Background>
-            </Frame>
+                </Border.Background>
+            </Border>
         </StackLayout>
     </ScrollView>
 </ContentPage>

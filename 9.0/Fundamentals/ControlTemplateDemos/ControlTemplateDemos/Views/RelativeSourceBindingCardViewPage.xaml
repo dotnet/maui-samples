@@ -12,12 +12,12 @@
             -->
             <Border BindingContext="{Binding Source={RelativeSource TemplatedParent}}"
                     Background="{Binding CardColor}"
-                   Stroke="{Binding BorderColor}"
+                    Stroke="{Binding BorderColor}"
                     StrokeThickness="1"
-                    StrokeShape="RoundRectangle 12,12,12,12"                    
-                   Padding="8"
-                   HorizontalOptions="Center"
-                   VerticalOptions="Center">
+                    StrokeShape="RoundRectangle 12,12,12,12"
+                    Padding="8"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center">
                 <Border.Shadow>
                     <Shadow Brush="Black"
                             Offset="10,10"
@@ -34,15 +34,14 @@
                         <ColumnDefinition Width="75" />
                         <ColumnDefinition Width="200" />
                     </Grid.ColumnDefinitions>
-                    <Border 
-                           Stroke="{Binding BorderColor}"
-                           StrokeThickness="1"
-                           Background="{Binding IconBackgroundColor}"
-                           StrokeShape="RoundRectangle 30,30,30,30"  
-                           HeightRequest="60"
-                           WidthRequest="60"
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center">
+                    <Border Stroke="{Binding BorderColor}"
+                            StrokeThickness="1"
+                            Background="{Binding IconBackgroundColor}"
+                            StrokeShape="RoundRectangle 30,30,30,30"
+                            HeightRequest="60"
+                            WidthRequest="60"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center">
                         <Image Source="{Binding IconImageSource}"
                                Margin="-20"
                                WidthRequest="60"
@@ -70,7 +69,8 @@
             </Border>
         </ControlTemplate>
     </ContentPage.Resources>
-    <VerticalStackLayout Margin="30" Spacing="30">
+    <VerticalStackLayout Margin="30"
+                         Spacing="30">
         <controls:CardView BorderColor="DarkGray"
                            CardTitle="John Doe"
                            CardDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla elit dolor, convallis non interdum."
