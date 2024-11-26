@@ -23,7 +23,7 @@
                                     StrokeShape="RoundRectangle 5"
                                     Margin="20"
                                     Padding="20"
-                                    HeightRequest="340"
+                                    HeightRequest="360"
                                     HorizontalOptions="Center"
                                     VerticalOptions="Center">
                                 <StackLayout>
