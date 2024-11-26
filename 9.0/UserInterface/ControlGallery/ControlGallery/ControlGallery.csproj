@@ -124,9 +124,6 @@
 	  <MauiXaml Update="Views\XAML\FlyoutPageDemoPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\XAML\.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="Views\XAML\GraphicsViewDemoPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
