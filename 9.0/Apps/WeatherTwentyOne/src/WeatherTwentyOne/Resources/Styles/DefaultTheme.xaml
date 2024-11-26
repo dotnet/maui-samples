@@ -339,13 +339,12 @@
     
     <!-- data templates -->
     <DataTemplate x:Key="WeatherWidgetTemplate">
-        <Frame
+        <Border
             HorizontalOptions="Start"
             HeightRequest="164"
             WidthRequest="164"
             Padding="0"
-            CornerRadius="20"
-            HasShadow="False"
+            StrokeShape="RoundRectangle 20"
             BackgroundColor="{StaticResource Background_Mid}">
             <Grid HeightRequest="144"
                   WidthRequest="144"
@@ -362,7 +361,7 @@
                     <Label Text="Pond Elementary" class="SubContent"/>
                 </StackLayout>
             </Grid>
-        </Frame>
+        </Border>
     </DataTemplate>
 
     <converter:ImageByStateConverter x:Key="ImageByStateConverter"/>
