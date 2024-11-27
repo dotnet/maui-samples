@@ -10,7 +10,7 @@ public partial class MainPage : ContentPage
     public MainPage()
     {
         InitializeComponent();
-        hybridWebView.SetInvokeJavaScriptTarget(this);
+        hybridWebView.SetInvokeJavaScriptTarget<DotNetMethods>(new DotNetMethods(this));
     }
 
     private void OnSendMessageButtonClicked(object sender, EventArgs e)
@@ -61,32 +61,6 @@ public partial class MainPage : ContentPage
         Dispatcher.Dispatch(() => editor.Text += Environment.NewLine + e.Message);
     }
 
-    public void DoSyncWork()
-    {
-        Debug.WriteLine("DoSyncWork");
-    }
-
-    public void DoSyncWorkParams(int i, string s)
-    {
-        Debug.WriteLine($"DoSyncWorkParams: {i}, {s}");
-    }
-
-    public string DoSyncWorkReturn()
-    {
-        Debug.WriteLine("DoSyncWorkReturn");
-        return "Hello from C#!";
-    }
-
-    public SyncReturn DoSyncWorkParamsReturn(int i, string s)
-    {
-        Debug.WriteLine($"DoSyncWorkParamReturn: {i}, {s}");
-        return new SyncReturn
-        {
-            Message = "Hello from C#!" + s,
-            Value = i
-        };
-    }
-
     public class ComputationResult
     {
         public double result { get; set; }
@@ -102,6 +76,42 @@ public partial class MainPage : ContentPage
     {
         // This type's attributes specify JSON serialization info to preserve type structure
         // for trimmed builds.    
+    }
+
+    private class DotNetMethods
+    {
+        MainPage _mainPage;
+
+        public DotNetMethods(MainPage mainPage)
+        {
+            _mainPage = mainPage;
+        }
+
+        public void DoSyncWork()
+        {
+            Debug.WriteLine("DoSyncWork");
+        }
+
+        public void DoSyncWorkParams(int i, string s)
+        {
+            Debug.WriteLine($"DoSyncWorkParams: {i}, {s}");
+        }
+
+        public string DoSyncWorkReturn()
+        {
+            Debug.WriteLine("DoSyncWorkReturn");
+            return "Hello from C#!";
+        }
+
+        public SyncReturn DoSyncWorkParamsReturn(int i, string s)
+        {
+            Debug.WriteLine($"DoSyncWorkParamReturn: {i}, {s}");
+            return new SyncReturn
+            {
+                Message = "Hello from C#!" + s,
+                Value = i
+            };
+        }
     }
 
     public class SyncReturn
