@@ -7,11 +7,10 @@
     
 
     <ControlTemplate x:Key="EasingBox">
-        <Frame HasShadow="False" 
-                   BorderColor="{AppThemeBinding Dark=#000000, Light=#f1f1f1}"
-                   BackgroundColor="{AppThemeBinding Dark=#000000, Light=#f1f1f1}"
-                   CornerRadius="0" 
-                   Margin="6">
+        <Border  Stroke="{AppThemeBinding Dark=#000000, Light=#f1f1f1}"
+                 BackgroundColor="{AppThemeBinding Dark=#000000, Light=#f1f1f1}" 
+                 Margin="6"
+                 Padding="6">
             <Grid RowDefinitions="*,40">
                 <Grid x:Name="AxisGrid" Opacity="0">
                     <Path Data="M1 0v84h124"
@@ -31,7 +30,7 @@
                            Grid.Row="1"
                            HorizontalOptions="Center" VerticalOptions="End"/>
             </Grid>
-        </Frame>
+        </Border>
     </ControlTemplate>
 
     <Style TargetType="controls:EasingCard">

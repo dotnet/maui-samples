@@ -11,8 +11,8 @@
         {
             Image image = sender as Image;
             image.HeightRequest = image.WidthRequest = image.HeightRequest.Equals(150) ? 200 : 150;
-            Frame frame = ((Frame)image.Parent.Parent);
-            frame.HeightRequest = frame.HeightRequest.Equals(300) ? 350 : 300;
+            Border border = ((Border)image.Parent.Parent);
+            border.HeightRequest = border.HeightRequest.Equals(360) ? 410 : 360;
         }
     }
 }

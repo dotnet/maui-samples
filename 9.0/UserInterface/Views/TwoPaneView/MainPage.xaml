@@ -13,7 +13,7 @@
         >
         <foldable:TwoPaneView.Pane1
             BackgroundColor="#dddddd">
-            <Frame BorderColor="Red">
+            <Border Stroke="Red">
                 <StackLayout BackgroundColor="Blue"
                                  Orientation="Vertical"
                                  VerticalOptions="StartAndExpand"
@@ -45,7 +45,7 @@
                     <Label Text="Jetpack Window Manager 1.0.0"/>
                     <Button Text="Reset TwoPaneView" Clicked="OnReset" HorizontalOptions="Center"/>
                 </StackLayout>
-            </Frame>
+            </Border>
         </foldable:TwoPaneView.Pane1>
         <foldable:TwoPaneView.Pane2>
             <ScrollView>

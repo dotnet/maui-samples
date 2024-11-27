@@ -54,9 +54,9 @@ namespace BrushesDemos.Views
                 }
             };
 
-            solidColorFrame.Background = solidColorBrush;
-            linearGradientFrame.Background = linearGradientBrush;
-            radialGradientFrame.Background = radialGradientBrush;
+            solidColorBorder.Background = solidColorBrush;
+            linearGradientBorder.Background = linearGradientBrush;
+            radialGradientBorder.Background = radialGradientBrush;
         }
 
         Color GetRandomColor()

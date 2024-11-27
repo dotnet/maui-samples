@@ -6,99 +6,100 @@
         {
             Title = "Combined StackLayouts demo";
 
-            Frame frame1 = new Frame
+            Border border1 = new Border
             {
-                BorderColor = Colors.Black,
+                Stroke = Colors.Black,
                 Padding = new Thickness(5)
             };
-            StackLayout frame1StackLayout = new StackLayout
-            {
-                Orientation = StackOrientation.Horizontal,
-                Spacing = 15
-            };
-            frame1StackLayout.Add(new BoxView { Color = Colors.Red, WidthRequest = 40 });
-            frame1StackLayout.Add(new Label { Text = "Red", FontSize = 20, VerticalOptions = LayoutOptions.Center });
-            frame1.Content = frame1StackLayout;
 
-            Frame frame2 = new Frame
-            {
-                BorderColor = Colors.Black,
-                Padding = new Thickness(5)
-            };
-            StackLayout frame2StackLayout = new StackLayout
+            StackLayout border1StackLayout = new StackLayout
             {
                 Orientation = StackOrientation.Horizontal,
                 Spacing = 15
             };
-            frame2StackLayout.Add(new BoxView { Color = Colors.Yellow, WidthRequest = 40 });
-            frame2StackLayout.Add(new Label { Text = "Yellow", FontSize =  20, VerticalOptions = LayoutOptions.Center });
-            frame2.Content = frame2StackLayout;
+            border1StackLayout.Add(new BoxView { Color = Colors.Red, WidthRequest = 40 });
+            border1StackLayout.Add(new Label { Text = "Red", FontSize = 20, VerticalOptions = LayoutOptions.Center });
+            border1.Content = border1StackLayout;
 
-            Frame frame3 = new Frame
+            Border border2 = new Border
             {
-                BorderColor = Colors.Black,
+                Stroke = Colors.Black,
                 Padding = new Thickness(5)
             };
-            StackLayout frame3StackLayout = new StackLayout
+            StackLayout border2StackLayout = new StackLayout
             {
                 Orientation = StackOrientation.Horizontal,
                 Spacing = 15
             };
-            frame3StackLayout.Add(new BoxView { Color = Colors.Blue, WidthRequest = 40 });
-            frame3StackLayout.Add(new Label { Text = "Blue", FontSize = 20, VerticalOptions = LayoutOptions.Center });
-            frame3.Content = frame3StackLayout;
+            border2StackLayout.Add(new BoxView { Color = Colors.Yellow, WidthRequest = 40 });
+            border2StackLayout.Add(new Label { Text = "Yellow", FontSize =  20, VerticalOptions = LayoutOptions.Center });
+            border2.Content = border2StackLayout;
 
-            Frame frame4 = new Frame
+            Border border3 = new Border
             {
-                BorderColor = Colors.Black,
+                Stroke = Colors.Black,
                 Padding = new Thickness(5)
             };
-            StackLayout frame4StackLayout = new StackLayout
+            StackLayout border3StackLayout = new StackLayout
             {
                 Orientation = StackOrientation.Horizontal,
                 Spacing = 15
             };
-            frame4StackLayout.Add(new BoxView { Color = Colors.Green, WidthRequest = 40 });
-            frame4StackLayout.Add(new Label { Text = "Green", FontSize = 20, VerticalOptions = LayoutOptions.Center });
-            frame4.Content = frame4StackLayout;
+            border3StackLayout.Add(new BoxView { Color = Colors.Blue, WidthRequest = 40 });
+            border3StackLayout.Add(new Label { Text = "Blue", FontSize = 20, VerticalOptions = LayoutOptions.Center });
+            border3.Content = border3StackLayout;
 
-            Frame frame5 = new Frame
+            Border border4 = new Border
             {
-                BorderColor = Colors.Black,
+                Stroke = Colors.Black,
                 Padding = new Thickness(5)
             };
-            StackLayout frame5StackLayout = new StackLayout
+            StackLayout border4StackLayout = new StackLayout
             {
                 Orientation = StackOrientation.Horizontal,
                 Spacing = 15
             };
-            frame5StackLayout.Add(new BoxView { Color = Colors.Orange, WidthRequest = 40 });
-            frame5StackLayout.Add(new Label { Text = "Orange", FontSize = 20, VerticalOptions = LayoutOptions.Center });
-            frame5.Content = frame5StackLayout;
+            border4StackLayout.Add(new BoxView { Color = Colors.Green, WidthRequest = 40 });
+            border4StackLayout.Add(new Label { Text = "Green", FontSize = 20, VerticalOptions = LayoutOptions.Center });
+            border4.Content = border4StackLayout;
 
-            Frame frame6 = new Frame
+            Border border5 = new Border
             {
-                BorderColor = Colors.Black,
+                Stroke = Colors.Black,
                 Padding = new Thickness(5)
             };
-            StackLayout frame6StackLayout = new StackLayout
+            StackLayout border5StackLayout = new StackLayout
             {
                 Orientation = StackOrientation.Horizontal,
                 Spacing = 15
             };
-            frame6StackLayout.Add(new BoxView { Color = Colors.Purple, WidthRequest = 40 });
-            frame6StackLayout.Add(new Label { Text = "Purple", FontSize = 20, VerticalOptions = LayoutOptions.Center });
-            frame6.Content = frame6StackLayout;
+            border5StackLayout.Add(new BoxView { Color = Colors.Orange, WidthRequest = 40 });
+            border5StackLayout.Add(new Label { Text = "Orange", FontSize = 20, VerticalOptions = LayoutOptions.Center });
+            border5.Content = border5StackLayout;
+
+            Border border6 = new Border
+            {
+                Stroke = Colors.Black,
+                Padding = new Thickness(5)
+            };
+            StackLayout border6StackLayout = new StackLayout
+            {
+                Orientation = StackOrientation.Horizontal,
+                Spacing = 15
+            };
+            border6StackLayout.Add(new BoxView { Color = Colors.Purple, WidthRequest = 40 });
+            border6StackLayout.Add(new Label { Text = "Purple", FontSize = 20, VerticalOptions = LayoutOptions.Center });
+            border6.Content = border6StackLayout;
 
             StackLayout stackLayout = new StackLayout { Margin = new Thickness(20) };
             stackLayout.Add(new Label { Text = "Primary colors" });
-            stackLayout.Add(frame1);
-            stackLayout.Add(frame2);
-            stackLayout.Add(frame3);
+            stackLayout.Add(border1);
+            stackLayout.Add(border2);
+            stackLayout.Add(border3);
             stackLayout.Add(new Label { Text = "Secondary colors" });
-            stackLayout.Add(frame4);
-            stackLayout.Add(frame5);
-            stackLayout.Add(frame6);
+            stackLayout.Add(border4);
+            stackLayout.Add(border5);
+            stackLayout.Add(border6);
 
             Content = stackLayout;
         }

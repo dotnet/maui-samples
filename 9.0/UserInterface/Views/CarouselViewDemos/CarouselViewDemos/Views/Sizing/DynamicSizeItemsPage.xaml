@@ -9,17 +9,18 @@
     </ContentPage.BindingContext>
     <StackLayout Margin="20">
         <Label Text="Tap each image to dynamically change its size." />
-        <CarouselView ItemsSource="{Binding Monkeys}">
+        <CarouselView ItemsSource="{Binding Monkeys}"
+                      Grid.Row="1">
             <CarouselView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout>
-                        <Frame HasShadow="True"
-                               BorderColor="DarkGray"
-                               CornerRadius="5"
-                               Margin="20"
-                               HeightRequest="300"
-                               HorizontalOptions="Center"
-                               VerticalOptions="Center">
+                        <Border Stroke="DarkGray"
+                                StrokeShape="RoundRectangle 5"
+                                Margin="20"
+                                Padding="20"
+                                HeightRequest="360"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center">
                             <StackLayout>
                                 <Label Text="{Binding Name}" 
                                        FontAttributes="Bold"
@@ -43,7 +44,7 @@
                                        MaxLines="5"
                                        LineBreakMode="TailTruncation" />
                             </StackLayout>
-                        </Frame>
+                        </Border>
                     </StackLayout>
                 </DataTemplate>
             </CarouselView.ItemTemplate>

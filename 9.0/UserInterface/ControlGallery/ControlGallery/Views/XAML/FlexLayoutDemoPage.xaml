@@ -4,11 +4,12 @@
              x:Class="ControlGallery.Views.XAML.FlexLayoutDemoPage"
              Title="FlexLayout Demo">
     <ContentPage.Resources>
-        <Style TargetType="Frame">
+        <Style TargetType="Border">
             <Setter Property="BackgroundColor" Value="LightYellow" />
-            <Setter Property="BorderColor" Value="Blue" />
+            <Setter Property="Stroke" Value="Blue" />
             <Setter Property="Margin" Value="10" />
-            <Setter Property="CornerRadius" Value="15" />
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="StrokeShape" Value="RoundRectangle 15" />
         </Style>
 
         <Style TargetType="Label">
@@ -37,8 +38,8 @@
 
     <ScrollView Orientation="Both">
         <FlexLayout>
-            <Frame WidthRequest="300"
-                   HeightRequest="480">
+            <Border WidthRequest="300"
+                    HeightRequest="480">
 
                 <FlexLayout Direction="Column">
                     <Label Text="Seated Monkey"
@@ -53,10 +54,10 @@
                     <Label FlexLayout.Grow="1" />
                     <Button />
                 </FlexLayout>
-            </Frame>
+            </Border>
 
-            <Frame WidthRequest="300"
-                   HeightRequest="480">
+            <Border WidthRequest="300"
+                    HeightRequest="480">
 
                 <FlexLayout Direction="Column">
                     <Label Text="Banana Monkey"
@@ -70,10 +71,10 @@
                     <Label FlexLayout.Grow="1" />
                     <Button />
                 </FlexLayout>
-            </Frame>
+            </Border>
 
-            <Frame WidthRequest="300"
-                   HeightRequest="480">
+            <Border WidthRequest="300"
+                    HeightRequest="480">
 
                 <FlexLayout Direction="Column">
                     <Label Text="Face-Palm Monkey"
@@ -88,7 +89,7 @@
                     <Label FlexLayout.Grow="1" />
                     <Button />
                 </FlexLayout>
-            </Frame>
+            </Border>
         </FlexLayout>
     </ScrollView>
 </ContentPage>

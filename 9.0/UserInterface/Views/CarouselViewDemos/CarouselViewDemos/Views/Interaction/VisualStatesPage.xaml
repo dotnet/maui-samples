@@ -41,14 +41,13 @@
                             </VisualState>
                         </VisualStateGroup>
                     </VisualStateManager.VisualStateGroups>
-                    <Frame HasShadow="True"
-                           BorderColor="DarkGray"
-                           CornerRadius="5"
-                           Margin="20"
-                           HeightRequest="350"
-                           WidthRequest="150"
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center">
+                    <Border Stroke="DarkGray"
+                            StrokeShape="RoundRectangle 5"
+                            Margin="20"
+                            Padding="20"
+                            HeightRequest="360"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center">
                         <StackLayout>
                             <Label Text="{Binding Name}" 
                                    FontAttributes="Bold"
@@ -68,7 +67,7 @@
                                    MaxLines="5"
                                    LineBreakMode="TailTruncation" />
                         </StackLayout>
-                    </Frame>
+                    </Border>
                 </StackLayout>
             </DataTemplate>
         </CarouselView.ItemTemplate>

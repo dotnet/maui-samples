@@ -7,12 +7,12 @@
     <ContentPage.Resources>
         <ControlTemplate x:Key="CardViewControlTemplate">
             <Border Background="{TemplateBinding CardColor}"
-                   Stroke="{TemplateBinding BorderColor}"
+                    Stroke="{TemplateBinding BorderColor}"
                     StrokeThickness="1"
-                    StrokeShape="RoundRectangle 12,12,12,12"                    
-                   Padding="8"
-                   HorizontalOptions="Center"
-                   VerticalOptions="Center">
+                    StrokeShape="RoundRectangle 12,12,12,12"
+                    Padding="8"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="75" />
@@ -23,15 +23,14 @@
                         <ColumnDefinition Width="75" />
                         <ColumnDefinition Width="200" />
                     </Grid.ColumnDefinitions>
-                    <Border 
-                           Stroke="{TemplateBinding BorderColor}"
-                           StrokeThickness="1"
-                           Background="{TemplateBinding IconBackgroundColor}"
-                           StrokeShape="RoundRectangle 30,30,30,30"  
-                           HeightRequest="60"
-                           WidthRequest="60"
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center">
+                    <Border Stroke="{TemplateBinding BorderColor}"
+                            StrokeThickness="1"
+                            Background="{TemplateBinding IconBackgroundColor}"
+                            StrokeShape="RoundRectangle 30,30,30,30"
+                            HeightRequest="60"
+                            WidthRequest="60"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center">
                         <Image Source="{TemplateBinding IconImageSource}"
                                Margin="-20"
                                WidthRequest="60"
@@ -65,7 +64,8 @@
         </Style>
 
     </ContentPage.Resources>
-    <VerticalStackLayout Margin="30" Spacing="30">
+    <VerticalStackLayout Margin="30"
+                         Spacing="30">
         <controls:CardView BorderColor="DarkGray"
                            CardTitle="John Doe"
                            CardDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla elit dolor, convallis non interdum."
@@ -75,7 +75,7 @@
                            CardTitle="Jane Doe"
                            CardDescription="Phasellus eu convallis mi. In tempus augue eu dignissim fermentum. Morbi ut lacus vitae eros lacinia."
                            IconBackgroundColor="SlateGray"
-                           IconImageSource="user.png"/>
+                           IconImageSource="user.png" />
         <controls:CardView BorderColor="DarkGray"
                            CardTitle=".NET Bot"
                            CardDescription="Aliquam sagittis, odio lacinia fermentum dictum, mi erat scelerisque erat, quis aliquet arcu."

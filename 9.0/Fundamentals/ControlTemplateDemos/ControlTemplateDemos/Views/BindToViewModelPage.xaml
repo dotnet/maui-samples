@@ -13,19 +13,20 @@
         <ControlTemplate x:Key="CardViewControlTemplate">
             <Border BindingContext="{Binding Source={RelativeSource TemplatedParent}}"
                     Background="{Binding CardColor}"
-                   Stroke="{Binding BorderColor}"
+                    Stroke="{Binding BorderColor}"
                     StrokeThickness="1"
-                    StrokeShape="RoundRectangle 12,12,12,12"                    
-                   Padding="8"
-                   HorizontalOptions="Center"
-                   VerticalOptions="Center">
+                    StrokeShape="RoundRectangle 12,12,12,12"
+                    Padding="8"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center">
                 <Border.Shadow>
                     <Shadow Brush="Black"
                             Offset="10,10"
                             Radius="14"
                             Opacity="0.8" />
                 </Border.Shadow>
-                <Grid RowDefinitions="75,4,Auto" ColumnDefinitions="275">
+                <Grid RowDefinitions="75,4,Auto"
+                      ColumnDefinitions="275">
                     <Label Text="{Binding CardTitle}"
                            FontAttributes="Bold"
                            FontSize="20"
@@ -56,7 +57,8 @@
         </DataTemplate>
     </ContentPage.Resources>
 
-    <VerticalStackLayout Margin="30" Spacing="30"
-                 BindableLayout.ItemsSource="{Binding People}"
-                 BindableLayout.ItemTemplate="{StaticResource PersonTemplate}" />
+    <VerticalStackLayout Margin="30"
+                         Spacing="30"
+                         BindableLayout.ItemsSource="{Binding People}"
+                         BindableLayout.ItemTemplate="{StaticResource PersonTemplate}" />
 </ContentPage>

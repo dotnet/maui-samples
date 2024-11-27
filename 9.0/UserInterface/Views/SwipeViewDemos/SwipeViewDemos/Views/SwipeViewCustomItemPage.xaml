@@ -13,22 +13,22 @@
                 <SwipeItems>
                     <SwipeItemView Invoked="OnIncorrectAnswerInvoked">
                         <Grid WidthRequest="100">
-                            <Frame BackgroundColor="DarkGray"
-                                   CornerRadius="30">
+                            <Border Stroke="DarkGray"
+                                    StrokeShape="RoundRectangle 30">
                                 <Label Text="1"
                                        HorizontalOptions="Center"
                                        VerticalOptions="Center" />
-                            </Frame>
+                            </Border>
                         </Grid>
                     </SwipeItemView>
                     <SwipeItemView Invoked="OnCorrectAnswerInvoked">
                         <Grid WidthRequest="100">
-                            <Frame BackgroundColor="DarkGray"
-                                   CornerRadius="30">
+                            <Border Stroke="DarkGray"
+                                    StrokeShape="RoundRectangle 30">
                                 <Label Text="2"
                                        HorizontalOptions="Center"
                                        VerticalOptions="Center" />
-                            </Frame>
+                            </Border>
                         </Grid>
                     </SwipeItemView>
                 </SwipeItems>
