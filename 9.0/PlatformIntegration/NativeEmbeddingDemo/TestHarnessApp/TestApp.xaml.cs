@@ -11,7 +11,7 @@ public partial class TestApp : NativeEmbeddingDemo.App
 		Resources.MergedDictionaries.Add(baseResources);
 	}
 
-    protected override Window CreateWindow(IActivationState? activationState)
+    protected override Window CreateWindow(IActivationState activationState)
     {
 		return new Window(new HostPage());
     }

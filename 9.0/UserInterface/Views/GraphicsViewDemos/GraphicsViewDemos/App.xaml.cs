@@ -15,7 +15,7 @@ public partial class App : Application
     		TertiaryColor = GetColorFromResource("Tertiary");
   	}
 
-    protected override Window CreateWindow(IActivationState? activationState)
+    protected override Window CreateWindow(IActivationState activationState)
     {
         return new Window(new AppShell());
     }
