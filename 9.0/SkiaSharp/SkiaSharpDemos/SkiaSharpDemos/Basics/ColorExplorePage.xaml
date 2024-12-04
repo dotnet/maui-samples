@@ -11,7 +11,8 @@
                 Maximum="360"
                 Margin="20, 0"
                 ValueChanged="OnSliderValueChanged" />
-        <Label Grid.Row="1"
+        <Label x:DataType="Slider"
+               Grid.Row="1"
                HorizontalTextAlignment="Center" 
                Text="{Binding Source={x:Reference hueSlider}, 
                               Path=Value,
@@ -23,7 +24,8 @@
                 Maximum="100"
                 Margin="20, 0"
                 ValueChanged="OnSliderValueChanged" />
-        <Label Grid.Row="3"
+        <Label x:DataType="Slider"
+               Grid.Row="3"
                HorizontalTextAlignment="Center" 
                Text="{Binding Source={x:Reference saturationSlider}, 
                               Path=Value,
@@ -35,7 +37,8 @@
                 Maximum="100"
                 Margin="20, 0"
                 ValueChanged="OnSliderValueChanged" />
-        <Label Grid.Row="5"
+        <Label x:DataType="Slider"
+               Grid.Row="5"
                HorizontalTextAlignment="Center" 
                Text="{Binding Source={x:Reference lightnessSlider}, 
                               Path=Value,
@@ -58,7 +61,8 @@
                 Maximum="100"
                 Margin="20, 0"
                 ValueChanged="OnSliderValueChanged" />
-        <Label Grid.Row="8"
+        <Label x:DataType="Slider"
+               Grid.Row="8"
                HorizontalTextAlignment="Center" 
                Text="{Binding Source={x:Reference valueSlider}, 
                               Path=Value,

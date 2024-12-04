@@ -20,14 +20,16 @@
         <Slider x:Name="segLengthSlider"
                 Grid.Row="0"
                 ValueChanged="sliderValueChanged" />
-        <Label Text="{Binding Source={x:Reference segLengthSlider},
+        <Label x:DataType="Slider"
+               Text="{Binding Source={x:Reference segLengthSlider},
                               Path=Value,
                               StringFormat='Segment Length = {0:F0}'}"
                Grid.Row="1" />
         <Slider x:Name="deviationSlider"
                 Grid.Row="2"
                 ValueChanged="sliderValueChanged" />
-        <Label Text="{Binding Source={x:Reference deviationSlider},
+        <Label x:DataType="Slider"
+               Text="{Binding Source={x:Reference deviationSlider},
                               Path=Value,
                               StringFormat='Deviation = {0:F0}'}"
                Grid.Row="3" />

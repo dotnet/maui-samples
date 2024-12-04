@@ -12,7 +12,8 @@
                 Minimum="-2"
                 Maximum="2"
                 ValueChanged="OnSliderValueChanged" />
-        <Label Text="{Binding Source={x:Reference weightSlider},
+        <Label x:DataType="Slider"
+               Text="{Binding Source={x:Reference weightSlider},
                               Path=Value,
                               StringFormat='Weight = {0:F1}'}"
                HorizontalTextAlignment="Center"

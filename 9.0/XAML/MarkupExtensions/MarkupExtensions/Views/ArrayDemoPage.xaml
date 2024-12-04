@@ -26,7 +26,7 @@
             </x:Array>
         </ListView.ItemsSource>
         <ListView.ItemTemplate>
-            <DataTemplate>
+            <DataTemplate x:DataType="Color">
                 <ViewCell>
                     <BoxView Color="{Binding}"
                              Margin="3" />

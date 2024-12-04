@@ -13,7 +13,7 @@
     <ListView ItemsSource="{x:Static local:NamedColor.All}"
               RowHeight="{StaticResource rowHeight}">
         <ListView.ItemTemplate>
-            <DataTemplate>
+            <DataTemplate x:DataType="local:NamedColor">
                 <ViewCell>
                     <StackLayout Padding="5, 5, 0, 5"
                                  Orientation="Horizontal"

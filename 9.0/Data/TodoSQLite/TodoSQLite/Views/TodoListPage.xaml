@@ -4,8 +4,10 @@
              xmlns:models="clr-namespace:TodoSQLite.Models"
              x:Class="TodoSQLite.Views.TodoListPage"
              xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+             xmlns:views="clr-namespace:TodoSQLite.Views"
              ios:Page.UseSafeArea="True"
-             Title="Todo">
+             Title="Todo"
+             x:DataType="views:TodoListPage">
     <Grid RowDefinitions="*,Auto">
         <CollectionView 
                   VerticalOptions="Fill"

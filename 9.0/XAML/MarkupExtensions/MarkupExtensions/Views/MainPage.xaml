@@ -3,7 +3,8 @@
              xmlns:local="clr-namespace:MarkupExtensions"
              x:Class="MarkupExtensions.MainPage"
              Padding="10"
-             Title="Markup extensions">
+             Title="Markup extensions"
+             x:DataType="local:MainPage">
     <TableView Intent="Menu">
         <TableRoot>
             <TableSection>

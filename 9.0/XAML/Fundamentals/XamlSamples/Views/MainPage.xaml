@@ -7,7 +7,7 @@
 	<ListView ItemsSource="{x:Static local:PageDataViewModel.All}"
 			  ItemSelected="OnListViewItemSelected">
 		<ListView.ItemTemplate>
-			<DataTemplate>
+			<DataTemplate x:DataType="local:PageDataViewModel">
 				<TextCell Text="{Binding Title}"
                           Detail="{Binding Description}" />
 			</DataTemplate>

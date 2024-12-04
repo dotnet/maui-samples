@@ -12,7 +12,8 @@
                 Grid.Row="1"
                 Margin="10, 0"
                 ValueChanged="OnSliderValueChanged" />
-        <Label Grid.Row="2"
+        <Label x:DataType="Slider"
+               Grid.Row="2"
                Text="{Binding Source={x:Reference progressSlider},
                               Path=Value,
                               StringFormat='Progress = {0:F2}'}"

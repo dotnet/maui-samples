@@ -3,7 +3,8 @@
                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                 xmlns:local="clr-namespace:SkiaSharpDemos"
                 x:Class="SkiaSharpDemos.Transforms.TransformsMenuPage"
-                Title="SkiaSharp Transforms">
+                Title="SkiaSharp Transforms"
+                x:DataType="local:Transforms.TransformsMenuPage">
     <TableView Intent="Menu">
         <TableRoot>
             <TableSection Title="The Translate Transform">

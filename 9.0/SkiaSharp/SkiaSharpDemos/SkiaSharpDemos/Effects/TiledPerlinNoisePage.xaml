@@ -11,7 +11,8 @@
         <HorizontalStackLayout Grid.Row="1"
                                HorizontalOptions="Center"
                                Margin="10">
-            <Label Text="{Binding Source={x:Reference seedStepper},
+            <Label x:DataType="Stepper"
+                   Text="{Binding Source={x:Reference seedStepper},
                                   Path=Value,
                                   StringFormat='Seed: {0:F0}'}"
                    VerticalOptions="Center" />

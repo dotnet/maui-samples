@@ -6,7 +6,8 @@
     xmlns:controls="clr-namespace:Animations.Controls">
     
 
-    <ControlTemplate x:Key="EasingBox">
+    <ControlTemplate x:Key="EasingBox"
+                     x:DataType="controls:EasingCard">
         <Border  Stroke="{AppThemeBinding Dark=#000000, Light=#f1f1f1}"
                  BackgroundColor="{AppThemeBinding Dark=#000000, Light=#f1f1f1}" 
                  Margin="6"

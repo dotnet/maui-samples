@@ -10,7 +10,8 @@
                 Margin="20,0"
                 Maximum="180"
                 ValueChanged="OnSliderValueChanged" />
-        <Label Text="{Binding Source={x:Reference angleSlider},
+        <Label x:DataType="Slider"
+               Text="{Binding Source={x:Reference angleSlider},
                               Path=Value,
                               StringFormat='Angle = {0:F1}'}"
                HorizontalTextAlignment="Center"
