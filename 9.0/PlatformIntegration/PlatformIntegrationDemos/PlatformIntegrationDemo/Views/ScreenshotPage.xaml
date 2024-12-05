@@ -4,7 +4,8 @@
                 xmlns:views="clr-namespace:PlatformIntegrationDemo.Views"
                 xmlns:viewmodels="clr-namespace:PlatformIntegrationDemo.ViewModels"
                 x:Class="PlatformIntegrationDemo.Views.ScreenshotPage"
-                Title="Screenshot">
+                Title="Screenshot"
+                x:DataType="viewmodels:ScreenshotViewModel">
     <views:BasePage.BindingContext>
         <viewmodels:ScreenshotViewModel />
     </views:BasePage.BindingContext>

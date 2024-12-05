@@ -4,7 +4,8 @@
                 xmlns:views="clr-namespace:PlatformIntegrationDemo.Views"
                 xmlns:viewmodels="clr-namespace:PlatformIntegrationDemo.ViewModels"
                 x:Class="PlatformIntegrationDemo.Views.ColorConvertersPage"
-                Title="Color Converters">
+                Title="Color Converters"
+                x:DataType="viewmodels:ColorConvertersViewModel">
     <views:BasePage.BindingContext>
         <viewmodels:ColorConvertersViewModel />
     </views:BasePage.BindingContext>

@@ -17,7 +17,8 @@
                 <Label Text="Accelerometer"
                        FontAttributes="Bold"
                        Margin="12" />
-                <Grid x:Name="GridAccelerometer">
+                <Grid x:Name="GridAccelerometer"
+                      x:DataType="viewmodels:AccelerometerViewModel">
                     <Grid.BindingContext>
                         <viewmodels:AccelerometerViewModel />
                     </Grid.BindingContext>
@@ -62,7 +63,8 @@
                 <Label Text="Barometer"
                        FontAttributes="Bold"
                        Margin="12" />
-                <Grid x:Name="GridBarometer">
+                <Grid x:Name="GridBarometer"
+                      x:DataType="viewmodels:BarometerViewModel">
                     <Grid.BindingContext>
                         <viewmodels:BarometerViewModel />
                     </Grid.BindingContext>
@@ -85,7 +87,6 @@
                                 IsEnabled="{Binding IsActive, Converter={StaticResource InverterConverter}}"
                                 Margin="0,0,0,10" />
 
-
                         <Button Grid.Row="3"
                                 Grid.Column="0"
                                 Text="Start"
@@ -103,7 +104,8 @@
                 <Label Text="Compass"
                        FontAttributes="Bold"
                        Margin="12" />
-                <Grid x:Name="GridCompass">
+                <Grid x:Name="GridCompass"
+                      x:DataType="viewmodels:CompassViewModel">
                     <Grid.BindingContext>
                         <viewmodels:CompassViewModel />
                     </Grid.BindingContext>
@@ -151,7 +153,8 @@
                 <Label Text="Gyroscope"
                        FontAttributes="Bold"
                        Margin="12" />
-                <Grid x:Name="GridGyro">
+                <Grid x:Name="GridGyro"
+                      x:DataType="viewmodels:GyroscopeViewModel">
                     <Grid.BindingContext>
                         <viewmodels:GyroscopeViewModel />
                     </Grid.BindingContext>
@@ -192,7 +195,8 @@
                 <Label Text="Magnetometer"
                        FontAttributes="Bold"
                        Margin="12" />
-                <Grid x:Name="GridMagnetometer">
+                <Grid x:Name="GridMagnetometer"
+                      x:DataType="viewmodels:MagnetometerViewModel">
                     <Grid.BindingContext>
                         <viewmodels:MagnetometerViewModel />
                     </Grid.BindingContext>
@@ -234,7 +238,8 @@
                 <Label Text="Orientation Sensor"
                        FontAttributes="Bold"
                        Margin="12" />
-                <Grid x:Name="GridOrientation">
+                <Grid x:Name="GridOrientation"
+                      x:DataType="viewmodels:OrientationSensorViewModel">
                     <Grid.BindingContext>
                         <viewmodels:OrientationSensorViewModel />
                     </Grid.BindingContext>

@@ -4,7 +4,8 @@
                 xmlns:views="clr-namespace:PlatformIntegrationDemo.Views"
                 xmlns:viewmodels="clr-namespace:PlatformIntegrationDemo.ViewModels"
                 x:Class="PlatformIntegrationDemo.Views.BarometerPage"
-                Title="Barometer">
+                Title="Barometer"
+                x:DataType="viewmodels:BarometerViewModel">
     <views:BasePage.BindingContext>
         <viewmodels:BarometerViewModel />
     </views:BasePage.BindingContext>

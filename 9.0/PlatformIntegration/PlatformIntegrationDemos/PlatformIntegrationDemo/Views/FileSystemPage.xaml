@@ -4,7 +4,8 @@
                 xmlns:views="clr-namespace:PlatformIntegrationDemo.Views"
                 xmlns:viewmodels="clr-namespace:PlatformIntegrationDemo.ViewModels"
                 x:Class="PlatformIntegrationDemo.Views.FileSystemPage"
-                Title="File System">
+                Title="File System"
+                x:DataType="viewmodels:FileSystemViewModel">
     <views:BasePage.BindingContext>
         <viewmodels:FileSystemViewModel />
     </views:BasePage.BindingContext>

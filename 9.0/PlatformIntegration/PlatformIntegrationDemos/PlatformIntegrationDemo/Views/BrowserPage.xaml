@@ -4,7 +4,8 @@
                 xmlns:views="clr-namespace:PlatformIntegrationDemo.Views"
                 xmlns:viewmodels="clr-namespace:PlatformIntegrationDemo.ViewModels"
                 x:Class="PlatformIntegrationDemo.Views.BrowserPage"
-                Title="Browser">
+                Title="Browser"
+                x:DataType="viewmodels:BrowserViewModel">
     <views:BasePage.BindingContext>
         <viewmodels:BrowserViewModel />
     </views:BasePage.BindingContext>

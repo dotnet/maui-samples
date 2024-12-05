@@ -4,7 +4,8 @@
                 xmlns:views="clr-namespace:PlatformIntegrationDemo.Views"
                 xmlns:viewmodels="clr-namespace:PlatformIntegrationDemo.ViewModels"
                 x:Class="PlatformIntegrationDemo.Views.GyroscopePage"
-                Title="Gyroscope">
+                Title="Gyroscope"
+                x:DataType="viewmodels:GyroscopeViewModel">
     <views:BasePage.BindingContext>
         <viewmodels:GyroscopeViewModel />
     </views:BasePage.BindingContext>

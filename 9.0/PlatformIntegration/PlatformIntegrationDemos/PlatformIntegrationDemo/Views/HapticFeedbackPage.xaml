@@ -4,7 +4,8 @@
                 xmlns:views="clr-namespace:PlatformIntegrationDemo.Views"
                 xmlns:viewmodels="clr-namespace:PlatformIntegrationDemo.ViewModels"
                 x:Class="PlatformIntegrationDemo.Views.HapticFeedbackPage"
-                Title="Haptic Feedback">
+                Title="Haptic Feedback"
+                x:DataType="viewmodels:HapticFeedbackViewModel">
     <views:BasePage.BindingContext>
         <viewmodels:HapticFeedbackViewModel />
     </views:BasePage.BindingContext>

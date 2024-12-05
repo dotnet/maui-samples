@@ -4,7 +4,8 @@
                 xmlns:views="clr-namespace:PlatformIntegrationDemo.Views"
                 xmlns:viewmodels="clr-namespace:PlatformIntegrationDemo.ViewModels"
                 x:Class="PlatformIntegrationDemo.Views.SMSPage"
-                Title="SMS">
+                Title="SMS"
+                x:DataType="viewmodels:SmsViewModel">
     <views:BasePage.BindingContext>
         <viewmodels:SmsViewModel />
     </views:BasePage.BindingContext>

@@ -4,7 +4,8 @@
                 xmlns:views="clr-namespace:PlatformIntegrationDemo.Views"
                 xmlns:viewmodels="clr-namespace:PlatformIntegrationDemo.ViewModels"
                 x:Class="PlatformIntegrationDemo.Views.PhoneDialerPage"
-                Title="Phone Dialer">
+                Title="Phone Dialer"
+                x:DataType="viewmodels:PhoneDialerViewModel">
     <views:BasePage.BindingContext>
         <viewmodels:PhoneDialerViewModel />
     </views:BasePage.BindingContext>
@@ -21,8 +22,7 @@
                 <Entry Text="{Binding PhoneNumber}"
                        Keyboard="Telephone" />
                 <Button Text="Open Phone Dialer"
-                        Command="{Binding OpenPhoneDialerCommand}"
-                        IsEnabled="{Binding IsEnabled}" />
+                        Command="{Binding OpenPhoneDialerCommand}" />
             </StackLayout>
         </ScrollView>
     </Grid>

@@ -4,7 +4,8 @@
                 xmlns:views="clr-namespace:PlatformIntegrationDemo.Views"
                 xmlns:viewmodels="clr-namespace:PlatformIntegrationDemo.ViewModels"
                 x:Class="PlatformIntegrationDemo.Views.GeocodingPage"
-                Title="Geocoding">
+                Title="Geocoding"
+                x:DataType="viewmodels:GeocodingViewModel">
     <views:BasePage.BindingContext>
         <viewmodels:GeocodingViewModel />
     </views:BasePage.BindingContext>

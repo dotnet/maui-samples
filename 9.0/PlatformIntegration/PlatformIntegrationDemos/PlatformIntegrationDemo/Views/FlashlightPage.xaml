@@ -4,7 +4,8 @@
                 xmlns:views="clr-namespace:PlatformIntegrationDemo.Views"
                 xmlns:viewmodels="clr-namespace:PlatformIntegrationDemo.ViewModels"
                 x:Class="PlatformIntegrationDemo.Views.FlashlightPage"
-                Title="Flashlight">
+                Title="Flashlight"
+                x:DataType="viewmodels:FlashlightViewModel">
     <views:BasePage.BindingContext>
         <viewmodels:FlashlightViewModel />
     </views:BasePage.BindingContext>
