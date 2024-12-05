@@ -9,7 +9,7 @@ public partial class App : Application
         App.Current.UserAppTheme = AppTheme.Dark;
     }
 
-    protected override Window CreateWindow(IActivationState? activationState)
+    protected override Window CreateWindow(IActivationState activationState)
     {
         if (DeviceInfo.Idiom == DeviceIdiom.Phone)
         {

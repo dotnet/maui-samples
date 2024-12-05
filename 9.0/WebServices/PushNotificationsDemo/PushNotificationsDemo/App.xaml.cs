@@ -15,7 +15,7 @@ public partial class App : Application
         _actionService.ActionTriggered += NotificationActionTriggered;
     }
 
-    protected override Window CreateWindow(IActivationState? activationState)
+    protected override Window CreateWindow(IActivationState activationState)
     {
         return new Window(new AppShell());
     }
