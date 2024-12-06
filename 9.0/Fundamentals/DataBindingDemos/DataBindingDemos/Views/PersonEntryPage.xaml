@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:DataBindingDemos"
              x:Class="DataBindingDemos.PersonEntryPage"
-             Title="Person Entry">
+             Title="Person Entry"
+             x:DataType="local:PersonCollectionViewModel">
     <ContentPage.BindingContext>
         <local:PersonCollectionViewModel />
     </ContentPage.BindingContext>
@@ -24,7 +25,8 @@
         <!-- Entry Form -->
         <Grid Grid.Row="1"
               IsEnabled="{Binding IsEditing}">
-            <Grid BindingContext="{Binding PersonEdit}">
+            <Grid x:DataType="local:PersonViewModel"
+                  BindingContext="{Binding PersonEdit}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />

@@ -8,7 +8,8 @@
                TextColor="GhostWhite"
                FontAttributes="Bold"
                HorizontalOptions="Center" />
-        <Label Text="{Binding Source={x:Static sys:DateTime.Now}, StringFormat='{0:MMMM dd, yyyy}'}"
+        <Label x:DataType="sys:DateTime"
+               Text="{Binding Source={x:Static sys:DateTime.Now}, StringFormat='{0:MMMM dd, yyyy}'}"
                TextColor="GhostWhite"
                HorizontalOptions="Center" />
     </StackLayout>

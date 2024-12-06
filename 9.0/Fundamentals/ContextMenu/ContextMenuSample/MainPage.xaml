@@ -15,8 +15,7 @@
                 FontSize="32"/>
 
             <Border Padding="15"
-                    HorizontalOptions="Start"
-                    >
+                    HorizontalOptions="Start"                    >
                 <Editor
                     x:Name="commentField"
                     HorizontalOptions="Start"

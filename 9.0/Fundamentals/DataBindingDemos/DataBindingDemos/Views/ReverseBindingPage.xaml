@@ -12,6 +12,7 @@
                VerticalOptions="Center" />
 
         <Slider x:Name="slider"
+                x:DataType="Label"
                 VerticalOptions="Center"
                 Value="{Binding Source={x:Reference label},
                                 Path=Opacity}" />

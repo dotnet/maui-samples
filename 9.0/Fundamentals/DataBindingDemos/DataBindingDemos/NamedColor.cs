@@ -5,13 +5,13 @@ namespace DataBindingDemos
 {
     public class NamedColor : IEquatable<NamedColor>, IComparable<NamedColor>
     {
-        public string Name { private set; get; }
+        public string Name { get; private set; }
 
-        public string FriendlyName { private set; get; }
+        public string FriendlyName { get; private set; }
 
-        public Color Color { private set; get; }
+        public Color Color { get; private set; }
 
-        public string RgbDisplay { private set; get; }
+        public string RgbDisplay { get; private set; }
 
         public bool Equals(NamedColor other)
         {
@@ -74,7 +74,7 @@ namespace DataBindingDemos
             All = all;
         }
 
-        public static IList<NamedColor> All { private set; get; }
+        public static IList<NamedColor> All { get; private set; }
 
         public static NamedColor Find(string name)
         {

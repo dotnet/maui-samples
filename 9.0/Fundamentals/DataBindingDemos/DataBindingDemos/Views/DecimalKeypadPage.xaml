@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:DataBindingDemos"
              x:Class="DataBindingDemos.DecimalKeypadPage"
-             Title="Decimal Keyboard">
+             Title="Decimal Keyboard"
+             x:DataType="local:DecimalKeypadViewModel">
     <ContentPage.BindingContext>
         <local:DecimalKeypadViewModel />
     </ContentPage.BindingContext>

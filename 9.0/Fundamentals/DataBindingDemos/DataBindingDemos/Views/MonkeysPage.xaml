@@ -3,14 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:DataBindingDemos"
              x:Class="DataBindingDemos.MonkeysPage"
-             Title="Monkeys">
+             Title="Monkeys"
+             x:DataType="local:MonkeysViewModel">
     <StackLayout Margin="20">
         <ListView ItemsSource="{Binding Monkeys}" 
                   HasUnevenRows="true" 
                   ItemTapped="OnListViewItemTapped" 
                   ItemSelected="OnListViewItemSelected">
             <ListView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="local:Monkey">
                     <ViewCell>
                         <Grid Padding="10">
                             <Grid.RowDefinitions>

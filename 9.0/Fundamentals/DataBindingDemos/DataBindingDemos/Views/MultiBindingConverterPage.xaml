@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:DataBindingDemos"
              x:Class="DataBindingDemos.MultiBindingConverterPage"
-             Title="MultiBinding Converter demo">
+             Title="MultiBinding Converter demo"
+             x:DataType="local:GroupViewModel">
     <ContentPage.BindingContext>
         <local:GroupViewModel />
     </ContentPage.BindingContext>

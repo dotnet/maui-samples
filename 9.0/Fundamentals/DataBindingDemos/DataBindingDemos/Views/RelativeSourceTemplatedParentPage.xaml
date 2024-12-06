@@ -5,7 +5,8 @@
              x:Class="DataBindingDemos.RelativeSourceTemplatedParentPage"
              Title="RelativeSource TemplatedParent Mode">
     <ContentPage.Resources>
-        <ControlTemplate x:Key="CardViewControlTemplate">
+        <ControlTemplate x:Key="CardViewControlTemplate"
+                         x:DataType="controls:CardView">
             <!--
             In this example, the frame's BindingContext is set to the control instance that the template is applied to. Therefore,
             the binding expressions resolve against the properties of each CardView object.

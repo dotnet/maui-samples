@@ -4,13 +4,15 @@
              xmlns:local="clr-namespace:ControlTemplateDemos"
              xmlns:controls="clr-namespace:ControlTemplateDemos.Controls"
              x:Class="ControlTemplateDemos.BindToViewModelPage"
-             Title="Bind to a ViewModel">
+             Title="Bind to a ViewModel"
+             x:DataType="local:PeopleViewModel">
     <ContentPage.BindingContext>
         <local:PeopleViewModel />
     </ContentPage.BindingContext>
 
     <ContentPage.Resources>
-        <ControlTemplate x:Key="CardViewControlTemplate">
+        <ControlTemplate x:Key="CardViewControlTemplate"
+                         x:DataType="controls:CardView">
             <Border BindingContext="{Binding Source={RelativeSource TemplatedParent}}"
                     Background="{Binding CardColor}"
                     Stroke="{Binding BorderColor}"
@@ -42,14 +44,15 @@
                            VerticalOptions="Fill"
                            HorizontalOptions="Fill" />
                     <Button Text="Delete"
-                            Command="{Binding Source={RelativeSource AncestorType={x:Type local:PeopleViewModel}}, Path=DeletePersonCommand}"
+                            Command="{Binding x:DataType='local:PeopleViewModel', Source={RelativeSource AncestorType={x:Type local:PeopleViewModel}}, Path=DeletePersonCommand}"
                             CommandParameter="{Binding CardTitle}"
                             HorizontalOptions="End" />
                 </Grid>
             </Border>
         </ControlTemplate>
 
-        <DataTemplate x:Key="PersonTemplate">
+        <DataTemplate x:Key="PersonTemplate"
+                      x:DataType="local:Person">
             <controls:CardView BorderColor="DarkGray"
                                CardTitle="{Binding Name}"
                                CardDescription="{Binding Description}"

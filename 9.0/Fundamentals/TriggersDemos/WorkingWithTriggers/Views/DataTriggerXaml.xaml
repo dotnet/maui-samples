@@ -18,7 +18,8 @@
                 HorizontalOptions="Center">
             <Button.Triggers>
                 <DataTrigger TargetType="Button"
-                             Binding="{Binding Source={x:Reference entry},
+                             Binding="{Binding x:DataType='Entry',
+                                               Source={x:Reference entry},
                                                Path=Text.Length}"
                              Value="0">
                     <Setter Property="IsEnabled"

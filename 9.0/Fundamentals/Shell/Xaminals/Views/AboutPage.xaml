@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:views="clr-namespace:Xaminals.Views"
              x:Class="Xaminals.Views.AboutPage"
-             Title="About">
+             Title="About"
+             x:DataType="views:AboutPage">
     <ContentPage.Resources>
         <Color x:Key="Primary">#96d1ff</Color>
         <Color x:Key="LightTextColor">#999999</Color>

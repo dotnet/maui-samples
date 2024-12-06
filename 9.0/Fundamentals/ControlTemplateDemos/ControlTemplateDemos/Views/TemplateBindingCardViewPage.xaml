@@ -5,7 +5,8 @@
              x:Class="ControlTemplateDemos.TemplateBindingCardViewPage"
              Title="TemplateBinding CardView">
     <ContentPage.Resources>
-        <ControlTemplate x:Key="CardViewControlTemplate">
+        <ControlTemplate x:Key="CardViewControlTemplate"
+                         x:DataType="controls:CardView">
             <!--
             In this example, the TemplateBinding markup extension resolves binding expressions against the properties of each CardView object.
             -->
@@ -59,25 +60,28 @@
             </Border>
         </ControlTemplate>
     </ContentPage.Resources>
-    <VerticalStackLayout Margin="30"
-                         Spacing="30">
-        <controls:CardView BorderColor="DarkGray"
-                           CardTitle="John Doe"
-                           CardDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla elit dolor, convallis non interdum."
-                           IconBackgroundColor="SlateGray"
-                           IconImageSource="user.png"
-                           ControlTemplate="{StaticResource CardViewControlTemplate}" />
-        <controls:CardView BorderColor="DarkGray"
-                           CardTitle="Jane Doe"
-                           CardDescription="Phasellus eu convallis mi. In tempus augue eu dignissim fermentum. Morbi ut lacus vitae eros lacinia."
-                           IconBackgroundColor="SlateGray"
-                           IconImageSource="user.png"
-                           ControlTemplate="{StaticResource CardViewControlTemplate}" />
-        <controls:CardView BorderColor="DarkGray"
-                           CardTitle=".NET Bot"
-                           CardDescription="Aliquam sagittis, odio lacinia fermentum dictum, mi erat scelerisque erat, quis aliquet arcu."
-                           IconBackgroundColor="SlateGray"
-                           IconImageSource="user.png"
-                           ControlTemplate="{StaticResource CardViewControlTemplate}" />
-    </VerticalStackLayout>
+    <ScrollView>
+        <VerticalStackLayout Margin="30"
+                             Spacing="30">
+
+            <controls:CardView BorderColor="DarkGray"
+                               CardTitle="John Doe"
+                               CardDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla elit dolor, convallis non interdum."
+                               IconBackgroundColor="SlateGray"
+                               IconImageSource="user.png"
+                               ControlTemplate="{StaticResource CardViewControlTemplate}" />
+            <controls:CardView BorderColor="DarkGray"
+                               CardTitle="Jane Doe"
+                               CardDescription="Phasellus eu convallis mi. In tempus augue eu dignissim fermentum. Morbi ut lacus vitae eros lacinia."
+                               IconBackgroundColor="SlateGray"
+                               IconImageSource="user.png"
+                               ControlTemplate="{StaticResource CardViewControlTemplate}" />
+            <controls:CardView BorderColor="DarkGray"
+                               CardTitle=".NET Bot"
+                               CardDescription="Aliquam sagittis, odio lacinia fermentum dictum, mi erat scelerisque erat, quis aliquet arcu."
+                               IconBackgroundColor="SlateGray"
+                               IconImageSource="user.png"
+                               ControlTemplate="{StaticResource CardViewControlTemplate}" />
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
