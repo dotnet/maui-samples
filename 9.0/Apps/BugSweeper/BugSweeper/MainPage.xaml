@@ -5,7 +5,7 @@
              x:Class="BugSweeper.MainPage"
              Title="Bug Sweeper">
     <Grid RowDefinitions="Auto,*">
-        <VerticalStackLayout>
+        <VerticalStackLayout x:DataType="local:Board">
             <Label Text="Tap to flag/unflag a potential bug."
                    HorizontalTextAlignment="Center" />
             <Label Text="Double-tap if you're sure it's not a bug."

@@ -82,7 +82,7 @@
                         </x:Array>
                     </BindableLayout.ItemsSource>
                     <BindableLayout.ItemTemplate>
-                        <DataTemplate>
+                        <DataTemplate x:DataType="x:String">
                             <RadioButton Content="{Binding .}" Value="{Binding .}"/>
                         </DataTemplate>
 

@@ -1,7 +1,9 @@
 ﻿<VerticalStackLayout xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:m="clr-namespace:WeatherTwentyOne.Models"
-             x:Class="WeatherTwentyOne.Views.Next24HrWidget">
+             xmlns:vm="clr-namespace:WeatherTwentyOne.ViewModels"
+             x:Class="WeatherTwentyOne.Views.Next24HrWidget"
+             x:DataType="vm:HomeViewModel">
 
     <Label
         Text="Next 24 Hours"
@@ -15,7 +17,7 @@
             Padding="{OnIdiom Phone='15,0',Default='25,0'}"
             BindableLayout.ItemsSource="{Binding Hours}">
             <BindableLayout.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="m:Forecast">
                     <StackLayout>
                         <Label
                             Text="{Binding DateTime, StringFormat='{0:h tt}'}"

@@ -3,12 +3,14 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:m="clr-namespace:WeatherTwentyOne.Models"
     xmlns:v="clr-namespace:WeatherTwentyOne.Views"
+    xmlns:vm="clr-namespace:WeatherTwentyOne.ViewModels"
     xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
     ios:Page.UseSafeArea="True"
     Title="{OnIdiom 'St. Louis, Missouri USA', Desktop=''}"
     Shell.NavBarIsVisible="{OnPlatform True, MacCatalyst=False}"
     x:Class="WeatherTwentyOne.Pages.HomePage"
-    x:Name="this">
+    x:Name="this"
+    x:DataType="vm:HomeViewModel">
 
     <ContentPage.MenuBarItems>
         <MenuBarItem Text="File">
