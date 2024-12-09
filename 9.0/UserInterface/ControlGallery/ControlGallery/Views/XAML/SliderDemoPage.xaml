@@ -14,7 +14,8 @@
                  Maximum="100"
                  VerticalOptions="CenterAndExpand" />
 
-        <Label Text="{Binding Source={x:Reference slider},
+        <Label x:DataType="Slider"
+               Text="{Binding Source={x:Reference slider},
                               Path=Value,
                               StringFormat='Slider value is {0:F1}'}"
                FontSize="20"

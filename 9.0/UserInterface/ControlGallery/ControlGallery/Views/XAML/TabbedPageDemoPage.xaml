@@ -15,7 +15,7 @@
     </TabbedPage.ItemsSource>
 
     <TabbedPage.ItemTemplate>
-        <DataTemplate>
+        <DataTemplate x:DataType="models:NamedColor">
             <ContentPage Title="{Binding Name}">
                 <ContentPage.Resources>
                     <ResourceDictionary>
@@ -30,9 +30,9 @@
                     <StackLayout HorizontalOptions="Center"
                                  VerticalOptions="CenterAndExpand">
 
-                        <Label Text="{Binding Color.R, StringFormat='R = {0:F2}'}" />
-                        <Label Text="{Binding Color.G, StringFormat='G = {0:F2}'}" />
-                        <Label Text="{Binding Color.B, StringFormat='B = {0:F2}'}" />
+                        <Label Text="{Binding Red, StringFormat='R = {0:F2}'}" />
+                        <Label Text="{Binding Green, StringFormat='G = {0:F2}'}" />
+                        <Label Text="{Binding Blue, StringFormat='B = {0:F2}'}" />
                     </StackLayout>
 
                     <BoxView Color="{Binding Color}"
@@ -43,9 +43,9 @@
                     <StackLayout HorizontalOptions="Center"
                                  VerticalOptions="CenterAndExpand">
 
-                        <Label Text="{Binding Color.Hue, StringFormat='Hue = {0:F2}'}" />
-                        <Label Text="{Binding Color.Saturation, StringFormat='Saturation = {0:F2}'}" />
-                        <Label Text="{Binding Color.Luminosity, StringFormat='Luminosity = {0:F2}'}" />
+                        <Label Text="{Binding Hue, StringFormat='Hue = {0:F2}'}" />
+                        <Label Text="{Binding Saturation, StringFormat='Saturation = {0:F2}'}" />
+                        <Label Text="{Binding Luminosity, StringFormat='Luminosity = {0:F2}'}" />
                     </StackLayout>
                 </StackLayout>
             </ContentPage>

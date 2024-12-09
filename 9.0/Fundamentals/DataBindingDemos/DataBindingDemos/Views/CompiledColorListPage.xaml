@@ -2,13 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:DataBindingDemos"
-             xmlns:converters="clr-namespace:DataBindingDemos.Converters"
              x:Class="DataBindingDemos.CompiledColorListPage"
              Title="Compiled Color List">
-    <ContentPage.Resources>
-        <converters:NamedColorToColorConverter x:Key="namedColorToColor" />
-    </ContentPage.Resources>
-    
     <Grid Margin="5">
         <Grid.RowDefinitions>
             <RowDefinition Height="2*" />
@@ -37,8 +32,9 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <BoxView x:DataType="ListView"
+        <BoxView x:DataType="local:NamedColor"
                  Grid.Row="1"
-                 Color="{Binding Source={x:Reference colorListView}, Path=SelectedItem, Converter={StaticResource namedColorToColor}}" />
+                 BindingContext="{Binding x:DataType='ListView', Source={x:Reference colorListView}, Path=SelectedItem}"
+                 Color="{Binding Color}" />
     </Grid>
 </ContentPage>

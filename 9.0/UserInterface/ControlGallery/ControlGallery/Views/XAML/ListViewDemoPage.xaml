@@ -43,7 +43,7 @@
             </ListView.ItemsSource>
                 
             <ListView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="models:Person">
                     <ViewCell>
                         <StackLayout Padding="0, 5"
                                      Orientation="Horizontal" 

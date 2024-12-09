@@ -16,7 +16,8 @@
                  HorizontalOptions="Center"
                  VerticalOptions="CenterAndExpand" />
 
-        <Label Text="{Binding Source={x:Reference stepper},
+        <Label x:DataType="Stepper"
+               Text="{Binding Source={x:Reference stepper},
                               Path=Value,
                               StringFormat='Stepper value is {0:F1}'}"
                FontSize="20"

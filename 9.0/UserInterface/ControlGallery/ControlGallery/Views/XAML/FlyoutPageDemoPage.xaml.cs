@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using Microsoft.Maui.Controls;
 
 namespace ControlGallery.Views.XAML
 {
@@ -15,7 +14,10 @@ namespace ControlGallery.Views.XAML
         void OnListViewItemTapped(object sender, ItemTappedEventArgs e)
         {
             // Show the detail page.
-            IsPresented = false;
+            if (!((IFlyoutPageController)this).ShouldShowSplitMode)
+            {
+                IsPresented = false;
+            }
         }
     }
 }
