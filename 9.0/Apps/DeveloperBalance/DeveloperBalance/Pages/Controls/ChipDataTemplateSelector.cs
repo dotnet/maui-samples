@@ -1,3 +1,5 @@
+using DeveloperBalance.Models;
+
 namespace DeveloperBalance.Pages.Controls;
 
 public class ChipDataTemplateSelector : DataTemplateSelector
