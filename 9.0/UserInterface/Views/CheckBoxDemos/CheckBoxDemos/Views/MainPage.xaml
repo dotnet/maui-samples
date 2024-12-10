@@ -2,7 +2,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 			 xmlns:local="clr-namespace:CheckBoxDemos"
              x:Class="CheckBoxDemos.MainPage"
-	         Title="CheckBox Demos">
+	         Title="CheckBox Demos"
+             x:DataType="local:MainPage">
 	<TableView Intent="Menu">
 		<TableRoot>
 			<TableSection>

@@ -1,20 +1,22 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:CarouselViewDemos.Models"
              xmlns:viewmodels="clr-namespace:CarouselViewDemos.ViewModels"
              x:Class="CarouselViewDemos.Views.EmptyViewFilteredPage"
-             Title="EmptyView (filtering)">
+             Title="EmptyView (filtering)"
+             x:DataType="viewmodels:MonkeysViewModel">
     <ContentPage.BindingContext>
         <viewmodels:MonkeysViewModel />
     </ContentPage.BindingContext>
     <StackLayout Margin="20">
         <SearchBar SearchCommand="{Binding FilterCommand}"
-                   SearchCommandParameter="{Binding Source={RelativeSource Self}, Path=Text}"
+                   SearchCommandParameter="{Binding x:DataType='SearchBar', Source={RelativeSource Self}, Path=Text}"
                    Placeholder="Filter"/>
         <CarouselView ItemsSource="{Binding Monkeys}"
                       EmptyView="No items match your filter.">
             <CarouselView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="models:Monkey">
                     <StackLayout>
                         <Border Stroke="DarkGray"
                                 StrokeShape="RoundRectangle 5"

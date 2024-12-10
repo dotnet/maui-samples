@@ -15,11 +15,11 @@
                         <ViewCell.ContextActions>
                             <MenuItem Text="Favorite"
                                       IconImageSource="favorite.png"
-                                      Command="{Binding Source={x:Reference listView}, Path=BindingContext.FavoriteCommand}"
+                                      Command="{Binding x:DataType='viewmodels:MonkeysViewModel', Source={RelativeSource AncestorType={x:Type viewmodels:MonkeysViewModel}}, Path=FavoriteCommand}"
                                       CommandParameter="{Binding}" />
                             <MenuItem Text="Delete" 
                                       IconImageSource="delete.png"
-                                      Command="{Binding Source={x:Reference listView}, Path=BindingContext.DeleteCommand}"
+                                      Command="{Binding x:DataType='viewmodels:MonkeysViewModel', Source={RelativeSource AncestorType={x:Type viewmodels:MonkeysViewModel}}, Path=DeleteCommand}"
                                       CommandParameter="{Binding}" />
                         </ViewCell.ContextActions>
 

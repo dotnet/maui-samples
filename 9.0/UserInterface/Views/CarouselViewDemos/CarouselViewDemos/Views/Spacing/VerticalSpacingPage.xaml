@@ -1,10 +1,12 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:CarouselViewDemos.Models"
              xmlns:viewmodels="clr-namespace:CarouselViewDemos.ViewModels"
              xmlns:controls="clr-namespace:CarouselViewDemos.Controls"
              x:Class="CarouselViewDemos.Views.VerticalSpacingPage"
-             Title="Vertical layout (spacing)">
+             Title="Vertical layout (spacing)"
+             x:DataType="viewmodels:MonkeysViewModel">
     <ContentPage.BindingContext>
         <viewmodels:MonkeysViewModel />
     </ContentPage.BindingContext>
@@ -17,7 +19,7 @@
                 <LinearItemsLayout Orientation="Vertical" />                                   
             </CarouselView.ItemsLayout>
             <CarouselView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="models:Monkey">
                     <StackLayout>
                         <Border Stroke="DarkGray"
                                 StrokeShape="RoundRectangle 5"

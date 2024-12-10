@@ -1,21 +1,25 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:CarouselViewDemos.Models"
              xmlns:viewmodels="clr-namespace:CarouselViewDemos.ViewModels"
              x:Class="CarouselViewDemos.Views.SetCurrentItemAndPositionPage"
-             Title="Set CurrentItem/Position from VM">
+             Title="Set CurrentItem/Position from VM"
+             x:DataType="viewmodels:MonkeysViewModel">
     <ContentPage.BindingContext>
         <viewmodels:MonkeysViewModel />
     </ContentPage.BindingContext>
     <StackLayout Margin="10">
-        <Label Text="{Binding Source={x:Reference carouselView}, Path=CurrentItem.Name, StringFormat='Current item: {0}', FallbackValue='Current item:'}" />
-        <Label Text="{Binding Source={x:Reference carouselView}, Path=Position, StringFormat='Position: {0}'}" />
+        <Label BindingContext="{Binding x:DataType='CarouselView', Source={x:Reference carouselView}, Path=CurrentItem}"
+               Text="{Binding x:DataType='models:Monkey', Path=Name, StringFormat='Current item: {0}', FallbackValue='Current item:'}" />
+        <Label BindingContext="{Binding x:DataType='CarouselView', Source={x:Reference carouselView}}"
+               Text="{Binding x:DataType='CarouselView', Path=Position, StringFormat='Position: {0}'}" />
         <CarouselView x:Name="carouselView"
                       ItemsSource="{Binding Monkeys}"
                       CurrentItem="{Binding CurrentItem}"
                       Position="{Binding Position}">
             <CarouselView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="models:Monkey">
                     <StackLayout>
                         <Border Stroke="DarkGray"
                                 StrokeShape="RoundRectangle 5"
