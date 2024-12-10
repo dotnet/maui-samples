@@ -2,7 +2,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 			 xmlns:views="clr-namespace:SwipeViewDemos"
              x:Class="SwipeViewDemos.MainPage"
-			 Title="SwipeView demos">
+			 Title="SwipeView demos"
+             x:DataType="views:MainPage">
 	<TableView Intent="Menu">
 		<TableSection Title="SwipeView demos">
 			<TextCell Text="SwipeView events"

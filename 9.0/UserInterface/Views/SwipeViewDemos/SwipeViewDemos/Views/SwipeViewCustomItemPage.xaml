@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:SwipeViewDemos"
              x:Class="SwipeViewDemos.SwipeViewCustomItemPage"
              Title="Custom SwipeViewItem demo">
     <StackLayout Margin="20">
@@ -45,8 +46,9 @@
         <SwipeView x:Name="swipeView2">
             <SwipeView.LeftItems>
                 <SwipeItems>
-                    <SwipeItemView Command="{Binding CheckAnswerCommand}"
-                                   CommandParameter="{Binding Source={x:Reference resultEntry}, Path=Text}">
+                    <SwipeItemView x:DataType="views:SwipeViewCustomItemPage"
+                                   Command="{Binding CheckAnswerCommand}"
+                                   CommandParameter="{Binding x:DataType='Entry', Source={x:Reference resultEntry}, Path=Text}">
                         <StackLayout Margin="10"
                                      WidthRequest="300">
                             <Entry x:Name="resultEntry"

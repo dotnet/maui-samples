@@ -2,9 +2,12 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:templates="clr-namespace:WorkingWithMaps.Templates"
+             xmlns:viewmodels="clr-namespace:WorkingWithMaps.ViewModels"
+             xmlns:models="clr-namespace:WorkingWithMaps.Models"
              xmlns:maps="http://schemas.microsoft.com/dotnet/2021/maui/maps"
              x:Class="WorkingWithMaps.Views.PinItemsSourcePage"
-             Title="Databinding pins demo (Collection)">
+             Title="Databinding pins demo (Collection)"
+             x:DataType="viewmodels:PinItemsSourcePageViewModel">
     <!--<ContentPage.Resources>
         <templates:MapItemTemplateSelector x:Key="MapItemTemplateSelector">
             <templates:MapItemTemplateSelector.DefaultTemplate>
@@ -34,7 +37,7 @@
                   ItemsSource="{Binding Positions}">
             <!-- Alternatively, set ItemTemplateSelector to MapItemTemplateSelector -->
             <maps:Map.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="models:Position">
                     <maps:Pin Location="{Binding Location}"
                               Address="{Binding Address}"
                               Label="{Binding Description}" />

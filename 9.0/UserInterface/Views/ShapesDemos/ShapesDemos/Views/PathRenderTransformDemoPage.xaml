@@ -41,7 +41,8 @@
               HeightRequest="200"
               WidthRequest="200"
               HorizontalOptions="Center">
-            <Path Stroke="Black"                  
+            <Path x:DataType="Slider"
+                  Stroke="Black"                  
                   Aspect="Uniform"
                   HorizontalOptions="Center"
                   HeightRequest="100"
@@ -67,7 +68,7 @@
             </Path>
         </Grid>
         <ScrollView Grid.Row="1">
-            <StackLayout>
+            <StackLayout x:DataType="Slider">
                 <Label Text="RotateTransform"
                        Style="{StaticResource HeaderStyle}" />
                 <Label Text="{Binding Source={x:Reference rotation}, Path=Value, StringFormat='Rotation: {0:F0}'}"
