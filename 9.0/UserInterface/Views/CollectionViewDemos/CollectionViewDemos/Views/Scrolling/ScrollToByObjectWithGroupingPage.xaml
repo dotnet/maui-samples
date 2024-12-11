@@ -2,8 +2,11 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:CollectionViewDemos.Controls"
+             xmlns:models="clr-namespace:CollectionViewDemos.Models"
+             xmlns:viewmodels="clr-namespace:CollectionViewDemos.ViewModels"
              x:Class="CollectionViewDemos.Views.ScrollToByObjectWithGroupingPage"
-             Title="Scroll to object (grouped data)">
+             Title="Scroll to object (grouped data)"
+             x:DataType="viewmodels:GroupedAnimalsViewModel">
     <Grid RowDefinitions="Auto, Auto, Auto, *"
           Margin="20">
         <HorizontalStackLayout HorizontalOptions="Center">
@@ -29,7 +32,7 @@
                         Scrolled="OnCollectionViewScrolled"
                         Grid.Row="3">
             <CollectionView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="models:Animal">
                     <Grid Padding="10">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
@@ -56,7 +59,7 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
             <CollectionView.GroupHeaderTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="models:AnimalGroup">
                     <Label Text="{Binding Name}"
                            BackgroundColor="LightGray"
                            FontSize="20"
@@ -64,7 +67,7 @@
                 </DataTemplate>
             </CollectionView.GroupHeaderTemplate>
             <CollectionView.GroupFooterTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="models:AnimalGroup">
                     <Label Text="{Binding Count, StringFormat='Total animals: {0:D}'}"
                            Margin="0,0,0,10" />
                 </DataTemplate>

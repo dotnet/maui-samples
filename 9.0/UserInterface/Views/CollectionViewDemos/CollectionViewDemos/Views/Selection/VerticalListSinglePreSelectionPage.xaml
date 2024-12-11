@@ -1,8 +1,11 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:CollectionViewDemos.Models"
+             xmlns:viewmodels="clr-namespace:CollectionViewDemos.ViewModels"
              x:Class="CollectionViewDemos.Views.VerticalListSinglePreSelectionPage"
-             Title="Vertical list (single pre-selection)">
+             Title="Vertical list (single pre-selection)"
+             x:DataType="viewmodels:MonkeysViewModel">
     <Grid RowDefinitions="Auto, *" 
           Margin="20">
         <Label Text="{Binding SelectedMonkeyMessage}" />
@@ -12,7 +15,7 @@
                         SelectionChangedCommand="{Binding MonkeySelectionChangedCommand}"
                         Grid.Row="1">
             <CollectionView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="models:Monkey">
                     <Grid Padding="10">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />

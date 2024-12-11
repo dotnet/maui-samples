@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:CollectionViewDemos.Models"
+             xmlns:viewmodels="clr-namespace:CollectionViewDemos.ViewModels"
              x:Class="CollectionViewDemos.Views.VerticalListDynamicSizeItemsPage"
-             Title="Vertical list (dynamic item sizing)">
+             Title="Vertical list (dynamic item sizing)"
+             x:DataType="viewmodels:MonkeysViewModel">
     <Grid RowDefinitions="Auto, *" 
           Margin="20">
         <Label Text="Tap each image to dynamically change its size." />
         <CollectionView ItemsSource="{Binding Monkeys}"
                         Grid.Row="1">
             <CollectionView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="models:Monkey">
                     <Grid Padding="10">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />

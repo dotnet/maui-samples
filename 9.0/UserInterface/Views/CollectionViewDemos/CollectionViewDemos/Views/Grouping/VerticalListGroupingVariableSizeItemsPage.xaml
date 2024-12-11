@@ -2,8 +2,11 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:CollectionViewDemos.Controls"
+             xmlns:models="clr-namespace:CollectionViewDemos.Models"
+             xmlns:viewmodels="clr-namespace:CollectionViewDemos.ViewModels"
              x:Class="CollectionViewDemos.Views.VerticalListGroupingVariableSizeItemsPage"
-             Title="Grouping with variable sized items">
+             Title="Grouping with variable sized items"
+             x:DataType="viewmodels:GroupedAnimalsViewModel">
     <Grid RowDefinitions="Auto, *" 
           Margin="20">
         <HorizontalStackLayout HorizontalOptions="Center">
@@ -15,10 +18,10 @@
         </HorizontalStackLayout>
         <CollectionView ItemsSource="{Binding Animals}"
                         IsGrouped="true"
-                        ItemSizingStrategy="{Binding Source={x:Reference enumPicker}, Path=SelectedItem}"
+                        ItemSizingStrategy="{Binding x:DataType='controls:EnumPicker', Source={x:Reference enumPicker}, Path=SelectedItem}"
                         Grid.Row="1">
             <CollectionView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="models:Animal">
                     <Grid Padding="10">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
@@ -43,7 +46,7 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
             <CollectionView.GroupHeaderTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="models:AnimalGroup">
                     <Label Text="{Binding Name}"
                            BackgroundColor="LightGray"
                            FontSize="20"
@@ -51,7 +54,7 @@
                 </DataTemplate>
             </CollectionView.GroupHeaderTemplate>
             <CollectionView.GroupFooterTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="models:AnimalGroup">
                     <Label Text="{Binding Count, StringFormat='Total animals: {0:D}'}"
                            Margin="0,0,0,10" />
                 </DataTemplate>

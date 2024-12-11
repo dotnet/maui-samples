@@ -2,8 +2,11 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:CollectionViewDemos.Controls"
+             xmlns:models="clr-namespace:CollectionViewDemos.Models"
+             xmlns:viewmodels="clr-namespace:CollectionViewDemos.ViewModels"
              x:Class="CollectionViewDemos.Views.VerticalListVariableSizeItemsPage"
-             Title="Vertical list (variable size items)">
+             Title="Vertical list (variable size items)"
+             x:DataType="viewmodels:MonkeysViewModel">
   <Grid RowDefinitions="Auto, *" 
         Margin="20">
         <HorizontalStackLayout HorizontalOptions="Center">
@@ -14,10 +17,10 @@
                                  SelectedIndex="0" />
         </HorizontalStackLayout>
         <CollectionView ItemsSource="{Binding Monkeys}" 
-                        ItemSizingStrategy="{Binding Source={x:Reference enumPicker}, Path=SelectedItem}"
+                        ItemSizingStrategy="{Binding x:DataType='controls:EnumPicker', Source={x:Reference enumPicker}, Path=SelectedItem}"
                         Grid.Row="1">
             <CollectionView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="models:Monkey">
                     <Grid Padding="10">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
