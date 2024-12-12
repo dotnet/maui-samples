@@ -3,8 +3,10 @@
                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                 xmlns:views="clr-namespace:PlatformIntegrationDemo.Views"
                 xmlns:viewmodels="clr-namespace:PlatformIntegrationDemo.ViewModels"
+                xmlns:appmodel="clr-namespace:Microsoft.Maui.ApplicationModel.Communication;assembly=Microsoft.Maui.Essentials"
                 x:Class="PlatformIntegrationDemo.Views.ContactsPage"
-                Title="Contacts">
+                Title="Contacts"
+                x:DataType="viewmodels:ContactsViewModel">
     <views:BasePage.BindingContext>
         <viewmodels:ContactsViewModel />
     </views:BasePage.BindingContext>
@@ -27,7 +29,7 @@
                   SelectedItem="{Binding SelectedContact}"
                   Grid.Row="2">
             <ListView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="appmodel:Contact">
                     <ViewCell>
                         <Grid Padding="12">
                             <Label Text="{Binding DisplayName}"

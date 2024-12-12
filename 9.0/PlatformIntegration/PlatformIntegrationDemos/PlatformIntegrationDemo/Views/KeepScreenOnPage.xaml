@@ -4,7 +4,8 @@
                 xmlns:views="clr-namespace:PlatformIntegrationDemo.Views"
                 xmlns:viewmodels="clr-namespace:PlatformIntegrationDemo.ViewModels"
                 x:Class="PlatformIntegrationDemo.Views.KeepScreenOnPage"
-                Title="Keep Screen On">
+                Title="Keep Screen On"
+                x:DataType="viewmodels:KeepScreenOnViewModel">
     <views:BasePage.BindingContext>
         <viewmodels:KeepScreenOnViewModel />
     </views:BasePage.BindingContext>

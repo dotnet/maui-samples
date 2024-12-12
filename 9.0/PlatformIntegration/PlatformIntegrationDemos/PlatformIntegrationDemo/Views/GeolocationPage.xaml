@@ -4,7 +4,8 @@
                 xmlns:views="clr-namespace:PlatformIntegrationDemo.Views"
                 xmlns:viewmodels="clr-namespace:PlatformIntegrationDemo.ViewModels"
                 x:Class="PlatformIntegrationDemo.Views.GeolocationPage"
-                Title="Geolocation">
+                Title="Geolocation"
+                x:DataType="viewmodels:GeolocationViewModel">
     <views:BasePage.BindingContext>
         <viewmodels:GeolocationViewModel />
     </views:BasePage.BindingContext>

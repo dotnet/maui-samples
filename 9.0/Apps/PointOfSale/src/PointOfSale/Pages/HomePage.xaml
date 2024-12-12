@@ -185,7 +185,7 @@
                     </BindableLayout.ItemsSource>
                 <BindableLayout.ItemTemplate>
                         <DataTemplate>
-                            <RadioButton Content="{Binding .}" Value="{Binding .}">
+                            <RadioButton x:DataType="x:String" Content="{Binding .}" Value="{Binding .}">
                                 <RadioButton.ControlTemplate>
                                     <ControlTemplate>
                                         <Grid RowDefinitions="30,4">
@@ -249,7 +249,7 @@
                                                     </VisualStateGroup>
                                                 </VisualStateGroupList>
                                             </VisualStateManager.VisualStateGroups>
-                                            <Label x:DataType="{x:Null}" Text="{TemplateBinding Content}" x:Name="TextLabel" />
+                                            <Label x:DataType="RadioButton" Text="{TemplateBinding Content}" x:Name="TextLabel" />
                                             <BoxView x:Name="Indicator" Grid.Row="1" Color="Transparent"/>
                                         </Grid>
                                     </ControlTemplate>

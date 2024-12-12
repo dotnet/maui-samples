@@ -3,7 +3,8 @@
                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                 xmlns:local="clr-namespace:SkiaSharpDemos"
                 x:Class="SkiaSharpDemos.Basics.BasicsMenuPage"
-                Title="SkiaSharp Drawing Basics">
+                Title="SkiaSharp Drawing Basics"
+                x:DataType="local:Basics.BasicsMenuPage">
     <TableView Intent="Menu">
         <TableRoot>
             <TableSection Title="Drawing a Simple Circle">

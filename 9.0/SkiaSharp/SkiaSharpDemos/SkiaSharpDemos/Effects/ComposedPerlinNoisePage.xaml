@@ -27,7 +27,8 @@
         <HorizontalStackLayout Grid.Row="5"
                                HorizontalOptions="Center"
                                Margin="10">
-            <Label Text="{Binding Source={x:Reference octavesStepper},
+            <Label x:DataType="Stepper"
+                   Text="{Binding Source={x:Reference octavesStepper},
                                   Path=Value,
                                   StringFormat='Number of Octaves: {0:F0}'}"
                    VerticalOptions="Center" />

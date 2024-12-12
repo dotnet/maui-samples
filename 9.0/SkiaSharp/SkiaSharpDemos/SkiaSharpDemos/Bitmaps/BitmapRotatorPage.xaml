@@ -13,7 +13,8 @@
                 Maximum="360"
                 Margin="10, 0"
                 ValueChanged="OnSliderValueChanged" />
-        <Label Text="{Binding Source={x:Reference slider},
+        <Label x:DataType="Slider"
+               Text="{Binding Source={x:Reference slider},
                               Path=Value,
                               StringFormat='Rotate by {0:F0}&#x00B0;'}"
                HorizontalTextAlignment="Center"

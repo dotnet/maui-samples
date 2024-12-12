@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:views="clr-namespace:CustomizeHandlersDemo.Views"
-             x:Class="CustomizeHandlersDemo.Views.MainPage">
+             x:Class="CustomizeHandlersDemo.Views.MainPage"
+             x:DataType="views:MainPage">
     <TableView Intent="Menu">
         <TableRoot>
             <TableSection Title="Customize handlers">

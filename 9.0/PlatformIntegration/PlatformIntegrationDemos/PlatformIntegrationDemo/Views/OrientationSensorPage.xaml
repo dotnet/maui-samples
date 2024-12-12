@@ -4,7 +4,8 @@
                 xmlns:views="clr-namespace:PlatformIntegrationDemo.Views"
                 xmlns:viewmodels="clr-namespace:PlatformIntegrationDemo.ViewModels"
                 x:Class="PlatformIntegrationDemo.Views.OrientationSensorPage"
-                Title="Orientation Sensor">
+                Title="Orientation Sensor"
+                x:DataType="viewmodels:OrientationSensorViewModel">
     <views:BasePage.BindingContext>
         <viewmodels:OrientationSensorViewModel />
     </views:BasePage.BindingContext>

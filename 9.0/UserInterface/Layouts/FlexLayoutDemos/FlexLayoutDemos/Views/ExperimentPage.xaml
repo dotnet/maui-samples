@@ -12,7 +12,8 @@
         </Grid.RowDefinitions>
 
         <!-- Control Panel -->
-        <Grid BindingContext="{x:Reference flexLayout}" 
+        <Grid x:DataType="FlexLayout"
+              BindingContext="{x:Reference flexLayout}" 
               Grid.Row="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -42,7 +43,8 @@
             <StackLayout Orientation="Horizontal"
                          Grid.Row="0" Grid.Column="1">
                 
-                <Label Text="{Binding Source={x:Reference numberStepper},           
+                <Label x:DataType="Stepper"
+                       Text="{Binding Source={x:Reference numberStepper},           
                                       Path=Value,
                                       StringFormat='{0:F0}'}" />
                 

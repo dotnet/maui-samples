@@ -5,7 +5,8 @@
              x:Class="DataTemplates.WithDataTemplateSelectorPage"
              Title="WithDataTemplateSelectorPage">
     <ContentPage.Resources>
-        <DataTemplate x:Key="validPersonTemplate">
+        <DataTemplate x:Key="validPersonTemplate"
+                      x:DataType="local:Person">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.4*" />
@@ -24,7 +25,8 @@
                        HorizontalTextAlignment="End" />
             </Grid>
         </DataTemplate>
-        <DataTemplate x:Key="invalidPersonTemplate">
+        <DataTemplate x:Key="invalidPersonTemplate"
+                      x:DataType="local:Person">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.4*" />

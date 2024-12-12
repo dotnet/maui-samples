@@ -20,14 +20,16 @@
         <Slider x:Name="xScaleSlider"
                 Grid.Row="0"
                 ValueChanged="sliderValueChanged" />
-        <Label Text="{Binding Source={x:Reference xScaleSlider},
+        <Label x:DataType="Slider"
+               Text="{Binding Source={x:Reference xScaleSlider},
                               Path=Value,
                               StringFormat='Horizontal Scaling = {0:F1}'}"
                Grid.Row="1" />
         <Slider x:Name="yScaleSlider"
                 Grid.Row="2"
                 ValueChanged="sliderValueChanged" />
-        <Label Text="{Binding Source={x:Reference yScaleSlider},
+        <Label x:DataType="Slider"
+               Text="{Binding Source={x:Reference yScaleSlider},
                               Path=Value,
                               StringFormat='Vertical Scaling = {0:F1}'}"
                Grid.Row="3" />

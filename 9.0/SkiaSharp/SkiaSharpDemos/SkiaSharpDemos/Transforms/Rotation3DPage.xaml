@@ -20,21 +20,24 @@
         <Slider x:Name="xRotateSlider"
                 Grid.Row="0"
                 ValueChanged="OnSliderValueChanged" />
-        <Label Text="{Binding Source={x:Reference xRotateSlider},
+        <Label x:DataType="Slider"
+               Text="{Binding Source={x:Reference xRotateSlider},
                               Path=Value,
                               StringFormat='X-Axis Rotation = {0:F0}'}"
                Grid.Row="1" />
         <Slider x:Name="yRotateSlider"
                 Grid.Row="2"
                 ValueChanged="OnSliderValueChanged" />
-        <Label Text="{Binding Source={x:Reference yRotateSlider},
+        <Label x:DataType="Slider"
+               Text="{Binding Source={x:Reference yRotateSlider},
                               Path=Value,
                               StringFormat='Y-Axis Rotation = {0:F0}'}"
                Grid.Row="3" />
         <Slider x:Name="zRotateSlider"
                 Grid.Row="4"
                 ValueChanged="OnSliderValueChanged" />
-        <Label Text="{Binding Source={x:Reference zRotateSlider},
+        <Label x:DataType="Slider"
+               Text="{Binding Source={x:Reference zRotateSlider},
                               Path=Value,
                               StringFormat='Z-Axis Rotation = {0:F0}'}"
                Grid.Row="5" />
@@ -43,7 +46,8 @@
                 Maximum="2500"
                 Minimum="250"
                 ValueChanged="OnSliderValueChanged" />
-        <Label Grid.Row="7"
+        <Label x:DataType="Slider"
+               Grid.Row="7"
                Text="{Binding Source={x:Reference depthSlider},
                               Path=Value,
                               StringFormat='Depth = {0:F0}'}" />

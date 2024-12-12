@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:Notes.ViewModels"
-             x:Class="Notes.Views.AboutPage">
+             x:Class="Notes.Views.AboutPage"
+             x:DataType="viewModels:AboutViewModel">
     <ContentPage.BindingContext>
         <viewModels:AboutViewModel />
     </ContentPage.BindingContext>

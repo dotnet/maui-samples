@@ -2,8 +2,11 @@
 <views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                 xmlns:views="clr-namespace:PlatformIntegrationDemo.Views"
+                xmlns:viewmodels="clr-namespace:PlatformIntegrationDemo.ViewModels"
+                xmlns:appmodel="clr-namespace:Microsoft.Maui.ApplicationModel.Communication;assembly=Microsoft.Maui.Essentials"
                 x:Class="PlatformIntegrationDemo.Views.ContactDetailsPage"
-                Title="Contact Details">
+                Title="Contact Details"
+                x:DataType="viewmodels:ContactDetailsViewModel">
     <Grid RowDefinitions="Auto,*">
         <Label Text="View contact details."
                FontAttributes="Bold"
@@ -41,7 +44,7 @@
                    Text="Numbers:" />
             <StackLayout BindableLayout.ItemsSource="{Binding Contact.Phones}">
                 <BindableLayout.ItemTemplate>
-                    <DataTemplate>
+                    <DataTemplate x:DataType="appmodel:ContactPhone">
                         <Label>
                             <Label.FormattedText>
                                 <FormattedString>
@@ -57,7 +60,7 @@
                    Text="Emails:" />
             <StackLayout BindableLayout.ItemsSource="{Binding Contact.Emails}">
                 <BindableLayout.ItemTemplate>
-                    <DataTemplate>
+                    <DataTemplate x:DataType="appmodel:ContactEmail">
                         <Label>
                             <Label.FormattedText>
                                 <FormattedString>

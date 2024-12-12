@@ -4,7 +4,8 @@
                 xmlns:views="clr-namespace:PlatformIntegrationDemo.Views"
                 xmlns:viewmodels="clr-namespace:PlatformIntegrationDemo.ViewModels"
                 x:Class="PlatformIntegrationDemo.Views.UnitConvertersPage"
-                Title="Unit Converters">
+                Title="Unit Converters"
+                x:DataType="viewmodels:UnitConvertersViewModel">
     <views:BasePage.BindingContext>
         <viewmodels:UnitConvertersViewModel />
     </views:BasePage.BindingContext>

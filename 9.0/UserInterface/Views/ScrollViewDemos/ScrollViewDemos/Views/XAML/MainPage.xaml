@@ -1,9 +1,11 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ScrollViewDemos"
 			 xmlns:views="clr-namespace:ScrollViewDemos.Views.XAML"
 			 xmlns:codeViews="clr-namespace:ScrollViewDemos.Views.Code"
              x:Class="ScrollViewDemos.MainPage"
-			 Title="ScrollView demos">
+			 Title="ScrollView demos"
+             x:DataType="local:MainPage">
 	<TableView Intent="Menu">
 		<TableRoot>
 			<TableSection Title="XAML">

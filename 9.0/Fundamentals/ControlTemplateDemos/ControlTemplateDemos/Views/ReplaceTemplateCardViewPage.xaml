@@ -5,7 +5,8 @@
              x:Class="ControlTemplateDemos.ReplaceTemplateCardViewPage"
              Title="Redefine CardView UI">
     <ContentPage.Resources>
-        <ControlTemplate x:Key="CardViewCompressed">
+        <ControlTemplate x:Key="CardViewCompressed"
+                         x:DataType="controls:CardView">
             <Grid RowDefinitions="100" ColumnDefinitions="100,*">
                 <Image Source="{TemplateBinding IconImageSource}"
                         BackgroundColor="{TemplateBinding IconBackgroundColor}"
@@ -23,24 +24,27 @@
             </Grid>
         </ControlTemplate>
     </ContentPage.Resources>
-    <VerticalStackLayout Margin="30" Spacing="30">
-        <controls:CardViewUI BorderColor="DarkGray"
-                             CardTitle="John Doe"
-                             CardDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla elit dolor, convallis non interdum."
-                             IconBackgroundColor="SlateGray"
-                             IconImageSource="user.png"
-                             ControlTemplate="{StaticResource CardViewCompressed}" />
-        <controls:CardViewUI BorderColor="DarkGray"
-                             CardTitle="Jane Doe"
-                             CardDescription="Phasellus eu convallis mi. In tempus augue eu dignissim fermentum. Morbi ut lacus vitae eros lacinia."
-                             IconBackgroundColor="SlateGray"
-                             IconImageSource="user.png"
-                             ControlTemplate="{StaticResource CardViewCompressed}" />
-        <controls:CardViewUI BorderColor="DarkGray"
-                             CardTitle=".NET Bot"
-                             CardDescription="Aliquam sagittis, odio lacinia fermentum dictum, mi erat scelerisque erat, quis aliquet arcu."
-                             IconBackgroundColor="SlateGray"
-                             IconImageSource="user.png"
-                             ControlTemplate="{StaticResource CardViewCompressed}" />
-    </VerticalStackLayout>
+    <ScrollView>
+        <VerticalStackLayout Margin="30"
+                             Spacing="30">
+            <controls:CardViewUI BorderColor="DarkGray"
+                                 CardTitle="John Doe"
+                                 CardDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla elit dolor, convallis non interdum."
+                                 IconBackgroundColor="SlateGray"
+                                 IconImageSource="user.png"
+                                 ControlTemplate="{StaticResource CardViewCompressed}" />
+            <controls:CardViewUI BorderColor="DarkGray"
+                                 CardTitle="Jane Doe"
+                                 CardDescription="Phasellus eu convallis mi. In tempus augue eu dignissim fermentum. Morbi ut lacus vitae eros lacinia."
+                                 IconBackgroundColor="SlateGray"
+                                 IconImageSource="user.png"
+                                 ControlTemplate="{StaticResource CardViewCompressed}" />
+            <controls:CardViewUI BorderColor="DarkGray"
+                                 CardTitle=".NET Bot"
+                                 CardDescription="Aliquam sagittis, odio lacinia fermentum dictum, mi erat scelerisque erat, quis aliquet arcu."
+                                 IconBackgroundColor="SlateGray"
+                                 IconImageSource="user.png"
+                                 ControlTemplate="{StaticResource CardViewCompressed}" />
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

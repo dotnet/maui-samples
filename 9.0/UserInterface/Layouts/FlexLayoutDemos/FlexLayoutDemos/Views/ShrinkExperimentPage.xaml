@@ -39,7 +39,8 @@
                     Value="1"
                     Maximum="5" />
 
-            <Label Text="{Binding Source={x:Reference shrink2Slider},
+            <Label x:DataType="Slider"
+                   Text="{Binding Source={x:Reference shrink2Slider},
                                   Path=Value,
                                   StringFormat='Shrink = {0:F2}'}"
                    Grid.Row="1" Grid.Column="1" 
@@ -54,7 +55,8 @@
                     Value="1"
                     Maximum="5" />
 
-            <Label Text="{Binding Source={x:Reference shrink4Slider},
+            <Label x:DataType="Slider"
+                   Text="{Binding Source={x:Reference shrink4Slider},
                                   Path=Value,
                                   StringFormat='Shrink = {0:F2}'}"
                    Grid.Row="3" Grid.Column="1" 
@@ -82,7 +84,8 @@
                    TextColor="Blue"
                    BackgroundColor="Pink" />
 
-            <Label Text="Label 2"
+            <Label x:DataType="Slider"
+                   Text="Label 2"
                    TextColor="Red"
                    BackgroundColor="Cyan"
                    FlexLayout.Shrink="{Binding Source={x:Reference shrink2Slider},
@@ -92,7 +95,8 @@
                    TextColor="Blue"
                    BackgroundColor="Pink" />
 
-            <Label Text="Label 4"
+            <Label x:DataType="Slider"
+                   Text="Label 4"
                    TextColor="Red"
                    BackgroundColor="Cyan"
                    FlexLayout.Shrink="{Binding Source={x:Reference shrink4Slider},

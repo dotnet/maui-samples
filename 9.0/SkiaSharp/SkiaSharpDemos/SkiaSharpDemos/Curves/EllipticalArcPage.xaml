@@ -21,14 +21,16 @@
         <Slider x:Name="xRadiusSlider"
                 Grid.Row="0"
                 ValueChanged="sliderValueChanged" />
-        <Label Text="{Binding Source={x:Reference xRadiusSlider},
+        <Label x:DataType="Slider"
+               Text="{Binding Source={x:Reference xRadiusSlider},
                               Path=Value,
                               StringFormat='Ellipse X-Radius = {0:F0}'}"
                Grid.Row="1" />
         <Slider x:Name="yRadiusSlider"
                 Grid.Row="2"
                 ValueChanged="sliderValueChanged" />
-        <Label Text="{Binding Source={x:Reference yRadiusSlider},
+        <Label x:DataType="Slider"
+               Text="{Binding Source={x:Reference yRadiusSlider},
                               Path=Value,
                               StringFormat='Ellipse Y-Radius = {0:F0}'}"
                Grid.Row="3" />
@@ -37,7 +39,8 @@
                 Minimum="0"
                 Maximum="360"
                 ValueChanged="sliderValueChanged" />
-        <Label Text="{Binding Source={x:Reference rotationSlider},
+        <Label x:DataType="Slider"
+               Text="{Binding Source={x:Reference rotationSlider},
                               Path=Value,
                               StringFormat='Ellipse Rotation = {0:F0} degrees'}"
                Grid.Row="5" />

@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:XamlSamples"
              x:Class="XamlSamples.KeypadPage"
-             Title="Keypad Page">
+             Title="Keypad Page"
+             x:DataType="local:KeypadViewModel">
     <ContentPage.BindingContext>
         <local:KeypadViewModel />
     </ContentPage.BindingContext>

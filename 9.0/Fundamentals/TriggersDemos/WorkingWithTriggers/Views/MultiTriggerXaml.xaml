@@ -30,10 +30,12 @@
             <Button.Triggers>
                 <MultiTrigger TargetType="Button">
                     <MultiTrigger.Conditions>
-                        <BindingCondition Binding="{Binding Source={x:Reference email},
+                        <BindingCondition Binding="{Binding x:DataType='Entry',
+                                                            Source={x:Reference email},
 		                                                    Path=Text.Length}"
                                           Value="0" />
-                        <BindingCondition Binding="{Binding Source={x:Reference phone},
+                        <BindingCondition Binding="{Binding x:DataType='Entry',
+                                                            Source={x:Reference phone},
 		                                                    Path=Text.Length}"
                                           Value="0" />
                     </MultiTrigger.Conditions>
@@ -67,11 +69,13 @@
             <Button.Triggers>
                 <MultiTrigger TargetType="Button">
                     <MultiTrigger.Conditions>
-                        <BindingCondition Binding="{Binding Source={x:Reference user},
+                        <BindingCondition Binding="{Binding x:DataType='Entry',
+                                                            Source={x:Reference user},
 		                                                    Path=Text.Length,
 		                                                    Converter={StaticResource dataHasBeenEntered}}"
                                           Value="true" />
-                        <BindingCondition Binding="{Binding Source={x:Reference pwd},
+                        <BindingCondition Binding="{Binding x:DataType='Entry',
+                                                            Source={x:Reference pwd},
 		                                                    Path=Text.Length,
 		                                                    Converter={StaticResource dataHasBeenEntered}}"
                                           Value="true" />

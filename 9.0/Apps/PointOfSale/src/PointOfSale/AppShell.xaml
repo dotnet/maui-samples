@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:local="clr-namespace:PointOfSale"
        xmlns:pages="clr-namespace:PointOfSale.Pages"
        xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
        xmlns:b="clr-namespace:PointOfSale.Common.Behaviors"
@@ -70,7 +71,8 @@
 
     <Shell.FlyoutContentTemplate>
         <DataTemplate>
-            <Grid Background="{StaticResource DarkBg2Brush}"
+            <Grid x:DataType="local:AppShell"
+                  Background="{StaticResource DarkBg2Brush}"
                   RowDefinitions="*,*,*,*,*,*,*,*"
                   RadioButtonGroup.GroupName="Menu"
                   RadioButtonGroup.SelectedValue="{Binding SelectedRoute}">

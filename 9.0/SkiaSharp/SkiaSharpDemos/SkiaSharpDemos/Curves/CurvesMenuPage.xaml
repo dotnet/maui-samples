@@ -3,7 +3,8 @@
                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                 xmlns:local="clr-namespace:SkiaSharpDemos"
                 x:Class="SkiaSharpDemos.Curves.CurvesMenuPage"
-                Title="SkiaSharp Curves and Paths">
+                Title="SkiaSharp Curves and Paths"
+                x:DataType="local:Curves.CurvesMenuPage">
     <TableView Intent="Menu">
         <TableRoot>
             <TableSection Title="Three Ways to Draw an Arc">

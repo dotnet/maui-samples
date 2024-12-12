@@ -2,24 +2,28 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:CarouselViewDemos.Controls"
+             xmlns:models="clr-namespace:CarouselViewDemos.Models"
              xmlns:viewmodels="clr-namespace:CarouselViewDemos.ViewModels"
              x:Class="CarouselViewDemos.Views.EmptyViewTemplatePage"
-             Title="EmptyView (template)">
+             Title="EmptyView (template)"
+             x:DataType="viewmodels:MonkeysViewModel">
     <ContentPage.BindingContext>
         <viewmodels:MonkeysViewModel />
     </ContentPage.BindingContext>
     <StackLayout Margin="20">
         <SearchBar x:Name="searchBar"
                    SearchCommand="{Binding FilterCommand}"
-                   SearchCommandParameter="{Binding Source={RelativeSource Self}, Path=Text}"
+                   SearchCommandParameter="{Binding x:DataType='SearchBar', Source={RelativeSource Self}, Path=Text}"
                    Placeholder="Filter" />
         <CarouselView ItemsSource="{Binding Monkeys}">
             <CarouselView.EmptyView>
-                <controls:FilterData Filter="{Binding Source={x:Reference searchBar}, Path=Text}" />
+                <controls:FilterData x:Name="filter" 
+                                     Filter="{Binding x:DataType='SearchBar', Source={x:Reference searchBar}, Path=Text}" />
             </CarouselView.EmptyView>
             <CarouselView.EmptyViewTemplate>
                 <DataTemplate>
-                    <Label Text="{Binding Filter, StringFormat='Your filter term of {0} did not match any records.'}"
+                    <Label x:DataType="controls:FilterData"
+                           Text="{Binding Filter, StringFormat='Your filter term of {0} did not match any records.'}"
                            Margin="10,25,10,10"
                            FontAttributes="Bold"
                            FontSize="18"
@@ -28,7 +32,7 @@
                 </DataTemplate>
             </CarouselView.EmptyViewTemplate>
             <CarouselView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="models:Monkey">
                     <StackLayout>
                         <Border Stroke="DarkGray"
                                 StrokeShape="RoundRectangle 5"

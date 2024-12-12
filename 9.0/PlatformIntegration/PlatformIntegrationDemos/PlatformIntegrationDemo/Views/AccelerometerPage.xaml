@@ -4,7 +4,8 @@
                 xmlns:views="clr-namespace:PlatformIntegrationDemo.Views"
                 xmlns:viewmodels="clr-namespace:PlatformIntegrationDemo.ViewModels"
                 x:Class="PlatformIntegrationDemo.Views.AccelerometerPage"
-                Title="Accelerometer">
+                Title="Accelerometer"
+                x:DataType="viewmodels:AccelerometerViewModel">
     <views:BasePage.BindingContext>
         <viewmodels:AccelerometerViewModel />
     </views:BasePage.BindingContext>

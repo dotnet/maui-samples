@@ -2,7 +2,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:sys="clr-namespace:System;assembly=netstandard"
              x:Class="XamlSamples.OneShotDateTimePage"
-             Title="One-Shot DateTime Page">
+             Title="One-Shot DateTime Page"
+             x:DataType="sys:DateTime">
     <StackLayout BindingContext="{x:Static sys:DateTime.Now}"
                  HorizontalOptions="Center"
                  VerticalOptions="Center">

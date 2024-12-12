@@ -4,7 +4,8 @@
                 xmlns:views="clr-namespace:PlatformIntegrationDemo.Views"
                 xmlns:viewmodels="clr-namespace:PlatformIntegrationDemo.ViewModels"
                 x:Class="PlatformIntegrationDemo.Views.DeviceInfoPage"
-                Title="Device Info">
+                Title="Device Info"
+                x:DataType="viewmodels:DeviceInfoViewModel">
     <views:BasePage.BindingContext>
         <viewmodels:DeviceInfoViewModel />
     </views:BasePage.BindingContext>

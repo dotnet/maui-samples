@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace DataBindingDemos
+﻿namespace DataBindingDemos
 {
     public class MonkeysViewModel
     {

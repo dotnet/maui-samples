@@ -1,8 +1,10 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:ShapesDemos.Views"
              x:Class="ShapesDemos.Views.AnalogClockDemoPage"
-             Title="Analog clock demo">
+             Title="Analog clock demo"
+             x:DataType="views:AnalogClockDemoPage">
     <ContentPage.Resources>
 
         <Style TargetType="Path">

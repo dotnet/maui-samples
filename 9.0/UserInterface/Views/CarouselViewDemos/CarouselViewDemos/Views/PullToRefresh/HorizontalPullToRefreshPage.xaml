@@ -1,9 +1,11 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:CarouselViewDemos.Models"
              xmlns:viewmodels="clr-namespace:CarouselViewDemos.ViewModels"
              x:Class="CarouselViewDemos.Views.HorizontalPullToRefreshPage"
-             Title="Pull to refresh">
+             Title="Pull to refresh"
+             x:DataType="viewmodels:AnimalsViewModel">
     <ContentPage.BindingContext>
         <viewmodels:AnimalsViewModel />
     </ContentPage.BindingContext>
@@ -14,7 +16,7 @@
                      Command="{Binding RefreshCommand}">
             <CarouselView ItemsSource="{Binding Animals}">
                 <CarouselView.ItemTemplate>
-                    <DataTemplate>
+                    <DataTemplate x:DataType="models:Animal">
                         <StackLayout>
                             <Border Stroke="DarkGray"
                                     StrokeShape="RoundRectangle 5"

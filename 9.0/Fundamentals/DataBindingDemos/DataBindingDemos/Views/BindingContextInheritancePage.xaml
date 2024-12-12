@@ -5,7 +5,8 @@
              Title="BindingContext Inheritance">
     <StackLayout Padding="10">
 
-        <StackLayout VerticalOptions="Fill"
+        <StackLayout x:DataType="Slider"
+                     VerticalOptions="Fill"
                      BindingContext="{x:Reference slider}">
 
             <Label Text="TEXT"

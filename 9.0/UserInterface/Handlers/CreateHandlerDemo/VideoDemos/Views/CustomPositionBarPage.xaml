@@ -4,7 +4,8 @@
              xmlns:controls="clr-namespace:VideoDemos.Controls"
              x:Class="VideoDemos.Views.CustomPositionBarPage"
              Title="Custom position bar">
-    <Grid RowDefinitions="*,Auto,Auto">
+    <Grid x:DataType="controls:Video"
+          RowDefinitions="*,Auto,Auto">
         <controls:Video x:Name="video"
                         AreTransportControlsEnabled="False"
                         Source="{StaticResource ElephantsDream}" />

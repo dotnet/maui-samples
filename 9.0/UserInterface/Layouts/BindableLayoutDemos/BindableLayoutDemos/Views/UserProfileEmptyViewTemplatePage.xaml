@@ -1,10 +1,12 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:templates="clr-namespace:BindableLayoutDemos.Templates"
              xmlns:viewmodels="clr-namespace:BindableLayoutDemos.ViewModels"
              x:Class="BindableLayoutDemos.Views.UserProfileEmptyViewTemplatePage"
-             Title="User profile">
+             Title="User profile"
+             x:DataType="viewmodels:UserProfileViewModel">
     <ContentPage.BindingContext>
         <viewmodels:UserProfileViewModel />
     </ContentPage.BindingContext>
@@ -38,13 +40,15 @@
             <Setter Property="FontSize" Value="12" />
         </Style>
 
-        <DataTemplate x:Key="defaultTemplate">
+        <DataTemplate x:Key="defaultTemplate"
+                      x:DataType="sys:String">
             <Label Text="{Binding}"
                    FontSize="{StaticResource smallTextSize}"
                    Margin="0,0,7,0" />
         </DataTemplate>
         
-        <DataTemplate x:Key="mauiTemplate">
+        <DataTemplate x:Key="mauiTemplate"
+                      x:DataType="sys:String">
             <Label FontSize="{StaticResource smallTextSize}"
                    Margin="0,0,7,0">
                 <Label.FormattedText>
@@ -117,7 +121,7 @@
                          Orientation="Horizontal"
                          Margin="13,10,0,0">
                 <BindableLayout.ItemTemplate>
-                    <DataTemplate>
+                    <DataTemplate x:DataType="sys:String">
                         <Image Source="{Binding}"
                                Aspect="AspectFill"
                                WidthRequest="44"
@@ -148,7 +152,7 @@
                          Margin="0,10,0,0"
                          Spacing="20">
                 <BindableLayout.ItemTemplate>
-                    <DataTemplate>
+                    <DataTemplate x:DataType="sys:String">
                         <Image BackgroundColor="#D1D1D1">
                             <Image.Source>
                                 <FontImageSource Glyph="{Binding}"
@@ -160,7 +164,7 @@
                 </BindableLayout.ItemTemplate>
                 <BindableLayout.EmptyViewTemplate>
                     <DataTemplate>
-                        <Label Text="{Binding Source={x:Reference usernameLabel}, Path=Text, StringFormat='{0} has no achievements.'}" />
+                        <Label Text="{Binding x:DataType='Label', Source={x:Reference usernameLabel}, Path=Text, StringFormat='{0} has no achievements.'}" />
                     </DataTemplate>
                 </BindableLayout.EmptyViewTemplate>
             </StackLayout>

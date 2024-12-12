@@ -4,7 +4,8 @@
                 xmlns:views="clr-namespace:PlatformIntegrationDemo.Views"
                 xmlns:viewmodels="clr-namespace:PlatformIntegrationDemo.ViewModels"
                 x:Class="PlatformIntegrationDemo.Views.WebAuthenticatorPage"
-                Title="Web Authenticator">
+                Title="Web Authenticator"
+                x:DataType="viewmodels:WebAuthenticatorViewModel">
     <views:BasePage.BindingContext>
         <viewmodels:WebAuthenticatorViewModel />
     </views:BasePage.BindingContext>

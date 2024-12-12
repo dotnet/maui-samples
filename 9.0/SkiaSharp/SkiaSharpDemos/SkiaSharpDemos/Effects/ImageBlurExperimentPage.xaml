@@ -13,7 +13,8 @@
                 Maximum="10"
                 Margin="10, 0"
                 ValueChanged="OnSliderValueChanged" />
-        <Label Grid.Row="2"
+        <Label x:DataType="Slider"
+               Grid.Row="2"
                Text="{Binding Source={x:Reference sigmaXSlider},
                               Path=Value,
                               StringFormat='Sigma X = {0:F1}'}"
@@ -23,7 +24,8 @@
                 Maximum="10"
                 Margin="10, 0"
                 ValueChanged="OnSliderValueChanged" />
-        <Label Grid.Row="4"
+        <Label x:DataType="Slider"
+               Grid.Row="4"
                Text="{Binding Source={x:Reference sigmaYSlider},
                               Path=Value,
                               StringFormat='Sigma Y = {0:F1}'}"

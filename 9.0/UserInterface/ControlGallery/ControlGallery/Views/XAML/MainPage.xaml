@@ -1,9 +1,10 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ControlGallery"
              xmlns:views="clr-namespace:ControlGallery.Views.XAML"
-             xmlns:codeViews="clr-namespace:ControlGallery.Views.Code"
              x:Class="ControlGallery.MainPage"
-             Title="Controls Gallery">
+             Title="Controls Gallery"
+             x:DataType="local:MainPage">
     <TableView Intent="Menu">
         <TableRoot>
             <TableSection Title="XAML">

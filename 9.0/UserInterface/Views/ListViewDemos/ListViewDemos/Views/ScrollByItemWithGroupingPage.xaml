@@ -2,8 +2,11 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:ListViewDemos.Controls"
+             xmlns:models="clr-namespace:ListViewDemos.Models"
+             xmlns:viewmodels="clr-namespace:ListViewDemos.ViewModels"             
              x:Class="ListViewDemos.ScrollByItemWithGroupingPage"
-             Title="Scroll by item with grouping">
+             Title="Scroll by item with grouping"
+             x:DataType="viewmodels:GroupedAnimalsViewModel">
     <Grid RowDefinitions="Auto,Auto,Auto,*" 
           Margin="20">
         <HorizontalStackLayout HorizontalOptions="Center">
@@ -29,7 +32,7 @@
                   IsGroupingEnabled="True"
                   Scrolled="OnListViewScrolled">
             <ListView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="models:Animal">
                     <ViewCell>
                         <Grid Padding="10">
                             <Grid.RowDefinitions>

@@ -56,12 +56,14 @@
             </StackLayout>
 
             <StackLayout Grid.Row="0" Grid.Column="2">
-                <Label Text="Is Relative"
+                <Label x:DataType="Switch"
+                       Text="Is Relative"
                        IsEnabled="{Binding Source={x:Reference autoSwitch2},
                                            Path=IsToggled,
                                            Converter={StaticResource booleanInverse}}" />
 
                 <Switch x:Name="relativeSwitch2"
+                        x:DataType="Switch"
                         IsToggled="True"
                         Toggled="OnLabel2IsRelativeSwitchToggled"
                         IsEnabled="{Binding Source={x:Reference autoSwitch2},
@@ -70,18 +72,21 @@
             </StackLayout>
 
             <Slider x:Name="slider2"
+                    x:DataType="Switch"
                     ValueChanged="OnLabel2SliderValueChanged"
                     Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"
                     IsEnabled="{Binding Source={x:Reference autoSwitch2},
                                         Path=IsToggled,
                                         Converter={StaticResource booleanInverse}}" />
 
-            <Label Text="{Binding Source={x:Reference slider2},
+            <Label Text="{Binding x:DataType='Slider',
+                                  Source={x:Reference slider2},
                                   Path=Value,
                                   StringFormat='Value = {0:F2}'}"
                    Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"
                    HorizontalOptions="Center"
-                   IsEnabled="{Binding Source={x:Reference autoSwitch2},
+                   IsEnabled="{Binding x:DataType='Switch',
+                                       Source={x:Reference autoSwitch2},
                                        Path=IsToggled,
                                        Converter={StaticResource booleanInverse}}" />
             
@@ -100,12 +105,14 @@
             </StackLayout>
 
             <StackLayout Grid.Row="3" Grid.Column="2">
-                <Label Text="Is Relative"
+                <Label x:DataType="Switch"
+                       Text="Is Relative"
                        IsEnabled="{Binding Source={x:Reference autoSwitch4},
                                            Path=IsToggled,
                                            Converter={StaticResource booleanInverse}}" />
 
                 <Switch x:Name="relativeSwitch4"
+                        x:DataType="Switch"
                         IsToggled="True"
                         Toggled="OnLabel4IsRelativeSwitchToggled"
                         IsEnabled="{Binding Source={x:Reference autoSwitch4},
@@ -114,18 +121,21 @@
             </StackLayout>
 
             <Slider x:Name="slider4"
+                    x:DataType="Switch"
                     ValueChanged="OnLabel4SliderValueChanged"
                     Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2"
                     IsEnabled="{Binding Source={x:Reference autoSwitch4},
                                         Path=IsToggled,
                                         Converter={StaticResource booleanInverse}}" />
 
-            <Label Text="{Binding Source={x:Reference slider4},
+            <Label Text="{Binding x:DataType='Slider',
+                                  Source={x:Reference slider4},
                                   Path=Value,
                                   StringFormat='Value = {0:F2}'}"
                    Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2"
                    HorizontalOptions="Center"
-                   IsEnabled="{Binding Source={x:Reference autoSwitch4},
+                   IsEnabled="{Binding x:DataType='Switch',
+                                       Source={x:Reference autoSwitch4},
                                        Path=IsToggled,
                                        Converter={StaticResource booleanInverse}}" />
         </Grid>

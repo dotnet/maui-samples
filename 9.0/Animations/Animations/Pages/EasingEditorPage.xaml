@@ -4,8 +4,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:controls="clr-namespace:Animations.Controls"
+             xmlns:local="clr-namespace:Animations"
              Title="{Binding Card.CardTitle}"
-             x:Class="Animations.EasingEditorPage">
+             x:Class="Animations.EasingEditorPage"
+             x:DataType="local:EasingEditorPage">
     <ContentPage.Resources>
         <toolkit:BoolToObjectConverter
             x:Key="BoolToPlayPause"

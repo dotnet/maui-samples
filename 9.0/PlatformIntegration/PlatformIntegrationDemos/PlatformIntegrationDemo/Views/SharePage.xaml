@@ -4,7 +4,8 @@
                 xmlns:views="clr-namespace:PlatformIntegrationDemo.Views"
                 xmlns:viewmodels="clr-namespace:PlatformIntegrationDemo.ViewModels"
                 x:Class="PlatformIntegrationDemo.Views.SharePage"
-                Title="Share">
+                Title="Share"
+                x:DataType="viewmodels:ShareViewModel">
     <views:BasePage.BindingContext>
         <viewmodels:ShareViewModel />
     </views:BasePage.BindingContext>

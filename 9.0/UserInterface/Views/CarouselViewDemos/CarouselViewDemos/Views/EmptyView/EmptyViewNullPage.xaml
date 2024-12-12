@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:CarouselViewDemos.ViewModels"
              x:Class="CarouselViewDemos.Views.EmptyViewNullPage"
-             Title="EmptyView (Null ItemsSource)">
+             Title="EmptyView (Null ItemsSource)"
+             x:DataType="viewmodels:MonkeysViewModel">
     <ContentPage.BindingContext>
         <viewmodels:MonkeysViewModel />
     </ContentPage.BindingContext>

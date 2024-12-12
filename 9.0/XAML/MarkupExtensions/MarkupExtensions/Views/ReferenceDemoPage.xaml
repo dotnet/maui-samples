@@ -5,7 +5,8 @@
              x:Name="page"
              Title="x:Reference Demo">    
     <StackLayout Margin="10, 0">        
-        <Label Text="{Binding Source={x:Reference page},
+        <Label x:DataType="ContentPage"
+               Text="{Binding Source={x:Reference page},
                               StringFormat='The type of this page is {0}'}"
                FontSize="18"
                VerticalOptions="Center"
@@ -13,7 +14,8 @@
         <Slider x:Name="slider"
                 Maximum="360"
                 VerticalOptions="Center" />
-        <Label BindingContext="{x:Reference slider}"
+        <Label x:DataType="Slider"
+               BindingContext="{x:Reference slider}"
                Text="{Binding Value, StringFormat='{0:F0}&#x00B0; rotation'}"
                Rotation="{Binding Value}"
                FontSize="24"

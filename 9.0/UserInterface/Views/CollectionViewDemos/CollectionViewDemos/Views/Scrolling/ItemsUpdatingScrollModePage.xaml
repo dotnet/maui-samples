@@ -2,8 +2,11 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:CollectionViewDemos.Controls"
+             xmlns:models="clr-namespace:CollectionViewDemos.Models"
+             xmlns:viewmodels="clr-namespace:CollectionViewDemos.ViewModels"
              x:Class="CollectionViewDemos.Views.ItemsUpdatingScrollModePage"
-             Title="Scroll mode when adding items">
+             Title="Scroll mode when adding items"
+             x:DataType="viewmodels:MonkeysViewModelWithDelay">
     <Grid RowDefinitions="Auto, *"
           Margin="20" >
         <HorizontalStackLayout HorizontalOptions="Center">
@@ -18,7 +21,7 @@
                         ItemsSource="{Binding Monkeys}"
                         Grid.Row="1">
             <CollectionView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="models:Monkey">
                     <Grid Padding="10">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />

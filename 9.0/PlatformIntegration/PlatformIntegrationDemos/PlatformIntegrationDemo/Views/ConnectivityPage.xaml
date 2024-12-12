@@ -4,7 +4,8 @@
                 xmlns:views="clr-namespace:PlatformIntegrationDemo.Views"
                 xmlns:viewmodels="clr-namespace:PlatformIntegrationDemo.ViewModels"
                 x:Class="PlatformIntegrationDemo.Views.ConnectivityPage"
-                Title="Connectivity">
+                Title="Connectivity"
+                x:DataType="viewmodels:ConnectivityViewModel">
     <views:BasePage.BindingContext>
         <viewmodels:ConnectivityViewModel />
     </views:BasePage.BindingContext>

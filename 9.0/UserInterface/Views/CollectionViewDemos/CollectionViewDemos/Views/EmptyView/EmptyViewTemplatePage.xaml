@@ -2,18 +2,21 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:CollectionViewDemos.Controls"
+             xmlns:models="clr-namespace:CollectionViewDemos.Models"
+             xmlns:viewmodels="clr-namespace:CollectionViewDemos.ViewModels"
              x:Class="CollectionViewDemos.Views.EmptyViewTemplatePage"
-             Title="EmptyView (template)">
+             Title="EmptyView (template)"
+             x:DataType="viewmodels:MonkeysViewModel">
     <Grid RowDefinitions="Auto, *" 
           Margin="20">
         <SearchBar x:Name="searchBar"
                    SearchCommand="{Binding FilterCommand}"
-                   SearchCommandParameter="{Binding Source={x:Reference searchBar}, Path=Text}"
+                   SearchCommandParameter="{Binding x:DataType='SearchBar', Source={x:Reference searchBar}, Path=Text}"
                    Placeholder="Filter" />
         <CollectionView ItemsSource="{Binding Monkeys}"
                         Grid.Row="1">
             <CollectionView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="models:Monkey">
                     <Grid Padding="10">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
@@ -40,11 +43,13 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
             <CollectionView.EmptyView>
-                <controls:FilterData Filter="{Binding Source={x:Reference searchBar}, Path=Text}" />
+                <controls:FilterData x:DataType="SearchBar"
+                                     Filter="{Binding Source={x:Reference searchBar}, Path=Text}" />
             </CollectionView.EmptyView>
             <CollectionView.EmptyViewTemplate>
                 <DataTemplate>
-                    <Label Text="{Binding Filter, StringFormat='Your filter term of {0} did not match any records.'}"
+                    <Label x:DataType="controls:FilterData"
+                           Text="{Binding Filter, StringFormat='Your filter term of {0} did not match any records.'}"
                            Margin="10,25,10,10"
                            FontAttributes="Bold"
                            FontSize="18"

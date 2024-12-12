@@ -18,7 +18,8 @@
                HorizontalOptions="Center"
                VerticalOptions="CenterAndExpand">
             <Label.Triggers>
-                <DataTrigger TargetType="Label"
+                <DataTrigger x:DataType="CheckBox"
+                             TargetType="Label"
                              Binding="{Binding Source={x:Reference checkbox},
                                                Path=IsChecked}"
                              Value="True">

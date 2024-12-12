@@ -4,7 +4,8 @@
                 xmlns:views="clr-namespace:PlatformIntegrationDemo.Views"
                 xmlns:viewmodels="clr-namespace:PlatformIntegrationDemo.ViewModels"
                 x:Class="PlatformIntegrationDemo.Views.BatteryPage"
-                Title="Battery">
+                Title="Battery"
+                x:DataType="viewmodels:BatteryViewModel">
     <views:BasePage.BindingContext>
         <viewmodels:BatteryViewModel />
     </views:BasePage.BindingContext>

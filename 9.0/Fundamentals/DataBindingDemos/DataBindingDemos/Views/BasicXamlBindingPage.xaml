@@ -4,7 +4,8 @@
              x:Class="DataBindingDemos.BasicXamlBindingPage"
              Title="Basic XAML Binding">
     <StackLayout Padding="10, 0">
-        <Label Text="TEXT"
+        <Label x:DataType="Slider"
+               Text="TEXT"
                FontSize="80"
                HorizontalOptions="Center"
                VerticalOptions="Center"

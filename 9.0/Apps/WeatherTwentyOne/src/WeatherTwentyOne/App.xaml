@@ -65,7 +65,7 @@
 
 
             <Shell.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="FlyoutItem">
                     <Grid WidthRequest="44" HeightRequest="68"
                           ColumnDefinitions="44" RowDefinitions="68">
                         <Image Source="{Binding FlyoutIcon}"

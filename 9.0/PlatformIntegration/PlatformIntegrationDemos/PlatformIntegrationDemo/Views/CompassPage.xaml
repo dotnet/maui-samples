@@ -4,7 +4,8 @@
                 xmlns:views="clr-namespace:PlatformIntegrationDemo.Views"
                 xmlns:viewmodels="clr-namespace:PlatformIntegrationDemo.ViewModels"
                 x:Class="PlatformIntegrationDemo.Views.CompassPage"
-                Title="Compass">
+                Title="Compass"
+                x:DataType="viewmodels:CompassViewModel">
     <views:BasePage.BindingContext>
         <viewmodels:CompassViewModel />
     </views:BasePage.BindingContext>

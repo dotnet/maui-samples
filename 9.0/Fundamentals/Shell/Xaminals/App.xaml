@@ -2,6 +2,7 @@
 <Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Xaminals"
+             xmlns:models="clr-namespace:Xaminals.Models"
              x:Class="Xaminals.App">
     <Application.Resources>
         <ResourceDictionary>
@@ -21,7 +22,8 @@
                         Value="6" />
             </Style>
 
-            <DataTemplate x:Key="AnimalTemplate">
+            <DataTemplate x:Key="AnimalTemplate"
+                          x:DataType="models:Animal">
                 <Grid Padding="10"
                       RowDefinitions="Auto,Auto"
                       ColumnDefinitions="Auto,Auto">
@@ -41,7 +43,8 @@
                 </Grid>
             </DataTemplate>
 
-            <DataTemplate x:Key="AnimalSearchTemplate">
+            <DataTemplate x:Key="AnimalSearchTemplate"
+                          x:DataType="models:Animal">
                 <Grid Padding="10"
                       ColumnDefinitions="0.15*,0.85*">
                     <Image Source="{Binding ImageUrl}"

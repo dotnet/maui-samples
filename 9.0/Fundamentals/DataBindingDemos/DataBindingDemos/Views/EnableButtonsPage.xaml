@@ -13,7 +13,8 @@
                Text=""
                Placeholder="enter search term"
                VerticalOptions="Center" />
-        <Button Text="Search"
+        <Button x:DataType="Entry"
+                Text="Search"
                 HorizontalOptions="Center"
                 VerticalOptions="Center"
                 IsEnabled="{Binding Source={x:Reference entry1},
@@ -23,7 +24,8 @@
                Text=""
                Placeholder="enter destination"
                VerticalOptions="Center" />
-        <Button Text="Submit"
+        <Button x:DataType="Entry"
+                Text="Submit"
                 HorizontalOptions="Center"
                 VerticalOptions="Center"
                 IsEnabled="{Binding Source={x:Reference entry2},

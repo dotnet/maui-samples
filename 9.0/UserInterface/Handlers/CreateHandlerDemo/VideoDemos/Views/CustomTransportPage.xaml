@@ -4,7 +4,8 @@
              xmlns:controls="clr-namespace:VideoDemos.Controls"
              x:Class="VideoDemos.Views.CustomTransportPage"
              Title="Custom transport controls">
-    <Grid RowDefinitions="*,Auto">
+    <Grid x:DataType="controls:Video"
+          RowDefinitions="*,Auto">
         <controls:Video x:Name="video"
                         AutoPlay="False"
                         AreTransportControlsEnabled="False"

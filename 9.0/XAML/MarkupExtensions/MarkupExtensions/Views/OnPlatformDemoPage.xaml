@@ -9,7 +9,8 @@
                  WidthRequest="{OnPlatform iOS=200, Android=300, WinUI=400}"  
                  HeightRequest="{OnPlatform iOS=200, Android=300, WinUI=400}" 
                  HorizontalOptions="Center" />
-        <Label BindingContext="{x:Reference boxView}" 
+        <Label x:DataType="BoxView"
+               BindingContext="{x:Reference boxView}" 
                HorizontalTextAlignment="Center">
             <Label.FormattedText>
                 <FormattedString>

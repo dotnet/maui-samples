@@ -1,8 +1,10 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:BindableLayoutDemos"
              xmlns:views="clr-namespace:BindableLayoutDemos.Views"
              x:Class="BindableLayoutDemos.MainPage"
-             Title="BindableLayout demos">
+             Title="BindableLayout demos"
+             x:DataType="local:MainPage">
     <TableView Intent="Menu">
         <TableRoot>
             <TableSection>

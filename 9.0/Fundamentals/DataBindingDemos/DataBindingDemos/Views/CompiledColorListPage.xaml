@@ -32,8 +32,9 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <BoxView Grid.Row="1"
-                 Color="{Binding Source={x:Reference colorListView},
-                                 Path=SelectedItem.Color}" />
+        <BoxView x:DataType="local:NamedColor"
+                 Grid.Row="1"
+                 BindingContext="{Binding x:DataType='ListView', Source={x:Reference colorListView}, Path=SelectedItem}"
+                 Color="{Binding Color}" />
     </Grid>
 </ContentPage>

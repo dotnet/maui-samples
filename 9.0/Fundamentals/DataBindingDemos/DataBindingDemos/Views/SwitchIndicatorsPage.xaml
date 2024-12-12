@@ -22,7 +22,8 @@
             <Switch x:Name="switch1" />
             <Label>
                 <Label.Text>
-                    <Binding Source="{x:Reference switch1}"
+                    <Binding x:DataType="Switch"
+                             Source="{x:Reference switch1}"
                              Path="IsToggled">
                         <Binding.Converter>
                             <local:BoolToObjectConverter x:TypeArguments="x:String"
@@ -40,7 +41,8 @@
             <Switch x:Name="switch2" />
             <Label>
                 <Label.Text>
-                    <Binding Source="{x:Reference switch2}"
+                    <Binding x:DataType="Switch"
+                             Source="{x:Reference switch2}"
                              Path="IsToggled">
                         <Binding.Converter>
                             <local:BoolToObjectConverter x:TypeArguments="x:String"
@@ -50,7 +52,8 @@
                     </Binding>
                 </Label.Text>
                 <Label.TextColor>
-                    <Binding Source="{x:Reference switch2}"
+                    <Binding x:DataType="Switch"
+                             Source="{x:Reference switch2}"
                              Path="IsToggled">
                         <Binding.Converter>
                             <local:BoolToObjectConverter x:TypeArguments="Color"
@@ -69,7 +72,8 @@
             <Label FontSize="18"
                    VerticalOptions="Center">
                 <Label.Style>
-                    <Binding Source="{x:Reference switch3}"
+                    <Binding x:DataType="Switch"
+                             Source="{x:Reference switch3}"
                              Path="IsToggled">
                         <Binding.Converter>
                             <local:BoolToObjectConverter x:TypeArguments="Style">

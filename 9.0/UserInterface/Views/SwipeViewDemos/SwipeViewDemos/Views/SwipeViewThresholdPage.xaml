@@ -13,9 +13,11 @@
                 MinimumTrackColor="#2E249E"
                 ThumbColor="#2E249E"
                 ValueChanged="OnSliderValueChanged" />
-        <Label Text="{Binding Source={x:Reference slider}, Path=Value,StringFormat='{0:F2}'}"
+        <Label x:DataType="Slider"
+               Text="{Binding Source={x:Reference slider}, Path=Value,StringFormat='{0:F2}'}"
                HorizontalOptions="Center" />
         <SwipeView x:Name="swipeView"
+                   x:DataType="Slider"
                    Threshold="{Binding Source={x:Reference slider}, Path=Value}">
             <SwipeView.LeftItems>
                 <SwipeItems>

@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:BehaviorsDemos"
              x:Class="BehaviorsDemos.EventToCommandBehaviorPage"
-             Title="EventToCommand demo">
+             Title="EventToCommand demo"
+             x:DataType="local:HomePageViewModel">
     <ContentPage.BindingContext>
         <local:HomePageViewModel />
     </ContentPage.BindingContext>
@@ -15,7 +16,7 @@
     <StackLayout Margin="20">
         <ListView ItemsSource="{Binding People}">
             <ListView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="local:Person">
                     <TextCell Text="{Binding Name}" />
                 </DataTemplate>
             </ListView.ItemTemplate>

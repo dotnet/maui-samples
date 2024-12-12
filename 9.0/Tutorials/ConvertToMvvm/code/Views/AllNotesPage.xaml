@@ -3,7 +3,8 @@
              xmlns:viewModels="clr-namespace:Notes.ViewModels"
              x:Class="Notes.Views.AllNotesPage"
              Title="Your Notes"
-             NavigatedTo="ContentPage_NavigatedTo">
+             NavigatedTo="ContentPage_NavigatedTo"
+             x:DataType="viewModels:NotesViewModel">
     <ContentPage.BindingContext>
         <viewModels:NotesViewModel />
     </ContentPage.BindingContext>
@@ -19,7 +20,7 @@
                     Margin="20"
                     SelectionMode="Single"
                     SelectionChangedCommand="{Binding SelectNoteCommand}"
-                    SelectionChangedCommandParameter="{Binding Source={RelativeSource Self}, Path=SelectedItem}">
+                    SelectionChangedCommandParameter="{Binding x:DataType='CollectionView', Source={RelativeSource Self}, Path=SelectedItem}">
         <!-- Designate how the collection of items are laid out -->
         <CollectionView.ItemsLayout>
             <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
@@ -27,7 +28,7 @@
 
         <!-- Define the appearance of each item in the list -->
         <CollectionView.ItemTemplate>
-            <DataTemplate>
+            <DataTemplate x:DataType="viewModels:NoteViewModel">
                 <StackLayout>
                     <Label Text="{Binding Text}" FontSize="22"/>
                     <Label Text="{Binding Date}" FontSize="14" TextColor="Silver"/>

@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:ListViewDemos.Models"
+             xmlns:viewmodels="clr-namespace:ListViewDemos.ViewModels"
              x:Class="ListViewDemos.SelectionPage"
-             Title="ListView with selection">
+             Title="ListView with selection"
+             x:DataType="viewmodels:MonkeysViewModel">
     <Grid RowDefinitions="Auto,*"
           Margin="20">
         <Grid>
@@ -21,7 +24,7 @@
                   ItemsSource="{Binding Monkeys}"
                   ItemSelected="OnItemSelected">
             <ListView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="models:Monkey">
                     <ViewCell>
                         <Grid Padding="10">
                             <Grid.RowDefinitions>

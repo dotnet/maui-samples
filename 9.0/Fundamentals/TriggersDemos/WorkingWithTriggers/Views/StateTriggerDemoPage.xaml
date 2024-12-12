@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:WorkingWithTriggers"
              x:Class="WorkingWithTriggers.StateTriggerDemoPage"
-             Title="StateTrigger demo">
+             Title="StateTrigger demo"
+             x:DataType="local:TriggerViewModel">
     <ContentPage.BindingContext>
         <local:TriggerViewModel />
     </ContentPage.BindingContext>

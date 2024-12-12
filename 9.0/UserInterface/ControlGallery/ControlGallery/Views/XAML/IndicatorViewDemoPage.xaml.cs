@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using Microsoft.Maui.Controls;
-using ControlGallery.Models;
+﻿using ControlGallery.Models;
 
 namespace ControlGallery.Views.XAML
 {

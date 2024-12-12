@@ -3,7 +3,8 @@
              xmlns:local="clr-namespace:ControlTemplateDemos"
              x:Class="ControlTemplateDemos.MainPage"
              Padding="10"
-             Title="ControlTemplate demos">
+             Title="ControlTemplate demos"
+             x:DataType="local:MainPage">
     <TableView Intent="Menu">
         <TableRoot>
             <TableSection Title="ControlTemplate Demos">

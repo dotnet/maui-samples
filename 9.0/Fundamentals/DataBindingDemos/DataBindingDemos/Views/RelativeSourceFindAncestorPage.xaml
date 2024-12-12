@@ -4,14 +4,15 @@
              xmlns:local="clr-namespace:DataBindingDemos"
              x:Class="DataBindingDemos.RelativeSourceFindAncestorPage"
              Title="RelativeSource FindAncestor Mode"
-             BindingContext="{Binding Source={RelativeSource Self}, Path=DefaultViewModel}">
+             BindingContext="{Binding x:DataType='local:RelativeSourceFindAncestorPage', Source={RelativeSource Self}, Path=DefaultViewModel}"
+             x:DataType="local:PeopleViewModel">
     <StackLayout Margin="10">
         <!--
         In this example, the page's BindingContext is bound to its own DefaultViewModel property.
         -->        
         <ListView ItemsSource="{Binding Employees}">
             <ListView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="local:Person">
                     <ViewCell>
                         <StackLayout Orientation="Horizontal">
                             <Label Text="{Binding Fullname}"
@@ -22,7 +23,7 @@
                             upon the parent type.
                             -->
                             <Button Text="Delete"
-                                    Command="{Binding Source={RelativeSource AncestorType={x:Type local:PeopleViewModel}}, Path=DeleteEmployeeCommand}"
+                                    Command="{Binding x:DataType='local:PeopleViewModel', Source={RelativeSource AncestorType={x:Type local:PeopleViewModel}}, Path=DeleteEmployeeCommand}"
                                     CommandParameter="{Binding}"
                                     HorizontalOptions="End" />
                         </StackLayout>

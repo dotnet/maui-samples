@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics;
-using WeatherTwentyOne.Pages;
 
 namespace WeatherTwentyOne;
 

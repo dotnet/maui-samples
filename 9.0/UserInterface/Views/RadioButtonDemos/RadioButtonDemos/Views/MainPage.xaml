@@ -2,7 +2,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:RadioButtonDemos"
              x:Class="RadioButtonDemos.MainPage"
-             Title="RadioButton Demos">
+             Title="RadioButton Demos"
+             x:DataType="local:MainPage">
     <TableView Intent="Menu">
         <TableRoot>
             <TableSection>

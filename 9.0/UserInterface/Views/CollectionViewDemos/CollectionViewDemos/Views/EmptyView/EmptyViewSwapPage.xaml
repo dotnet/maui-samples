@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:CollectionViewDemos.Models"
+             xmlns:viewmodels="clr-namespace:CollectionViewDemos.ViewModels"
              x:Class="CollectionViewDemos.Views.EmptyViewSwapPage"
-             Title="EmptyView (swap)">
+             Title="EmptyView (swap)"
+             x:DataType="viewmodels:MonkeysViewModel">
     <ContentPage.Resources>
         <ContentView x:Key="BasicEmptyView">
             <StackLayout>
@@ -35,7 +38,7 @@
           Margin="20">
         <SearchBar x:Name="searchBar"
                    SearchCommand="{Binding FilterCommand}"
-                   SearchCommandParameter="{Binding Source={x:Reference searchBar}, Path=Text}"
+                   SearchCommandParameter="{Binding x:DataType='SearchBar', Source={x:Reference searchBar}, Path=Text}"
                    Placeholder="Filter" />
         <HorizontalStackLayout Grid.Row="1">
             <Label Text="Toggle EmptyViews" />
@@ -45,7 +48,7 @@
                         ItemsSource="{Binding Monkeys}"
                         Grid.Row="2">
             <CollectionView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="models:Monkey">
                     <Grid Padding="10">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />

@@ -2,9 +2,11 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:IndicatorViewDemos.Controls"
+             xmlns:models="clr-namespace:IndicatorViewDemos.Models"
              xmlns:viewmodels="clr-namespace:IndicatorViewDemos.ViewModels"
              x:Class="IndicatorViewDemos.Views.ConfigurableIndicatorViewPage"
-             Title="Configurable IndicatorView demo">
+             Title="Configurable IndicatorView demo"
+             x:DataType="viewmodels:MonkeysViewModel">
     <ContentPage.BindingContext>
         <viewmodels:MonkeysViewModel />
     </ContentPage.BindingContext>
@@ -77,7 +79,7 @@
                       ItemsSource="{Binding Monkeys}"
                       IndicatorView="indicatorView">
             <CarouselView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="models:Monkey">
                     <StackLayout>
                         <Border Stroke="DarkGrey"
                                 StrokeShape="RoundRectangle 5"

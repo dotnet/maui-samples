@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:Notes.ViewModels"
              x:Class="Notes.Views.NotePage"
-             Title="Note">
+             Title="Note"
+             x:DataType="viewModels:NoteViewModel">
     <ContentPage.BindingContext>
         <viewModels:NoteViewModel />
     </ContentPage.BindingContext>

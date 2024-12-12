@@ -6,8 +6,9 @@
              Title="Bind to Video control">
     <Grid RowDefinitions="0.8*,0.2*">
         <controls:Video x:Name="video"
-                        Source="{Binding Source={x:Reference collectionView},
-                                         Path=SelectedItem.VideoSource}" />
+                        x:DataType="controls:VideoInfo"
+                        BindingContext="{Binding x:DataType='CollectionView', Source={x:Reference collectionView}, Path=SelectedItem}"
+                        Source="{Binding VideoSource}" />
         <CollectionView x:Name="collectionView"
                         SelectionMode="Single"
                         Grid.Row="1">

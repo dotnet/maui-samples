@@ -33,7 +33,7 @@
                 </x:Array>
             </CollectionView.ItemsSource>
             <CollectionView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="local:Person">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="0.5*" />

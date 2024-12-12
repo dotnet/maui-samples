@@ -11,7 +11,8 @@
                 Minimum="-360"
                 Maximum="360"
                 ValueChanged="sliderValueChanged" />
-        <Label Text="{Binding Source={x:Reference rotateSlider},
+        <Label x:DataType="Slider"
+               Text="{Binding Source={x:Reference rotateSlider},
                               Path=Value,
                               StringFormat='Rotation = {0:F0}'}"
                Grid.Row="1"

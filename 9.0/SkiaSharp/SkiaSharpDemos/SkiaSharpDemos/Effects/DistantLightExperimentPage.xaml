@@ -14,7 +14,8 @@
                 Maximum="10"
                 Margin="10, 0"
                 ValueChanged="OnSliderValueChanged" />
-        <Label Grid.Row="2"
+        <Label x:DataType="Slider"
+               Grid.Row="2"
                Text="{Binding Source={x:Reference zSlider},
                               Path=Value,
                               StringFormat='Z = {0:F0}'}"
@@ -25,7 +26,8 @@
                 Maximum="1"
                 Margin="10, 0"
                 ValueChanged="OnSliderValueChanged" />
-        <Label Grid.Row="4"
+        <Label x:DataType="Slider"
+               Grid.Row="4"
                Text="{Binding Source={x:Reference surfaceScaleSlider},
                               Path=Value,
                               StringFormat='Surface Scale = {0:F1}'}"
@@ -36,7 +38,8 @@
                 Maximum="1"
                 Margin="10, 0"
                 ValueChanged="OnSliderValueChanged" />
-        <Label Grid.Row="6"
+        <Label x:DataType="Slider"
+               Grid.Row="6"
                Text="{Binding Source={x:Reference lightConstantSlider},
                               Path=Value,
                               StringFormat='Light Constant = {0:F1}'}"

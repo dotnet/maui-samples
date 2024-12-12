@@ -42,7 +42,8 @@
             </Border>
         </DataTemplate>
         
-        <DataTemplate x:Key="MetricBorderTemplate">
+        <DataTemplate x:Key="MetricBorderTemplate"
+                      x:DataType="m:Metric">
             <Border
                 HeightRequest="154"
                 WidthRequest="150"

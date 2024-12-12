@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:DataBindingDemos"
              x:Class="DataBindingDemos.MultiBindingFallbackValuePage"
-             Title="MultiBindings FallbackValue demo">
+             Title="MultiBindings FallbackValue demo"
+             x:DataType="local:GroupViewModel">
     <ContentPage.Resources>
         <local:StringConcatenationConverter x:Key="StringConcatConverter" />
     </ContentPage.Resources>
@@ -28,7 +29,7 @@
         </Label>
         <Label>
             <Label.Text>
-                <!-- This MultiBinding should return its FallbackValue,
+                <!-- Binding deliberately doesn't compile. This MultiBinding should return its FallbackValue,
                      because the converter returns BindableProperty.UnsetValue -->
                 <MultiBinding FallbackValue="Name unavailable"
                               TargetNullValue="Data unavailable"

@@ -4,7 +4,8 @@
                 xmlns:views="clr-namespace:PlatformIntegrationDemo.Views"
                 xmlns:viewmodels="clr-namespace:PlatformIntegrationDemo.ViewModels"
                 x:Class="PlatformIntegrationDemo.Views.TextToSpeechPage"
-                Title="Text To Speech">
+                Title="Text To Speech"
+                x:DataType="viewmodels:TextToSpeechViewModel">
     <views:BasePage.BindingContext>
         <viewmodels:TextToSpeechViewModel />
     </views:BasePage.BindingContext>
@@ -22,7 +23,7 @@
                         AutoSize="TextChanges" />
                 <Button Text="Speak"
                         Command="{Binding SpeakCommand}"
-                        CommandParameter="{Binding Source={x:Reference SwitchMultiple}, Path=IsToggled}"
+                        CommandParameter="{Binding  x:DataType='Switch', Source={x:Reference SwitchMultiple}, Path=IsToggled}"
                         IsEnabled="{Binding IsNotBusy}" />
                 <Button Text="Cancel"
                         Command="{Binding CancelCommand}"

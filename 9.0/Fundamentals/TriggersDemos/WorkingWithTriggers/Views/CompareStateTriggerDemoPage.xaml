@@ -10,7 +10,7 @@
                     <VisualStateGroup>
                         <VisualState x:Name="Checked">
                             <VisualState.StateTriggers>
-                                <CompareStateTrigger Property="{Binding Source={x:Reference checkBox}, Path=IsChecked}"
+                                <CompareStateTrigger Property="{Binding x:DataType='CheckBox', Source={x:Reference checkBox}, Path=IsChecked}"
                                                      Value="True" />
                             </VisualState.StateTriggers>
                             <VisualState.Setters>
@@ -20,7 +20,7 @@
                         </VisualState>
                         <VisualState x:Name="Unchecked">
                             <VisualState.StateTriggers>
-                                <CompareStateTrigger Property="{Binding Source={x:Reference checkBox}, Path=IsChecked}"
+                                <CompareStateTrigger Property="{Binding x:DataType='CheckBox', Source={x:Reference checkBox}, Path=IsChecked}"
                                                      Value="False" />
                             </VisualState.StateTriggers>
                             <VisualState.Setters>

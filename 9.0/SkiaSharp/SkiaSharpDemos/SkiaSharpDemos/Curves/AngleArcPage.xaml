@@ -20,14 +20,16 @@
         <Slider x:Name="startAngleSlider"
                 Grid.Row="0"
                 ValueChanged="sliderValueChanged" />
-        <Label Text="{Binding Source={x:Reference startAngleSlider},
+        <Label x:DataType="Slider"
+               Text="{Binding Source={x:Reference startAngleSlider},
                               Path=Value,
                               StringFormat='Start Angle = {0:F0}'}"
                Grid.Row="1" />
         <Slider x:Name="sweepAngleSlider"
                 Grid.Row="2"
                 ValueChanged="sliderValueChanged" />
-        <Label Text="{Binding Source={x:Reference sweepAngleSlider},
+        <Label x:DataType="Slider"
+               Text="{Binding Source={x:Reference sweepAngleSlider},
                               Path=Value,
                               StringFormat='Sweep Angle = {0:F0}'}"
                Grid.Row="3" />

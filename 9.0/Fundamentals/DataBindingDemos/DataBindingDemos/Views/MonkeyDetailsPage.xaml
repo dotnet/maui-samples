@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:DataBindingDemos"
              x:Class="DataBindingDemos.MonkeyDetailsPage"
-             Title="Monkey Details">
+             Title="Monkey Details"
+             x:DataType="local:Monkey">
     <ScrollView>
         <StackLayout Margin="20">
             <Label Text="{Binding Name}"
@@ -11,6 +13,7 @@
             <Label Text="{Binding Location, TargetNullValue={StaticResource locationUnknown}}"
                    FontAttributes="Italic"
                    HorizontalOptions="Center" />
+            <!-- Binding below deliberately doesn't compile, to use the fallback value -->
             <Label Text="{Binding Population, FallbackValue={StaticResource populationUnknown}}"
                    TextColor="Red"
                    HorizontalOptions="Center" />

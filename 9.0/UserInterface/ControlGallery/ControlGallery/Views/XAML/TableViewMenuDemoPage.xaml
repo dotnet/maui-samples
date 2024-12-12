@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:views="clr-namespace:ControlGallery.Views.XAML"
              x:Class="ControlGallery.Views.XAML.TableViewMenuDemoPage"
-             Title="TableView for a menu Demo">
+             Title="TableView for a menu Demo"
+             x:DataType="views:TableViewMenuDemoPage">
     <StackLayout>
         <Label Text="TableView Menu"
                FontSize="30"

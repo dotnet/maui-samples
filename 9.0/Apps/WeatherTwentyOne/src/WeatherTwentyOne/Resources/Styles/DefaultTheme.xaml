@@ -337,33 +337,6 @@
 
     <!-- <x:String x:Key="LineBreak">&#x0a;</x:String> -->
     
-    <!-- data templates -->
-    <DataTemplate x:Key="WeatherWidgetTemplate">
-        <Border
-            HorizontalOptions="Start"
-            HeightRequest="164"
-            WidthRequest="164"
-            Padding="0"
-            StrokeShape="RoundRectangle 20"
-            BackgroundColor="{StaticResource Background_Mid}">
-            <Grid HeightRequest="144"
-                  WidthRequest="144"
-                  Padding="20">
-                <Image Source="{Binding .}"
-                                   VerticalOptions="Start"
-                                     HorizontalOptions="End"/>
-
-                <StackLayout HorizontalOptions="Start"
-                                     Spacing="0"
-                                     VerticalOptions="End">
-                    <Label Text="2%" class="LargeTitle"/>
-                    <Label Text="From" class="Subhead"/>
-                    <Label Text="Pond Elementary" class="SubContent"/>
-                </StackLayout>
-            </Grid>
-        </Border>
-    </DataTemplate>
-
     <converter:ImageByStateConverter x:Key="ImageByStateConverter"/>
 
     <Style TargetType="FlyoutItem" x:Key="HomeFlyout">

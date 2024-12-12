@@ -8,7 +8,8 @@
     <ContentPage.Resources>
         <local:AllTrueMultiConverter x:Key="AllTrueConverter" />
 
-        <ControlTemplate x:Key="CardViewExpanderControlTemplate">
+        <ControlTemplate x:Key="CardViewExpanderControlTemplate"
+                         x:DataType="controls:CardViewExpander">
             <local:Expander BindingContext="{Binding Source={RelativeSource TemplatedParent}}"
                             IsExpanded="{Binding IsExpanded, Source={RelativeSource TemplatedParent}}"
                             BackgroundColor="{Binding CardColor}"

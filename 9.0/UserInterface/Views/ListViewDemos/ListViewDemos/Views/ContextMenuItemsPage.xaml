@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:ListViewDemos.Models"
+             xmlns:viewmodels="clr-namespace:ListViewDemos.ViewModels"
              x:Class="ListViewDemos.ContextMenuItemsPage"
-             Title="Vertical list with context menu items">
+             Title="Vertical list with context menu items"
+             x:DataType="viewmodels:MonkeysViewModel">
     <Grid Margin="20">
         <ListView x:Name="listView"
                   ItemsSource="{Binding Monkeys}">
             <ListView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="models:Monkey">
                     <ViewCell>
                         <ViewCell.ContextActions>
                             <MenuItem Text="Favorite"
                                       IconImageSource="favorite.png"
-                                      Command="{Binding Source={x:Reference listView}, Path=BindingContext.FavoriteCommand}"
+                                      Command="{Binding x:DataType='viewmodels:MonkeysViewModel', Source={RelativeSource AncestorType={x:Type viewmodels:MonkeysViewModel}}, Path=FavoriteCommand}"
                                       CommandParameter="{Binding}" />
                             <MenuItem Text="Delete" 
                                       IconImageSource="delete.png"
-                                      Command="{Binding Source={x:Reference listView}, Path=BindingContext.DeleteCommand}"
+                                      Command="{Binding x:DataType='viewmodels:MonkeysViewModel', Source={RelativeSource AncestorType={x:Type viewmodels:MonkeysViewModel}}, Path=DeleteCommand}"
                                       CommandParameter="{Binding}" />
                         </ViewCell.ContextActions>
 

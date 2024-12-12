@@ -10,7 +10,8 @@
                  WidthRequest="{OnIdiom Phone=200, Tablet=300, Desktop=400}"
                  HeightRequest="{OnIdiom Phone=200, Tablet=300, Desktop=400}"
                  HorizontalOptions="Center" />
-        <Label BindingContext="{x:Reference boxView}" HorizontalTextAlignment="Center">
+        <Label x:DataType="BoxView"
+               BindingContext="{x:Reference boxView}" HorizontalTextAlignment="Center">
             <Label.FormattedText>
                 <FormattedString>
                     <Span Text="{Binding WidthRequest}" />

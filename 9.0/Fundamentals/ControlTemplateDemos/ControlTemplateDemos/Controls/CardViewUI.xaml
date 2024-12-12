@@ -1,8 +1,10 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:ControlTemplateDemos.Controls"
              x:Class="ControlTemplateDemos.Controls.CardViewUI"
-             x:Name="this">
+             x:Name="this"
+             x:DataType="controls:CardViewUI">
     <Border BindingContext="{x:Reference this}"
             BackgroundColor="{Binding CardColor}"
             Stroke="{Binding BorderColor}"
