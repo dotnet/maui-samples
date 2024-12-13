@@ -6,11 +6,11 @@ namespace BehaviorsDemos
 {
     public class HomePageViewModel : INotifyPropertyChanged
     {
-        public ObservableCollection<Person> People { get; private set; }
+        public ObservableCollection<Person> People { get; set; }
 
-        public ICommand OutputAgeCommand { get; private set; }
+        public ICommand OutputAgeCommand { get; set; }
 
-        public string SelectedItemText { get; private set; }
+        public string SelectedItemText { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
