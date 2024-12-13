@@ -5,13 +5,13 @@ namespace ScrollViewDemos
 {
     public class NamedColor : IEquatable<NamedColor>, IComparable<NamedColor>
     {
-        public static IList<NamedColor> All { get; private set; }
+        public static IList<NamedColor> All { get; set; }
 
-        public string Name { get; private set; }
+        public string Name { get; set; }
 
-        public string FriendlyName { get; private set; }
+        public string FriendlyName { get; set; }
 
-        public Color Color { private set; get; }
+        public Color Color { get; set; }
 
         public bool Equals(NamedColor other)
         {

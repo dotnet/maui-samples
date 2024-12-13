@@ -22,9 +22,9 @@ namespace DataBindingDemos
             {
                 Bindings = new Collection<BindingBase>
                 {
-                    new Binding("Employee1.Forename"),
-                    new Binding("Employee1.MiddleName"),
-                    new Binding("Employee1.Surname")
+                    Binding.Create(static (GroupViewModel vm) => vm.Employee1.Forename),
+                    Binding.Create(static (GroupViewModel vm) => vm.Employee1.MiddleName),
+                    Binding.Create(static (GroupViewModel vm) => vm.Employee1.Surname)
                 },
                 StringFormat = "{0} {1} {2}"
             });
@@ -34,9 +34,9 @@ namespace DataBindingDemos
             {
                 Bindings = new Collection<BindingBase>
                 {
-                    new Binding("Employee2.Forename"),
-                    new Binding("Employee2.MiddleName"),
-                    new Binding("Employee2.Surname")
+                    Binding.Create(static (GroupViewModel vm) => vm.Employee2.Forename),
+                    Binding.Create(static (GroupViewModel vm) => vm.Employee2.MiddleName),
+                    Binding.Create(static (GroupViewModel vm) => vm.Employee2.Surname)
                 },
                 StringFormat = "{0} {1} {2}"
             });
@@ -46,21 +46,20 @@ namespace DataBindingDemos
             {
                 Bindings = new Collection<BindingBase>
                 {
-                    new Binding("Employee3.Forename"),
-                    new Binding("Employee3.MiddleName"),
-                    new Binding("Employee3.Surname")
+                    Binding.Create(static (GroupViewModel vm) => vm.Employee3.Forename),
+                    Binding.Create(static (GroupViewModel vm) => vm.Employee3.MiddleName),
+                    Binding.Create(static (GroupViewModel vm) => vm.Employee3.Surname)
                 },
                 StringFormat = "{0} {1} {2}"
             });
-
             Label employee4 = new Label();
             employee4.SetBinding(Label.TextProperty, new MultiBinding
             {
                 Bindings = new Collection<BindingBase>
                 {
-                    new Binding("Employee4.Forename"),
-                    new Binding("Employee4.MiddleName"),
-                    new Binding("Employee4.Surname")
+                    Binding.Create(static (GroupViewModel vm) => vm.Employee4.Forename),
+                    Binding.Create(static (GroupViewModel vm) => vm.Employee4.MiddleName),
+                    Binding.Create(static (GroupViewModel vm) => vm.Employee4.Surname)
                 },
                 StringFormat = "{0} {1} {2}"
             });
@@ -70,9 +69,9 @@ namespace DataBindingDemos
             {
                 Bindings = new Collection<BindingBase>
                 {
-                    new Binding("Employee5.Forename"),
-                    new Binding("Employee5.MiddleName"),
-                    new Binding("Employee5.Surname")
+                    Binding.Create(static (GroupViewModel vm) => vm.Employee5.Forename),
+                    Binding.Create(static (GroupViewModel vm) => vm.Employee5.MiddleName),
+                    Binding.Create(static (GroupViewModel vm) => vm.Employee5.Surname)
                 },
                 StringFormat = "{0} {1} {2}"
             });

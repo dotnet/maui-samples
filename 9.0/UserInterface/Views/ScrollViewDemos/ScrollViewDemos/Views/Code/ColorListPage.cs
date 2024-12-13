@@ -12,15 +12,15 @@
                     WidthRequest = 32,
                     VerticalOptions = LayoutOptions.Center
                 };
-                boxView.SetBinding(BoxView.ColorProperty, "Color");
+                boxView.SetBinding(BoxView.ColorProperty, static (NamedColor nc) => nc.Color);
 
                 Label label = new Label
                 {
                     FontSize = 24,
                     VerticalOptions = LayoutOptions.Center
                 };
-                label.SetBinding(Label.TextProperty, "FriendlyName");
-
+                label.SetBinding(Label.TextProperty, static (NamedColor nc) => nc.FriendlyName);
+                
                 StackLayout horizontalStackLayout = new StackLayout
                 {
                     Orientation = StackOrientation.Horizontal

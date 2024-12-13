@@ -9,7 +9,8 @@
                FontSize="40"
                HorizontalOptions="Center"
                VerticalOptions="Center"
-               Scale="{Binding Source={x:Reference slider},
+               Scale="{Binding x:DataType='Slider',
+                               Source={x:Reference slider},
                                Path=Value}" />
 
         <Slider x:Name="slider"

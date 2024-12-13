@@ -56,7 +56,7 @@ namespace GridDemos.Views.Code
             childGrid.Add(redSlider);
 
             Label redLabel = new Label();
-            redLabel.SetBinding(Label.TextProperty, new Binding("Value", converter: doubleToInt, converterParameter: "255", stringFormat: "Red = {0}", source: redSlider));
+            redLabel.SetBinding(Label.TextProperty, Binding.Create(static (Slider slider) => slider.Value, converter: doubleToInt, converterParameter: "255", stringFormat: "Red = {0}", source: redSlider));
             Grid.SetRow(redLabel, 1);
             childGrid.Add(redLabel);
 
@@ -66,7 +66,7 @@ namespace GridDemos.Views.Code
             childGrid.Add(greenSlider);
 
             Label greenLabel = new Label();
-            greenLabel.SetBinding(Label.TextProperty, new Binding("Value", converter: doubleToInt, converterParameter: "255", stringFormat: "Green = {0}", source: greenSlider));
+            greenLabel.SetBinding(Label.TextProperty, Binding.Create(static (Slider slider) => slider.Value, converter: doubleToInt, converterParameter: "255", stringFormat: "Green = {0}", source: greenSlider));
             Grid.SetRow(greenLabel, 3);
             childGrid.Add(greenLabel);
 
@@ -76,7 +76,7 @@ namespace GridDemos.Views.Code
             childGrid.Add(blueSlider);
 
             Label blueLabel = new Label();
-            blueLabel.SetBinding(Label.TextProperty, new Binding("Value", converter: doubleToInt, converterParameter: "255", stringFormat: "Blue = {0}", source: blueSlider));
+            blueLabel.SetBinding(Label.TextProperty, Binding.Create(static (Slider slider) => slider.Value, converter: doubleToInt, converterParameter: "255", stringFormat: "Blue = {0}", source: blueSlider));
             Grid.SetRow(blueLabel, 5);
             childGrid.Add(blueLabel);
 
