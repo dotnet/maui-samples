@@ -6,7 +6,7 @@
         {
             InitializeComponent();
 
-            label.SetBinding(Label.ScaleProperty, new Binding("Value", source: slider));
+            label.SetBinding(Label.ScaleProperty, static (Slider s) => s.Value, source: slider);
         }
     }
 }
