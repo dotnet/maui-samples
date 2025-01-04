@@ -21,7 +21,7 @@ jobs:
         fetch-depth: 2
 
     - name: Install .NET 9
-      uses: actions/setup-dotnet@v4.0.1
+      uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 9.0
 
