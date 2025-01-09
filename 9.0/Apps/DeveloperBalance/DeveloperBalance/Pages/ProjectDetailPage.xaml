@@ -58,7 +58,8 @@
             Command="{Binding DeleteCommand}"
             Order="Primary"
             Priority="0"
-            IconImageSource="{StaticResource IconDelete}" />
+            IconImageSource="{StaticResource IconDelete}"
+            SemanticProperties.Description="Delete" />
     </ContentPage.ToolbarItems>
 
     <Grid>
@@ -90,11 +91,10 @@
                 <CollectionView 
                     HeightRequest="44" Margin="0,0,0,15"
                     SelectionMode="Single"
-                    
                     SelectedItem="{Binding Icon}"
                     ItemsSource="{Binding Icons}">
                     <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="x:String">
+                        <DataTemplate x:DataType="models:Icon">
                             <Grid RowDefinitions="Auto,4" RowSpacing="{StaticResource size60}">
                                 <VisualStateManager.VisualStateGroups>
                                     <VisualStateGroup x:Name="CommonStates">
@@ -115,10 +115,11 @@
                                 </VisualStateManager.VisualStateGroups>
                                 
                                 <Label 
-                                    Text="{Binding .}" 
+                                    Text="{Binding Glyph}" 
                                     x:Name="IconImage"
+                                    SemanticProperties.Description="{Binding Name}"
                                     FontFamily="{x:Static fonts:FluentUI.FontFamily}" 
-                                    FontSize="24" 
+                                    FontSize="24"
                                     VerticalOptions="Center"
                                     HorizontalOptions="Center"
                                     TextColor="{AppThemeBinding Light={StaticResource DarkOnLightBackground},Dark={StaticResource LightOnDarkBackground}}"/>
@@ -146,7 +147,8 @@
 
                 <Button Text="Save" 
                     HeightRequest="{OnIdiom 44, Desktop=60}"
-                    Command="{Binding SaveCommand}" />
+                    Command="{Binding SaveCommand}"
+                    SemanticProperties.Description="Save" />
 
                 <Grid HeightRequest="44">
                     <Label 
@@ -162,6 +164,7 @@
                         WidthRequest="44"
                         IsVisible="{Binding HasCompletedTasks}"
                         Command="{Binding CleanTasksCommand}"
+                        SemanticProperties.Description="Clean Tasks"
                         />
                 </Grid>
                 <VerticalStackLayout 
@@ -176,7 +179,7 @@
             </VerticalStackLayout>
         </ScrollView>
 
-        <controls:AddButton Command="{Binding AddTaskCommand}" />
+        <controls:AddButton Command="{Binding AddTaskCommand}" SemanticProperties.Description="Add"/>
     </Grid>
     
 </ContentPage>

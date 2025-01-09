@@ -80,6 +80,7 @@
 
         <controls:AddButton 
             IsEnabled="{Binding IsBusy, Converter={StaticResource InvertedBoolConverter}}"
-            Command="{Binding AddTaskCommand}" />
+            Command="{Binding AddTaskCommand}"
+            SemanticProperties.Description="Add" />
     </Grid>
 </ContentPage>

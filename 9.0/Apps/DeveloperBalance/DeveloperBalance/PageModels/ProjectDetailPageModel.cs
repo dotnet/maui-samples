@@ -41,15 +41,15 @@ public partial class ProjectDetailPageModel : ObservableObject, IQueryAttributab
 	bool _isBusy;
 
 	[ObservableProperty]
-	private List<string> _icons =
+	private List<Icon> _icons =
 	[
-		FluentUI.ribbon_24_regular,
-		FluentUI.ribbon_star_24_regular,
-		FluentUI.trophy_24_regular,
-		FluentUI.badge_24_regular,
-		FluentUI.book_24_regular,
-		FluentUI.people_24_regular,
-		FluentUI.bot_24_regular
+		new Icon(FluentUI.ribbon_24_regular, "ribbon"),
+		new Icon(FluentUI.ribbon_star_24_regular, "ribbon_star"),
+		new Icon(FluentUI.trophy_24_regular, "trophy"),
+		new Icon(FluentUI.badge_24_regular, "badge"),
+		new Icon(FluentUI.book_24_regular, "book"),
+		new Icon(FluentUI.people_24_regular, "people"),
+		new Icon(FluentUI.bot_24_regular, "bot"),
 	];
 
 	public bool HasCompletedTasks
