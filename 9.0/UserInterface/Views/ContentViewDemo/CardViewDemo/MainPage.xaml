@@ -1,0 +1,25 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns:local="clr-namespace:CardViewDemo"
+             x:Class="CardViewDemo.MainPage"
+			 Title="CardView demos"
+             x:DataType="local:MainPage">
+	<TableView Intent="Menu">
+		<TableRoot>
+			<TableSection>
+				<TextCell Text="CardView XAML"
+                          Detail="Create CardView items with XAML."
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type local:CardViewXamlPage}" />
+				<TextCell Text="CardView Code"
+                          Detail="Create CardView items with code."
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type local:CardViewCodePage}" />
+				<TextCell Text="CardView ControlTemplate"
+                          Detail="Use a ControlTemplate to change control appearance."
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type local:ControlTemplatePage}" />
+			</TableSection>
+		</TableRoot>
+	</TableView>	
+</ContentPage>
