@@ -4,12 +4,12 @@ namespace DeveloperBalance.Models;
 
 public class Icon
 {
-    public string Glyph { get; set; } = string.Empty;
+	public string Glyph { get; set; } = string.Empty;
 	public string Name { get; set; } = string.Empty;
 
-    public Icon(string glyph, string name)
-    {
-        Glyph = glyph;
-        Name = name;
-    }
+	public Icon(string glyph, string name)
+	{
+		Glyph = glyph;
+		Name = name;
+	}
 }
