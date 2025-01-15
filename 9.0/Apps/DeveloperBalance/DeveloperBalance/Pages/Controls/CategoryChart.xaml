@@ -5,6 +5,7 @@
         xmlns:controls="clr-namespace:DeveloperBalance.Pages.Controls" 
         xmlns:shimmer="clr-namespace:Syncfusion.Maui.Toolkit.Shimmer;assembly=Syncfusion.Maui.Toolkit"
         xmlns:pageModels="clr-namespace:DeveloperBalance.PageModels"
+        xmlns:model="clr-namespace:DeveloperBalance.Models"
         x:Class="DeveloperBalance.Pages.Controls.CategoryChart"
         HeightRequest="{OnIdiom 300, Phone=200}"
         Margin="0, 12"
@@ -31,8 +32,8 @@
                                 TextColor="{AppThemeBinding 
                                 Light={StaticResource DarkOnLightBackground},
                                 Dark={StaticResource LightOnDarkBackground}}" 
-                                Margin="5" 
-                                FontSize="18" />
+                                Margin="5,0,0,0" 
+                                FontSize="14" />
                         </chart:ChartLegend.LabelStyle>
                     </controls:LegendExt>
                 </chart:SfCircularChart.Legend>
@@ -44,7 +45,26 @@
                     ShowDataLabels="True"
                     EnableTooltip="True" 
                     TrackFill="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"
-                    CapStyle = "BothCurve"/>
+                    CapStyle="BothCurve">
+                    <chart:RadialBarSeries.TooltipTemplate>
+                        <DataTemplate x:DataType="chart:TooltipInfo">
+                            <HorizontalStackLayout BindingContext="{Binding Item}">
+                                <Label Text="{Binding Title, x:DataType=model:CategoryChartData}"
+                                       TextColor="{StaticResource LightBackground}"
+                                       FontSize="14"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"/>
+
+                                <Label Text="{Binding Count, x:DataType=model:CategoryChartData, StringFormat='  :  \{0}'}"
+                                       TextColor="{StaticResource LightBackground}"
+                                       FontAttributes="Bold"
+                                       FontSize="14"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"/>
+                            </HorizontalStackLayout>
+                        </DataTemplate>
+                    </chart:RadialBarSeries.TooltipTemplate>
+                </chart:RadialBarSeries>
             </chart:SfCircularChart>
         </shimmer:SfShimmer.Content>
     </shimmer:SfShimmer>
