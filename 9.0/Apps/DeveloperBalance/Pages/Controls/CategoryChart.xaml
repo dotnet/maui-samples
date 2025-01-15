@@ -30,11 +30,11 @@
                     ShowDataLabels="True"
                     EnableTooltip="False"
                     x:Name="doughnutSeries"
-                    Radius="{OnIdiom 0.7, Phone=0.6}"
+                    Radius="{OnIdiom 0.7, Phone=0.5}"
                     InnerRadius="0.7" >
                     <chart:DoughnutSeries.LabelTemplate>
                         <DataTemplate >
-                            <HorizontalStackLayout Spacing="5">
+                            <HorizontalStackLayout>
                                 <Label Text="{Binding Item.Title}" TextColor="{AppThemeBinding
                                     Light={StaticResource DarkOnLightBackground},
                                     Dark={StaticResource LightOnDarkBackground}}" FontSize="{OnIdiom 18, Phone=14}"/>
@@ -49,7 +49,7 @@
                     </chart:DoughnutSeries.LabelTemplate>
 
                     <chart:DoughnutSeries.DataLabelSettings>
-                        <chart:CircularDataLabelSettings LabelPosition="Outside" SmartLabelAlignment="Shift" UseSeriesPalette="True">
+                        <chart:CircularDataLabelSettings LabelPosition="Outside" SmartLabelAlignment="Shift">
                             <chart:CircularDataLabelSettings.ConnectorLineSettings>
                                 <chart:ConnectorLineStyle ConnectorType="Line" StrokeWidth="3" ></chart:ConnectorLineStyle>
                             </chart:CircularDataLabelSettings.ConnectorLineSettings>
