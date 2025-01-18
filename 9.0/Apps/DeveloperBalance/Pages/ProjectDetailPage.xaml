@@ -56,11 +56,11 @@
 
     <ContentPage.ToolbarItems>
         <ToolbarItem
-            Text="Delete"
             Command="{Binding DeleteCommand}"
             Order="Primary"
             Priority="0"
-            IconImageSource="{StaticResource IconDelete}" />
+            IconImageSource="{StaticResource IconDelete}"
+            SemanticProperties.Description="Delete" />
     </ContentPage.ToolbarItems>
 
     <Grid>
@@ -97,7 +97,9 @@
                     ItemsSource="{Binding Icons}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="models:IconData">
-                            <Grid RowDefinitions="Auto,4" RowSpacing="{StaticResource size60}">
+                            <Grid RowDefinitions="Auto,4" RowSpacing="{StaticResource size60}"
+                                 SemanticProperties.Description="{Binding Description}"
+                                 SemanticProperties.Hint="Icon representing the type of task . Tap to select">
                                 <VisualStateManager.VisualStateGroups>
                                     <VisualStateGroup x:Name="CommonStates">
                                         <VisualState x:Name="Normal">
@@ -123,8 +125,6 @@
                                     FontSize="24" 
                                     VerticalOptions="Center"
                                     HorizontalOptions="Center"
-                                    SemanticProperties.Description="{Binding Description}"
-                                    SemanticProperties.Hint="Icon representing the type of task . Tap to select"
                                     TextColor="{AppThemeBinding Light={StaticResource DarkOnLightBackground},Dark={StaticResource LightOnDarkBackground}}"/>
                                 <BoxView x:Name="SelectedIndicator" Color="{StaticResource Primary}" HeightRequest="4" HorizontalOptions="Fill" Grid.Row="1"/>
                             </Grid>                            
@@ -166,6 +166,7 @@
                         WidthRequest="44"
                         IsVisible="{Binding HasCompletedTasks}"
                         Command="{Binding CleanTasksCommand}"
+                        SemanticProperties.Description="Clean up"
                         />
                 </Grid>
                 <VerticalStackLayout 
