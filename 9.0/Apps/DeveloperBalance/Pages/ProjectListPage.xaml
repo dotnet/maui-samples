@@ -17,11 +17,15 @@
     </ContentPage.Behaviors>
     <Grid>
       <ScrollView>
-        <VerticalStackLayout 
-            BindableLayout.ItemsSource="{Binding Projects}" 
-            Margin="{StaticResource LayoutPadding}" 
-            Spacing="{StaticResource LayoutSpacing}">
-            <BindableLayout.ItemTemplate>
+        <CollectionView 
+            ItemsSource="{Binding Projects}" 
+            Margin="{StaticResource LayoutPadding}">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout 
+                    Orientation="Vertical"
+                    ItemSpacing="{StaticResource LayoutSpacing}"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:Project">
                     <Border>
                         <VerticalStackLayout Padding="10">
@@ -33,8 +37,8 @@
                         </Border.GestureRecognizers>
                     </Border>
                 </DataTemplate>
-            </BindableLayout.ItemTemplate>
-        </VerticalStackLayout>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
       </ScrollView>
 
         <controls:AddButton 
