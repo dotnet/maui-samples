@@ -20,6 +20,10 @@ public partial class HomePage : ContentPage
     {
         base.OnNavigatedTo(args);
 
+        if (WeakReferenceMessenger.Default.IsRegistered<AddProductMessage>(this))
+        {
+            return;
+        }
         WeakReferenceMessenger.Default.Register<AddProductMessage>(this, (r, m) =>
         {
             NavSubContent(m.Value);
