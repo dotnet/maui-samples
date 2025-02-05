@@ -14,6 +14,9 @@ public partial class ProjectListPageModel : ObservableObject
 	[ObservableProperty]
 	private List<Project> _projects = [];
 
+	[ObservableProperty]
+	private Project selectedProject;
+
 	public ProjectListPageModel(ProjectRepository projectRepository)
 	{
 		_projectRepository = projectRepository;
