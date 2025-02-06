@@ -1,4 +1,3 @@
-#nullable disable
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using DeveloperBalance.Data;
@@ -15,7 +14,7 @@ public partial class ProjectListPageModel : ObservableObject
 	private List<Project> _projects = [];
 
 	[ObservableProperty]
-	private Project selectedProject;
+	private Project? selectedProject;
 
 	public ProjectListPageModel(ProjectRepository projectRepository)
 	{
@@ -29,8 +28,8 @@ public partial class ProjectListPageModel : ObservableObject
 	}
 
 	[RelayCommand]
-	Task NavigateToProject(Project project)
-		=> Shell.Current.GoToAsync($"project?id={project.ID}");
+	Task? NavigateToProject(Project project)
+		=> project is null ? null : Shell.Current.GoToAsync($"project?id={project.ID}");
 
 	[RelayCommand]
 	async Task AddProject()

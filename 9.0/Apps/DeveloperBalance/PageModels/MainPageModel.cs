@@ -36,7 +36,7 @@ public partial class MainPageModel : ObservableObject, IProjectTaskPageModel
 	private string _today = DateTime.Now.ToString("dddd, MMM d");
 
 	[ObservableProperty]
-	private Project selectedProject;
+	private Project? selectedProject;
 
 	public bool HasCompletedTasks
 		=> Tasks?.Any(t => t.IsCompleted) ?? false;
@@ -152,8 +152,8 @@ public partial class MainPageModel : ObservableObject, IProjectTaskPageModel
 		=> Shell.Current.GoToAsync($"task");
 
 	[RelayCommand]
-	private Task NavigateToProject(Project project)
-		=> Shell.Current.GoToAsync($"project?id={project.ID}");
+	private Task? NavigateToProject(Project project)
+		=> project is null ? null : Shell.Current.GoToAsync($"project?id={project.ID}");
 
 	[RelayCommand]
 	private Task NavigateToTask(ProjectTask task)
