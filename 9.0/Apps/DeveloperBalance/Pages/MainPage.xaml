@@ -38,7 +38,8 @@
                         <Label Text="Task Categories" Style="{StaticResource Title2}"/>
                         <controls:CategoryChart />
                         <Label Text="Projects" Style="{StaticResource Title2}"/>
-                        <CollectionView ItemsSource="{Binding Projects}" 
+                        <CollectionView ItemsSource="{Binding Projects}"
+                                        HeightRequest="250"
                                         Margin="-7.5,0"
                                         x:Name="ProjectsCollectionView"
                                         SelectionMode="Single"
