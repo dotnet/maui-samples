@@ -30,7 +30,7 @@
                     ShowDataLabels="True"
                     EnableTooltip="False"
                     x:Name="doughnutSeries"
-                    Radius="{OnIdiom 0.7, Phone=0.5}"
+                    Radius="{OnIdiom 0.6, Phone=0.5}"
                     InnerRadius="0.7" >
                     <chart:DoughnutSeries.LabelTemplate>
                         <DataTemplate >
