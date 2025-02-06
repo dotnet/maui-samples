@@ -28,13 +28,13 @@
 
     <Shell.FlyoutFooter>
         <Grid Padding="15">
-            <sf:SfSegmentedControl x:Name="ThemeSegmentedControl" 
+            <sf:SfSegmentedControl x:Name="ThemeSegmentedControl" SemanticProperties.Description="Dark/Light Mode"
                 VerticalOptions="Center" HorizontalOptions="Center" SelectionChanged="SfSegmentedControl_SelectionChanged"
                 SegmentWidth="40" SegmentHeight="40">
                 <sf:SfSegmentedControl.ItemsSource>
                     <x:Array Type="{x:Type sf:SfSegmentItem}">
-                        <sf:SfSegmentItem ImageSource="{StaticResource IconLight}"/>
-                        <sf:SfSegmentItem ImageSource="{StaticResource IconDark}"/>
+                        <sf:SfSegmentItem ImageSource="{StaticResource IconLight}" SemanticProperties.Description="Light Mode"/>
+                        <sf:SfSegmentItem ImageSource="{StaticResource IconDark}" SemanticProperties.Description="Dark Mode"/>
                     </x:Array>
                 </sf:SfSegmentedControl.ItemsSource>
             </sf:SfSegmentedControl>

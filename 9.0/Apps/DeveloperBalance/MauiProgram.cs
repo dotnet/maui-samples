@@ -18,7 +18,13 @@ public static class MauiProgram
 #if IOS || MACCATALYST
 				handlers.AddHandler<Microsoft.Maui.Controls.CollectionView, Microsoft.Maui.Controls.Handlers.Items2.CollectionViewHandler2>();
 #endif
-			})
+                Microsoft.Maui.Controls.Handlers.Items.CollectionViewHandler.Mapper.AppendToMapping("KeyboardAccessibleCollectionView", (handler, view) =>
+                {
+#if WINDOWS
+                        handler.PlatformView.SingleSelectionFollowsFocus = false;
+#endif
+                });
+            })
 			.ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
