@@ -30,7 +30,7 @@
                     </CollectionView.ItemsLayout>
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="models:Project">
-                            <Border>
+                            <Border SemanticProperties.Description="{Binding Name, StringFormat='{0} Project'}">
                                 <VerticalStackLayout Padding="10">
                                     <Label Text="{Binding Name}" FontSize="24" />
                                     <Label Text="{Binding Description}" />
