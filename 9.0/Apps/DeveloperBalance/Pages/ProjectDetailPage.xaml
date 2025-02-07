@@ -99,7 +99,8 @@
                         <DataTemplate x:DataType="models:IconData">
                             <Grid RowDefinitions="Auto,4" RowSpacing="{StaticResource size60}"
                                  SemanticProperties.Description="{Binding Description}"
-                                 SemanticProperties.Hint="Icon representing the type of task . Tap to select">
+                                 SemanticProperties.Hint="Icon representing the type of task . Tap to select"
+                                 InputTransparent="True">
                                 <VisualStateManager.VisualStateGroups>
                                     <VisualStateGroup x:Name="CommonStates">
                                         <VisualState x:Name="Normal">
@@ -127,6 +128,11 @@
                                     HorizontalOptions="Center"
                                     TextColor="{AppThemeBinding Light={StaticResource DarkOnLightBackground},Dark={StaticResource LightOnDarkBackground}}"/>
                                 <BoxView x:Name="SelectedIndicator" Color="{StaticResource Primary}" HeightRequest="4" HorizontalOptions="Fill" Grid.Row="1"/>
+
+                                <!-- This TapGestureRecognizer ensures that the grid is treated as a button for accessibility purposes on iOS -->
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer />
+                                </Grid.GestureRecognizers>
                             </Grid>                            
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
