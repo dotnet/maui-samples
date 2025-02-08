@@ -156,7 +156,6 @@ public partial class ProjectDetailPageModel : ObservableObject, IQueryAttributab
 		OnPropertyChanged(nameof(HasCompletedTasks));
 	}
 
-
 	[RelayCommand]
 	private async Task Save()
 	{
@@ -245,14 +244,26 @@ public partial class ProjectDetailPageModel : ObservableObject, IQueryAttributab
 			if (tag.IsSelected)
 			{
 				await _tagRepository.SaveItemAsync(tag, _project.ID);
+				AllTags = new(AllTags);
+				await AnnouncementHelper.Announce($"{tag.Title} selected");
 			}
 			else
 			{
 				await _tagRepository.DeleteItemAsync(tag, _project.ID);
+				AllTags = new(AllTags);
+				await AnnouncementHelper.Announce($"{tag.Title} unselected");
 			}
 		}
+		else
+		{
+			AllTags = new(AllTags);
+		}
+	}
 
-		AllTags = new(AllTags);
+	[RelayCommand]
+	private async Task IconSelected(IconData icon)
+	{
+		await AnnouncementHelper.Announce($"{icon.Description} selected");
 	}
 
 	[RelayCommand]

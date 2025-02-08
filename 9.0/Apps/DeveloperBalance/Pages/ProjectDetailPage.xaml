@@ -94,6 +94,8 @@
                     SelectionMode="Single"
                     
                     SelectedItem="{Binding Icon}"
+                    SelectionChangedCommand="{Binding IconSelectedCommand}"
+                    SelectionChangedCommandParameter="{Binding Icon}"
                     ItemsSource="{Binding Icons}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="models:IconData">

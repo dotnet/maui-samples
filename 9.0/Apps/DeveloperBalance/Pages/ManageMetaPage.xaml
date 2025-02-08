@@ -83,11 +83,12 @@
 
             <Grid ColumnSpacing="{StaticResource LayoutSpacing}" ColumnDefinitions="*,Auto" Margin="0,10">
                 <Button Text="Save" Command="{Binding SaveCategoriesCommand}"
+                    SemanticProperties.Description="Save Categories"
                     HeightRequest="{OnIdiom 44,Desktop=60}" Grid.Column="0" />
 
                 <Button ImageSource="{StaticResource IconAdd}"
                     Command="{Binding AddCategoryCommand}" Grid.Column="1"
-                    SemanticProperties.Description="Add" />
+                    SemanticProperties.Description="Add Categories" />
             </Grid>
 
             <Label Text="Tags" Style="{StaticResource Title2}" />
@@ -125,11 +126,12 @@
 
             <Grid ColumnSpacing="{StaticResource LayoutSpacing}" ColumnDefinitions="*,Auto" Margin="0,10">
                 <Button Text="Save" Command="{Binding SaveTagsCommand}"
+                    SemanticProperties.Description="Save Tags"
                     HeightRequest="{OnIdiom 44,Desktop=60}" Grid.Column="0" />
 
                 <Button ImageSource="{StaticResource IconAdd}"
                     Command="{Binding AddTagCommand}" Grid.Column="1"
-                    SemanticProperties.Description="Add" />
+                    SemanticProperties.Description="Add Tags" />
             </Grid>
         </VerticalStackLayout>
     </ScrollView>
