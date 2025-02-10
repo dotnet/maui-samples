@@ -61,7 +61,7 @@ namespace TodoAPI.Services
             {
                 ID = "b94afb54-a1cb-4313-8af3-b7511551b33b",
                 Name = "Develop apps",
-                Notes = "Use Visual Studio and Visual Studio for Mac",
+                Notes = "Use Visual Studio and Visual Studio Code",
                 Done = false
             };
 
