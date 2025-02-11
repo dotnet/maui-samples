@@ -8,8 +8,8 @@ namespace DeveloperBalance;
 
 public class SemanticScreenReaderAsyncImplementation : IAsyncAnnouncement
 {
-    static NSObject Token;
-    private TaskCompletionSource<bool> announcementCompletionSource;
+    static NSObject? Token;
+    private TaskCompletionSource<bool>? announcementCompletionSource;
 
     public void AddNotification()
     {
@@ -33,7 +33,7 @@ public class SemanticScreenReaderAsyncImplementation : IAsyncAnnouncement
 
     private void AnnouncementDidFinish(NSNotification notification)
     {
-        announcementCompletionSource.TrySetResult(true);
+        announcementCompletionSource?.TrySetResult(true);
     }
 
     public void Announce(string text)
