@@ -24,14 +24,14 @@
                 <sf:SfTextInputLayout Hint="Task">
                     <Entry
                         Text="{Binding Title}"
-                        SemanticProperties.Description="Title" />
+                        SemanticProperties.Description="Task" />
                 </sf:SfTextInputLayout>
 
                 <sf:SfTextInputLayout Hint="Completed">
                     <CheckBox
                         HorizontalOptions="End"
                         IsChecked="{Binding IsCompleted}"
-                        SemanticProperties.Description="Status"
+                        SemanticProperties.Description="Completed"
                         SemanticProperties.Hint="Indicates if this task is completed" />
                 </sf:SfTextInputLayout>
 

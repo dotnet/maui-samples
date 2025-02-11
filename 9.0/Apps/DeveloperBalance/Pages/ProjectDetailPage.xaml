@@ -69,13 +69,13 @@
                 <sf:SfTextInputLayout 
                     Hint="Name" >
                     <Entry
-                        Text="{Binding Name}" />
+                        Text="{Binding Name}" SemanticProperties.Description="Name" />
                 </sf:SfTextInputLayout>
 
                 <sf:SfTextInputLayout 
                     Hint="Description">
                     <Entry
-                        Text="{Binding Description}" />
+                        Text="{Binding Description}" SemanticProperties.Description="Description" />
                 </sf:SfTextInputLayout>
 
                 <sf:SfTextInputLayout 
@@ -83,7 +83,8 @@
                     <Picker 
                         ItemsSource="{Binding Categories}"
                         SelectedItem="{Binding Category}"
-                        SelectedIndex="{Binding CategoryIndex}" />
+                        SelectedIndex="{Binding CategoryIndex}"
+                        SemanticProperties.Description="Category" />
                 </sf:SfTextInputLayout>
 
                 <Label 
