@@ -9,6 +9,7 @@
     x:Class="DeveloperBalance.Pages.Controls.TaskView"
     StrokeShape="RoundRectangle 20"
     Background="{AppThemeBinding Light={StaticResource LightSecondaryBackground}, Dark={StaticResource DarkSecondaryBackground}}"
+    SemanticProperties.Description="{Binding Title, StringFormat='{0} Task'}"
     x:DataType="models:ProjectTask">
     
     <effectsView:SfEffectsView
@@ -51,7 +52,7 @@
                     <Label Grid.Column="1"
                         Text="{Binding Title}"
                         VerticalOptions="Center"
-                        LineBreakMode="TailTruncation"
+                        LineBreakMode="WordWrap"
                         AutomationProperties.IsInAccessibleTree="False" />
                 </Grid>
             </shimmer:SfShimmer.Content>

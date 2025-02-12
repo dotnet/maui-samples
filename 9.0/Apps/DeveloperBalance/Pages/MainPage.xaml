@@ -35,9 +35,9 @@
             <pullToRefresh:SfPullToRefresh.PullableContent>
                 <ScrollView>
                     <VerticalStackLayout Spacing="{StaticResource LayoutSpacing}" Padding="{StaticResource LayoutPadding}">
-                        <Label Text="Task Categories" Style="{StaticResource Title2}"/>
+                        <Label Text="Task Categories" Style="{StaticResource Title2}" SemanticProperties.HeadingLevel="Level1"/>
                         <controls:CategoryChart />
-                        <Label Text="Projects" Style="{StaticResource Title2}"/>
+                        <Label Text="Projects" Style="{StaticResource Title2}" SemanticProperties.HeadingLevel="Level1"/>
                         <ScrollView Orientation="Horizontal" Margin="-30,0">
                             <HorizontalStackLayout 
                                 Spacing="15" Padding="30,0"
@@ -53,8 +53,8 @@
                                 </BindableLayout.ItemTemplate>
                             </HorizontalStackLayout>
                         </ScrollView>
-                        <Grid HeightRequest="44">
-                            <Label Text="Tasks" Style="{StaticResource Title2}" VerticalOptions="Center"/>
+                        <Grid MinimumHeightRequest="44">
+                            <Label Text="Tasks" Style="{StaticResource Title2}" VerticalOptions="Center" SemanticProperties.HeadingLevel="Level1"/>
                             <ImageButton 
                                 Source="{StaticResource IconClean}"
                                 HorizontalOptions="End"
