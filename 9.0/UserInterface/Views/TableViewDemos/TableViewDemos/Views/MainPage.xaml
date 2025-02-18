@@ -5,28 +5,13 @@
              x:Class="TableViewDemos.MainPage"
              Title="TableView demos"
              x:DataType="local:MainPage">
-    <TableView Intent="Menu">
-        <TableRoot>
-            <TableSection Title="Basics">
-                <TextCell Text="Menu page"
-                          Command="{Binding NavigateCommand}"
-                          CommandParameter="{x:Type views:MenuIntentPage}" />
-                <TextCell Text="Settings page"
-                          Command="{Binding NavigateCommand}"
-                          CommandParameter="{x:Type views:SettingsIntentPage}" />
-                <TextCell Text="Form page"
-                          Command="{Binding NavigateCommand}"
-                          CommandParameter="{x:Type views:FormIntentPage}" />
-                <TextCell Text="Data page"
-                          Command="{Binding NavigateCommand}"
-                          CommandParameter="{x:Type views:DataIntentPage}" />
-                <TextCell Text="ImageCell page"
-                          Command="{Binding NavigateCommand}"
-                          CommandParameter="{x:Type views:ImageCellPage}" />
-                <TextCell Text="Right to left TableView"
-                          Command="{Binding NavigateCommand}"
-                          CommandParameter="{x:Type views:RightToLeftTablePage}" />
-            </TableSection>
-        </TableRoot>
-    </TableView>
+    <CollectionView ItemsSource="{Binding Pages}">
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <TextCell Text="{Binding Text}"
+                          Command="{Binding Source={RelativeSource AncestorType={x:Type local:MainPage}}, Path=NavigateCommand}"
+                          CommandParameter="{Binding PageType}" />
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
 </ContentPage>
