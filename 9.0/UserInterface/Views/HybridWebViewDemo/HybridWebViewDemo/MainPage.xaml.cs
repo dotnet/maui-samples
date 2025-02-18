@@ -87,6 +87,36 @@ public partial class MainPage : ContentPage
         };
     }
 
+    public async Task DoAsyncWork()
+    {
+        Debug.WriteLine("DoAsyncWork");
+        await Task.Delay(1000);
+    }
+
+    public async Task DoAsyncWorkParams(int i, string s)
+    {
+        Debug.WriteLine($"DoAsyncWorkParams: {i}, {s}");
+        await Task.Delay(1000);
+    }
+
+    public async Task<String> DoAsyncWorkReturn()
+    {
+        Debug.WriteLine("DoAsyncWorkReturn");
+        await Task.Delay(1000);
+        return "Hello from C#!";
+    }
+
+    public async Task<SyncReturn> DoAsyncWorkParamsReturn(int i, string s)
+    {
+        Debug.WriteLine($"DoAsyncWorkParamsReturn: {i}, {s}");
+        await Task.Delay(1000);
+        return new SyncReturn
+        {
+            Message = "Hello from C#!" + s,
+            Value = i
+        };
+    }
+
     public class ComputationResult
     {
         public double result { get; set; }
