@@ -8,7 +8,7 @@
     <CollectionView ItemsSource="{Binding Pages}">
         <CollectionView.ItemTemplate>
             <DataTemplate>
-                <Label Text="{Binding Text}">
+                <Label Text="{Binding Text}" x:DataType="local:MenuItem">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer  
                            Command="{Binding Source={RelativeSource AncestorType={x:Type local:MainPage}}, Path=NavigateCommand}"  
