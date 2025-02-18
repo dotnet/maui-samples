@@ -102,7 +102,6 @@
                         <DataTemplate x:DataType="models:IconData">
                             <Grid RowDefinitions="Auto,4" RowSpacing="{StaticResource size60}"
                                  SemanticProperties.Description="{Binding Description}"
-                                 SemanticProperties.Hint="Icon representing the type of task . Tap to select"
                                  InputTransparent="True">
                                 <VisualStateManager.VisualStateGroups>
                                     <VisualStateGroup x:Name="CommonStates">
