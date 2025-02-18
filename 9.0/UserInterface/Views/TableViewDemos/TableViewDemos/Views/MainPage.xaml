@@ -8,9 +8,13 @@
     <CollectionView ItemsSource="{Binding Pages}">
         <CollectionView.ItemTemplate>
             <DataTemplate>
-                <TextCell Text="{Binding Text}"
-                          Command="{Binding Source={RelativeSource AncestorType={x:Type local:MainPage}}, Path=NavigateCommand}"
-                          CommandParameter="{Binding PageType}" />
+                <Label Text="{Binding Text}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer  
+                           Command="{Binding Source={RelativeSource AncestorType={x:Type local:MainPage}}, Path=NavigateCommand}"  
+                           CommandParameter="{Binding PageType}" />
+                    </Label.GestureRecognizers>
+                </Label>
             </DataTemplate>
         </CollectionView.ItemTemplate>
     </CollectionView>
