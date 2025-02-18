@@ -135,7 +135,7 @@
                                 <!-- This TapGestureRecognizer ensures that the grid is treated as a button for accessibility purposes on iOS -->
                                 <Grid.GestureRecognizers>
                                     <OnPlatform x:TypeArguments="GestureRecognizer">
-                                        <On Platform="iOS">
+                                        <On Platform="iOS, MacCatalyst">
                                             <TapGestureRecognizer />
                                         </On>
                                     </OnPlatform>
