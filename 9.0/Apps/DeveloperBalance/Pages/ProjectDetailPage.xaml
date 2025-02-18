@@ -56,6 +56,7 @@
 
     <ContentPage.ToolbarItems>
         <ToolbarItem
+            Text="Delete"
             Command="{Binding DeleteCommand}"
             Order="Primary"
             Priority="0"
@@ -102,7 +103,6 @@
                         <DataTemplate x:DataType="models:IconData">
                             <Grid RowDefinitions="Auto,4" RowSpacing="{StaticResource size60}"
                                  SemanticProperties.Description="{Binding Description}"
-                                 SemanticProperties.Hint="Icon representing the type of task . Tap to select"
                                  InputTransparent="True">
                                 <VisualStateManager.VisualStateGroups>
                                     <VisualStateGroup x:Name="CommonStates">
@@ -134,7 +134,11 @@
 
                                 <!-- This TapGestureRecognizer ensures that the grid is treated as a button for accessibility purposes on iOS -->
                                 <Grid.GestureRecognizers>
-                                    <TapGestureRecognizer />
+                                    <OnPlatform x:TypeArguments="GestureRecognizer">
+                                        <On Platform="iOS">
+                                            <TapGestureRecognizer />
+                                        </On>
+                                    </OnPlatform>
                                 </Grid.GestureRecognizers>
                             </Grid>                            
                         </DataTemplate>
@@ -158,7 +162,7 @@
                 </ScrollView>
 
                 <Button Text="Save" 
-                    HeightRequest="{OnIdiom 44, Desktop=60}"
+                    MinimumHeightRequest="{OnIdiom 44, Desktop=60}"
                     Command="{Binding SaveCommand}" />
 
                 <Grid HeightRequest="44">
