@@ -19,5 +19,12 @@ namespace GraphicsViewDemos.Views
 
 			BindingContext = this;
 		}
+
+		protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            BindingContext = null;
+            BindingContext = this;
+        }
 	}
 }
