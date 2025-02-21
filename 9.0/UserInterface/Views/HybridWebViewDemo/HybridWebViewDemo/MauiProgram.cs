@@ -4,6 +4,11 @@ namespace HybridWebViewDemo
 {
     public static class MauiProgram
     {
+        static MauiProgram()
+        {
+            AppContext.SetSwitch("HybridWebView.InvokeJavaScriptThrowsExceptions", isEnabled: true);
+        }
+
         public static MauiApp CreateMauiApp()
         {
             var builder = MauiApp.CreateBuilder();
