@@ -12,6 +12,10 @@ urlFragment: animations
 
 # Animations
 
+![lightmode](https://github.com/user-attachments/assets/55691eaf-475b-4dd2-9a55-1860072a4a2d)  ![darkmode](https://github.com/user-attachments/assets/27675973-a6f5-441e-b37c-0d8a687fb4ef)
+
+
+
 This sample demonstrates how to use animations on any view in .NET MAUI.
 
 ### Basic Animations
