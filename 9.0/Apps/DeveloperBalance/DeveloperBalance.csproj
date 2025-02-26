@@ -19,8 +19,6 @@
 		<SingleProject>true</SingleProject>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-		<!-- https://github.com/CommunityToolkit/Maui/issues/2205 -->
-		<NoWarn>XC0103</NoWarn>
 		<MauiEnableXamlCBindingWithSourceCompilation>true</MauiEnableXamlCBindingWithSourceCompilation>
 
 		<!-- Display name -->
