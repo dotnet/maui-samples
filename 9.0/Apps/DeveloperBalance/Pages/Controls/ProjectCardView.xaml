@@ -10,7 +10,7 @@
         Style="{StaticResource CardStyle}"
         SemanticProperties.Description="{Binding Name, StringFormat='{0} Project'}"
         x:DataType="models:Project">
-    <!-- <shimmer:SfShimmer
+    <shimmer:SfShimmer
         BackgroundColor="Transparent"
         IsActive="{Binding IsBusy, Source={RelativeSource AncestorType={x:Type pageModels:MainPageModel}}, x:DataType=pageModels:IProjectTaskPageModel}">
         <shimmer:SfShimmer.CustomView>
@@ -34,7 +34,7 @@
                     Style="{StaticResource ShimmerCustomViewStyle}"/>
             </VerticalStackLayout>
         </shimmer:SfShimmer.CustomView>
-        <shimmer:SfShimmer.Content> -->
+        <shimmer:SfShimmer.Content>
             <VerticalStackLayout Spacing="15">
                 <Image HorizontalOptions="Start" Aspect="Center">
                     <Image.Source>
@@ -55,6 +55,6 @@
                     </BindableLayout.ItemTemplate>
                 </FlexLayout>
             </VerticalStackLayout>
-        <!-- </shimmer:SfShimmer.Content>
-    </shimmer:SfShimmer> -->
+        </shimmer:SfShimmer.Content>
+    </shimmer:SfShimmer>
 </Border>
