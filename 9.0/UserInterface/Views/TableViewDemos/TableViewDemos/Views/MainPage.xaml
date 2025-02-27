@@ -5,28 +5,23 @@
              x:Class="TableViewDemos.MainPage"
              Title="TableView demos"
              x:DataType="local:MainPage">
-    <TableView Intent="Menu">
-        <TableRoot>
-            <TableSection Title="Basics">
-                <TextCell Text="Menu page"
-                          Command="{Binding NavigateCommand}"
-                          CommandParameter="{x:Type views:MenuIntentPage}" />
-                <TextCell Text="Settings page"
-                          Command="{Binding NavigateCommand}"
-                          CommandParameter="{x:Type views:SettingsIntentPage}" />
-                <TextCell Text="Form page"
-                          Command="{Binding NavigateCommand}"
-                          CommandParameter="{x:Type views:FormIntentPage}" />
-                <TextCell Text="Data page"
-                          Command="{Binding NavigateCommand}"
-                          CommandParameter="{x:Type views:DataIntentPage}" />
-                <TextCell Text="ImageCell page"
-                          Command="{Binding NavigateCommand}"
-                          CommandParameter="{x:Type views:ImageCellPage}" />
-                <TextCell Text="Right to left TableView"
-                          Command="{Binding NavigateCommand}"
-                          CommandParameter="{x:Type views:RightToLeftTablePage}" />
-            </TableSection>
-        </TableRoot>
-    </TableView>
+    <Grid RowDefinitions="Auto,*" Padding="10">
+        <Label Text="Basics" FontAttributes="Bold" FontSize="Large" Margin="10,0,0,5"/>
+        <CollectionView Grid.Row="1" ItemsSource="{Binding MenuItems}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="local:MenuItem">
+                    <Frame Margin="2" Padding="10" BorderColor="LightGray">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer 
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:MainPage}}, Path=NavigateCommand}" 
+                                CommandParameter="{Binding PageType}" />
+                        </Frame.GestureRecognizers>
+                        <Label Text="{Binding Title}" 
+                               FontSize="Medium" 
+                               VerticalOptions="Center" />
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
 </ContentPage>

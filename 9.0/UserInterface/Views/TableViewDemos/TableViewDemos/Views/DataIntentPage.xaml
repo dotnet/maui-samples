@@ -3,30 +3,54 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="TableViewDemos.DataIntentPage" 
              Title="Data page">
-    <TableView Intent="Data" 
-               HasUnevenRows="true" >
-        <TableRoot>
-            <TableSection>
-                <TextCell Text="This TableView uses the data intent." 
-                          Detail="However, data is often better presented in a ListView." />
-                <ImageCell Text="Images can also be displayed."
-                           Detail="HasUnevenRows is set to true."
-                           ImageSource="dotnet_bot.png" />
-                <ViewCell x:Name="viewCell" 
-                          Tapped="OnViewCellTapped">
-                    <Grid Margin="15,0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <Label Text="Tap this cell." />
-                        <Label x:Name="target" 
-                               Grid.Row="1"
-                               Text="The cell has changed size." 
-                               IsVisible="false" />
-                    </Grid>
-                </ViewCell>
-            </TableSection>
-        </TableRoot>
-    </TableView>
+    <CollectionView x:Name="collectionView" 
+                   SelectionMode="None">
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <Grid Padding="15" x:Name="itemGrid">
+                    <Border StrokeThickness="1"
+                            Stroke="LightGray"
+                            StrokeShape="RoundRectangle 5"
+                            Padding="10">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            
+                            <Image Grid.RowSpan="2" 
+                                   Source="{Binding ImageSource}" 
+                                   HeightRequest="60" 
+                                   WidthRequest="60"
+                                   IsVisible="{Binding HasImage}"/>
+                            
+                            <Label Grid.Column="1" 
+                                   Text="{Binding Text}" 
+                                   FontAttributes="Bold"/>
+                            
+                            <Label Grid.Column="1"
+                                   Grid.Row="1"
+                                   Text="{Binding Detail}"
+                                   IsVisible="{Binding HasDetail}"/>
+                            
+                            <Label Grid.Column="{Binding ExtraTextColumn}"
+                                   Grid.Row="2"
+                                   Text="{Binding ExtraText}"
+                                   IsVisible="{Binding IsExpanded}"/>
+                            
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={x:Reference collectionView}, Path=BindingContext.ToggleExpandCommand}"
+                                                      CommandParameter="{Binding .}"/>
+                            </Grid.GestureRecognizers>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
 </ContentPage>
