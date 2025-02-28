@@ -1,22 +1,37 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:TableViewDemos.Models"
              x:Class="TableViewDemos.MenuIntentPage"
              Title="Menu page">
-    <TableView Intent="Menu">
-        <TableRoot>
-            <TableSection Title="Chapters">
-                <TextCell Text="1. Introduction to .NET MAUI"
-                          Detail="Learn about .NET MAUI and what it provides." />
-                <TextCell Text="2. Anatomy of an app"
-                          Detail="Learn about the visual elements in .NET MAUI" />
-                <TextCell Text="3. Text"
-                          Detail="Learn about the .NET MAUI controls that display text." />
-                <TextCell Text="4. Dealing with sizes"
-                          Detail="Learn how to size .NET MAUI controls on screen." />
-                <TextCell Text="5. XAML vs code"
-                          Detail="Learn more about creating your UI in XAML." />
-            </TableSection>
-        </TableRoot>
-    </TableView>
+    <CollectionView ItemsSource="{Binding Sections}"
+                   ItemsLayout="VerticalList">
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="models:MenuSection">
+                <StackLayout Spacing="10" Padding="15">
+                    <Label Text="{Binding Title}"
+                           FontAttributes="Bold"
+                           Margin="0,10,0,5"/>
+                    <CollectionView ItemsSource="{Binding Items}"
+                                  ItemsLayout="VerticalList">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="models:MenuListItem">
+                                <Frame Margin="0,5" Padding="10">
+                                    <StackLayout>
+                                        <Label Text="{Binding Text}"
+                                               FontAttributes="Bold"/>
+                                        <Label Text="{Binding Detail}"
+                                               TextColor="Gray"/>
+                                    </StackLayout>
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Command}"/>
+                                    </Frame.GestureRecognizers>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
 </ContentPage>

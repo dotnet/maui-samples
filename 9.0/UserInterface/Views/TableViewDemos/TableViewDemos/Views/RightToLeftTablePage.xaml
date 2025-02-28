@@ -1,40 +1,53 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:TableViewDemos.Models"
              x:Class="TableViewDemos.RightToLeftTablePage"
              Title="Right to left TableView"
              FlowDirection="RightToLeft">
-    <TableView Intent="Settings">
-        <TableRoot>
-            <TableSection>
-                <SwitchCell Text="Airplane Mode"
-                            On="False" />
-                <SwitchCell Text="Notifications"
-                            On="True" />
-            </TableSection>
-            <TableSection>
-                <EntryCell Label="Login"
-                           Placeholder="username" />
-                <EntryCell Label="Password"
-                           Placeholder="password" />
-            </TableSection>
-            <TableSection Title="Silent">
-                <ViewCell>
-                    <Grid RowDefinitions="Auto,Auto"
-                          ColumnDefinitions="0.5*,0.5*">
-                        <Label Text="Vibrate"
-                               Margin="10,10,0,0"/>
-                        <Switch Grid.Column="1"
-                                HorizontalOptions="End" />
-                        <Slider Grid.Row="1"
-                                Grid.ColumnSpan="2"
-                                Margin="10"
-                                Minimum="0"
-                                Maximum="10"
-                                Value="3" />
-                    </Grid>
-                </ViewCell>
-            </TableSection>
-        </TableRoot>
-    </TableView>
+    <CollectionView ItemsSource="{Binding Sections}"
+                   ItemsLayout="VerticalList">
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="models:SettingsSection">
+                <StackLayout Spacing="10" Padding="15">
+                    <Label Text="{Binding Title}"
+                           FontAttributes="Bold"
+                           IsVisible="{Binding Title, Converter={StaticResource StringNotNullOrEmptyBoolConverter}}"
+                           Margin="0,10,0,5"/>
+                    <CollectionView ItemsSource="{Binding Items}"
+                                  ItemsLayout="VerticalList">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="models:SettingsItem">
+                                <Frame Margin="0,5" Padding="10">
+                                    <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto">
+                                        <Label Text="{Binding Label}"
+                                               VerticalOptions="Center"/>
+                                        
+                                        <!-- Switch -->
+                                        <Switch Grid.Column="1"
+                                                IsVisible="{Binding IsSwitch}"
+                                                IsToggled="{Binding SwitchValue}"/>
+                                        
+                                        <!-- Entry -->
+                                        <Entry Grid.Column="1"
+                                               IsVisible="{Binding IsEntry}"
+                                               Text="{Binding EntryValue}"
+                                               Placeholder="{Binding Placeholder}"/>
+                                        
+                                        <!-- Slider -->
+                                        <Slider Grid.Row="1" Grid.ColumnSpan="2"
+                                                IsVisible="{Binding IsSlider}"
+                                                Value="{Binding SliderValue}"
+                                                Minimum="{Binding SliderMinimum}"
+                                                Maximum="{Binding SliderMaximum}"
+                                                Margin="0,10,0,0"/>
+                                    </Grid>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
 </ContentPage>

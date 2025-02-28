@@ -1,32 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             x:Class="TableViewDemos.DataIntentPage" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:TableViewDemos.Models"
+             x:Class="TableViewDemos.DataIntentPage"
              Title="Data page">
-    <TableView Intent="Data" 
-               HasUnevenRows="true" >
-        <TableRoot>
-            <TableSection>
-                <TextCell Text="This TableView uses the data intent." 
-                          Detail="However, data is often better presented in a ListView." />
-                <ImageCell Text="Images can also be displayed."
-                           Detail="HasUnevenRows is set to true."
-                           ImageSource="dotnet_bot.png" />
-                <ViewCell x:Name="viewCell" 
-                          Tapped="OnViewCellTapped">
-                    <Grid Margin="15,0">
+    <CollectionView x:Name="collectionView"
+                   ItemsSource="{Binding Items}">
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="models:DataItem">
+                <Frame Margin="5" Padding="10">
+                    <Grid RowSpacing="5">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        <Label Text="Tap this cell." />
-                        <Label x:Name="target" 
-                               Grid.Row="1"
-                               Text="The cell has changed size." 
-                               IsVisible="false" />
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image Source="{Binding ImageSource}"
+                               HeightRequest="50"
+                               WidthRequest="50"
+                               IsVisible="{Binding ImageSource, Converter={StaticResource StringNotNullOrEmptyBoolConverter}}"
+                               Aspect="AspectFit"/>
+
+                        <StackLayout Grid.Column="{Binding ImageSource, Converter={StaticResource HasImageColumnConverter}}"
+                                   Spacing="5">
+                            <Label Text="{Binding Text}"
+                                   FontAttributes="Bold"/>
+                            <Label Text="{Binding Detail}"
+                                   TextColor="Gray"/>
+                            <Label Text="The cell has changed size."
+                                   IsVisible="{Binding IsExpanded}"
+                                   TextColor="Gray"/>
+                        </StackLayout>
                     </Grid>
-                </ViewCell>
-            </TableSection>
-        </TableRoot>
-    </TableView>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Source={x:Reference collectionView}, Path=BindingContext.ToggleExpandCommand}"
+                                            CommandParameter="{Binding .}"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
 </ContentPage>
