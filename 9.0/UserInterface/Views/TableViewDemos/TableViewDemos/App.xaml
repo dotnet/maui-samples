@@ -2,6 +2,7 @@
 <Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:TableViewDemos"
+             xmlns:converters="clr-namespace:TableViewDemos.Converters"
              x:Class="TableViewDemos.App">
     <Application.Resources>
         <ResourceDictionary>
@@ -15,6 +16,8 @@
                 <Setter Property="ColumnSpacing" Value="6" />
             </Style>
             
+            <converters:StringNotNullOrEmptyBoolConverter x:Key="StringNotNullOrEmptyBoolConverter" />
+            <converters:HasImageColumnConverter x:Key="HasImageColumnConverter" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

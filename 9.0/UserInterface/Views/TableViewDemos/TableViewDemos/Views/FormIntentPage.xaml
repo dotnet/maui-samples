@@ -1,24 +1,35 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns:models="clr-namespace:TableViewDemos.Models"
 			 x:Class="TableViewDemos.FormIntentPage"
 			 Title="Form page">
-    <TableView Intent="Form">
-        <TableRoot>
-            <TableSection Title="Login details">
-                <EntryCell Label="Login"
-                           Placeholder="username" />
-                <EntryCell Label="Password"
-                           Placeholder="password" />
-            </TableSection>
-            <TableSection Title="Contact details">
-                <EntryCell Label="Name"
-                           Placeholder="name" />
-                <EntryCell Label="Address"
-                           Placeholder="address" />
-                <EntryCell Label="Phone number"
-                           Placeholder="mobile number" />
-            </TableSection>
-        </TableRoot>
-    </TableView>
+    <CollectionView ItemsSource="{Binding Sections}"
+                   ItemsLayout="VerticalList">
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="models:FormSection">
+                <StackLayout Spacing="10" Padding="15">
+                    <Label Text="{Binding Title}"
+                           FontAttributes="Bold"
+                           Margin="0,10,0,5"/>
+                    <CollectionView ItemsSource="{Binding Fields}"
+                                  ItemsLayout="VerticalList">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="models:FormField">
+                                <Grid ColumnDefinitions="Auto,*" 
+                                      Padding="0,5">
+                                    <Label Text="{Binding Label}"
+                                           VerticalOptions="Center"/>
+                                    <Entry Grid.Column="1"
+                                           Placeholder="{Binding Placeholder}"
+                                           Text="{Binding Value}"
+                                           IsPassword="{Binding IsPassword}"/>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
 </ContentPage>
