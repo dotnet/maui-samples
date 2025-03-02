@@ -7,9 +7,7 @@
              Title="Header and footer (DataTemplate)"
              x:DataType="viewmodels:MonkeysViewModel">
     <Grid Margin="20">
-        <CollectionView ItemsSource="{Binding Monkeys}"
-                        Header="{Binding .}"
-                        Footer="{Binding .}">
+        <CollectionView ItemsSource="{Binding Monkeys}">
             <CollectionView.HeaderTemplate>
                 <DataTemplate>
                     <StackLayout BackgroundColor="LightGray">
