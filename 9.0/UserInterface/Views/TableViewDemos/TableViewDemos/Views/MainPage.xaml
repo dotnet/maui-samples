@@ -5,28 +5,69 @@
              x:Class="TableViewDemos.MainPage"
              Title="TableView demos"
              x:DataType="local:MainPage">
-    <TableView Intent="Menu">
-        <TableRoot>
-            <TableSection Title="Basics">
-                <TextCell Text="Menu page"
-                          Command="{Binding NavigateCommand}"
-                          CommandParameter="{x:Type views:MenuIntentPage}" />
-                <TextCell Text="Settings page"
-                          Command="{Binding NavigateCommand}"
-                          CommandParameter="{x:Type views:SettingsIntentPage}" />
-                <TextCell Text="Form page"
-                          Command="{Binding NavigateCommand}"
-                          CommandParameter="{x:Type views:FormIntentPage}" />
-                <TextCell Text="Data page"
-                          Command="{Binding NavigateCommand}"
-                          CommandParameter="{x:Type views:DataIntentPage}" />
-                <TextCell Text="ImageCell page"
-                          Command="{Binding NavigateCommand}"
-                          CommandParameter="{x:Type views:ImageCellPage}" />
-                <TextCell Text="Right to left TableView"
-                          Command="{Binding NavigateCommand}"
-                          CommandParameter="{x:Type views:RightToLeftTablePage}" />
-            </TableSection>
-        </TableRoot>
-    </TableView>
+    <ScrollView>
+        <VerticalStackLayout Spacing="10" Padding="20">
+            <Label Text="Basics" 
+                   Style="{StaticResource TitleMedium}"
+                   Margin="0,0,0,10"/>
+            
+            <Border Padding="15" Stroke="{StaticResource Primary}">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding NavigateCommand}"
+                                        CommandParameter="{x:Type views:MenuIntentPage}" />
+                </Border.GestureRecognizers>
+                <Label Text="Menu page" />
+            </Border>
+
+            <Border Padding="15" Stroke="{StaticResource Primary}">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding NavigateCommand}"
+                                        CommandParameter="{x:Type views:SettingsIntentPage}" />
+                </Border.GestureRecognizers>
+                <VerticalStackLayout Spacing="5">
+                    <Label Text="Settings page" />
+                    <Label Text="An example of how you can do a settings page."
+                           FontSize="Small"
+                           TextColor="{StaticResource Gray500}" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Padding="15" Stroke="{StaticResource Primary}">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding NavigateCommand}"
+                                        CommandParameter="{x:Type views:FormIntentPage}" />
+                </Border.GestureRecognizers>
+                <Label Text="Form page" />
+            </Border>
+
+            <Border Padding="15" Stroke="{StaticResource Primary}">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding NavigateCommand}"
+                                        CommandParameter="{x:Type views:DataIntentPage}" />
+                </Border.GestureRecognizers>
+                <Label Text="Data page" />
+            </Border>
+
+            <Border Padding="15" Stroke="{StaticResource Primary}">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding NavigateCommand}"
+                                        CommandParameter="{x:Type views:ImageCellPage}" />
+                </Border.GestureRecognizers>
+                <Label Text="ImageCell page" />
+            </Border>
+
+            <Border Padding="15" Stroke="{StaticResource Primary}">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding NavigateCommand}"
+                                        CommandParameter="{x:Type views:RightToLeftTablePage}" />
+                </Border.GestureRecognizers>
+                <VerticalStackLayout Spacing="5">
+                    <Label Text="Right to left TableView" />
+                    <Label Text="Showing that RTL is supported"
+                           FontSize="Small"
+                           TextColor="{StaticResource Gray500}" />
+                </VerticalStackLayout>
+            </Border>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
