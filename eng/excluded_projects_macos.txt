@@ -4,3 +4,7 @@
 # Xamarin projects need to be built different, effort to set that up vs gain isn't worth doing that, so exclude
 ./Upgrading/CustomRenderer/XamarinCustomRenderer/XamarinCustomRenderer/XamarinCustomRenderer.Android/XamarinCustomRenderer.Android.csproj
 ./Upgrading/CustomRenderer/XamarinCustomRenderer/XamarinCustomRenderer/XamarinCustomRenderer.iOS/XamarinCustomRenderer.iOS.csproj
+
+# The BrowserStack test projects for iOS and Android need special configuration and a working (paid) to actually work
+./9.0/UITesting/BrowserStackAppiumMaui/BasicAppiumNunitSample/UITests.Android/UITests.Android.csproj
+./9.0/UITesting/BrowserStackAppiumMaui/BasicAppiumNunitSample/UITests.iOS/UITests.iOS.csproj
