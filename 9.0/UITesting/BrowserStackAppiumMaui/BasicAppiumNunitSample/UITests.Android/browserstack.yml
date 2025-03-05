@@ -1,0 +1,32 @@
+# Add your BrowserStack userName and acccessKey here or set BROWSERSTACK_USERNAME and
+# BROWSERSTACK_ACCESS_KEY as env variables/GitHub Action secrets
+userName: BROWSERSTACK_USERNAME
+accessKey: BROWSERSTACK_ACCESS_KEY
+automationName: UIAutomator2
+appiumVersion: 2.4.1 # appium --version in terminal gives value
+app: "../MauiApp/bin/Release/net8.0-android/publish/com.companyname.basicappiumsample-Signed.apk"
+platforms:
+  - platformName: android
+    deviceName: Samsung Galaxy S22 Ultra
+    platformVersion: 12.0
+  - platformName: android
+    deviceName: Google Pixel 7 Pro
+    platformVersion: 13.0
+  - platformName: android
+    deviceName: OnePlus 9
+    platformVersion: 11.0
+parallelsPerPlatform: 1    
+browserstackLocal: false # set to False to run on App Automate
+buildName: browserstack-appium-maui-sample-android
+buildIdentifier: ${BUILD_NUMBER}
+projectName: BrowserStack Appium MAUI Sample
+testObservability: true
+debug: true
+networkLogs: true
+consoleLogs: errors # <string> Remote browser's console debug levels to be printed (Default: errors)
+# Available options are `disable`, `errors`, `warnings`, `info`, `verbose` (Default: errors)
+logLevel: debug
+deviceLogs: true # <boolean> Set to true to capture device logs
+appiumLogs: true
+percy: false
+percyCaptureMode: auto
