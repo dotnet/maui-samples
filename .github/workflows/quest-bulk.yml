@@ -2,6 +2,7 @@ name: "bulk quest import"
 on:
   schedule:
     - cron: '0 2 * * *' # UTC time, that's 9:00 pm EST, 6:00 pm PST.
+    - cron: '0 1 6 * *'  # This is the morning of the 6th.
   workflow_dispatch:
     inputs:
       reason:
@@ -55,4 +56,4 @@ jobs:
           org: ${{ github.repository_owner }}
           repo: ${{ github.repository }}
           issue: '-1'
-          duration: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.duration || 5 }}
+          duration: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.duration || github.event.schedule == '0 1 6 * *' && -1 || 5 }}
