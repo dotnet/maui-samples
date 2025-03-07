@@ -23,7 +23,13 @@
             Spacing="{StaticResource LayoutSpacing}">
             <BindableLayout.ItemTemplate>
                 <DataTemplate x:DataType="models:Project">
-                    <Border SemanticProperties.Description="{Binding Name, StringFormat='{0} Project'}">
+                    <Border SemanticProperties.Hint="Button">
+                        <SemanticProperties.Description>
+                            <MultiBinding StringFormat="{}{0}, {1} Project">
+                                <Binding Path="Name" />
+                                <Binding Path="Description" />
+                            </MultiBinding>
+                        </SemanticProperties.Description>
                         <VerticalStackLayout Padding="10">
                             <Label Text="{Binding Name}" FontSize="24" />
                             <Label Text="{Binding Description}" />
