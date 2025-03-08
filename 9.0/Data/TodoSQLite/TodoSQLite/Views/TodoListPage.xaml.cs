@@ -7,14 +7,15 @@ namespace TodoSQLite.Views;
 public partial class TodoListPage : ContentPage
 {
     TodoItemDatabase database;
+    
     public ObservableCollection<TodoItem> Items { get; set; } = new();
+
     public TodoListPage(TodoItemDatabase todoItemDatabase)
 	{
 		InitializeComponent();
         database = todoItemDatabase;
         BindingContext = this;
     }
-
 
     protected override async void OnNavigatedTo(NavigatedToEventArgs args)
     {
