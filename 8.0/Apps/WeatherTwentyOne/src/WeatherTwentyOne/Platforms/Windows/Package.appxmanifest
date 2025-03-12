@@ -9,7 +9,7 @@
   <Identity
     Name="BA0275D4-73C9-4F0C-BF53-CAC4FAD28D12"
     Publisher="CN=User Name"
-    Version="1.0.0.0" />
+    Version="0.0.0.0" />
 
   <Properties>
     <DisplayName>WeatherTwentyOne</DisplayName>
