@@ -3,27 +3,66 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Animations.ScalePage"
              Title="Scale">
-			 
-    <ScrollView>
-        <VerticalStackLayout 
-            Spacing="25" 
-            Padding="30,0" 
-            VerticalOptions="Center">
 
-            <Image
-                x:Name="BotImg"
-                Source="dotnet_bot.png"
-                SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                HeightRequest="200"
-                HorizontalOptions="Center" />
-                
-            <Button 
-                Text="Say Bye Bye"
-                SemanticProperties.Hint="Shrinks the dot net bot so it seems to disappear"
-                Clicked="OnClickedAsync"
-                HorizontalOptions="Center" />
+    <Grid RowDefinitions="Auto, Auto, Auto" 
+          Padding="20"
+          RowSpacing="20">
 
-        </VerticalStackLayout>
-    </ScrollView>
- 
+        <Border Grid.Row="0"
+                Stroke="Transparent"
+                StrokeThickness="0"
+                Margin="0,10,0,10">
+            <Grid VerticalOptions="Center">
+                <Image x:Name="BotImg"
+                       Source="dotnet_bot.png"
+                       SemanticProperties.Description="Cute dot net bot waving hi to you!"
+                       HeightRequest="400"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center" />
+            </Grid>
+        </Border>
+
+        <Grid Grid.Row="1" 
+              ColumnDefinitions="*,*"
+              ColumnSpacing="15"
+              RowDefinitions="Auto,Auto"
+              RowSpacing="15">
+
+            <Button Grid.Column="0" Grid.Row="0"
+                    Text="Say Bye Bye"
+                    SemanticProperties.Hint="Shrinks the dot net bot so it seems to disappear"
+                    Clicked="OnClickedAsync"/>
+
+            <Button Grid.Column="1" Grid.Row="0"
+                    Text="Squash &amp; Stretch"
+                    SemanticProperties.Hint="Makes the bot squash and stretch like rubber"
+                    Clicked="OnSquashStretchClickedAsync"/>
+
+            <Button Grid.Column="0" Grid.Row="1"
+                    Text="Relative Scale"
+                    SemanticProperties.Hint="Scales the bot relative to current size"
+                    Clicked="OnRelativeScaleClickedAsync"/>
+
+            <Button Grid.Column="1" Grid.Row="1"
+                    Text="Anchored Scale"
+                    SemanticProperties.Hint="Scales the bot from bottom center"
+                    Clicked="OnAnchoredScaleClickedAsync"/>
+        </Grid>
+
+        <Border Grid.Row="2"
+                StrokeThickness="1"
+                BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}"
+                StrokeShape="RoundRectangle 8"
+                Stroke="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}"
+                Padding="15,10"
+                MinimumHeightRequest="50">
+        
+        <Label  x:Name="TooltipLabel"
+                Text="Click any button to see what it does!"
+                TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}"
+                FontFamily="OpenSansRegular"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"/>
+        </Border>
+    </Grid>
 </ContentPage>
