@@ -1,0 +1,27 @@
+﻿<Project>
+  <PropertyGroup>
+    <!-- Target MAUI version -->
+    <MauiVersion>9.0.30</MauiVersion>
+     
+    <!-- Disable the use of the global NuGet cache -->
+    <RestoreNoCache>true</RestoreNoCache>
+
+    <!-- Prevent NuGet from writing to the global HTTP cache -->
+    <RestoreDisableParallel>true</RestoreDisableParallel>
+
+    <!-- Specify an alternate, isolated location for restoring packages -->
+    <RestorePackagesPath>$(MSBuildThisFileDirectory)/.packages</RestorePackagesPath>
+
+    <!-- Optional: Disable any fallback folders -->
+    <RestoreFallbackFolders></RestoreFallbackFolders>
+  </PropertyGroup>
+
+  <ItemGroup>
+      <ConsumerProjects Include="$(MSBuildThisFileDirectory)/PackageConsumerApp/PackageConsumerApp.csproj" />
+  </ItemGroup>
+
+  <Target Name="PostPackCleanup" AfterTargets="Pack">
+    <RemoveDir Directories="$(MSBuildThisFileDirectory)/.packages/samplepackage" />
+    <Touch Files="@(ConsumerProjects)" />
+  </Target>
+</Project>

@@ -1,0 +1,60 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net9.0-android;net9.0-ios;net9.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net9.0-windows10.0.19041.0</TargetFrameworks>
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<SkipValidateMauiImplicitPackageReferences>true</SkipValidateMauiImplicitPackageReferences>
+
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">15.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">15.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<Authors>Mike Parker</Authors>
+		<Copyright>Copyright © Mike Parker</Copyright>
+		<IsPackable>True</IsPackable>
+		<PackageProjectUrl>https://github.com/mikeparker104/msbuild-nuget-sample</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/mikeparker104/msbuild-nuget-sample</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageTags>dotnet-maui;maui;</PackageTags>
+		<IncludeSymbols>True</IncludeSymbols>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<Title>Sample Package</Title>
+		<Description>Sample .NET MAUI package demonstrating use of MSBuild files in NuGet packages.</Description>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+		<DebugType>portable</DebugType>
+		<PackageIcon>icon.png</PackageIcon>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageVersion>0.0.99999-sample</PackageVersion>
+		<PackageOutputPath>../artifacts/</PackageOutputPath>
+    	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    </PropertyGroup>
+	
+	<ItemGroup>
+		<None Include="Content\nuget.png" Pack="true" PackagePath="icon.png" />
+		<None Include="Content\README.md" Pack="true" PackagePath="" />
+		<None Include="Content\font_awesome\*" Pack="true" PackagePath="\fonts" />
+		<None Include="Content\images\*" Pack="true" PackagePath="\images" />
+		<MauiXaml Remove="Content\resources\*.xaml" />
+		<Compile Remove="Content\resources\*.xaml.cs" />
+		<None Include="Content\resources\*" Pack="true" PackagePath="\resources" />
+		<None Include="Content\SamplePackage.targets" Pack="true" PackagePath="\build\SamplePackage.targets" />
+		<None Include="Content\SamplePackage.targets" Pack="true" PackagePath="\buildTransitive\SamplePackage.targets" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="all" IsImplicitlyDefined="true" />
+		<PackageReference Include="System.Management" Version="7.0.0" Condition="$(TargetFramework.Contains('-windows')) == true" />
+	</ItemGroup>
+
+</Project>
