@@ -72,6 +72,7 @@ public partial class MainPageModel : ObservableObject, IProjectTaskPageModel
 
 			TodoCategoryData = chartData;
 			TodoCategoryColors = chartColors;
+			SemanticUpdateService.UpdateChartSemantics();
 
 			Tasks = await _taskRepository.ListAsync();
 		}

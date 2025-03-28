@@ -7,9 +7,10 @@
         xmlns:pageModels="clr-namespace:DeveloperBalance.PageModels"
         x:Class="DeveloperBalance.Pages.Controls.CategoryChart"
         HeightRequest="{OnIdiom 300, Phone=200}"
-        SemanticProperties.Description="Task Categories Chart"
+        x:Name="chartBorder"
         Style="{StaticResource CardStyle}">
     <shimmer:SfShimmer
+        AutomationProperties.IsInAccessibleTree="False"
         BackgroundColor="Transparent"
         VerticalOptions="FillAndExpand"
         IsActive ="{Binding IsBusy}">
