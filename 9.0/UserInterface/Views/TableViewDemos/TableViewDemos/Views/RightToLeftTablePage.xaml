@@ -4,7 +4,8 @@
              x:Class="TableViewDemos.RightToLeftTablePage"
              Title="Right to left TableView"
              FlowDirection="RightToLeft">
-    <TableView Intent="Settings">
+    <TableView Intent="Settings"
+               HasUnevenRows="True">
         <TableRoot>
             <TableSection>
                 <SwitchCell Text="Airplane Mode"
