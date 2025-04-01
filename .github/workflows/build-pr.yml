@@ -35,11 +35,8 @@ jobs:
     - name: Find and build changed projects
       run: |
         $failedProjectCount=0
-        # Define a collection of filenames to ignore
-        $ignoredFiles = @('.gitignore')
-
-        # Get the list of changed files, excluding ignored files
-        $changedFiles = git diff --name-only -r --diff-filter=d HEAD^1 HEAD | Where-Object { $ignoredFiles -notcontains $_ }
+        # Get the list of changed files
+        $changedFiles = git diff --name-only -r --diff-filter=d HEAD^1 HEAD
 
         $excluded_projects_file="./eng/excluded_projects_" + "${{ runner.os }}".ToLower() + ".txt"
         $excluded_projects=@()
@@ -64,7 +61,7 @@ jobs:
             if ($file -like '*.csproj') {
               $projectToBuild = $file
             } else {
-              $currentFolder = (Get-Item -LiteralPath (Resolve-Path -Path "$file")).Directory
+              $currentFolder = (Get-Item -LiteralPath (Resolve-Path -Path "$file") -Force).Directory
 
               while ($currentFolder -ne $null -and '' -ne $currentFolder) {
                 $csprojFiles = Get-ChildItem -Path $currentFolder -Filter '*.csproj' -File
