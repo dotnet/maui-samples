@@ -35,8 +35,11 @@ jobs:
     - name: Find and build changed projects
       run: |
         $failedProjectCount=0
-        # Get the list of changed files
-        $changedFiles = git diff --name-only -r --diff-filter=d HEAD^1 HEAD
+        # Define a collection of filenames to ignore
+        $ignoredFiles = @('.gitignore')
+
+        # Get the list of changed files, excluding ignored files
+        $changedFiles = git diff --name-only -r --diff-filter=d HEAD^1 HEAD | Where-Object { $ignoredFiles -notcontains $_ }
 
         $excluded_projects_file="./eng/excluded_projects_" + "${{ runner.os }}".ToLower() + ".txt"
         $excluded_projects=@()
