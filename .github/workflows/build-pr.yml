@@ -61,7 +61,7 @@ jobs:
             if ($file -like '*.csproj') {
               $projectToBuild = $file
             } else {
-              $currentFolder = (Get-Item -LiteralPath (Resolve-Path -Path "$file")).Directory
+              $currentFolder = (Get-Item -LiteralPath (Resolve-Path -Path "$file") -Force).Directory
 
               while ($currentFolder -ne $null -and '' -ne $currentFolder) {
                 $csprojFiles = Get-ChildItem -Path $currentFolder -Filter '*.csproj' -File
