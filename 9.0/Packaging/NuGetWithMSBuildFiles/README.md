@@ -5,7 +5,6 @@ page_type: sample
 languages:
 - csharp
 - xaml
-- msbuild
 - yaml
 products:
 - dotnet-maui
