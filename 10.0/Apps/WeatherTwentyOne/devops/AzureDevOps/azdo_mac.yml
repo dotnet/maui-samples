@@ -1,0 +1,133 @@
+trigger:
+- main
+
+variables:
+    BuildConfiguration: Release
+    DotNetVersion: 8.0.100
+
+stages:
+- stage: BuildMacCatalyst
+  jobs:
+  - job: BuildMAUIApps
+    displayName: Build Weather21 App
+    pool:
+      vmImage: 'macOS-12'
+      demands:
+      - MSBuild
+
+    steps:
+
+    - task: UseDotNet@2
+      displayName: .NET Version
+      inputs:
+        packageType: 'sdk'
+        version: '$(DotNetVersion)'
+
+    - task: Bash@3
+      displayName: Install MAUI
+      inputs:
+        targetType: 'inline'
+        script: |
+          dotnet nuget locals all --clear
+          dotnet workload install maui --source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet7/nuget/v3/index.json --source https://api.nuget.org/v3/index.json
+          dotnet workload install android ios maccatalyst tvos macos maui wasm-tools --source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet7/nuget/v3/index.json --source https://api.nuget.org/v3/index.json
+
+    - task: Bash@3
+      displayName: Restore nuget
+      inputs:
+        targetType: 'inline'
+        script: |
+          cd 6.0/Apps/WeatherTwentyOne/src/
+          dotnet restore WeatherTwentyOne.sln
+
+    # https://docs.microsoft.com/en-us/dotnet/maui/macos/deployment/overview
+    - task: Bash@3
+      displayName: Build MacCatalyst App
+      inputs:
+        targetType: 'inline'
+        script: |
+          cd 6.0/Apps/WeatherTwentyOne/src
+          dotnet build -f net7.0-maccatalyst -c Release -o ./artifacts
+          dotnet publish -f net7.0-maccatalyst -c Release -p:BuildIpa=True -o ./artifacts
+
+    - task: CopyFiles@2
+      inputs:
+        Contents: |
+          **/**/6.0/Apps/WeatherTwentyOne/src/artifacts/**/*.pkg
+          6.0/Apps/WeatherTwentyOne/src/artifacts/**/*.pkg
+        TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'drop_maccatalyst'
+        publishLocation: 'Container'
+
+- stage: BuildiOS
+  jobs:
+  - job: BuildMAUIApps
+    displayName: Build Weather21 App
+    pool:
+      vmImage: 'macOS-12'
+      demands:
+      - MSBuild
+
+    steps:
+
+    # https://docs.microsoft.com/en-us/azure/devops/pipelines/apps/mobile/app-signing?view=azure-devops&tabs=apple-install-during-build#sign-your-apple-ios-macos-tvos-or-watchos-app
+    # Setup Secret Pipeline Variable or Library Secrets Variable for iOS Certificate Password
+    - task: InstallAppleCertificate@2
+      inputs:
+        certSecureFile: '<IOS_DEVELOPMENT_CERT_P12>'
+        certPwd: '$(iOSCertPassword)'
+        keychain: 'temp'
+
+    - task: InstallAppleProvisioningProfile@1
+      inputs:
+        provisioningProfileLocation: 'secureFiles'
+        provProfileSecureFile: '<IOS_PROVISIONING_PROFILE>'
+
+    - task: UseDotNet@2
+      displayName: .NET Version
+      inputs:
+        packageType: 'sdk'
+        version: '$(DotNetVersion)'
+
+    - task: Bash@3
+      displayName: Install MAUI
+      inputs:
+        targetType: 'inline'
+        script: |
+          dotnet nuget locals all --clear
+          dotnet workload install maui --source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet7/nuget/v3/index.json --source https://api.nuget.org/v3/index.json
+          dotnet workload install android ios maccatalyst tvos macos maui wasm-tools --source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet7/nuget/v3/index.json --source https://api.nuget.org/v3/index.json
+
+    - task: Bash@3
+      displayName: Restore nuget
+      inputs:
+        targetType: 'inline'
+        script: |
+          cd 6.0/Apps/WeatherTwentyOne/src/
+          dotnet restore WeatherTwentyOne.sln
+
+  # https://docs.microsoft.com/en-us/dotnet/maui/ios/deployment/overview
+    - task: Bash@3
+      displayName: Build iOS App
+      inputs:
+        targetType: 'inline'
+        script: |
+          cd 6.0/Apps/WeatherTwentyOne/src
+          dotnet publish -f net7.0-ios -c Release
+
+    - task: CopyFiles@2
+      inputs:
+        Contents: |
+          **/*.app
+          **/*.ipa
+        TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'drop_ios'
+        publishLocation: 'Container'
