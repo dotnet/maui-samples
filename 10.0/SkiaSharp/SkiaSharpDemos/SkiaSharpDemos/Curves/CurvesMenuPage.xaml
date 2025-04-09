@@ -1,0 +1,349 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<local:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:local="clr-namespace:SkiaSharpDemos"
+                x:Class="SkiaSharpDemos.Curves.CurvesMenuPage"
+                Title="SkiaSharp Curves and Paths"
+                x:DataType="local:Curves.CurvesMenuPage">
+    <ScrollView>
+        <StackLayout Padding="10">
+
+            <!-- Three Ways to Draw an Arc Section -->
+            <Label Text="Three Ways to Draw an Arc"
+             FontAttributes="Bold"
+             FontSize="Medium"
+             Margin="0,0,0,10" />
+
+            <StackLayout Padding="0,5">
+                <Label Text="Angle Arc - Experiment with creating an angle arc" FontSize="Small" />
+                <Button Text="Angle Arc"
+                  Command="{Binding NavigateCommand}"
+                  CommandParameter="{x:Type local:Curves.AngleArcPage}"/>
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Exploded Pie Chart - Display a pie chart using the angle arc" FontSize="Small" />
+                <Button Text="Exploded Pie Chart"
+                  Command="{Binding NavigateCommand}"
+                  CommandParameter="{x:Type local:Curves.ExplodedPieChartPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Tangent Arc - Experiment with creating a tangent arc" FontSize="Small" />
+                <Button Text="Tangent Arc"
+                  Command="{Binding NavigateCommand}"
+                  CommandParameter="{x:Type local:Curves.TangentArcPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Rounded Heptagon - Draw a heptagon with rounded corners" FontSize="Small" />
+                <Button Text="Rounded Heptagon"
+                  Command="{Binding NavigateCommand}"
+                  CommandParameter="{x:Type local:Curves.RoundedHeptagonPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Elliptical Arc - Experiment with creating an elliptical arc" FontSize="Small" />
+                <Button Text="Elliptical Arc"
+                  Command="{Binding NavigateCommand}"
+                  CommandParameter="{x:Type local:Curves.EllipticalArcPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Arc Infinity - Draw an infinity sign with an elliptical arc" FontSize="Small" />
+                <Button Text="Arc Infinity"
+                  Command="{Binding NavigateCommand}"
+                  CommandParameter="{x:Type local:Curves.ArcInfinityPage}" />
+            </StackLayout>
+
+            <!-- Three Types of Bézier Curves Section -->
+            <Label Text="Three Types of Bézier Curves"
+             FontAttributes="Bold"
+             FontSize="Medium"
+             Margin="0,0,0,10" />
+
+            <StackLayout Padding="0,5">
+                <Label Text="Bézier Curve - Interactively draw a cubic Bézier curve" FontSize="Small" />
+                <Button Text="Bézier Curve"
+                  Command="{Binding NavigateCommand}"
+                  CommandParameter="{x:Type local:Curves.BezierCurvePage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Bézier Circular Arc - Draw a circular arc using a Bézier curve" FontSize="Small" />
+                <Button Text="Bézier Circular Arc"
+                  Command="{Binding NavigateCommand}"
+                  CommandParameter="{x:Type local:Curves.BezierCircularArcPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Squaring the Circle - Animate between a square and a circle" FontSize="Small" />
+                <Button Text="Squaring the Circle"
+                  Command="{Binding NavigateCommand}"
+                  CommandParameter="{x:Type local:Curves.SquaringTheCirclePage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Bézier Infinity - Draw an infinity sign using cubic Bézier curves" FontSize="Small" />
+                <Button Text="Bézier Infinity"
+                  Command="{Binding NavigateCommand}"
+                  CommandParameter="{x:Type local:Curves.BezierInfinityPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Quadratic Curve - Interactively draw a quadratic Bézier curve" FontSize="Small" />
+                <Button Text="Quadratic Curve"
+                  Command="{Binding NavigateCommand}"
+                  CommandParameter="{x:Type local:Curves.QuadraticCurvePage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Conic Curve - Interactively draw a conic curve" FontSize="Small" />
+                <Button Text="Conic Curve"
+                  Command="{Binding NavigateCommand}"
+                  CommandParameter="{x:Type local:Curves.ConicCurvePage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Conic Circular Arc - Draw a circular arc using a conic curve" FontSize="Small" />
+                <Button Text="Conic Circular Arc"
+                  Command="{Binding NavigateCommand}"
+                  CommandParameter="{x:Type local:Curves.ConicCircularArcPage}" />
+            </StackLayout>
+
+            <!-- SVG Path Data Section -->
+            <Label Text="SVG Path Data"
+             FontAttributes="Bold"
+             FontSize="Medium"
+             Margin="0,0,0,10" />
+
+            <StackLayout Padding="0,5">
+                <Label Text="Path Data Hello - Say “HELLO” using SVG path-drawing commands" FontSize="Small" />
+                <Button Text="Path Data Hello"
+                  Command="{Binding NavigateCommand}"
+                  CommandParameter="{x:Type local:Curves.PathDataHelloPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Path Data Cat - Draw a cat using SVG path-drawing commands" FontSize="Small" />
+                <Button Text="Path Data Cat"
+                  Command="{Binding NavigateCommand}"
+                  CommandParameter="{x:Type local:Curves.PathDataCatPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Pretty Analog Clock - Display an analog clock using Bézier curves" FontSize="Small" />
+                <Button Text="Pretty Analog Clock"
+                  Command="{Binding NavigateCommand}"
+                  CommandParameter="{x:Type local:Curves.PrettyAnalogClockPage}" />
+            </StackLayout>
+
+            <!-- Clipping with Paths and Regions Section -->
+            <Label Text="Clipping with Paths and Regions"
+             FontAttributes="Bold"
+             FontSize="Medium"
+             Margin="10,0,0,10" />
+
+            <StackLayout Padding="0,5">
+                <Label Text="Monkey through Keyhole - Clip a bitmap to a path" FontSize="Small" />
+                <Button Text="Monkey through Keyhole"
+                  Command="{Binding NavigateCommand}"
+                  CommandParameter="{x:Type local:Curves.MonkeyThroughKeyholePage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Four Circle Intersect Clip - Combine paths for a more complex clip" FontSize="Small" />
+                <Button Text="Four Circle Intersect Clip"
+                  Command="{Binding NavigateCommand}"
+                  CommandParameter="{x:Type local:Curves.FourCircleIntersectClipPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Clip Operations - Illustrate the two clip operations" FontSize="Small" />
+                <Button Text="Clip Operations"
+                  Command="{Binding NavigateCommand}"
+                  CommandParameter="{x:Type local:Curves.ClipOperationsPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Region Operations - Illustrate the six region operations" FontSize="Small" />
+                <Button Text="Region Operations"
+                  Command="{Binding NavigateCommand}"
+                  CommandParameter="{x:Type local:Curves.RegionOperationsPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Region Paint - Paint a region to see what happens" FontSize="Small" />
+                <Button Text="Region Paint"
+                  Command="{Binding NavigateCommand}"
+                  CommandParameter="{x:Type local:Curves.RegionPaintPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Four-Leaf Clover - Draw a four-leaf clover with overlapping circles" FontSize="Small" />
+                <Button Text="Four-Leaf Clover"
+                  Command="{Binding NavigateCommand}"
+                  CommandParameter="{x:Type local:Curves.FourLeafCloverPage}" />
+            </StackLayout>
+
+            <!-- Path Effects Section -->
+            <Label Text="Path Effects"
+             FontAttributes="Bold"
+             FontSize="Medium"
+             Margin="0,0,0,10" />
+
+            <StackLayout Padding="0,5">
+                <Label Text="Animated Dotted Text - Animate dots around outlined text" FontSize="Small" />
+                <Button Text="Animated Dotted Text"
+                  Command="{Binding NavigateCommand}"
+                  CommandParameter="{x:Type local:Curves.AnimatedDottedTextPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Dot / Dash Morph - Morph between dots and dashes" FontSize="Small" />
+                <Button Text="Dot / Dash Morph"
+                  Command="{Binding NavigateCommand}"
+                  CommandParameter="{x:Type local:Curves.DotDashMorphPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="1D Path Effect - Explore the one-dimensional path effect" FontSize="Small" />
+                <Button Text="1D Path Effect"
+                  Command="{Binding NavigateCommand}"
+                  CommandParameter="{x:Type local:Curves.OneDimensionalPathEffectPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Linked Chain - Use 1D path effect to create a chain" FontSize="Small" />
+                <Button Text="Linked Chain"
+                  Command="{Binding NavigateCommand}"
+                  CommandParameter="{x:Type local:Curves.LinkedChainPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Conveyor Belt - Rotate a path around another path" FontSize="Small" />
+                <Button Text="Conveyor Belt"
+                  Command="{Binding NavigateCommand}"
+                  CommandParameter="{x:Type local:Curves.ConveyorBeltPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Hatch Fill - Use 2D line effect to fill an area" FontSize="Small" />
+                <Button Text="Hatch Fill"
+                  Command="{Binding NavigateCommand}"
+                  CommandParameter="{x:Type local:Curves.HatchFillPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Path Tile Fill - Use 2D path effect to fill an area" FontSize="Small" />
+                <Button Text="Path Tile Fill"
+                  Command="{Binding NavigateCommand}"
+                  CommandParameter="{x:Type local:Curves.PathTileFillPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Another Rounded Heptagon - Round corners using a path effect" FontSize="Small" />
+                <Button Text="Another Rounded Heptagon"
+                  Command="{Binding NavigateCommand}"
+                  CommandParameter="{x:Type local:Curves.AnotherRoundedHeptagonPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Jitter Experiment - Experiment with the discrete path effect" FontSize="Small" />
+                <Button Text="Jitter Experiment"
+                  Command="{Binding NavigateCommand}"
+                  CommandParameter="{x:Type local:Curves.JitterExperimentPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Jitter Text - Display text with the discrete path effect" FontSize="Small" />
+                <Button Text="Jitter Text"
+                  Command="{Binding NavigateCommand}"
+                  CommandParameter="{x:Type local:Curves.JitterTextPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Tap to Outline the Path - Demonstrate GetFillPath" FontSize="Small" />
+                <Button Text="Tap to Outline the Path"
+                  Command="{Binding NavigateCommand}"
+                  CommandParameter="{x:Type local:Curves.TapToOutlineThePathPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Cats in Frame - Sum two path effects" FontSize="Small" />
+                <Button Text="Cats in Frame"
+                  Command="{Binding NavigateCommand}"
+                  CommandParameter="{x:Type local:Curves.CatsInFramePage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Dashed Hatch Lines - Compose two path effects" FontSize="Small" />
+                <Button Text="Dashed Hatch Lines"
+                  Command="{Binding NavigateCommand}"
+                  CommandParameter="{x:Type local:Curves.DashedHatchLinesPage}" />
+            </StackLayout>
+
+            <!-- Paths and Text Section -->
+            <Label Text="Paths and Text"
+             FontAttributes="Bold"
+             FontSize="Medium"
+             Margin="10,0,0,10" />
+
+            <StackLayout Padding="0,5">
+                <Label Text="Clipping Text - Use text to clip a bitmap" FontSize="Small" />
+                <Button Text="Clipping Text"
+                  Command="{Binding NavigateCommand}"
+                  CommandParameter="{x:Type local:Curves.ClippingTextPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Text Path Effect - Use text path for a 1D path effect" FontSize="Small" />
+                <Button Text="Text Path Effect"
+                  Command="{Binding NavigateCommand}"
+                  CommandParameter="{x:Type local:Curves.TextPathEffectPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Character Outline Outlines - Show the outline of a character outline" FontSize="Small" />
+                <Button Text="Character Outline Outlines"
+                  Command="{Binding NavigateCommand}"
+                  CommandParameter="{x:Type local:Curves.CharacterOutlineOutlinesPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Circular Text - Draw text along a circular path" FontSize="Small" />
+                <Button Text="Circular Text"
+                  Command="{Binding NavigateCommand}"
+                  CommandParameter="{x:Type local:Curves.CircularTextPage}" />
+            </StackLayout>
+
+            <!-- Information & Enumeration Section -->
+            <Label Text="Information &amp; Enumeration"
+             FontAttributes="Bold"
+             FontSize="Medium"
+             Margin="10,0,0,10" />
+
+            <StackLayout Padding="0,5">
+                <Label Text="Path Length - Compute the length of a path" FontSize="Small" />
+                <Button Text="Path Length"
+                  Command="{Binding NavigateCommand}"
+                  CommandParameter="{x:Type local:Curves.PathLengthPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Unicycle Half-Pipe - Animate an object along a path" FontSize="Small" />
+                <Button Text="Unicycle Half-Pipe"
+                  Command="{Binding NavigateCommand}"
+                  CommandParameter="{x:Type local:Curves.UnicycleHalfPipePage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Globular Text - Transform text in 3D space" FontSize="Small" />
+                <Button Text="Globular Text"
+                  Command="{Binding NavigateCommand}"
+                  CommandParameter="{x:Type local:Curves.GlobularTextPage}" />
+            </StackLayout>
+            
+        </StackLayout>
+    </ScrollView>
+</local:BasePage>
