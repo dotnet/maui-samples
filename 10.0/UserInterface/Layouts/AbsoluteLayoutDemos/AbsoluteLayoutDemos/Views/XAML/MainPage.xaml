@@ -1,0 +1,79 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:AbsoluteLayoutDemos"
+             xmlns:views="clr-namespace:AbsoluteLayoutDemos.Views.XAML"
+             xmlns:codeViews="clr-namespace:AbsoluteLayoutDemos.Views.Code"
+             x:Class="AbsoluteLayoutDemos.MainPage"
+             Title="AbsoluteLayout demos"
+             x:DataType="local:MainPage">
+    <ScrollView>
+        <StackLayout Padding="10" Spacing="15">
+            <!-- XAML Section -->
+            <Label Text="XAML" FontSize="Medium" FontAttributes="Bold" />
+         
+            <Label Text="Absolute positioning and sizing" FontSize="Small" />  
+            <Button Text="Stylish header demo"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:StylishHeaderDemoPage}" />
+
+            <Label Text="Position proportional, sizing absolute" FontSize="Small" />
+            <Button Text="Proportional demo"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:ProportionalDemoPage}" />
+
+            <Label Text="Fully proportional" FontSize="Small" />
+            <Button Text="Chessboard demo"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:ChessboardDemoPage}" />
+
+            <Label Text="Fractional to proportional coordinate conversion" FontSize="Small" />
+            <Button Text="Proportional coordinate calculations demo"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:ProportionalCoordinateCalcDemoPage}" />
+
+            <Label Text="Overlap child views" FontSize="Small" />
+            <Button Text="Simple overlay demo"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:SimpleOverlayDemoPage}" />
+
+            <Label Text="Animate child views" FontSize="Small" />
+            <Button Text="Bouncing text demo"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:BouncingTextDemoPage}" />
+          
+            <!-- C# Section -->
+            <Label Text="C#" FontSize="Medium" FontAttributes="Bold" Margin="20,0,0,0" />
+            
+            <Label Text="Absolute positioning and sizing" FontSize="Small" />
+            <Button Text="Stylish header demo"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type codeViews:StylishHeaderDemoPage}" />
+  
+            <Label Text="Position proportional, sizing absolute" FontSize="Small" />
+            <Button Text="Proportional demo"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type codeViews:ProportionalDemoPage}" />
+
+            <Label Text="Fully proportional" FontSize="Small" />
+            <Button Text="Chessboard demo"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type codeViews:ChessboardDemoPage}" />
+
+            <Label Text="Fractional to proportional coordinate conversion" FontSize="Small" />
+            <Button Text="Proportional coordinate calculations demo"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type codeViews:ProportionalCoordinateCalcDemoPage}" />
+
+            <Label Text="Overlap child views" FontSize="Small" />
+            <Button Text="Simple overlay demo"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type codeViews:SimpleOverlayDemoPage}" />
+
+            <Label Text="Animate child views" FontSize="Small" />
+            <Button Text="Bouncing text demo"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type codeViews:BouncingTextDemoPage}" />
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>

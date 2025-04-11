@@ -1,0 +1,47 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:FlexLayoutDemos"
+             xmlns:views="clr-namespace:FlexLayoutDemos.Views"
+             x:Class="FlexLayoutDemos.MainPage"
+             Title="FlexLayout demos"
+             x:DataType="local:MainPage">
+    <ScrollView>
+        <StackLayout Padding="10" Spacing="15">
+            <Label Text="XAML" FontSize="Medium" FontAttributes="Bold" />
+
+            <Button Text="Simple stack"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:SimpleStackPage}" />
+
+            <Button Text="Photo wrapping"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:PhotoWrappingPage}" />
+
+            <Button Text="Holy grail layout"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:HolyGrailLayoutPage}" />
+
+            <Button Text="Catalog items"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:CatalogItemsPage}" />
+
+            <Button Text="Experiment"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:ExperimentPage}" />
+
+            <Button Text="Basis experiment"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:BasisExperimentPage}" />
+
+            <Button Text="Grow experiment"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:GrowExperimentPage}" />
+
+            <Button Text="Shrink experiment"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:ShrinkExperimentPage}" />
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>
+
