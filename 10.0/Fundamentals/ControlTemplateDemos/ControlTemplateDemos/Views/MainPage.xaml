@@ -1,0 +1,77 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ControlTemplateDemos"
+             x:Class="ControlTemplateDemos.MainPage"
+             Padding="10"
+             Title="ControlTemplate demos"
+             x:DataType="local:MainPage">
+    <StackLayout Padding="10">
+        <Label Text="ControlTemplate Demos" 
+               FontAttributes="Bold" 
+               FontSize="Medium" 
+               Margin="0,0,0,10" />
+        <StackLayout Orientation="Vertical" Padding="0,5">
+            <Label Text="Using TemplateBinding" 
+                   FontSize="Small" 
+                   TextColor="Gray" 
+                   Margin="10,0,0,0" />
+            <Button Text="Templated CardView - Using TemplateBinding"
+                    Command="{Binding NavigateCommand}" 
+                    CommandParameter="{x:Type local:TemplateBindingCardViewPage}" />
+        </StackLayout>
+        <StackLayout Orientation="Vertical" Padding="0,5">
+            <Label Text="Using RelativeSource binding" 
+                   FontSize="Small" 
+                   TextColor="Gray" 
+                   Margin="10,0,0,0" />
+            <Button Text="Templated CardView - Using RelativeSource Binding"
+                    Command="{Binding NavigateCommand}" 
+                    CommandParameter="{x:Type local:RelativeSourceBindingCardViewPage}" />
+        </StackLayout>
+        <StackLayout Orientation="Vertical" Padding="0,5">
+            <Label Text="ControlTemplate as a style" 
+                  FontSize="Small" 
+                  TextColor="Gray" 
+                  Margin="10,0,0,0" />
+            <Button Text="Templated CardView - ControlTemplate as a style"
+                    Command="{Binding NavigateCommand}" 
+                    CommandParameter="{x:Type local:ControlTemplateStylePage}" />
+        </StackLayout>
+        <StackLayout Orientation="Vertical" Padding="0,5">
+            <Label Text="Redefine a control's UI" 
+                   FontSize="Small" 
+                   TextColor="Gray" 
+                   Margin="10,0,0,0" />
+            <Button Text="Templated CardView - Redefine a control's UI"
+                    Command="{Binding NavigateCommand}" 
+                    CommandParameter="{x:Type local:ReplaceTemplateCardViewPage}" />
+        </StackLayout>
+        <StackLayout Orientation="Vertical" Padding="0,5">
+            <Label Text="Using RelativeSource TemplatedParent" 
+                   FontSize="Small" 
+                   TextColor="Gray" 
+                   Margin="10,0,0,0" />
+            <Button Text="Bind a ControlTemplate to a ViewModel"
+                    Command="{Binding NavigateCommand}" 
+                    CommandParameter="{x:Type local:BindToViewModelPage}" />
+        </StackLayout>
+        <StackLayout Orientation="Vertical" Padding="0,5">
+            <Label Text="Add content to the ControlTemplate" 
+               FontSize="Small" 
+               TextColor="Gray" 
+               Margin="10,0,0,0" />
+            <Button Text="ContentPresenter Demo"
+                Command="{Binding NavigateCommand}" 
+                CommandParameter="{x:Type local:ContentPresenterPage}" />
+        </StackLayout>
+        <StackLayout Orientation="Vertical" Padding="0,5">
+            <Label Text="Get a named element from the ControlTemplate" 
+                   FontSize="Small" 
+                   TextColor="Gray" 
+                   Margin="10,0,0,0" />
+            <Button Text="Change ControlTemplate at Runtime"
+                    Command="{Binding NavigateCommand}" 
+                    CommandParameter="{x:Type local:AccessTemplateElementPage}" />
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

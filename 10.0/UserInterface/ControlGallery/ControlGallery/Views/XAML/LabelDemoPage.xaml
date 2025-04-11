@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ControlGallery.Views.XAML.LabelDemoPage"
+             Title="Label Demo"
+             Padding="10, 0">
+    <StackLayout>
+        <Label Text="Label"
+               FontSize="50"
+               FontAttributes="Bold"
+               HorizontalOptions="Center" />
+
+        <Label Text=
+".NET Multi-platform App UI (.NET MAUI) is a cross-platform natively
+backed UI toolkit abstraction that allows
+developers to easily create user interfaces
+that can be shared across Android, iOS, macOS,and
+Windows."
+               FontSize="20"
+               VerticalOptions="CenterAndExpand"
+               Margin="10, 0" />
+    </StackLayout>
+</ContentPage>

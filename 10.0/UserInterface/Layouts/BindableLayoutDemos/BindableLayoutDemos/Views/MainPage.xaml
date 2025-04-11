@@ -1,0 +1,47 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:BindableLayoutDemos"
+             xmlns:views="clr-namespace:BindableLayoutDemos.Views"
+             x:Class="BindableLayoutDemos.MainPage"
+             Title="BindableLayout demos"
+             x:DataType="local:MainPage">
+    <ScrollView>
+        <StackLayout Padding="10" Spacing="15">
+            <Label Text="User profile page" FontSize="Small" />
+            <Button Text="Bindable layout demo"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:UserProfilePage}" />
+
+            <Label Text="String displayed in a Label" FontSize="Small" />
+            <Button Text="EmptyView string demo"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:UserProfileEmptyViewNullPage}" />
+
+            <Label Text="Set ItemsSource after 2 seconds" FontSize="Small" />
+            <Button Text="EmptyView load simulation demo"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:UserProfileEmptyViewLoadSimulationPage}" />
+
+            <Label Text="Views displayed in a layout" FontSize="Small" />
+            <Button Text="EmptyView multiple views demo"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:UserProfileEmptyViewWithMultipleViewsPage}" />
+
+            <Label Text="DataTemplate" FontSize="Small" />
+            <Button Text="EmptyViewTemplate demo"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:UserProfileEmptyViewTemplatePage}" />
+
+            <Label Text="Data template selector" FontSize="Small" />
+            <Button Text="EmptyViewTemplate demo"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:UserProfileEmptyViewTemplateSelectorPage}" />
+
+            <Label Text="Swap ContentView at runtime" FontSize="Small" />
+            <Button Text="EmptyView swap demo"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:UserProfileEmptyViewSwapPage}" />
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

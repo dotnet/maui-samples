@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:CustomizeHandlersDemo.Views"
+             x:Class="CustomizeHandlersDemo.Views.MainPage"
+             x:DataType="views:MainPage">
+    <ScrollView>
+        <StackLayout Padding="10" Spacing="20">
+            <Label Text="Customize handlers" FontAttributes="Bold" FontSize="18" />
+            
+            <Label Text="Select text on focus" FontSize="Small" />
+            <Button Text="Customize an Entry"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:CustomizeEntryPage}" />
+
+            <Label Text="Select text on focus for MyEntry objects" FontSize="Small" />
+            <Button Text="Customize a specific Entry"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:CustomizeSpecificEntryPage}" />
+
+            <Label Text="Use handler lifecycle methods" FontSize="Small" />
+            <Button Text="Customize an Entry (Handler Lifecycle)"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:CustomizeEntryHandlerLifecyclePage}" />
+
+            <Label Text="Use handler lifecycle partial methods" FontSize="Small" />
+            <Button Text="Customize an Entry (Partial Methods)"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:CustomizeEntryPartialMethodsPage}" />
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>

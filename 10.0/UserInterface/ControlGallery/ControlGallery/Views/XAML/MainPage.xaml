@@ -1,0 +1,442 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ControlGallery"
+             xmlns:views="clr-namespace:ControlGallery.Views.XAML"
+             x:Class="ControlGallery.MainPage"
+             Title="Controls Gallery"
+             x:DataType="local:MainPage">
+    <ScrollView>
+        <StackLayout Padding="10">
+
+            <!-- XAML Section -->
+            <Label Text="XAML"
+               FontAttributes="Bold"
+               FontSize="Medium"
+               Margin="0,0,0,10" />
+
+            <!-- AbsoluteLayout -->
+            <StackLayout Padding="0,5">
+                <Label Text="AbsoluteLayout - Arrange children by coordinate positions" FontSize="Small" />
+                <Button Text="AbsoluteLayout"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:AbsoluteLayoutDemoPage}" />
+            </StackLayout>
+
+            <!-- ActivityIndicator -->
+            <StackLayout Padding="0,5">
+                <Label Text="ActivityIndicator - Show that the app is busy" FontSize="Small" />
+                <Button Text="ActivityIndicator"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:ActivityIndicatorDemoPage}" />
+            </StackLayout>
+
+            <!-- BlazorWebView -->
+            <StackLayout Padding="0,5">
+                <Label Text="BlazorWebView - Host a Blazor web app in your app" FontSize="Small" />
+                <Button Text="BlazorWebView"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:BlazorWebViewDemoPage}" />
+            </StackLayout>
+
+            <!-- Border -->
+            <StackLayout Padding="0,5">
+                <Label Text="Border - Draw a border or background around a control" FontSize="Small" />
+                <Button Text="Border"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:BorderDemoPage}" />
+            </StackLayout>
+
+            <!-- BoxView -->
+            <StackLayout Padding="0,5">
+                <Label Text="BoxView - Display a colored rectangle" FontSize="Small" />
+                <Button Text="BoxView"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:BoxViewDemoPage}" />
+            </StackLayout>
+
+            <!-- Button -->
+            <StackLayout Padding="0,5">
+                <Label Text="Button - Initiate a command" FontSize="Small" />
+                <Button Text="Button"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:ButtonDemoPage}" />
+            </StackLayout>
+
+            <!-- CarouselView -->
+            <StackLayout Padding="0,5">
+                <Label Text="CarouselView - Present data in a carousel layout" FontSize="Medium" />
+                <Button Text="CarouselView"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:CarouselViewDemoPage}" />
+            </StackLayout>
+
+            <!-- CheckBox -->
+            <StackLayout Padding="0,5">
+                <Label Text="CheckBox (bool) - Select a Boolean value" FontSize="Medium" />
+                <Button Text="CheckBox (bool)"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:CheckBoxPage}" />
+            </StackLayout>
+
+            <!-- CollectionView -->
+            <StackLayout Padding="0,5">
+                <Label Text="CollectionView - Select from a list of data items" FontSize="Medium" />
+                <Button Text="CollectionView"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:CollectionViewDemoPage}" />
+            </StackLayout>
+
+            <!-- ContentPage -->
+            <StackLayout Padding="0,5">
+                <Label Text="ContentPage - Present a normal page" FontSize="Medium" />
+                <Button Text="ContentPage"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:ContentPageDemoPage}" />
+            </StackLayout>
+
+            <!-- ContentView -->
+            <StackLayout Padding="0,5">
+                <Label Text="ContentView - Host a single child" FontSize="Medium" />
+                <Button Text="ContentView"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:ContentViewDemoPage}" />
+            </StackLayout>
+
+            <!-- DatePicker -->
+            <StackLayout Padding="0,5">
+                <Label Text="DatePicker - Select a date" FontSize="Medium" />
+                <Button Text="DatePicker"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:DatePickerDemoPage}" />
+            </StackLayout>
+
+            <!-- Editor -->
+            <StackLayout Padding="0,5">
+                <Label Text="Editor (multiple lines) - Edit a body of text" FontSize="Medium" />
+                <Button Text="Editor (multiple lines)"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:EditorDemoPage}" />
+            </StackLayout>
+
+            <!-- Ellipse -->
+            <StackLayout Padding="0,5">
+                <Label Text="Ellipse - Display an ellipse or circle" FontSize="Medium" />
+                <Button Text="Ellipse"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:EllipseDemoPage}" />
+            </StackLayout>
+
+            <!-- Entry -->
+            <StackLayout Padding="0,5">
+                <Label Text="Entry (single line) - Edit a single line of text" FontSize="Medium" />
+                <Button Text="Entry (single line)"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:EntryDemoPage}" />
+            </StackLayout>
+
+            <!-- EntryCell -->
+            <StackLayout Padding="0,5">
+                <Label Text="EntryCell - Display an Entry in a ListView or TableView" FontSize="Medium" />
+                <Button Text="EntryCell"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:EntryCellDemoPage}" />
+            </StackLayout>
+
+            <!-- FlexLayout -->
+            <StackLayout Padding="0,5">
+                <Label Text="FlexLayout - Arrange children in a stack or a wrapped stack" FontSize="Medium" />
+                <Button Text="FlexLayout"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:FlexLayoutDemoPage}" />
+            </StackLayout>
+
+            <!-- FlyoutPage -->
+            <StackLayout Padding="0,5">
+                <Label Text="FlyoutPage - Present two pages with a list and an item" FontSize="Small" />
+                <Button Text="FlyoutPage"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:FlyoutPageDemoPage}" />
+            </StackLayout>
+
+            <!-- GraphicsView -->
+            <StackLayout Padding="0,5">
+                <Label Text="GraphicsView - Draw 2D graphics on a canvas" FontSize="Small" />
+                <Button Text="GraphicsView"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:GraphicsViewDemoPage}" />
+            </StackLayout>
+
+            <!-- Grid -->
+            <StackLayout Padding="0,5">
+                <Label Text="Grid - Arrange children in a grid" FontSize="Small" />
+                <Button Text="Grid"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:GridDemoPage}" />
+            </StackLayout>
+
+            <!-- HorizontalStackLayout -->
+            <StackLayout Padding="0,5">
+                <Label Text="HorizontalStackLayout - Arrange children in a horizontal stack" FontSize="Small" />
+                <Button Text="HorizontalStackLayout"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:HorizontalStackLayoutDemoPage}" />
+            </StackLayout>
+
+            <!-- ImageButton -->
+            <StackLayout Padding="0,5">
+                <Label Text="ImageButton - Initiate a command" FontSize="Small" />
+                <Button Text="ImageButton"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:ImageButtonDemoPage}" />
+            </StackLayout>
+
+            <!-- ImageCell -->
+            <StackLayout Padding="0,5">
+                <Label Text="ImageCell - Display a bitmap in a ListView or TableView" FontSize="Small" />
+                <Button Text="ImageCell"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:ImageCellDemoPage}" />
+            </StackLayout>
+
+            <!-- Image -->
+            <StackLayout Padding="0,5">
+                <Label Text="Image - Display a bitmap" FontSize="Small" />
+                <Button Text="Image"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:ImageDemoPage}" />
+            </StackLayout>
+
+            <!-- IndicatorView -->
+            <StackLayout Padding="0,5">
+                <Label Text="IndicatorView - Display indicators for each item in a CarouselView" FontSize="Small" />
+                <Button Text="IndicatorView"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:IndicatorViewDemoPage}" />
+            </StackLayout>
+
+            <!-- Label -->
+            <StackLayout Padding="0,5">
+                <Label Text="Label - Display a text string" FontSize="Small" />
+                <Button Text="Label"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:LabelDemoPage}" />
+            </StackLayout>
+
+            <!-- Line -->
+            <StackLayout Padding="0,5">
+                <Label Text="Line - Display a line" FontSize="Small" />
+                <Button Text="Line"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:LineDemoPage}" />
+            </StackLayout>
+
+            <!-- ListView -->
+            <StackLayout Padding="0,5">
+                <Label Text="ListView - Select from a list of data items" FontSize="Small" />
+                <Button Text="ListView"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:ListViewDemoPage}" />
+            </StackLayout>
+
+            <!-- NavigationPage -->
+            <StackLayout Padding="0,5">
+                <Label Text="NavigationPage - Present a navigatable page" FontSize="Small" />
+                <Button Text="NavigationPage"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:NavigationPageDemoPage}" />
+            </StackLayout>
+
+            <!-- Path -->
+            <StackLayout Padding="0,5">
+                <Label Text="Path - Display curves and complex shapes" FontSize="Small" />
+                <Button Text="Path"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:PathDemoPage}" />
+            </StackLayout>
+
+            <!-- Picker -->
+            <StackLayout Padding="0,5">
+                <Label Text="Picker - Select from a list of text items" FontSize="Small" />
+                <Button Text="Picker"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:PickerDemoPage}" />
+            </StackLayout>
+
+            <!-- Polygon -->
+            <StackLayout Padding="0,5">
+                <Label Text="Polygon - Display a polygon" FontSize="Medium" />
+                <Button Text="Polygon"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:PolygonDemoPage}" />
+            </StackLayout>
+
+            <!-- Polyline -->
+            <StackLayout Padding="0,5">
+                <Label Text="Polyline - Display a series of connected straight lines" FontSize="Small" />
+                <Button Text="Polyline"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:PolylineDemoPage}" />
+            </StackLayout>
+
+            <!-- ProgressBar -->
+            <StackLayout Padding="0,5">
+                <Label Text="ProgressBar - Show the progress of a program task" FontSize="Small" />
+                <Button Text="ProgressBar"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:ProgressBarDemoPage}" />
+            </StackLayout>
+
+            <!-- RadioButton -->
+            <StackLayout Padding="0,5">
+                <Label Text="RadioButton - Initiate a command" FontSize="Small" />
+                <Button Text="RadioButton"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:RadioButtonDemoPage}" />
+            </StackLayout>
+
+            <!-- Rectangle -->
+            <StackLayout Padding="0,5">
+                <Label Text="Rectangle - Display a rectangle or square" FontSize="Small" />
+                <Button Text="Rectangle"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:RectangleDemoPage}" />
+            </StackLayout>
+
+            <!-- RefreshView -->
+            <StackLayout Padding="0,5">
+                <Label Text="RefreshView - Initiate a command" FontSize="Small" />
+                <Button Text="RefreshView"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:RefreshViewDemoPage}" />
+            </StackLayout>
+
+            <!-- RelativeLayout -->
+            <StackLayout Padding="0,5">
+                <Label Text="RelativeLayout - Arrange children relative to each other" FontSize="Small" />
+                <Button Text="RelativeLayout"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:RelativeLayoutDemoPage}" />
+            </StackLayout>
+
+            <!-- ScrollView -->
+            <StackLayout Padding="0,5">
+                <Label Text="ScrollView - Scroll an item too large for the page" FontSize="Small" />
+                <Button Text="ScrollView"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:ScrollViewDemoPage}" />
+            </StackLayout>
+
+            <!-- SearchBar -->
+            <StackLayout Padding="0,5">
+                <Label Text="SearchBar - Initiate a search" FontSize="Small" />
+                <Button Text="SearchBar"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:SearchBarDemoPage}" />
+            </StackLayout>
+
+            <!-- Slider -->
+            <StackLayout Padding="0,5">
+                <Label Text="Slider (double) - Select a number from a continuous range" FontSize="Small" />
+                <Button Text="Slider (double)"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:SliderDemoPage}" />
+            </StackLayout>
+
+            <!-- StackLayout -->
+            <StackLayout Padding="0,5">
+                <Label Text="StackLayout - Arrange children in a stack" FontSize="Small" />
+                <Button Text="StackLayout"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:StackLayoutDemoPage}" />
+            </StackLayout>
+
+            <!-- Stepper -->
+            <StackLayout Padding="0,5">
+                <Label Text="Stepper (double) - Select a number from discrete increments" FontSize="Small" />
+                <Button Text="Stepper (double)"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:StepperDemoPage}" />
+            </StackLayout>
+
+            <!-- SwipeView -->
+            <StackLayout Padding="0,5">
+                <Label Text="SwipeView - Initiate a command" FontSize="Small" />
+                <Button Text="SwipeView"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:SwipeViewDemoPage}" />
+            </StackLayout>
+
+            <!-- SwitchCell -->
+            <StackLayout Padding="0,5">
+                <Label Text="SwitchCell - Display a Switch in a ListView or TableView" FontSize="Small" />
+                <Button Text="SwitchCell"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:SwitchCellDemoPage}" />
+            </StackLayout>
+
+            <!-- Switch -->
+            <StackLayout Padding="0,5">
+                <Label Text="Switch (bool) - Select a Boolean value" FontSize="Small" />
+                <Button Text="Switch (bool)"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:SwitchDemoPage}" />
+            </StackLayout>
+
+            <!-- TabbedPage -->
+            <StackLayout Padding="0,5">
+                <Label Text="TabbedPage - Present a page with tabs" FontSize="Small" />
+                <Button Text="TabbedPage"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:TabbedPageDemoPage}" />
+            </StackLayout>
+
+            <!-- TableView for a form -->
+            <StackLayout Padding="0,5">
+                <Label Text="TableView for a form - Show a table suitable for a form" FontSize="Small" />
+                <Button Text="TableView for a form"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:TableViewFormDemoPage}" />
+            </StackLayout>
+
+            <!-- TableView for a menu -->
+            <StackLayout Padding="0,5">
+                <Label Text="TableView for a menu - Show a table suitable for a menu" FontSize="Small" />
+                <Button Text="TableView for a menu"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:TableViewMenuDemoPage}" />
+            </StackLayout>
+
+            <!-- TextCell -->
+            <StackLayout Padding="0,5">
+                <Label Text="TextCell - Display text in a ListView or TableView" FontSize="Small" />
+                <Button Text="TextCell"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:TextCellDemoPage}" />
+            </StackLayout>
+
+            <!-- TimePicker -->
+            <StackLayout Padding="0,5">
+                <Label Text="TimePicker - Select a time" FontSize="Small" />
+                <Button Text="TimePicker"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:TimePickerDemoPage}" />
+            </StackLayout>
+
+            <!-- VerticalStackLayout -->
+            <StackLayout Padding="0,5">
+                <Label Text="VerticalStackLayout - Arrange children in a vertical stack" FontSize="Small" />
+                <Button Text="VerticalStackLayout"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:VerticalStackLayoutDemoPage}" />
+            </StackLayout>
+
+            <!-- WebView -->
+            <StackLayout Padding="0,5">
+                <Label Text="WebView - Display a Web page" FontSize="Small" />
+                <Button Text="WebView"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:WebViewDemoPage}" />
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

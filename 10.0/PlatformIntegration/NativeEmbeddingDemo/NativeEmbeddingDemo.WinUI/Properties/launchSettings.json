@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "NativeEmbeddingDemo.WinUI (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "NativeEmbeddingDemo.WinUI (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

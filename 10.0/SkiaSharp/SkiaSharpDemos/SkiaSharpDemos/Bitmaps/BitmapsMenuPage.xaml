@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<local:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:local="clr-namespace:SkiaSharpDemos"
+                x:Class="SkiaSharpDemos.Bitmaps.BitmapsMenuPage"
+                Title="SkiaSharp Bitmaps"
+                x:DataType="local:Bitmaps.BitmapsMenuPage">
+    <ScrollView>
+        <StackLayout Padding="10">
+
+            <Label Text="Displaying Bitmaps"
+               FontAttributes="Bold"
+               FontSize="Medium"
+               Margin="0,0,0,10" />
+            <StackLayout Orientation="Vertical" Padding="0,5">
+                <Label Text="Pixel Dimensions - Display a bitmap in its pixel dimensions"
+                   FontSize="Small" />
+                <Button Text="Pixel Dimensions"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Bitmaps.PixelDimensionsPage}" />
+            </StackLayout>
+            <StackLayout Orientation="Vertical" Padding="0,5">
+                <Label Text="Fill Rectangle - Display a bitmap stretched to a rectangle"
+                   FontSize="Small" />
+                <Button Text="Fill Rectangle"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Bitmaps.FillRectanglePage}" />
+            </StackLayout>
+            <StackLayout Orientation="Vertical" Padding="0,5">
+                <Label Text="Uniform Scaling - Stretch a bitmap without losing the aspect ratio"
+                   FontSize="Small" />
+                <Button Text="Uniform Scaling"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Bitmaps.UniformScalingPage}" />
+            </StackLayout>
+            <StackLayout Orientation="Vertical" Padding="0,5">
+                <Label Text="Scaling Modes - Select how a bitmap is scaled and aligned"
+                   FontSize="Small" />
+                <Button Text="Scaling Modes"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Bitmaps.ScalingModesPage}" />
+            </StackLayout>
+            <StackLayout Orientation="Vertical" Padding="0,5">
+                <Label Text="Rectangle Subset - Display a rectangular subset of a bitmap"
+                   FontSize="Small" />
+                <Button Text="Rectangle Subset"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Bitmaps.RectangleSubsetPage}" />
+            </StackLayout>
+
+            <Label Text="Bitmap Creation and Drawing"
+               FontAttributes="Bold"
+               FontSize="Medium"
+               Margin="10,0,0,10" />
+            <StackLayout Orientation="Vertical" Padding="0,5">
+                <Label Text="Hello, Bitmap! - Create a bitmap, draw on it, and render it"
+                   FontSize="Small" />
+                <Button Text="Hello, Bitmap!"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Bitmaps.HelloBitmapPage}" />
+            </StackLayout>
+            <StackLayout Orientation="Vertical" Padding="0,5">
+                <Label Text="Monkey Moustache - Draw a moustache on a monkey"
+                   FontSize="Small" />
+                <Button Text="Monkey Moustache"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Bitmaps.MonkeyMoustachePage}" />
+            </StackLayout>
+            <StackLayout Orientation="Vertical" Padding="0,5">
+                <Label Text="Pixelized Image - Pixelize part of a bitmap"
+                   FontSize="Small" />
+                <Button Text="Pixelized Image"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Bitmaps.PixelizedImagePage}" />
+            </StackLayout>
+            <StackLayout Orientation="Vertical" Padding="0,5">
+                <Label Text="Bitmap Rotator - Rotate a bitmap by any angle"
+                   FontSize="Small" />
+                <Button Text="Bitmap Rotator"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Bitmaps.BitmapRotatorPage}" />
+            </StackLayout>
+            <StackLayout Orientation="Vertical" Padding="0,5">
+                <Label Text="Bitmap Flipper - Flip a bitmap horizontally or vertically"
+                   FontSize="Small" />
+                <Button Text="Bitmap Flipper"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Bitmaps.BitmapFlipperPage}" />
+            </StackLayout>
+
+            <Label Text="Bitmap Cropping"
+               FontAttributes="Bold"
+               FontSize="Medium"
+               Margin="10,0,0,10" />
+            <StackLayout Orientation="Vertical" Padding="0,5">
+                <Label Text="Photo Cropping - Interactively define a bitmap cropping rectangle"
+                   FontSize="Small" />
+                <Button Text="Photo Cropping"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Bitmaps.PhotoCroppingPage}" />
+            </StackLayout>
+
+            <Label Text="Segmented Bitmap Rendering"
+               FontAttributes="Bold"
+               FontSize="Medium"
+               Margin="10,0,0,10" />
+            <StackLayout Orientation="Vertical" Padding="0,5">
+                <Label Text="Nine Patch Display - Scale a bitmap interior without scaling the edges"
+                   FontSize="Small" />
+                <Button Text="Nine Patch Display"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Bitmaps.NinePatchDisplayPage}" />
+            </StackLayout>
+            <StackLayout Orientation="Vertical" Padding="0,5">
+                <Label Text="Lattice Nine-Patch - Use the bitmap lattice feature to emulate nine-patch"
+                   FontSize="Small" />
+                <Button Text="Lattice Nine-Patch"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Bitmaps.LatticeNinePatchPage}" />
+            </StackLayout>
+            <StackLayout Orientation="Vertical" Padding="0,5">
+                <Label Text="Lattice Display - Experiment with the bitmap lattice display"
+                   FontSize="Small" />
+                <Button Text="Lattice Display"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Bitmaps.LatticeDisplayPage}" />
+            </StackLayout>
+
+            <Label Text="Saving Bitmap Files"
+               FontAttributes="Bold"
+               FontSize="Medium"
+               Margin="10,0,0,10" />
+            <StackLayout Orientation="Vertical" Padding="0,5">
+                <Label Text="Save File Formats - Save a bitmap in various file formats"
+                   FontSize="Small" />
+                <Button Text="Save File Formats"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Bitmaps.SaveFileFormatsPage}" />
+            </StackLayout>
+
+            <Label Text="Accessing Pixel Bits"
+               FontAttributes="Bold"
+               FontSize="Medium"
+               Margin="10,0,0,10" />
+            <StackLayout Orientation="Vertical" Padding="0,5">
+                <Label Text="Gradient Bitmap - Render a gradient by accessing the pixel bits"
+                   FontSize="Small" />
+                <Button Text="Gradient Bitmap"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Bitmaps.GradientBitmapPage}" />
+            </StackLayout>
+            <StackLayout Orientation="Vertical" Padding="0,5">
+                <Label Text="Rainbow Sine - Render a rainbow in the form of a sine curve"
+                   FontSize="Small" />
+                <Button Text="Rainbow Sine"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Bitmaps.RainbowSinePage}" />
+            </StackLayout>
+            <StackLayout Orientation="Vertical" Padding="0,5">
+                <Label Text="Small Adjustment - Interactively adjust hue, saturation, and luminosity"
+                   FontSize="Medium" />
+                <Button Text="Small Adjustment"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Bitmaps.ColorAdjustmentPage}" />
+            </StackLayout>
+            <StackLayout Orientation="Vertical" Padding="0,5">
+                <Label Text="Posterize - Reduce the color depths of an image"
+                   FontSize="Small" />
+                <Button Text="Posterize"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Bitmaps.PosterizePage}" />
+            </StackLayout>
+
+            <Label Text="Animating Bitmaps"
+               FontAttributes="Bold"
+               FontSize="Medium"
+               Margin="10,0,0,10" />
+            <StackLayout Orientation="Vertical" Padding="0,5">
+                <Label Text="Animated GIF - Show the animated Newton's Cradle"
+                   FontSize="Small" />
+                <Button Text="Animated GIF"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Bitmaps.AnimatedGifPage}" />
+            </StackLayout>
+
+        </StackLayout>
+    </ScrollView>
+</local:BasePage>

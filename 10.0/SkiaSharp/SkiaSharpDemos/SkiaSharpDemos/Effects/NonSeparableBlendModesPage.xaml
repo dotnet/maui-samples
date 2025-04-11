@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:skia="clr-namespace:SkiaSharp;assembly=SkiaSharp"
+             xmlns:skiaMaui="clr-namespace:SkiaSharp.Views.Maui.Controls;assembly=SkiaSharp.Views.Maui.Controls"
+             x:Class="SkiaSharpDemos.Effects.NonSeparableBlendModesPage"
+             Title="Non-Separable Blend Mode">
+    <Grid RowDefinitions="*,Auto,Auto,Auto,Auto,Auto">
+        <skiaMaui:SKCanvasView x:Name="canvasView"
+                               VerticalOptions="Fill"
+                               PaintSurface="OnCanvasViewPaintSurface" />
+        <Picker x:Name="blendModePicker"
+                Grid.Row="1"
+                Title="Blend Mode"
+                Margin="10,0"
+                SelectedIndex="0"
+                SelectedIndexChanged="OnPickerSelectedIndexChanged">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type skia:SKBlendMode}">
+                    <x:Static Member="skia:SKBlendMode.Hue" />
+                    <x:Static Member="skia:SKBlendMode.Saturation" />
+                    <x:Static Member="skia:SKBlendMode.Color" />
+                    <x:Static Member="skia:SKBlendMode.Luminosity" />
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
+        <Slider x:Name="hueSlider"
+                Grid.Row="2"
+                Maximum="360"
+                Margin="10, 0"
+                ValueChanged="OnSliderValueChanged" />
+        <Slider x:Name="satSlider"
+                Grid.Row="3"
+                Maximum="100"
+                Margin="10, 0"
+                ValueChanged="OnSliderValueChanged" />
+        <Slider x:Name="lumSlider"
+                Grid.Row="4"
+                Maximum="100"
+                Margin="10, 0"
+                ValueChanged="OnSliderValueChanged" />
+        <HorizontalStackLayout Grid.Row="5"
+                               Margin="10">
+            <Label x:Name="hslLabel"
+                   HorizontalOptions="Center" />
+            <Label x:Name="rgbLabel"
+                   HorizontalOptions="Center" />
+        </HorizontalStackLayout>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,95 @@
+name: build-publish-nuget
+
+on:
+  workflow_dispatch:
+  push:
+    # branches: [ main ]
+  pull_request:
+    # branches: [ main ]
+    
+env:
+    AZURE_ARTIFACTS_FEED_URL: <YOUR_FEED_URL>    
+    DOTNETVERSION: 10.0.100-preview.2
+    MAJORVERSION: 1.0.0
+
+jobs:
+  buildLibrary:
+    runs-on: macOS-latest
+    outputs:
+      output1: ${{ steps.versionstep.outputs.versionnumber }}
+    
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-dotnet@v4
+        with:
+            dotnet-version: ${{env.DOTNETVERSION}}
+
+      - name: Install .NET MAUI
+        shell: bash
+        run: |
+          dotnet workload install maui
+      
+      - name: Set VERSION variable from tag
+        id: versionstep
+        run: |
+          echo "VERSION=$MAJORVERSION-$GITHUB_RUN_ID" >> $GITHUB_ENV
+          echo "versionnumber=$MAJORVERSION-$GITHUB_RUN_ID" >> $GITHUB_OUTPUT
+    
+      - name: Restore nuget packages
+        run: |
+          dotnet restore src/SamplePackage/SamplePackage.csproj
+
+      - name: Build Library
+        run: |
+          dotnet build src/SamplePackage/SamplePackage.csproj -c Release
+
+      - name: Pack Library
+        run: |
+          dotnet pack src/SamplePackage/SamplePackage.csproj -p:PackageVersion=$VERSION -c Release --output ./artifacts
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: artifacts-nuget
+          path: |
+            artifacts/*.nupkg
+
+  publish:
+      runs-on: macOS-latest
+      needs: buildLibrary
+      permissions: write-all
+      env:
+        VERSION_NUMBER: ${{needs.buildLibrary.outputs.output1}}
+        GH_TOKEN: ${{ github.token }}
+
+      steps:
+        
+        - uses: actions/checkout@v2
+        
+        - name: Download Artifacts
+          uses: actions/download-artifact@v4
+          with:
+            name: artifacts-nuget
+          
+    # Documentation : https://cli.github.com/manual/gh_release_create
+        - name: Create Release and Upload Artifact to Release
+          run: gh release create ${{env.VERSION_NUMBER}} -t ${{env.VERSION_NUMBER}} *.nupkg --generate-notes
+
+    # # Documentation : https://learn.microsoft.com/en-us/nuget/quickstart/create-and-publish-a-package-using-the-dotnet-cli#publish-with-dotnet-nuget-push
+    #     - name: Push nuget to Nuget.org
+    #       run: |
+    #         dotnet nuget push foo.nupkg -k ${{ secrets.NUGET_API_KEY }}  -s https://api.nuget.org/v3/index.json --skip-duplicate
+
+    # #Documentation : https://learn.microsoft.com/en-us/azure/devops/artifacts/quickstarts/github-actions?view=azure-devops&pivots=pat
+    #     # Setup .NET Core SDK
+    #     - name: Setup .NET Core
+    #       uses: actions/setup-dotnet@v1
+    #       with:
+    #         dotnet-version: ${{ env.DOTNETVERSION }}
+    #         source-url: ${{ env.AZURE_ARTIFACTS_FEED_URL }}
+    #       env:
+    #         NUGET_AUTH_TOKEN: ${{ secrets.AZURE_DEVOPS_TOKEN }} 
+    
+    #     - name: Push nuget to Azure DevOps Internal Feed
+    #       run: |
+    #         dotnet nuget push --api-key AzureArtifacts foo.nupkg 

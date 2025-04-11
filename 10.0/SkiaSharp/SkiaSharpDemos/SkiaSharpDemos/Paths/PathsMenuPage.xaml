@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<local:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:local="clr-namespace:SkiaSharpDemos"
+                x:Class="SkiaSharpDemos.Paths.PathsMenuPage"
+                Title="SkiaSharp Lines and Paths"
+                x:DataType="local:Paths.PathsMenuPage">
+    <ScrollView>
+        <StackLayout Padding="10">
+
+            <!-- Lines and Stroke Caps Section -->
+            <Label Text="Lines and Stroke Caps"
+               FontAttributes="Bold"
+               FontSize="Medium"
+               Margin="0,0,0,10" />
+            <StackLayout Padding="0,5">
+                <Label Text="Stroke Caps - List and show the three stroke cap options" FontSize="Small" />
+                <Button Text="Stroke Caps"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Paths.StrokeCapsPage}" />
+            </StackLayout>
+            <StackLayout Padding="0,5">
+                <Label Text="Multiple Lines - Draw multiple lines using DrawPoints" FontSize="Small" />
+                <Button Text="Multiple Lines"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Paths.MultipleLinesPage}" />
+            </StackLayout>
+
+            <!-- Path Basics Section -->
+            <Label Text="Path Basics"
+               FontAttributes="Bold"
+               FontSize="Medium"
+               Margin="10,0,0,10" />
+            <StackLayout Padding="0,5">
+                <Label Text="Two Triangle Contours - Use a graphics path to draw open and closed triangles" FontSize="Small" />
+                <Button Text="Two Triangle Contours"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Paths.TwoTriangleContoursPage}" />
+            </StackLayout>
+            <StackLayout Padding="0,5">
+                <Label Text="Stroke Joins - List and show the three stroke join options" FontSize="Small" />
+                <Button Text="Stroke Joins"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Paths.StrokeJoinsPage}" />
+            </StackLayout>
+
+            <!-- The Path Fill Types Section -->
+            <Label Text="The Path Fill Types"
+               FontAttributes="Bold"
+               FontSize="Medium"
+               Margin="10,0,0,10" />
+            <StackLayout Padding="0,5">
+                <Label Text="Five-Pointed Star - Demonstrate path fill types" FontSize="Small" />
+                <Button Text="Five-Pointed Star"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Paths.FivePointedStarPage}" />
+            </StackLayout>
+            <StackLayout Padding="0,5">
+                <Label Text="Overlapping Circles - Draw overlapping circles" FontSize="Small" />
+                <Button Text="Overlapping Circles"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Paths.OverlappingCirclesPage}" />
+            </StackLayout>
+
+            <!-- Polylines and Parametric Equations Section -->
+            <Label Text="Polylines and Parametric Equations"
+               FontAttributes="Bold"
+               FontSize="Medium"
+               Margin="10,0,0,10" />
+            <StackLayout Padding="0,5">
+                <Label Text="Archimedean Spiral - Use a graphics path to draw a spiral" FontSize="Small" />
+                <Button Text="Archimedean Spiral"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Paths.ArchimedeanSpiralPage}" />
+            </StackLayout>
+
+            <!-- Dots and Dashes Section -->
+            <Label Text="Dots and Dashes"
+               FontAttributes="Bold"
+               FontSize="Medium"
+               Margin="10,0,0,10" />
+            <StackLayout Padding="0,5">
+                <Label Text="Dots and Dashes - Render a line with dots and dashes" FontSize="Small" />
+                <Button Text="Dots and Dashes"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Paths.DotsAndDashesPage}" />
+            </StackLayout>
+            <StackLayout Padding="0,5">
+                <Label Text="Animated Spiral - Animate an Archimedean Spiral" FontSize="Small" />
+                <Button Text="Animated Spiral"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Paths.AnimatedSpiralPage}" />
+            </StackLayout>
+
+            <!-- Finger Painting Section -->
+            <Label Text="Finger Painting"
+               FontAttributes="Bold"
+               FontSize="Medium"
+               Margin="10,0,0,10" />
+            <StackLayout Padding="0,5">
+                <Label Text="Finger Paint - Draw Lines with Your Fingers" FontSize="Small" />
+                <Button Text="Finger Paint"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Paths.FingerPaintPage}" />
+            </StackLayout>
+
+        </StackLayout>
+    </ScrollView>
+
+</local:BasePage>

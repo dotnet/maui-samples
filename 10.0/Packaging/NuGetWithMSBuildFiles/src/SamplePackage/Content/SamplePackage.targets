@@ -1,0 +1,20 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <ItemGroup>
+        <None Include="$(MSBuildThisFileDirectory)..\fonts\LICENSE.txt" Visible="False">
+            <Link>%(Filename)%(Extension)</Link>
+        </None>
+        <MauiFont Include="$(MSBuildThisFileDirectory)..\fonts\Font Awesome 6 Free-Regular-400.otf" Visible="False">
+            <Link>%(Filename)%(Extension)</Link>
+        </MauiFont>
+        <MauiImage Include="$(MSBuildThisFileDirectory)..\images\sample_bot.svg" Visible="False">
+            <Link>%(Filename)%(Extension)</Link>
+        </MauiImage>
+        <MauiXaml Include="$(MSBuildThisFileDirectory)..\resources\BrandColors.xaml">
+	        <Link>Resources/Styles/%(Filename)%(Extension)</Link>
+	        <SubType></SubType>
+	    </MauiXaml>
+        <Compile Include="$(MSBuildThisFileDirectory)..\resources\BrandColors.xaml.cs">
+            <Link>Resources/Styles/%(Filename)%(Extension)</Link>
+        </Compile>
+    </ItemGroup>
+</Project>

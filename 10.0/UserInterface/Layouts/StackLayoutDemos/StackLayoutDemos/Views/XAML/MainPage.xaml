@@ -1,0 +1,69 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:StackLayoutDemos"
+             xmlns:views="clr-namespace:StackLayoutDemos.Views.XAML"
+             xmlns:codeViews="clr-namespace:StackLayoutDemos.Views.Code"
+             x:Class="StackLayoutDemos.MainPage"
+             Title="StackLayout demos"
+             x:DataType="local:MainPage">
+    <ScrollView>
+        <StackLayout Padding="10" Spacing="15">
+            <!-- XAML Section -->
+            <Label Text="XAML" FontSize="Medium" FontAttributes="Bold" />
+
+            <Label Text="Vertical" FontSize="Small" />
+            <Button Text="Default StackLayout"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:VerticalStackLayoutPage}" />
+
+            <Label Text="Orientation property" FontSize="Small" />
+            <Button Text="Horizontal StackLayout"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:HorizontalStackLayoutPage}" />
+
+            <Label Text="Spacing property" FontSize="Small" />
+            <Button Text="Child spacing"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:StackLayoutSpacingPage}" />
+
+            <Label Text="Vertical and Horizontal" FontSize="Small" />
+            <Button Text="Combined StackLayouts"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:CombinedStackLayoutPage}" />
+
+            <Label Text="HorizontalOptions property" FontSize="Small" />
+            <Button Text="Alignment in a vertical StackLayout"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:AlignmentPage}" />
+            
+            <!-- C# Section -->
+            <Label Text="C#" FontSize="Medium" FontAttributes="Bold" />
+
+            <Label Text="Vertical" FontSize="Small" />
+            <Button Text="Default StackLayout"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type codeViews:VerticalStackLayoutPage}" />
+
+            <Label Text="Orientation property" FontSize="Small" />
+            <Button Text="Horizontal StackLayout"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type codeViews:HorizontalStackLayoutPage}" />
+
+            <Label Text="Spacing property" FontSize="Small" />
+            <Button Text="Child spacing"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type codeViews:StackLayoutSpacingPage}" />
+
+            <Label Text="Vertical and Horizontal" FontSize="Small" />
+            <Button Text="Combined StackLayouts"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type codeViews:CombinedStackLayoutPage}" />
+
+            <Label Text="HorizontalOptions property" FontSize="Small" />
+            <Button Text="Alignment in a vertical StackLayout"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type codeViews:AlignmentPage}" />
+            
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

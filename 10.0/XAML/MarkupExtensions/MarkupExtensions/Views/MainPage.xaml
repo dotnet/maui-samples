@@ -1,0 +1,83 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MarkupExtensions"
+             x:Class="MarkupExtensions.MainPage"
+             Padding="10"
+             Title="Markup extensions"
+             x:DataType="local:MainPage">
+    <ScrollView>
+        <StackLayout Padding="10">
+
+            <StackLayout Padding="0,10">
+                <Label Text="x:Static Demo - Access constants or statics" FontSize="Small" />
+                <Button Text="x:Static Demo"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:StaticDemoPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,10">
+                <Label Text="x:Reference Demo - Reference named elements on the page" FontSize="Small" />
+                <Button Text="x:Reference Demo"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:ReferenceDemoPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,10">
+                <Label Text="x:Type Demo - Associate a Button with a Type" FontSize="Small" />
+                <Button Text="x:Type Demo"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:TypeDemoPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,10">
+                <Label Text="x:Array Demo - Use an array to fill a ListView" FontSize="Small" />
+                <Button Text="Navigate"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:ArrayDemoPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,10">
+                <Label Text="x:Null Demo - Set a property equal to null" FontSize="Small" />
+                <Button Text="x:Null Demo"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:NullDemoPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,10">
+                <Label Text="OnPlatform Demo - Specify values per platform" FontSize="Small" />
+                <Button Text="OnPlatform Demo"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:OnPlatformDemoPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,10">
+                <Label Text="OnIdiom Demo - Specify values per idiom" FontSize="Small" />
+                <Button Text="OnIdiom Demo"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:OnIdiomDemoPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,10">
+                <Label Text="FontImage Demo - Specify font glyphs" FontSize="Small" />
+                <Button Text="FontImage Demo"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:FontImageDemoPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,10">
+                <Label Text="HSL Color Demo - Use a custom markup extension to specify a HSL Color" FontSize="Small" />
+                <Button Text="HSL Color Demo"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:HslColorDemoPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,10">
+                <Label Text="AppThemeBinding Demo - Specify resources per system theme" FontSize="Small" />
+                <Button Text="AppThemeBinding Demo"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:AppThemeBindingDemoPage}" />
+            </StackLayout>
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

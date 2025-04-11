@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ControlGallery.Views.XAML.ButtonDemoPage"
+             Title="Button Demo">
+    <StackLayout>
+        <Label Text="Button"
+               FontSize="50"
+               FontAttributes="Bold"
+               HorizontalOptions="Center" />
+
+        <Button Text="Click Me!"
+                FontSize="20"
+                BorderWidth="1"
+                HorizontalOptions="Center"
+                VerticalOptions="CenterAndExpand"
+                Clicked="OnButtonClicked" />
+
+        <Label x:Name="label"
+               Text="0 button clicks"
+               FontSize="20"
+               HorizontalOptions="Center"
+               VerticalOptions="CenterAndExpand" />
+    </StackLayout>
+</ContentPage>

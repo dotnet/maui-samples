@@ -1,0 +1,381 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<local:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:local="clr-namespace:SkiaSharpDemos"
+                x:Class="SkiaSharpDemos.Effects.EffectsMenuPage"
+                Title="SkiaSharp Effects"
+                x:DataType="local:Effects.EffectsMenuPage">
+    <ScrollView>
+        <StackLayout Padding="10">
+
+            <!-- Linear Gradients Section -->
+            <Label Text="Linear Gradients"
+               FontAttributes="Bold"
+               FontSize="Medium"
+               Margin="0,0,0,10" />
+
+            <StackLayout Padding="0,5">
+                <Label Text="Corner-to-Corner Gradient - Render a gradient between opposite corners" FontSize="Small" />
+                <Button Text="Corner-to-Corner Gradient"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Effects.CornerToCornerGradientPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Interactive Linear Gradient - Interactively experiment with linear gradient points and modes" FontSize="Small" />
+                <Button Text="Interactive Linear Gradient"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Effects.InteractiveLinearGradientPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Gradient Text - Display text with gradients based on different start and end points" FontSize="Small" />
+                <Button Text="Gradient Text"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Effects.GradientTextPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Reflection Gradient - Use transforms and a gradient to show reflected text" FontSize="Small" />
+                <Button Text="Reflection Gradient"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Effects.ReflectionGradientPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Gradient Animation - Animate a gradient around a circular axis" FontSize="Small" />
+                <Button Text="Gradient Animation"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Effects.GradientAnimationPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Rainbow Gradient - Base a gradient on the circle of hues" FontSize="Small" />
+                <Button Text="Rainbow Gradient"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Effects.RainbowGradientPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Infinity Colors - Animate a rainbow gradient across an infinity sign" FontSize="Small" />
+                <Button Text="Infinit"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Effects.InfinityColorsPage}" />
+            </StackLayout>
+
+            <!-- Circular Gradients Section -->
+            <Label Text="Circular Gradients"
+               FontAttributes="Bold"
+               FontSize="Medium"
+               Margin="0,0,0,10" />
+
+            <StackLayout Padding="0,5">
+                <Label Text="Radial Gradient - Demonstrate the radial gradient tile modes" FontSize="Small" />
+                <Button Text="Radial Gradient"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Effects.RadialGradientPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Rainbow Arc Gradient - Create an arc with a rainbow gradient" FontSize="Small" />
+                <Button Text="Rainbow Arc Gradient"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Effects.RainbowArcGradientPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Radial Gradient Mask - Highlight part of a bitmap with a circular gradient mask" FontSize="Small" />
+                <Button Text="Radial Gradient Mask"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Effects.RadialGradientMaskPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Radial Specular Highlight - Draw a ball with a specular highlight" FontSize="Small" />
+                <Button Text="Radial Specular Highlight"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Effects.RadialSpecularHighlightPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Sweep Gradient - Demonstrate the sweep gradient" FontSize="Small" />
+                <Button Text="Sweep Gradient"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Effects.SweepGradientPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Conical Gradient - Experiment with the Two-Point Conical Gradient" FontSize="Small" />
+                <Button Text="Conical Gradient"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Effects.ConicalGradientPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Conical Specular Highlight - Draw a ball with a specular highlight" FontSize="Small" />
+                <Button Text="Conical Specular Highlight"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Effects.ConicalSpecularHighlightPage}" />
+            </StackLayout>
+
+            <!-- Bitmap Tiling Section -->
+            <Label Text="Bitmap Tiling"
+               FontAttributes="Bold"
+               FontSize="Medium"
+               Margin="10,0,0,10" />
+
+            <StackLayout Padding="0,5">
+                <Label Text="Bitmap Tile Flip Modes - Demonstrate the bitmap tile modes" FontSize="Small" />
+                <Button Text="Bitmap Tile Flip Modes"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Effects.BitmapTileFlipModesPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Algorithmic Brick Wall - Construct a brick wall from an algorithmically created bitmap" FontSize="Small" />
+                <Button Text="Algorithmic Brick Wall"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Effects.AlgorithmicBrickWallPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Chain-Link Fence - Construct a chain-link fence from an algorithmically created bitmap" FontSize="Small" />
+                <Button Text="Chain-Link Fence"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Effects.ChainLinkFencePage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Photographic Brick Wall - Construct a brick wall from a photograph of bricks" FontSize="Small" />
+                <Button Text="Photographic Brick Wall"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Effects.PhotographicBrickWallPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Stone Wall - Construct a stone wall from a photograph of stones" FontSize="Small" />
+                <Button Text="Stone Wall"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Effects.StoneWallPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Tile Alignment - Demonstrate a technique to align bitmap tiles" FontSize="Small" />
+                <Button Text="Tile Alignment"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Effects.TileAlignmentPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Centered Tiles - Center a tiled bitmap pattern within an area" FontSize="Small" />
+                <Button Text="Centered Tiles"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Effects.CenteredTilesPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Animated Bitmap Tile - Animate a bitmap tile and a whole bitmap tile pattern" FontSize="Small" />
+                <Button Text="Animated Bitmap Tile"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Effects.AnimatedBitmapTilePage}" />
+            </StackLayout>
+
+            <!-- Noise and Composition Section -->
+            <Label Text="Noise and Composition"
+               FontAttributes="Bold"
+               FontSize="Medium"
+               Margin="0,0,0,10" />
+
+            <StackLayout Padding="0,5">
+                <Label Text="Perlin Noise - Display fractal and turbulence Perlin noise" FontSize="Small" />
+                <Button Text="Perlin Noise"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Effects.PerlinNoisePage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Tiled Perlin Noise - Display tiled Perlin noise" FontSize="Small" />
+                <Button Text="Tiled Perlin Noise"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Effects.TiledPerlinNoisePage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Composed Perlin Noise - Display Perlin noise with a blue background" FontSize="Small" />
+                <Button Text="Composed Perlin Noise"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Effects.ComposedPerlinNoisePage}" />
+            </StackLayout>
+
+            <!-- Porter-Duff Blend Modes Section -->
+            <Label Text="Porter-Duff Blend Modes"
+               FontAttributes="Bold"
+               FontSize="Medium"
+               Margin="10,0,0,10" />
+
+            <StackLayout Padding="0,5">
+                <Label Text="Porter-Duff Grid - See all the Porter-Duff blend modes on one screen" FontSize="Small" />
+                <Button Text="Porter-Duff Grid"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Effects.PorterDuffGridPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Brick-Wall Compositing - Use Porter-Duff blend modes to combine several bitmaps" FontSize="Small" />
+                <Button Text="Brick-Wall Compositing"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Effects.BrickWallCompositingPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Porter-Duff Transparency - See the Porter-Duff modes with transparent areas" FontSize="Small" />
+                <Button Text="Porter-Duff Transparency"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Effects.PorterDuffTransparencyPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Compositing Mask - Highlight part of a bitmap with a circular compositing mask" FontSize="Small" />
+                <Button Text="Compositing Mask"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Effects.CompositingMaskPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Gradient Transitions - Transition from one bitmap to another using blend modes" FontSize="Small" />
+                <Button Text="Gradient Transitions"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Effects.GradientTransitionsPage}" />
+            </StackLayout>
+
+            <!-- Separable Blend Modes Section -->
+            <Label Text="Separable Blend Modes"
+               FontAttributes="Bold"
+               FontSize="Medium"
+               Margin="10,0,0,10" />
+
+            <StackLayout Padding="0,5">
+                <Label Text="Lighten and Darken - See the effects of two common separable blend modes" FontSize="Small" />
+                <Button Text="Lighten and Darken"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Effects.LightenAndDarkenPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Dodge and Burn - See the effects of two other common separable blend modes" FontSize="Small" />
+                <Button Text="Dodge and Burn"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Effects.DodgeAndBurnPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Separable Blend Modes - Experiment with the separable blend modes" FontSize="Small" />
+                <Button Text="Separable Blend Modes"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Effects.SeparableBlendModesPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Primary Colors - Show additive and subtractive primary colors" FontSize="Small" />
+                <Button Text="Primary Colors"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Effects.PrimaryColorsPage}" />
+            </StackLayout>
+
+            <!-- Non-Separable Blend Modes Section -->
+            <Label Text="Non-Separable Blend Modes"
+                   FontAttributes="Bold"
+                   FontSize="Medium"
+                   Margin="10,0,0,10" />
+
+            <StackLayout Padding="0,5">
+                <Label Text="Non-Separable Blend Modes - Experiment with the non-separable blend modes" FontSize="Small" />
+                <Button Text="Non-Separable Blend Modes"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Effects.NonSeparableBlendModesPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Blue Banana - Use a non-separable blend mode to alter colors" FontSize="Small" />
+                <Button Text="Blue Banana"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Effects.BlueBananaPage}" />
+            </StackLayout>
+
+            <!-- Mask Filters Section -->
+            <Label Text="Mask Filters"
+               FontAttributes="Bold"
+               FontSize="Medium"
+               Margin="10,0,0,10" />
+
+            <StackLayout Padding="0,5">
+                <Label Text="Mask Blur Experiment - Use SKMaskFilter to blur edges of graphical objects" FontSize="Small" />
+                <Button Text="Mask Blur Experiment"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Effects.MaskBlurExperimentPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Blurry Reflection - Use a gradient and mask filter to blur reflected text" FontSize="Small" />
+                <Button Text="Blurry Reflection"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Effects.BlurryReflectionPage}" />
+            </StackLayout>
+
+            <!-- Image Filters Section -->
+            <Label Text="Image Filters"
+                           FontAttributes="Bold"
+                           FontSize="Medium"
+                           Margin="0,0,0,10" />
+
+            <StackLayout Padding="0,5">
+                <Label Text="Image Blur Experiment - Use SKImageFilter to blur vector graphical objects and bitmaps" FontSize="Small" />
+                <Button Text="Image Blur Experiment"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Effects.ImageBlurExperimentPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Drop Shadow Experiment - Experiment with drop shadow parameters" FontSize="Small" />
+                <Button Text="Drop Shadow Experiment"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Effects.DropShadowExperimentPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Distant Light Experiment - Create 3D light to engrave or emboss text" FontSize="Small" />
+                <Button Text="Distant Light Experiment"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Effects.DistantLightExperimentPage}" />
+            </StackLayout>
+
+            <!-- Color Filters Section -->
+            <Label Text="Color Filters"
+               FontAttributes="Bold"
+               FontSize="Medium"
+               Margin="10,0,0,10" />
+
+            <StackLayout Padding="0,5">
+                <Label Text="Gray Scale Matrix - Use a color transform to convert colors to gray scales" FontSize="Small" />
+                <Button Text="Gray Scale Matrix"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Effects.GrayScaleMatrixPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Pastel Matrix - Use a color transform to mute color intensity" FontSize="Small" />
+                <Button Text="Pastel Matrix"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Effects.PastelMatrixPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Posterize Table - Use a color table to posterize an image" FontSize="Small" />
+                <Button Text="Posterize Table"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Effects.PosterizeTablePage}" />
+            </StackLayout>
+
+        </StackLayout>
+    </ScrollView>
+</local:BasePage>

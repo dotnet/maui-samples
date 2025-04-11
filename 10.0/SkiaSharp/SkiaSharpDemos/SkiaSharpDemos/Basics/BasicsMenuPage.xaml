@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<local:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:local="clr-namespace:SkiaSharpDemos"
+                x:Class="SkiaSharpDemos.Basics.BasicsMenuPage"
+                Title="SkiaSharp Drawing Basics"
+                x:DataType="local:Basics.BasicsMenuPage">
+    <ScrollView>
+        <StackLayout Padding="10">
+
+            <Label Text="Drawing a Simple Circle"
+               FontAttributes="Bold"
+               FontSize="Medium"
+               Margin="0,0,0,10" />
+            <StackLayout Orientation="Vertical" Padding="0,5">
+                <Label Text="Simple Circle - Outline and fill a circle with SkiaSharp"
+                   FontSize="Small"
+                   Margin="0,0,0,5" />
+                <Button Text="Simple Circle"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Basics.SimpleCirclePage}" />
+            </StackLayout>
+
+            <Label Text="Integrating with .NET MAUI"
+               FontAttributes="Bold"
+               FontSize="Medium"
+               Margin="10,0,0,10" />
+            <StackLayout Orientation="Vertical" Padding="0,5">
+                <Label Text="Tap Toggle Fill - Tap the screen to toggle the circle fill"
+                   FontSize="Small"
+                   Margin="0,0,0,5" />
+                <Button Text="Tap Toggle Fill"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Basics.TapToggleFillPage}" />
+            </StackLayout>
+            <StackLayout Orientation="Vertical" Padding="0,5">
+                <Label Text="Color Explore - Use sliders to select color"
+                   FontSize="Small"
+                   Margin="0,0,0,5" />
+                <Button Text="Color Explore"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Basics.ColorExplorePage}" />
+            </StackLayout>
+
+            <Label Text="Pixels and Device-Independent Units"
+               FontAttributes="Bold"
+               FontSize="Medium"
+               Margin="10,0,0,10" />
+            <StackLayout Orientation="Vertical" Padding="0,5">
+                <Label Text="Surface Size - Display the surface size three different ways"
+                   FontSize="Medium"
+                   Margin="0,0,0,5" />
+                <Button Text="Surface Size"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Basics.SurfaceSizePage}" />
+            </StackLayout>
+            <StackLayout Orientation="Vertical" Padding="0,5">
+                <Label Text="Ellipse Fill - Fill the surface with an ellipse"
+                   FontSize="Small"
+                   Margin="0,0,0,5" />
+                <Button Text="Ellipse Fill"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Basics.EllipseFillPage}" />
+            </StackLayout>
+
+            <Label Text="Basic Animation"
+               FontAttributes="Bold"
+               FontSize="Medium"
+               Margin="10,0,0,10" />
+            <StackLayout Orientation="Vertical" Padding="0,5">
+                <Label Text="Pulsating Ellipse - Animate the axes of an ellipse"
+                   FontSize="Small"
+                   Margin="0,0,0,5" />
+                <Button Text="Pulsating Ellipse"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Basics.PulsatingEllipsePage}" />
+            </StackLayout>
+            <StackLayout Orientation="Vertical" Padding="0,5">
+                <Label Text="Expanding Circles - Animate circles to expand forever"
+                   FontSize="Small"
+                   Margin="0,0,0,5" />
+                <Button Text="Expanding Circles"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Basics.ExpandingCirclesPage}" />
+            </StackLayout>
+
+            <Label Text="Integrating Text and Graphics"
+               FontAttributes="Bold"
+               FontSize="Medium"
+               Margin="10,0,0,10" />
+            <StackLayout Orientation="Vertical" Padding="0,5">
+                <Label Text="Framed Text - Draw a rounded rectangle around a text string"
+                   FontSize="Small"
+                   Margin="0,0,0,5" />
+                <Button Text="Framed Text"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Basics.FramedTextPage}" />
+            </StackLayout>
+            <StackLayout Orientation="Vertical" Padding="0,5">
+                <Label Text="Outlined Text - Outline text characters"
+                   FontSize="Small"
+                   Margin="0,0,0,5" />
+                <Button Text="Outlined Text"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Basics.OutlinedTextPage}" />
+            </StackLayout>
+
+            <Label Text="Bitmap Basics"
+               FontAttributes="Bold"
+               FontSize="Medium"
+               Margin="10,0,0,10" />
+            <StackLayout Orientation="Vertical" Padding="0,5">
+                <Label Text="Basic Bitmaps - Load and display bitmaps"
+                   FontSize="Small"
+                   Margin="0,0,0,5" />
+                <Button Text="Basic Bitmaps"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Basics.BasicBitmapsPage}" />
+            </StackLayout>
+
+            <Label Text="Transparency"
+               FontAttributes="Bold"
+               FontSize="Medium"
+               Margin="10,0,0,10" />
+            <StackLayout Orientation="Vertical" Padding="0,5">
+                <Label Text="Code More Code - Animate the alpha channel to fade between text strings"
+                   FontSize="Small"
+                   Margin="0,0,0,5" />
+                <Button Text="Code More Code"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Basics.CodeMoreCodePage}" />
+            </StackLayout>
+            <StackLayout Orientation="Vertical" Padding="0,5">
+                <Label Text="Bitmap Dissolve - Use transparency to dissolve between one bitmap and another"
+                   FontSize="Small"
+                   Margin="0,0,0,5" />
+                <Button Text="Bitmap Dissolve"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Basics.BitmapDissolvePage}" />
+            </StackLayout>
+
+        </StackLayout>
+    </ScrollView>
+
+</local:BasePage>

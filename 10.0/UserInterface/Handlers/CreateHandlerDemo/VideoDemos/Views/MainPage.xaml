@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:VideoDemos.Views"
+             x:Class="VideoDemos.Views.MainPage"
+             Title="VideoPlayer demos"
+             x:DataType="local:MainPage">
+    <ScrollView>
+        <StackLayout Padding="10">
+            <Label Text="Play a video by specifying a URL" FontSize="Small" />
+            <Button Text="Play web video"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:PlayWebVideoPage}" />
+
+            <Label Text="Select a video from a CollectionView" FontSize="Small" />
+            <Button Text="Select web video"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:SelectWebVideoPage}" />
+
+            <Label Text="Select a video with a CollectionView binding" FontSize="Small" />
+            <Button Text="Bind to Video control"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:BindToVideoPlayerPage}" />
+
+            <Label Text="Play a video saved as a resource" FontSize="Small" />
+            <Button Text="Play video resource"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:PlayVideoResourcePage}" />
+
+            <Label Text="Play a video from the photos/videos library" FontSize="Small" />
+            <Button Text="Play library video"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:PlayLibraryVideoPage}" />
+
+            <Label Text="Play a video with custom Play and Pause buttons" FontSize="Small" />
+            <Button Text="Custom transport controls"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:CustomTransportPage}" />
+
+            <Label Text="Play a video with a custom position bar" FontSize="Small" />
+            <Button Text="Custom position bar"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:CustomPositionBarPage}" />
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>

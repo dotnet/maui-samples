@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DataBindingDemos.BasicCodeBindingPage"
+             Title="Basic Code Binding">
+    <StackLayout Padding="10, 0">
+        <Label x:Name="label"
+               Text="TEXT"
+               FontSize="80"
+               HorizontalOptions="Center"
+               VerticalOptions="Center" />
+
+        <Slider x:Name="slider"
+                Maximum="360"
+                VerticalOptions="Center" />
+    </StackLayout>
+</ContentPage>

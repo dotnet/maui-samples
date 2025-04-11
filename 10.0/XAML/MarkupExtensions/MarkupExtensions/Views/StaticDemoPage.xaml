@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sys="clr-namespace:System;assembly=netstandard"
+             xmlns:local="clr-namespace:MarkupExtensions"
+             xmlns:device="clr-namespace:Microsoft.Maui.Devices;assembly=Microsoft.Maui.Essentials"
+             x:Class="MarkupExtensions.StaticDemoPage"
+             Title="x:Static Demo">
+    <StackLayout Margin="10, 0">
+        <Label Text="Label No. 1">
+            <Label.FontSize>
+                <x:StaticExtension Member="local:AppConstants.NormalFontSize" />
+            </Label.FontSize>
+        </Label>
+        <Label Text="Label No. 2">
+            <Label.FontSize>
+                <x:Static Member="local:AppConstants.NormalFontSize" />
+            </Label.FontSize>
+        </Label>
+        <Label Text="Label No. 3"
+               FontSize="{x:StaticExtension Member=local:AppConstants.NormalFontSize}" />
+        <Label Text="Label No. 4"
+               FontSize="{x:Static Member=local:AppConstants.NormalFontSize}" />        
+        <Label Text="Label No. 5"
+               FontSize="{x:Static local:AppConstants.NormalFontSize}" />
+        <Label Text="&#x03C0; &#x00D7; E sized text"
+               FontSize="{x:Static sys:Math.PI}"
+               Scale="{x:Static sys:Math.E}" 
+               HorizontalOptions="Center" />
+    </StackLayout>
+</ContentPage>

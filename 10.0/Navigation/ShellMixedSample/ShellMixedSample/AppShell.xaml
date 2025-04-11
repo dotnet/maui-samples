@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="ShellMixedSample.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:ShellMixedSample"
+    Shell.FlyoutBehavior="Flyout">
+
+    <FlyoutItem Title="Flyout One" FlyoutIcon="{StaticResource IconOne}">
+        <ShellContent
+            Title="One"
+            ContentTemplate="{DataTemplate local:MainPage}"
+            Route="OnePage" />
+    </FlyoutItem>
+    <FlyoutItem Title="Flyout Two" FlyoutIcon="{StaticResource IconTwo}">
+        
+            <Tab Title="Tab 1" Icon="{StaticResource IconOne}">
+                <ShellContent
+                Title="One"
+                ContentTemplate="{DataTemplate local:MainPage}"
+                Route="OnePage" />
+            </Tab>
+            <Tab Title="Tab 2" Icon="{StaticResource IconTwo}">
+                <ShellContent
+                Title="Two"
+                ContentTemplate="{DataTemplate local:MainPage}"
+                Route="TwoPage" />
+            </Tab>
+            <Tab Title="Tab 3" Icon="{StaticResource IconThree}">
+                <ShellContent
+                Title="Three"
+                ContentTemplate="{DataTemplate local:MainPage}"
+                Route="ThreePage" />
+            </Tab>
+            <Tab Title="Tab 4" Icon="{StaticResource IconFour}">
+                <ShellContent
+                Title="Four"
+                ContentTemplate="{DataTemplate local:MainPage}"
+                Route="FourPage" />
+            </Tab>
+        
+    </FlyoutItem>
+    <FlyoutItem Title="Flyout Three" FlyoutIcon="{StaticResource IconThree}">
+        <ShellContent
+            Title="Three"
+            ContentTemplate="{DataTemplate local:MainPage}"
+            Route="ThreePage" />
+    </FlyoutItem>
+    <FlyoutItem Title="Flyout Four" FlyoutIcon="{StaticResource IconFour}">
+        <ShellContent
+            Title="Four"
+            ContentTemplate="{DataTemplate local:MainPage}"
+            Route="FourPage" />
+    </FlyoutItem>
+
+</Shell>
