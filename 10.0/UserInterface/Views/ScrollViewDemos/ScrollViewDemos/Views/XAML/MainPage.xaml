@@ -1,0 +1,31 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ScrollViewDemos"
+			 xmlns:views="clr-namespace:ScrollViewDemos.Views.XAML"
+			 xmlns:codeViews="clr-namespace:ScrollViewDemos.Views.Code"
+             x:Class="ScrollViewDemos.MainPage"
+			 Title="ScrollView demos"
+             x:DataType="local:MainPage">
+    <ScrollView>
+        <StackLayout Padding="10">
+            <!-- XAML Section -->
+            <Label Text="XAML" FontAttributes="Bold" FontSize="Medium" Margin="0,10,0,5" />
+            <Button Text="ScrollView as the root layout - Color list"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:ColorListPage}" />
+            <Button Text="ScrollView as a child layout - The Black Cat short story"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:BlackCatPage}" />
+
+            <!-- C# Section -->
+            <Label Text="C#" FontAttributes="Bold" FontSize="Medium" Margin="0,10,0,5" />
+            <Button Text="ScrollView as the root layout - Color list"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type codeViews:ColorListPage}" />
+            <Button Text="ScrollView as a child layout - The Black Cat short story"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type codeViews:BlackCatPage}" />
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
+
