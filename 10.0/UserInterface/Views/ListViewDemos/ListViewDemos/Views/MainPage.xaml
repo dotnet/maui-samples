@@ -1,0 +1,62 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ListViewDemos"
+             xmlns:views="clr-namespace:ListViewDemos"
+             x:Class="ListViewDemos.MainPage"
+             Title="ListView demos"
+             x:DataType="local:MainPage">
+    <ScrollView>
+        <StackLayout Padding="10">
+            <!-- Basics Section -->
+            <Label Text="Basics" FontAttributes="Bold" FontSize="Medium" Margin="0,10,0,5" />
+            <Button Text="Text ListView"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:TextListPage}" />
+            <Button Text="ListView with DataTemplate"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:VerticalListPage}" />
+            <Button Text="ListView with DataTemplateSelector"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:DataTemplateSelectorPage}" />
+            <Button Text="ListView selection"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:SelectionPage}" />
+            <Button Text="Runtime row sizing"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:RuntimeItemSizingPage}" />
+            <Button Text="ListView grouping"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:GroupingPage}" />
+            <Button Text="ListView context menu items"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:ContextMenuItemsPage}" />
+            <Button Text="ListView pull-to-refresh"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:PullToRefreshPage}" />
+            <Button Text="Right to left ListView"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:RightToLeftListPage}" />
+
+            <!-- Scrolling Section -->
+            <Label Text="Scrolling" FontAttributes="Bold" FontSize="Medium" Margin="0,10,0,5" />
+            <Button Text="Scroll by item"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:ScrollByItemPage}" />
+            <Button Text="Scroll by item with grouping"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:ScrollByItemWithGroupingPage}" />
+
+            <!-- Header and Footer Section -->
+            <Label Text="Header and Footer" FontAttributes="Bold" FontSize="Medium" Margin="0,10,0,5" />
+            <Button Text="Text header and footer"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:TextHeaderFooterPage}" />
+            <Button Text="View header and footer"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:ViewHeaderFooterPage}" />
+            <Button Text="Templated header and footer"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:TemplatedHeaderFooterPage}" />
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

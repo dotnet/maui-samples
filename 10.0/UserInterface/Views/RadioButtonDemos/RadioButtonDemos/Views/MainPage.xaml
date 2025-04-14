@@ -1,0 +1,34 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:RadioButtonDemos"
+             x:Class="RadioButtonDemos.MainPage"
+             Title="RadioButton Demos"
+             x:DataType="local:MainPage">
+    <ScrollView>
+        <StackLayout Padding="10">
+            <!-- RadioButton Options -->
+            <Label Text="RadioButton Options" FontAttributes="Bold" FontSize="Medium" Margin="0,10,0,5" />
+            <Button Text="Basic RadioButtons - Implement RadioButtons in XAML"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type local:BasicRadioButtonsPage}" />
+            <Button Text="Basic RadioButton Visual States - Implement visual states for RadioButtons"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type local:BasicRadioButtonsVisualStatePage}" />
+            <Button Text="Grouped RadioButtons - Implement grouped RadioButtons in XAML"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type local:GroupedRadioButtonsPage}" />
+            <Button Text="Grouped RadioButtons - Implement grouped RadioButtons in code"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type local:GroupedRadioButtonsPageCode}" />
+            <Button Text="Grouped RadioButtons - Binding to a ViewModel"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type local:GroupedRadioButtonsViewModelPage}" />
+            <Button Text="RadioButton Content - Assign a View to the Content property"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type local:RadioButtonsExplainedPage}" />
+            <Button Text="RadioButton ControlTemplate - Define appearance with a ControlTemplate"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type local:RadioButtonControlTemplatePage}" />
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
