@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:CarouselViewDemos.Models"
+             xmlns:viewmodels="clr-namespace:CarouselViewDemos.ViewModels"
+             x:Class="CarouselViewDemos.Views.HorizontalSwipeItemsPage"
+             Title="Swipe items"
+             x:DataType="viewmodels:MonkeysViewModel">
+    <ContentPage.BindingContext>
+        <viewmodels:MonkeysViewModel />
+    </ContentPage.BindingContext>
+    <CarouselView x:Name="carouselView"
+                  ItemsSource="{Binding Monkeys}">
+        <CarouselView.ItemTemplate>
+            <DataTemplate x:DataType="models:Monkey">
+                <StackLayout>
+                    <Border Stroke="DarkGray"
+                            StrokeShape="RoundRectangle 5"
+                            Margin="20"
+                            Padding="20"
+                            HeightRequest="360"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center">
+                        <SwipeView>
+                                <SwipeView.TopItems>
+                                    <SwipeItems>
+                                        <SwipeItem Text="Favorite"
+                                                   IconImageSource="favorite.png"
+                                                   BackgroundColor="LightGreen"
+                                                   Command="{Binding x:DataType='viewmodels:MonkeysViewModel', Source={RelativeSource AncestorType={x:Type viewmodels:MonkeysViewModel}}, Path=FavoriteCommand}"
+                                                   CommandParameter="{Binding}" />
+                                    </SwipeItems>
+                                </SwipeView.TopItems>
+                                <SwipeView.BottomItems>
+                                    <SwipeItems>
+                                        <SwipeItem Text="Delete"
+                                                   IconImageSource="delete.png"
+                                                   BackgroundColor="LightPink"
+                                                   Command="{Binding x:DataType='viewmodels:MonkeysViewModel', Source={RelativeSource AncestorType={x:Type viewmodels:MonkeysViewModel}}, Path=DeleteCommand}"
+                                                   CommandParameter="{Binding}" />
+                                    </SwipeItems>
+                                </SwipeView.BottomItems>
+                                <StackLayout>
+                                    <Label Text="{Binding Name}" 
+                                           FontAttributes="Bold"
+                                           FontSize="20"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center" />
+                                    <Image Source="{Binding ImageUrl}" 
+                                           Aspect="AspectFill"
+                                           HeightRequest="150"
+                                           WidthRequest="150"
+                                           HorizontalOptions="Center" />
+                                    <Label Text="{Binding Location}"
+                                           HorizontalOptions="Center" />
+                                    <Label Text="{Binding Details}"
+                                           FontAttributes="Italic"
+                                           HorizontalOptions="Center"
+                                           MaxLines="5"
+                                           LineBreakMode="TailTruncation" />
+                                </StackLayout>
+                            </SwipeView>
+                        </Border>
+                </StackLayout>
+            </DataTemplate>
+        </CarouselView.ItemTemplate>
+    </CarouselView>
+</ContentPage>

@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:CarouselViewDemos.Controls"
+             xmlns:models="clr-namespace:CarouselViewDemos.Models"
+             xmlns:viewmodels="clr-namespace:CarouselViewDemos.ViewModels"
+             x:Class="CarouselViewDemos.Views.EmptyViewTemplatePage"
+             Title="EmptyView (template)"
+             x:DataType="viewmodels:MonkeysViewModel">
+    <ContentPage.BindingContext>
+        <viewmodels:MonkeysViewModel />
+    </ContentPage.BindingContext>
+    <StackLayout Margin="20">
+        <SearchBar x:Name="searchBar"
+                   SearchCommand="{Binding FilterCommand}"
+                   SearchCommandParameter="{Binding x:DataType='SearchBar', Source={RelativeSource Self}, Path=Text}"
+                   Placeholder="Filter" />
+        <CarouselView ItemsSource="{Binding Monkeys}">
+            <CarouselView.EmptyView>
+                <controls:FilterData x:Name="filter" 
+                                     Filter="{Binding x:DataType='SearchBar', Source={x:Reference searchBar}, Path=Text}" />
+            </CarouselView.EmptyView>
+            <CarouselView.EmptyViewTemplate>
+                <DataTemplate>
+                    <Label x:DataType="controls:FilterData"
+                           Text="{Binding Filter, StringFormat='Your filter term of {0} did not match any records.'}"
+                           Margin="10,25,10,10"
+                           FontAttributes="Bold"
+                           FontSize="18"
+                           HorizontalOptions="Fill"
+                           HorizontalTextAlignment="Center" />
+                </DataTemplate>
+            </CarouselView.EmptyViewTemplate>
+            <CarouselView.ItemTemplate>
+                <DataTemplate x:DataType="models:Monkey">
+                    <StackLayout>
+                        <Border Stroke="DarkGray"
+                                StrokeShape="RoundRectangle 5"
+                                Margin="20"
+                                Padding="20"
+                                HeightRequest="360"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center">
+                            <StackLayout>
+                                <Label Text="{Binding Name}" 
+                                       FontAttributes="Bold"
+                                       FontSize="20"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center" />
+                                <Image Source="{Binding ImageUrl}" 
+                                       Aspect="AspectFill"
+                                       HeightRequest="150"
+                                       WidthRequest="150"
+                                       HorizontalOptions="Center" />
+                                <Label Text="{Binding Location}"
+                                       HorizontalOptions="Center" />
+                                <Label Text="{Binding Details}"
+                                       FontAttributes="Italic"
+                                       HorizontalOptions="Center"
+                                       MaxLines="5"
+                                       LineBreakMode="TailTruncation" />
+                            </StackLayout>
+                        </Border>
+                    </StackLayout>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+    </StackLayout>
+</ContentPage>
