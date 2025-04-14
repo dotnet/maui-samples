@@ -17,5 +17,12 @@ public partial class MainPage : ContentPage
         });
         BindingContext = this;
     }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        BindingContext = null;
+        BindingContext = this;
+    }
 }
 
