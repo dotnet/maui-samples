@@ -1,0 +1,23 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:IndicatorViewDemos"
+             xmlns:views="clr-namespace:IndicatorViewDemos.Views"
+             x:Class="IndicatorViewDemos.MainPage"
+             Title="IndicatorView demos"
+             x:DataType="local:MainPage">
+    <ScrollView>
+        <StackLayout Padding="10">
+            <!-- IndicatorView Section -->
+            <Label Text="IndicatorView Options" FontAttributes="Bold" FontSize="Medium" Margin="0,10,0,5" />
+            <Button Text="Basic IndicatorView"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:BasicIndicatorViewPage}" />
+            <Button Text="Templated IndicatorView"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:TemplatedIndicatorViewPage}" />
+            <Button Text="Configurable IndicatorView"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:ConfigurableIndicatorViewPage}" />
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
