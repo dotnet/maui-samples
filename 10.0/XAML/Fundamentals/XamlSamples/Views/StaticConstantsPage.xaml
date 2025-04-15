@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sys="clr-namespace:System;assembly=netstandard"
+             x:Class="XamlSamples.StaticConstantsPage"
+             Title="Static Constants Page"
+             Padding="5,25,5,0">
+    <StackLayout>
+        <Label Text="Hello, XAML!"
+               TextColor="Aqua"
+               BackgroundColor="Brown"
+               FontAttributes="Bold"
+               FontSize="30"
+               HorizontalOptions="Center" />
+        <BoxView WidthRequest="{x:Static sys:Math.PI}"
+                 HeightRequest="{x:Static sys:Math.E}"
+                 Color="Aqua"
+                 HorizontalOptions="Center"
+                 VerticalOptions="Center"
+                 Scale="100" />
+    </StackLayout>
+</ContentPage>

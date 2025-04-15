@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:skia="clr-namespace:SkiaSharp.Views.Maui.Controls;assembly=SkiaSharp.Views.Maui.Controls"
+             x:Class="SkiaSharpDemos.Basics.BitmapDissolvePage"
+             Title="Bitmap Dissolve">
+    <Grid RowDefinitions="0.8*, 0.2*">
+        <skia:SKCanvasView x:Name="canvasView"
+                           PaintSurface="OnCanvasViewPaintSurface" />
+        <Slider x:Name="progressSlider"
+                Grid.Row="1"
+                Margin="10"
+                ValueChanged="OnSliderValueChanged" />
+    </Grid>
+</ContentPage>

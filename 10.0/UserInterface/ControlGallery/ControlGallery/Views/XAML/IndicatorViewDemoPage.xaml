@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:ControlGallery.Models"
+             xmlns:views="clr-namespace:ControlGallery.Views.XAML"
+             x:Class="ControlGallery.Views.XAML.IndicatorViewDemoPage"
+             Title="IndicatorView Demo"
+             x:DataType="views:IndicatorViewDemoPage">
+    <StackLayout Margin="20">
+        <Label Text="IndicatorView"
+               FontSize="50"
+               FontAttributes="Bold"
+               HorizontalOptions="Center" />
+        <CarouselView ItemsSource="{Binding Monkeys}"
+                      IndicatorView="indicatorView">
+            <CarouselView.ItemTemplate>
+                <DataTemplate x:DataType="models:Monkey">
+                    <StackLayout>
+                        <Border Stroke="DarkGray"
+                                StrokeShape="RoundRectangle 5"
+                                Margin="20"
+                                Padding="20"
+                                HeightRequest="300"
+                                HorizontalOptions="Center"
+                                VerticalOptions="CenterAndExpand">
+                            <StackLayout>
+                                <Label Text="{Binding Name}"
+                                       FontAttributes="Bold"
+                                       FontSize="20"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center" />
+                                <Image Source="{Binding ImageUrl}"
+                                       Aspect="AspectFill"
+                                       HeightRequest="150"
+                                       WidthRequest="150"
+                                       HorizontalOptions="Center" />
+                                <Label Text="{Binding Location}"
+                                       HorizontalOptions="Center" />
+                                <Label Text="{Binding Details}"
+                                       FontAttributes="Italic"
+                                       HorizontalOptions="Center"
+                                       MaxLines="5"
+                                       LineBreakMode="TailTruncation" />
+                            </StackLayout>
+                        </Border>
+                    </StackLayout>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+        <IndicatorView x:Name="indicatorView"
+                       Margin="0,0,0,40"
+                       IndicatorColor="LightGray"
+                       SelectedIndicatorColor="DarkGray"
+                       HorizontalOptions="Center" />
+    </StackLayout>
+</ContentPage>

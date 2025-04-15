@@ -1,0 +1,67 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:GraphicsViewDemos.Views"
+             x:Class="GraphicsViewDemos.Views.MainPage"
+             Title="GraphicsView Demos"
+             x:DataType="views:MainPage">
+    <ScrollView>
+        <StackLayout Padding="10">
+            <!-- Draw Shapes Section -->
+            <Label Text="Draw Shapes" FontAttributes="Bold" FontSize="Medium" Margin="0,10,0,5" />
+            <Button Text="Draw shapes"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:DrawShapesPage}" />
+            <Button Text="Image operations"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:ImagesPage}" />
+            <Button Text="Blend modes"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:BlendModesPage}" />
+
+            <!-- Paint Section -->
+            <Label Text="Paint" FontAttributes="Bold" FontSize="Medium" Margin="0,10,0,5" />
+            <Button Text="Solid paint"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:SolidPaintPage}" />
+            <Button Text="Image paint"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:ImagePaintPage}" />
+            <Button Text="Pattern paint"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:PatternPaintPage}" />
+            <Button Text="Linear gradient paint"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:LinearGradientPaintPage}" />
+            <Button Text="Radial gradient paint"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:RadialGradientPaintPage}" />
+
+            <!-- Transforms Section -->
+            <Label Text="Transforms" FontAttributes="Bold" FontSize="Medium" Margin="0,10,0,5" />
+            <Button Text="Translate"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:TranslateTransformPage}" />
+            <Button Text="Scale"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:ScaleTransformPage}" />
+            <Button Text="Rotate"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:RotateTransformPage}" />
+            <Button Text="Combine transforms"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:CombineTransformsPage}" />
+            <Button Text="Affine"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:AffineTransformPage}" />
+
+            <!-- Winding Modes Section -->
+            <Label Text="Winding Modes" FontAttributes="Bold" FontSize="Medium" Margin="0,10,0,5" />
+            <Button Text="Non zero"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:NonZeroWindingModePage}" />
+            <Button Text="Even odd"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:EvenOddWindingModePage}" />
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

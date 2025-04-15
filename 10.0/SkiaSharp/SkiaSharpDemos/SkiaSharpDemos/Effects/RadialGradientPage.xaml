@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:skia="clr-namespace:SkiaSharp;assembly=SkiaSharp"
+             xmlns:skiaMaui="clr-namespace:SkiaSharp.Views.Maui.Controls;assembly=SkiaSharp.Views.Maui.Controls"
+             x:Class="SkiaSharpDemos.Effects.RadialGradientPage"
+             Title="Radial Gradient">
+    <Grid RowDefinitions="*,Auto">
+        <skiaMaui:SKCanvasView x:Name="canvasView"
+                               PaintSurface="OnCanvasViewPaintSurface" />
+        <Picker x:Name="tileModePicker" 
+                Grid.Row="1"
+                Title="Shader Tile Mode" 
+                Margin="10"
+                SelectedIndex="0"
+                SelectedIndexChanged="OnPickerSelectedIndexChanged">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type skia:SKShaderTileMode}">
+                    <x:Static Member="skia:SKShaderTileMode.Clamp" />
+                    <x:Static Member="skia:SKShaderTileMode.Repeat" />
+                    <x:Static Member="skia:SKShaderTileMode.Mirror" />
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,22 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns:local="clr-namespace:CardViewDemo"
+             x:Class="CardViewDemo.MainPage"
+			 Title="CardView demos"
+             x:DataType="local:MainPage">
+    <ScrollView>
+        <StackLayout Padding="10">
+            <!-- CardView Section -->
+            <Label Text="CardView Options" FontAttributes="Bold" FontSize="Medium" Margin="0,10,0,5" />
+            <Button Text="CardView XAML - Create CardView items with XAML."
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type local:CardViewXamlPage}" />
+            <Button Text="CardView Code - Create CardView items with code."
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type local:CardViewCodePage}" />
+            <Button Text="CardView ControlTemplate - Use a ControlTemplate to change control appearance."
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type local:ControlTemplatePage}" />
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

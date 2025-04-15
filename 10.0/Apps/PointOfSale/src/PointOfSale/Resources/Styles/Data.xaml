@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <x:Array Type="{x:Type x:String}" x:Key="CategoriesArray">
+        <x:String>Noodles</x:String>
+        <x:String>Rice</x:String>
+        <x:String>Appetizers</x:String>
+        <x:String>Desserts</x:String>
+        <x:String>Beverages</x:String>
+    </x:Array>
+
+</ResourceDictionary>

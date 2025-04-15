@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:WorkingWithMaps.Views"
+             x:Class="WorkingWithMaps.Views.MainPage"
+             Title="Maps demos"
+             x:DataType="views:MainPage">
+    <ScrollView>
+        <StackLayout Padding="10">
+            <!-- Map Section -->
+            <Label Text="Map Options" FontAttributes="Bold" FontSize="Medium" Margin="0,10,0,5" />
+            <Button Text="Map types - Display a map with zooming and different map types."
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:MapTypesPage}" />
+            <Button Text="Map region - Display a map at a specific location."
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:MapRegionPage}" />
+            <Button Text="Map - Display a map with other properties set."
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:MapPropertiesPage}" />
+            <Button Text="Pins - Add a pin to a map."
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:PinPage}" />
+            <Button Text="Pins with data binding - Adds a pin collection to a map."
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:PinItemsSourcePage}" />
+            <Button Text="Polygon and polyline - Add polygons and polylines to a map."
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:PolygonsPage}" />
+            <Button Text="Highlight a circular area - Add a circle to a map."
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:CirclePage}" />
+            <Button Text="Geocoder demo - Geocode and reverse geocode an address."
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:GeocoderPage}" />
+            <Button Text="Native map app - Launch the platform's native map app."
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:MapAppPage}" />
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

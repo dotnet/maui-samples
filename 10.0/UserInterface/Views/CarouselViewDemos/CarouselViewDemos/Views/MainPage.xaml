@@ -1,0 +1,70 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:CarouselViewDemos"
+             xmlns:views="clr-namespace:CarouselViewDemos.Views"
+             x:Class="CarouselViewDemos.MainPage"
+             Title="CarouselView demos"
+             x:DataType="local:MainPage">
+    <ScrollView>
+        <StackLayout Padding="10" Spacing="20">
+
+            <!-- Layout Section -->
+            <Label Text="Layout" FontAttributes="Bold" FontSize="Medium" />
+            <Button Text="Horizontal layout (Text)" Command="{Binding NavigateCommand}" CommandParameter="{x:Type views:HorizontalTextLayoutPage}" />
+            <Button Text="Vertical layout (Text)" Command="{Binding NavigateCommand}" CommandParameter="{x:Type views:VerticalTextLayoutPage}" />
+            <Button Text="Horizontal layout (DataTemplate)" Command="{Binding NavigateCommand}" CommandParameter="{x:Type views:HorizontalTemplateLayoutPage}" />
+            <Button Text="Vertical layout (DataTemplate)" Command="{Binding NavigateCommand}" CommandParameter="{x:Type views:VerticalTemplateLayoutPage}" />
+            <Button Text="Horizontal layout (Peek items)" Command="{Binding NavigateCommand}" CommandParameter="{x:Type views:HorizontalLayoutPeekAreaPage}" />
+            <Button Text="Horizontal layout (Data template selector)" Command="{Binding NavigateCommand}" CommandParameter="{x:Type views:HorizontalLayoutDataTemplateSelectorPage}" />
+            <Button Text="Horizontal layout (RTL FlowDirection)" Command="{Binding NavigateCommand}" CommandParameter="{x:Type views:HorizontalTemplateLayoutRTLPage}" />
+
+            <!-- Spacing Section -->
+            <Label Text="Spacing" FontAttributes="Bold" FontSize="Medium" />
+            <Button Text="Horizontal layout (ItemSpacing)" Command="{Binding NavigateCommand}" CommandParameter="{x:Type views:HorizontalSpacingPage}" />
+            <Button Text="Vertical layout (ItemSpacing)" Command="{Binding NavigateCommand}" CommandParameter="{x:Type views:VerticalSpacingPage}" />
+
+            <!-- Sizing Section -->
+            <Label Text="Sizing" FontAttributes="Bold" FontSize="Medium" />
+            <Button Text="Dynamic item sizing (Horizontal layout)" Command="{Binding NavigateCommand}" CommandParameter="{x:Type views:DynamicSizeItemsPage}" />
+
+            <!-- Interaction Section -->
+            <Label Text="Interaction" FontAttributes="Bold" FontSize="Medium" />
+            <Button Text="Current item and position (Events)" Command="{Binding NavigateCommand}" CommandParameter="{x:Type views:CurrentItemAndPositionPage}" />
+            <Button Text="Current item and position (Bindings)" Command="{Binding NavigateCommand}" CommandParameter="{x:Type views:CurrentItemAndPositionBindingsPage}" />
+            <Button Text="Set current item and position (From viewmodel)" Command="{Binding NavigateCommand}" CommandParameter="{x:Type views:SetCurrentItemAndPositionPage}" />
+            <Button Text="Visual states (DefaultItem, CurrentItem, PreviousItem, NextItem)" Command="{Binding NavigateCommand}" CommandParameter="{x:Type views:VisualStatesPage}" />
+
+            <!-- EmptyView Section -->
+            <Label Text="EmptyView" FontAttributes="Bold" FontSize="Medium" />
+            <Button Text="EmptyView string (ItemsSource Null)" Command="{Binding NavigateCommand}" CommandParameter="{x:Type views:EmptyViewNullPage}" />
+            <Button Text="EmptyView string (Load simulation)" Command="{Binding NavigateCommand}" CommandParameter="{x:Type views:EmptyViewLoadSimulationPage}" />
+            <Button Text="EmptyView string (Filtering)" Command="{Binding NavigateCommand}" CommandParameter="{x:Type views:EmptyViewFilteredPage}" />
+            <Button Text="EmptyView with multiple views (Filtering)" Command="{Binding NavigateCommand}" CommandParameter="{x:Type views:EmptyViewWithViewsFilteredPage}" />
+            <Button Text="EmptyView with EmptyViewTemplate (Filtering)" Command="{Binding NavigateCommand}" CommandParameter="{x:Type views:EmptyViewTemplatePage}" />
+            <Button Text="EmptyView with EmptyViewTemplate (Data template selector)" Command="{Binding NavigateCommand}" CommandParameter="{x:Type views:EmptyViewDataTemplateSelectorPage}" />
+            <Button Text="EmptyView swap (Filtering)" Command="{Binding NavigateCommand}" CommandParameter="{x:Type views:EmptyViewSwapPage}" />
+
+            <!-- Scrolling Section -->
+            <Label Text="Scrolling" FontAttributes="Bold" FontSize="Medium" />
+            <Button Text="Scroll by index (ScrollTo)" Command="{Binding NavigateCommand}" CommandParameter="{x:Type views:ScrollToByIndexPage}" />
+            <Button Text="Scroll by object (ScrollTo)" Command="{Binding NavigateCommand}" CommandParameter="{x:Type views:ScrollToByObjectPage}" />
+            <Button Text="Snap points (Type and alignment)" Command="{Binding NavigateCommand}" CommandParameter="{x:Type views:SnapPointsPage}" />
+            <Button Text="Scroll mode when adding items (ItemsUpdatingScrollMode)" Command="{Binding NavigateCommand}" CommandParameter="{x:Type views:ItemsUpdatingScrollModePage}" />
+            <Button Text="Incremental loading on scroll (RemainingItemsThreshold)" Command="{Binding NavigateCommand}" CommandParameter="{x:Type views:IncrementalLoadingPage}" />
+
+            <!-- Pull to Refresh Section -->
+            <Label Text="Pull to Refresh" FontAttributes="Bold" FontSize="Medium" />
+            <Button Text="Pull to refresh using RefreshView (Horizontal layout)" Command="{Binding NavigateCommand}" CommandParameter="{x:Type views:HorizontalPullToRefreshPage}" />
+            <Button Text="Pull to refresh using RefreshView (Vertical layout)" Command="{Binding NavigateCommand}" CommandParameter="{x:Type views:VerticalPullToRefreshPage}" />
+
+            <!-- Indicators Section -->
+            <Label Text="Indicators" FontAttributes="Bold" FontSize="Medium" />
+            <Button Text="Indicators (Horizontal layout)" Command="{Binding NavigateCommand}" CommandParameter="{x:Type views:HorizontalLayoutWithIndicatorsPage}" />
+
+            <!-- Swipe Section -->
+            <Label Text="Swipe" FontAttributes="Bold" FontSize="Medium" />
+            <Button Text="Context menu items (Horizontal layout)" Command="{Binding NavigateCommand}" CommandParameter="{x:Type views:HorizontalSwipeItemsPage}" />
+            
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

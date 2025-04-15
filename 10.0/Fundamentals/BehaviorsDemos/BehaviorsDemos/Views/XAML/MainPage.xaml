@@ -1,0 +1,34 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:BehaviorsDemos"
+             x:Class="BehaviorsDemos.MainPage"
+             Title="Behavior demos"
+             Padding="10"
+             x:DataType="local:MainPage">
+    <StackLayout Padding="10">
+        <Label Text="Behaviors" 
+           FontAttributes="Bold" 
+           HorizontalOptions="Start"
+           Margin="0,0,0,10" />
+        <Button Text="Attached behavior"
+            Command="{Binding NavigateCommand}" 
+            CommandParameter="{x:Type local:AttachedNumericValidationPage}" 
+            HorizontalOptions="Fill" />
+        <Button Text=".NET MAUI behavior"
+            Command="{Binding NavigateCommand}" 
+            CommandParameter="{x:Type local:NumericValidationPage}" 
+            HorizontalOptions="Fill" />
+        <Button Text=".NET MAUI behavior with a style"
+            Command="{Binding NavigateCommand}" 
+            CommandParameter="{x:Type local:NumericValidationStylePage}" 
+            HorizontalOptions="Fill" />
+        <Button Text="Event to command behavior"
+            Command="{Binding NavigateCommand}" 
+            CommandParameter="{x:Type local:EventToCommandBehaviorPage}" 
+            HorizontalOptions="Fill" />
+        <Button Text="Platform behavior"
+            Command="{Binding NavigateCommand}" 
+            CommandParameter="{x:Type local:PlatformBehaviorPage}" 
+            HorizontalOptions="Fill" />
+    </StackLayout>
+</ContentPage>

@@ -1,0 +1,51 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:WorkingWithTriggers"
+             x:Class="WorkingWithTriggers.MainPage"
+             Title="Trigger demos"
+             x:DataType="local:MainPage">
+    <ScrollView>
+        <StackLayout Padding="10">
+            <Button Text="Property trigger demo"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type local:PropertyTriggerXaml}" 
+                Margin="0,5,0,0" />
+            <Button Text="DataTrigger demo"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type local:DataTriggerXaml}" 
+                Margin="0,5,0,0" />
+            <Button Text="EventTrigger demo"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type local:EventTriggerXaml}" 
+                Margin="0,5,0,0" />
+            <Button Text="MultiTrigger demo"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type local:MultiTriggerXaml}" 
+                Margin="0,5,0,0" />
+            <Button Text="EnterActions and ExitActions demo"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type local:EnterExitActionXaml}" 
+                Margin="0,5,0,0" />
+            <Button Text="AdaptiveTrigger demo"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type local:AdaptiveTriggerDemoPage}" 
+                Margin="0,5,0,0" />
+            <Button Text="CompareStateTrigger demo"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type local:CompareStateTriggerDemoPage}" 
+                Margin="0,5,0,0" />
+            <Button Text="DeviceStateTrigger demo"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type local:DeviceStateTriggerDemoPage}" 
+                Margin="0,5,0,0" />
+            <Button Text="OrientationStateTrigger demo"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type local:OrientationStateTriggerDemoPage}" 
+                Margin="0,5,0,0" />
+            <Button Text="StateTrigger demo"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type local:StateTriggerDemoPage}" 
+                Margin="0,5,0,0" />
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

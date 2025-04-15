@@ -1,0 +1,74 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:GridDemos"
+             xmlns:views="clr-namespace:GridDemos.Views.XAML"
+             xmlns:codeViews="clr-namespace:GridDemos.Views.Code"
+             x:Class="GridDemos.MainPage"
+             Title="Grid demos"
+             x:DataType="local:MainPage">
+    <ScrollView>
+        <StackLayout Padding="10" Spacing="15">
+            <!-- XAML Section -->
+            <Label Text="XAML" FontSize="Medium" FontAttributes="Bold" />
+
+            <Label Text="Rows and columns" FontSize="Small" />
+            <Button Text="Basic Grid demo"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:BasicGridPage}" />
+
+            <Label Text="Simplified rows and columns syntax" FontSize="Small" />
+            <Button Text="Basic Grid demo"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:BasicGridSimplifiedSyntaxPage}" />
+
+            <Label Text="RowSpacing and ColumnSpacing" FontSize="Small" />
+            <Button Text="Grid spacing demo"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:GridSpacingPage}" />
+
+            <Label Text="HorizontalOptions and VerticalOptions" FontSize="Small"  />
+            <Button Text="Grid alignment demo"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:GridAlignmentPage}" />
+
+            <Label Text="Color sliders" FontSize="Small" />
+            <Button Text="Nested Grids demo"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:ColorSlidersGridPage}" />
+
+            <Label Text="Non-functioning" FontSize="Small" />
+            <Button Text="Calculator layout demo"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:CalculatorPage}" />
+            
+            <!-- C# Section -->
+            <Label Text="C#" FontSize="Medium" FontAttributes="Bold" />
+
+            <Label Text="Rows and columns" FontSize="Small" />
+            <Button Text="Basic Grid demo"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type codeViews:BasicGridPage}" />
+
+            <Label Text="RowSpacing and ColumnSpacing" FontSize="Small" />
+            <Button Text="Grid spacing demo"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type codeViews:GridSpacingPage}" />
+
+            <Label Text="HorizontalOptions and VerticalOptions" FontSize="Small" />
+            <Button Text="Grid alignment demo"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type codeViews:GridAlignmentPage}" />
+
+            <Label Text="Color sliders" FontSize="Small" />
+            <Button Text="Nested Grids demo"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type codeViews:ColorSlidersGridPage}" />
+
+            <Label Text="Non-functioning" FontSize="Small" />
+            <Button Text="Calculator layout demo"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type codeViews:CalculatorPage}" />
+            
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

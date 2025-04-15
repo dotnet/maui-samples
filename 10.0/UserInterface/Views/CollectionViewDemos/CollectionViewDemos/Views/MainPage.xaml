@@ -1,0 +1,179 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:CollectionViewDemos"
+             xmlns:views="clr-namespace:CollectionViewDemos.Views"
+             x:Class="CollectionViewDemos.MainPage"
+             Title="CollectionView demos"
+             x:DataType="local:MainPage">
+    <ScrollView>
+        <StackLayout Padding="10">
+            <!-- Layout Section -->
+            <Label Text="Layout" FontAttributes="Bold" FontSize="Medium" />
+            <Button Text="Vertical list - Text"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:VerticalListTextPage}" />
+            <Button Text="Horizontal list - Text"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:HorizontalListTextPage}" />
+            <Button Text="Vertical grid - Text"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:VerticalGridTextPage}" />
+            <Button Text="Horizontal grid - Text"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:HorizontalGridTextPage}" />
+            <Button Text="Vertical list - DataTemplate"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:VerticalListPage}" />
+            <Button Text="Horizontal list - DataTemplate"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:HorizontalListPage}" />
+            <Button Text="Vertical grid - DataTemplate"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:VerticalGridPage}" />
+            <Button Text="Horizontal grid - DataTemplate"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:HorizontalGridPage}" />
+            <Button Text="Vertical list - Data template selector"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:VerticalListDataTemplateSelectorPage}" />
+            <Button Text="Vertical list - RTL FlowDirection"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:VerticalListRTLPage}" />
+
+            <!-- Spacing Section -->
+            <Label Text="Spacing" FontAttributes="Bold" FontSize="Medium" Margin="10,10,0,5" />
+            <Button Text="Vertical list - ItemSpacing"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:VerticalListSpacingPage}" />
+            <Button Text="Horizontal list - ItemSpacing"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:HorizontalListSpacingPage}" />
+            <Button Text="Vertical grid - HorizontalItemSpacing and VerticalItemSpacing"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:VerticalGridSpacingPage}" />
+            <Button Text="Horizontal grid - HorizontalItemSpacing and VerticalItemSpacing"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:HorizontalGridSpacingPage}" />
+            <!-- Sizing Section -->
+            <Label Text="Sizing" FontAttributes="Bold" FontSize="Medium" Margin="0,10,0,5" />
+            <Button Text="Variable size items - Vertical list"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:VerticalListVariableSizeItemsPage}" />
+            <Button Text="Dynamic item sizing - Vertical list"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:VerticalListDynamicSizeItemsPage}" />
+
+            <!-- Selection Section -->
+            <Label Text="Selection" FontAttributes="Bold" FontSize="Medium" Margin="0,10,0,5" />
+            <Button Text="Single - Vertical list"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:VerticalListSingleSelectionPage}" />
+            <Button Text="Multiple - Vertical list"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:VerticalListMultipleSelectionPage}" />
+            <Button Text="Single pre-selection - Vertical list"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:VerticalListSinglePreSelectionPage}" />
+            <Button Text="Multiple pre-selection - Vertical list"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:VerticalListMultiplePreSelectionPage}" />
+            <Button Text="Selection color - Vertical list"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:VerticalListSelectionColorPage}" />
+
+
+            <!-- EmptyView Section -->
+            <Label Text="EmptyView" FontAttributes="Bold" FontSize="Medium" Margin="0,10,0,5" />
+            <Button Text="EmptyView string - ItemsSource Null"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:EmptyViewNullPage}" />
+            <Button Text="EmptyView string - Load simulation"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:EmptyViewLoadSimulationPage}" />
+            <Button Text="EmptyView string - Filtering"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:EmptyViewFilteredPage}" />
+            <Button Text="EmptyView with multiple views - Filtering"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:EmptyViewWithViewsFilteredPage}" />
+            <Button Text="EmptyView with EmptyViewTemplate - Filtering"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:EmptyViewTemplatePage}" />
+            <Button Text="EmptyView with EmptyViewTemplate - Data template selector"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:EmptyViewDataTemplateSelectorPage}" />
+            <Button Text="EmptyView swap - Filtering"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:EmptyViewSwapPage}" />
+
+            <!-- Grouping Section -->
+            <Label Text="Grouping" FontAttributes="Bold" FontSize="Medium" Margin="0,10,0,5" />
+            <Button Text="Grouping - Vertical list with DataTemplates"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:VerticalListGroupingPage}" />
+            <Button Text="Grouping - Vertical list without DataTemplates"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:VerticalListTextGroupingPage}" />
+            <Button Text="Grouping including empty groups - Vertical list with DataTemplates"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:VerticalListEmptyGroupsPage}" />
+            <Button Text="Grouping with variable sized items - Vertical list with DataTemplates"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:VerticalListGroupingVariableSizeItemsPage}" />
+
+            <!-- Pull to Refresh Section -->
+            <Label Text="Pull to Refresh" FontAttributes="Bold" FontSize="Medium" Margin="0,10,0,5" />
+            <Button Text="Pull to refresh using RefreshView - Vertical list"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:VerticalListPullToRefreshPage}" />
+            <Button Text="Pull to refresh using RefreshView - Horizontal grid"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:HorizontalGridPullToRefreshPage}" />
+
+            <!-- Headers and Footers Section -->
+            <Label Text="Headers and Footers" FontAttributes="Bold" FontSize="Medium" Margin="0,10,0,5" />
+            <Button Text="String header and footer - Vertical list"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:VerticalListHeaderFooterStringPage}" />
+            <Button Text="DataTemplate header and footer - Vertical list"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:VerticalListHeaderFooterDataTemplatePage}" />
+            <Button Text="View header and footer - Vertical list"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:VerticalListHeaderFooterViewPage}" />
+            <Button Text="View header and footer - Horizontal grid"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:HorizontalGridHeaderFooterViewPage}" />
+
+            <!-- Scrolling Section -->
+            <Label Text="Scrolling" FontAttributes="Bold" FontSize="Medium" Margin="0,10,0,5" />
+            <Button Text="Scroll by index - ScrollTo"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:ScrollToByIndexPage}" />
+            <Button Text="Scroll by object - ScrollTo"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:ScrollToByObjectPage}" />
+            <Button Text="Scroll by index - Grouped data"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:ScrollToByIndexWithGroupingPage}" />
+            <Button Text="Scroll by object - Grouped data"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:ScrollToByObjectWithGroupingPage}" />
+            <Button Text="Snap points - Type and alignment"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:VerticalListSnapPointsPage}" />
+            <Button Text="Scroll mode when adding items - ItemsUpdatingScrollMode"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:ItemsUpdatingScrollModePage}" />
+            <Button Text="Incremental loading on scroll - RemainingItemsThreshold"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:IncrementalLoadingPage}" />
+
+            <!-- Swipe Section -->
+            <Label Text="Swipe" FontAttributes="Bold" FontSize="Medium" Margin="0,10,0,5" />
+            <Button Text="Context menu items - Vertical list"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:VerticalListSwipeContextItemsPage}" />
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

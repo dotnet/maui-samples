@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BrushesDemos.Views.UpdateBrushDemoPage"
+             Title="Update Brush demo">
+    <StackLayout Margin="20">
+        <Label Text="SolidColorBrush"
+               FontAttributes="Bold" />
+        <Border x:Name="solidColorBorder"
+                Margin="0,20,0,0"
+                Stroke="LightGray"
+                StrokeShape="RoundRectangle 12"
+                HeightRequest="120"
+                WidthRequest="120" />
+        <Label Margin="0,20,0,0"
+               Text="LinearGradientBrush"
+               FontAttributes="Bold" />
+        <Border x:Name="linearGradientBorder"
+                Margin="0,20,0,0"
+                Stroke="LightGray"
+                StrokeShape="RoundRectangle 12"
+                HeightRequest="120"
+                WidthRequest="120" />
+        <Label Margin="0,20,0,0"
+               Text="RadialGradientBrush"
+               FontAttributes="Bold" />
+        <Border x:Name="radialGradientBorder"
+                Margin="0,20,0,0"
+                Stroke="LightGray"
+                StrokeShape="RoundRectangle 12"
+                HeightRequest="120"
+                WidthRequest="120" />
+        <Label Margin="0,40,0,0"
+               Text="Brushes are updated every second."
+               HorizontalOptions="Center" />
+    </StackLayout>
+</ContentPage>

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:BehaviorsDemos"
+             x:Class="BehaviorsDemos.AttachedNumericValidationPage"
+             Title="Attached behavior demo"
+             IconImageSource="xaml.png">
+    <StackLayout Padding="10,60,10,0">
+        <Label Text="Red when the number isn't valid"
+               FontSize="12" />
+        <Entry Placeholder="Enter a System.Double"
+               local:AttachedNumericValidationBehavior.AttachBehavior="true" />
+    </StackLayout>
+</ContentPage>
