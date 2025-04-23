@@ -1,0 +1,61 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:BrushesDemos"
+			 xmlns:views="clr-namespace:BrushesDemos.Views"
+             x:Class="BrushesDemos.MainPage"
+			 Title="Brushes demos"
+             x:DataType="local:MainPage">
+    <ScrollView>
+        <StackLayout Padding="10">
+
+            <!-- Brushes Section -->
+            <Label Text="Brushes"
+               FontAttributes="Bold"
+               FontSize="Medium"
+               Margin="0,0,0,10" />
+            
+            <StackLayout Padding="0,5">
+                <Label Text="Solid color brush demos" FontSize="Small" />
+                <Button Text="Navigate"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:SolidColorBrushDemoPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="All solid color brushes" FontSize="Small" />
+                <Button Text="Navigate"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:AllSolidColorBrushesDemoPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Linear gradient brush demos" FontSize="Small" />
+                <Button Text="Navigate"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:LinearGradientBrushDemoPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Radial gradient brush demos" FontSize="Small" />
+                <Button Text="Navigate"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:RadialGradientBrushDemoPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Update brushes at runtime demo" FontSize="Small" />
+                <Button Text="Navigate"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:UpdateBrushDemoPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="CSS demo" FontSize="Small" />
+                <Button Text="Navigate"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:CSSDemoPage}" />
+            </StackLayout>
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

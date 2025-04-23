@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ControlGallery.Views.XAML.VerticalStackLayoutDemoPage"
+             Title="VerticalStackLayout demo">
+    <VerticalStackLayout Margin="20"
+                         Spacing="10">
+        <Label Text="VerticalStackLayout"
+               FontSize="50"
+               FontAttributes="Bold"
+               HorizontalOptions="Center" />
+        <Label Text="Primary colors" />
+        <Rectangle Fill="Red"
+                   HeightRequest="30"
+                   WidthRequest="300" />
+        <Rectangle Fill="Yellow"
+                   HeightRequest="30"
+                   WidthRequest="300" />
+        <Rectangle Fill="Blue"
+                   HeightRequest="30"
+                   WidthRequest="300" />
+        <Label Text="Secondary colors" />
+        <Rectangle Fill="Green"
+                   HeightRequest="30"
+                   WidthRequest="300" />
+        <Rectangle Fill="Orange"
+                   HeightRequest="30"
+                   WidthRequest="300" />
+        <Rectangle Fill="Purple"
+                   HeightRequest="30"
+                   WidthRequest="300" />
+    </VerticalStackLayout>
+</ContentPage>

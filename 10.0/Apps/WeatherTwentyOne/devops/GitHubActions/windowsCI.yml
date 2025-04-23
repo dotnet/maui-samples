@@ -1,0 +1,134 @@
+name: windowsCI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  workflow_dispatch:
+
+env:
+    DOTNETVERSION: 6.0.300
+    
+jobs:
+  buildWindows:
+    runs-on: windows-2022
+    
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Setup .NET SDK ${{env.DOTNETVERSION}}
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '${{env.DOTNETVERSION}}'
+          
+      - name: Install .NET MAUI
+        shell: pwsh
+        run: |
+          & dotnet nuget locals all --clear
+          & dotnet workload install maui --source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet7/nuget/v3/index.json --source https://api.nuget.org/v3/index.json
+          & dotnet workload install android ios maccatalyst tvos macos maui wasm-tools maui-maccatalyst --source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet7/nuget/v3/index.json --source https://api.nuget.org/v3/index.json
+      
+      # https://docs.microsoft.com/en-us/dotnet/maui/windows/deployment/overview
+      - name: Build Windows MSIX
+        run: |
+          cd .\6.0\Apps\WeatherTwentyOne\src\
+          dotnet publish -f net7.0-windows10.0.19041.0 -c Release 
+          
+#       - name: Build and Run UnitTests
+#         shell: bash
+#         run: |
+#           dotnet build <path to unit test csproj>
+#           dotnet test <path to unit test csproj> --no-build --verbosity normal
+
+      # https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/certutil
+      # commandline util to encode to base64 on windows
+      - name: Create signing pfx file from secrets
+        shell: pwsh
+        id: secret-file
+        env:
+          SECRET_DATA1: ${{ secrets.WIN_SIGN_CERT }}
+        run: |
+          $secretFile = "WinSignCert.pfx"; 
+          $encodedBytes = [System.Convert]::FromBase64String($env:SECRET_DATA1); 
+          Set-Content $secretFile -Value $encodedBytes -AsByteStream;
+          Write-Output "::set-output name=SECRET_FILE::$secretFile";
+          Write-Output " ";
+          Write-Output "CHECK FILE EXISTS";
+          Write-Output " ";
+          ls
+
+      # https://docs.microsoft.com/en-us/windows/msix/desktop/azure-dev-ops
+      - name: Sign Windows App
+        shell: pwsh
+        env:
+          CERT_PASSWORD: ${{ secrets.WIN_CERT_PASSWORD }}
+        run: |
+          '"C:\Program Files (x86)\Windows Kits\10\App Certification Kit\SignTool" sign /a /fd SHA256 /f WinSignCert.pfx /p ($env:CERT_PASSWORD) 6.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\bin\Release\net7.0-windows10.0.19041.0\win10-x64\AppPackages\WeatherTwentyOne_1.0.0.0_TestWeatherTwentyOne_1.0.0.0_x64.msix'
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: artifacts-windows
+          path: |
+            **\*.msix
+      
+  buildAndroid:
+      runs-on: windows-2022
+
+      steps:
+        - uses: actions/checkout@v2
+
+        - name: Setup .NET SDK ${{env.DOTNETVERSION}}
+          uses: actions/setup-dotnet@v1
+          with:
+            dotnet-version:  '${{env.DOTNETVERSION}}'
+
+        - name: List installed .NET info
+          shell: pwsh
+          run: dotnet --info
+
+        - name: Install .NET MAUI
+          shell: bash
+          run: |
+            dotnet nuget locals all --clear 
+            dotnet workload install maui --source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet7/nuget/v3/index.json --source https://api.nuget.org/v3/index.json
+            dotnet workload install android ios maccatalyst tvos macos maui wasm-tools --source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet7/nuget/v3/index.json --source https://api.nuget.org/v3/index.json
+
+        - name: Restore nuget packages
+          run: |
+            cd 6.0\Apps\WeatherTwentyOne\src
+            dotnet restore WeatherTwentyOne.sln
+
+          # https://docs.microsoft.com/en-us/dotnet/maui/android/deployment/overview
+        - name : Build Android App
+          shell: bash
+          run: |
+            cd 6.0/Apps/WeatherTwentyOne/src
+            dotnet publish -f:net7.0-android -c:Release
+            
+        # # Store Android Signing Keystore and password in Secrets using base64 encoding
+        # # https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/certutil
+        # # commandline util to encode to base64 on windows
+        # - name: Extract Android signing key from env
+        #   shell: bash
+        #   run: |
+        #     echo "${{ secrets.RELEASE_KEYSTORE }}" > android/release.jks.base64
+        #     base64 -d android/release.jks.base64 > android/release.decrypted.jks
+
+        # # check android SDK paths etc in installed VM : https://github.com/actions/virtual-environments#available-environments
+        # - name: Sign dev build
+        #   shell: bash
+        #   run: jarsigner -keystore android/release.decrypted.jks -storepass "${{ secrets.RELEASE_KEYSTORE_PASSWORD }}" -signedjar ./android/app/build/outputs/bundle/release/app-release-signed.aab ./android/app/build/outputs/bundle/release/app-release.aab release
+
+  #       - name: Build and Run UnitTests
+  #         shell: bash
+  #         run: |
+  #           dotnet build <path to unit test csproj>
+  #           dotnet test <path to unit test csproj> --no-build --verbosity normal
+
+        - uses: actions/upload-artifact@v2
+          with:
+            name: artifacts-android
+            path: |
+              6.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\bin\Release\net7.0-android\publish\*.apk

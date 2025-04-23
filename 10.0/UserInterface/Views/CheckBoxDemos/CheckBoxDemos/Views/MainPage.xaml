@@ -1,0 +1,18 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns:local="clr-namespace:CheckBoxDemos"
+             x:Class="CheckBoxDemos.MainPage"
+	         Title="CheckBox Demos"
+             x:DataType="local:MainPage">
+    <ScrollView>
+        <StackLayout Padding="10" Spacing="20">
+            <!-- Section: Basic CheckBox -->
+            <Label Text="Basic CheckBox" FontAttributes="Bold" FontSize="Medium" />
+            
+            <Button Text="Implement a CheckBox in code" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:BasicCheckBoxCodePage}" />
+            <Button Text="Implement a CheckBox in XAML" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:BasicCheckBoxXAMLPage}" />
+            <Button Text="Implement a CheckBox that responds to visual states" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:BasicCheckBoxVisualStatesPage}" />
+            <Button Text="Implement a CheckBox with data bindings" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:BasicCheckBoxBindingsPage}" />
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

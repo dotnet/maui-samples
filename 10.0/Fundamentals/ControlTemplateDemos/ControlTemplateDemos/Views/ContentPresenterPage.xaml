@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<controls:HeaderFooterPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                           xmlns:controls="clr-namespace:ControlTemplateDemos.Controls"
+                           x:Class="ControlTemplateDemos.ContentPresenterPage"
+                           Title="ContentPresenter demo" 
+                           HeaderText="MyApp"
+                           ControlTemplate="{StaticResource SecondaryColorTemplate}">
+    <StackLayout Margin="10">
+        <Entry Placeholder="Enter username" />
+        <Entry Placeholder="Enter password"
+               IsPassword="True" />
+        <Button Text="Login" />
+    </StackLayout>
+</controls:HeaderFooterPage>

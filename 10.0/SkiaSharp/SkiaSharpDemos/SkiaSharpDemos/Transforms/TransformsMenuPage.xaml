@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<local:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:local="clr-namespace:SkiaSharpDemos"
+                x:Class="SkiaSharpDemos.Transforms.TransformsMenuPage"
+                Title="SkiaSharp Transforms"
+                x:DataType="local:Transforms.TransformsMenuPage">
+
+    <ScrollView>
+        <StackLayout Padding="10">
+
+            <!-- Section Title -->
+            <Label Text="The Translate Transform"
+               FontAttributes="Bold"
+               FontSize="Medium"
+               Margin="0,0,0,10" />
+
+            <StackLayout Padding="0,5">
+                <Label Text="Accumulated Translate - Discover how transforms are accumulated" FontSize="Small" />
+                <Button Text="Accumulated Translate"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Transforms.AccumulatedTranslatePage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Translate Text Effects - Use translation for basic text effects" FontSize="Small" />
+                <Button Text="Translate Text Effects"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Transforms.TranslateTextEffectsPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Hendecagram Array - Draw 11-pointed star on the page" FontSize="Small" />
+                <Button Text="Hendecagram Array"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Transforms.HendecagramArrayPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="Hendecagram Animation - Rotate the 11-pointed star in a circle" FontSize="Small" />
+                <Button Text="Hendecagram Animation"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Transforms.HendecagramAnimationPage}" />
+            </StackLayout>
+
+            <!-- The Scale Transform Section -->
+            <Label Text="The Scale Transform"
+               FontAttributes="Bold"
+               FontSize="Medium"
+               Margin="0,0,0,10" />
+
+            <StackLayout Padding="0,5">
+                <Label Text="Basic Scale - Experiment with the scale transform" FontSize="Small" />
+                <Button Text="Basic Scale"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Transforms.BasicScalePage}" />
+            </StackLayout>
+            <StackLayout Padding="0,5">
+                <Label Text="Centered Scale - Scale relative to a specified center point" FontSize="Small" />
+                <Button Text="Centered Scale"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Transforms.CenteredScalePage}" />
+            </StackLayout>
+            <StackLayout Padding="0,5">
+                <Label Text="Anisotropic Scaling - Stretch a graphics object to fill the page" FontSize="Small" />
+                <Button Text="Anisotropic Scaling"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Transforms.AnisotropicScalingPage}" />
+            </StackLayout>
+            <StackLayout Padding="0,5">
+                <Label Text="Anisotropic Text - Stretch text to fill the page" FontSize="Small" />
+                <Button Text="Anisotropic Text"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Transforms.AnisotropicTextPage}" />
+            </StackLayout>
+            <StackLayout Padding="0,5">
+                <Label Text="Isotropic Scaling - Preserve the aspect ratios when scaling" FontSize="Small" />
+                <Button Text="Isotropic Scaling"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Transforms.IsotropicScalingPage}" />
+            </StackLayout>
+
+            <!-- The Rotate Transform Section -->
+            <Label Text="The Rotate Transform"
+               FontAttributes="Bold"
+               FontSize="Medium"
+               Margin="10,0,0,10" />
+
+            <StackLayout Padding="0,5">
+                <Label Text="Basic Rotate - Experiment with rotation" FontSize="Small" />
+                <Button Text="Basic Rotate"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Transforms.BasicRotatePage}" />
+            </StackLayout>
+            <StackLayout Padding="0,5">
+                <Label Text="Centered Rotate - Rotate objects around a center point" FontSize="Small" />
+                <Button Text="Centered Rotate"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Transforms.CenteredRotatePage}" />
+            </StackLayout>
+            <StackLayout Padding="0,5">
+                <Label Text="Rotated Text - Rotate a text string around a center" FontSize="Small" />
+                <Button Text="Rotated Text"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Transforms.RotatedTextPage}" />
+            </StackLayout>
+            <StackLayout Padding="0,5">
+                <Label Text="Rotate and Revolve - Rotate a square around its center and also revolve" FontSize="Small" />
+                <Button Text="Rotate and Revolve"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Transforms.RotateAndRevolvePage}" />
+            </StackLayout>
+            <StackLayout Padding="0,5">
+                <Label Text="Ugly Analog Clock - First try with an analog clock" FontSize="Small" />
+                <Button Text="Ugly Analog Clock"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Transforms.UglyAnalogClockPage}" />
+            </StackLayout>
+
+            <!-- The Skew Transform Section -->
+            <Label Text="The Skew Transform"
+               FontAttributes="Bold"
+               FontSize="Medium"
+               Margin="0,0,0,10" />
+
+            <StackLayout Padding="0,5">
+                <Label Text="Skew Experiment - Discover how the skew transform works" FontSize="Small" />
+                <Button Text="Skew Experiment"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Transforms.SkewExperimentPage}" />
+            </StackLayout>
+            <StackLayout Padding="0,5">
+                <Label Text="Skew Angle Experiment - Specify skew in terms of angles" FontSize="Small" />
+                <Button Text="Skew Angle Experiment"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Transforms.SkewAngleExperimentPage}" />
+            </StackLayout>
+            <StackLayout Padding="0,5">
+                <Label Text="Oblique Text - Tilt text for an oblique (or italic) effect" FontSize="Small" />
+                <Button Text="Oblique Text"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Transforms.ObliqueTextPage}" />
+            </StackLayout>
+            <StackLayout Padding="0,5">
+                <Label Text="Skew Shadow Text - Use the skew transform for a text shadow" FontSize="Small" />
+                <Button Text="Skew Shadow Text"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Transforms.SkewShadowTextPage}" />
+            </StackLayout>
+
+            <!-- Matrix Transforms Section -->
+            <Label Text="Matrix Transforms"
+               FontAttributes="Bold"
+               FontSize="Medium"
+               Margin="10,0,0,10" />
+
+            <StackLayout Padding="0,5">
+                <Label Text="Path Transform - Apply a transform to a path" FontSize="Small" />
+                <Button Text="Path Transform"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Transforms.PathTransformPage}" />
+            </StackLayout>
+            <StackLayout Padding="0,5">
+                <Label Text="Show Affine Matrix - Display the matrix for affine transforms" FontSize="Small" />
+                <Button Text="Show Affine Matrix"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Transforms.ShowAffineMatrixPage}" />
+            </StackLayout>
+
+            <!-- Touch Manipulations Section -->
+            <Label Text="Touch Manipulations"
+               FontAttributes="Bold"
+               FontSize="Medium"
+               Margin="10,0,0,10" />
+
+            <StackLayout Padding="0,5">
+                <Label Text="Touch Manipulation - Pan, scale, and rotate a bitmap" FontSize="Small" />
+                <Button Text="Touch Manipulation"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Transforms.TouchManipulationPage}" />
+            </StackLayout>
+            <StackLayout Padding="0,5">
+                <Label Text="Bitmap Scatter View - Pan, scale, and rotate multiple bitmaps" FontSize="Small" />
+                <Button Text="Bitmap Scatter View"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Transforms.BitmapScatterViewPage}" />
+            </StackLayout>
+            <StackLayout Padding="0,5">
+                <Label Text="Single Finger Corner Scale - Pan and scale a bitmap with one finger" FontSize="Small" />
+                <Button Text="Single Finger Corner Scale"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Transforms.SingleFingerCornerScalePage}" />
+            </StackLayout>
+
+            <!-- Non-Affine Transforms Section -->
+            <Label Text="Non-Affine Transforms"
+               FontAttributes="Bold"
+               FontSize="Medium"
+               Margin="0,0,0,10" />
+
+            <StackLayout Padding="0,5">
+                <Label Text="Test Perspective - Experiment with the third matrix column" FontSize="Small" />
+                <Button Text="Test Perspective"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Transforms.TestPerspectivePage}" />
+            </StackLayout>
+            <StackLayout Padding="0,5">
+                <Label Text="Taper Transform - Discover how to calculate a taper transform" FontSize="Small" />
+                <Button Text="Taper Transform"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Transforms.TaperTransformPage}" />
+            </StackLayout>
+            <StackLayout Padding="0,5">
+                <Label Text="Show Non-Affine Matrix - Display the matrix for non-affine transforms" FontSize="Small" />
+                <Button Text="Show Non-Affine Matrix"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Transforms.ShowNonAffineMatrixPage}" />
+            </StackLayout>
+
+            <!-- 3D Rotations Section -->
+            <Label Text="3D Rotations"
+               FontAttributes="Bold"
+               FontSize="Medium"
+               Margin="10,0,0,10" />
+
+            <StackLayout Padding="0,5">
+                <Label Text="Rotation 3D - Rotate a 2D bitmap in 3D space" FontSize="Small" />
+                <Button Text="Rotation 3D"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Transforms.Rotation3DPage}" />
+            </StackLayout>
+            <StackLayout Padding="0,5">
+                <Label Text="Animated Rotation 3D - Animate a 2D object in 3D space" FontSize="Small" />
+                <Button Text="Animated Rotation 3D"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Transforms.AnimatedRotation3DPage}" />
+            </StackLayout>
+            
+        </StackLayout>
+    </ScrollView>
+
+</local:BasePage>

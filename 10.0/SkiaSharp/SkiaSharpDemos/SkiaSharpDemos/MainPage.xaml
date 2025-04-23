@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<local:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:local="clr-namespace:SkiaSharpDemos"
+                x:Class="SkiaSharpDemos.MainPage"
+                x:DataType="local:MainPage">
+    <ScrollView>
+        <StackLayout Padding="10">
+
+            <StackLayout Padding="0,5">
+                <Label Text="SkiaSharp Drawing Basics - Learn basic graphics concepts and coordinates" FontSize="Small" />
+                <Button Text="SkiaSharp Drawing Basics"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Basics.BasicsMenuPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="SkiaSharp Lines and Path - Use SkiaSharp to draw lines and graphics paths" FontSize="Small" />
+                <Button Text="SkiaSharp Lines and Path"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Paths.PathsMenuPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="SkiaSharp Transforms - Learn about transforms for modifying graphics" FontSize="Small" />
+                <Button Text="SkiaSharp Transforms"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Transforms.TransformsMenuPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="SkiaSharp Curves and Paths - Discover how to draw curves and use path features" FontSize="Small" />
+                <Button Text="SkiaSharp Curves and Paths"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Curves.CurvesMenuPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="SkiaSharp Bitmaps - Create, draw on, save, and animate bitmaps" FontSize="Small" />
+                <Button Text="SkiaSharp Bitmaps"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Bitmaps.BitmapsMenuPage}" />
+            </StackLayout>
+
+            <StackLayout Padding="0,5">
+                <Label Text="SkiaSharp Effects - Use gradients, bitmap tiling, blur, and drop shadow" FontSize="Small" />
+                <Button Text="SkiaSharp Effects"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:Effects.EffectsMenuPage}" />
+            </StackLayout>
+
+        </StackLayout>
+    </ScrollView>
+
+</local:BasePage>
+

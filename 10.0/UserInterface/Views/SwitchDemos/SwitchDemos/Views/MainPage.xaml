@@ -1,0 +1,25 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns:local="clr-namespace:SwitchDemos"
+             x:Class="SwitchDemos.MainPage"
+	         Title="Switch Demos"
+             x:DataType="local:MainPage">
+    <ScrollView>
+        <StackLayout Padding="10">
+            <!-- Switch Section -->
+            <Label Text="Switch Options" FontAttributes="Bold" FontSize="Medium" Margin="0,10,0,5" />
+            <Button Text="Switch XAML - Implement a Switch in XAML"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type local:SwitchXamlPage}" />
+            <Button Text="Switch Code - Implement a Switch in code"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type local:SwitchCodePage}" />
+            <Button Text="Switch Bindings - Implement a Switch with bindings"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type local:SwitchBindingsPage}" />
+            <Button Text="Switch Visual States - IsToggled visual states"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type local:SwitchVisualStatesPage}" />
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

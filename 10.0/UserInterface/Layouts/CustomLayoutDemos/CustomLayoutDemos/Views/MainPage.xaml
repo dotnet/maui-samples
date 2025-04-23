@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:CustomLayoutDemos"
+             xmlns:views="clr-namespace:CustomLayoutDemos.Views"
+             x:Class="CustomLayoutDemos.MainPage"
+             x:DataType="local:MainPage">
+    <ScrollView>
+        <StackLayout Padding="10" Spacing="15">
+            <Label Text="Custom layouts" FontSize="Medium" FontAttributes="Bold" />
+
+            <Button Text="Cascade layout"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:CascadeLayoutPage}" />
+
+            <Button Text="Column layout"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:ColumnLayoutPage}" />
+
+            <Button Text="Content column layout"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:ContentColumnLayoutPage}" />
+
+            <Button Text="Customized grid layout"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:CustomizedGridPage}" />
+
+            <Button Text="Horizontal wrap layout"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:HorizontalWrapLayoutPage}" />
+
+            <Button Text="ZStack layout"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type views:ZStackLayoutPage}" />
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
+

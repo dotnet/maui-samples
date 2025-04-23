@@ -1,0 +1,181 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:DataBindingDemos"
+             x:Class="DataBindingDemos.MainPage"
+             Title="Data Binding demos"
+             Padding="10"
+             x:DataType="local:MainPage">
+    <ScrollView>
+        <StackLayout Padding="10">
+
+            <Label Text="Basic Bindings"
+                   FontAttributes="Bold"
+                   FontSize="Medium"
+                   Margin="0,0,0,10" />
+            <Label Text="Define a data-binding in code" FontSize="Small" />
+            <Button Text="Basic Code Binding" 
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:BasicCodeBindingPage}" />
+            <Label Text="Define a data-binding in XAML" FontSize="Small" />
+            <Button Text="Basic XAML Binding"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:BasicXamlBindingPage}" />
+            <Label Text="Define a data-binding in code without a BindingContext" FontSize="Small" />
+            <Button Text="Alternative Code Binding"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:AlternativeCodeBindingPage}" />
+            <Label Text="Define a data-binding in XAML without a BindingContext" FontSize="Small" />
+            <Button Text="Alternative XAML Binding" 
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:AlternativeXamlBindingPage}" />
+            <Label Text="Simplify bindings with an inherited BindingContext" FontSize="Small" />
+            <Button Text="BindingContext Inheritance" 
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:BindingContextInheritancePage}" />
+
+            <Label Text="Binding Mode"
+                   FontAttributes="Bold"
+                   FontSize="Medium"
+                   Margin="0,0,0,10" />
+            <Label Text="Reverse the source and the target" FontSize="Small" />
+            <Button Text="Reverse Binding" 
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:ReverseBindingPage}" />
+            <Label Text="Use a ViewModel for HSL Color" FontSize="Small" />
+            <Button Text="Simple Color Selector"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:SimpleColorSelectorPage}" />
+        
+            <Label Text="String Formatting"
+                   FontAttributes="Bold"
+                   FontSize="Medium"
+                   Margin="10,0,0,10" />
+            <Label Text="Use standard .NET formatting specifications" FontSize="Small" />
+            <Button Text="String Formatting" 
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:StringFormattingPage}" />
+            <Label Text="Display Slider values for HSL Color" FontSize="Small" />
+            <Button Text="Better Color Selector" 
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:BetterColorSelectorPage}" />
+
+            <Label Text="Binding Path"
+                   FontAttributes="Bold"
+                   FontSize="Medium"
+                   Margin="0,0,0,10" />
+            <Label Text="Explore the various ways you can use Path" FontSize="Small" />
+            <Button Text="Path Variations" 
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:PathVariationsPage}" />
+
+            <Label Text="Binding Value Converters"
+                   FontAttributes="Bold"
+                   FontSize="Medium"
+                   Margin="10,0,0,10" />
+            <Label Text="Use a value converter to enable buttons" FontSize="Small" />
+            <Button Text="Enable Buttons" 
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:EnableButtonsPage}" />
+            <Label Text="Show the value of a Switch in various ways" FontSize="Small" />
+            <Button Text="Switch Indicators"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:SwitchIndicatorsPage}" />
+            <Label Text="Display hexadecimal color components" FontSize="Small" />
+            <Button Text="RGB Color Selector" 
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:RgbColorSelectorPage}" />
+
+            <Label Text="Binding Path"
+                   FontAttributes="Bold"
+                   FontSize="Medium"
+                   Margin="0,0,0,10" />
+            <Label Text="Explore the various ways you can use Path" FontSize="Small" />
+            <Button Text="Path Variations"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:PathVariationsPage}" />
+
+            <Label Text="Binding Value Converters"
+                   FontAttributes="Bold"
+                   FontSize="Medium"
+                   Margin="10,0,0,10" />
+            <Label Text="Use a value converter to enable buttons" FontSize="Small" />
+            <Button Text="Enable Buttons"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:EnableButtonsPage}" />
+            <Label Text="Show the value of a Switch in various ways" FontSize="Small" />
+            <Button Text="Switch Indicators" 
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:SwitchIndicatorsPage}" />
+            <Label Text="Display hexadecimal color components" FontSize="Small" />
+            <Button Text="RGB Color Selector"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:RgbColorSelectorPage}" />
+
+            <Label Text="Multi Bindings"
+                   FontAttributes="Bold"
+                   FontSize="Medium"
+                   Margin="0,0,0,10" />
+            <Label Text="Combine strings from a MultiBinding" FontSize="Small" />
+            <Button Text="String Formatting"  
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:MultiBindingStringFormatPage}" />
+            <Label Text="Combine strings from a MultiBinding" FontSize="Small" />
+            <Button Text="String Formatting (Code)" 
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:MultiBindingStringFormatCodePage}" />
+            <Label Text="Use a multi value converter to set the CheckBox.IsChecked property" FontSize="Small" />
+            <Button Text="Multi Value Converters"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:MultiBindingConverterPage}" />
+            <Label Text="Use a multi value converter to set the CheckBox.IsChecked property" FontSize="Small" />
+            <Button Text="Multi Value Converters (Code)"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:MultiBindingConverterCodePage}" />
+            <Label Text="Nest multi bindings to set the CheckBox.IsChecked property" FontSize="Small" />
+            <Button Text="Nest Multi Bindings" 
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:NestedMultiBindingPage}" />
+            <Label Text="Provide values for multi bindings that fail" FontSize="Small" />
+            <Button Text="Binding Fallbacks" 
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:MultiBindingFallbackValuePage}" />
+            <Label Text="Use relative multi bindings to a templated parent" FontSize="Small" />
+            <Button Text="RelativeSource Bindings" 
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:RelativeSourceMultiBindingPage}" />
+
+            <Label Text="Multi Bindings"
+               FontAttributes="Bold"
+               FontSize="Medium"
+               Margin="0,0,0,10" />
+            <Label Text="Combine strings from a MultiBinding" FontSize="Small" />
+            <Button Text="String Formatting"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:MultiBindingStringFormatPage}" />
+            <Label Text="Combine strings from a MultiBinding" FontSize="Small" />
+            <Button Text="String Formatting (Code)"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:MultiBindingStringFormatCodePage}" />
+            <Label Text="Use a multi value converter to set the CheckBox.IsChecked property" FontSize="Small" />
+            <Button Text="Multi Value Converters"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:MultiBindingConverterPage}" />
+            <Label Text="Use a multi value converter to set the CheckBox.IsChecked property" FontSize="Small" />
+            <Button Text="Multi Value Converters (Code)"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:MultiBindingConverterCodePage}" />
+            <Label Text="Nest multi bindings to set the CheckBox.IsChecked property" FontSize="Small" />
+            <Button Text="Nest Multi Bindings"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:NestedMultiBindingPage}" />
+            <Label Text="Provide values for multi bindings that fail" FontSize="Small" />
+            <Button Text="Binding Fallbacks" 
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:MultiBindingFallbackValuePage}" />
+            <Label Text="Use relative multi bindings to a templated parent" FontSize="Small" />
+            <Button Text="RelativeSource Bindings" 
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:RelativeSourceMultiBindingPage}" />
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
