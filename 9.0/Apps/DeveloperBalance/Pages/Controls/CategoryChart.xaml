@@ -9,6 +9,7 @@
         HeightRequest="{OnIdiom 300, Phone=200}"
         Style="{StaticResource CardStyle}">
     <shimmer:SfShimmer
+        AutomationProperties.IsInAccessibleTree="False"
         BackgroundColor="Transparent"
         VerticalOptions="FillAndExpand"
         IsActive ="{Binding IsBusy}">
@@ -37,13 +38,13 @@
                             <HorizontalStackLayout>
                                 <Label Text="{Binding Item.Title}" TextColor="{AppThemeBinding
                                     Light={StaticResource DarkOnLightBackground},
-                                    Dark={StaticResource LightOnDarkBackground}}" FontSize="{OnIdiom 18, Phone=14}"/>
-                                <Label Text=" : " TextColor="{AppThemeBinding
+                                    Dark={StaticResource LightOnDarkBackground}}" FontSize="{OnIdiom 18, Phone=12}"/>
+                                <Label Text=": " TextColor="{AppThemeBinding
                                     Light={StaticResource DarkOnLightBackground},
-                                    Dark={StaticResource LightOnDarkBackground}}" FontSize="{OnIdiom 18, Phone=14}"/>
+                                    Dark={StaticResource LightOnDarkBackground}}" FontSize="{OnIdiom 18, Phone=12}"/>
                                 <Label Text="{Binding Item.Count}" TextColor="{AppThemeBinding
                                     Light={StaticResource DarkOnLightBackground},
-                                    Dark={StaticResource LightOnDarkBackground}}" FontSize="{OnIdiom 18, Phone=14}"/>
+                                    Dark={StaticResource LightOnDarkBackground}}" FontSize="{OnIdiom 18, Phone=12}"/>
                             </HorizontalStackLayout>
                         </DataTemplate>
                     </chart:DoughnutSeries.LabelTemplate>

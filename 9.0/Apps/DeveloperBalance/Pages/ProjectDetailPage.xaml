@@ -13,39 +13,31 @@
 
     <ContentPage.Resources>
         <DataTemplate x:Key="NormalTagTemplate" x:DataType="models:Tag">
-                <Border StrokeShape="RoundRectangle 22" 
-                        HeightRequest="44" 
-                        StrokeThickness="0"
-                        Background="{AppThemeBinding Light={StaticResource LightSecondaryBackground},Dark={StaticResource DarkSecondaryBackground}}" 
-                        Padding="{OnPlatform '18,0,18,8',Android='18,0,18,0'}"
-                        SemanticProperties.Description="{Binding Title}">
-                        <Border.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding ToggleTagCommand, Source={RelativeSource AncestorType={x:Type pageModels:ProjectDetailPageModel}}, x:DataType=pageModels:ProjectDetailPageModel}" CommandParameter="{Binding .}"/>
-                        </Border.GestureRecognizers>
-                        <Label Text="{Binding Title}"
-                            TextColor="{AppThemeBinding Light={StaticResource DarkOnLightBackground},Dark={StaticResource LightOnDarkBackground}}"
-                            FontSize="{OnIdiom 16,Desktop=18}" 
-                            VerticalOptions="Center"
-                            VerticalTextAlignment="Center"/>
-                </Border>
+            <Button HeightRequest="44"
+                Background="{AppThemeBinding Light={StaticResource LightSecondaryBackground},Dark={StaticResource DarkSecondaryBackground}}"
+                Padding="{OnPlatform '18,0,18,8',Android='18,0,18,0'}"
+                Command="{Binding ToggleTagCommand, Source={RelativeSource AncestorType={x:Type pageModels:ProjectDetailPageModel}}, x:DataType=pageModels:ProjectDetailPageModel}"
+                CommandParameter="{Binding .}"
+                SemanticProperties.Description="{Binding Title}"
+                CornerRadius="22"
+                Text="{Binding Title}"
+                TextColor="{AppThemeBinding Light={StaticResource DarkOnLightBackground},Dark={StaticResource LightOnDarkBackground}}"
+                FontSize="{OnIdiom 16,Desktop=18}"
+                VerticalOptions="Center" />
         </DataTemplate>
 
         <DataTemplate x:Key="SelectedTagTemplate" x:DataType="models:Tag">
-            <Border StrokeShape="RoundRectangle 22" 
-                        HeightRequest="44" 
-                        StrokeThickness="0"
-                        Background="{Binding DisplayColor}" 
-                        Padding="{OnPlatform '18,0,18,8',Android='18,0,18,0'}"
-                        SemanticProperties.Description="{Binding Title}">
-                <Border.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding ToggleTagCommand, Source={RelativeSource AncestorType={x:Type pageModels:ProjectDetailPageModel}}, x:DataType=pageModels:ProjectDetailPageModel}" CommandParameter="{Binding .}"/>
-                </Border.GestureRecognizers>
-                <Label Text="{Binding Title}"
-                    TextColor="{AppThemeBinding Light={StaticResource LightBackground},Dark={StaticResource DarkBackground}}" 
-                    FontSize="{OnIdiom 16,Desktop=18}" 
-                    VerticalOptions="Center"
-                    VerticalTextAlignment="Center"/>
-            </Border>
+            <Button HeightRequest="44"
+                Background="{Binding DisplayColor}"
+                Padding="{OnPlatform '18,0,18,8',Android='18,0,18,0'}"
+                Command="{Binding ToggleTagCommand, Source={RelativeSource AncestorType={x:Type pageModels:ProjectDetailPageModel}}, x:DataType=pageModels:ProjectDetailPageModel}"
+                CommandParameter="{Binding .}"
+                SemanticProperties.Description="{Binding Title}"
+                CornerRadius="22"
+                Text="{Binding Title}"
+                TextColor="{AppThemeBinding Light={StaticResource LightBackground},Dark={StaticResource DarkBackground}}"
+                FontSize="{OnIdiom 16,Desktop=18}"
+                VerticalOptions="Center" />
         </DataTemplate>
 
         <controls:ChipDataTemplateSelector 
@@ -56,6 +48,7 @@
 
     <ContentPage.ToolbarItems>
         <ToolbarItem
+            Text="Delete"
             Command="{Binding DeleteCommand}"
             Order="Primary"
             Priority="0"
@@ -101,9 +94,7 @@
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="models:IconData">
                             <Grid RowDefinitions="Auto,4" RowSpacing="{StaticResource size60}"
-                                 SemanticProperties.Description="{Binding Description}"
-                                 SemanticProperties.Hint="Icon representing the type of task . Tap to select"
-                                 InputTransparent="True">
+                                 SemanticProperties.Description="{Binding Description}">
                                 <VisualStateManager.VisualStateGroups>
                                     <VisualStateGroup x:Name="CommonStates">
                                         <VisualState x:Name="Normal">
@@ -131,11 +122,6 @@
                                     HorizontalOptions="Center"
                                     TextColor="{AppThemeBinding Light={StaticResource DarkOnLightBackground},Dark={StaticResource LightOnDarkBackground}}"/>
                                 <BoxView x:Name="SelectedIndicator" Color="{StaticResource Primary}" HeightRequest="4" HorizontalOptions="Fill" Grid.Row="1"/>
-
-                                <!-- This TapGestureRecognizer ensures that the grid is treated as a button for accessibility purposes on iOS -->
-                                <Grid.GestureRecognizers>
-                                    <TapGestureRecognizer />
-                                </Grid.GestureRecognizers>
                             </Grid>                            
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
@@ -158,7 +144,7 @@
                 </ScrollView>
 
                 <Button Text="Save" 
-                    HeightRequest="{OnIdiom 44, Desktop=60}"
+                    MinimumHeightRequest="{OnIdiom 44, Desktop=60}"
                     Command="{Binding SaveCommand}" />
 
                 <Grid HeightRequest="44">
