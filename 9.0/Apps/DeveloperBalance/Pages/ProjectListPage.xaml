@@ -7,17 +7,19 @@
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="DeveloperBalance.Pages.ProjectListPage"
              x:DataType="pageModels:ProjectListPageModel"
+             x:Name="ListProjectsPage"
              Title="Projects">
 
 
     <ContentPage.Behaviors>
         <toolkit:EventToCommandBehavior
+                BindingContext="{Binding Path=BindingContext, Source={x:Reference ListProjectsPage}, x:DataType=ContentPage}"
                 EventName="Appearing"                
                 Command="{Binding AppearingCommand}" />
     </ContentPage.Behaviors>
     <Grid>
       <ScrollView>
-        <VerticalStackLayout 
+        <VerticalStackLayout
             BindableLayout.ItemsSource="{Binding Projects}" 
             Margin="{StaticResource LayoutPadding}" 
             Spacing="{StaticResource LayoutSpacing}">
