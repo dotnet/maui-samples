@@ -9,16 +9,16 @@
              x:DataType="pageModels:ProjectListPageModel"
              Title="Projects">
 
-
     <ContentPage.Behaviors>
         <toolkit:EventToCommandBehavior
+                x:Name="AppearingBehavior"
                 EventName="Appearing"                
                 Command="{Binding AppearingCommand}" />
     </ContentPage.Behaviors>
     <Grid>
       <ScrollView>
         <VerticalStackLayout>
-            <CollectionView ItemsSource="{Binding Projects}" Background="Purple"
+            <CollectionView ItemsSource="{Binding Projects}"
                 Margin="{StaticResource LayoutPadding}"
                 x:Name="ProjectsCollectionView"
                 SelectionMode="Single"
@@ -30,7 +30,7 @@
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:Project">
-                        <Border SemanticProperties.Description="{Binding Name, StringFormat='{0} Project'}">
+                        <Border SemanticProperties.Description="{Binding Name, StringFormat='{0}'}">
                             <VerticalStackLayout Padding="10">
                                 <Label Text="{Binding Name}" FontSize="24" />
                                 <Label Text="{Binding Description}" />
@@ -39,8 +39,9 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-            
-            <!-- <controls:AddButton Command="{Binding AddProjectCommand}" /> -->
+
+            <controls:AddButton
+            Command="{Binding AddProjectCommand}" />
         </VerticalStackLayout>
       </ScrollView>
     </Grid>
