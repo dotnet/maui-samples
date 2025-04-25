@@ -1,6 +1,7 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using DeveloperBalance.Models;
+using System.Windows.Input;
 
 namespace DeveloperBalance.PageModels;
 
@@ -33,6 +34,9 @@ public partial class ProjectDetailPageModel : ObservableObject, IQueryAttributab
 
 	[ObservableProperty]
 	private List<Tag> _allTags = [];
+
+	[ObservableProperty]
+	private List<object> selectedTags = [];
 
 	[ObservableProperty]
 	private IconData _icon;
@@ -135,6 +139,10 @@ public partial class ProjectDetailPageModel : ObservableObject, IQueryAttributab
 			foreach (var tag in allTags)
 			{
 				tag.IsSelected = _project.Tags.Any(t => t.ID == tag.ID);
+				if (tag.IsSelected)
+				{
+					SelectedTags.Add(tag);
+				}
 			}
 			AllTags = new(allTags);
 		}
@@ -173,14 +181,11 @@ public partial class ProjectDetailPageModel : ObservableObject, IQueryAttributab
 		_project.Icon = Icon.Icon ?? FluentUI.ribbon_24_regular;
 		await _projectRepository.SaveItemAsync(_project);
 
-		if (_project.IsNullOrNew())
+		foreach (var tag in AllTags)
 		{
-			foreach (var tag in AllTags)
+			if (tag.IsSelected)
 			{
-				if (tag.IsSelected)
-				{
-					await _tagRepository.SaveItemAsync(tag, _project.ID);
-				}
+				await _tagRepository.SaveItemAsync(tag, _project.ID);
 			}
 		}
 
@@ -235,7 +240,7 @@ public partial class ProjectDetailPageModel : ObservableObject, IQueryAttributab
 		Shell.Current.GoToAsync($"task?id={task.ID}");
 
 	[RelayCommand]
-	private async Task ToggleTag(Tag tag)
+	internal async Task ToggleTag(Tag tag)
 	{
 		tag.IsSelected = !tag.IsSelected;
 

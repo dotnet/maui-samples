@@ -11,41 +11,6 @@
              x:DataType="pageModels:ProjectDetailPageModel"
              Title="Project">
 
-    <ContentPage.Resources>
-        <DataTemplate x:Key="NormalTagTemplate" x:DataType="models:Tag">
-            <Button HeightRequest="44"
-                Background="{AppThemeBinding Light={StaticResource LightSecondaryBackground},Dark={StaticResource DarkSecondaryBackground}}"
-                Padding="{OnPlatform '18,0,18,8',Android='18,0,18,0'}"
-                Command="{Binding ToggleTagCommand, Source={RelativeSource AncestorType={x:Type pageModels:ProjectDetailPageModel}}, x:DataType=pageModels:ProjectDetailPageModel}"
-                CommandParameter="{Binding .}"
-                SemanticProperties.Description="{Binding Title}"
-                CornerRadius="22"
-                Text="{Binding Title}"
-                TextColor="{AppThemeBinding Light={StaticResource DarkOnLightBackground},Dark={StaticResource LightOnDarkBackground}}"
-                FontSize="{OnIdiom 16,Desktop=18}"
-                VerticalOptions="Center" />
-        </DataTemplate>
-
-        <DataTemplate x:Key="SelectedTagTemplate" x:DataType="models:Tag">
-            <Button HeightRequest="44"
-                Background="{Binding DisplayColor}"
-                Padding="{OnPlatform '18,0,18,8',Android='18,0,18,0'}"
-                Command="{Binding ToggleTagCommand, Source={RelativeSource AncestorType={x:Type pageModels:ProjectDetailPageModel}}, x:DataType=pageModels:ProjectDetailPageModel}"
-                CommandParameter="{Binding .}"
-                SemanticProperties.Description="{Binding Title}"
-                CornerRadius="22"
-                Text="{Binding Title}"
-                TextColor="{AppThemeBinding Light={StaticResource LightBackground},Dark={StaticResource DarkBackground}}"
-                FontSize="{OnIdiom 16,Desktop=18}"
-                VerticalOptions="Center" />
-        </DataTemplate>
-
-        <controls:ChipDataTemplateSelector 
-            x:Key="ChipDataTemplateSelector"
-            NormalTagTemplate="{StaticResource NormalTagTemplate}"
-            SelectedTagTemplate="{StaticResource SelectedTagTemplate}"/>
-    </ContentPage.Resources>
-
     <ContentPage.ToolbarItems>
         <ToolbarItem
             Text="Delete"
@@ -134,14 +99,57 @@
                 <Label 
                     Text="Tags" 
                     Style="{StaticResource Title2}"/>
-                <ScrollView Orientation="Horizontal">
-                    <HorizontalStackLayout 
-                        Spacing="{StaticResource LayoutSpacing}" 
-                        HeightRequest="44" 
-                        Margin="0,0,0,15"
-                        BindableLayout.ItemsSource="{Binding AllTags}" 
-                        BindableLayout.ItemTemplateSelector="{StaticResource ChipDataTemplateSelector}"/>
-                </ScrollView>
+
+                    <!-- 
+                    SelectedItem="{Binding SelectedTag}" 
+                    HeightRequest="44"
+                    Margin="0,0,0,15"
+                    SelectionChangedCommand="{Binding ToggleTagCommand, Source={RelativeSource AncestorType={x:Type pageModels:ProjectDetailPageModel}}, x:DataType=pageModels:ProjectDetailPageModel}"
+                    SelectionChangedCommandParameter="{Binding .}"    
+                    -->
+
+                <CollectionView
+                    ItemsSource="{Binding AllTags}"
+                    SelectionMode="Multiple"
+                    HeightRequest="44"
+                    Margin="0,0,0,15"
+                    SelectedItems="{Binding SelectedTags}"
+                    SelectionChanged="CollectionView_SelectionChanged"
+                    SemanticProperties.Description="Tags Collection">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal" ItemSpacing="{StaticResource LayoutSpacing}" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:Tag">
+                            <Border StrokeShape="RoundRectangle 22" 
+                                HeightRequest="44" 
+                                StrokeThickness="0"
+                                Padding="{OnPlatform '18,0,18,8',Android='18,0,18,0'}"
+                                SemanticProperties.Description="{Binding Title}">
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualState x:Name="Normal">
+                                            <VisualState.Setters>
+                                                <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource LightSecondaryBackground},Dark={StaticResource DarkSecondaryBackground}}"/>
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                        <VisualState x:Name="Selected">
+                                            <VisualState.Setters>
+                                                <Setter Property="Background" Value="{Binding DisplayColor}"/>
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                                <Label Text="{Binding Title}"
+                                    TextColor="{AppThemeBinding Light={StaticResource LightBackground},Dark={StaticResource DarkBackground}}" 
+                                    FontSize="{OnIdiom 16,Desktop=18}" 
+                                    VerticalOptions="Center"
+                                    VerticalTextAlignment="Center"/>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                
 
                 <Button Text="Save" 
                     MinimumHeightRequest="{OnIdiom 44, Desktop=60}"
