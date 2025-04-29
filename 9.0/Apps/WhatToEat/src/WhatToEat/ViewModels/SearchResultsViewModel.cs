@@ -84,7 +84,7 @@ namespace Recipes.ViewModels
 
             if (!string.IsNullOrWhiteSpace(SearchQuery) || !string.IsNullOrWhiteSpace(SearchFilter))
             {
-                RecipeData recipeData = await _restService.GetRecipeDataAsync(GenerateRequestUri(Constants.EdamamEndpoint));
+                RecipeData recipeData = await _restService.GetRecipeDataAsync(SearchFilter);
 
                 if (recipeData == null || recipeData.Hits.Length == 0)
                 {
@@ -106,30 +106,6 @@ namespace Recipes.ViewModels
                     AppShell.Data = RecipeData;
                 }
             }
-        }
-
-        string GenerateRequestUri(string endpoint)
-        {
-            string searchFilterName = SearchFilter.Substring(SearchFilter.IndexOf("=") + 1);
-
-            if (string.IsNullOrEmpty(SearchQuery))
-            {
-                SearchQuery = searchFilterName;
-            }
-
-            string requestUri = endpoint;
-            requestUri += $"?q={SearchQuery}";
-            requestUri += $"&app_id={Constants.EdamamAppId}";
-            requestUri += $"&app_key={Constants.EdamamAppKey}";
-            requestUri += $"&to=100";
-
-            if (!string.IsNullOrEmpty(SearchFilter))
-            {
-                Title = $"Search {searchFilterName} recipes";
-                requestUri += $"&{SearchFilter}";
-            }
-
-            return requestUri;
         }
 
         async void OnItemSelected(Hit hit)
