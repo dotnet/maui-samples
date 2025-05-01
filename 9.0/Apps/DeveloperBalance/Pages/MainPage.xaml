@@ -44,6 +44,7 @@
                         <Label Text="Projects" Style="{StaticResource Title2}" SemanticProperties.HeadingLevel="Level1"/>
                         <CollectionView ItemsSource="{Binding Projects}"
                                         Margin="-7.5,0"
+                                        HeightRequest="300"
                                         x:Name="ProjectsCollectionView"
                                         SelectionMode="Single"
                                         SelectedItem="{Binding SelectedProject}"

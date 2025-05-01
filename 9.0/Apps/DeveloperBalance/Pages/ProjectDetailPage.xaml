@@ -100,20 +100,13 @@
                     Text="Tags" 
                     Style="{StaticResource Title2}"/>
 
-                    <!-- 
-                    SelectedItem="{Binding SelectedTag}" 
-                    HeightRequest="44"
-                    Margin="0,0,0,15"
-                    SelectionChangedCommand="{Binding ToggleTagCommand, Source={RelativeSource AncestorType={x:Type pageModels:ProjectDetailPageModel}}, x:DataType=pageModels:ProjectDetailPageModel}"
-                    SelectionChangedCommandParameter="{Binding .}"    
-                    -->
-
+                <!-- TODO This is still a little jumpy when changing selection -->
                 <CollectionView
                     ItemsSource="{Binding AllTags}"
                     SelectionMode="Multiple"
                     HeightRequest="44"
                     Margin="0,0,0,15"
-                    SelectedItems="{Binding SelectedTags}"
+                    SelectedItems="{Binding SelectedTags, Mode=TwoWay}"
                     SelectionChanged="CollectionView_SelectionChanged"
                     SemanticProperties.Description="Tags Collection">
                     <CollectionView.ItemsLayout>
@@ -123,7 +116,8 @@
                         <DataTemplate x:DataType="models:Tag">
                             <Border StrokeShape="RoundRectangle 22" 
                                 HeightRequest="44" 
-                                StrokeThickness="0"
+                                VerticalOptions="Center"
+                                BackgroundColor="Transparent"
                                 Padding="{OnPlatform '18,0,18,8',Android='18,0,18,0'}"
                                 SemanticProperties.Description="{Binding Title}">
                                 <VisualStateManager.VisualStateGroups>
@@ -144,7 +138,22 @@
                                     TextColor="{AppThemeBinding Light={StaticResource LightBackground},Dark={StaticResource DarkBackground}}" 
                                     FontSize="{OnIdiom 16,Desktop=18}" 
                                     VerticalOptions="Center"
-                                    VerticalTextAlignment="Center"/>
+                                    VerticalTextAlignment="Center">
+                                    <!-- <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Normal">
+                                                <VisualState.Setters>
+                                                    <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource DarkOnLightBackground},Dark={StaticResource LightOnDarkBackground}}"/>
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState x:Name="Selected">
+                                                <VisualState.Setters>
+                                                    <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightBackground},Dark={StaticResource DarkBackground}}"/>
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups> -->
+                                </Label>
                             </Border>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>

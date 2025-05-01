@@ -20,6 +20,8 @@ public partial class ProjectDetailPage : ContentPage
 			var cur = e.CurrentSelection;
 			var prev = e.PreviousSelection;
 
+			// TODO - Does the Current and Previous not work as expected on iOS?
+
 			var changedTag = cur.Except(prev).ToList();
 			if (changedTag.Count == 0)
 			{
