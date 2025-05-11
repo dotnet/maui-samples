@@ -28,7 +28,7 @@ namespace Recipes.ViewModels
             ItemTapped = new Command<Hit>(OnItemSelected);
             SearchCommand = new Command(async () => await OnSearch());
 
-		}
+        }
 
         public RecipeData RecipeData
         {
@@ -82,30 +82,47 @@ namespace Recipes.ViewModels
         {
             NoResultsLabelVisible = false;
 
-            if (!string.IsNullOrWhiteSpace(SearchQuery) || !string.IsNullOrWhiteSpace(SearchFilter))
+            if (!string.IsNullOrWhiteSpace(SearchQuery))
             {
-                RecipeData recipeData = await _restService.GetRecipeDataAsync(SearchFilter);
+                RecipeData recipeDataQuery = await _restService.GetRecipeDataAsync(SearchQuery);
 
-                if (recipeData == null || recipeData.Hits.Length == 0)
+                if (recipeDataQuery != null && recipeDataQuery.Hits.Length > 0)
                 {
-                    NoResultsLabel = $"Sorry! We couldn't find any recipes for {SearchQuery}. Try searching for a different recipe!";
-                    NoResultsLabelVisible = true;
-                    SearchResultsVisible = false;
-                }
-                else
-                {
-                    NoResultsLabelVisible = false;
-                    SearchResultsVisible = true;
-
-                    for (int i = 0; i < recipeData.Hits.Length; i++)
-                    {
-                        recipeData.Hits[i].Id = i;
-                    }
-
-                    RecipeData = recipeData;
-                    AppShell.Data = RecipeData;
+                    ProcessRecipeData(recipeDataQuery);
+                    return;
                 }
             }
+
+            if (!string.IsNullOrWhiteSpace(SearchFilter))
+            {
+                RecipeData recipeDataFilter = await _restService.GetRecipeDataAsync(SearchFilter);
+
+                if (recipeDataFilter != null && recipeDataFilter.Hits.Length > 0)
+                {
+                    ProcessRecipeData(recipeDataFilter);
+                    return;
+                }
+            }
+
+            // If both searches return no results
+            string searchQuery = SearchQuery ?? SearchFilter;
+            NoResultsLabel = $"Sorry! We couldn't find any recipes for '{searchQuery}'. Try searching for a different recipe!";
+            NoResultsLabelVisible = true;
+            SearchResultsVisible = false;
+        }
+
+        void ProcessRecipeData(RecipeData recipeData)
+        {
+            NoResultsLabelVisible = false;
+            SearchResultsVisible = true;
+
+            for (int i = 0; i < recipeData.Hits.Length; i++)
+            {
+                recipeData.Hits[i].Id = i;
+            }
+
+            RecipeData = recipeData;
+            AppShell.Data = RecipeData;
         }
 
         async void OnItemSelected(Hit hit)

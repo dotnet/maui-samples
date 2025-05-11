@@ -29,12 +29,12 @@ namespace Recipes.ViewModels
             set => SetProperty(ref _searchQuery, value);
         }
 
-		async Task OnSearch(string filter = null)
+        async Task OnSearch(string filter = null)
         {
             // Require query and/or filter to search
             if (!string.IsNullOrWhiteSpace(SearchQuery) || !string.IsNullOrWhiteSpace(filter))
             {
-                RecipeData recipeData = await _restService.GetRecipeDataAsync(filter);
+                RecipeData recipeData = await _restService.GetRecipeDataAsync(SearchQuery);
 
                 string urlEncodedFilter = System.Net.WebUtility.UrlEncode(filter);
                 await Shell.Current.GoToAsync($"{nameof(SearchResultsPage)}?SearchQuery={SearchQuery}&SearchFilter={urlEncodedFilter}");
