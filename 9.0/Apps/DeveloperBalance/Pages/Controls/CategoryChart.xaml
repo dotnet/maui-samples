@@ -38,13 +38,13 @@
                             <HorizontalStackLayout>
                                 <Label Text="{Binding Item.Title}" TextColor="{AppThemeBinding
                                     Light={StaticResource DarkOnLightBackground},
-                                    Dark={StaticResource LightOnDarkBackground}}" FontSize="{OnIdiom 18, Phone=12}"/>
+                                    Dark={StaticResource LightOnDarkBackground}}" FontSize="{OnIdiom 18, Phone=14}"/>
                                 <Label Text=": " TextColor="{AppThemeBinding
                                     Light={StaticResource DarkOnLightBackground},
-                                    Dark={StaticResource LightOnDarkBackground}}" FontSize="{OnIdiom 18, Phone=12}"/>
+                                    Dark={StaticResource LightOnDarkBackground}}" FontSize="{OnIdiom 18, Phone=14}"/>
                                 <Label Text="{Binding Item.Count}" TextColor="{AppThemeBinding
                                     Light={StaticResource DarkOnLightBackground},
-                                    Dark={StaticResource LightOnDarkBackground}}" FontSize="{OnIdiom 18, Phone=12}"/>
+                                    Dark={StaticResource LightOnDarkBackground}}" FontSize="{OnIdiom 18, Phone=14}"/>
                             </HorizontalStackLayout>
                         </DataTemplate>
                     </chart:DoughnutSeries.LabelTemplate>
