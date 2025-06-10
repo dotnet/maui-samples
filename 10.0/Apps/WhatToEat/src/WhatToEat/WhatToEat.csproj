@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<MajorFrameworkVersion>10.0</MajorFrameworkVersion>
+		<TargetFrameworks>net$(MajorFrameworkVersion)-android;net$(MajorFrameworkVersion)-ios;net$(MajorFrameworkVersion)-maccatalyst</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net$(MajorFrameworkVersion)-windows10.0.19041.0</TargetFrameworks>
+		<OutputType>Exe</OutputType>
+		<SingleProject>true</SingleProject>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<UseMaui>true</UseMaui>
+		<RootNamespace>Recipes</RootNamespace>
+		<ApplicationTitle>WhatToEat</ApplicationTitle>
+		<ApplicationId>com.companyname.WhatToEat</ApplicationId>
+		<!-- Versions -->
+		<ApplicationVersion>2</ApplicationVersion>
+		<DisableImplicitNamespaceImports>true</DisableImplicitNamespaceImports>
+
+		<!-- Required for running on iPhone device -->
+		<!--<RuntimeIdentifier Condition=" $(TargetFramework.Contains('-ios')) ">ios-arm64</RuntimeIdentifier>-->
+
+		<!-- Required for C# Hot Reload -->
+		<UseInterpreter Condition="'$(Configuration)' == 'Debug'">True</UseInterpreter>
+
+		<SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net$(MajorFrameworkVersion)-ios'">13.6</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net$(MajorFrameworkVersion)-maccatalyst'">15.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net$(MajorFrameworkVersion)-android'">21.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$(TargetFramework.Contains('-windows'))">10.0.17763.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion Condition="$(TargetFramework.Contains('-windows'))">10.0.17763.0</TargetPlatformMinVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+	</PropertyGroup>
+
+	<ItemGroup Condition="$(MajorFrameworkVersion) >= 8.0">
+		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<MauiIcon ForegroundFile="Resources\AppIcon\appicon.png" Include="Resources\AppIcon\appicon.png" Color="#2BB0ED" />
+		<MauiSplashScreen Include="Resources\Splash\splash.png" Color="#176515" />
+		<MauiImage Include="Resources\Images\*" />
+		<MauiFont Include="Resources\Fonts\*" />
+	</ItemGroup>
+	<ItemGroup Condition="$(TargetFramework.Contains('-ios')) == true ">
+		<MauiImage Update="Resources\Images\search.png" BaseSize="23,23" />
+		<MauiImage Update="Resources\Images\cookbook.png" BaseSize="23,23" />
+	</ItemGroup>
+</Project>
