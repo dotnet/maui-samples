@@ -34,7 +34,10 @@ public partial class ProjectDetailPageModel : ObservableObject, IQueryAttributab
 	[ObservableProperty]
 	private List<Tag> _allTags = [];
 
-	[ObservableProperty]
+    [ObservableProperty]
+    private List<object> selectedTags = [];
+
+    [ObservableProperty]
 	private IconData _icon;
 
 	[ObservableProperty]
@@ -134,8 +137,12 @@ public partial class ProjectDetailPageModel : ObservableObject, IQueryAttributab
 			var allTags = await _tagRepository.ListAsync();
 			foreach (var tag in allTags)
 			{
-				tag.IsSelected = _project.Tags.Any(t => t.ID == tag.ID);
-			}
+				tag.IsSelected = _project.Tags.Any(t => t.ID == tag.ID); 
+				if (tag.IsSelected)
+                {
+                    SelectedTags.Add(tag);
+                }
+            }
 			AllTags = new(allTags);
 		}
 		catch (Exception e)
@@ -173,18 +180,15 @@ public partial class ProjectDetailPageModel : ObservableObject, IQueryAttributab
 		_project.Icon = Icon.Icon ?? FluentUI.ribbon_24_regular;
 		await _projectRepository.SaveItemAsync(_project);
 
-		if (_project.IsNullOrNew())
-		{
-			foreach (var tag in AllTags)
-			{
-				if (tag.IsSelected)
-				{
-					await _tagRepository.SaveItemAsync(tag, _project.ID);
-				}
-			}
-		}
+        foreach (var tag in AllTags)
+        {
+            if (tag.IsSelected)
+            {
+                await _tagRepository.SaveItemAsync(tag, _project.ID);
+            }
+        }
 
-		foreach (var task in _project.Tasks)
+        foreach (var task in _project.Tasks)
 		{
 			if (task.ID == 0)
 			{
@@ -234,33 +238,28 @@ public partial class ProjectDetailPageModel : ObservableObject, IQueryAttributab
 	private Task NavigateToTask(ProjectTask task) =>
 		Shell.Current.GoToAsync($"task?id={task.ID}");
 
-	[RelayCommand]
-	private async Task ToggleTag(Tag tag)
-	{
-		tag.IsSelected = !tag.IsSelected;
+    [RelayCommand]
+    internal async Task ToggleTag(Tag tag)
+    {
+        tag.IsSelected = !tag.IsSelected;
 
-		if (!_project.IsNullOrNew())
-		{
-			if (tag.IsSelected)
-			{
-				await _tagRepository.SaveItemAsync(tag, _project.ID);
-				AllTags = new(AllTags);
-				await AnnouncementHelper.Announce($"{tag.Title} selected");
-			}
-			else
-			{
-				await _tagRepository.DeleteItemAsync(tag, _project.ID);
-				AllTags = new(AllTags);
-				await AnnouncementHelper.Announce($"{tag.Title} unselected");
-			}
-		}
-		else
-		{
-			AllTags = new(AllTags);
-		}
-	}
+        if (!_project.IsNullOrNew())
+        {
+            if (tag.IsSelected)
+            {
+                await _tagRepository.SaveItemAsync(tag, _project.ID);
+            }
+            else
+            {
+                await _tagRepository.DeleteItemAsync(tag, _project.ID);
+            }
+        }
 
-	[RelayCommand]
+        AllTags = new(AllTags);
+        await AnnouncementHelper.Announce($"{tag.Title} {(tag.IsSelected ? "selected" : "unselected")}");
+    }
+
+    [RelayCommand]
 	private async Task IconSelected(IconData icon)
 	{
 		await AnnouncementHelper.Announce($"{icon.Description} selected");

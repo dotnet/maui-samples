@@ -14,7 +14,10 @@ public partial class ProjectListPageModel : ObservableObject
 	[ObservableProperty]
 	private List<Project> _projects = [];
 
-	public ProjectListPageModel(ProjectRepository projectRepository)
+    [ObservableProperty]
+    private Project? selectedProject;
+
+    public ProjectListPageModel(ProjectRepository projectRepository)
 	{
 		_projectRepository = projectRepository;
 	}
@@ -25,11 +28,11 @@ public partial class ProjectListPageModel : ObservableObject
 		Projects = await _projectRepository.ListAsync();
 	}
 
-	[RelayCommand]
-	Task NavigateToProject(Project project)
-		=> Shell.Current.GoToAsync($"project?id={project.ID}");
+    [RelayCommand]
+    Task? NavigateToProject(Project project)    
+		=> project is null ? null : Shell.Current.GoToAsync($"project?id={project.ID}");
 
-	[RelayCommand]
+    [RelayCommand]
 	async Task AddProject()
 	{
 		await Shell.Current.GoToAsync($"project");

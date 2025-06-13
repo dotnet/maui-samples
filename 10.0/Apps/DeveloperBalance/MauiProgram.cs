@@ -13,13 +13,19 @@ public static class MauiProgram
 			.UseMauiApp<App>()
 			.UseMauiCommunityToolkit()
 			.ConfigureSyncfusionToolkit()
-			.ConfigureMauiHandlers(handlers =>
-			{
+            .ConfigureMauiHandlers(handlers =>
+            {
 #if IOS || MACCATALYST
-				handlers.AddHandler<Microsoft.Maui.Controls.CollectionView, Microsoft.Maui.Controls.Handlers.Items2.CollectionViewHandler2>();
+			handlers.AddHandler<Microsoft.Maui.Controls.CollectionView, Microsoft.Maui.Controls.Handlers.Items2.CollectionViewHandler2>();
 #endif
-			})
-			.ConfigureFonts(fonts =>
+#if WINDOWS
+                Microsoft.Maui.Controls.Handlers.Items.CollectionViewHandler.Mapper.AppendToMapping("KeyboardAccessibleCollectionView", (handler, view) =>
+                {
+                    handler.PlatformView.SingleSelectionFollowsFocus = false;
+                });
+#endif
+            })
+            .ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
