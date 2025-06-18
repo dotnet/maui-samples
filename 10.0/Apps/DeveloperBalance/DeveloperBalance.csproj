@@ -27,11 +27,11 @@
 		<ApplicationTitle>DeveloperBalance</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.developerbalance</ApplicationId>
+    <ApplicationId>com.simplyprofound.balance</ApplicationId>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
-		<ApplicationVersion>1</ApplicationVersion>
+		<ApplicationVersion>2</ApplicationVersion>
 
 		<!-- To develop, package, and publish an app to the Microsoft Store, see: https://aka.ms/MauiTemplateUnpackaged -->
 		<WindowsPackageType>None</WindowsPackageType>
@@ -72,7 +72,7 @@
 		<PackageReference Include="CommunityToolkit.Maui" Version="11.1.1" />
 		<PackageReference Include="Microsoft.Data.Sqlite.Core" Version="8.0.8" />
 		<PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.10" />
-		<PackageReference Include="Syncfusion.Maui.Toolkit" Version="1.0.4" />
+		<PackageReference Include="Syncfusion.Maui.Toolkit" Version="1.0.5" />
 	</ItemGroup>
 	
 </Project>
