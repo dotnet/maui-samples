@@ -1,5 +1,7 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
+using Microsoft.Maui.Handlers;
+using Microsoft.Maui.Platform;
 using Syncfusion.Maui.Toolkit.Hosting;
 
 namespace DeveloperBalance;
@@ -23,6 +25,14 @@ public static class MauiProgram
 			{
 				handler.PlatformView.SingleSelectionFollowsFocus = false;
 			});
+
+            Microsoft.Maui.Handlers.ContentViewHandler.Mapper.AppendToMapping(nameof(Pages.Controls.CategoryChart), (handler, view) =>
+            {
+                if (view is Pages.Controls.CategoryChart && handler.PlatformView is ContentPanel contentPanel)
+                {
+                    contentPanel.IsTabStop = true;
+                }
+            });
 #endif
             })
 			.ConfigureFonts(fonts =>

@@ -1,6 +1,7 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using DeveloperBalance.Models;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 namespace DeveloperBalance.PageModels;
@@ -35,8 +36,7 @@ public partial class ProjectDetailPageModel : ObservableObject, IQueryAttributab
 	[ObservableProperty]
 	private List<Tag> _allTags = [];
 
-	[ObservableProperty]
-	private List<object> selectedTags = [];
+	public IList<object> SelectedTags { get; set; } = new List<object>();
 
 	[ObservableProperty]
 	private IconData _icon;
@@ -45,7 +45,7 @@ public partial class ProjectDetailPageModel : ObservableObject, IQueryAttributab
 	bool _isBusy;
 
 	[ObservableProperty]
-	private List<IconData> _icons =	new List<IconData>
+	private List<IconData> _icons = new List<IconData>
 	{
 		new IconData { Icon = FluentUI.ribbon_24_regular, Description = "Ribbon Icon" },
 		new IconData { Icon = FluentUI.ribbon_star_24_regular, Description = "Ribbon Star Icon" },
@@ -279,5 +279,20 @@ public partial class ProjectDetailPageModel : ObservableObject, IQueryAttributab
 		Tasks = new(Tasks);
 		OnPropertyChanged(nameof(HasCompletedTasks));
 		await AppShell.DisplayToastAsync("All cleaned up!");
+	}
+
+	[RelayCommand]
+	private async Task SelectionChanged(object parameter)
+	{
+		if (parameter is IEnumerable<object> enumerableParameter)
+		{
+			var changed = enumerableParameter.OfType<Tag>().ToList();
+
+			if (changed.Count == 0 && SelectedTags is not null)
+				changed = SelectedTags.OfType<Tag>().Except(enumerableParameter.OfType<Tag>()).ToList();
+
+			if (changed.Count == 1)
+				await ToggleTag(changed[0]);
+		}
 	}
 }
