@@ -22,6 +22,14 @@ public static class MauiProgram
                 Microsoft.Maui.Controls.Handlers.Items.CollectionViewHandler.Mapper.AppendToMapping("KeyboardAccessibleCollectionView", (handler, view) =>
                 {
                     handler.PlatformView.SingleSelectionFollowsFocus = false;
+                }); 
+
+				Microsoft.Maui.Handlers.ContentViewHandler.Mapper.AppendToMapping(nameof(Pages.Controls.CategoryChart), (handler, view) =>
+                {
+                    if (view is Pages.Controls.CategoryChart && handler.PlatformView is Microsoft.Maui.Platform.ContentPanel contentPanel)
+                    {
+                        contentPanel.IsTabStop = true;
+                    }
                 });
 #endif
             })
