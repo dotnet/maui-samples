@@ -50,8 +50,7 @@
                     Style="{StaticResource Title2}"/>
                 <CollectionView 
                     HeightRequest="44" Margin="0,0,0,15"
-                    SelectionMode="Single"
-                    
+                    SelectionMode="Single"  
                     SelectedItem="{Binding Icon}"
                     SelectionChangedCommand="{Binding IconSelectedCommand}"
                     SelectionChangedCommandParameter="{Binding Icon}"
@@ -107,7 +106,8 @@
                     HeightRequest="44"
                     Margin="0,0,0,15"
                     SelectedItems="{Binding SelectedTags, Mode=TwoWay}"
-                    SelectionChanged="CollectionView_SelectionChanged"
+                    SelectionChangedCommand="{Binding SelectionChangedCommand}"
+                    SelectionChangedCommandParameter="{Binding SelectedTags}"
                     SemanticProperties.Description="Tags Collection">
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout Orientation="Horizontal" ItemSpacing="{StaticResource LayoutSpacing}" />

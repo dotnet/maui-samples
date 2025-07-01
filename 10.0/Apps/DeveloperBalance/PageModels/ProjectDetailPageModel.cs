@@ -34,8 +34,7 @@ public partial class ProjectDetailPageModel : ObservableObject, IQueryAttributab
 	[ObservableProperty]
 	private List<Tag> _allTags = [];
 
-    [ObservableProperty]
-    private List<object> selectedTags = [];
+    public IList<object> SelectedTags { get; set; } = new List<object>();
 
     [ObservableProperty]
 	private IconData _icon;
@@ -279,4 +278,19 @@ public partial class ProjectDetailPageModel : ObservableObject, IQueryAttributab
 		OnPropertyChanged(nameof(HasCompletedTasks));
 		await AppShell.DisplayToastAsync("All cleaned up!");
 	}
+
+    [RelayCommand]
+    private async Task SelectionChanged(object parameter)
+    {
+        if (parameter is IEnumerable<object> enumerableParameter)
+        {
+            var changed = enumerableParameter.OfType<Tag>().ToList();
+
+            if (changed.Count == 0 && SelectedTags is not null)
+                changed = SelectedTags.OfType<Tag>().Except(enumerableParameter.OfType<Tag>()).ToList();
+
+            if (changed.Count == 1)
+                await ToggleTag(changed[0]);
+        }
+    }
 }
