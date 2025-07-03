@@ -21,8 +21,24 @@ class ClassHierarchyPage : ContentPage
             // Public types only but exclude interfaces
             if (typeInfo.IsPublic && !typeInfo.IsInterface)
             {
-                // Add type to list.
-                classList.Add(new TypeInformation(type));
+                // Check if this type already exists in the classList (by display name)
+                bool isDuplicate = false;
+                string currentDisplayName = GetDisplayName(type);
+
+                foreach (TypeInformation existingType in classList)
+                {
+                    string existingDisplayName = GetDisplayName(existingType.Type);
+                    if (existingDisplayName == currentDisplayName)
+                    {
+                        isDuplicate = true;
+                        break;
+                    }
+                }
+
+                if (!isDuplicate)
+                {
+                    classList.Add(new TypeInformation(type));
+                }
             }
         }
 
@@ -82,11 +98,11 @@ class ClassHierarchyPage : ContentPage
         AddItemToStackLayout(rootClass, 0);
 
         // Put the StackLayout in a ScrollView.
-        this.Padding = new Thickness(0,
-            DeviceInfo.Platform == DevicePlatform.iOS ? 20 : 0, 0, 0);
         this.Content = new ScrollView
         {
-            Content = stackLayout
+            Content = stackLayout,
+            Padding = new Thickness(16,
+                DeviceInfo.Platform == DevicePlatform.iOS ? 20 : 6, 0, 0)
         };
     }
 
@@ -108,14 +124,34 @@ class ClassHierarchyPage : ContentPage
     void AddItemToStackLayout(ClassAndSubclasses parentClass,
                               int level)
     {
-        // If assembly is not MAUI, display full name when available.
-        string name = parentClass.Type.Name;
-        TypeInfo typeInfo = parentClass.Type.GetTypeInfo();
+        // Use GetDisplayName method for consistent naming
+        string name = GetDisplayName(parentClass.Type);
 
-        if (!string.IsNullOrEmpty(parentClass.Type.FullName)
+        // Create Label and add to StackLayout
+        Label label = new Label
+        {
+            Text = string.Format("{0}{1}", new string(' ', 4 * level),
+                                            name),
+            TextColor = parentClass.Type.GetTypeInfo().IsAbstract ?
+                (Color)Application.Current.Resources["Primary"] : null
+        };
+
+        stackLayout.Children.Add(label);
+
+        // Now display nested types.
+        foreach (ClassAndSubclasses subclass in parentClass.Subclasses)
+            AddItemToStackLayout(subclass, level + 1);
+    }
+
+    private string GetDisplayName(Type type)
+    {
+        string name = type.Name;
+        TypeInfo typeInfo = type.GetTypeInfo();
+
+        if (!string.IsNullOrEmpty(type.FullName)
             && typeInfo.Assembly != mauiAssembly)
         {
-            name = parentClass.Type.FullName;
+            name = type.FullName;
         }
 
         // If generic, display angle brackets and parameters.
@@ -134,19 +170,6 @@ class ClassHierarchyPage : ContentPage
             name += ">";
         }
 
-        // Create Label and add to StackLayout
-        Label label = new Label
-        {
-            Text = string.Format("{0}{1}", new string(' ', 4 * level),
-                                            name),
-            TextColor = parentClass.Type.GetTypeInfo().IsAbstract ?
-                (Color)Application.Current.Resources["Primary"] : null
-        };
-
-        stackLayout.Children.Add(label);
-
-        // Now display nested types.
-        foreach (ClassAndSubclasses subclass in parentClass.Subclasses)
-            AddItemToStackLayout(subclass, level + 1);
+        return name;
     }
 }
