@@ -6,6 +6,7 @@ class ClassHierarchyPage : ContentPage
 {
     private Assembly mauiAssembly;
     private List<TypeInformation> classList = new List<TypeInformation>();
+    private HashSet<string> addedTypeNames = new HashSet<string>();
     private StackLayout stackLayout;
 
     public ClassHierarchyPage()
@@ -22,22 +23,12 @@ class ClassHierarchyPage : ContentPage
             if (typeInfo.IsPublic && !typeInfo.IsInterface)
             {
                 // Check if this type already exists in the classList (by display name)
-                bool isDuplicate = false;
                 string currentDisplayName = GetDisplayName(type);
-
-                foreach (TypeInformation existingType in classList)
-                {
-                    string existingDisplayName = GetDisplayName(existingType.Type);
-                    if (existingDisplayName == currentDisplayName)
-                    {
-                        isDuplicate = true;
-                        break;
-                    }
-                }
-
-                if (!isDuplicate)
+                
+                if (!addedTypeNames.Contains(currentDisplayName))
                 {
                     classList.Add(new TypeInformation(type));
+                    addedTypeNames.Add(currentDisplayName);
                 }
             }
         }
@@ -63,12 +54,17 @@ class ClassHierarchyPage : ContentPage
                         hasBaseType = true;
                 }
 
-                // If there's no base type, add it.
+                // If there's no base type, add it (but check if it already exists first).
                 if (!hasBaseType &&
                     childType.BaseType != typeof(Object))
                 {
-                    classList.Add(
-                        new TypeInformation(childType.BaseType));
+                    string baseTypeDisplayName = GetDisplayName(childType.BaseType);
+                    
+                    if (!addedTypeNames.Contains(baseTypeDisplayName))
+                    {
+                        classList.Add(new TypeInformation(childType.BaseType));
+                        addedTypeNames.Add(baseTypeDisplayName);
+                    }
                 }
             }
             index++;

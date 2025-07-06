@@ -6,6 +6,7 @@ class ClassHierarchyPage : ContentPage
 {
     private Assembly mauiAssembly;
     private List<TypeInformation> classList = new List<TypeInformation>();
+    private HashSet<string> addedTypeNames = new HashSet<string>();
     private StackLayout stackLayout;
 
     public ClassHierarchyPage()
@@ -21,10 +22,16 @@ class ClassHierarchyPage : ContentPage
             // Public types only but exclude interfaces
             if (typeInfo.IsPublic && !typeInfo.IsInterface)
             {
-                // Add type to list.
+                // Check if this type already exists in the classList (by display name)
+                string currentDisplayName = GetDisplayName(type);
+                
+                if (!addedTypeNames.Contains(currentDisplayName))
+                {
                     classList.Add(new TypeInformation(type));
+                    addedTypeNames.Add(currentDisplayName);
                 }
             }
+        }
 
         // Ensure that all classes have a base type in the list.
         //  (i.e., add Attribute, ValueType, Enum, EventArgs, etc.)
@@ -47,27 +54,16 @@ class ClassHierarchyPage : ContentPage
                         hasBaseType = true;
                 }
 
-                // If there's no base type, add it (but check if it already exists in the list first).
+                // If there's no base type, add it (but check if it already exists first).
                 if (!hasBaseType &&
                     childType.BaseType != typeof(Object))
                 {
-                    // Check if this BaseType already exists in the classList
-                    bool isDuplicate = false;
-                    string currentDisplayName = GetDisplayName(childType.BaseType);
+                    string baseTypeDisplayName = GetDisplayName(childType.BaseType);
                     
-                    foreach (TypeInformation existingType in classList)
-                    {
-                        string existingDisplayName = GetDisplayName(existingType.Type);
-                        if (existingDisplayName == currentDisplayName)
-                        {
-                            isDuplicate = true;
-                            break;
-                        }
-                    }
-                    
-                    if (!isDuplicate)
+                    if (!addedTypeNames.Contains(baseTypeDisplayName))
                     {
                         classList.Add(new TypeInformation(childType.BaseType));
+                        addedTypeNames.Add(baseTypeDisplayName);
                     }
                 }
             }
