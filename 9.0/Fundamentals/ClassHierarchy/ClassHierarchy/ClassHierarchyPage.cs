@@ -11,6 +11,17 @@ class ClassHierarchyPage : ContentPage
 
     public ClassHierarchyPage()
     {
+        void AddWithoutDuplicates(Type type)
+        {
+            string displayName = GetDisplayName(type);
+            
+            if (!addedTypeNames.Contains(displayName))
+            {
+                classList.Add(new TypeInformation(type));
+                addedTypeNames.Add(displayName);
+            }
+        }
+
         // Get MAUI assembly.
         mauiAssembly = typeof(View).GetTypeInfo().Assembly;
 
@@ -22,14 +33,8 @@ class ClassHierarchyPage : ContentPage
             // Public types only but exclude interfaces
             if (typeInfo.IsPublic && !typeInfo.IsInterface)
             {
-                // Check if this type already exists in the classList (by display name)
-                string currentDisplayName = GetDisplayName(type);
-                
-                if (!addedTypeNames.Contains(currentDisplayName))
-                {
-                    classList.Add(new TypeInformation(type));
-                    addedTypeNames.Add(currentDisplayName);
-                }
+                // Use the local function to add without duplicates
+                AddWithoutDuplicates(type);
             }
         }
 
@@ -58,13 +63,8 @@ class ClassHierarchyPage : ContentPage
                 if (!hasBaseType &&
                     childType.BaseType != typeof(Object))
                 {
-                    string baseTypeDisplayName = GetDisplayName(childType.BaseType);
-                    
-                    if (!addedTypeNames.Contains(baseTypeDisplayName))
-                    {
-                        classList.Add(new TypeInformation(childType.BaseType));
-                        addedTypeNames.Add(baseTypeDisplayName);
-                    }
+                    // Use the local function to add without duplicates
+                    AddWithoutDuplicates(childType.BaseType);
                 }
             }
             index++;
