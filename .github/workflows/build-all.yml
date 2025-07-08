@@ -16,10 +16,14 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: Install .NET 9
+    - name: Install .NET SDKs
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 9.0
+        dotnet-version: |
+          8.0.x
+          9.0.x
+          10.0.x
+        include-prerelease: true
 
     - name: Install .NET MAUI Workload
       run: dotnet workload install maui
