@@ -27,7 +27,7 @@
 		<ApplicationTitle>DeveloperBalance</ApplicationTitle>
 
 		<!-- App Identifier -->
-    <ApplicationId>com.companyname.developerbalance</ApplicationId>
+    	<ApplicationId>com.companyname.developerbalance</ApplicationId>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
@@ -63,8 +63,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Maui.Controls" Version="9.0.40" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.0-preview.3.25171.5" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.0-preview.6.25326.107" />
 	</ItemGroup>
 
 	<ItemGroup>
