@@ -20,10 +20,14 @@ jobs:
       with:
         fetch-depth: 2
 
-    - name: Install .NET 9
+    - name: Install .NET SDKs
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 9.0
+        dotnet-version: |
+          8.0.x
+          9.0.x
+          10.0.x
+        include-prerelease: true
 
     - name: Install .NET MAUI Workload
       run: dotnet workload install maui
@@ -35,6 +39,7 @@ jobs:
     - name: Find and build changed projects
       run: |
         $failedProjectCount=0
+        $skippedProjectCount=0
         # Get the list of changed files
         $changedFiles = git diff --name-only -r --diff-filter=d HEAD^1 HEAD
 
