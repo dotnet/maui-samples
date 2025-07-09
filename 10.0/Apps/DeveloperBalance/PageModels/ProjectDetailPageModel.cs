@@ -280,17 +280,20 @@ public partial class ProjectDetailPageModel : ObservableObject, IQueryAttributab
 	}
 
     [RelayCommand]
-    private async Task SelectionChanged(object parameter)
+    private async Task SelectionChanged(SelectionChangedEventArgs parameter)
     {
-        if (parameter is IEnumerable<object> enumerableParameter)
-        {
-            var changed = enumerableParameter.OfType<Tag>().ToList();
+	    var cur = parameter.CurrentSelection;
+	    var prev = parameter.PreviousSelection;
 
-            if (changed.Count == 0 && SelectedTags is not null)
-                changed = SelectedTags.OfType<Tag>().Except(enumerableParameter.OfType<Tag>()).ToList();
+	    var changedTag = cur.Except(prev).ToList();
+	    if (changedTag.Count == 0)
+	    {
+		    changedTag = prev.Except(cur).ToList();
+	    }
 
-            if (changed.Count == 1)
-                await ToggleTag(changed[0]);
-        }
+	    if (changedTag.Count == 1 && changedTag[0] is Tag tag)
+	    {
+		    await ToggleTag(tag);
+	    }
     }
 }

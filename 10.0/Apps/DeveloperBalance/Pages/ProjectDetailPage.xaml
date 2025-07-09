@@ -6,11 +6,18 @@
              xmlns:pages="clr-namespace:DeveloperBalance.Pages"
              xmlns:sf="clr-namespace:Syncfusion.Maui.Toolkit.TextInputLayout;assembly=Syncfusion.Maui.Toolkit"
              xmlns:controls="clr-namespace:DeveloperBalance.Pages.Controls"
+             xmlns:converters="clr-namespace:DeveloperBalance.Converters"
              xmlns:fonts="clr-namespace:Fonts"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="DeveloperBalance.Pages.ProjectDetailPage"
              x:DataType="pageModels:ProjectDetailPageModel"
+             x:Name="DetailsPage"
              Title="Project">
-
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:SelectionChangedEventArgsConverter x:Key="SelectionChangedEventArgsConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.ToolbarItems>
         <ToolbarItem
             Text="Delete"
@@ -106,9 +113,14 @@
                     HeightRequest="44"
                     Margin="0,0,0,15"
                     SelectedItems="{Binding SelectedTags, Mode=TwoWay}"
-                    SelectionChangedCommand="{Binding SelectionChangedCommand}"
-                    SelectionChangedCommandParameter="{Binding SelectedTags}"
                     SemanticProperties.Description="Tags Collection">
+                    <CollectionView.Behaviors>
+                        <toolkit:EventToCommandBehavior
+                            BindingContext="{Binding Path=BindingContext, Source={x:Reference DetailsPage}, x:DataType=ContentPage}"
+                            EventName="SelectionChanged"
+                            EventArgsConverter="{StaticResource SelectionChangedEventArgsConverter}"
+                            Command="{Binding SelectionChangedCommand}" />
+                    </CollectionView.Behaviors>
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout Orientation="Horizontal" ItemSpacing="{StaticResource LayoutSpacing}" />
                     </CollectionView.ItemsLayout>
