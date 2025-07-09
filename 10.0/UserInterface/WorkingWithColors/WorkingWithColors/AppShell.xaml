@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="WorkingWithColors.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:WorkingWithColors"
+    Title="WorkingWithColors">
+
+    <ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage" />
+
+    <ShellContent
+        Title="Color Demo"
+        ContentTemplate="{DataTemplate local:ColorDemo}"
+        Route="ColorDemo" />
+
+    <ShellContent
+        Title="Colors in XAML"
+        ContentTemplate="{DataTemplate local:ColorsInXaml}"
+        Route="ColorsInXaml" />
+
+</Shell>
