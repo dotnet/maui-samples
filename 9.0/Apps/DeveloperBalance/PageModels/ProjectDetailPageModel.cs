@@ -1,6 +1,8 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using DeveloperBalance.Models;
+using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace DeveloperBalance.PageModels;
 
@@ -34,6 +36,8 @@ public partial class ProjectDetailPageModel : ObservableObject, IQueryAttributab
 	[ObservableProperty]
 	private List<Tag> _allTags = [];
 
+	public IList<object> SelectedTags { get; set; } = new List<object>();
+
 	[ObservableProperty]
 	private IconData _icon;
 
@@ -41,7 +45,7 @@ public partial class ProjectDetailPageModel : ObservableObject, IQueryAttributab
 	bool _isBusy;
 
 	[ObservableProperty]
-	private List<IconData> _icons =	new List<IconData>
+	private List<IconData> _icons = new List<IconData>
 	{
 		new IconData { Icon = FluentUI.ribbon_24_regular, Description = "Ribbon Icon" },
 		new IconData { Icon = FluentUI.ribbon_star_24_regular, Description = "Ribbon Star Icon" },
@@ -135,6 +139,10 @@ public partial class ProjectDetailPageModel : ObservableObject, IQueryAttributab
 			foreach (var tag in allTags)
 			{
 				tag.IsSelected = _project.Tags.Any(t => t.ID == tag.ID);
+				if (tag.IsSelected)
+				{
+					SelectedTags.Add(tag);
+				}
 			}
 			AllTags = new(allTags);
 		}
@@ -173,14 +181,11 @@ public partial class ProjectDetailPageModel : ObservableObject, IQueryAttributab
 		_project.Icon = Icon.Icon ?? FluentUI.ribbon_24_regular;
 		await _projectRepository.SaveItemAsync(_project);
 
-		if (_project.IsNullOrNew())
+		foreach (var tag in AllTags)
 		{
-			foreach (var tag in AllTags)
+			if (tag.IsSelected)
 			{
-				if (tag.IsSelected)
-				{
-					await _tagRepository.SaveItemAsync(tag, _project.ID);
-				}
+				await _tagRepository.SaveItemAsync(tag, _project.ID);
 			}
 		}
 
@@ -235,7 +240,7 @@ public partial class ProjectDetailPageModel : ObservableObject, IQueryAttributab
 		Shell.Current.GoToAsync($"task?id={task.ID}");
 
 	[RelayCommand]
-	private async Task ToggleTag(Tag tag)
+	internal async Task ToggleTag(Tag tag)
 	{
 		tag.IsSelected = !tag.IsSelected;
 
@@ -244,20 +249,15 @@ public partial class ProjectDetailPageModel : ObservableObject, IQueryAttributab
 			if (tag.IsSelected)
 			{
 				await _tagRepository.SaveItemAsync(tag, _project.ID);
-				AllTags = new(AllTags);
-				await AnnouncementHelper.Announce($"{tag.Title} selected");
 			}
 			else
 			{
 				await _tagRepository.DeleteItemAsync(tag, _project.ID);
-				AllTags = new(AllTags);
-				await AnnouncementHelper.Announce($"{tag.Title} unselected");
 			}
 		}
-		else
-		{
-			AllTags = new(AllTags);
-		}
+
+		AllTags = new(AllTags);
+		await AnnouncementHelper.Announce($"{tag.Title} {(tag.IsSelected ? "selected" : "unselected")}");
 	}
 
 	[RelayCommand]
@@ -279,5 +279,20 @@ public partial class ProjectDetailPageModel : ObservableObject, IQueryAttributab
 		Tasks = new(Tasks);
 		OnPropertyChanged(nameof(HasCompletedTasks));
 		await AppShell.DisplayToastAsync("All cleaned up!");
+	}
+
+	[RelayCommand]
+	private async Task SelectionChanged(object parameter)
+	{
+		if (parameter is IEnumerable<object> enumerableParameter)
+		{
+			var changed = enumerableParameter.OfType<Tag>().ToList();
+
+			if (changed.Count == 0 && SelectedTags is not null)
+				changed = SelectedTags.OfType<Tag>().Except(enumerableParameter.OfType<Tag>()).ToList();
+
+			if (changed.Count == 1)
+				await ToggleTag(changed[0]);
+		}
 	}
 }
