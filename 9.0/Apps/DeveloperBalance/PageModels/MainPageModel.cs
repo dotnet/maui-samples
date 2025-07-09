@@ -121,22 +121,37 @@ public partial class MainPageModel : ObservableObject, IProjectTaskPageModel
 		_isNavigatedTo = true;
 
 	[RelayCommand]
-	private void NavigatedFrom() =>
+	private void NavigatedFrom()
+	{
 		_isNavigatedTo = false;
+		// Cancel any ongoing refresh when navigating away
+		if (IsRefreshing)
+		{
+			IsRefreshing = false;
+		}
+	}
 
 	[RelayCommand]
 	private async Task Appearing()
 	{
-		if (!_dataLoaded)
+		try
 		{
-			await InitData(_seedDataService);
-			_dataLoaded = true;
-			await Refresh();
+			if (!_dataLoaded)
+			{
+				await InitData(_seedDataService);
+				_dataLoaded = true;
+			}
+			// This means we are being navigated to
+			else if (_isNavigatedTo)
+			{
+				await Refresh();
+			}
 		}
-		// This means we are being navigated to
-		else if (!_isNavigatedTo)
+		catch (Exception)
 		{
-			await Refresh();
+			// Ensure loading states are reset even if initialization fails
+			IsRefreshing = false;
+			IsBusy = false;
 		}
 	}
 
