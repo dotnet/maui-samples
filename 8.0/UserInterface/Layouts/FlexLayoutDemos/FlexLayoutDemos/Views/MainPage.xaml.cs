@@ -1,4 +1,4 @@
-﻿using System.Windows.Input;
+using System.Windows.Input;
 
 namespace FlexLayoutDemos
 {
@@ -17,6 +17,13 @@ namespace FlexLayoutDemos
                     await Navigation.PushAsync(page);
                 });
 
+            BindingContext = this;
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            BindingContext = null;
             BindingContext = this;
         }
     }
