@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="WorkingWithFiles.LoadResourceXmlPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:WorkingWithFiles.Models"
+             Title="XML Resource">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Label Text="Embedded Resource XML File" 
+               FontSize="18"
+               FontAttributes="Bold"
+               Grid.Row="0" />
+        <CollectionView x:Name="MonkeysCollectionView"
+                        x:DataType="model:Monkey"
+                        Grid.Row="1">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:Monkey">
+                    <Grid Padding="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" 
+                               Text="{Binding Name}" 
+                               FontSize="16"
+                               FontAttributes="Bold" />
+                        <Label Grid.Row="1" 
+                               Text="{Binding Location}" 
+                               FontSize="14"
+                               TextColor="Gray" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>
