@@ -13,7 +13,7 @@ public partial class SolitairePage : ContentPage
     {
         if (!ValidInputs())
         {
-            await DisplayAlert("Missing input", "You must enter plaintext/ciphertext and the key", "OK");
+            await DisplayAlertAsync("Missing input", "You must enter plaintext/ciphertext and the key", "OK");
             return;
         }
         var ps = new PontifexSolitaire(key.Text);
@@ -24,7 +24,7 @@ public partial class SolitairePage : ContentPage
     {
         if (!ValidInputs())
         {
-            await DisplayAlert("Missing input", "You must enter plaintext/ciphertext and the key", "OK");
+            await DisplayAlertAsync("Missing input", "You must enter plaintext/ciphertext and the key", "OK");
             return;
         }
         var ps = new PontifexSolitaire(key.Text);
