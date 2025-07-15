@@ -12,6 +12,11 @@ public partial class MainPage : ContentPage
 
     async void OnGetWeatherButtonClicked(object sender, EventArgs e)
     {
+        if (string.IsNullOrWhiteSpace(Constants.OpenWeatherMapAPIKey) || Constants.OpenWeatherMapAPIKey == "YOUR_API_KEY")
+        {
+            await DisplayAlert("API Key Missing", "Please set your OpenWeatherMap API key in Constants.OpenWeatherMapAPIKey.", "OK");
+            return;
+        }
         if (!string.IsNullOrWhiteSpace(_cityEntry.Text))
         {
             string requestUri = GenerateRequestUri(Constants.OpenWeatherMapEndpoint);
