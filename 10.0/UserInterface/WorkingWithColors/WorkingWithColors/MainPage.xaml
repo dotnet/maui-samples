@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WorkingWithColors.MainPage"
+             Title="Working with Colors"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="25" Padding="30,0" VerticalOptions="Center">
+
+            <Image Source="dotnet_bot.png"
+                   HeightRequest="185"
+                   Aspect="AspectFit"
+                   SemanticProperties.Description="Cute dot net bot waving hi to you!" />
+
+            <Label x:Name="WelcomeLabel"
+                   Text="Welcome to Working with Colors!"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center" />
+
+            <Label Text="This sample demonstrates how to work with colors in .NET MAUI applications. Colors can be defined in code or XAML using various methods."
+                   FontSize="16"
+                   LineBreakMode="WordWrap"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center" />
+
+            <Button x:Name="ColorDemoBtn"
+                    Text="🎨 Color Demo (Code)"
+                    FontSize="18"
+                    BackgroundColor="#512BD4"
+                    TextColor="White"
+                    CornerRadius="8"
+                    Clicked="OnColorDemoClicked"
+                    HorizontalOptions="Center" />
+
+            <Button x:Name="ColorsInXamlBtn"
+                    Text="📄 Colors in XAML"
+                    FontSize="18"
+                    BackgroundColor="#2E8B57"
+                    TextColor="White"
+                    CornerRadius="8"
+                    Clicked="OnColorsInXamlClicked"
+                    HorizontalOptions="Center" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
