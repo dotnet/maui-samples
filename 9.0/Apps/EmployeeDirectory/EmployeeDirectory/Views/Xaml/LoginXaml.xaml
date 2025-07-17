@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage  
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"  
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"  
+    x:Class="EmployeeDirectory.Views.Xaml.LoginXaml"  
+    BackgroundImageSource="login_box">  
+   <ContentPage.Content>  
+        <StackLayout VerticalOptions="Start" Padding="30">  
+            <Image Source="logo" />  
+            <Entry StyleId="UserId" Text="{Binding Path=Username}" Placeholder="Username" />  
+            <Entry StyleId="PasswordId" Text="{Binding Path=Password}" Placeholder="Password" IsPassword="true" />  
+            <Grid HorizontalOptions="Center">  
+                <Button x:Name="loginButton" Text="Login" Grid.Row="0" Grid.Column="0"/>  
+                <Button x:Name="helpButton" Text="Help" Grid.Row="0" Grid.Column="1" />  
+            </Grid>  
+        </StackLayout>  
+   </ContentPage.Content>  
+</ContentPage>		

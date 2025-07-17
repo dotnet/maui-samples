@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+			 x:Class="TapGesture.TapInsideFrameXaml">
+  <StackLayout>
+
+	<Image Source="tapped.jpg" HeightRequest="150" WidthRequest="150">
+		<Image.GestureRecognizers>
+		<!-- Using the Command property works fine -->
+	    <TapGestureRecognizer 
+	    		Command="{Binding TapCommand}" 
+	    		CommandParameter="Image1" />
+	    <!--
+		Cannot currently set the Tapped property via Xaml, s/b fixed in 1.2
+	    <TapGestureRecognizer 
+				Tapped="OnTapGestureRecognizerTapped" 
+				NumberOfTapsRequired="2" />
+	    -->
+	  </Image.GestureRecognizers>
+	  
+	</Image>
+
+	<Frame BorderColor="Blue"
+           BackgroundColor="Transparent"
+           Padding="20, 20"
+           HorizontalOptions="Center"
+           VerticalOptions="Center">
+      <Frame.GestureRecognizers>
+		<!-- Using the Command property works fine -->
+        <TapGestureRecognizer 
+        		Command="{Binding TapCommand}" 
+        		CommandParameter="Frame1" />
+        <!--
+		Cannot currently set the Tapped property via Xaml, s/b fixed in 1.2
+        <TapGestureRecognizer 
+				Tapped="OnTapGestureRecognizerTapped" 
+				NumberOfTapsRequired="2" />
+        -->
+      </Frame.GestureRecognizers>
+      
+      <Label Text="Tap inside frame (or on the monkey!)" FontSize="18" />
+
+    </Frame>
+
+    <Label x:Name="label"
+           Text="{Binding NumberOfTapsTapped}"
+           FontSize="18"
+           HorizontalOptions="Center"
+           VerticalOptions="Center"
+            />
+
+  </StackLayout>
+
+</ContentPage>
