@@ -53,7 +53,14 @@
                         Text="{Binding Title}"
                         VerticalOptions="Center"
                         LineBreakMode="WordWrap"
-                        AutomationProperties.IsInAccessibleTree="False" />
+                        AutomationProperties.IsInAccessibleTree="False">
+                        <Label.Margin>
+                            <OnPlatform x:TypeArguments="Thickness">
+                                <On Platform="iOS, MacCatalyst" Value="0, 0, 0, 6"/>
+                                <On Platform="Default"     Value="0"/>
+                            </OnPlatform>
+                        </Label.Margin>
+                    </Label>
                 </Grid>
             </shimmer:SfShimmer.Content>
         </shimmer:SfShimmer>
