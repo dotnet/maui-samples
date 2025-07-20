@@ -1,5 +1,4 @@
-﻿
-using Microsoft.Maui.Controls.Shapes;
+﻿using Microsoft.Maui.Controls.Shapes;
 
 namespace DragAndDropGesture
 {
@@ -14,21 +13,25 @@ namespace DragAndDropGesture
 
         void OnDragStarting(object sender, DragStartingEventArgs e)
         {
-            Shape shape = (sender as Element).Parent as Shape;
-            e.Data.Properties.Add("Square", new Square(shape.Width, shape.Height));
+            Shape shape = (sender as Element)?.Parent as Shape;
+            if (shape != null)
+            {
+                e.Data.Properties.Add("Square", new Square(shape.Width, shape.Height));
+            }
         }
 
         async void OnDrop(object sender, DropEventArgs e)
         {
-            Square square = (Square)e.Data.Properties["Square"];
-
-            if (square.Area.Equals(area))
+            if (e.Data.Properties.TryGetValue("Square", out var squareObj) && squareObj is Square square)
             {
-                await DisplayAlert("Correct", "Congratulations!", "OK");
-            }
-            else
-            {
-                await DisplayAlert("Incorrect", "Try again.", "OK");
+                if (square.Area.Equals(area))
+                {
+                    await DisplayAlert("Correct! 🎉", "Congratulations! You found the square with the largest area!", "OK");
+                }
+                else
+                {
+                    await DisplayAlert("Try Again 🤔", $"This square has an area of {square.Area:F0}. Look for the one with area {area:F0}!", "OK");
+                }
             }
         }
     }

@@ -1,56 +1,48 @@
-﻿using System;
+﻿namespace EmployeeDirectory.Views.Xaml;
 
-using System.Linq;
-using EmployeeDirectory.Data;
-using EmployeeDirectory.ViewModels;
-using System.Threading.Tasks;
-
-namespace EmployeeDirectory.Views.Xaml
+public partial class SearchListXaml : ContentPage
 {
-	public partial class SearchListXaml : ContentPage
+	private Search search;
+	private SearchViewModel viewModel;
+	private IFavoritesRepository favoritesRepository;
+
+	public SearchListXaml ()
 	{
-		private Search search;
-		private SearchViewModel viewModel;
-		private IFavoritesRepository favoritesRepository;
+		InitializeComponent ();
 
-		public SearchListXaml ()
-		{
-			InitializeComponent ();
+		// Initialize favorites repository synchronously
+		favoritesRepository = XmlFavoritesRepository.OpenFile ("XamarinFavorites.xml").GetAwaiter().GetResult();
 
-			// Initialize favorites repository synchronously
-			favoritesRepository = XmlFavoritesRepository.OpenFile ("XamarinFavorites.xml").GetAwaiter().GetResult();
+		search = new Search ("test");
+		viewModel = new SearchViewModel (App.Service, search);
 
-			search = new Search ("test");
-			viewModel = new SearchViewModel (App.Service, search);
+		viewModel.SearchCompleted += (sender, e) => {
+			if (viewModel.Groups == null) {
+				listView.ItemsSource = new string [1];
+			} else {
+				listView.ItemsSource = viewModel.Groups;
+			}
+		};
 
-			viewModel.SearchCompleted += (sender, e) => {
-				if (viewModel.Groups == null) {
-					listView.ItemsSource = new string [1];
-				} else {
-					listView.ItemsSource = viewModel.Groups;
-				}
-			};
+		viewModel.Error += (sender, e) => {
+			DisplayAlert ("Error", e.Exception.Message, "OK", null);
+		};
 
-			viewModel.Error += (sender, e) => {
-				DisplayAlert ("Error", e.Exception.Message, "OK", null);
-			};
+		BindingContext = viewModel;
+	}
 
-			BindingContext = viewModel;
-		}
+	private void OnValueChanged (object sender, TextChangedEventArgs e)
+	{
+		viewModel.Search ();
+	}
 
-		private void OnValueChanged (object sender, TextChangedEventArgs e)
-		{
-			viewModel.Search ();
-		}
+	private void OnItemSelected (object sender, SelectedItemChangedEventArgs e)
+	{
+		var personInfo = e.SelectedItem as Person;
+		var employeeView = new EmployeeXaml {
+			BindingContext = new PersonViewModel (personInfo, favoritesRepository)
+		};
 
-		private void OnItemSelected (object sender, SelectedItemChangedEventArgs e)
-		{
-			var personInfo = e.SelectedItem as Person;
-			var employeeView = new EmployeeXaml {
-				BindingContext = new PersonViewModel (personInfo, favoritesRepository)
-			};
-
-			Navigation.PushAsync (employeeView);
-		}
+		Navigation.PushAsync (employeeView);
 	}
 }

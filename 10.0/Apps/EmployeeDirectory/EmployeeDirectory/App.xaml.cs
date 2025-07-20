@@ -12,7 +12,7 @@ public enum UIImplementation
 public partial class App : Application
 {
     // Change the following line to switch between XAML and C# versions
-    private static UIImplementation uiImplementation = UIImplementation.CSharp;
+    private static UIImplementation uiImplementation = UIImplementation.Xaml;
 
     public static IDirectoryService? Service { get; set; }
 

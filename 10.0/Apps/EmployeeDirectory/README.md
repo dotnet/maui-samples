@@ -13,6 +13,8 @@ urlFragment: employee-directory
 
 This employee directory application demonstrates the capabilities of .NET MAUI with a comprehensive contact management system. The app showcases both C# and XAML UI implementations, platform-specific services, and data management features.
 
+![Employee Directory application screenshot](Screenshots/employee-directory.png)
+
 ## Features
 
 - **Dual UI Implementation**: Switch between C# and XAML views
@@ -27,7 +29,7 @@ This employee directory application demonstrates the capabilities of .NET MAUI w
 
 ### Prerequisites
 
-- .NET 10.0 or later
+- .NET 9.0 or later
 - Visual Studio 2022 or Visual Studio Code
 - .NET MAUI workload installed
 

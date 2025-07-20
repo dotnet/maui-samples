@@ -4,7 +4,10 @@ using Android.OS;
 
 namespace EmployeeDirectory.Platforms.Android;
 
-[Activity(Theme = "@style/Maui.SplashTheme", MainLauncher = true, LaunchMode = LaunchMode.SingleTop,
+[Activity(
+    Theme = "@style/Maui.SplashTheme",
+    MainLauncher = true,
+    LaunchMode = LaunchMode.SingleTop,
     ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize | ConfigChanges.Density)]
 public class MainActivity : MauiAppCompatActivity
 {
@@ -14,7 +17,7 @@ public class MainActivity : MauiAppCompatActivity
     {
         base.OnCreate(savedInstanceState);
         Instance = this;
-        
+
         // Set the phone feature service
         App.PhoneFeatureService = new AndroidPhoneFeatureService(this);
     }

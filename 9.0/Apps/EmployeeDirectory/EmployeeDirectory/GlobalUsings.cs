@@ -6,3 +6,9 @@ global using Microsoft.Maui.Storage;
 global using System.Collections.ObjectModel;
 global using System.ComponentModel;
 global using System.Windows.Input;
+
+// Core library usings
+global using EmployeeDirectory.Core.Data;
+global using EmployeeDirectory.Core.Services;
+global using EmployeeDirectory.Core.ViewModels;
+global using EmployeeDirectory.Core.Utilities;

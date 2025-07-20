@@ -16,7 +16,7 @@ namespace TapGesture
 	{
 		ICommand tapCommand;
 		int taps = 0;
-		string numberOfTapsTapped;
+		string numberOfTapsTapped = "Ready to start tapping! 🚀";
 
 		public TapViewModel ()
 		{
@@ -38,9 +38,26 @@ namespace TapGesture
 		void OnTapped (object s) {
 			taps++;
 			Debug.WriteLine ("parameter: " + s);
-			NumberOfTapsTapped = String.Format("{0} tap{1} so far!",
-				taps, 
-				taps == 1 ? "" : "s");
+			
+			var source = s?.ToString() ?? "Unknown";
+			var emoji = source.Contains("Image") ? "🖼️" : "🎯";
+			var encouragement = GetEncouragementMessage(taps);
+			
+			NumberOfTapsTapped = taps == 1 
+				? $"Great start! First tap from {source} {emoji}"
+				: $"{encouragement} {taps} taps total! {emoji}";
+		}
+
+		string GetEncouragementMessage(int count)
+		{
+			return count switch
+			{
+				<= 5 => "Keep going! 🌟",
+				<= 10 => "You're on fire! 🔥",
+				<= 15 => "Tap master! 👑",
+				<= 20 => "Incredible! 🚀",
+				_ => "Legend! 🏆"
+			};
 		}
 
 		/// <summary>
@@ -58,13 +75,11 @@ namespace TapGesture
 		}
 
 		#region INotifyPropertyChanged 
-		public event PropertyChangedEventHandler PropertyChanged;
+		public event PropertyChangedEventHandler? PropertyChanged;
 
-		protected virtual void OnPropertyChanged ([CallerMemberName] string propertyName = null)
+		protected virtual void OnPropertyChanged ([CallerMemberName] string? propertyName = null)
 		{
-			PropertyChangedEventHandler handler = PropertyChanged;
-			if (handler != null)
-				handler (this, new PropertyChangedEventArgs (propertyName));
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		}
 		#endregion
 	}

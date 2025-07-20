@@ -1,6 +1,4 @@
-﻿
-
-namespace DragAndDropGesture
+﻿namespace DragAndDropGesture
 {
     public partial class DataPackageDemoPage : ContentPage
     {
@@ -25,11 +23,15 @@ namespace DragAndDropGesture
 
             if (text.Equals("Cat"))
             {
-                await DisplayAlert("Correct", "Congratulations!", "OK");
+                await DisplayAlert("Correct! 🎉", "Well done! You successfully dragged the cat to the drop zone!", "OK");
             }
             else if (text.Equals("Monkey"))
             {
-                await DisplayAlert("Incorrect", "Try again.", "OK");
+                await DisplayAlert("Try Again 🐵", "That's a monkey! Try dragging the cat instead.", "OK");
+            }
+            else
+            {
+                await DisplayAlert("Oops! 😅", "Something unexpected happened. Please try again.", "OK");
             }
         }
     }

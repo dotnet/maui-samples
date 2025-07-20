@@ -1,5 +1,7 @@
 ﻿
 
+using CommunityToolkit.Mvvm.Messaging;
+
 namespace DragAndDropGesture
 {
     public partial class CustomDataPackageCommandDemoPage : ContentPage
@@ -8,14 +10,14 @@ namespace DragAndDropGesture
         {
             InitializeComponent();
 
-            MessagingCenter.Subscribe<CustomDataPackageViewModel, string>(this, "Correct", async (s, e) =>
+            WeakReferenceMessenger.Default.Register<CustomDataPackageViewModel, string>(this, "Correct", (s, e) =>
             {
-                await DisplayAlert("Correct", e, "OK");
+                DisplayAlert("Correct", e.ToString(), "OK");
             });
 
-            MessagingCenter.Subscribe<CustomDataPackageViewModel, string>(this, "Incorrect", async (s, e) =>
+            WeakReferenceMessenger.Default.Register<CustomDataPackageViewModel, string>(this, "Incorrect", (s, e) =>
             {
-                await DisplayAlert("Incorrect", e, "OK");
+                DisplayAlert("Incorrect", e.ToString(), "OK");
             });
         }
     }

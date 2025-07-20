@@ -1,4 +1,6 @@
 using Microsoft.Extensions.Logging;
+using Microsoft.Maui;
+using Microsoft.Maui.Hosting;
 
 namespace DragAndDropGesture;
 

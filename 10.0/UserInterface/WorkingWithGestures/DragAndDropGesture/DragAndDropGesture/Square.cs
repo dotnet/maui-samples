@@ -10,7 +10,7 @@
         {
             Width = width;
             Height = height;
-            Area = width * width;
+            Area = width * height; // Fixed: should be width * height, not width * width
         }
     }
 }

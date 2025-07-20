@@ -1,5 +1,4 @@
-﻿using System.Windows.Input;
-
+﻿using CommunityToolkit.Mvvm.Messaging;
 
 namespace DragAndDropGesture
 {
@@ -19,11 +18,11 @@ namespace DragAndDropGesture
         {
             if (dragData.Equals("Cat"))
             {
-                MessagingCenter.Send<DataPackageViewModel, string>(this, "Correct", "Congratulations!");
+                WeakReferenceMessenger.Default.Send(new Message("Correct", "Congratulations!"));
             }
             else if (dragData.Equals("Monkey"))
             {
-                MessagingCenter.Send<DataPackageViewModel, string>(this, "Incorrect", "Try again.");
+                WeakReferenceMessenger.Default.Send(new Message("Incorrect", "Try again."));
             }
         }
     }
