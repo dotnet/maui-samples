@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+			 x:Class="TapGesture.TapInsideFrameXaml"
+			 BackgroundColor="#F0F2F5">
+
+	<ScrollView>
+		<StackLayout Padding="20,50" Spacing="25">
+			
+			<!-- Title -->
+			<Label Text="XAML Tap Demo" 
+				   FontSize="28" 
+				   FontAttributes="Bold" 
+				   TextColor="#512BD4" 
+				   HorizontalOptions="Center" 
+				   Margin="0,20,0,10"/>
+			
+			<!-- Instructions -->
+			<Label Text="This demonstrates XAML binding with commands and data binding" 
+				   FontSize="16" 
+				   TextColor="#666666" 
+				   HorizontalOptions="Center" 
+				   HorizontalTextAlignment="Center" 
+				   Margin="0,0,0,20"/>
+
+			<!-- Image with enhanced styling -->
+			<Border StrokeThickness="0" 
+					BackgroundColor="White" 
+					HorizontalOptions="Center"
+					VerticalOptions="Center">
+				<Border.StrokeShape>
+					<RoundRectangle CornerRadius="15"/>
+				</Border.StrokeShape>
+				<Border.Shadow>
+					<Shadow Brush="Black" 
+							Opacity="0.2" 
+							Radius="12" 
+							Offset="0,6"/>
+				</Border.Shadow>
+				
+				<Image Source="tapped.jpg" 
+					   HeightRequest="180" 
+					   WidthRequest="180"
+					   Margin="15">
+					<Image.GestureRecognizers>
+						<TapGestureRecognizer 
+							Command="{Binding TapCommand}" 
+							CommandParameter="Image1" />
+					</Image.GestureRecognizers>
+				</Image>
+			</Border>
+
+			<!-- Interactive Border replacing Frame -->
+			<Border Stroke="#512BD4"
+					StrokeThickness="3"
+					BackgroundColor="#E8F4FD"
+					Padding="25,35"
+					HorizontalOptions="Center"
+					VerticalOptions="Center">
+				<Border.StrokeShape>
+					<RoundRectangle CornerRadius="20"/>
+				</Border.StrokeShape>
+				<Border.Shadow>
+					<Shadow Brush="Gray" 
+							Opacity="0.3" 
+							Radius="10" 
+							Offset="0,5"/>
+				</Border.Shadow>
+				<Border.GestureRecognizers>
+					<TapGestureRecognizer 
+						Command="{Binding TapCommand}" 
+						CommandParameter="Border1" />
+				</Border.GestureRecognizers>
+				
+				<Label Text="Tap this stylish border! 🎨" 
+					   FontSize="18" 
+					   FontAttributes="Bold"
+					   TextColor="#512BD4"
+					   HorizontalTextAlignment="Center"/>
+			</Border>
+
+			<!-- Status Label with enhanced styling -->
+			<Border BackgroundColor="White"
+					Padding="20,15"
+					HorizontalOptions="Center"
+					StrokeThickness="0">
+				<Border.StrokeShape>
+					<RoundRectangle CornerRadius="25"/>
+				</Border.StrokeShape>
+				<Border.Shadow>
+					<Shadow Brush="Black" 
+							Opacity="0.1" 
+							Radius="8" 
+							Offset="0,3"/>
+				</Border.Shadow>
+				
+				<Label x:Name="label"
+					   Text="{Binding NumberOfTapsTapped}"
+					   FontSize="20"
+					   FontAttributes="Bold"
+					   TextColor="#2E2E2E"
+					   HorizontalOptions="Center"
+					   VerticalOptions="Center"
+					   HorizontalTextAlignment="Center"/>
+			</Border>
+
+			<!-- Info section -->
+			<Border BackgroundColor="#FFF9E6"
+					Stroke="#FFE066"
+					StrokeThickness="1"
+					Padding="20"
+					Margin="0,20,0,0">
+				<Border.StrokeShape>
+					<RoundRectangle CornerRadius="10"/>
+				</Border.StrokeShape>
+				
+				<StackLayout Spacing="10">
+					<Label Text="💡 Pro Tip" 
+						   FontSize="16" 
+						   FontAttributes="Bold"
+						   TextColor="#B8860B"/>
+					<Label Text="This page demonstrates XAML data binding with Commands - a powerful pattern for MVVM architecture!"
+						   FontSize="14"
+						   TextColor="#8B7355"
+						   LineBreakMode="WordWrap"/>
+				</StackLayout>
+			</Border>
+
+		</StackLayout>
+	</ScrollView>
+
+</ContentPage>
