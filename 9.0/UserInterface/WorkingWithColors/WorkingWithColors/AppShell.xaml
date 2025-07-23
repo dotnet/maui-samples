@@ -7,17 +7,20 @@
     Title="WorkingWithColors">
 
     <ShellContent
-        Title="🏠 Home"
+        Title="Home"
+        Icon="home.png"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
 
     <ShellContent
-        Title="🎨 Color Demo"
+        Title="Color Demo"
+        Icon="pallete.png"
         ContentTemplate="{DataTemplate local:ColorDemo}"
         Route="ColorDemo" />
 
     <ShellContent
-        Title="📄 Colors in XAML"
+        Title="Colors in XAML"
+        Icon="page.png"
         ContentTemplate="{DataTemplate local:ColorsInXaml}"
         Route="ColorsInXaml" />
 
