@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+			 x:Class="ModalNavigation.MainPage">
+	<ContentPage.Padding>
+		<OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="0,40,0,0" />
+        </OnPlatform>
+	</ContentPage.Padding>
+	<ContentPage.Content>
+		<StackLayout>
+			<ListView x:Name="listView" ItemSelected="OnItemSelected" />
+		</StackLayout>
+	</ContentPage.Content>
+</ContentPage>

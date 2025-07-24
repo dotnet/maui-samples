@@ -8,10 +8,10 @@ namespace ControlGallery.Views.XAML
         {
             InitializeComponent();
 
-            listView.SelectedItem = (listView.ItemsSource as IList)?[0];
+            collectionView.SelectedItem = (collectionView.ItemsSource as IList)?[0];
         }
 
-        void OnListViewItemTapped(object sender, ItemTappedEventArgs e)
+        void OnCollectionViewSelectionChanged(object? sender, SelectionChangedEventArgs e)
         {
             // Show the detail page.
             if (!((IFlyoutPageController)this).ShouldShowSplitMode)
