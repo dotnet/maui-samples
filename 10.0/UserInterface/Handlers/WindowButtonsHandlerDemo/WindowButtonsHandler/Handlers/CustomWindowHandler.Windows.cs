@@ -1,4 +1,5 @@
 ﻿using WindowButtonsHandler.Controls;
+using WindowButtonsHandler.Extensions;
 
 namespace WindowButtonsHandler.Handlers
 {
@@ -17,8 +18,19 @@ namespace WindowButtonsHandler.Handlers
         /// <param name="window">The custom window instance with the changed property</param>
         public static partial void MapIsMinimizable(CustomWindowHandler handler, ICustomWindow window)
         {
-            // TODO: Implement Windows-specific logic for controlling minimize button visibility
-            throw new NotImplementedException($"Windows: MapIsMinimizable called with IsMinimizable = {window.IsMinimizable}");
+            // Ensure we have a valid platform window
+            if (handler.PlatformView is not null)
+            {
+                try
+                {
+                    handler.PlatformView.UpdateIsMinimizable(window);
+                }
+                catch (Exception ex)
+                {
+                    // Log any errors that occur during the update
+                    System.Diagnostics.Debug.WriteLine($"Error updating minimize button: {ex.Message}");
+                }
+            }
         }
 
         /// <summary>
@@ -29,8 +41,19 @@ namespace WindowButtonsHandler.Handlers
         /// <param name="window">The custom window instance with the changed property</param>
         public static partial void MapIsMaximizable(CustomWindowHandler handler, ICustomWindow window)
         {
-            // TODO: Implement Windows-specific logic for controlling maximize button visibility           
-            throw new NotImplementedException($"Windows: MapIsMaximizable called with IsMaximizable = {window.IsMaximizable}");
+            // Ensure we have a valid platform window
+            if (handler.PlatformView is not null)
+            {
+                try
+                {
+                    handler.PlatformView.UpdateIsMaximizable(window);
+                }
+                catch (Exception ex)
+                {
+                    // Log any errors that occur during the update
+                    System.Diagnostics.Debug.WriteLine($"Error updating maximize button: {ex.Message}");
+                }
+            }
         }
     }
 }
