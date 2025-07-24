@@ -2,18 +2,18 @@
 
 public class MainPageCS : ContentPage
 {
-    private ListView listView;
+    private CollectionView collectionView;
     private List<Contact> contacts = [];
 
     public MainPageCS()
     {
         SetupData();
 
-        listView = new ListView
+        collectionView = new CollectionView
         {
             ItemsSource = contacts
         };
-        listView.ItemSelected += OnItemSelected;
+        collectionView.SelectionChanged += OnSelectionChanged;
 
         Thickness padding;
         if (DeviceInfo.Platform.Equals(DevicePlatform.iOS))
@@ -29,20 +29,20 @@ public class MainPageCS : ContentPage
         Content = new StackLayout
         {
             Children = {
-                    listView
+                    collectionView
                 }
         };
     }
 
-    async void OnItemSelected(object? sender, SelectedItemChangedEventArgs e)
+    async void OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
     {
-        if (listView.SelectedItem != null)
+        if (e.CurrentSelection.FirstOrDefault() is Contact contact)
         {
             var detailPage = new DetailPageCS
             {
-                BindingContext = e.SelectedItem as Contact
+                BindingContext = contact
             };
-            listView.SelectedItem = null;
+            collectionView.SelectedItem = null;
             await Navigation.PushModalAsync(detailPage);
         }
     }

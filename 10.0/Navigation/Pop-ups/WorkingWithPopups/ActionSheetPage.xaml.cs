@@ -11,15 +11,15 @@ namespace WorkingWithPopups
 			InitializeComponent ();
 		}
 
-		async void OnActionSheetSimpleClicked (object sender, EventArgs e)
+		async void OnActionSheetSimpleClicked (object? sender, EventArgs e)
 		{
-			var action = await DisplayActionSheet ("ActionSheet: Send to?", "Cancel", null, "Email", "Twitter", "Facebook");
+			var action = await this.DisplayActionSheetAsync ("ActionSheet: Send to?", "Cancel", null, "Email", "Twitter", "Facebook");
 			Debug.WriteLine ("Action: " + action);
 		}
 
-		async void OnActionSheetCancelDeleteClicked (object sender, EventArgs e)
+		async void OnActionSheetCancelDeleteClicked (object? sender, EventArgs e)
 		{
-			var action = await DisplayActionSheet ("ActionSheet: SavePhoto?", "Cancel", "Delete", "Photo Roll", "Email");
+			var action = await this.DisplayActionSheetAsync ("ActionSheet: SavePhoto?", "Cancel", "Delete", "Photo Roll", "Email");
 			Debug.WriteLine ("Action: " + action);
 		}
 	}

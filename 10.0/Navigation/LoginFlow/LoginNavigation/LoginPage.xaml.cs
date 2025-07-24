@@ -7,12 +7,12 @@ public partial class LoginPage : ContentPage
         InitializeComponent();
     }
 
-    async void OnSignUpButtonClicked(object sender, EventArgs e)
+    async void OnSignUpButtonClicked(object? sender, EventArgs e)
     {
         await Navigation.PushAsync(new SignUpPage());
     }
 
-    async void OnLoginButtonClicked(object sender, EventArgs e)
+    async void OnLoginButtonClicked(object? sender, EventArgs e)
     {
         var user = new User 
         {

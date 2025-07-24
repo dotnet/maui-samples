@@ -11,14 +11,14 @@ namespace WorkingWithPopups
 			InitializeComponent ();
 		}
 
-		async void OnAlertSimpleClicked (object sender, EventArgs e)
+		async void OnAlertSimpleClicked (object? sender, EventArgs e)
 		{
-			await DisplayAlert ("Alert", "You have been alerted", "OK");
+			await this.DisplayAlertAsync ("Alert", "You have been alerted", "OK");
 		}
 
-		async void OnAlertYesNoClicked (object sender, EventArgs e)
+		async void OnAlertYesNoClicked (object? sender, EventArgs e)
 		{
-			var answer = await DisplayAlert ("Question?", "Would you like to play a game", "Yes", "No");
+			var answer = await this.DisplayAlertAsync ("Question?", "Would you like to play a game", "Yes", "No");
 			Debug.WriteLine ("Answer: " + answer);
 		}
 	}

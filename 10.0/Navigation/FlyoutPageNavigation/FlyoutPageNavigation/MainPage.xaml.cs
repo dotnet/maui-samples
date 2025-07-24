@@ -6,7 +6,7 @@ public partial class MainPage : FlyoutPage
     {
         InitializeComponent();
 
-        flyoutPage.listView.ItemSelected += OnItemSelected;
+        flyoutPage.collectionView.SelectionChanged += OnSelectionChanged;
 
         if (DeviceInfo.Platform == DevicePlatform.WinUI)
         {
@@ -14,13 +14,12 @@ public partial class MainPage : FlyoutPage
         }
     }
 
-    void OnItemSelected(object? sender, SelectedItemChangedEventArgs e)
+    void OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
     {
-        var item = e.SelectedItem as FlyoutPageItem;
-        if (item != null)
+        if (e.CurrentSelection.FirstOrDefault() is FlyoutPageItem item)
         {
             Detail = new NavigationPage((Page)Activator.CreateInstance(item.TargetType)!);
-            flyoutPage.listView.SelectedItem = null;
+            flyoutPage.collectionView.SelectedItem = null;
             IsPresented = false;
         }
     }
