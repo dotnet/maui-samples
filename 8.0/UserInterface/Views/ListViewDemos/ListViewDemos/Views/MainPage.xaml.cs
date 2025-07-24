@@ -18,5 +18,14 @@ public partial class MainPage : ContentPage
 			});
 		BindingContext = this;
 	}
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        // Force refresh the bindings to avoid stale command issues after back navigation
+        BindingContext = null;
+        BindingContext = this;
+    }
+
 }
 
