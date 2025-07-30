@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WorkingWithFonts.FontPageXaml">
+    
+    <Grid VerticalOptions="Center"
+          HorizontalOptions="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Label Text="Hello MAUI from XAML"
+               FontFamily="Lobster"
+               Grid.Row="0" />
+        <StackLayout Orientation="Horizontal" Grid.Row="1">
+            <Label Text="Italics"
+                   FontAttributes="Italic" />
+            <Label Text="Bold"
+                   FontAttributes="Bold" />
+        </StackLayout>
+        <Label Text="Biggest NamedSize"
+               FontSize="Large"
+               Grid.Row="2" />
+        <Label Text="Use size 72"
+               FontSize="72"
+               FontAttributes="Italic"
+               Grid.Row="3" />
+        <Label Text="Specify Bold Attribute and Micro Size"
+               Grid.Row="4">
+            <Label.FontAttributes>Bold</Label.FontAttributes>
+            <Label.FontSize>Micro</Label.FontSize>
+        </Label>
+        <Label Text="Multiple FontAttributes"
+               FontAttributes="Bold, Italic"
+               Grid.Row="5" />
+        <Label Grid.Row="6">
+            <Label.FormattedText>
+                <FormattedString>
+                    <FormattedString.Spans>
+                        <Span Text="Red, "
+                              TextColor="Red"
+                              FontAttributes="Italic"
+                              FontSize="20" />
+                        <Span Text=" blue, "
+                              TextColor="Blue"
+                              FontSize="32" />
+                        <Span Text=" and green! "
+                              TextColor="Green"
+                              FontSize="12"/>
+                    </FormattedString.Spans>
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+    </Grid>
+</ContentPage>
