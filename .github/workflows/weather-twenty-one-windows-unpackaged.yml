@@ -1,0 +1,50 @@
+name: Build Windows Unpackaged Release
+
+on:
+  push:
+    branches: [ main, actions ]
+
+env:
+    DOTNETVERSION: 8.0.201
+    CONFIGURATION: Release # Values: Debug, Release
+    PLATFORM: x64
+    VERSIONNUMBER: 1.${{ github.run_number }}.${{ github.run_attempt }}
+    
+jobs:
+  buildWindowsPackaged:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup .NET SDK ${{env.DOTNETVERSION}}
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: '${{env.DOTNETVERSION}}'
+
+      - name: List installed .NET info
+        shell: pwsh
+        run: dotnet --info
+
+      - name: Install MAUI Workload
+        run: dotnet workload install maui --ignore-failed-sources
+
+      - uses: managedcode/MAUIAppVersion@v1
+        with:
+          csproj: '8.0/Apps/WeatherTwentyOne/src/WeatherTwentyOne/WeatherTwentyOne.csproj'
+          version: 0 # Revision number must be 0 on Windows to be allowed on MS Store https://learn.microsoft.com/en-us/windows/apps/publish/publish-your-app/package-version-numbering?pivots=store-installer-msix#version-numbering-for-windows10-packages
+          displayVersion: '${{ env.VERSIONNUMBER }}'
+          printFile: true # optional
+
+      # https://docs.microsoft.com/en-us/dotnet/maui/windows/deployment/overview
+      - name: Build Windows EXE
+        run: |
+          cd .\8.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\
+          dotnet publish -f net8.0-windows10.0.19041.0 -c:${{ env.CONFIGURATION }} -p:AppxPackageSigningEnabled=false -p:WindowsPackageType=None --self-contained
+
+      - name: Upload Windows Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: artifacts-windows
+          path: |
+            8.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\bin\${{ env.PLATFORM }}\${{ env.CONFIGURATION }}\net8.0-windows10.0.19041.0\win10-x64\publish\**\*
