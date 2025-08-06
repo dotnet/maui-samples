@@ -10,8 +10,12 @@ public partial class AppShell : Shell
 		InitializeComponent();
 		var currentTheme = Application.Current!.RequestedTheme;
 		ThemeSegmentedControl.SelectedIndex = currentTheme == AppTheme.Light ? 0 : 1;
-	}
-	public static async Task DisplaySnackbarAsync(string message)
+
+#if ANDROID || WINDOWS
+        SemanticProperties.SetDescription(ThemeSegmentedControl, "Theme selection");
+#endif
+    }
+    public static async Task DisplaySnackbarAsync(string message)
 	{
 		CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
 

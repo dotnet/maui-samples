@@ -35,7 +35,10 @@ public partial class MainPageModel : ObservableObject, IProjectTaskPageModel
 	[ObservableProperty]
 	private string _today = DateTime.Now.ToString("dddd, MMM d");
 
-	public bool HasCompletedTasks
+    [ObservableProperty]
+    private Project? selectedProject;
+
+    public bool HasCompletedTasks
 		=> Tasks?.Any(t => t.IsCompleted) ?? false;
 
 	public MainPageModel(SeedDataService seedDataService, ProjectRepository projectRepository,
@@ -148,11 +151,11 @@ public partial class MainPageModel : ObservableObject, IProjectTaskPageModel
 	private Task AddTask()
 		=> Shell.Current.GoToAsync($"task");
 
-	[RelayCommand]
-	private Task NavigateToProject(Project project)
-		=> Shell.Current.GoToAsync($"project?id={project.ID}");
+    [RelayCommand]
+    private Task? NavigateToProject(Project project)
+             => project is null ? null : Shell.Current.GoToAsync($"project?id={project.ID}");
 
-	[RelayCommand]
+    [RelayCommand]
 	private Task NavigateToTask(ProjectTask task)
 		=> Shell.Current.GoToAsync($"task?id={task.ID}");
 
