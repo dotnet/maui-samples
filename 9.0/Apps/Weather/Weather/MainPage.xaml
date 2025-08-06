@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Weather"
+             x:Class="Weather.MainPage"
+             x:DataType="local:WeatherData"
+             BackgroundColor="{DynamicResource PageBackground}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="labelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray200}}" />
+            </Style>
+            <Style x:Key="labelResultStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="Margin" Value="0,0,0,16" />
+                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
+            </Style>
+            <Style x:Key="cardStyle" TargetType="Border">
+                <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray900}}" />
+                <Setter Property="Margin" Value="0,0,0,16" />
+                <Setter Property="Padding" Value="16" />
+                <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray600}}" />
+                <Setter Property="StrokeThickness" Value="1" />
+                <Setter Property="StrokeShape">
+                    <RoundRectangle CornerRadius="16" />
+                </Setter>
+                <Setter Property="Shadow">
+                    <Shadow Brush="#80000000" Offset="0,4" Radius="8" Opacity="0.15" />
+                </Setter>
+            </Style>
+            <local:LongToDateTimeConverter x:Key="longToDateTimeConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <VerticalStackLayout Spacing="24" Padding="24,36,24,24">
+        <!-- Header Card -->
+        <Border Style="{StaticResource cardStyle}">
+            <VerticalStackLayout Spacing="12">
+                <Label Text="Weather" FontSize="32" FontAttributes="Bold" TextColor="{DynamicResource Primary}" HorizontalOptions="Center" />
+                <HorizontalStackLayout Spacing="8">
+                    <Label Text="City:" Style="{StaticResource labelStyle}" VerticalOptions="Center" />
+                    <Entry x:Name="_cityEntry"
+                           Placeholder="Enter city name"
+                           Text="Seattle"
+                           WidthRequest="160"
+                           HeightRequest="40"
+                           VerticalOptions="Center" />
+                    <Button Text="Get Weather"
+                            Clicked="OnGetWeatherButtonClicked"
+                            BackgroundColor="{DynamicResource Primary}"
+                            TextColor="White"
+                            CornerRadius="8"
+                            HeightRequest="40"
+                            Padding="16,0" />
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </Border>
+
+        <!-- Weather Info Card -->
+        <Border Style="{StaticResource cardStyle}">
+            <VerticalStackLayout Spacing="8">
+                <Label Text="Location" Style="{StaticResource labelStyle}" />
+                <Label Text="{Binding Title}" Style="{StaticResource labelResultStyle}" />
+
+                <Label Text="Temperature" Style="{StaticResource labelStyle}" />
+                <Label Text="{Binding Main.Temperature}" Style="{StaticResource labelResultStyle}" />
+
+                <Label Text="Wind Speed" Style="{StaticResource labelStyle}" />
+                <Label Text="{Binding Wind.Speed}" Style="{StaticResource labelResultStyle}" />
+
+                <Label Text="Humidity" Style="{StaticResource labelStyle}" />
+                <Label Text="{Binding Main.Humidity}" Style="{StaticResource labelResultStyle}" />
+
+                <Label Text="Visibility" Style="{StaticResource labelStyle}" />
+                <Label Text="{Binding Weather[0].Visibility}" Style="{StaticResource labelResultStyle}" />
+
+                <Label Text="Time of Sunrise" Style="{StaticResource labelStyle}" />
+                <Label Text="{Binding Sys.Sunrise, Converter={StaticResource longToDateTimeConverter}}" Style="{StaticResource labelResultStyle}" />
+
+                <Label Text="Time of Sunset" Style="{StaticResource labelStyle}" />
+                <Label Text="{Binding Sys.Sunset, Converter={StaticResource longToDateTimeConverter}}" Style="{StaticResource labelResultStyle}" />
+            </VerticalStackLayout>
+        </Border>
+    </VerticalStackLayout>
+</ContentPage>
