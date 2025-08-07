@@ -40,11 +40,11 @@
                     Hint="Category"
                     SemanticProperties.Description="ComboBox to Select Category"
                     SemanticProperties.Hint="State Collapsed">
-                    <Picker SemanticProperties.Hint="Category"
+                    <Picker SemanticProperties.Hint="Select the category for this project"
                             ItemsSource="{Binding Categories}"
                             SelectedItem="{Binding Category}"
                             SelectedIndex="{Binding CategoryIndex}"
-                            SemanticProperties.Description="Category"/>
+                            SemanticProperties.Description="Category State Expanded"/>
                 </sf:SfTextInputLayout>
 
                 <Label 
