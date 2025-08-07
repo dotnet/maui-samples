@@ -38,6 +38,7 @@
       </ScrollView>
 
         <controls:AddButton 
-            Command="{Binding AddProjectCommand}" />
+            Command="{Binding AddProjectCommand}"
+            SemanticProperties.Description="Add project" />
     </Grid>
 </ContentPage>

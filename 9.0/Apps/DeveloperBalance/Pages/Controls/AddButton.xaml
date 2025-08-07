@@ -4,12 +4,10 @@
     x:Class="DeveloperBalance.Pages.Controls.AddButton"
     ImageSource="{StaticResource IconAdd}" 
     BackgroundColor="{StaticResource Primary}" 
-    CornerRadius="25" 
-    HeightRequest="50"
-    Text="Add"
-    TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource LightOnDarkBackground}}"
-    Padding="20,10"
+    CornerRadius="30" 
+    HeightRequest="60" 
+    WidthRequest="60" 
     VerticalOptions="End" 
     HorizontalOptions="End"
     Margin="30"
-    SemanticProperties.Description="Add" />
+    />
