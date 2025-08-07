@@ -10,4 +10,4 @@
     VerticalOptions="End" 
     HorizontalOptions="End"
     Margin="30"
-    />
+    SemanticProperties.Description="Add" />
