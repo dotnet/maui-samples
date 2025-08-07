@@ -40,7 +40,7 @@
                     Hint="Category"
                     SemanticProperties.Description="ComboBox to Select Category"
                     SemanticProperties.Hint="State Collapsed">
-                    <Picker SemanticProperties.Hint="Select the category for this project"
+                    <Picker SemanticProperties.Hint="Select the category for the project"
                             ItemsSource="{Binding Categories}"
                             SelectedItem="{Binding Category}"
                             SelectedIndex="{Binding CategoryIndex}"
