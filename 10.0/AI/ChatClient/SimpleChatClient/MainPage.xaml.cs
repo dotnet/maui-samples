@@ -5,8 +5,8 @@ namespace SimpleChatClient;
 public partial class MainPage : ContentPage
 {
 	public MainPage() : this(
-		Application.Current?.Handler?.MauiContext?.Services?.GetService<ChatViewModel>()
-		?? new ChatViewModel())
+		Application.Current?.Handler?.MauiContext?.Services?.GetRequiredService<ChatViewModel>()
+		?? throw new InvalidOperationException("ChatViewModel not registered"))
 	{ }
 
 	public MainPage(ChatViewModel vm)

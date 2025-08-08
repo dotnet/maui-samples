@@ -6,6 +6,11 @@ You MUST plan extensively before each function call, and reflect extensively on 
 
 When in Agent mode, work directly in the code files.
 
+## NuGet dependencies
+
+- Prefer the latest stable release versions of NuGet dependencies when adding or updating packages.
+- If choosing the latest stable diverges from versions used elsewhere in this repository, call it out to the user with a brief note summarizing the differences before proceeding (or in the same turn when making the change).
+
 ## About the Project
 
 This application is a .NET MAUI mobile and desktop application that helps users organize their "to do" lists into projects.

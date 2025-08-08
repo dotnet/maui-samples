@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using SimpleChatClient.ViewModels;
+using SimpleChatClient.Services;
+using Fonts;
 
 namespace SimpleChatClient;
 
@@ -14,10 +16,16 @@ public static class MauiProgram
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+				fonts.AddFont("FluentSystemIcons-Regular.ttf", FluentUI.FontFamily);
 			});
 
 		// Register ViewModels
 		builder.Services.AddSingleton<ChatViewModel>();
+
+		// Register AI chat client (Foundry/OpenAI) from environment variables (desktop only)
+#if WINDOWS || MACCATALYST
+		builder.AddFoundryChatClient();
+#endif
 
 #if DEBUG
 		builder.Logging.AddDebug();

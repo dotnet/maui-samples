@@ -6,7 +6,9 @@
              x:Class="SimpleChatClient.MainPage"
              x:DataType="vm:ChatViewModel">
 
-    <Grid RowDefinitions="*,Auto" Padding="10" RowSpacing="8">
+    <Grid RowDefinitions="*,Auto"
+          Padding="10"
+          RowSpacing="8">
         <!-- Chat messages -->
         <CollectionView Grid.Row="0"
                         x:Name="MessagesView"
@@ -15,7 +17,8 @@
                         Background="Transparent"
                         SelectionMode="None">
             <CollectionView.ItemsLayout>
-                <LinearItemsLayout Orientation="Vertical" ItemSpacing="8" />
+                <LinearItemsLayout Orientation="Vertical"
+                                   ItemSpacing="8"/>
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:ChatMessage">
@@ -31,17 +34,21 @@
                                 <Label x:Name="MessageText"
                                        Text="{Binding Text}"
                                        TextColor="#222"
-                                       LineBreakMode="WordWrap" />
+                                       LineBreakMode="WordWrap"/>
                                 <Label Text="{Binding Timestamp, StringFormat='{0:t}'}"
                                        FontSize="10"
                                        TextColor="#888"
-                                       HorizontalTextAlignment="End" />
+                                       HorizontalTextAlignment="End"/>
                             </VerticalStackLayout>
                             <Border.Triggers>
                                 <!-- User messages: right aligned, accent background -->
-                                <DataTrigger TargetType="Border" Binding="{Binding From}" Value="User">
-                                    <Setter Property="HorizontalOptions" Value="End" />
-                                    <Setter Property="Background" Value="#D1E8FF" />
+                                <DataTrigger TargetType="Border"
+                                             Binding="{Binding From}"
+                                             Value="User">
+                                    <Setter Property="HorizontalOptions"
+                                            Value="End"/>
+                                    <Setter Property="Background"
+                                            Value="#D1E8FF"/>
                                 </DataTrigger>
                             </Border.Triggers>
                         </Border>
@@ -52,27 +59,24 @@
 
         <!-- Input area -->
         <Grid Grid.Row="1">
-        <Border StrokeThickness="1" Stroke="#DDD" Background="#FFF" Padding="8" StrokeShape="RoundRectangle 12">
-                <Grid ColumnSpacing="8">
-                    <Editor x:Name="PromptEditor"
-                            AutoSize="TextChanges"
-                            Placeholder="Ask something…"
-                            Text="{Binding InputText, Mode=TwoWay}"
-                            Completed="OnEditorCompleted"
-                            TextChanged="OnEditorTextChanged"
-                            Keyboard="Chat"
-                            MaxLength="4000"
-                            Background="Transparent"
-                            Margin="0,0,72,0" />
-            <Button Text="Send"
-                Command="{Binding SendCommand}"
-                HorizontalOptions="End"
-                VerticalOptions="End"
-                CornerRadius="8"
-                Padding="16,10"
-                Margin="8" />
-                </Grid>
-            </Border>
+            <Editor x:Name="PromptEditor"
+                    AutoSize="TextChanges"
+                    Placeholder="Ask something…"
+                    Text="{Binding InputText, Mode=TwoWay}"
+                    Completed="OnEditorCompleted"
+                    TextChanged="OnEditorTextChanged"
+                    Keyboard="Chat"
+                    MaxLength="4000"
+                    Background="Transparent"
+                    Margin="0,0,0,0"/>
+            <ImageButton Source="{StaticResource IconSend}"
+                         Background="Transparent"
+                         Command="{Binding SendCommand}"
+                         HorizontalOptions="End"
+                         VerticalOptions="End"
+                         CornerRadius="8"
+                         Padding="16,10"
+                         Margin="8"/>
         </Grid>
     </Grid>
 

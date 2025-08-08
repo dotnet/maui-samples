@@ -2,6 +2,8 @@ using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using SimpleChatClient.Models;
+using Microsoft.Extensions.AI;
+using UiChatMessage = SimpleChatClient.Models.ChatMessage;
 
 namespace SimpleChatClient.ViewModels;
 
@@ -11,12 +13,15 @@ public partial class ChatViewModel : ObservableObject
     [NotifyCanExecuteChangedFor(nameof(SendCommand))]
     private string _inputText = string.Empty;
 
-    public ObservableCollection<ChatMessage> Messages { get; } = new();
+    public ObservableCollection<UiChatMessage> Messages { get; } = new();
 
-    public ChatViewModel()
+    private readonly IChatClient _chatClient;
+
+    public ChatViewModel(IChatClient chatClient)
     {
+        _chatClient = chatClient;
         // Seed with a greeting from the assistant
-        Messages.Add(new ChatMessage
+        Messages.Add(new UiChatMessage
         {
             From = Sender.Assistant,
             Text = "Hi! Ask me anything."
@@ -24,19 +29,28 @@ public partial class ChatViewModel : ObservableObject
     }
 
     [RelayCommand(CanExecute = nameof(CanSend))]
-    private void Send()
+    private async Task Send()
     {
         var text = InputText?.Trim();
         if (string.IsNullOrEmpty(text)) return;
 
         // Add the user's message
-        Messages.Add(new ChatMessage { From = Sender.User, Text = text });
+        Messages.Add(new UiChatMessage { From = Sender.User, Text = text });
 
         // Clear input
         InputText = string.Empty;
 
-        // Placeholder assistant response (will be replaced by OpenAI in a later step)
-        Messages.Add(new ChatMessage { From = Sender.Assistant, Text = "(Thinking…)" });
+        // Call AI and add assistant response
+        try
+        {
+            var response = await _chatClient.GetResponseAsync(text);
+            var reply = string.IsNullOrWhiteSpace(response.Text) ? "(no response)" : response.Text;
+            Messages.Add(new UiChatMessage { From = Sender.Assistant, Text = reply });
+        }
+        catch (Exception ex)
+        {
+            Messages.Add(new UiChatMessage { From = Sender.Assistant, Text = $"Error: {ex.Message}" });
+        }
     }
 
     private bool CanSend() => !string.IsNullOrWhiteSpace(InputText);
