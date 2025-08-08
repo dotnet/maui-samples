@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:SimpleChatClient.ViewModels"
+             xmlns:models="clr-namespace:SimpleChatClient.Models"
+             x:Class="SimpleChatClient.MainPage"
+             x:DataType="vm:ChatViewModel">
+
+    <Grid RowDefinitions="*,Auto" Padding="10" RowSpacing="8">
+        <!-- Chat messages -->
+        <CollectionView Grid.Row="0"
+                        x:Name="MessagesView"
+                        ItemsSource="{Binding Messages}"
+                        VerticalOptions="FillAndExpand"
+                        Background="Transparent"
+                        SelectionMode="None">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="8" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:ChatMessage">
+                    <Grid>
+                        <Border x:Name="Bubble"
+                                StrokeThickness="0"
+                                Padding="12"
+                                MaximumWidthRequest="520"
+                                Background="#F1F1F1"
+                                HorizontalOptions="Start"
+                                StrokeShape="RoundRectangle 14">
+                            <VerticalStackLayout Spacing="4">
+                                <Label x:Name="MessageText"
+                                       Text="{Binding Text}"
+                                       TextColor="#222"
+                                       LineBreakMode="WordWrap" />
+                                <Label Text="{Binding Timestamp, StringFormat='{0:t}'}"
+                                       FontSize="10"
+                                       TextColor="#888"
+                                       HorizontalTextAlignment="End" />
+                            </VerticalStackLayout>
+                            <Border.Triggers>
+                                <!-- User messages: right aligned, accent background -->
+                                <DataTrigger TargetType="Border" Binding="{Binding From}" Value="User">
+                                    <Setter Property="HorizontalOptions" Value="End" />
+                                    <Setter Property="Background" Value="#D1E8FF" />
+                                </DataTrigger>
+                            </Border.Triggers>
+                        </Border>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Input area -->
+        <Grid Grid.Row="1">
+        <Border StrokeThickness="1" Stroke="#DDD" Background="#FFF" Padding="8" StrokeShape="RoundRectangle 12">
+                <Grid ColumnSpacing="8">
+                    <Editor x:Name="PromptEditor"
+                            AutoSize="TextChanges"
+                            Placeholder="Ask something…"
+                            Text="{Binding InputText, Mode=TwoWay}"
+                            Completed="OnEditorCompleted"
+                            TextChanged="OnEditorTextChanged"
+                            Keyboard="Chat"
+                            MaxLength="4000"
+                            Background="Transparent"
+                            Margin="0,0,72,0" />
+            <Button Text="Send"
+                Command="{Binding SendCommand}"
+                HorizontalOptions="End"
+                VerticalOptions="End"
+                CornerRadius="8"
+                Padding="16,10"
+                Margin="8" />
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+
+</ContentPage>
