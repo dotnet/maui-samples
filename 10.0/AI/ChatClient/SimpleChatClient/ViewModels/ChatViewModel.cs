@@ -20,12 +20,6 @@ public partial class ChatViewModel : ObservableObject
     public ChatViewModel(IChatClient chatClient)
     {
         _chatClient = chatClient;
-        // Seed with a greeting from the assistant
-        Messages.Add(new UiChatMessage
-        {
-            From = Sender.Assistant,
-            Text = "Hi! Ask me anything."
-        });
     }
 
     [RelayCommand(CanExecute = nameof(CanSend))]
@@ -33,23 +27,56 @@ public partial class ChatViewModel : ObservableObject
     {
         var text = InputText?.Trim();
         if (string.IsNullOrEmpty(text)) return;
-
         // Add the user's message
         Messages.Add(new UiChatMessage { From = Sender.User, Text = text });
 
         // Clear input
         InputText = string.Empty;
 
-        // Call AI and add assistant response
+        // Add a placeholder assistant message 
+        var placeholder = new UiChatMessage { From = Sender.Assistant, Text = "..." };
+        Messages.Add(placeholder);
+        var placeholderIndex = Messages.IndexOf(placeholder);
+
+        // Call AI and update the placeholder with assistant response
         try
         {
             var response = await _chatClient.GetResponseAsync(text);
             var reply = string.IsNullOrWhiteSpace(response.Text) ? "(no response)" : response.Text;
-            Messages.Add(new UiChatMessage { From = Sender.Assistant, Text = reply });
+            if (placeholderIndex >= 0 && placeholderIndex < Messages.Count)
+            {
+                Messages[placeholderIndex] = new UiChatMessage { From = Sender.Assistant, Text = reply };
+            }
+            else
+            {
+                Messages.Add(new UiChatMessage { From = Sender.Assistant, Text = reply });
+            }
         }
         catch (Exception ex)
         {
-            Messages.Add(new UiChatMessage { From = Sender.Assistant, Text = $"Error: {ex.Message}" });
+            var err = $"Error: {ex.Message}";
+            if (placeholderIndex >= 0 && placeholderIndex < Messages.Count)
+            {
+                Messages[placeholderIndex] = new UiChatMessage { From = Sender.Assistant, Text = err };
+            }
+            else
+            {
+                Messages.Add(new UiChatMessage { From = Sender.Assistant, Text = err });
+            }
+        }
+    }
+
+    // Triggers sending a predefined prompt from UI buttons
+    [RelayCommand]
+    private async Task SendPrompt(string? prompt)
+    {
+        if (string.IsNullOrWhiteSpace(prompt))
+            return;
+
+        InputText = prompt.Trim();
+        if (CanSend())
+        {
+            await Send();
         }
     }
 

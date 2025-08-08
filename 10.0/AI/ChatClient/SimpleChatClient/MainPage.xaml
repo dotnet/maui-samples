@@ -13,13 +13,71 @@
         <CollectionView Grid.Row="0"
                         x:Name="MessagesView"
                         ItemsSource="{Binding Messages}"
-                        VerticalOptions="FillAndExpand"
                         Background="Transparent"
                         SelectionMode="None">
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout Orientation="Vertical"
                                    ItemSpacing="8"/>
             </CollectionView.ItemsLayout>
+            <CollectionView.EmptyView>
+                <ScrollView>
+                    <VerticalStackLayout Spacing="16"
+                                         Padding="24">
+                        <Label Text="Ask me anything"
+                               FontSize="28"
+                               FontAttributes="Bold"
+                               HorizontalTextAlignment="Center"/>
+
+                        <Button Text="How do I create a MAUI CollectionView with grouping?"
+                                Command="{Binding SendPromptCommand}"
+                                CommandParameter="How do I create a .NET MAUI CollectionView with grouping and headers?"
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Padding="16"
+                                Background="Transparent"
+                                TextColor="#222"
+                                BorderColor="#888"
+                                BorderWidth="1.5"
+                                CornerRadius="10"/>
+
+                        <Button Text="What’s the best way to structure MVVM commands?"
+                                Command="{Binding SendPromptCommand}"
+                                CommandParameter="What are best practices for structuring MVVM commands with CommunityToolkit in .NET MAUI?"
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Padding="16"
+                                Background="Transparent"
+                                TextColor="#222"
+                                BorderColor="#888"
+                                BorderWidth="1.5"
+                                CornerRadius="10"/>
+
+                        <Button Text="Show me a sample HTTP call in MAUI."
+                                Command="{Binding SendPromptCommand}"
+                                CommandParameter="Provide a simple example of calling a REST API with HttpClient in .NET MAUI and displaying results."
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Padding="16"
+                                Background="Transparent"
+                                TextColor="#222"
+                                BorderColor="#888"
+                                BorderWidth="1.5"
+                                CornerRadius="10"/>
+
+                        <Button Text="How do I use DI to resolve services?"
+                                Command="{Binding SendPromptCommand}"
+                                CommandParameter="How do I register and resolve services with Microsoft.Extensions.DependencyInjection in a .NET MAUI app?"
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Padding="16"
+                                Background="Transparent"
+                                TextColor="#222"
+                                BorderColor="#888"
+                                BorderWidth="1.5"
+                                CornerRadius="10"/>
+                    </VerticalStackLayout>
+                </ScrollView>
+            </CollectionView.EmptyView>
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:ChatMessage">
                     <Grid>
