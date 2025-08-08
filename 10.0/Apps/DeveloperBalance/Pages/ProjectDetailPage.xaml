@@ -190,7 +190,8 @@
             </VerticalStackLayout>
         </ScrollView>
 
-        <controls:AddButton Command="{Binding AddTaskCommand}" />
+        <controls:AddButton Command="{Binding AddTaskCommand}" 
+                            SemanticProperties.Description="Add task" />
     </Grid>
     
 </ContentPage>
