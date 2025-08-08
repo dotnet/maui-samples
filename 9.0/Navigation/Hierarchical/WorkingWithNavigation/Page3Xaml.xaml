@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="WorkingWithNavigation.Page3Xaml"
+             Title="Page 3">
+    <ContentPage.Content>
+        <StackLayout Spacing="20" Padding="20">
+            <Button x:Name="previousButton" Text="Previous Page" Clicked="OnPreviousPageButtonClicked" VerticalOptions="Center" />
+            <Button x:Name="rootButton" Text="Return to Root Page" Clicked="OnRootPageButtonClicked" VerticalOptions="Center" />
+            <Button x:Name="insertButton" Text="Insert Page 2a Before Page 3" Clicked="OnInsertPageButtonClicked" VerticalOptions="Center" />
+            <Button x:Name="removeButton" Text="Remove Page 2" Clicked="OnRemovePageButtonClicked" VerticalOptions="Center" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
