@@ -28,7 +28,7 @@ public partial class MainPage : ContentPage
 	}
 
 	// Enter key from Editor triggers Send
-	private void OnEditorCompleted(object? sender, EventArgs e)
+	private void OnCompleted(object? sender, EventArgs e)
 	{
 		if (BindingContext is ChatViewModel vm && vm.SendCommand.CanExecute(null))
 		{
@@ -36,7 +36,7 @@ public partial class MainPage : ContentPage
 		}
 	}
 
-	private void OnEditorTextChanged(object? sender, TextChangedEventArgs e)
+	private void OnTextChanged(object? sender, TextChangedEventArgs e)
 	{
 		// If user presses Enter, many platforms insert '\n' into the Editor.
 		// When we detect trailing newline and there's text before it, submit.

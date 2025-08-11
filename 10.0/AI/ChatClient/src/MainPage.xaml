@@ -1,10 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/maui/global"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:vm="clr-namespace:SimpleChatClient.ViewModels"
-             xmlns:models="clr-namespace:SimpleChatClient.Models"
+             xmlns:behaviors="clr-namespace:SimpleChatClient.Behaviors"
              x:Class="SimpleChatClient.MainPage"
-             x:DataType="vm:ChatViewModel">
+             x:DataType="ChatViewModel">
 
     <Grid RowDefinitions="*,Auto"
           Padding="10"
@@ -13,6 +12,7 @@
         <CollectionView Grid.Row="0"
                         x:Name="MessagesView"
                         ItemsSource="{Binding Messages}"
+                        ItemsUpdatingScrollMode="KeepLastItemInView"
                         Background="Transparent"
                         SelectionMode="None">
             <CollectionView.ItemsLayout>
@@ -79,7 +79,7 @@
                 </ScrollView>
             </CollectionView.EmptyView>
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="models:ChatMessage">
+                <DataTemplate x:DataType="ChatMessage">
                     <Grid>
                         <Border x:Name="Bubble"
                                 StrokeThickness="0"
@@ -115,27 +115,29 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-        <!-- Input area -->
-        <Grid Grid.Row="1">
-            <Editor x:Name="PromptEditor"
-                    AutoSize="TextChanges"
-                    Placeholder="Ask something…"
-                    Text="{Binding InputText, Mode=TwoWay}"
-                    Completed="OnEditorCompleted"
-                    TextChanged="OnEditorTextChanged"
-                    Keyboard="Chat"
-                    MaxLength="4000"
-                    Background="Transparent"
-                    Margin="0,0,0,0"/>
-            <ImageButton Source="{StaticResource IconSend}"
-                         Background="Transparent"
-                         Command="{Binding SendCommand}"
-                         HorizontalOptions="End"
-                         VerticalOptions="End"
-                         CornerRadius="8"
-                         Padding="16,10"
-                         Margin="8"/>
-        </Grid>
+
+        <SfTextInputLayout ContainerType="Outlined"
+                           Hint="Ask something…"
+                           Grid.Row="1">
+            <Entry x:Name="PromptEditor"
+                   Text="{Binding InputText, Mode=TwoWay}"
+                   Completed="OnCompleted"
+                   TextChanged="OnTextChanged"
+                   Keyboard="Chat"
+                   MaxLength="4000"
+                   Background="Transparent"
+                   Margin="16,12"/>
+
+            <SfTextInputLayout.TrailingView>
+                <ImageButton Source="{StaticResource IconSend}"
+                             Background="Transparent"
+                             Command="{Binding SendCommand}"
+                             HorizontalOptions="End"
+                             VerticalOptions="Center"
+                             Padding="6"
+                             Margin="12"/>
+            </SfTextInputLayout.TrailingView>
+        </SfTextInputLayout>
     </Grid>
 
 </ContentPage>

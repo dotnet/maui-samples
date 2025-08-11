@@ -2,6 +2,7 @@
 using SimpleChatClient.ViewModels;
 using SimpleChatClient.Services;
 using Fonts;
+using Syncfusion.Maui.Toolkit.Hosting;
 
 namespace SimpleChatClient;
 
@@ -12,6 +13,7 @@ public static class MauiProgram
 		var builder = MauiApp.CreateBuilder();
 		builder
 			.UseMauiApp<App>()
+			.ConfigureSyncfusionToolkit()
 			.ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
