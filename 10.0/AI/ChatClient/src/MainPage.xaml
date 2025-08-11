@@ -132,10 +132,10 @@
                 <ImageButton Source="{StaticResource IconSend}"
                              Background="Transparent"
                              Command="{Binding SendCommand}"
-                             HorizontalOptions="End"
-                             VerticalOptions="Center"
-                             Padding="6"
-                             Margin="12"/>
+                             WidthRequest="44"
+                             HeightRequest="44"
+                             Padding="10"
+                             Margin="8,0"/>
             </SfTextInputLayout.TrailingView>
         </SfTextInputLayout>
     </Grid>
