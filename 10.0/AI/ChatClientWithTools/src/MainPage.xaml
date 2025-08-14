@@ -1,0 +1,405 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/maui/global"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ChatClientWithTools.MainPage"
+             xmlns:vm="clr-namespace:ChatClientWithTools.ViewModels"
+             xmlns:models="clr-namespace:ChatClientWithTools.Models"
+             x:DataType="vm:ChatViewModel">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Clear"
+                     Priority="0"
+                     Order="Primary"
+                     Command="{Binding ClearChatCommand}"/>
+    </ContentPage.ToolbarItems>
+
+    <Grid RowDefinitions="*,Auto"
+          Padding="10"
+          RowSpacing="8">
+
+        <!-- Chat messages -->
+        <CollectionView Grid.Row="0"
+                        x:Name="MessagesView"
+                        ItemsSource="{Binding Messages}"
+                        ItemsUpdatingScrollMode="KeepLastItemInView"
+                        Background="Transparent"
+                        SelectionMode="None">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical"
+                                   ItemSpacing="8"/>
+            </CollectionView.ItemsLayout>
+
+            <!-- Empty view with tool-specific sample prompts -->
+            <CollectionView.EmptyView>
+                <ScrollView>
+                    <VerticalStackLayout Spacing="16"
+                                         Padding="24">
+                        <Label Text="🔧 AI Chat with Tools"
+                               FontSize="28"
+                               FontAttributes="Bold"
+                               HorizontalTextAlignment="Center"/>
+
+                        <Label Text="Try these tool-powered prompts:"
+                               FontSize="16"
+                               HorizontalTextAlignment="Center"
+                               TextColor="#666"/>
+
+                        <!-- Weather Tool Examples -->
+                        <Label Text="🌤️ Weather"
+                               FontSize="18"
+                               FontAttributes="Bold"
+                               Margin="0,10,0,5"/>
+
+                        <Button Text="What's the weather in Seattle?"
+                                Command="{Binding SendPromptCommand}"
+                                CommandParameter="What's the weather in Seattle?"
+                                Padding="16"
+                                Background="Transparent"
+                                TextColor="#222"
+                                BorderColor="#4A90E2"
+                                BorderWidth="1.5"
+                                CornerRadius="10"/>
+
+                        <Button Text="Check the weather in Tokyo and London"
+                                Command="{Binding SendPromptCommand}"
+                                CommandParameter="Check the current weather in Tokyo and London"
+                                Padding="16"
+                                Background="Transparent"
+                                TextColor="#222"
+                                BorderColor="#4A90E2"
+                                BorderWidth="1.5"
+                                CornerRadius="10"/>
+
+                        <!-- Calculator Tool Examples -->
+                        <Label Text="🔢 Calculator"
+                               FontSize="18"
+                               FontAttributes="Bold"
+                               Margin="0,10,0,5"/>
+
+                        <Button Text="Calculate 15% tip on $47.50"
+                                Command="{Binding SendPromptCommand}"
+                                CommandParameter="Calculate 15% tip on $47.50"
+                                Padding="16"
+                                Background="Transparent"
+                                TextColor="#222"
+                                BorderColor="#FF6B6B"
+                                BorderWidth="1.5"
+                                CornerRadius="10"/>
+
+                        <Button Text="What's 25 × 18 + 150?"
+                                Command="{Binding SendPromptCommand}"
+                                CommandParameter="What's 25 * 18 + 150?"
+                                Padding="16"
+                                Background="Transparent"
+                                TextColor="#222"
+                                BorderColor="#FF6B6B"
+                                BorderWidth="1.5"
+                                CornerRadius="10"/>
+
+                        <!-- File Operations Examples -->
+                        <Label Text="📁 File Operations"
+                               FontSize="18"
+                               FontAttributes="Bold"
+                               Margin="0,10,0,5"/>
+
+                        <Button Text="List files in my Documents folder"
+                                Command="{Binding SendPromptCommand}"
+                                CommandParameter="List the files in my Documents folder"
+                                Padding="16"
+                                Background="Transparent"
+                                TextColor="#222"
+                                BorderColor="#4ECDC4"
+                                BorderWidth="1.5"
+                                CornerRadius="10"/>
+
+                        <!-- System Info Examples -->
+                        <Label Text="⚙️ System Information"
+                               FontSize="18"
+                               FontAttributes="Bold"
+                               Margin="0,10,0,5"/>
+
+                        <Button Text="Show me system battery and storage info"
+                                Command="{Binding SendPromptCommand}"
+                                CommandParameter="Show me current battery level and available storage space"
+                                Padding="16"
+                                Background="Transparent"
+                                TextColor="#222"
+                                BorderColor="#45B7D1"
+                                BorderWidth="1.5"
+                                CornerRadius="10"/>
+
+                        <!-- Timer Examples -->
+                        <Label Text="⏲️ Timers"
+                               FontSize="18"
+                               FontAttributes="Bold"
+                               Margin="0,10,0,5"/>
+
+                        <Button Text="Set a 5-minute timer for my coffee"
+                                Command="{Binding SendPromptCommand}"
+                                CommandParameter="Set a 5-minute timer for my coffee break"
+                                Padding="16"
+                                Background="Transparent"
+                                TextColor="#222"
+                                BorderColor="#F7B731"
+                                BorderWidth="1.5"
+                                CornerRadius="10"/>
+
+                        <!-- Clear chat button -->
+                        <Button Text="🗑️ Clear Chat"
+                                Command="{Binding ClearChatCommand}"
+                                Padding="12"
+                                Background="#FF6B6B"
+                                TextColor="White"
+                                CornerRadius="8"
+                                Margin="0,20,0,0"/>
+                    </VerticalStackLayout>
+                </ScrollView>
+            </CollectionView.EmptyView>
+
+            <!-- Message template with rich tool result display -->
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:ChatMessage">
+                    <Grid>
+                        <Border x:Name="Bubble"
+                                StrokeThickness="0"
+                                Padding="12"
+                                MaximumWidthRequest="520"
+                                Background="#F1F1F1"
+                                HorizontalOptions="Start"
+                                StrokeShape="RoundRectangle 14">
+
+                            <VerticalStackLayout Spacing="8">
+                                <!-- Regular text content -->
+                                <Label x:Name="MessageText"
+                                       Text="{Binding Text}"
+                                       TextColor="#222"
+                                       LineBreakMode="WordWrap"
+                                       IsVisible="{Binding IsPlainText}"/>
+
+                                <!-- Tool call indicator -->
+                                <Label Text="{Binding Text}"
+                                       TextColor="#666"
+                                       FontAttributes="Italic"
+                                       LineBreakMode="WordWrap"
+                                       IsVisible="{Binding IsToolCall}"/>
+
+                                <!-- Weather result display -->
+                                <Border Background="#E3F2FD"
+                                        Stroke="#2196F3"
+                                        StrokeThickness="1"
+                                        StrokeShape="RoundRectangle 8"
+                                        Padding="12"
+                                        IsVisible="{Binding IsWeatherResult}">
+                                    <VerticalStackLayout Spacing="4">
+                                        <Label Text="{Binding AsWeatherResult.Location}"
+                                               FontSize="16"
+                                               FontAttributes="Bold"/>
+                                        <HorizontalStackLayout Spacing="8">
+                                            <Label Text="{Binding AsWeatherResult.Icon}"
+                                                   FontSize="20"/>
+                                            <Label FontSize="18">
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{}{0:F1}{1}">
+                                                        <Binding Path="AsWeatherResult.Temperature"/>
+                                                        <Binding Path="AsWeatherResult.TemperatureUnit"/>
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <Label Text="{Binding AsWeatherResult.Description}"
+                                                   FontAttributes="Italic"
+                                                   VerticalOptions="Center"/>
+                                        </HorizontalStackLayout>
+                                        <HorizontalStackLayout Spacing="16">
+                                            <Label>
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="💧 {0:F0}%">
+                                                        <Binding Path="AsWeatherResult.Humidity"/>
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <Label>
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="💨 {0:F1} mph">
+                                                        <Binding Path="AsWeatherResult.WindSpeed"/>
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                        </HorizontalStackLayout>
+                                    </VerticalStackLayout>
+                                </Border>
+
+                                <!-- Calculator result display -->
+                                <Border Background="#FFF3E0"
+                                        Stroke="#FF9800"
+                                        StrokeThickness="1"
+                                        StrokeShape="RoundRectangle 8"
+                                        Padding="12"
+                                        IsVisible="{Binding IsCalculatorResult}">
+                                    <VerticalStackLayout Spacing="4">
+                                        <Label Text="{Binding AsCalculationResult.Expression}"
+                                               FontSize="14"/>
+                                        <Label Text="{Binding AsCalculationResult.Result}"
+                                               FontSize="20"
+                                               FontAttributes="Bold"
+                                               TextColor="#E65100"/>
+                                        <Label Text="{Binding AsCalculationResult.Steps}"
+                                               FontSize="12"
+                                               TextColor="#666"
+                                               IsVisible="{Binding AsCalculationResult.Steps, Converter={x:Null}}"/>
+                                    </VerticalStackLayout>
+                                </Border>
+
+                                <!-- File list result display -->
+                                <Border Background="#F1F8E9"
+                                        Stroke="#8BC34A"
+                                        StrokeThickness="1"
+                                        StrokeShape="RoundRectangle 8"
+                                        Padding="12"
+                                        IsVisible="{Binding IsFileResult}">
+                                    <VerticalStackLayout Spacing="8">
+                                        <Label Text="{Binding AsFileListResult.Path}"
+                                               FontSize="14"
+                                               FontAttributes="Bold"/>
+                                        <CollectionView ItemsSource="{Binding AsFileListResult.Files}"
+                                                        MaximumHeightRequest="200">
+                                            <CollectionView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Grid ColumnDefinitions="Auto,*,Auto"
+                                                          ColumnSpacing="8"
+                                                          Padding="4">
+                                                        <Label Grid.Column="0"
+                                                               Text="{Binding Icon}"
+                                                               VerticalOptions="Center"/>
+                                                        <Label Grid.Column="1"
+                                                               Text="{Binding Name}"
+                                                               VerticalOptions="Center"
+                                                               LineBreakMode="TailTruncation"/>
+                                                        <Label Grid.Column="2"
+                                                               Text="{Binding Size, StringFormat='{0:N0} bytes'}"
+                                                               FontSize="12"
+                                                               TextColor="#666"
+                                                               VerticalOptions="Center"
+                                                               IsVisible="{Binding IsDirectory}"/>
+                                                    </Grid>
+                                                </DataTemplate>
+                                            </CollectionView.ItemTemplate>
+                                        </CollectionView>
+                                    </VerticalStackLayout>
+                                </Border>
+
+                                <!-- System info result display -->
+                                <Border Background="#F3E5F5"
+                                        Stroke="#9C27B0"
+                                        StrokeThickness="1"
+                                        StrokeShape="RoundRectangle 8"
+                                        Padding="12"
+                                        IsVisible="{Binding IsSystemInfoResult}">
+                                    <VerticalStackLayout Spacing="8">
+                                        <Label Text="{Binding AsSystemInfoResult.DeviceName}"
+                                               FontSize="16"
+                                               FontAttributes="Bold"/>
+                                        <HorizontalStackLayout Spacing="16">
+                                            <Label>
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="🔋 {0:F1}%">
+                                                        <Binding Path="AsSystemInfoResult.BatteryLevel"/>
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <Label Text="{Binding AsSystemInfoResult.BatteryState}"/>
+                                        </HorizontalStackLayout>
+                                        <Label Text="💾 Storage info available"/>
+                                    </VerticalStackLayout>
+                                </Border>
+
+                                <!-- Timer result display -->
+                                <Border Background="#FFEBEE"
+                                        Stroke="#F44336"
+                                        StrokeThickness="1"
+                                        StrokeShape="RoundRectangle 8"
+                                        Padding="12"
+                                        IsVisible="{Binding IsTimerResult}">
+                                    <VerticalStackLayout Spacing="4">
+                                        <Label Text="{Binding AsTimerResult.Title}"
+                                               FontSize="16"
+                                               FontAttributes="Bold"/>
+                                        <HorizontalStackLayout Spacing="16">
+                                            <Label>
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="⏰ {0} minutes">
+                                                        <Binding Path="AsTimerResult.DurationMinutes"/>
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <Label>
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="Ends at {0:t}">
+                                                        <Binding Path="AsTimerResult.EndTime"/>
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                        </HorizontalStackLayout>
+                                    </VerticalStackLayout>
+                                </Border>
+
+                                <!-- Timestamp -->
+                                <Label Text="{Binding Timestamp, StringFormat='{0:t}'}"
+                                       FontSize="10"
+                                       TextColor="#888"
+                                       HorizontalTextAlignment="End"/>
+                            </VerticalStackLayout>
+
+                            <Border.Triggers>
+                                <!-- User messages: right aligned, accent background -->
+                                <DataTrigger TargetType="Border"
+                                             Binding="{Binding From}"
+                                             Value="User">
+                                    <Setter Property="HorizontalOptions"
+                                            Value="End"/>
+                                    <Setter Property="Background"
+                                            Value="#D1E8FF"/>
+                                </DataTrigger>
+                                <!-- Error messages: red background -->
+                                <DataTrigger TargetType="Border"
+                                             Binding="{Binding IsError}"
+                                             Value="True">
+                                    <Setter Property="Background"
+                                            Value="#FFEBEE"/>
+                                    <Setter Property="Stroke"
+                                            Value="#F44336"/>
+                                    <Setter Property="StrokeThickness"
+                                            Value="1"/>
+                                </DataTrigger>
+                            </Border.Triggers>
+                        </Border>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Input area -->
+        <SfTextInputLayout ContainerType="Outlined"
+                           Hint="Ask something or try a tool..."
+                           Grid.Row="1">
+            <Entry x:Name="PromptEditor"
+                   Text="{Binding InputText, Mode=TwoWay}"
+                   Completed="OnCompleted"
+                   TextChanged="OnTextChanged"
+                   Keyboard="Chat"
+                   MaxLength="4000"
+                   Background="Transparent"
+                   Margin="16,12"/>
+
+            <SfTextInputLayout.TrailingView>
+                <ImageButton Source="{StaticResource IconSend}"
+                             Background="Transparent"
+                             Command="{Binding SendCommand}"
+                             WidthRequest="44"
+                             HeightRequest="44"
+                             Padding="10"
+                             Margin="8,0"/>
+            </SfTextInputLayout.TrailingView>
+        </SfTextInputLayout>
+    </Grid>
+
+</ContentPage>
