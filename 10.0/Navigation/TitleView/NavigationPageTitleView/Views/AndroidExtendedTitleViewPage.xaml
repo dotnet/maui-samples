@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:android="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;assembly=Microsoft.Maui.Controls"
+             x:Class="NavigationPageTitleView.AndroidExtendedTitleViewPage">
+    <NavigationPage.TitleView>
+        <StackLayout HeightRequest="70" Padding="5" BackgroundColor="Transparent">
+            <Label Text="My TitleView" 
+                   TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center" />
+            <SearchBar BackgroundColor="Transparent"
+                       TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
+                       PlaceholderColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray300}}" />
+        </StackLayout>
+    </NavigationPage.TitleView>
+    <StackLayout Margin="20">
+        <Label Text="The TitleView on the NavigationPage demonstrates Android-specific customization." />
+        <Button Text="Return to Menu" Clicked="OnReturnButtonClicked" />    
+    </StackLayout>    
+</ContentPage>
