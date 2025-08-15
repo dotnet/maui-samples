@@ -39,11 +39,20 @@
 
                     <Grid SemanticProperties.Description="{Binding Title}" Margin="{OnIdiom -15, Desktop=-20}">
                         <Label
-                            Margin="{OnIdiom '65,0,0,0', Desktop= '70,0,0,0'}"
                             Text="{Binding Title}"
                             HorizontalOptions="Start"
                             VerticalOptions="Center"
-                            LineBreakMode="WordWrap"/>
+                            LineBreakMode="WordWrap">
+                            <Label.Margin>
+                                <OnPlatform x:TypeArguments="Thickness">
+                                    <On Platform="iOS" Value="65,0,0,6"/>
+                                    <On Platform="MacCatalyst" Value="70,0,0,6"/>
+                                    <On Platform="Android" Value="65,0,0,0"/>
+                                    <On Platform="WinUI" Value="70,0,0,0"/>
+                                    <On Platform="Default" Value="65,0,0,0"/>
+                                </OnPlatform>
+                            </Label.Margin>
+                        </Label>
 
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer
