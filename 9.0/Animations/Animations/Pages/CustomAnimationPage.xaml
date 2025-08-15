@@ -3,27 +3,68 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Animations.CustomAnimationPage"
              Title="Custom Extension">
-			 
-    <ScrollView>
-        <VerticalStackLayout 
-            Spacing="25" 
-            Padding="30,0" 
-            VerticalOptions="Center">
+    <Grid RowDefinitions="Auto, Auto, Auto" 
+          Padding="20"
+          RowSpacing="20">
 
-            <Image
-                x:Name="BotImg"
-                Source="dotnet_bot.png"
-                SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                HeightRequest="200"
-                HorizontalOptions="Center" />
-                
-            <Button 
-                Text="Change The Mood"
-                SemanticProperties.Hint="Fades out the dot net bot"
-                Clicked="OnClickedAsync"
-                HorizontalOptions="Center" />
+        <Border Grid.Row="0"
+                Stroke="Transparent"
+                StrokeThickness="0"
+                Margin="0,10,0,10">
+            <Grid VerticalOptions="Center">
+                <Image x:Name="BotImg"
+                       Source="dotnet_bot.png"
+                       SemanticProperties.Description="Cute dot net bot waving hi to you!"
+                       HeightRequest="400"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center" />
+            </Grid>
+        </Border>
 
-        </VerticalStackLayout>
-    </ScrollView>
- 
+        <Grid Grid.Row="1" 
+              ColumnDefinitions="*,*"
+              ColumnSpacing="15"
+              RowDefinitions="Auto,Auto"
+              RowSpacing="15">
+
+            <Button Grid.Column="0" Grid.Row="0"
+                    Text="Change The Mood"
+                    SemanticProperties.Hint="Changes the background color randomly"
+                    Clicked="OnClickedAsync"
+                    HorizontalOptions="Fill" />
+
+            <Button Grid.Column="1" Grid.Row="0"
+                    Text="Dance Party"
+                    SemanticProperties.Hint="Makes the bot dance with style"
+                    Clicked="OnDancePartyClickedAsync"
+                    HorizontalOptions="Fill"/>
+
+            <Button Grid.Column="0" Grid.Row="1"
+                    Text="Color Wave"
+                    SemanticProperties.Hint="Ripple effect with color change"
+                    Clicked="OnColorWaveClickedAsync"
+                    HorizontalOptions="Fill"/>
+
+            <Button Grid.Column="1" Grid.Row="1"
+                    Text="3D Spin"
+                    SemanticProperties.Hint="Creates a 3D spinning effect"
+                    Clicked="OnSpinClickedAsync"
+                HorizontalOptions="Fill"/>
+        </Grid>
+
+        <Border Grid.Row="2"
+                StrokeThickness="1"
+                BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}"
+                StrokeShape="RoundRectangle 8"
+                Stroke="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}"
+                Padding="15,10"
+                MinimumHeightRequest="50">
+            <Label x:Name="TooltipLabel"
+                   Text="Click any button to see what it does!"
+                   TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}"
+                   FontFamily="OpenSansRegular"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"/>
+        </Border>
+    </Grid>
 </ContentPage>
