@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <!-- Modern Color Palette -->
+    <Color x:Key="Primary">#0066CC</Color>
+    <Color x:Key="PrimaryLight">#4D94FF</Color>
+    <Color x:Key="PrimaryDark">#003D7A</Color>
+    <Color x:Key="Secondary">#FF6B35</Color>
+    <Color x:Key="SecondaryLight">#FF9668</Color>
+    <Color x:Key="Tertiary">#7B68EE</Color>
+    
+    <!-- Surface Colors -->
+    <Color x:Key="Surface">#FFFFFF</Color>
+    <Color x:Key="SurfaceVariant">#F5F5F7</Color>
+    <Color x:Key="SurfaceDark">#1C1C1E</Color>
+    <Color x:Key="SurfaceVariantDark">#2C2C2E</Color>
+    
+    <!-- Text Colors -->
+    <Color x:Key="OnSurface">#1D1D1F</Color>
+    <Color x:Key="OnSurfaceVariant">#48484A</Color>
+    <Color x:Key="OnSurfaceDark">#F2F2F7</Color>
+    <Color x:Key="OnSurfaceVariantDark">#AEAEB2</Color>
+    
+    <!-- Additional Text Colors -->
+    <Color x:Key="PrimaryDarkText">#FFFFFF</Color>
+    <Color x:Key="SecondaryDarkText">#E5E5EA</Color>
+    <Color x:Key="MidnightBlue">#191970</Color>
+    
+    <!-- Status Colors -->
+    <Color x:Key="Success">#34C759</Color>
+    <Color x:Key="Warning">#FF9500</Color>
+    <Color x:Key="Error">#FF3B30</Color>
+    
+    <!-- Additional Theme Colors -->
+    <Color x:Key="Magenta">#FF0080</Color>
+    <Color x:Key="OffBlack">#0A0A0A</Color>
+    
+    <!-- Legacy Colors (keeping for compatibility) -->
+    <Color x:Key="White">White</Color>
+    <Color x:Key="Black">Black</Color>
+    <Color x:Key="Gray100">#F2F2F7</Color>
+    <Color x:Key="Gray200">#E5E5EA</Color>
+    <Color x:Key="Gray300">#D1D1D6</Color>
+    <Color x:Key="Gray400">#C7C7CC</Color>
+    <Color x:Key="Gray500">#AEAEB2</Color>
+    <Color x:Key="Gray600">#8E8E93</Color>
+    <Color x:Key="Gray700">#636366</Color>
+    <Color x:Key="Gray800">#48484A</Color>
+    <Color x:Key="Gray900">#1D1D1F</Color>
+    <Color x:Key="Gray950">#0D0D0F</Color>
+
+    <!-- Brushes -->
+    <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}"/>
+    <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource Secondary}"/>
+    <SolidColorBrush x:Key="SurfaceBrush" Color="{AppThemeBinding Light={StaticResource Surface}, Dark={StaticResource SurfaceDark}}"/>
+    <SolidColorBrush x:Key="SurfaceVariantBrush" Color="{AppThemeBinding Light={StaticResource SurfaceVariant}, Dark={StaticResource SurfaceVariantDark}}"/>
+</ResourceDictionary>

@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DragAndDropGesture.DataPackageDemoPage"
+             Title="Data Package Demo"
+             BackgroundColor="{StaticResource PageBackgroundColor}">
+    <ScrollView>
+        <StackLayout Padding="20" Spacing="30">
+            
+            <!-- Header Section -->
+            <Border BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource DarkPrimary}}"
+                    StrokeThickness="0"
+                    Padding="20,15">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="12"/>
+                </Border.StrokeShape>
+                <Label Text="Drag the cat to the drop zone to win!"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}"
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center"/>
+            </Border>
+
+            <!-- Animals Section -->
+            <StackLayout Spacing="20">
+                <Label Text="Choose Your Animal"
+                       FontSize="16"
+                       FontAttributes="Bold"
+                       TextColor="{StaticResource TextPrimaryColor}"
+                       HorizontalOptions="Center"/>
+                
+                <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="*,*" RowSpacing="20" ColumnSpacing="20">
+                    
+                    <!-- Monkey -->
+                    <Border Grid.Row="0" Grid.Column="0"
+                            BackgroundColor="{StaticResource CardBackgroundColor}"
+                            StrokeThickness="0"
+                            Padding="15">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="12"/>
+                        </Border.StrokeShape>
+                        <Border.Shadow>
+                            <Shadow Brush="{StaticResource ShadowBrush}"
+                                    Offset="0,4"
+                                    Radius="8"
+                                    Opacity="0.3"/>
+                        </Border.Shadow>
+                        <StackLayout Spacing="10">
+                            <Label Text="🐵 Monkey"
+                                   FontSize="14"
+                                   FontAttributes="Bold"
+                                   TextColor="{StaticResource TextPrimaryColor}"
+                                   HorizontalOptions="Center"/>
+                            <Image Source="monkeyface.png"
+                                   HeightRequest="120"
+                                   WidthRequest="120"
+                                   Aspect="AspectFit"
+                                   HorizontalOptions="Center">
+                                <Image.GestureRecognizers>
+                                    <DragGestureRecognizer DragStarting="OnMonkeyDragStarting"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+                            <Label Text="Drag me!"
+                                   FontSize="12"
+                                   TextColor="{StaticResource TextSecondaryColor}"
+                                   HorizontalOptions="Center"/>
+                        </StackLayout>
+                    </Border>
+                    
+                    <!-- Cat -->
+                    <Border Grid.Row="0" Grid.Column="1"
+                            BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource DarkSurface}}"
+                            StrokeThickness="0"
+                            Padding="15">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="12"/>
+                        </Border.StrokeShape>
+                        <Border.Shadow>
+                            <Shadow Brush="{AppThemeBinding Light={StaticResource Gray400}, Dark={StaticResource DarkGray200}}"
+                                    Offset="0,4"
+                                    Radius="8"
+                                    Opacity="0.3"/>
+                        </Border.Shadow>
+                        <StackLayout Spacing="10">
+                            <Label Text="🐱 Cat"
+                                   FontSize="14"
+                                   FontAttributes="Bold"
+                                   TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource DarkGray900}}"
+                                   HorizontalOptions="Center"/>
+                            <Border BackgroundColor="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource DarkGray100}}"
+                                    StrokeThickness="0"
+                                    HeightRequest="120"
+                                    WidthRequest="120"
+                                    HorizontalOptions="Center">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="8"/>
+                                </Border.StrokeShape>
+                                <Path Stroke="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
+                                      StrokeThickness="2"
+                                      HorizontalOptions="Center"
+                                      VerticalOptions="Center">
+                                    <Path.GestureRecognizers>
+                                        <DragGestureRecognizer DragStarting="OnCatDragStarting" />
+                                    </Path.GestureRecognizers>
+                                    <Path.Data>
+                                        <PathGeometry Figures="M 40 35 L 37.5 12.5 55 25.75
+                                                               M 80 35 L 82.5 12.5 65 25.75
+                                                               M 53.75 57.5 L 10 50
+                                                               M 53.75 60 L 10 60
+                                                               M 53.75 62.5 L 10 70
+                                                               M 66.25 57.5 L 110 50
+                                                               M 66.25 60 L 110 60
+                                                               M 66.25 62.5 L 110 70
+                                                               M 60 25
+                                                               A 25 25 0 0 1 60 75
+                                                               A 25 25 0 0 1 60 25 
+                                                               M 45 42.5
+                                                               A 10 10 0 0 1 55 42.5
+                                                               A 10 10 0 0 1 45 42.5
+                                                               M 75 42.5
+                                                               A 10 10 0 0 1 65 42.5
+                                                               A 10 10 0 0 1 75 42.5" />
+                                    </Path.Data>
+                                </Path>
+                            </Border>
+                            <Label Text="Drag me!"
+                                   FontSize="12"
+                                   TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource DarkGray600}}"
+                                   HorizontalOptions="Center"/>
+                        </StackLayout>
+                    </Border>
+                </Grid>
+            </StackLayout>
+
+            <!-- Drop Zone Section -->
+            <StackLayout Spacing="15">
+                <Label Text="Drop Zone"
+                       FontSize="16"
+                       FontAttributes="Bold"
+                       TextColor="{StaticResource TextPrimaryColor}"
+                       HorizontalOptions="Center"/>
+                
+                <Border BackgroundColor="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource DarkGray300}}"
+                        Stroke="{StaticResource BorderColor}"
+                        StrokeThickness="3"
+                        StrokeDashArray="10,5"
+                        HeightRequest="200"
+                        Padding="20">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="12"/>
+                    </Border.StrokeShape>
+                    <Border.GestureRecognizers>
+                        <DropGestureRecognizer Drop="OnDrop" />
+                    </Border.GestureRecognizers>
+                    <StackLayout VerticalOptions="Center" Spacing="10">
+                        <Label Text="🎯"
+                               FontSize="48"
+                               HorizontalOptions="Center"
+                               TextColor="{StaticResource TextSecondaryColor}"/>
+                        <Label Text="Drop the cat here to win!"
+                               FontSize="16"
+                               FontAttributes="Bold"
+                               TextColor="{StaticResource TextSecondaryColor}"
+                               HorizontalOptions="Center"
+                               HorizontalTextAlignment="Center"/>
+                        <Label Text="(Hint: The cat is the correct answer)"
+                               FontSize="12"
+                               TextColor="{StaticResource TextTertiaryColor}"
+                               HorizontalOptions="Center"
+                               HorizontalTextAlignment="Center"/>
+                    </StackLayout>
+                </Border>
+            </StackLayout>
+
+            <!-- Instructions Section -->
+            <Border BackgroundColor="{AppThemeBinding Light={StaticResource Secondary}, Dark={StaticResource DarkSecondary}}"
+                    StrokeThickness="0"
+                    Padding="15">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="8"/>
+                </Border.StrokeShape>
+                <StackLayout Spacing="8">
+                    <Label Text="🎮 Game Rules"
+                           FontSize="14"
+                           FontAttributes="Bold"
+                           TextColor="{AppThemeBinding Light={StaticResource PrimaryDarkText}, Dark={StaticResource Black}}"/>
+                    <Label Text="1. This demo shows how to transfer custom data during drag and drop"
+                           FontSize="12"
+                           TextColor="{AppThemeBinding Light={StaticResource PrimaryDarkText}, Dark={StaticResource Black}}"/>
+                    <Label Text="2. Each animal sends different text data when dragged"
+                           FontSize="12"
+                           TextColor="{AppThemeBinding Light={StaticResource PrimaryDarkText}, Dark={StaticResource Black}}"/>
+                    <Label Text="3. The drop zone checks the received data to determine success"
+                           FontSize="12"
+                           TextColor="{AppThemeBinding Light={StaticResource PrimaryDarkText}, Dark={StaticResource Black}}"/>
+                    <Label Text="4. Only the cat will result in a successful drop!"
+                           FontSize="12"
+                           TextColor="{AppThemeBinding Light={StaticResource PrimaryDarkText}, Dark={StaticResource Black}}"/>
+                </StackLayout>
+            </Border>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
