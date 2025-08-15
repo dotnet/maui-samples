@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="WorkingWithFiles.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:WorkingWithFiles"
+    Shell.FlyoutBehavior="Disabled">
+
+    <TabBar>
+        <ShellContent
+            Title="Save/Load"
+            ContentTemplate="{DataTemplate local:SaveAndLoadTextPage}" />
+        
+        <ShellContent
+            Title="Text"
+            ContentTemplate="{DataTemplate local:LoadResourceTextPage}" />
+        
+        <ShellContent
+            Title="XML"
+            ContentTemplate="{DataTemplate local:LoadResourceXmlPage}" />
+
+        <ShellContent
+            Title="JSON"
+            ContentTemplate="{DataTemplate local:LoadResourceJsonPage}" />
+    </TabBar>
+
+</Shell>
