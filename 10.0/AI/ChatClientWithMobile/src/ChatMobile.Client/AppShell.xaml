@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="ChatMobile.Client.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:ChatMobile.Client.Views"
+    Title="ChatClientWithMobile">
+
+    <TabBar>
+        <ShellContent
+            Title="Chat"
+            ContentTemplate="{DataTemplate views:MainPage}"
+            Route="MainPage" />
+        
+        <ShellContent
+            Title="Setup"
+            ContentTemplate="{DataTemplate views:SetupPage}"
+            Route="SetupPage" />
+    </TabBar>
+
+</Shell>

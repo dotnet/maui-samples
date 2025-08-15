@@ -358,3 +358,5 @@ Resource.designer.cs
 *.DS_Store
 *.zip
 *.claude
+10.0/AI/ChatClientWithMobile/src/ChatMobile.Api/appsettings.json
+10.0/AI/ChatClientWithMobile/src/ChatMobile.Api/appsettings.Development.json
