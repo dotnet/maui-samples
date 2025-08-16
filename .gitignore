@@ -360,3 +360,5 @@ Resource.designer.cs
 *.claude
 10.0/AI/ChatClientWithMobile/src/ChatMobile.Api/appsettings.json
 10.0/AI/ChatClientWithMobile/src/ChatMobile.Api/appsettings.Development.json
+10.0/AI/ChatClientWithVoice/src/ChatVoice.Api/appsettings.Development.json
+10.0/AI/ChatClientWithVoice/src/ChatVoice.Api/appsettings.json
