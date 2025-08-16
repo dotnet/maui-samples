@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="ChatVoice.Client.Views.SetupPage"
+             xmlns="http://schemas.microsoft.com/dotnet/maui/global"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="http://schemas.microsoft.com/dotnet/maui/global"
+             x:DataType="viewmodels:SetupViewModel"
+             Title="Setup">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20"
+                Spacing="20">
+
+            <!-- Header -->
+            <Label Text="Credential Setup"
+                   HorizontalOptions="Center"
+                   FontSize="24"
+                   FontAttributes="Bold"/>
+
+            <!-- Status Section -->
+            <Border StrokeThickness="1"
+                    Stroke="#512BD4"
+                    StrokeShape="RoundRectangle 10"
+                    BackgroundColor="{AppThemeBinding Light=#F5F5F5, Dark=#1E1E1E}"
+                    Padding="15">
+                <Grid RowDefinitions="Auto,Auto"
+                        ColumnDefinitions="Auto,*"
+                        RowSpacing="10">
+
+                    <!-- Status Indicator -->
+                    <Label Grid.Row="0"
+                            Grid.Column="0"
+                           Text="{Binding HasCredentials, Converter={StaticResource BoolToStatusIconConverter}}"
+                           FontSize="20"
+                           VerticalOptions="Center"/>
+
+                    <Label Grid.Row="0"
+                            Grid.Column="1"
+                           Text="{Binding HasCredentials, Converter={StaticResource BoolToCredentialStatusConverter}}"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           VerticalOptions="Center"
+                           Margin="10,0,0,0"/>
+
+                    <!-- Status Message -->
+                    <Label Grid.Row="1"
+                            Grid.ColumnSpan="2"
+                           Text="{Binding StatusMessage}"
+                           FontSize="14"
+                           TextColor="{AppThemeBinding Light=#666, Dark=#CCC}"
+                           IsVisible="{Binding StatusMessage, Converter={StaticResource StringToBoolConverter}}"/>
+                </Grid>
+            </Border>
+
+            <!-- Instructions -->
+            <Label Text="This app requires API credentials to function. Click 'Load from Server' to retrieve credentials from the backend service."
+                   FontSize="14"
+                   TextColor="{AppThemeBinding Light=#666, Dark=#CCC}"/>
+
+            <!-- Action Buttons -->
+            <Button Text="Load from Server"
+                    Command="{Binding LoadCredentialsFromApiCommand}"
+                    IsEnabled="{Binding IsLoading, Converter={StaticResource InvertedBoolConverter}}"/>
+
+            <Button Text="Clear Credentials"
+                    Command="{Binding ClearCredentialsCommand}"
+                    IsEnabled="{Binding IsLoading, Converter={StaticResource InvertedBoolConverter}}"
+                    IsVisible="{Binding HasCredentials}"
+                    BackgroundColor="#E53935"/>
+
+            <!-- Loading Indicator -->
+            <ActivityIndicator IsVisible="{Binding IsLoading}"
+                               IsRunning="{Binding IsLoading}"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

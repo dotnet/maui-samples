@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell x:Class="ChatVoice.Client.AppShell"
+       xmlns="http://schemas.microsoft.com/dotnet/maui/global"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:views="http://schemas.microsoft.com/dotnet/maui/global"
+       Title="ChatClientWithVoice">
+
+    <TabBar>
+        <ShellContent Title="Chat"
+                      ContentTemplate="{DataTemplate views:MainPage}"
+                      Route="MainPage"/>
+
+        <ShellContent Title="Setup"
+                      ContentTemplate="{DataTemplate views:SetupPage}"
+                      Route="SetupPage"/>
+    </TabBar>
+
+</Shell>
