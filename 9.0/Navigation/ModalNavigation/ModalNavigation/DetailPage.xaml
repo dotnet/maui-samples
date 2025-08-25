@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+			 xmlns:local="clr-namespace:ModalNavigation"
+			 x:Class="ModalNavigation.DetailPage"
+			 x:DataType="local:Contact">
+	<ContentPage.Content>
+		<Grid HorizontalOptions="Center" VerticalOptions="Center">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+			
+			<Label Grid.Row="0" Grid.Column="0" Text="Name:" FontSize="Medium" Margin="0,0,10,0" />
+			<Label Grid.Row="0" Grid.Column="1" Text="{Binding Name}" FontSize="Medium" FontAttributes="Bold" />
+			
+			<Label Grid.Row="1" Grid.Column="0" Text="Age:" FontSize="Medium" Margin="0,0,10,0" />
+			<Label Grid.Row="1" Grid.Column="1" Text="{Binding Age}" FontSize="Medium" FontAttributes="Bold" />
+			
+			<Label Grid.Row="2" Grid.Column="0" Text="Occupation:" FontSize="Medium" Margin="0,0,10,0" />
+			<Label Grid.Row="2" Grid.Column="1" Text="{Binding Occupation}" FontSize="Medium" FontAttributes="Bold" />
+			
+			<Label Grid.Row="3" Grid.Column="0" Text="Country:" FontSize="Medium" Margin="0,0,10,0" />
+			<Label Grid.Row="3" Grid.Column="1" Text="{Binding Country}" FontSize="Medium" FontAttributes="Bold" />
+			
+			<Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" x:Name="dismissButton" Text="Dismiss" Clicked="OnDismissButtonClicked" />
+		</Grid>
+	</ContentPage.Content>
+</ContentPage>
