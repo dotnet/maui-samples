@@ -85,7 +85,7 @@
             <Grid ColumnSpacing="{StaticResource LayoutSpacing}" ColumnDefinitions="*,Auto" Margin="0,10">
                 <Button Text="Save" Command="{Binding SaveCategoriesCommand}"
                     SemanticProperties.Description="Save Categories"
-                    HeightRequest="{OnIdiom 44,Desktop=60}" Grid.Column="0" />
+                    MinimumHeightRequest="{OnIdiom 44,Desktop=60}" Grid.Column="0" />
 
                 <Button ImageSource="{StaticResource IconAdd}"
                     Command="{Binding AddCategoryCommand}" Grid.Column="1"
@@ -128,7 +128,7 @@
             <Grid ColumnSpacing="{StaticResource LayoutSpacing}" ColumnDefinitions="*,Auto" Margin="0,10">
                 <Button Text="Save" Command="{Binding SaveTagsCommand}"
                     SemanticProperties.Description="Save Tags"
-                    HeightRequest="{OnIdiom 44,Desktop=60}" Grid.Column="0" />
+                    MinimumHeightRequest="{OnIdiom 44,Desktop=60}" Grid.Column="0" />
 
                 <Button ImageSource="{StaticResource IconAdd}"
                     Command="{Binding AddTagCommand}" Grid.Column="1"

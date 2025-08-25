@@ -50,7 +50,7 @@
                 </sf:SfTextInputLayout>
 
                 <Button 
-                    HeightRequest="{OnIdiom 44, Desktop=60}"
+                    MinimumHeightRequest="{OnIdiom 44, Desktop=60}"
                     Text="Save"
                     Command="{Binding SaveCommand}"/>
             </VerticalStackLayout>
