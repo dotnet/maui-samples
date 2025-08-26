@@ -1,0 +1,5 @@
+[assembly: XmlnsDefinition("http://schemas.microsoft.com/dotnet/maui/global", "ChatClientWithTools")]
+[assembly: XmlnsDefinition("http://schemas.microsoft.com/dotnet/maui/global", "ChatClientWithTools.Models")]
+[assembly: XmlnsDefinition("http://schemas.microsoft.com/dotnet/maui/global", "ChatClientWithTools.Pages")]
+[assembly: XmlnsDefinition("http://schemas.microsoft.com/dotnet/maui/global", "ChatClientWithTools.ViewModels")]
+[assembly: XmlnsDefinition("http://schemas.microsoft.com/dotnet/maui/global", "Syncfusion.Maui.Toolkit.TextInputLayout", AssemblyName = "Syncfusion.Maui.Toolkit")]
