@@ -52,7 +52,19 @@ public partial class ProjectDetailPageModel : ObservableObject, IQueryAttributab
 		new IconData { Icon = FluentUI.bot_24_regular, Description = "Bot Icon" }
 	};
 
-	public bool HasCompletedTasks
+	private bool _canDelete;
+
+	public bool CanDelete
+	{
+		get => _canDelete;
+		set
+		{
+			_canDelete = value;
+			DeleteCommand.NotifyCanExecuteChanged();
+        }
+    }
+
+    public bool HasCompletedTasks
 		=> _project?.Tasks.Any(t => t.IsCompleted) ?? false;
 
 	public ProjectDetailPageModel(ProjectRepository projectRepository, TaskRepository taskRepository, CategoryRepository categoryRepository, TagRepository tagRepository, ModalErrorHandler errorHandler)
@@ -145,7 +157,8 @@ public partial class ProjectDetailPageModel : ObservableObject, IQueryAttributab
 		finally
 		{
 			IsBusy = false;
-			OnPropertyChanged(nameof(HasCompletedTasks));
+			CanDelete = !_project.IsNullOrNew();
+            OnPropertyChanged(nameof(HasCompletedTasks));
 		}
 	}
 
@@ -216,7 +229,7 @@ public partial class ProjectDetailPageModel : ObservableObject, IQueryAttributab
 			});
 	}
 
-	[RelayCommand]
+	[RelayCommand(CanExecute = nameof(CanDelete))]
 	private async Task Delete()
 	{
 		if (_project.IsNullOrNew())
