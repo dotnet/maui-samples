@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:BillingService.ViewModels"
+             xmlns:syncfusion="http://schemas.syncfusion.com/maui/toolkit"
+             xmlns:models="clr-namespace:BillingService.Models"
+             x:Class="BillingService.Views.ProductsPage"
+             x:DataType="vm:ProductsViewModel"
+             Title="{Binding Title}">
+    <syncfusion:SfShimmer x:Name="shimmer"
+                          BackgroundColor="White"
+                          IsActive="{Binding IsLoading}"
+                          Type="Shopping">
+        <syncfusion:SfShimmer.Content>
+            <Grid RowDefinitions="Auto,*,80">
+                <StackLayout HeightRequest="70"
+                             Grid.Row="0"
+                             Padding="20,10"
+                             BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}">
+                    <Label Text="License Marketplace"
+                           FontSize="24"
+                           FontAttributes="Bold"
+                           TextColor="White"
+                           HorizontalOptions="Center"/>
+                    <Label Text="Select from a range of licenses to unlock features"
+                           FontSize="14"
+                           TextColor="White"
+                           HorizontalOptions="Center"
+                           Opacity="0.8"/>
+                </StackLayout>
+
+                <CollectionView ItemsSource="{Binding Products}"
+                                Grid.Row="1"
+                                Margin="10">
+
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical"
+                                         VerticalItemSpacing="10"
+                                         HorizontalItemSpacing="10"/>
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:Product">
+                            <Border BackgroundColor="{AppThemeBinding Light=White, Dark=#2D2D30}"
+                                    Stroke="{AppThemeBinding Light=#E0E0E0, Dark=#404040}"
+                                    StrokeThickness="1">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="8"/>
+                                </Border.StrokeShape>
+
+                                <Grid RowDefinitions="200"
+                                      ColumnDefinitions="190,*"
+                                      Padding="12">
+
+                                    <Border Grid.Row="0"
+                                            Grid.Column="0"
+                                            BackgroundColor="{AppThemeBinding Light=#F5F5F5, Dark=#404040}"
+                                            Stroke="{AppThemeBinding Light=#E0E0E0, Dark=#505050}"
+                                            StrokeThickness="1">
+                                        <Border.StrokeShape>
+                                            <RoundRectangle CornerRadius="6"/>
+                                        </Border.StrokeShape>
+                                        <Image Source="dotnet_bot.png"
+                                               Aspect="AspectFit"></Image>
+                                    </Border>
+                                    <Grid Grid.Row="0"
+                                          Grid.Column="1"
+                                          RowDefinitions="Auto,Auto,Auto,Auto"
+                                          Margin="10,0,0,0">
+                                        <Label Grid.Row="0"
+                                               Text="{Binding Name}"
+                                               FontSize="16"
+                                               FontAttributes="Bold"
+                                               Margin="0,8,0,4"
+                                               MaxLines="2"
+                                               LineBreakMode="TailTruncation"/>
+
+
+                                        <Label Grid.Row="1"
+                                               Text="{Binding Description}"
+                                               FontSize="12"
+                                               TextColor="{AppThemeBinding Light=Gray, Dark=LightGray}"
+                                               Margin="0,0,0,8"
+                                               MaxLines="2"
+                                               LineBreakMode="TailTruncation"/>
+
+                                        <Label Grid.Row="2"
+                                               Text="{Binding Price}"
+                                               FontSize="18"
+                                               FontAttributes="Bold"
+                                               TextColor="{StaticResource Primary}"
+                                               Margin="0,0,0,8"/>
+
+
+                                        <Button Grid.Row="3"
+                                                Text="{Binding IsOwned, Converter={StaticResource BoolToTextConverter}, ConverterParameter='Owned|Buy Now'}"
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ProductsViewModel}}, Path=PurchaseCommand}"
+                                                CommandParameter="{Binding .}"
+                                                BackgroundColor="{Binding IsOwned, Converter={StaticResource BoolToColorConverter}, ConverterParameter='LightGray|{StaticResource Primary}'}"
+                                                TextColor="White"
+                                                IsEnabled="{Binding IsOwned, Converter={StaticResource InverseBoolConverter}}"
+                                                FontSize="12"
+                                                Padding="0,8"/>
+                                    </Grid>
+
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+
+                    <CollectionView.EmptyView>
+                        <StackLayout HorizontalOptions="Center"
+                                     VerticalOptions="Center"
+                                     Padding="20">
+                            <Label Text="No products available"
+                                   FontSize="18"
+                                   TextColor="Gray"
+                                   HorizontalOptions="Center"/>
+                            <Button Text="Refresh"
+                                    Command="{Binding LoadProductsCommand}"
+                                    Margin="0,10,0,0"/>
+                        </StackLayout>
+                    </CollectionView.EmptyView>
+                </CollectionView>
+                <Button Grid.Row="2"
+                        Text="Restore Purchases"
+                        Command="{Binding RestorePurchasesCommand}"
+                        Margin="20,10"
+                        TextColor="White"/>
+            </Grid>
+        </syncfusion:SfShimmer.Content>
+    </syncfusion:SfShimmer>
+</ContentPage>
