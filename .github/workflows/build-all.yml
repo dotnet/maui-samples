@@ -20,7 +20,6 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: |
-          8.0.x
           9.0.x
           10.0.x
         include-prerelease: true
@@ -30,7 +29,7 @@ jobs:
       run: dotnet workload install maui
 
     - name: Select Xcode Version
-      run: sudo xcode-select -s /Applications/Xcode_16.3.app
+      run: sudo xcode-select -s /Applications/Xcode_16.4.app
       if: runner.os == 'macOS'
 
     - name: Find and build all C# projects
