@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+			 x:Class="TabbedPageWithNavigationPage.UpcomingAppointmentsPage"
+			 Title="Upcoming">
+	<ContentPage.Content>
+		<StackLayout>
+			<Label Text="Upcoming appointments go here" HorizontalOptions="Center" VerticalOptions="Center" />
+			<Button Text="Back" Clicked="OnBackButtonClicked" VerticalOptions="Center" />
+		</StackLayout>
+	</ContentPage.Content>
+</ContentPage>
