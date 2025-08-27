@@ -61,6 +61,31 @@ public partial class MainPage : ContentPage
         Dispatcher.Dispatch(() => editor.Text += Environment.NewLine + e.Message);
     }
 
+    private void hybridWebView_WebResourceRequested(object sender, WebViewWebResourceRequestedEventArgs e)
+    {
+        // NOTES:
+        // * This method MUST be synchronous, as it is called from the WebView's thread.
+        // * This method MUST return a response (even if it is not yet complete), otherwise the 
+        //   WebView may freeze or return a error response.
+        // * The response must be set using the SetResponse method of the event args.
+
+        // Only handle requests for the specific URL
+        if (!e.Uri.ToString().Contains("nowhere/sample.png"))
+            return;
+
+        // Prevent the default behavior of the web view
+        e.Handled = true;
+
+        // Return the stream or task of stream that contains the content
+        // NOTE: the method is NOT awaited, the WebView will continue to load the content
+        e.SetResponse(200, "OK", "image/svg+xml", GetStreamAsync());
+    }
+    private async Task<Stream?> GetStreamAsync()
+    {
+        return await FileSystem.OpenAppPackageFileAsync("dotnet_sub_light.svg");
+    }
+
+
     public void DoSyncWork()
     {
         Debug.WriteLine("DoSyncWork");
@@ -139,4 +164,5 @@ public partial class MainPage : ContentPage
         public string? Message { get; set; }
         public int Value { get; set; }
     }
+ 
 }
