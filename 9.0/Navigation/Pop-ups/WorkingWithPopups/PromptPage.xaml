@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WorkingWithPopups.PromptPage"
+             Padding="20">
+    <StackLayout Spacing="16">
+        <Label Text="Display Prompt"
+               FontSize="Large"
+               HorizontalOptions="Center" />
+        <Button Text="Question 1"
+                Clicked="OnQuestion1ButtonClicked" />
+        <Label x:Name="question1ResultLabel" />
+        <Button Text="Question 2"
+                Clicked="OnQuestion2ButtonClicked" />
+        <Label x:Name="question2ResultLabel" />
+    </StackLayout>
+</ContentPage>
