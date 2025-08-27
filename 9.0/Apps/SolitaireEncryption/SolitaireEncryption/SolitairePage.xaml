@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:SolitaireEncryption"
+             x:Class="SolitaireEncryption.SolitairePage"
+             Title="Solitaire">
+    
+    <VerticalStackLayout Padding="16" Spacing="8">
+        <Label Text="Solitaire ♠♥♦♣" FontSize="Large" />
+        <Label Text="Encryption algorithm from the book Cryptonomicon by Bruce Schneier. Enter the plain text and key to Encrypt, or the ciphertext and key to Decrypt." />
+        <Entry x:Name="plaintext" Placeholder="Plaintext or ciphertext"/>
+        <Entry x:Name="key" Placeholder="Key" />
+        <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
+            <Button Text="Encrypt" Clicked="EncryptClicked" Grid.Column="0" />
+            <Button Text="Decrypt" Clicked="DecryptClicked" Grid.Column="1" />
+        </Grid>
+        <Entry x:Name="ciphertext" Placeholder="Result appears here" IsReadOnly="True" />
+    </VerticalStackLayout>
+</ContentPage>
