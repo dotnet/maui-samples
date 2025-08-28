@@ -36,12 +36,12 @@ public partial class LoadResourceJsonPage : ContentPage
             }
             else
             {
-                await DisplayAlert("Error", "Could not load JSON resource", "OK");
+                await DisplayAlertAsync("Error", "Could not load JSON resource", "OK");
             }
         }
         catch (Exception ex)
         {
-            await DisplayAlert("Error", $"Error loading JSON resource: {ex.Message}", "OK");
+            await DisplayAlertAsync("Error", $"Error loading JSON resource: {ex.Message}", "OK");
         }
     }
 }

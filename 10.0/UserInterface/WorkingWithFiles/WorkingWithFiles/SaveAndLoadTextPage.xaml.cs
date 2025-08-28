@@ -23,12 +23,12 @@ public partial class SaveAndLoadTextPage : ContentPage
 
             await File.WriteAllTextAsync(_fileName, InputEntry.Text);
             
-            await DisplayAlert("Success", "Text saved successfully!", "OK");
+            await DisplayAlertAsync("Success", "Text saved successfully!", "OK");
             LoadButton.IsEnabled = true;
         }
         catch (Exception ex)
         {
-            await DisplayAlert("Error", $"Error saving file: {ex.Message}", "OK");
+            await DisplayAlertAsync("Error", $"Error saving file: {ex.Message}", "OK");
         }
         finally
         {
@@ -51,12 +51,12 @@ public partial class SaveAndLoadTextPage : ContentPage
             }
             else
             {
-                await DisplayAlert("Error", "No saved file found.", "OK");
+                await DisplayAlertAsync("Error", "No saved file found.", "OK");
             }
         }
         catch (Exception ex)
         {
-            await DisplayAlert("Error", $"Error loading file: {ex.Message}", "OK");
+            await DisplayAlertAsync("Error", $"Error loading file: {ex.Message}", "OK");
         }
         finally
         {

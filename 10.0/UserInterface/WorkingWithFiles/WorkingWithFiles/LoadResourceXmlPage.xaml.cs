@@ -30,12 +30,12 @@ public partial class LoadResourceXmlPage : ContentPage
             }
             else
             {
-                await DisplayAlert("Error", "Could not load XML resource", "OK");
+                await DisplayAlertAsync("Error", "Could not load XML resource", "OK");
             }
         }
         catch (Exception ex)
         {
-            await DisplayAlert("Error", $"Error loading XML resource: {ex.Message}", "OK");
+            await DisplayAlertAsync("Error", $"Error loading XML resource: {ex.Message}", "OK");
         }
     }
 }
