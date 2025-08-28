@@ -41,13 +41,51 @@ if (-not (Test-Path $SourceVersion)) {
 	throw "Source version folder '$SourceVersion' not found at $repoRoot"
 }
 
+$sourcePath = Join-Path $repoRoot $SourceVersion
 $targetPath = Join-Path $repoRoot $TargetVersion
 if (-not $InPlace) {
 	if (Test-Path $targetPath) {
 		Write-Info "Target folder already exists; skipping copy. Use -InPlace if intentional."
 	} else {
 		Write-Info "Copying $SourceVersion -> $TargetVersion"
-		Copy-Item -Recurse -Force -Path (Join-Path $repoRoot $SourceVersion) -Destination $targetPath
+		try {
+			Copy-Item -Recurse -Force -Path $sourcePath -Destination $targetPath -ErrorAction Stop
+		} catch {
+			Write-Warn "Fast copy failed: $($_.Exception.Message)"
+			Write-Info "Attempting resilient copy (per-file with retries/skips)..."
+			# Ensure target exists
+			if (-not (Test-Path $targetPath)) { New-Item -ItemType Directory -Path $targetPath -Force | Out-Null }
+
+			# Enumerate files and copy with best-effort handling
+			$allFiles = Get-ChildItem -Path $sourcePath -Recurse -File -Force
+			$total = $allFiles.Count
+			$copied = 0
+			foreach ($file in $allFiles) {
+				$relative = $file.FullName.Substring($sourcePath.Length).TrimStart('\\','/')
+				$dest = Join-Path $targetPath $relative
+				$destDir = Split-Path -Parent $dest
+				try {
+					if (-not (Test-Path $destDir)) { New-Item -ItemType Directory -Path $destDir -Force | Out-Null }
+					Copy-Item -LiteralPath $file.FullName -Destination $dest -Force -ErrorAction Stop
+					$copied++
+					if ($copied -eq 1 -or ($copied % 500 -eq 0) -or $copied -eq $total) {
+						Write-Host ("Copied {0} of {1} files" -f $copied, $total)
+					}
+				} catch {
+					Write-Warn ("Skipped file: {0} ({1})" -f $relative, $_.Exception.Message)
+				}
+			}
+
+			# Ensure empty directories are created
+			$allDirs = Get-ChildItem -Path $sourcePath -Recurse -Directory -Force
+			foreach ($dir in $allDirs) {
+				$relativeDir = $dir.FullName.Substring($sourcePath.Length).TrimStart('\\','/')
+				$destDirPath = Join-Path $targetPath $relativeDir
+				try { if (-not (Test-Path $destDirPath)) { New-Item -ItemType Directory -Path $destDirPath -Force | Out-Null } } catch {}
+			}
+
+			Write-Info ("Resilient copy completed: {0}/{1} files" -f $copied, $total)
+		}
 	}
 } else {
 	if (-not (Test-Path $targetPath)) { throw "-InPlace specified but target folder '$TargetVersion' does not exist." }

@@ -69,7 +69,7 @@ $grouped = $items | Group-Object code | Sort-Object Name | ForEach-Object {
   [pscustomobject]@{ code=$codeName; count=$_.Count; severities=($sev -join ','); hasError=$hasError; sim=$simNote }
 }
 
-$obsolete = $grouped | Where-Object { $_.code -eq 'CS0618' }
+$obsolete = $grouped | Where-Object { $_.code -match '^CS06(12|18|72)$' }
 $errors = $grouped | Where-Object { $_.hasError }
 
 $summary = [pscustomobject]@{
@@ -79,7 +79,7 @@ $summary = [pscustomobject]@{
   obsoleteCount = ($obsolete | Measure-Object).Count
   simulationMode = $simulationMode
   issues = $grouped
-  nextAction = if (($errors | Measure-Object).Count -gt 0) { 'Fix build errors first' } elseif (($obsolete | Measure-Object).Count -gt 0) { 'Resolve obsolete APIs (CS0618) via docs' } elseif ($grouped.Count -gt 0) { 'Review remaining warnings; decide if ignorable' } else { 'Clean - ready to commit' }
+  nextAction = if (($errors | Measure-Object).Count -gt 0) { 'Fix build errors first' } elseif (($obsolete | Measure-Object).Count -gt 0) { 'Resolve obsolete APIs (CS0612/CS0618/CS0672) via docs' } elseif ($grouped.Count -gt 0) { 'Review remaining warnings; decide if ignorable' } else { 'Clean - ready to commit' }
 }
 
 if ($OutFile) {

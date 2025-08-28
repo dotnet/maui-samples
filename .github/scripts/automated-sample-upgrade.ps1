@@ -297,7 +297,7 @@ if ($samplesWithIssues.Count -gt 0) {
 }
 
 Write-Instruction "STEP 3: For samples with build errors (red), fix compilation issues first"
-Write-Instruction "STEP 4: For samples with obsolete warnings (yellow), use Microsoft documentation to resolve CS0618 warnings"
+Write-Instruction "STEP 4: For samples with obsolete warnings (yellow), use Microsoft documentation to resolve CS0612/CS0618/CS0672 warnings"
 Write-Instruction "STEP 5: For samples with other issues (cyan), review and determine if warnings can be safely ignored"
 Write-Instruction ""
 Write-Instruction "SAMPLES TO ANALYZE:"
@@ -311,7 +311,7 @@ foreach ($sample in $sampleReport | Sort-Object Name) {
 
 Write-Instruction "CONSTRAINTS AND WORKFLOW:"
 Write-Instruction "- START with samples that have build errors (they block everything else)"
-Write-Instruction "- FOCUS on CS0618 obsolete warnings - use Microsoft documentation to find replacements"  
+Write-Instruction "- FOCUS on CS0612/CS0618/CS0672 obsolete warnings - use Microsoft documentation to find replacements"  
 Write-Instruction "- DO NOT make style changes, refactoring, or other improvements"
 Write-Instruction "- DO NOT update package versions unless specifically required for deprecation fixes"
 Write-Instruction "- DO NOT modify project structure or add new features"
