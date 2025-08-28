@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage  
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"  
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"  
+    x:Class="EmployeeDirectory.Views.Xaml.LoginXaml"  
+    BackgroundColor="#F3F6FB">
+    <ContentPage.Content>
+        <Grid>
+            <Frame Padding="24" CornerRadius="16" HasShadow="True" BackgroundColor="White" VerticalOptions="Center" HorizontalOptions="Center">
+                <VerticalStackLayout Spacing="0">
+                    <Label Text="Employee Directory" FontSize="28" FontAttributes="Bold" HorizontalOptions="Center" Margin="0,0,0,10" />
+                    <Image Source="dotnet_bot.png" HorizontalOptions="Center" Margin="0,20" MaximumHeightRequest="250" />
+                    <Entry StyleId="UserId" Text="{Binding Path=Username}" Placeholder="Username" Margin="0,10,0,0" PlaceholderColor="#888888" />
+                    <Entry StyleId="PasswordId" Text="{Binding Path=Password}" Placeholder="Password" IsPassword="true" Margin="0,10,0,0" PlaceholderColor="#888888" />
+                    <Button x:Name="loginButton" Text="Login" BackgroundColor="#0078D7" TextColor="White" CornerRadius="24" HeightRequest="48" FontAttributes="Bold" Margin="0,20,0,0" />
+                    <Button x:Name="helpButton" Text="Help" BackgroundColor="Transparent" TextColor="#0078D7" BorderColor="#0078D7" BorderWidth="1" CornerRadius="24" HeightRequest="48" Margin="0,10,0,0" />
+                </VerticalStackLayout>
+            </Frame>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
