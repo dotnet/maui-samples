@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatMobile.Api", "ChatMobile.Api\ChatMobile.Api.csproj", "{91261106-406D-419F-AE29-AD44AF79CB07}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatMobile.Client", "ChatMobile.Client\ChatMobile.Client.csproj", "{905EAD10-D800-4018-9AFC-6F8BFD8A2875}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{91261106-406D-419F-AE29-AD44AF79CB07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91261106-406D-419F-AE29-AD44AF79CB07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91261106-406D-419F-AE29-AD44AF79CB07}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{91261106-406D-419F-AE29-AD44AF79CB07}.Debug|x64.Build.0 = Debug|Any CPU
+		{91261106-406D-419F-AE29-AD44AF79CB07}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{91261106-406D-419F-AE29-AD44AF79CB07}.Debug|x86.Build.0 = Debug|Any CPU
+		{91261106-406D-419F-AE29-AD44AF79CB07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91261106-406D-419F-AE29-AD44AF79CB07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91261106-406D-419F-AE29-AD44AF79CB07}.Release|x64.ActiveCfg = Release|Any CPU
+		{91261106-406D-419F-AE29-AD44AF79CB07}.Release|x64.Build.0 = Release|Any CPU
+		{91261106-406D-419F-AE29-AD44AF79CB07}.Release|x86.ActiveCfg = Release|Any CPU
+		{91261106-406D-419F-AE29-AD44AF79CB07}.Release|x86.Build.0 = Release|Any CPU
+		{905EAD10-D800-4018-9AFC-6F8BFD8A2875}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{905EAD10-D800-4018-9AFC-6F8BFD8A2875}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{905EAD10-D800-4018-9AFC-6F8BFD8A2875}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{905EAD10-D800-4018-9AFC-6F8BFD8A2875}.Debug|x64.Build.0 = Debug|Any CPU
+		{905EAD10-D800-4018-9AFC-6F8BFD8A2875}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{905EAD10-D800-4018-9AFC-6F8BFD8A2875}.Debug|x86.Build.0 = Debug|Any CPU
+		{905EAD10-D800-4018-9AFC-6F8BFD8A2875}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{905EAD10-D800-4018-9AFC-6F8BFD8A2875}.Release|Any CPU.Build.0 = Release|Any CPU
+		{905EAD10-D800-4018-9AFC-6F8BFD8A2875}.Release|x64.ActiveCfg = Release|Any CPU
+		{905EAD10-D800-4018-9AFC-6F8BFD8A2875}.Release|x64.Build.0 = Release|Any CPU
+		{905EAD10-D800-4018-9AFC-6F8BFD8A2875}.Release|x86.ActiveCfg = Release|Any CPU
+		{905EAD10-D800-4018-9AFC-6F8BFD8A2875}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
