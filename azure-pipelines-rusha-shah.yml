@@ -1,0 +1,18 @@
+trigger:
+- main   # or whichever branch you want
+
+pool:
+  name: 'Default'   # this will use your self-hosted agent
+
+steps:
+- task: UseDotNet@2
+  inputs:
+    packageType: 'sdk'
+    version: '8.x'   # use latest .NET 8 for MAUI
+    installationPath: $(Agent.ToolsDirectory)/dotnet
+
+- script: dotnet build HelloMaui/HelloMaui.csproj -c Release -f net8.0-android
+  displayName: 'Build MAUI Android'
+
+- script: dotnet build HelloMaui/HelloMaui.csproj -c Release -f net8.0-ios
+  displayName: 'Build MAUI iOS'
