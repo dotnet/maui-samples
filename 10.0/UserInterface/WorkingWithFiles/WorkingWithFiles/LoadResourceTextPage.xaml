@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="WorkingWithFiles.LoadResourceTextPage"  
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"  
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"  
+             Title="Text Resource">  
+    <Grid Margin="20">  
+        <Grid.RowDefinitions>  
+            <RowDefinition Height="Auto" />  
+            <RowDefinition Height="*" />  
+        </Grid.RowDefinitions>  
+        <Label Text="Embedded Resource Text File"   
+               FontSize="18"  
+               FontAttributes="Bold"  
+               Grid.Row="0" />  
+        <Label x:Name="TextLabel"   
+               Text="Loading..."  
+               VerticalOptions="Fill"  
+               Grid.Row="1" />  
+    </Grid>  
+</ContentPage>
