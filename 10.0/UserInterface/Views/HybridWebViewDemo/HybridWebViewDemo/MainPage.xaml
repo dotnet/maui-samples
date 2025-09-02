@@ -22,7 +22,8 @@
         <HybridWebView x:Name="hybridWebView"
                        Grid.Row="1"
                        Grid.ColumnSpan="2"
-                       RawMessageReceived="hybridWebView_RawMessageReceived" />
+                       RawMessageReceived="hybridWebView_RawMessageReceived"
+                       WebResourceRequested="hybridWebView_WebResourceRequested"/>
 
     </Grid>
 </ContentPage>
