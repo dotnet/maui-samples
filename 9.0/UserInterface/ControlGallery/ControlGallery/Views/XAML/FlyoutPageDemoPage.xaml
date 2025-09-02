@@ -12,10 +12,11 @@
                        FontAttributes="Bold"
                        HorizontalOptions="Center" />
 
-                <ListView x:Name="listView"
-                          Margin="10, 0"
-                          ItemTapped="OnListViewItemTapped">
-                    <ListView.ItemsSource>
+                <CollectionView x:Name="collectionView"
+                                Margin="10, 0"
+                                SelectionMode="Single"
+                                SelectionChanged="OnCollectionViewSelectionChanged">
+                    <CollectionView.ItemsSource>
                         <x:Array Type="{x:Type models:NamedColor}">
                             <models:NamedColor Name="Aqua" Color="Aqua" />
                             <models:NamedColor Name="Black" Color="Black" />
@@ -34,8 +35,8 @@
                             <models:NamedColor Name="White" Color="White" />
                             <models:NamedColor Name="Yellow" Color="Yellow" />
                         </x:Array>
-                    </ListView.ItemsSource>
-                </ListView>
+                    </CollectionView.ItemsSource>
+                </CollectionView>
             </StackLayout>
         </ContentPage>
     </FlyoutPage.Flyout>
@@ -43,8 +44,8 @@
     <FlyoutPage.Detail>
         <ContentPage x:DataType="models:NamedColor"
                      Title="{Binding Name}"
-                     BindingContext="{Binding x:DataType='ListView',
-                                              Source={x:Reference listView},
+                     BindingContext="{Binding x:DataType='CollectionView',
+                                              Source={x:Reference collectionView},
                                               Path=SelectedItem}">
             <ContentPage.Resources>
                 <ResourceDictionary>
