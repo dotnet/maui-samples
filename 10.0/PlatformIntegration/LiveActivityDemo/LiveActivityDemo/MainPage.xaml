@@ -5,14 +5,19 @@
 
     <ScrollView>
         <VerticalStackLayout
-            Padding="30,0"
+            Padding="30,15"
             Spacing="25">
             <Label
-                Text="Live Activity Demo"
+                Text="(iOS) Live Activity"
                 Style="{StaticResource Headline}"
                 SemanticProperties.HeadingLevel="Level1"/>
 
+            <Label Text="This sample demonstrates starting, updating, and ending a Live Activity on iOS 16.1+. Display includes a lock screen widget and dynamic island display.&#10;&#10;1. Tap Start&#10;2. Lock the phone and observe the widget&#10;3. Unlock and observe the dynamic island&#10;4. Click update to see the displays change&#10;5. Tap End"/>
+
             <Label
+                TextColor="Purple"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
                 x:Name="StatusTxt"/>
 
             <Button
@@ -24,7 +29,7 @@
 
             <Button
                 x:Name="UpdateBtn"
-                Text="Update"
+                Text="Update (+10%)"
                 SemanticProperties.Hint="Update the live activity progress"
                 Clicked="UpdateBtn_Clicked"
                 HorizontalOptions="Fill"/>
