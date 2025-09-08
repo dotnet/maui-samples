@@ -360,3 +360,4 @@ Resource.designer.cs
 *.claude
 10.0/AI/ChatClientWithMobile/src/ChatMobile.Api/appsettings.json
 10.0/AI/ChatClientWithMobile/src/ChatMobile.Api/appsettings.Development.json
+.vscode/settings.json

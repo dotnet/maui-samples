@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LiveActivityDemo.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+            <Label
+                Text="Live Activity Demo"
+                Style="{StaticResource Headline}"
+                SemanticProperties.HeadingLevel="Level1"/>
+
+            <Label
+                x:Name="StatusTxt"/>
+
+            <Button
+                x:Name="StartBtn"
+                Text="Start"
+                SemanticProperties.Hint="Start the live activity"
+                Clicked="StartBtn_Clicked"
+                HorizontalOptions="Fill"/>
+
+            <Button
+                x:Name="UpdateBtn"
+                Text="Update"
+                SemanticProperties.Hint="Update the live activity progress"
+                Clicked="UpdateBtn_Clicked"
+                HorizontalOptions="Fill"/>
+
+            <Button
+                x:Name="EndBtn"
+                Text="End"
+                SemanticProperties.Hint="End the live activity"
+                Clicked="EndBtn_Clicked"
+                HorizontalOptions="Fill"/>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

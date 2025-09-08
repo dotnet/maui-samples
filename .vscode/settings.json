@@ -1,1 +1,3 @@
-{}
+{
+    "dotnet.defaultSolution": "LiveActivityDemo.sln"
+}
