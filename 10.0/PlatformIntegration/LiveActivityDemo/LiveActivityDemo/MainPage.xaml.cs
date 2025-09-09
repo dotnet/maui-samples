@@ -14,7 +14,7 @@ public partial class MainPage : ContentPage
 	private void StartBtn_Clicked(object sender, EventArgs e)
 	{
 #if IOS
-		bool ok = ActivityKitBridge.Start("order-123", "Preparing order…", 0.1);
+		bool ok = ActivityKitBridge.Start("#1", "Preparing order…", 0.1);
 		StatusTxt.Text = ok ? "Started" : "Start failed";
 #else
             StatusTxt.Text = "iOS only";
