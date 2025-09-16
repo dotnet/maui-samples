@@ -3,10 +3,12 @@
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
-namespace PinchGesture
+namespace PinchGesture.WinUI
 {
     /// <summary>
-    /// Provides application-specific behavior to supplement the default Application class.
+    /// Provides application-specific behavior to supplement the default Application class for WinUI.
+    /// This namespace matches the x:Class in Platforms/Windows/App.xaml so the partial class
+    /// generated from XAML merges with this code-behind without conflicting with the MAUI `App` type.
     /// </summary>
     public partial class App : MauiWinUIApplication
     {
@@ -21,5 +23,4 @@ namespace PinchGesture
 
         protected override MauiApp CreateMauiApp() => MauiProgram.CreateMauiApp();
     }
-
 }
