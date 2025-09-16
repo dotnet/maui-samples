@@ -115,6 +115,10 @@ public class PersonViewModel : ViewModelBase
 		get { return !FavoritesRepository.IsFavorite (Person); }
 	}
 
+	public string FavoriteStatusText {
+		get { return IsFavorite ? "Added to favorites" : "Not in favorites"; }
+	}
+
 	string AddressString {
 		get {
 			var sb = new StringBuilder ();
@@ -210,6 +214,7 @@ public class PersonViewModel : ViewModelBase
 			FavoritesRepository.InsertOrUpdate (Person);
 		}
 		OnPropertyChanged ("IsFavorite");
+		OnPropertyChanged ("FavoriteStatusText");
 	}
 
 	#endregion

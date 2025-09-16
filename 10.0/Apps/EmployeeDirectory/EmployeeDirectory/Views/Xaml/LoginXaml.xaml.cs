@@ -1,4 +1,6 @@
-﻿namespace EmployeeDirectory.Views.Xaml;
+﻿using EmployeeDirectory.Core.ViewModels;
+
+namespace EmployeeDirectory.Views.Xaml;
 
 public partial class LoginXaml : ContentPage
 {
@@ -19,28 +21,32 @@ public partial class LoginXaml : ContentPage
         Content.FindByName<Button>("helpButton").Clicked += OnHelpClicked;
     }
 
-    private void OnLoginClicked(object? sender, EventArgs e)
+    private async void OnLoginClicked(object? sender, EventArgs e)
     {
         if (viewModel.CanLogin)
         {
-            viewModel
-            .LoginAsync(CancellationToken.None)
-            .ContinueWith(_ =>
+            try
             {
+                await viewModel.LoginAsync(CancellationToken.None);
                 App.LastUseTime = DateTime.UtcNow;
-                Navigation.PopModalAsync();
-            });
-
-            Navigation.PopModalAsync();
+                if (Navigation.ModalStack?.Any() == true)
+                    await Navigation.PopModalAsync();
+                else
+                    await Navigation.PopAsync();
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlertAsync("Error", ex.Message, "OK");
+            }
         }
         else
         {
-            DisplayAlert("Error", viewModel.ValidationErrors, "OK");
+            await DisplayAlertAsync("Error", viewModel.ValidationErrors, "OK");
         }
     }
 
-    private void OnHelpClicked(object? sender, EventArgs e)
+    private async void OnHelpClicked(object? sender, EventArgs e)
     {
-        DisplayAlert("Help", "Enter any username and password", "OK", null);
+        await DisplayAlertAsync("Help", "Enter any username and password", "OK");
     }
 }

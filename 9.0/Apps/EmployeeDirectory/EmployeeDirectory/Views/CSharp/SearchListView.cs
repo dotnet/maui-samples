@@ -1,4 +1,7 @@
-﻿namespace EmployeeDirectory.Views.CSharp;
+﻿using EmployeeDirectory.Core.Data;
+using EmployeeDirectory.Core.ViewModels;
+
+namespace EmployeeDirectory.Views.CSharp;
 
 public class SearchListView : ContentPage
 {
@@ -52,7 +55,7 @@ public class SearchListView : ContentPage
         // Initialize favorites repository asynchronously
         if (favoritesRepository == null)
         {
-            favoritesRepository = await XmlFavoritesRepository.OpenFile("XamarinFavorites.xml");
+            favoritesRepository = await XmlFavoritesRepository.OpenFile("XamarinFavorites.json");
         }
     }
 

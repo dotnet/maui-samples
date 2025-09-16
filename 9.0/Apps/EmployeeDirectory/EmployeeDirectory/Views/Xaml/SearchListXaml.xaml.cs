@@ -11,7 +11,7 @@ public partial class SearchListXaml : ContentPage
 		InitializeComponent ();
 
 		// Initialize favorites repository synchronously
-		favoritesRepository = XmlFavoritesRepository.OpenFile ("XamarinFavorites.xml").GetAwaiter().GetResult();
+		favoritesRepository = XmlFavoritesRepository.OpenFile ("XamarinFavorites.json").GetAwaiter().GetResult();
 
 		search = new Search ("test");
 		viewModel = new SearchViewModel (App.Service, search);

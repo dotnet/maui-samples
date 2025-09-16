@@ -93,7 +93,7 @@ namespace TapGesture
 			};
 		}
 
-		async void OnTapGestureRecognizerTapped(object sender, EventArgs args)
+		async void OnTapGestureRecognizerTapped(object? sender, TappedEventArgs e)
 		{
 			tapCount++;
 			

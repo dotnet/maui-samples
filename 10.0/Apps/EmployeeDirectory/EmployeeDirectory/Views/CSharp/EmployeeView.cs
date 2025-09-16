@@ -2,6 +2,8 @@
 using MMC = Microsoft.Maui.Controls;
 using Microsoft.Maui.Controls.Shapes;
 using Microsoft.Maui.Graphics;
+using EmployeeDirectory.Core.ViewModels;
+using EmployeeDirectory.Core.Utilities;
 
 namespace EmployeeDirectory.Views.CSharp;
 

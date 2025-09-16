@@ -19,7 +19,6 @@ public partial class EmployeeXaml : ContentPage
         if (BindingContext is PersonViewModel personInfo)
         {
             Title = personInfo.Person.Name;
-            favoriteLabel.Text = personInfo.IsFavorite ? "Added to favorites" : "Not in favorites";
         }
     }
 
@@ -28,7 +27,6 @@ public partial class EmployeeXaml : ContentPage
         if (BindingContext is PersonViewModel personInfo)
         {
             personInfo.ToggleFavorite();
-            favoriteLabel.Text = personInfo.IsFavorite ? "Added to favorites" : "Not in favorites";
         }
     }
 

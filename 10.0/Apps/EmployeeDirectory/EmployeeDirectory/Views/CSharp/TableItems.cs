@@ -1,22 +1,20 @@
 ﻿namespace EmployeeDirectory.Views.CSharp
 {
-    public class GroupHeaderTemplate : ViewCell
+    // Replaced obsolete ViewCell-based templates with plain layout factory helpers.
+    public static class LegacyTemplates
     {
-        public GroupHeaderTemplate()
+        public static View CreateGroupHeader()
         {
             var label = new Label { VerticalTextAlignment = TextAlignment.Center };
             label.SetBinding(Label.TextProperty, "Title");
-            View = new StackLayout
+            return new StackLayout
             {
                 Padding = new Thickness(5, 0, 0, 0),
                 Children = { label }
             };
         }
-    }
 
-    public class ListItemTemplate : ViewCell
-    {
-        public ListItemTemplate()
+        public static View CreateListItem()
         {
             var photo = new Image { HeightRequest = 44, WidthRequest = 44 };
             photo.SetBinding(Image.SourceProperty, "Photo");
@@ -24,19 +22,15 @@
             var nameLabel = new Label
             {
                 VerticalTextAlignment = TextAlignment.Center,
-                FontAttributes = FontAttributes.None,
                 FontSize = 16,
             };
-
             nameLabel.SetBinding(Label.TextProperty, "Name");
 
             var titleLabel = new Label
             {
                 VerticalTextAlignment = TextAlignment.Center,
-                FontAttributes = FontAttributes.None,
                 FontSize = 12,
             };
-
             titleLabel.SetBinding(Label.TextProperty, "Title");
 
             var information = new StackLayout
@@ -47,31 +41,26 @@
                 Children = { nameLabel, titleLabel }
             };
 
-            View = new StackLayout
+            return new StackLayout
             {
                 Orientation = StackOrientation.Horizontal,
                 Children = { photo, information }
             };
         }
-    }
 
-    public class DetailsItemTemplate : ViewCell
-    {
-        public DetailsItemTemplate()
+        public static View CreateDetailsItem()
         {
             var propertyNameLabel = new Label
             {
                 VerticalTextAlignment = TextAlignment.Center,
                 FontSize = 16,
-                FontAttributes = FontAttributes.None,
             };
-
             propertyNameLabel.SetBinding(Label.TextProperty, "Name");
 
             var propertyValueLabel = new Label { VerticalTextAlignment = TextAlignment.Center };
             propertyValueLabel.SetBinding(Label.TextProperty, "Value");
 
-            View = new StackLayout
+            return new StackLayout
             {
                 Padding = new Thickness(20, 0, 0, 0),
                 VerticalOptions = LayoutOptions.Start,

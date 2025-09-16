@@ -1,11 +1,15 @@
-﻿namespace EmployeeDirectory.Views.CSharp;
+﻿using EmployeeDirectory.Core.Data;
+using EmployeeDirectory.Core.ViewModels;
+using EmployeeDirectory.Core.Services;
+
+namespace EmployeeDirectory.Views.CSharp;
 
 public class SearchListView : ContentPage
 {
     private Search search;
     private SearchViewModel viewModel;
     private IFavoritesRepository favoritesRepository;
-    private ListView listView;
+    private CollectionView collectionView;
 
     public SearchListView()
     {
@@ -14,19 +18,43 @@ public class SearchListView : ContentPage
         searchEntry.SetBinding(Entry.TextProperty, "SearchText");
         searchEntry.TextChanged += OnValueChanged;
 
-        listView = new ListView()
+        collectionView = new CollectionView
         {
-            IsGroupingEnabled = true,
-            GroupHeaderTemplate = new DataTemplate(typeof(GroupHeaderTemplate)),
-            ItemTemplate = new DataTemplate(typeof(ListItemTemplate)),
-            ItemsSource = viewModel.Groups
+            IsGrouped = true,
+            SelectionMode = SelectionMode.Single,
+            ItemsSource = viewModel.Groups,
+            GroupHeaderTemplate = new DataTemplate(() =>
+            {
+                var label = new Label { VerticalTextAlignment = TextAlignment.Center, Padding = new Thickness(5,0,0,0) };
+                label.SetBinding(Label.TextProperty, "Title");
+                return label;
+            }),
+            ItemTemplate = new DataTemplate(() =>
+            {
+                var grid = new Grid { ColumnDefinitions = new ColumnDefinitionCollection { new ColumnDefinition{ Width = 44 }, new ColumnDefinition{ Width = GridLength.Star } }, Padding = new Thickness(0,4) };
+                var image = new Image { WidthRequest = 44, HeightRequest = 44 };
+                image.SetBinding(Image.SourceProperty, "Photo");
+                var name = new Label();
+                name.SetBinding(Label.TextProperty, "Name");
+                var title = new Label { FontSize = 10 };
+                title.SetBinding(Label.TextProperty, "Title");
+                var stack = new VerticalStackLayout { Spacing = 0, Padding = new Thickness(5,0,0,0) };
+                stack.Add(name);
+                stack.Add(title);
+                grid.Add(image);
+                grid.Add(stack);
+                Grid.SetColumn(stack,1);
+                return grid;
+            })
         };
 
-        listView.ItemSelected += OnItemSelected;
-        Content = new StackLayout
+        collectionView.SelectionChanged += OnSelectionChanged;
+        Content = new Grid
         {
-            Children = { searchEntry, listView }
+            RowDefinitions = new RowDefinitionCollection { new RowDefinition{ Height = GridLength.Auto }, new RowDefinition{ Height = GridLength.Star } },
+            Children = { searchEntry, collectionView }
         };
+        Grid.SetRow(collectionView,1);
 
         Title = "Search";
     }
@@ -37,9 +65,9 @@ public class SearchListView : ContentPage
         viewModel = new SearchViewModel(App.Service, search);
 
         viewModel.SearchCompleted += OnSearchCompleted;
-        viewModel.Error += (sender, e) =>
+        viewModel.Error += async (sender, e) =>
         {
-            DisplayAlert("Help", e.Exception.Message, "OK", null);
+            await DisplayAlertAsync("Help", e.Exception.Message, "OK");
         };
 
         BindingContext = viewModel;
@@ -52,20 +80,13 @@ public class SearchListView : ContentPage
         // Initialize favorites repository asynchronously
         if (favoritesRepository == null)
         {
-            favoritesRepository = await XmlFavoritesRepository.OpenFile("XamarinFavorites.xml");
+            favoritesRepository = await XmlFavoritesRepository.OpenFile("XamarinFavorites.json");
         }
     }
 
     private void OnSearchCompleted(object? sender, SearchCompletedEventArgs e)
     {
-        if (viewModel.Groups == null)
-        {
-            listView.ItemsSource = new string[1];
-        }
-        else
-        {
-            listView.ItemsSource = viewModel.Groups;
-        }
+        collectionView.ItemsSource = viewModel.Groups ?? new ObservableCollection<PeopleGroup>();
     }
 
     private void OnValueChanged(object? sender, TextChangedEventArgs e)
@@ -73,14 +94,16 @@ public class SearchListView : ContentPage
         viewModel.Search();
     }
 
-    private async void OnItemSelected(object? sender, SelectedItemChangedEventArgs e)
+    private async void OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
     {
-        var person = e.SelectedItem as Person;
-        var employeeView = new EmployeeView
+        if (e.CurrentSelection.FirstOrDefault() is Person person)
         {
-            BindingContext = new PersonViewModel(person, favoritesRepository)
-        };
-
-        await Navigation.PushAsync(employeeView);
+            var employeeView = new EmployeeView
+            {
+                BindingContext = new PersonViewModel(person, favoritesRepository)
+            };
+            await Navigation.PushAsync(employeeView);
+            collectionView.SelectedItem = null;
+        }
     }
 }

@@ -1,72 +1,56 @@
-﻿namespace EmployeeDirectory.Views.Xaml;
+﻿using EmployeeDirectory.Core.Data;
+using EmployeeDirectory.Core.ViewModels;
+using EmployeeDirectory.Core.Services;
+
+namespace EmployeeDirectory.Views.Xaml;
 
 public partial class EmployeeListXaml : ContentPage
 {
     private FavoritesViewModel viewModel;
     private IFavoritesRepository favoritesRepository;
-    private ToolbarItem toolbarItem;
 
     public EmployeeListXaml()
     {
         InitializeComponent();
-
-        toolbarItem = new ToolbarItem("search", "Search.png", () =>
-        {
-            var search = new SearchListXaml();
-            Navigation.PushAsync(search);
-        }, 0, 0);
-
-        ToolbarItems.Add(toolbarItem);
     }
 
     protected async override void OnAppearing()
     {
         base.OnAppearing();
+        try
+        {
+            // Load persisted favorites (JSON storage)
+            favoritesRepository = await XmlFavoritesRepository.OpenIsolatedStorage("XamarinFavorites.json");
+            if (!favoritesRepository.GetAll().Any())
+                favoritesRepository = await XmlFavoritesRepository.OpenFile("XamarinFavorites.json");
 
-        if (LoginViewModel.ShouldShowLogin(App.LastUseTime))
-            await Navigation.PushModalAsync(new LoginXaml());
+            // Create view model and set BindingContext BEFORE relying on XAML bindings
+            viewModel = new FavoritesViewModel(favoritesRepository, true);
+            BindingContext = viewModel;
 
-        favoritesRepository = await XmlFavoritesRepository.OpenIsolatedStorage("XamarinFavorites.xml");
+            // Explicitly re-assign ItemsSource in case initial binding occurred before BindingContext set
+            if (collectionView != null)
+                collectionView.ItemsSource = viewModel.Groups;
 
-        if (favoritesRepository.GetAll().Count() == 0)
-            favoritesRepository = await XmlFavoritesRepository.OpenFile("XamarinFavorites.xml");
-
-        viewModel = new FavoritesViewModel(favoritesRepository, true);
-
-        collectionView.ItemsSource = viewModel.Groups;
-    }
-
-    protected override void OnDisappearing()
-    {
-        base.OnDisappearing();
+            System.Diagnostics.Debug.WriteLine($"[EmployeeListXaml] CollectionView path active. Groups={viewModel.Groups.Count} People={viewModel.Groups.Sum(g=>g.People.Count)}");
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"[EmployeeListXaml] ERROR: {ex}");
+            await DisplayAlertAsync("Error", ex.Message, "OK");
+        }
     }
 
     private async void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        // The CollectionView is grouped, so e.CurrentSelection will contain a Person, but the binding context for each item is a Person, not a PeopleGroup.
-        // However, the default ItemsSource for grouped CollectionView expects each group to expose an IEnumerable property named 'Items' or 'Children'.
-        // Our PeopleGroup exposes 'People', so we need to set the ItemsSource property in XAML:
-        // <CollectionView.ItemsSource> <Binding Path="Groups" /> </CollectionView.ItemsSource>
-        //
-        // But for now, let's add a debug log to see if this is called at all.
-        System.Diagnostics.Debug.WriteLine($"SelectionChanged invoked. Selection count: {e.CurrentSelection.Count}");
         if (e.CurrentSelection.FirstOrDefault() is Person person)
         {
             var employeeView = new EmployeeXaml
             {
                 BindingContext = new PersonViewModel(person, favoritesRepository)
             };
-
             await Navigation.PushAsync(employeeView);
-            
-            // Clear selection
-            collectionView.SelectedItem = null;
+            collectionView.SelectedItem = null; // clear selection
         }
-    }
-
-    private async void OnFabClicked(object sender, EventArgs e)
-    {
-        var search = new SearchListXaml();
-        await Navigation.PushAsync(search);
     }
 }

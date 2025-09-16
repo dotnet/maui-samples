@@ -26,6 +26,12 @@ namespace EmployeeDirectory.Data
     [XmlRoot("Favorites")]
     public class XmlFavoritesRepository : IFavoritesRepository
     {
+        // NOTE: Retained for historical parity with the Xamarin.Forms sample. Modern MAUI
+        // versions experienced intermittent FileNotFoundException when the runtime attempted
+        // to load the XmlSerializer generated assembly in trimmed or linked builds
+        // (see: https://github.com/dotnet/runtime/issues/83152). The sample documentation now
+        // explains why JSON persistence is preferred for reliability and size; this XML class
+        // remains only as a teaching artifact and may be removed in future revisions.
         public string IsolatedStorageName { get; set; }
 
         public event EventHandler Changed;

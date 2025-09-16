@@ -1,32 +1,31 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="EmployeeDirectory.Views.Xaml.SearchListXaml" Title="Search">
 	<ContentPage.Content>
-		<StackLayout>
-			<Entry x:Name="SearchEntry" Placeholder="search for" Text="{Binding Path=SearchText}" TextChanged="OnValueChanged" />
-			<ListView x:Name="listView" ItemSelected="OnItemSelected" IsGroupingEnabled="true">
-				<ListView.GroupHeaderTemplate>
+		<Grid RowDefinitions="Auto,*" Padding="0">
+			<Entry x:Name="SearchEntry" Placeholder="search for" Text="{Binding SearchText}" TextChanged="OnValueChanged" Margin="0,0,0,8" />
+			<CollectionView x:Name="collectionView"
+						   Grid.Row="1"
+						   IsGrouped="True"
+						   SelectionMode="Single"
+						   SelectionChanged="OnItemSelected"
+						   ItemsSource="{Binding Groups}">
+				<CollectionView.GroupHeaderTemplate>
 					<DataTemplate>
-						<ViewCell>
-							<StackLayout Padding="5,0,0,0" VerticalOptions="Start" Orientation="Vertical">
-								<Label Text="{Binding Title}" VerticalTextAlignment="Center" />
-							</StackLayout>
-						</ViewCell>
+						<Label Text="{Binding Title}" Padding="5,0,0,0" VerticalTextAlignment="Center" />
 					</DataTemplate>
-				</ListView.GroupHeaderTemplate>
-				<ListView.ItemTemplate>
+				</CollectionView.GroupHeaderTemplate>
+				<CollectionView.ItemTemplate>
 					<DataTemplate>
-						<ViewCell>
-							<StackLayout HorizontalOptions="Start" Orientation="Horizontal">
-								<Image Source="{Binding Photo}" WidthRequest="44" HeightRequest="44" />
-								<StackLayout Padding="5,0,0,0" VerticalOptions="Start" Orientation="Vertical">
-									<Label Text="{Binding Name}" VerticalTextAlignment="Center" />
-									<Label Text="{Binding Title}" VerticalTextAlignment="Center" FontSize="Micro" />
-								</StackLayout>
+						<Grid ColumnDefinitions="44,*,Auto" Padding="0,4">
+							<Image Source="{Binding Photo}" WidthRequest="44" HeightRequest="44" />
+							<StackLayout Grid.Column="1" Padding="5,0,0,0" VerticalOptions="Center">
+								<Label Text="{Binding Name}" />
+								<Label Text="{Binding Title}" FontSize="10" />
 							</StackLayout>
-						</ViewCell>
+						</Grid>
 					</DataTemplate>
-				</ListView.ItemTemplate>
-			</ListView>
-		</StackLayout>
+				</CollectionView.ItemTemplate>
+			</CollectionView>
+		</Grid>
 	</ContentPage.Content>
 </ContentPage>

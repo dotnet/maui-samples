@@ -26,6 +26,9 @@ namespace EmployeeDirectory.Core.Data;
 /// </remarks>
 public class Person
 {
+    // Disable prefetch by default while diagnosing Android startup hang.
+    public static bool EnableImagePrefetch { get; set; } = false; // set true later if desired
+
 	string id;
 
 	public string Id {
@@ -85,7 +88,10 @@ public class Person
 
 		set {
 			email = value;
-			PrecacheImage ();
+            if (EnableImagePrefetch)
+            {
+                PrecacheImage();
+            }
 		}
 	}
 
@@ -150,6 +156,8 @@ public class Person
 
 	private async void PrecacheImage ()
 	{
+        if (!EnableImagePrefetch)
+            return; // disabled for startup performance / diagnostics
 		if (!HasEmail)
 			return;
 		try {
@@ -180,7 +188,16 @@ public class Person
 	public ImageSource Photo {
 		get
 		{
-			return DeviceInfo.Platform == DevicePlatform.Android ? FileImageSource.FromFile(LocalImagePath) : FileImageSource.FromUri(GravatarUrl);
+            // Android previously attempted to use a local cached file which won't exist while prefetch is disabled.
+            // Fallback to the https Gravatar URL unless we have a real cached file.
+            if (DeviceInfo.Platform == DevicePlatform.Android)
+            {
+                var hasCached = !string.IsNullOrWhiteSpace(LocalImagePath) && LocalImagePath != "Placeholder.jpg" && File.Exists(LocalImagePath);
+                if (hasCached)
+                    return ImageSource.FromFile(LocalImagePath);
+                return ImageSource.FromUri(GravatarUrl);
+            }
+			return FileImageSource.FromUri(GravatarUrl);
 		}
 	}
 

@@ -43,12 +43,12 @@
                                 SelectionMode="None"
                                 Margin="0,8,0,0">
                     <CollectionView.GroupHeaderTemplate>
-                        <DataTemplate>
+                        <DataTemplate x:DataType="vm:PersonViewModel/PropertyGroup">
                             <Label Text="{Binding Title}" FontAttributes="Bold" FontSize="16" Padding="8,4,0,4" />
                         </DataTemplate>
                     </CollectionView.GroupHeaderTemplate>
                     <CollectionView.ItemTemplate>
-                        <DataTemplate>
+                        <DataTemplate x:DataType="vm:PersonViewModel/Property">
                             <Border BackgroundColor="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray900}}"
                                     StrokeThickness="0" Padding="12" Margin="0,2,0,2">
                                 <HorizontalStackLayout Spacing="8">

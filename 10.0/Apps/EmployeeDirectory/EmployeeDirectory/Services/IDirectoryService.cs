@@ -18,7 +18,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-using EmployeeDirectory.Data;
+using EmployeeDirectory.Core.Data;
 
 namespace EmployeeDirectory
 {

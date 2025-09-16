@@ -26,10 +26,10 @@ public partial class EmployeeListXaml : ContentPage
         if (LoginViewModel.ShouldShowLogin(App.LastUseTime))
             await Navigation.PushModalAsync(new LoginXaml());
 
-        favoritesRepository = await XmlFavoritesRepository.OpenIsolatedStorage("XamarinFavorites.xml");
+        favoritesRepository = await XmlFavoritesRepository.OpenIsolatedStorage("XamarinFavorites.json");
 
         if (favoritesRepository.GetAll().Count() == 0)
-            favoritesRepository = await XmlFavoritesRepository.OpenFile("XamarinFavorites.xml");
+                favoritesRepository = await XmlFavoritesRepository.OpenFile("XamarinFavorites.json");
 
         viewModel = new FavoritesViewModel(favoritesRepository, true);
 

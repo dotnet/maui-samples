@@ -1,4 +1,8 @@
-﻿namespace EmployeeDirectory.Views.Xaml;
+﻿using EmployeeDirectory.Core.Data;
+using EmployeeDirectory.Core.ViewModels;
+using EmployeeDirectory.Core.Services;
+
+namespace EmployeeDirectory.Views.Xaml;
 
 public partial class SearchListXaml : ContentPage
 {
@@ -11,21 +15,17 @@ public partial class SearchListXaml : ContentPage
 		InitializeComponent ();
 
 		// Initialize favorites repository synchronously
-		favoritesRepository = XmlFavoritesRepository.OpenFile ("XamarinFavorites.xml").GetAwaiter().GetResult();
+		favoritesRepository = XmlFavoritesRepository.OpenFile ("XamarinFavorites.json").GetAwaiter().GetResult();
 
 		search = new Search ("test");
 		viewModel = new SearchViewModel (App.Service, search);
 
 		viewModel.SearchCompleted += (sender, e) => {
-			if (viewModel.Groups == null) {
-				listView.ItemsSource = new string [1];
-			} else {
-				listView.ItemsSource = viewModel.Groups;
-			}
+			collectionView.ItemsSource = viewModel.Groups ?? new ObservableCollection<PeopleGroup>();
 		};
 
-		viewModel.Error += (sender, e) => {
-			DisplayAlert ("Error", e.Exception.Message, "OK", null);
+		viewModel.Error += async (sender, e) => {
+			await DisplayAlertAsync ("Error", e.Exception.Message, "OK");
 		};
 
 		BindingContext = viewModel;
@@ -36,13 +36,14 @@ public partial class SearchListXaml : ContentPage
 		viewModel.Search ();
 	}
 
-	private void OnItemSelected (object sender, SelectedItemChangedEventArgs e)
+	private async void OnItemSelected (object sender, SelectionChangedEventArgs e)
 	{
-		var personInfo = e.SelectedItem as Person;
-		var employeeView = new EmployeeXaml {
-			BindingContext = new PersonViewModel (personInfo, favoritesRepository)
-		};
-
-		Navigation.PushAsync (employeeView);
+		if (e.CurrentSelection.FirstOrDefault() is Person personInfo) {
+			var employeeView = new EmployeeXaml {
+				BindingContext = new PersonViewModel (personInfo, favoritesRepository)
+			};
+			await Navigation.PushAsync (employeeView);
+			collectionView.SelectedItem = null;
+		}
 	}
 }

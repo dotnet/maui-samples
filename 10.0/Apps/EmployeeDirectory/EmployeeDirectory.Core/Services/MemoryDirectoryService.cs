@@ -17,6 +17,7 @@ using EmployeeDirectory.Core.Data;
 using EmployeeDirectory.Core.Utilities;
 using System.Reflection;
 using System.Text.RegularExpressions;
+using System.Diagnostics;
 
 namespace EmployeeDirectory.Core.Services;
 
@@ -111,9 +112,62 @@ public class MemoryDirectoryService : IDirectoryService
 
     public async static Task<MemoryDirectoryService> FromCsv(string path)
     {
-        using var stream = await FileSystem.OpenAppPackageFileAsync(path);
-        using var reader = new StreamReader(stream);
-        return FromCsv(reader);
+        if (string.IsNullOrWhiteSpace(path))
+            throw new ArgumentException("path cannot be null or empty", nameof(path));
+
+        Debug.WriteLine($"[MemoryDirectoryService] FromCsv start path={path}");
+        Stream? stream = null;
+        var attempts = new List<string>();
+
+        try
+        {
+            // Ensure we request the file on main thread (some Essentials internals expect it)
+            stream = await MainThread.InvokeOnMainThreadAsync(() => FileSystem.OpenAppPackageFileAsync(path));
+            attempts.Add("MainThread OpenAppPackageFileAsync succeeded");
+            Debug.WriteLine("[MemoryDirectoryService] Asset open succeeded");
+        }
+        catch (Exception ex)
+        {
+            attempts.Add($"OpenAppPackageFileAsync failed: {ex.GetType().Name} {ex.Message}");
+            Debug.WriteLine("[MemoryDirectoryService] Asset open failed: " + ex);
+        }
+
+        if (stream == null)
+        {
+            var baseDir = AppContext.BaseDirectory;
+            var candidate = Path.Combine(baseDir, path);
+            attempts.Add("BaseDirectory candidate: " + candidate + (File.Exists(candidate) ? " (exists)" : " (missing)"));
+            if (File.Exists(candidate))
+            {
+                try
+                {
+                    stream = File.OpenRead(candidate);
+                    attempts.Add("BaseDirectory File.OpenRead succeeded");
+                    Debug.WriteLine("[MemoryDirectoryService] Fallback BaseDirectory open succeeded");
+                }
+                catch (Exception ex)
+                {
+                    attempts.Add($"BaseDirectory open failed: {ex.GetType().Name} {ex.Message}");
+                    Debug.WriteLine("[MemoryDirectoryService] BaseDirectory open failed: " + ex);
+                }
+            }
+        }
+
+        if (stream == null)
+        {
+            var msg = $"Unable to open CSV asset '{path}'. Attempts:\n{string.Join("\n", attempts)}";
+            Debug.WriteLine("[MemoryDirectoryService] " + msg);
+            throw new FileNotFoundException(msg);
+        }
+
+        using (stream)
+        using (var reader = new StreamReader(stream))
+        {
+            Debug.WriteLine("[MemoryDirectoryService] Beginning CSV parse...");
+            var service = FromCsv(reader);
+            Debug.WriteLine("[MemoryDirectoryService] CSV parse complete.");
+            return service;
+        }
     }
 
     public static MemoryDirectoryService FromCsv(TextReader textReader)

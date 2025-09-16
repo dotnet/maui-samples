@@ -13,7 +13,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 //
-using EmployeeDirectory.Data;
+using EmployeeDirectory.Core.Data;
 
 namespace EmployeeDirectory.ViewModels
 {

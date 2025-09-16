@@ -1,4 +1,5 @@
 ﻿using Microsoft.Maui.Controls.Shapes;
+using EmployeeDirectory.Core.ViewModels;
 
 namespace EmployeeDirectory.Views.CSharp;
 

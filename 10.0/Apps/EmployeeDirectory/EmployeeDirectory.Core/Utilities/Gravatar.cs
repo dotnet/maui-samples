@@ -36,6 +36,6 @@ public class Gravatar
 
 		var hash = md5.ComputeHash (Encoding.UTF8.GetBytes (email.Trim ()));
 		var hashString = string.Join ("", hash.Select (x => x.ToString ("x2")));
-		return new Uri ("http://www.gravatar.com/avatar/" + hashString + ".jpg?s=" + size + "&d=mm");
+		return new Uri ($"https://www.gravatar.com/avatar/{hashString}.jpg?s={size}&d=mm");
 	}
 }

@@ -26,6 +26,13 @@ namespace EmployeeDirectory.Data
     [XmlRoot("Favorites")]
     public class XmlFavoritesRepository : IFavoritesRepository
     {
+        // NOTE: This XML-based favorites repository is retained for historical parity with the
+        // Xamarin.Forms sample. In .NET 8/9+ we observed intermittent FileNotFoundException cases
+        // when the runtime attempted to load the XmlSerializer generated assembly in trimmed /
+        // linked builds (see: https://github.com/dotnet/runtime/issues/83152). The sample now
+        // prefers a JSON-based persistence approach elsewhere to avoid reliance on XmlSerializer
+        // code generation, improve reliability across platforms, and reduce size. This class is
+        // kept to illustrate the original pattern but may be replaced in future versions.
         public string IsolatedStorageName { get; set; }
 
         public event EventHandler Changed;

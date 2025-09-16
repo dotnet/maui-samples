@@ -1,4 +1,6 @@
 ﻿using Microsoft.Maui.Controls.Shapes;
+using EmployeeDirectory.Core.Data;
+using EmployeeDirectory.Core.ViewModels;
 
 namespace EmployeeDirectory.Views.CSharp;
 public class EmployeeListView : ContentPage
@@ -147,10 +149,10 @@ public class EmployeeListView : ContentPage
         if (LoginViewModel.ShouldShowLogin(App.LastUseTime))
             await Navigation.PushModalAsync(new LoginView());
 
-        favoritesRepository = await XmlFavoritesRepository.OpenIsolatedStorage("XamarinFavorites.xml");
+        favoritesRepository = await XmlFavoritesRepository.OpenIsolatedStorage("XamarinFavorites.json");
 
         if (favoritesRepository.GetAll().Count() == 0)
-            favoritesRepository = await XmlFavoritesRepository.OpenFile("XamarinFavorites.xml");
+            favoritesRepository = await XmlFavoritesRepository.OpenFile("XamarinFavorites.json");
 
         viewModel = new FavoritesViewModel(favoritesRepository, true);
         collectionView.ItemsSource = viewModel.Groups;

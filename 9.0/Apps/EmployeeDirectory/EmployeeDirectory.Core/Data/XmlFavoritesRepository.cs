@@ -13,19 +13,30 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 //
-using System.Xml.Serialization;
+using System.Xml.Serialization; // retained for legacy comment history (not used for JSON)
 using System.Diagnostics;
 using System.Text;
+using System.Text.Json; // Added for JSON serialization
 
 namespace EmployeeDirectory.Core.Data;
 
-[XmlRoot("Favorites")]
+// Removed XmlRoot attribute; JSON serialization does not need it
 public class XmlFavoritesRepository : IFavoritesRepository
 {
     private static readonly object _lockObject = new object();
     private volatile bool _isCommitting = false;
 
-    public string IsolatedStorageName { get; set; }
+    // Fixed storage file name (always JSON)
+    private const string StorageFileName = "XamarinFavorites.json";
+
+    // JSON serializer options
+    private static readonly JsonSerializerOptions JsonOptions = new()
+    {
+        WriteIndented = true,
+        PropertyNameCaseInsensitive = true
+    };
+
+    public string IsolatedStorageName { get; set; } = StorageFileName; // Always set to fixed file name
 
     public event EventHandler Changed;
 
@@ -34,6 +45,7 @@ public class XmlFavoritesRepository : IFavoritesRepository
     public XmlFavoritesRepository()
     {
         People = new List<Person>();
+        IsolatedStorageName = StorageFileName;
         DebugLog("XmlFavoritesRepository constructor called");
     }
 
@@ -130,146 +142,120 @@ public class XmlFavoritesRepository : IFavoritesRepository
 
     public async static Task<XmlFavoritesRepository> OpenIsolatedStorage(string isolatedStorageName)
     {
-        DebugLog($"OpenIsolatedStorage called with: {isolatedStorageName}");
-        
+        // Ignore provided name; always use fixed JSON file
+        isolatedStorageName = StorageFileName;
+        DebugLog($"OpenIsolatedStorage called (forced file): {isolatedStorageName}");
+
         try
         {
-            var filePath = Path.Combine(FileSystem.AppDataDirectory, isolatedStorageName);
+            var filePath = Path.Combine(FileSystem.AppDataDirectory, StorageFileName);
             DebugLogFileInfo(filePath, "OpenIsolatedStorage");
-            
+
             var directoryPath = Path.GetDirectoryName(filePath);
             if (!string.IsNullOrEmpty(directoryPath))
             {
                 DebugLogDirectoryInfo(directoryPath);
             }
-            
+
             if (File.Exists(filePath))
             {
-                DebugLog("File exists, attempting to deserialize");
-                
-                // Read file content with better error handling
-                string xmlContent;
+                DebugLog("File exists, attempting to deserialize (JSON)");
+
+                string content;
                 try
                 {
-                    xmlContent = await File.ReadAllTextAsync(filePath, Encoding.UTF8).ConfigureAwait(false);
+                    content = await File.ReadAllTextAsync(filePath, Encoding.UTF8).ConfigureAwait(false);
                 }
                 catch (Exception fileEx)
                 {
                     DebugLogException("File read", fileEx);
                     throw;
                 }
-                
-                if (string.IsNullOrWhiteSpace(xmlContent))
+
+                if (string.IsNullOrWhiteSpace(content))
                 {
                     DebugLog("File is empty, creating new repository");
-                    return CreateNewRepository(isolatedStorageName);
+                    return CreateNewRepository(StorageFileName);
                 }
-                
-                DebugLogXmlContent(xmlContent, "OpenIsolatedStorage");
-                
-                // Deserialize on background thread
-                var repo = await Task.Run(() =>
+
+                DebugLogXmlContent(content, "OpenIsolatedStorage(JSON raw)");
+
+                try
                 {
-                    try
-                    {
-                        using var stringReader = new StringReader(xmlContent);
-                        var serializer = new XmlSerializer(typeof(XmlFavoritesRepository));
-                        DebugLog("XmlSerializer created successfully");
-                        
-                        var result = (XmlFavoritesRepository)serializer.Deserialize(stringReader);
-                        DebugLog("Deserialization completed");
-                        return result;
-                    }
-                    catch (Exception deserEx)
-                    {
-                        DebugLogException("Deserialization", deserEx);
-                        throw;
-                    }
-                }).ConfigureAwait(false);
-                
-                if (repo.People == null)
-                {
-                    DebugLog("People was null after deserialization, initializing new list");
-                    repo.People = new List<Person>();
+                    // Deserialize JSON
+                    var repo = JsonSerializer.Deserialize<XmlFavoritesRepository>(content, JsonOptions) ?? new XmlFavoritesRepository();
+                    if (repo.People == null)
+                        repo.People = new List<Person>();
+
+                    repo.IsolatedStorageName = StorageFileName;
+                    repo.DebugLogRepositoryState("OpenIsolatedStorage - Success(JSON)");
+                    return repo;
                 }
-                
-                repo.IsolatedStorageName = isolatedStorageName;
-                repo.DebugLogRepositoryState("OpenIsolatedStorage - Success");
-                
-                return repo;
+                catch (Exception deserEx)
+                {
+                    DebugLogException("JSON Deserialization", deserEx);
+                    return CreateNewRepository(StorageFileName);
+                }
             }
             else
             {
                 DebugLog("File does not exist, creating new repository");
-                return CreateNewRepository(isolatedStorageName);
+                return CreateNewRepository(StorageFileName);
             }
         }
         catch (Exception ex)
         {
             DebugLogException("OpenIsolatedStorage", ex);
-            return CreateNewRepository(isolatedStorageName);
+            return CreateNewRepository(StorageFileName);
         }
     }
 
     public async static Task<XmlFavoritesRepository> OpenFile(string path)
     {
+        // This method reads from app package assets; leave behavior but still normalize stored name
         DebugLog($"OpenFile called with: {path}");
-        
+
         try
         {
             using var stream = await FileSystem.OpenAppPackageFileAsync(path).ConfigureAwait(false);
             DebugLog($"Opened app package file stream for: {path}");
-            
-            // Read content first
-            string xmlContent;
+
+            string content;
             using (var reader = new StreamReader(stream))
             {
-                xmlContent = await reader.ReadToEndAsync().ConfigureAwait(false);
+                content = await reader.ReadToEndAsync().ConfigureAwait(false);
             }
-            
-            if (string.IsNullOrWhiteSpace(xmlContent))
+
+            if (string.IsNullOrWhiteSpace(content))
             {
                 DebugLog("App package file is empty, creating new repository");
-                return CreateNewRepository(Path.GetFileName(path));
+                return CreateNewRepository(StorageFileName);
             }
-            
-            DebugLogXmlContent(xmlContent, "OpenFile");
-            
-            // Deserialize on background thread
-            var repo = await Task.Run(() =>
+
+            DebugLogXmlContent(content, "OpenFile(JSON raw)");
+
+            try
             {
-                try
+                var repo = JsonSerializer.Deserialize<XmlFavoritesRepository>(content, JsonOptions) ?? new XmlFavoritesRepository();
+                if (repo.People == null)
                 {
-                    using var stringReader = new StringReader(xmlContent);
-                    var serializer = new XmlSerializer(typeof(XmlFavoritesRepository));
-                    DebugLog("XmlSerializer created for OpenFile");
-                    
-                    var result = (XmlFavoritesRepository)serializer.Deserialize(stringReader);
-                    DebugLog("OpenFile deserialization completed");
-                    return result;
+                    DebugLog("People was null after deserialization, initializing new list");
+                    repo.People = new List<Person>();
                 }
-                catch (Exception deserEx)
-                {
-                    DebugLogException("OpenFile deserialization", deserEx);
-                    throw;
-                }
-            }).ConfigureAwait(false);
-            
-            if (repo.People == null)
-            {
-                DebugLog("People was null after OpenFile deserialization, initializing new list");
-                repo.People = new List<Person>();
+                repo.IsolatedStorageName = StorageFileName;
+                repo.DebugLogRepositoryState("OpenFile - Success(JSON)");
+                return repo;
             }
-            
-            repo.IsolatedStorageName = Path.GetFileName(path);
-            repo.DebugLogRepositoryState("OpenFile - Success");
-            
-            return repo;
+            catch (Exception deserEx)
+            {
+                DebugLogException("JSON Deserialization(OpenFile)", deserEx);
+                return CreateNewRepository(StorageFileName);
+            }
         }
         catch (Exception ex)
         {
             DebugLogException("OpenFile", ex);
-            return CreateNewRepository(Path.GetFileName(path));
+            return CreateNewRepository(StorageFileName);
         }
     }
 
@@ -277,7 +263,7 @@ public class XmlFavoritesRepository : IFavoritesRepository
     {
         var newRepo = new XmlFavoritesRepository
         {
-            IsolatedStorageName = isolatedStorageName,
+            IsolatedStorageName = StorageFileName,
             People = new List<Person>()
         };
         newRepo.DebugLogRepositoryState("CreateNewRepository");
@@ -315,70 +301,52 @@ public class XmlFavoritesRepository : IFavoritesRepository
     private async Task CommitInternal()
     {
         DebugLogRepositoryState("Commit - Start");
-        
-        if (string.IsNullOrEmpty(IsolatedStorageName))
-        {
-            DebugLog("ERROR: IsolatedStorageName is null or empty, cannot commit");
-            return;
-        }
-        
+
+        // Always ensure file name is the fixed JSON file
+        IsolatedStorageName = StorageFileName;
+
         try
         {
-            var filePath = Path.Combine(FileSystem.AppDataDirectory, IsolatedStorageName);
+            var filePath = Path.Combine(FileSystem.AppDataDirectory, StorageFileName);
             var directoryPath = Path.GetDirectoryName(filePath);
-            
+
             DebugLog($"Commit target file: {filePath}");
             if (!string.IsNullOrEmpty(directoryPath))
             {
                 DebugLogDirectoryInfo(directoryPath);
-                
-                // Ensure directory exists
                 Directory.CreateDirectory(directoryPath);
                 DebugLog("Directory created/verified");
             }
-            
-            // Serialize on background thread
-            var xmlContent = await Task.Run(() =>
+
+            var jsonContent = await Task.Run(() =>
             {
                 try
                 {
-                    using var memoryStream = new MemoryStream();
-                    var serializer = new XmlSerializer(typeof(XmlFavoritesRepository));
-                    DebugLog("XmlSerializer created for Commit");
-                    
-                    // Create a copy of the current state to avoid threading issues
-                    var currentPeople = new List<Person>();
+                    List<Person> currentPeople;
                     lock (_lockObject)
                     {
-                        if (People != null)
-                        {
-                            currentPeople.AddRange(People);
-                        }
+                        currentPeople = People != null ? new List<Person>(People) : new List<Person>();
                     }
-                    
+
                     var repoToSerialize = new XmlFavoritesRepository
                     {
-                        IsolatedStorageName = this.IsolatedStorageName,
+                        IsolatedStorageName = StorageFileName,
                         People = currentPeople
                     };
-                    
-                    serializer.Serialize(memoryStream, repoToSerialize);
-                    var content = Encoding.UTF8.GetString(memoryStream.ToArray());
-                    DebugLog("Serialization completed");
+
+                    var content = JsonSerializer.Serialize(repoToSerialize, JsonOptions);
+                    DebugLog("Serialization (JSON) completed");
                     return content;
                 }
                 catch (Exception serEx)
                 {
-                    DebugLogException("Serialization", serEx);
+                    DebugLogException("Serialization(JSON)", serEx);
                     throw;
                 }
             }).ConfigureAwait(false);
-            
-            DebugLogXmlContent(xmlContent, "Commit");
-            
-            // Write to file
-            await File.WriteAllTextAsync(filePath, xmlContent, Encoding.UTF8).ConfigureAwait(false);
-            
+
+            DebugLogXmlContent(jsonContent, "Commit(JSON)");
+            await File.WriteAllTextAsync(filePath, jsonContent, Encoding.UTF8).ConfigureAwait(false);
             DebugLog("File written successfully");
             DebugLogFileInfo(filePath, "Commit - After write");
         }
@@ -439,7 +407,7 @@ public class XmlFavoritesRepository : IFavoritesRepository
             DebugLog("IsFavorite called with null person");
             return false;
         }
-        
+
         lock (_lockObject)
         {
             var result = People?.Any(x => x.Id == person.Id) ?? false;

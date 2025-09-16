@@ -1,4 +1,5 @@
 ﻿using Microsoft.Maui.Controls.Shapes;
+using EmployeeDirectory.Core.ViewModels;
 
 namespace EmployeeDirectory.Views.CSharp;
 
@@ -102,28 +103,33 @@ public class LoginView : ContentPage
         base.OnAppearing();
     }
 
-    private void OnLoginClicked(object? sender, EventArgs e)
+    private async void OnLoginClicked(object? sender, EventArgs e)
     {
         if (loginViewModel?.CanLogin == true)
         {
-            loginViewModel
-            .LoginAsync(System.Threading.CancellationToken.None)
-            .ContinueWith(_ =>
+            try
             {
+                await loginViewModel.LoginAsync(System.Threading.CancellationToken.None);
                 App.LastUseTime = System.DateTime.UtcNow;
-                Navigation.PopAsync();
-            });
-
-            Navigation.PopModalAsync();
+                // Prefer PopModalAsync if we presented modally; otherwise PopAsync.
+                if (Navigation.ModalStack?.Any() == true)
+                    await Navigation.PopModalAsync();
+                else
+                    await Navigation.PopAsync();
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlertAsync("Error", ex.Message, "OK");
+            }
         }
         else
         {
-            DisplayAlert("Error", loginViewModel?.ValidationErrors ?? "Login failed", "OK");
+            await DisplayAlertAsync("Error", loginViewModel?.ValidationErrors ?? "Login failed", "OK");
         }
     }
 
-    private void OnHelpClicked(object? sender, EventArgs e)
+    private async void OnHelpClicked(object? sender, EventArgs e)
     {
-        DisplayAlert("Help", "Enter any username and password", "OK");
+        await DisplayAlertAsync("Help", "Enter any username and password", "OK");
     }
 }
