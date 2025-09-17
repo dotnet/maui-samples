@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace WindowButtonsHandler.Controls
+﻿namespace WindowButtonsHandler.Controls
 {
     /// <summary>
     /// Extended interface for windows that support custom button visibility control.
@@ -15,12 +11,12 @@ namespace WindowButtonsHandler.Controls
         /// Gets or sets whether the window's minimize button should be visible and functional.
         /// On Mac Catalyst, this controls the yellow minimize button in the title bar.
         /// </summary>
-        bool IsMinimizable { get; set; }
+        bool CanMinimize { get; set; }
 
         /// <summary>
         /// Gets or sets whether the window's maximize button should be visible and functional.
         /// On Mac Catalyst, this controls the green maximize/zoom button in the title bar.
         /// </summary>
-        bool IsMaximizable { get; set; }
+        bool CanMaximize { get; set; }
     }
 }

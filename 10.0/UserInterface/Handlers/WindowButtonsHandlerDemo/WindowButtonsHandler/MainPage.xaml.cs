@@ -4,8 +4,8 @@ namespace WindowButtonsHandler
 {
     public partial class MainPage : ContentPage
     {
-        bool _isMinimizable = true;
-        bool _isMaximizable = true;
+        bool _canMinimize = true;
+        bool _canMaximize = true;
 
         public MainPage()
         {
@@ -15,17 +15,17 @@ namespace WindowButtonsHandler
         void OnToggleMinimizeClicked(object sender, EventArgs e)
         {
             // Toggle the minimize state
-            _isMinimizable = !_isMinimizable;
+            _canMinimize = !_canMinimize;
 
             // Get the parent window and update its properties
             var window = GetParentWindow();
 
             if (window is not null)
             {
-                // Cast to our custom window type to access IsMinimizable property
+                // Cast to our custom window type to access CanMinimize property
                 if (window is ICustomWindow customWindow)
                 {
-                    customWindow.IsMinimizable = _isMinimizable;
+                    customWindow.CanMinimize = _canMinimize;
                 }
             }
 
@@ -36,17 +36,17 @@ namespace WindowButtonsHandler
         void OnToggleMaximizeClicked(object sender, EventArgs e)
         {
             // Toggle the maximize state
-            _isMaximizable = !_isMaximizable;
+            _canMaximize = !_canMaximize;
 
             // Get the parent window and update its properties
-            var window = GetParentWindow();
+            var window = FindParentWindow();
 
             if (window is not null)
             {
-                // Cast to our custom window type to access IsMaximizable property
+                // Cast to our custom window type to access CanMaximize property
                 if (window is ICustomWindow customWindow)
                 {
-                    customWindow.IsMaximizable = _isMaximizable;
+                    customWindow.CanMaximize = _canMaximize;
                 }
             }
 
@@ -59,7 +59,7 @@ namespace WindowButtonsHandler
         /// This is necessary because ContentPage doesn't directly expose the window.
         /// </summary>
         /// <returns>The parent IWindow, or null if not found</returns>
-        IWindow? GetParentWindow()
+        IWindow? FindParentWindow()
         {
             var parent = this.Parent;
 
@@ -81,8 +81,8 @@ namespace WindowButtonsHandler
 
         void UpdateStatusLabel()
         {
-            StatusLabel.Text = $"Minimize: {(_isMinimizable ? "Enabled" : "Disabled")} | " +   
-                $"Maximize: {(_isMaximizable ? "Enabled" : "Disabled")}";
+            StatusLabel.Text = $"Minimize: {(_canMinimize ? "Enabled" : "Disabled")} | " +   
+                $"Maximize: {(_canMaximize ? "Enabled" : "Disabled")}";
         }
     }
 }

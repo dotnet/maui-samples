@@ -14,17 +14,17 @@ namespace WindowButtonsHandler.Extensions
         /// </summary>
         /// <param name="platformWindow">The platform window (Microsoft.UI.Xaml.Window) to update</param>
         /// <param name="window">The MAUI window containing the minimize state</param>
-        public static void UpdateIsMinimizable(this object platformWindow, IWindow window)
+        public static void UpdateCanMinimize(this object platformWindow, IWindow window)
         {
             if (platformWindow is Microsoft.UI.Xaml.Window winUIWindow)
             {
                 try
                 {
                     // Determine if the button should be visible
-                    bool isMinimizable = window is not ICustomWindow customWindow || customWindow.IsMinimizable;
+                    bool canMinimize = window is not ICustomWindow customWindow || customWindow.CanMinimize;
 
                     // We need to modify the window style to hide/show the minimize button
-                    UpdateWindowStyle(winUIWindow, isMinimizable, isMaximize: null);
+                    UpdateWindowStyle(winUIWindow, canMinimize, isMaximize: null);
                 }
                 catch (Exception ex)
                 {
@@ -39,17 +39,17 @@ namespace WindowButtonsHandler.Extensions
         /// </summary>
         /// <param name="platformWindow">The platform window (Microsoft.UI.Xaml.Window) to update</param>
         /// <param name="window">The MAUI window containing the maximize state</param>
-        public static void UpdateIsMaximizable(this object platformWindow, IWindow window)
+        public static void UpdateCanMaximize(this object platformWindow, IWindow window)
         {
             if (platformWindow is Microsoft.UI.Xaml.Window winUIWindow)
             {
                 try
                 {
                     // Determine if the button should be visible
-                    bool isMaximizable = window is not ICustomWindow customWindow || customWindow.IsMaximizable;
+                    bool canMaximize = window is not ICustomWindow customWindow || customWindow.CanMaximize;
 
                     // We need to modify the window style to hide/show the maximize button
-                    UpdateWindowStyle(winUIWindow, isMinimize: null, isMaximizable);
+                    UpdateWindowStyle(winUIWindow, isMinimize: null, canMaximize);
                 }
                 catch (Exception ex)
                 {

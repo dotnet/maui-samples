@@ -6,7 +6,7 @@ namespace WindowButtonsHandler.Handlers
     /// <summary>
     /// Custom window handler that extends the default WindowHandler
     /// to provide additional functionality for controlling window button visibility.
-    /// This handler maps custom properties (IsMinimizable, IsMaximizable) to platform-specific
+    /// This handler maps custom properties (CanMinimize, CanMaximize) to platform-specific
     /// implementations that can hide/show the native window buttons.
     /// </summary>
     public partial class CustomWindowHandler : WindowHandler
@@ -20,11 +20,11 @@ namespace WindowButtonsHandler.Handlers
         public static IPropertyMapper<ICustomWindow, CustomWindowHandler> CustomMapper =
             new PropertyMapper<ICustomWindow, CustomWindowHandler>(WindowHandler.Mapper)
             {
-                // Map the IsMinimizable property to the MapIsMinimizable method
-                [nameof(ICustomWindow.IsMinimizable)] = MapIsMinimizable,
+                // Map the CanMinimize property to the MapCanMinimize method
+                [nameof(ICustomWindow.CanMinimize)] = MapCanMinimize,
 
-                // Map the IsMaximizable property to the MapIsMaximizable method
-                [nameof(ICustomWindow.IsMaximizable)] = MapIsMaximizable,
+                // Map the CanMaximize property to the MapCanMaximize method
+                [nameof(ICustomWindow.CanMaximize)] = MapCanMaximize,
             };
 
         /// <summary>
@@ -36,19 +36,19 @@ namespace WindowButtonsHandler.Handlers
         }
 
         /// <summary>
-        /// Platform-specific implementation for handling IsMinimizable property changes.
+        /// Platform-specific implementation for handling CanMinimize property changes.
         /// This method is implemented in platform-specific partial class files.
         /// </summary>
         /// <param name="handler">The handler instance managing the window</param>
         /// <param name="window">The custom window instance with the changed property</param>
-        public static partial void MapIsMinimizable(CustomWindowHandler handler, ICustomWindow window);
+        public static partial void MapCanMinimize(CustomWindowHandler handler, ICustomWindow window);
 
         /// <summary>
-        /// Platform-specific implementation for handling IsMaximizable property changes.
+        /// Platform-specific implementation for handling CanMaximize property changes.
         /// This method is implemented in platform-specific partial class files.
         /// </summary>
         /// <param name="handler">The handler instance managing the window</param>
         /// <param name="window">The custom window instance with the changed property</param>
-        public static partial void MapIsMaximizable(CustomWindowHandler handler, ICustomWindow window);
+        public static partial void MapCanMaximize(CustomWindowHandler handler, ICustomWindow window);
     }
 }

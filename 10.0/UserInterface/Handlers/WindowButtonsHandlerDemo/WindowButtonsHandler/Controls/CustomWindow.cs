@@ -9,29 +9,29 @@
     public class CustomWindow : Window, ICustomWindow
     {
         /// <summary>
-        /// Backing field for the IsMinimizable property
+        /// Backing field for the CanMinimize property
         /// </summary>
-        private bool _isMinimizable = true;
+        bool _canMinimize = true;
 
         /// <summary>
-        /// Backing field for the IsMaximizable property
+        /// Backing field for the CanMaximize property
         /// </summary>
-        private bool _isMaximizable = true;
+        bool _canMaximize = true;
 
         /// <summary>
         /// Gets or sets whether the window's minimize button should be visible and functional.
         /// When set to false, the minimize button will be hidden on supported platforms.
         /// </summary>
-        public bool IsMinimizable
+        public bool CanMinimize
         {
-            get => _isMinimizable;
+            get => _canMinimize;
             set
             {
-                if (_isMinimizable != value)
+                if (_canMinimize != value)
                 {
-                    _isMinimizable = value;
+                    _canMinimize = value;
                     // Notify the handler that this property has changed
-                    Handler?.UpdateValue(nameof(IsMinimizable));
+                    Handler?.UpdateValue(nameof(CanMinimize));
                 }
             }
         }
@@ -40,16 +40,16 @@
         /// Gets or sets whether the window's maximize button should be visible and functional.
         /// When set to false, the maximize button will be hidden on supported platforms.
         /// </summary>
-        public bool IsMaximizable
+        public bool CanMaximize
         {
-            get => _isMaximizable;
+            get => _canMaximize;
             set
             {
-                if (_isMaximizable != value)
+                if (_canMaximize != value)
                 {
-                    _isMaximizable = value;
+                    _canMaximize = value;
                     // Notify the handler that this property has changed
-                    Handler?.UpdateValue(nameof(IsMaximizable));
+                    Handler?.UpdateValue(nameof(CanMaximize));
                 }
             }
         }

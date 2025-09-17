@@ -11,19 +11,19 @@ namespace WindowButtonsHandler.Handlers
     public partial class CustomWindowHandler
     {
         /// <summary>
-        /// Handles changes to the IsMinimizable property by updating the Mac Catalyst window.
-        /// This method is called automatically when the IsMinimizable property changes.
+        /// Handles changes to the CanMinimize property by updating the Mac Catalyst window.
+        /// This method is called automatically when the CanMinimize property changes.
         /// </summary>
         /// <param name="handler">The handler instance managing the window</param>
         /// <param name="window">The custom window instance with the changed property</param>
-        public static partial void MapIsMinimizable(CustomWindowHandler handler, ICustomWindow window)
+        public static partial void MapCanMinimize(CustomWindowHandler handler, ICustomWindow window)
         {
             // Ensure we have a valid UIWindow
             if (handler.PlatformView is not null)
             {
                 try
                 {
-                    handler.PlatformView.UpdateIsMinimizable(window);
+                    handler.PlatformView.UpdateCanMinimize(window);
                 }
                 catch (Exception ex)
                 {
@@ -34,19 +34,19 @@ namespace WindowButtonsHandler.Handlers
         }
 
         /// <summary>
-        /// Handles changes to the IsMaximizable property by updating the Mac Catalyst window.
-        /// This method is called automatically when the IsMaximizable property changes.
+        /// Handles changes to the CanMaximize property by updating the Mac Catalyst window.
+        /// This method is called automatically when the CanMaximize property changes.
         /// </summary>
         /// <param name="handler">The handler instance managing the window</param>
         /// <param name="window">The custom window instance with the changed property</param>
-        public static partial void MapIsMaximizable(CustomWindowHandler handler, ICustomWindow window)
+        public static partial void MapCanMaximize(CustomWindowHandler handler, ICustomWindow window)
         {
             // Ensure we have a valid UIWindow
             if (handler.PlatformView is not null)
             {
                 try
                 {
-                    handler.PlatformView.UpdateIsMaximizable(window);
+                    handler.PlatformView.UpdateCanMaximize(window);
                 }
                 catch (Exception ex)
                 {

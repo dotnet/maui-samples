@@ -59,7 +59,7 @@ namespace WindowButtonsHandler.Extensions
         /// </summary>
         /// <param name="platformWindow">The UIWindow to update</param>
         /// <param name="window">The MAUI window containing the minimize state</param>
-        public static void UpdateIsMinimizable(this UIWindow platformWindow, IWindow window)
+        public static void UpdateCanMinimize(this UIWindow platformWindow, IWindow window)
         {
             // Get the underlying NSWindow from the UIWindow
             var nsWindow = GetNSWindowFromUIWindow(platformWindow);
@@ -76,13 +76,13 @@ namespace WindowButtonsHandler.Extensions
                 if (minimizeButton is not null)
                 {
                     // Determine if the button should be visible
-                    bool isMinimizable = window is not ICustomWindow customWindow || customWindow.IsMinimizable;
+                    bool canMinimize = window is not ICustomWindow customWindow || customWindow.CanMinimize;
 
                     // Hide or show the button
                     void_objc_msgSend_bool(
                         minimizeButton.Handle,
                         StandardWindowButtonSetHidden.Handle,
-                        !isMinimizable);
+                        !canMinimize);
                 }
                 else
                 {
@@ -100,7 +100,7 @@ namespace WindowButtonsHandler.Extensions
         /// </summary>
         /// <param name="platformWindow">The UIWindow to update</param>
         /// <param name="window">The MAUI window containing the maximize state</param>
-        public static void UpdateIsMaximizable(this UIWindow platformWindow, IWindow window)
+        public static void UpdateCanMaximize(this UIWindow platformWindow, IWindow window)
         {
             // Get the underlying NSWindow from the UIWindow
             var nsWindow = GetNSWindowFromUIWindow(platformWindow);
@@ -117,13 +117,13 @@ namespace WindowButtonsHandler.Extensions
                 if (maximizeButton is not null)
                 {
                     // Determine if the button should be visible
-                    bool isMaximizable = window is not ICustomWindow customWindow || customWindow.IsMaximizable;
+                    bool canMaximize = window is not ICustomWindow customWindow || customWindow.CanMaximize;
 
                     // Hide or show the button
                     void_objc_msgSend_bool(
                         maximizeButton.Handle,
                         StandardWindowButtonSetHidden.Handle,
-                        !isMaximizable);
+                        !canMaximize);
                 }
                 else
                 {

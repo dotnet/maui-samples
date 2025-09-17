@@ -17,8 +17,8 @@ namespace WindowButtonsHandler
             };
 
             // Set initial window properties
-            window.IsMinimizable = true;
-            window.IsMaximizable = true;
+            window.CanMinimize = true;
+            window.CanMaximize = true;
 
             return window;
         }
