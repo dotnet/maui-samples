@@ -69,6 +69,7 @@ Before running the sample you'll need to:
 1. Update the mobile app config (*Config.cs* in the **PushNotificationsDemo** project) to use the api key and service endpoint values.
 1. Update the `<ApplicationId>` value in the project file (.csproj) to match the value you defined when creating your Firebase project, and when registering your iOS app for push notifications.
 1. Add your *google-services.json* file to the *Platforms/Android* folder of the **PushNotificationsDemo** project.
+1. **For iOS entitlements**: The iOS entitlements file has been renamed to `Entitlements.plist.txt` to allow the sample to build without requiring a valid provisioning profile. For production deployment, rename this file back to `Entitlements.plist` and ensure you have proper iOS code signing configured.
 1. Ensure that the appropriate certificate and provisioning profile has been downloaded and is being used for bundle signing on iOS, if you intend to run the sample on a physical device.
 
 For more information about this sample, including full instructions for all these steps, see [Send push notifications to .NET MAUI apps using Azure Notification Hubs via a backend service](https://learn.microsoft.com/dotnet/maui/data-cloud/push-notifications).
