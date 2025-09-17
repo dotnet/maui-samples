@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:shapes="clr-namespace:Microsoft.Maui.Controls.Shapes;assembly=Microsoft.Maui.Controls"
+             xmlns:data="clr-namespace:EmployeeDirectory.Core.Data;assembly=EmployeeDirectory.Core"
+             x:Class="EmployeeDirectory.Views.Xaml.EmployeeListXaml" 
+             Title="Employee Directory"
+             BackgroundColor="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray900}}">
+    
+    <ContentPage.Resources>
+        <Style x:Key="EmployeeCardFrame" TargetType="Border">
+            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray800}}"/>
+            <Setter Property="Stroke" Value="Transparent"/>
+            <Setter Property="StrokeShape">
+                <Setter.Value>
+                    <shapes:RoundRectangle CornerRadius="12" />
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Padding" Value="16"/>
+            <Setter Property="Margin" Value="16,8"/>
+            <Setter Property="InputTransparent" Value="False"/>
+        </Style>
+        
+        <Style x:Key="EmployeeNameLabel" TargetType="Label">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}"/>
+        </Style>
+        
+        <Style x:Key="EmployeeTitleLabel" TargetType="Label">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray400}}"/>
+            <Setter Property="Margin" Value="0,2,0,0"/>
+        </Style>
+        
+        <Style x:Key="SectionHeaderLabel" TargetType="Label">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Primary}}"/>
+            <Setter Property="Margin" Value="16,16,16,8"/>
+        </Style>
+    </ContentPage.Resources>
+
+    <Grid>
+        <CollectionView x:Name="collectionView" 
+                        IsGrouped="True"
+                        SelectionMode="Single"
+                        SelectionChanged="OnSelectionChanged"
+                        ItemsSource="{Binding Groups}"
+                        BackgroundColor="Transparent">
+            
+            <CollectionView.GroupHeaderTemplate>
+                <DataTemplate>
+                    <Label Text="{Binding Title}" 
+                           Style="{StaticResource SectionHeaderLabel}"/>
+                </DataTemplate>
+            </CollectionView.GroupHeaderTemplate>
+            
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="data:Person">
+                    <Border Style="{StaticResource EmployeeCardFrame}" InputTransparent="False">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup Name="EmployeeCardStates">
+                                <VisualState Name="Normal" />
+                                <VisualState Name="Selected">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray800}}" />
+                                        <Setter Property="Stroke" Value="Transparent" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid ColumnDefinitions="60,*,Auto" ColumnSpacing="12">
+                            <!-- Avatar -->
+                            <Border Grid.Column="0" 
+                                   WidthRequest="60" 
+                                   HeightRequest="60" 
+                                   Stroke="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray700}}"
+                                   BackgroundColor="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray800}}"
+                                   InputTransparent="True">
+                                <Border.StrokeShape>
+                                    <shapes:Ellipse />
+                                </Border.StrokeShape>
+                                <Image Source="{Binding Photo}" Aspect="AspectFill"/>
+                            </Border>
+                            
+                            <!-- Employee Info -->
+                            <StackLayout Grid.Column="1" VerticalOptions="Center">
+                                <Label Text="{Binding Name}" 
+                                       Style="{StaticResource EmployeeNameLabel}"/>
+                                <Label Text="{Binding Title}" 
+                                       Style="{StaticResource EmployeeTitleLabel}"/>
+                            </StackLayout>
+                            
+                            <!-- Favorite Indicator -->
+                            <Label Grid.Column="2" 
+                                   Text="♥"
+                                   FontSize="20"
+                                   TextColor="{StaticResource Primary}"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center"
+                                   IsVisible="{Binding IsFavorite}"/>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        
+        <!-- Floating Action Button -->
+        <Button x:Name="fabButton"
+                Text="🔍"
+                FontSize="20"
+                WidthRequest="56"
+                HeightRequest="56"
+                CornerRadius="28"
+                BackgroundColor="{StaticResource Primary}"
+                TextColor="White"
+                HorizontalOptions="End"
+                VerticalOptions="End"
+                Margin="16"
+                Clicked="OnFabClicked">
+            <Button.Shadow>
+                <Shadow Brush="Black" Opacity="0.3" Radius="8" Offset="0,4"/>
+            </Button.Shadow>
+        </Button>
+    </Grid>
+</ContentPage>

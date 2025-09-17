@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:SwipeGesture"
+             x:Class="SwipeGesture.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
+                <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            
+            <!-- Enhanced Color Palette -->
+            <Color x:Key="SecondaryColor">#03DAC6</Color>
+            <Color x:Key="BackgroundColor">#F5F5F5</Color>
+            <Color x:Key="SurfaceColor">#FFFFFF</Color>
+            <Color x:Key="OnPrimaryColor">#FFFFFF</Color>
+            <Color x:Key="OnSecondaryColor">#000000</Color>
+            <Color x:Key="OnBackgroundColor">#1C1C1C</Color>
+            <Color x:Key="OnSurfaceColor">#1C1C1C</Color>
+            <Color x:Key="ErrorColor">#B00020</Color>
+            <Color x:Key="SuccessColor">#4CAF50</Color>
+            <Color x:Key="WarningColor">#FF9800</Color>
+            <Color x:Key="InfoColor">#2196F3</Color>
+            
+            <!-- Gradient Colors -->
+            <Color x:Key="GradientStart">#667eea</Color>
+            <Color x:Key="GradientEnd">#764ba2</Color>
+            
+            <!-- Swipe Colors -->
+            <Color x:Key="SwipeUpColor">#4CAF50</Color>
+            <Color x:Key="SwipeDownColor">#f44336</Color>
+            <Color x:Key="SwipeLeftColor">#2196F3</Color>
+            <Color x:Key="SwipeRightColor">#FF9800</Color>
+            
+            <!-- Card Style -->
+            <Style x:Key="CardStyle" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="{StaticResource SurfaceColor}" />
+                <Setter Property="CornerRadius" Value="12" />
+                <Setter Property="HasShadow" Value="True" />
+                <Setter Property="Padding" Value="20" />
+                <Setter Property="Margin" Value="10" />
+            </Style>
+            
+            <!-- Modern Button Style -->
+            <Style x:Key="ModernButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+                <Setter Property="TextColor" Value="{StaticResource OnPrimaryColor}" />
+                <Setter Property="CornerRadius" Value="25" />
+                <Setter Property="HeightRequest" Value="50" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="Margin" Value="10,5" />
+            </Style>
+            
+            <!-- Title Style -->
+            <Style x:Key="TitleStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="24" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="{StaticResource OnBackgroundColor}" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="Margin" Value="0,10,0,20" />
+            </Style>
+            
+            <!-- Subtitle Style -->
+            <Style x:Key="SubtitleStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="TextColor" Value="{StaticResource OnSurfaceColor}" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="Margin" Value="0,5,0,15" />
+            </Style>
+            
+            <!-- Instruction Style -->
+            <Style x:Key="InstructionStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="TextColor" Value="{StaticResource OnSurfaceColor}" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="Margin" Value="0,10" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+            </Style>
+            
+            <!-- Result Style -->
+            <Style x:Key="ResultStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="{StaticResource Primary}" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="Margin" Value="0,20,0,10" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+            </Style>
+            
+            <!-- Modern Frame Style -->
+            <Style x:Key="ModernFrameStyle" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="{StaticResource SurfaceColor}" />
+                <Setter Property="CornerRadius" Value="20" />
+                <Setter Property="HasShadow" Value="True" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="Margin" Value="20" />
+            </Style>
+            
+            <!-- Container Style -->
+            <Style x:Key="ContainerStyle" TargetType="StackLayout">
+                <Setter Property="BackgroundColor" Value="{StaticResource BackgroundColor}" />
+                <Setter Property="Padding" Value="20" />
+                <Setter Property="Spacing" Value="15" />
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

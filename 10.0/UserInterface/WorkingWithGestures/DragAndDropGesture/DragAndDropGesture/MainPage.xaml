@@ -1,0 +1,377 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:DragAndDropGesture"
+             x:Class="DragAndDropGesture.MainPage"
+             Title="Drag and Drop Demos"
+             BackgroundColor="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource DarkBackground}}">
+    <ScrollView>
+        <StackLayout Padding="20" Spacing="30">
+            
+            <!-- Header Section -->
+            <Border BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource DarkPrimary}}"
+                    StrokeThickness="0"
+                    Padding="20,25">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="15"/>
+                </Border.StrokeShape>
+                <StackLayout Spacing="10">
+                    <Label Text="🎯 Drag &amp; Drop Demos"
+                           FontSize="24"
+                           FontAttributes="Bold"
+                           TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}"
+                           HorizontalOptions="Center"/>
+                    <Label Text="Explore different drag and drop implementations in .NET MAUI"
+                           FontSize="14"
+                           TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}"
+                           HorizontalOptions="Center"
+                           HorizontalTextAlignment="Center"/>
+                </StackLayout>
+            </Border>
+
+            <!-- Demo Cards -->
+            <StackLayout Spacing="15">
+                <Label Text="Available Demos"
+                       FontSize="20"
+                       FontAttributes="Bold"
+                       TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource DarkGray900}}"
+                       HorizontalOptions="Center"/>
+                
+                <!-- Text Drag Demo -->
+                <Border BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource DarkSurface}}"
+                        StrokeThickness="0"
+                        Padding="20">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="12"/>
+                    </Border.StrokeShape>
+                    <Border.Shadow>
+                        <Shadow Brush="{AppThemeBinding Light={StaticResource Gray400}, Dark={StaticResource DarkGray200}}"
+                                Offset="0,4"
+                                Radius="8"
+                                Opacity="0.3"/>
+                    </Border.Shadow>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding NavigateCommand}"
+                                              CommandParameter="{x:Type local:TextDragDemoPage}"/>
+                    </Border.GestureRecognizers>
+                    <Grid ColumnDefinitions="60,*,Auto">
+                        <Border Grid.Column="0"
+                                BackgroundColor="{AppThemeBinding Light={StaticResource Secondary}, Dark={StaticResource DarkSecondary}}"
+                                StrokeThickness="0"
+                                WidthRequest="50"
+                                HeightRequest="50">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="25"/>
+                            </Border.StrokeShape>
+                            <Label Text="📝"
+                                   FontSize="24"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"/>
+                        </Border>
+                        <StackLayout Grid.Column="1" Spacing="5">
+                            <Label Text="Text Drag Demo"
+                                   FontSize="18"
+                                   FontAttributes="Bold"
+                                   TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource DarkGray900}}"/>
+                            <Label Text="Drag text elements and handle drop events"
+                                   FontSize="14"
+                                   TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource DarkGray600}}"/>
+                            <Label Text="Implementation: Events"
+                                   FontSize="12"
+                                   TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource DarkPrimary}}"
+                                   FontAttributes="Italic"/>
+                        </StackLayout>
+                        <Label Grid.Column="2"
+                               Text="›"
+                               FontSize="24"
+                               TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource DarkGray500}}"
+                               VerticalOptions="Center"/>
+                    </Grid>
+                </Border>
+
+                <!-- Image Drag Demo -->
+                <Border BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource DarkSurface}}"
+                        StrokeThickness="0"
+                        Padding="20">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="12"/>
+                    </Border.StrokeShape>
+                    <Border.Shadow>
+                        <Shadow Brush="{AppThemeBinding Light={StaticResource Gray400}, Dark={StaticResource DarkGray200}}"
+                                Offset="0,4"
+                                Radius="8"
+                                Opacity="0.3"/>
+                    </Border.Shadow>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding NavigateCommand}"
+                                              CommandParameter="{x:Type local:ImageDragDemoPage}"/>
+                    </Border.GestureRecognizers>
+                    <Grid ColumnDefinitions="60,*,Auto">
+                        <Border Grid.Column="0"
+                                BackgroundColor="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource DarkTertiary}}"
+                                StrokeThickness="0"
+                                WidthRequest="50"
+                                HeightRequest="50">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="25"/>
+                            </Border.StrokeShape>
+                            <Label Text="🖼️"
+                                   FontSize="24"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"
+                                   TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}"/>
+                        </Border>
+                        <StackLayout Grid.Column="1" Spacing="5">
+                            <Label Text="Image Drag Demo"
+                                   FontSize="18"
+                                   FontAttributes="Bold"
+                                   TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource DarkGray900}}"/>
+                            <Label Text="Drag images between different drop zones"
+                                   FontSize="14"
+                                   TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource DarkGray600}}"/>
+                            <Label Text="Implementation: Events"
+                                   FontSize="12"
+                                   TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource DarkPrimary}}"
+                                   FontAttributes="Italic"/>
+                        </StackLayout>
+                        <Label Grid.Column="2"
+                               Text="›"
+                               FontSize="24"
+                               TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource DarkGray500}}"
+                               VerticalOptions="Center"/>
+                    </Grid>
+                </Border>
+
+                <!-- Data Package Demo (Events) -->
+                <Border BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource DarkSurface}}"
+                        StrokeThickness="0"
+                        Padding="20">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="12"/>
+                    </Border.StrokeShape>
+                    <Border.Shadow>
+                        <Shadow Brush="{AppThemeBinding Light={StaticResource Gray400}, Dark={StaticResource DarkGray200}}"
+                                Offset="0,4"
+                                Radius="8"
+                                Opacity="0.3"/>
+                    </Border.Shadow>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding NavigateCommand}"
+                                              CommandParameter="{x:Type local:DataPackageDemoPage}"/>
+                    </Border.GestureRecognizers>
+                    <Grid ColumnDefinitions="60,*,Auto">
+                        <Border Grid.Column="0"
+                                BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource DarkPrimary}}"
+                                StrokeThickness="0"
+                                WidthRequest="50"
+                                HeightRequest="50">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="25"/>
+                            </Border.StrokeShape>
+                            <Label Text="📦"
+                                   FontSize="24"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"
+                                   TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}"/>
+                        </Border>
+                        <StackLayout Grid.Column="1" Spacing="5">
+                            <Label Text="Data Package Demo"
+                                   FontSize="18"
+                                   FontAttributes="Bold"
+                                   TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource DarkGray900}}"/>
+                            <Label Text="Transfer custom data between elements"
+                                   FontSize="14"
+                                   TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource DarkGray600}}"/>
+                            <Label Text="Implementation: Events"
+                                   FontSize="12"
+                                   TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource DarkPrimary}}"
+                                   FontAttributes="Italic"/>
+                        </StackLayout>
+                        <Label Grid.Column="2"
+                               Text="›"
+                               FontSize="24"
+                               TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource DarkGray500}}"
+                               VerticalOptions="Center"/>
+                    </Grid>
+                </Border>
+
+                <!-- Data Package Demo (Commands) -->
+                <Border BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource DarkSurface}}"
+                        StrokeThickness="0"
+                        Padding="20">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="12"/>
+                    </Border.StrokeShape>
+                    <Border.Shadow>
+                        <Shadow Brush="{AppThemeBinding Light={StaticResource Gray400}, Dark={StaticResource DarkGray200}}"
+                                Offset="0,4"
+                                Radius="8"
+                                Opacity="0.3"/>
+                    </Border.Shadow>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding NavigateCommand}"
+                                              CommandParameter="{x:Type local:DataPackageCommandDemoPage}"/>
+                    </Border.GestureRecognizers>
+                    <Grid ColumnDefinitions="60,*,Auto">
+                        <Border Grid.Column="0"
+                                BackgroundColor="{AppThemeBinding Light={StaticResource Magenta}, Dark={StaticResource Magenta}}"
+                                StrokeThickness="0"
+                                WidthRequest="50"
+                                HeightRequest="50">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="25"/>
+                            </Border.StrokeShape>
+                            <Label Text="⚡"
+                                   FontSize="24"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"
+                                   TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}"/>
+                        </Border>
+                        <StackLayout Grid.Column="1" Spacing="5">
+                            <Label Text="Data Package Demo"
+                                   FontSize="18"
+                                   FontAttributes="Bold"
+                                   TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource DarkGray900}}"/>
+                            <Label Text="MVVM pattern with commands and messaging"
+                                   FontSize="14"
+                                   TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource DarkGray600}}"/>
+                            <Label Text="Implementation: Commands"
+                                   FontSize="12"
+                                   TextColor="{AppThemeBinding Light={StaticResource Magenta}, Dark={StaticResource Magenta}}"
+                                   FontAttributes="Italic"/>
+                        </StackLayout>
+                        <Label Grid.Column="2"
+                               Text="›"
+                               FontSize="24"
+                               TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource DarkGray500}}"
+                               VerticalOptions="Center"/>
+                    </Grid>
+                </Border>
+
+                <!-- Custom Data Package Demo (Events) -->
+                <Border BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource DarkSurface}}"
+                        StrokeThickness="0"
+                        Padding="20">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="12"/>
+                    </Border.StrokeShape>
+                    <Border.Shadow>
+                        <Shadow Brush="{AppThemeBinding Light={StaticResource Gray400}, Dark={StaticResource DarkGray200}}"
+                                Offset="0,4"
+                                Radius="8"
+                                Opacity="0.3"/>
+                    </Border.Shadow>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding NavigateCommand}"
+                                              CommandParameter="{x:Type local:CustomDataPackageDemoPage}"/>
+                    </Border.GestureRecognizers>
+                    <Grid ColumnDefinitions="60,*,Auto">
+                        <Border Grid.Column="0"
+                                BackgroundColor="{AppThemeBinding Light={StaticResource Secondary}, Dark={StaticResource DarkSecondary}}"
+                                StrokeThickness="0"
+                                WidthRequest="50"
+                                HeightRequest="50">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="25"/>
+                            </Border.StrokeShape>
+                            <Label Text="🎲"
+                                   FontSize="24"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"/>
+                        </Border>
+                        <StackLayout Grid.Column="1" Spacing="5">
+                            <Label Text="Custom Data Package Demo"
+                                   FontSize="18"
+                                   FontAttributes="Bold"
+                                   TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource DarkGray900}}"/>
+                            <Label Text="Advanced drag &amp; drop with custom objects"
+                                   FontSize="14"
+                                   TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource DarkGray600}}"/>
+                            <Label Text="Implementation: Events"
+                                   FontSize="12"
+                                   TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource DarkPrimary}}"
+                                   FontAttributes="Italic"/>
+                        </StackLayout>
+                        <Label Grid.Column="2"
+                               Text="›"
+                               FontSize="24"
+                               TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource DarkGray500}}"
+                               VerticalOptions="Center"/>
+                    </Grid>
+                </Border>
+
+                <!-- Custom Data Package Demo (Commands) -->
+                <Border BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource DarkSurface}}"
+                        StrokeThickness="0"
+                        Padding="20">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="12"/>
+                    </Border.StrokeShape>
+                    <Border.Shadow>
+                        <Shadow Brush="{AppThemeBinding Light={StaticResource Gray400}, Dark={StaticResource DarkGray200}}"
+                                Offset="0,4"
+                                Radius="8"
+                                Opacity="0.3"/>
+                    </Border.Shadow>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding NavigateCommand}"
+                                              CommandParameter="{x:Type local:CustomDataPackageCommandDemoPage}"/>
+                    </Border.GestureRecognizers>
+                    <Grid ColumnDefinitions="60,*,Auto">
+                        <Border Grid.Column="0"
+                                BackgroundColor="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource DarkTertiary}}"
+                                StrokeThickness="0"
+                                WidthRequest="50"
+                                HeightRequest="50">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="25"/>
+                            </Border.StrokeShape>
+                            <Label Text="🚀"
+                                   FontSize="24"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"
+                                   TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}"/>
+                        </Border>
+                        <StackLayout Grid.Column="1" Spacing="5">
+                            <Label Text="Custom Data Package Demo"
+                                   FontSize="18"
+                                   FontAttributes="Bold"
+                                   TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource DarkGray900}}"/>
+                            <Label Text="MVVM with custom objects and commands"
+                                   FontSize="14"
+                                   TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource DarkGray600}}"/>
+                            <Label Text="Implementation: Commands"
+                                   FontSize="12"
+                                   TextColor="{AppThemeBinding Light={StaticResource Magenta}, Dark={StaticResource Magenta}}"
+                                   FontAttributes="Italic"/>
+                        </StackLayout>
+                        <Label Grid.Column="2"
+                               Text="›"
+                               FontSize="24"
+                               TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource DarkGray500}}"
+                               VerticalOptions="Center"/>
+                    </Grid>
+                </Border>
+            </StackLayout>
+
+            <!-- Footer Info -->
+            <Border BackgroundColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource DarkGray200}}"
+                    StrokeThickness="0"
+                    Padding="15"
+                    Margin="0,20,0,0">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="8"/>
+                </Border.StrokeShape>
+                <StackLayout Spacing="8">
+                    <Label Text="💡 About These Demos"
+                           FontSize="14"
+                           FontAttributes="Bold"
+                           TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource DarkGray900}}"/>
+                    <Label Text="Each demo showcases different aspects of drag and drop functionality in .NET MAUI. Some use direct event handlers, while others demonstrate MVVM patterns with commands and messaging."
+                           FontSize="12"
+                           TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource DarkGray600}}"/>
+                </StackLayout>
+            </Border>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
