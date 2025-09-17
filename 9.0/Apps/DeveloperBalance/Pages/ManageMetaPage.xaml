@@ -76,7 +76,7 @@
                                 Background="Transparent"
                                 Command="{Binding DeleteCategoryCommand, Source={RelativeSource AncestorType={x:Type pageModels:ManageMetaPageModel}}, x:DataType=pageModels:ManageMetaPageModel}" CommandParameter="{Binding .}"
                                 Grid.Column="3"
-                                SemanticProperties.Description="Delete Category" />
+                                SemanticProperties.Description="{Binding Title, StringFormat='Delete {0} Category'}" />
                         </Grid>
                     </DataTemplate>
                 </BindableLayout.ItemTemplate>
@@ -116,7 +116,7 @@
         
                             <Button 
                                 ImageSource="{StaticResource IconDelete}"
-                                SemanticProperties.Description="Delete Tag"
+                                SemanticProperties.Description="{Binding Title, StringFormat='Delete {0} Tag'}"
                                 Background="Transparent"
                                 Command="{Binding DeleteTagCommand, Source={RelativeSource AncestorType={x:Type pageModels:ManageMetaPageModel}}, x:DataType=pageModels:ManageMetaPageModel}" CommandParameter="{Binding .}"
                                 Grid.Column="3"/>
