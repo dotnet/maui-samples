@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:SwipeGesture" 
+             x:Class="SwipeGesture.MainPage"
+             Title="Swipe Gestures"
+             BackgroundColor="{StaticResource BackgroundColor}">
+    
+    <ScrollView>
+        <StackLayout Style="{StaticResource ContainerStyle}">
+            <!-- Header Section -->
+            <Frame Style="{StaticResource CardStyle}">
+                <StackLayout>
+                    <Label Text="🎯 Swipe Gesture Demo" 
+                           Style="{StaticResource TitleStyle}" />
+                    <Label Text="Explore different ways to implement swipe gestures in .NET MAUI" 
+                           Style="{StaticResource SubtitleStyle}" />
+                </StackLayout>
+            </Frame>
+            
+            <!-- Demo Options -->
+            <Frame Style="{StaticResource CardStyle}">
+                <StackLayout>
+                    <Label Text="📱 Basic Swipe Demos" 
+                           Style="{StaticResource SubtitleStyle}" />
+                    
+                    <Button Text="🔄 Swipe Page (XAML)"
+                            Style="{StaticResource ModernButtonStyle}"
+                            Command="{Binding NavigateCommand}"
+                            CommandParameter="{x:Type local:SwipePage}"/>
+                    
+                    <Button Text="🔄 Swipe Page (C#)"
+                            Style="{StaticResource ModernButtonStyle}"
+                            Command="{Binding NavigateCommand}"
+                            CommandParameter="{x:Type local:SwipePageCS}"/>
+                </StackLayout>
+            </Frame>
+            
+            <!-- Command Pattern Demos -->
+            <Frame Style="{StaticResource CardStyle}">
+                <StackLayout>
+                    <Label Text="⚡ Command Pattern Demos" 
+                           Style="{StaticResource SubtitleStyle}" />
+                    
+                    <Button Text="🎯 Swipe with Command (XAML)"
+                            Style="{StaticResource ModernButtonStyle}"
+                            Command="{Binding NavigateCommand}"
+                            CommandParameter="{x:Type local:SwipeCommandPage}"/>
+                    
+                    <Button Text="🎯 Swipe with Command (C#)"
+                            Style="{StaticResource ModernButtonStyle}"
+                            Command="{Binding NavigateCommand}"
+                            CommandParameter="{x:Type local:SwipeCommandPageCS}"/>
+                </StackLayout>
+            </Frame>
+            
+            <!-- Container Demos -->
+            <Frame Style="{StaticResource CardStyle}">
+                <StackLayout>
+                    <Label Text="📦 Container Demos" 
+                           Style="{StaticResource SubtitleStyle}" />
+                    
+                    <Button Text="🎪 Swipe Container (XAML)"
+                            Style="{StaticResource ModernButtonStyle}"
+                            Command="{Binding NavigateCommand}"
+                            CommandParameter="{x:Type local:SwipeContainerPage}"/>
+                    
+                    <Button Text="🎪 Swipe Container (C#)"
+                            Style="{StaticResource ModernButtonStyle}"
+                            Command="{Binding NavigateCommand}"
+                            CommandParameter="{x:Type local:SwipeContainerPageCS}"/>
+                </StackLayout>
+            </Frame>
+            
+            <!-- Footer -->
+            <Frame Style="{StaticResource CardStyle}">
+                <Label Text="💡 Tip: Each demo shows different implementation approaches for swipe gestures" 
+                       Style="{StaticResource InstructionStyle}" />
+            </Frame>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

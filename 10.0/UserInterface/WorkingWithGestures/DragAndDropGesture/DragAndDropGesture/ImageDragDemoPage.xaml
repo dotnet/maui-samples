@@ -1,0 +1,190 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DragAndDropGesture.ImageDragDemoPage"
+             Title="Image Drag and Drop Demo"
+             BackgroundColor="{StaticResource PageBackgroundColor}">
+    <ScrollView>
+        <StackLayout Padding="20" Spacing="30">
+            
+            <!-- Header Section -->
+            <Border BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource DarkPrimary}}"
+                    StrokeThickness="0"
+                    Padding="20,15">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="12"/>
+                </Border.StrokeShape>
+                <Label Text="Identify the animal by dragging it to the correct category"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}"
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center"/>
+            </Border>
+
+            <!-- Draggable Image Section -->
+            <StackLayout Spacing="15">
+                <Label Text="Drag This Animal"
+                       FontSize="16"
+                       FontAttributes="Bold"
+                       TextColor="{StaticResource TextPrimaryColor}"
+                       HorizontalOptions="Center"/>
+                
+                <Border BackgroundColor="{StaticResource CardBackgroundColor}"
+                        StrokeThickness="0"
+                        Padding="20"
+                        HorizontalOptions="Center">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="12"/>
+                    </Border.StrokeShape>
+                    <Border.Shadow>
+                        <Shadow Brush="{StaticResource ShadowBrush}"
+                                Offset="0,4"
+                                Radius="8"
+                                Opacity="0.3"/>
+                    </Border.Shadow>
+                    <StackLayout Spacing="10">
+                        <Label Text="🤔 What animal is this?"
+                               FontSize="14"
+                               FontAttributes="Bold"
+                               TextColor="{StaticResource TextPrimaryColor}"
+                               HorizontalOptions="Center"/>
+                        <Image Source="monkeyface.png"
+                               HeightRequest="120"
+                               WidthRequest="120"
+                               Aspect="AspectFit"
+                               HorizontalOptions="Center">
+                            <Image.GestureRecognizers>
+                                <DragGestureRecognizer />
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Label Text="Drag me to the right category!"
+                               FontSize="12"
+                               TextColor="{StaticResource TextSecondaryColor}"
+                               HorizontalOptions="Center"
+                               HorizontalTextAlignment="Center"/>
+                    </StackLayout>
+                </Border>
+            </StackLayout>
+
+            <!-- Drop Zones Section -->
+            <StackLayout Spacing="20">
+                <Label Text="Choose the Correct Category"
+                       FontSize="16"
+                       FontAttributes="Bold"
+                       TextColor="{StaticResource TextPrimaryColor}"
+                       HorizontalOptions="Center"/>
+                
+                <Grid ColumnDefinitions="*,20,*" RowDefinitions="*,Auto">
+                    
+                    <!-- Monkey Drop Zone -->
+                    <Border Grid.Column="0" Grid.Row="0"
+                            BackgroundColor="{AppThemeBinding Light={StaticResource Secondary}, Dark={StaticResource DarkSecondary}}"
+                            Stroke="{StaticResource BorderColor}"
+                            StrokeThickness="2"
+                            StrokeDashArray="6,3"
+                            HeightRequest="200"
+                            Padding="15">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="12"/>
+                        </Border.StrokeShape>
+                        <Border.GestureRecognizers>
+                            <DropGestureRecognizer Drop="OnCorrectDrop" />
+                        </Border.GestureRecognizers>
+                        <StackLayout VerticalOptions="Center" Spacing="10">
+                            <Label Text="🐵"
+                                   FontSize="48"
+                                   HorizontalOptions="Center"/>
+                            <Label Text="Monkey"
+                                   FontSize="18"
+                                   FontAttributes="Bold"
+                                   TextColor="{AppThemeBinding Light={StaticResource PrimaryDarkText}, Dark={StaticResource Black}}"
+                                   HorizontalOptions="Center"/>
+                            <Label Text="Drop here if it's a monkey"
+                                   FontSize="12"
+                                   TextColor="{StaticResource TextSecondaryColor}"
+                                   HorizontalOptions="Center"
+                                   HorizontalTextAlignment="Center"/>
+                        </StackLayout>
+                    </Border>
+                    
+                    <!-- Cat Drop Zone -->
+                    <Border Grid.Column="2" Grid.Row="0"
+                            BackgroundColor="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource DarkGray300}}"
+                            Stroke="{StaticResource BorderColor}"
+                            StrokeThickness="2"
+                            StrokeDashArray="6,3"
+                            HeightRequest="200"
+                            Padding="15">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="12"/>
+                        </Border.StrokeShape>
+                        <Border.GestureRecognizers>
+                            <DropGestureRecognizer DragOver="OnIncorrectDragOver" />
+                        </Border.GestureRecognizers>
+                        <StackLayout VerticalOptions="Center" Spacing="10">
+                            <Label Text="🐱"
+                                   FontSize="48"
+                                   HorizontalOptions="Center"/>
+                            <Label Text="Cat"
+                                   FontSize="18"
+                                   FontAttributes="Bold"
+                                   TextColor="{StaticResource TextSecondaryColor}"
+                                   HorizontalOptions="Center"/>
+                            <Label Text="Drop here if it's a cat"
+                                   FontSize="12"
+                                   TextColor="{StaticResource TextSecondaryColor}"
+                                   HorizontalOptions="Center"
+                                   HorizontalTextAlignment="Center"/>
+                        </StackLayout>
+                    </Border>
+                </Grid>
+            </StackLayout>
+
+            <!-- Instructions Section -->
+            <Border BackgroundColor="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource DarkTertiary}}"
+                    StrokeThickness="0"
+                    Padding="15">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="8"/>
+                </Border.StrokeShape>
+                <StackLayout Spacing="8">
+                    <Label Text="🎯 How to Play"
+                           FontSize="14"
+                           FontAttributes="Bold"
+                           TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}"/>
+                    <Label Text="1. Look carefully at the animal image above"
+                           FontSize="12"
+                           TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}"/>
+                    <Label Text="2. Drag the image to the correct category below"
+                           FontSize="12"
+                           TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}"/>
+                    <Label Text="3. The correct category will accept the drop"
+                           FontSize="12"
+                           TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}"/>
+                    <Label Text="4. The wrong category will reject the drop"
+                           FontSize="12"
+                           TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}"/>
+                </StackLayout>
+            </Border>
+
+            <!-- Hint Section -->
+            <Border BackgroundColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource DarkGray200}}"
+                    StrokeThickness="0"
+                    Padding="15">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="8"/>
+                </Border.StrokeShape>
+                <StackLayout Spacing="8">
+                    <Label Text="💡 Hint"
+                           FontSize="14"
+                           FontAttributes="Bold"
+                           TextColor="{StaticResource TextPrimaryColor}"/>
+                    <Label Text="This demo shows how drop zones can accept or reject drops based on conditions. Try dragging to both categories to see the difference!"
+                           FontSize="12"
+                           TextColor="{StaticResource TextSecondaryColor}"/>
+                </StackLayout>
+            </Border>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

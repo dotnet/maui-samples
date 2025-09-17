@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:shapes="clr-namespace:Microsoft.Maui.Controls.Shapes;assembly=Microsoft.Maui.Controls"
+             x:Class="EmployeeDirectory.Views.Xaml.EmployeeXaml"
+             Title="{Binding Path=Person.Name}"
+             xmlns:vm="clr-namespace:EmployeeDirectory.Core.ViewModels;assembly=EmployeeDirectory.Core"
+             x:DataType="vm:PersonViewModel">
+    <ContentPage.Content>
+        <ScrollView>
+            <VerticalStackLayout Spacing="24" Padding="24">
+                <!-- Profile Image -->
+                <Border StrokeThickness="0" BackgroundColor="Transparent" HorizontalOptions="Center">
+                    <Border.StrokeShape>
+                        <shapes:Ellipse />
+                    </Border.StrokeShape>
+                    <Image x:Name="PersonImage" WidthRequest="150" HeightRequest="150" Source="{Binding Person.Photo}" Aspect="AspectFill" />
+                </Border>
+
+                <!-- Name, Title, Favorite -->
+                <Border BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray800}}"
+                        StrokeThickness="0"
+                        Padding="20"
+                        Margin="0,0,0,8">
+                    <Border.Shadow>
+                        <Shadow Brush="Black" Opacity="0.15" Radius="8" Offset="0,4" />
+                    </Border.Shadow>
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="{Binding Person.Name}" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" />
+                        <Label Text="{Binding Person.Title}" FontSize="16" TextColor="Gray" HorizontalOptions="Center" />
+                        <HorizontalStackLayout HorizontalOptions="Center" Spacing="8">
+                            <Label x:Name="favoriteLabel" Text="{Binding FavoriteStatusText}" VerticalTextAlignment="Center"  FontSize="14" />
+                            <Image Source="heart.png" WidthRequest="24" HeightRequest="24" IsVisible="{Binding IsFavorite}" />
+                            <Switch x:Name="favoriteSwitch" IsToggled="{Binding IsFavorite}" />
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Properties List -->
+                <CollectionView x:Name="propertiesView"
+                                ItemsSource="{Binding PropertyGroups}"
+                                IsGrouped="True"
+                                SelectionMode="None"
+                                Margin="0,8,0,0">
+                    <CollectionView.GroupHeaderTemplate>
+                        <DataTemplate x:DataType="vm:PersonViewModel/PropertyGroup">
+                            <Label Text="{Binding Title}" FontAttributes="Bold" FontSize="16" Padding="8,4,0,4" />
+                        </DataTemplate>
+                    </CollectionView.GroupHeaderTemplate>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="vm:PersonViewModel/Property">
+                            <Border BackgroundColor="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray900}}"
+                                    StrokeThickness="0" Padding="12" Margin="0,2,0,2">
+                                <HorizontalStackLayout Spacing="8">
+                                    <Label Text="{Binding Name}" FontAttributes="Bold" />
+                                    <Label Text="{Binding Value}" HorizontalOptions="End" />
+                                </HorizontalStackLayout>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
