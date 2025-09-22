@@ -21,13 +21,14 @@
 		<Nullable>enable</Nullable>
 		<!-- https://github.com/CommunityToolkit/Maui/issues/2205 -->
 		<NoWarn>XC0103</NoWarn>
+		<MauiVersion>10.0.60</MauiVersion>
 		<MauiEnableXamlCBindingWithSourceCompilation>true</MauiEnableXamlCBindingWithSourceCompilation>
 
 		<!-- Display name -->
 		<ApplicationTitle>DeveloperBalance</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.developerbalance</ApplicationId>
+		<ApplicationId>com.companyname.developerbalance</ApplicationId> 
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
