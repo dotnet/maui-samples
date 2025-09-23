@@ -12,6 +12,7 @@
     <ContentPage.Behaviors>
         <toolkit:EventToCommandBehavior
                 x:Name="AppearingBehavior"
+                BindingContext="{Binding Path=BindingContext, Source={x:Reference ProjectList}, x:DataType=ContentPage}"
                 EventName="Appearing"                
                 Command="{Binding AppearingCommand}" />
     </ContentPage.Behaviors>
