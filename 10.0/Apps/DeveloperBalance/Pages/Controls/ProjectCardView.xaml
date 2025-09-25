@@ -8,7 +8,7 @@
         xmlns:shimmer="clr-namespace:Syncfusion.Maui.Toolkit.Shimmer;assembly=Syncfusion.Maui.Toolkit"
         x:Class="DeveloperBalance.Pages.Controls.ProjectCardView"
         Style="{StaticResource CardStyle}"
-        SemanticProperties.Description="{Binding Name, StringFormat='{0}'}"
+        SemanticProperties.Description="{Binding AccessibilityDescription}"
         x:DataType="models:Project">
     <shimmer:SfShimmer
         BackgroundColor="Transparent"
