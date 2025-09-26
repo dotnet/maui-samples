@@ -270,7 +270,7 @@ public partial class ProjectDetailPageModel : ObservableObject, IQueryAttributab
 		}
 
 		AllTags = new(AllTags);
-		await AnnouncementHelper.Announce($"{tag.Title} {(tag.IsSelected ? "selected" : "unselected")}");
+		SemanticScreenReader.Announce($"{tag.Title} {(tag.IsSelected ? "selected" : "unselected")}");
 	}
 
 	[RelayCommand]
