@@ -27,7 +27,7 @@
 		<ApplicationTitle>DeveloperBalance</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.developerbalance</ApplicationId>
+		<ApplicationId>com.companyname.developerbalance</ApplicationId> 
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
