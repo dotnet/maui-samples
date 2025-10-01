@@ -38,13 +38,22 @@
             RefreshCommand="{Binding RefreshCommand}">
             <pullToRefresh:SfPullToRefresh.PullableContent>
                 <ScrollView>
-                    <VerticalStackLayout Spacing="{StaticResource LayoutSpacing}" Padding="{StaticResource LayoutPadding}">
-                        <Label Text="Task Categories" Style="{StaticResource Title2}" SemanticProperties.HeadingLevel="Level1"/>
-                        <controls:CategoryChart />
-                        <Label Text="Projects" Style="{StaticResource Title2}" SemanticProperties.HeadingLevel="Level1"/>
-                        <CollectionView ItemsSource="{Binding Projects}"
+                    <Grid Padding="{StaticResource LayoutPadding}" RowSpacing="{StaticResource LayoutSpacing}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Label Grid.Row="0" Text="Task Categories" Style="{StaticResource Title2}" SemanticProperties.HeadingLevel="Level1"/>
+                        <controls:CategoryChart Grid.Row="1" />
+                        <Label Grid.Row="2" Text="Projects" Style="{StaticResource Title2}" SemanticProperties.HeadingLevel="Level1"/>
+                        <CollectionView Grid.Row="3" ItemsSource="{Binding Projects}"
                                         Margin="-7.5,0"
-                                        HeightRequest="250"
+                                        MinimumHeightRequest="250"
                                         x:Name="ProjectsCollectionView"
                                         SelectionMode="Single"
                                         SelectedItem="{Binding SelectedProject}"
@@ -59,7 +68,7 @@
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>
                         </CollectionView>
-                        <Grid MinimumHeightRequest="44">
+                        <Grid Grid.Row="4" MinimumHeightRequest="44">
                             <Label Text="Tasks" Style="{StaticResource Title2}" VerticalOptions="Center" SemanticProperties.HeadingLevel="Level1"/>
                             <ImageButton 
                                 Source="{StaticResource IconClean}"
@@ -72,7 +81,7 @@
                                 Command="{Binding CleanTasksCommand}"
                                 SemanticProperties.Description="Clean tasks" />
                         </Grid>
-                        <VerticalStackLayout Spacing="15"
+                        <VerticalStackLayout Grid.Row="5" Spacing="15"
                             BindableLayout.ItemsSource="{Binding Tasks}">
                             <BindableLayout.ItemTemplate>
                                 <DataTemplate>
@@ -80,7 +89,7 @@
                                 </DataTemplate>
                             </BindableLayout.ItemTemplate>
                         </VerticalStackLayout>
-                    </VerticalStackLayout>
+                    </Grid>
                 </ScrollView>
             </pullToRefresh:SfPullToRefresh.PullableContent>
         </pullToRefresh:SfPullToRefresh>
