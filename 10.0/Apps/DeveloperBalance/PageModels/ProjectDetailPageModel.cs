@@ -293,7 +293,7 @@ public partial class ProjectDetailPageModel : ObservableObject, IQueryAttributab
 		OnPropertyChanged(nameof(HasCompletedTasks));
 		await AppShell.DisplayToastAsync("All cleaned up!");
 	}
-	
+
 	[RelayCommand]
 	private async Task SelectionChanged(object parameter)
 	{
