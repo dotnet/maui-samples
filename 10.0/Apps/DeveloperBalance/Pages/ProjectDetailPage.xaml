@@ -108,7 +108,7 @@
                     HeightRequest="44"
                     Margin="0,0,0,15"
                     SelectedItems="{Binding SelectedTags, Mode=TwoWay}"
-                    SelectionChangedCommand="{Binding SelectionChangedCommand}"
+                    SelectionChangedCommand="{Binding TagSelectionChangedCommand}"
                     SelectionChangedCommandParameter="{Binding SelectedTags}"
                     SemanticProperties.Description="Tags Collection">
                     <CollectionView.ItemsLayout>

@@ -308,4 +308,34 @@ public partial class ProjectDetailPageModel : ObservableObject, IQueryAttributab
 				await ToggleTag(changed[0]);
 		}
 	}
+	
+	[RelayCommand]
+	private async Task TagSelectionChanged(object parameter)
+	{
+		if (parameter is IEnumerable<object> enumerableParameter)
+		{
+			var currentSelection = enumerableParameter.OfType<Tag>().ToList();
+			var previousSelection = AllTags.Where(t => t.IsSelected).ToList();
+
+			// Handle newly selected tags
+			foreach (var tag in currentSelection.Except(previousSelection))
+			{
+				tag.IsSelected = true;
+				if (!_project.IsNullOrNew())
+				{
+					await _tagRepository.SaveItemAsync(tag, _project.ID);
+				}
+			}
+
+			// Handle deselected tags
+			foreach (var tag in previousSelection.Except(currentSelection))
+			{
+				tag.IsSelected = false;
+				if (!_project.IsNullOrNew())
+				{
+					await _tagRepository.DeleteItemAsync(tag, _project.ID);
+				}
+			}
+		}
+	}
 }
