@@ -321,6 +321,8 @@ public partial class ProjectDetailPageModel : ObservableObject, IQueryAttributab
 					await _tagRepository.DeleteItemAsync(tag, _project.ID);
 				}
 			}
+
+			SelectedTags = new List<object>(currentSelection);
 		}
 	}
 }
