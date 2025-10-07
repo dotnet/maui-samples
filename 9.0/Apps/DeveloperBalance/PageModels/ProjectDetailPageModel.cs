@@ -299,13 +299,30 @@ public partial class ProjectDetailPageModel : ObservableObject, IQueryAttributab
 	{
 		if (parameter is IEnumerable<object> enumerableParameter)
 		{
-			var changed = enumerableParameter.OfType<Tag>().ToList();
+			var currentSelection = enumerableParameter.OfType<Tag>().ToList();
+			var previousSelection = AllTags.Where(t => t.IsSelected).ToList();
 
-			if (changed.Count == 0 && SelectedTags is not null)
-				changed = SelectedTags.OfType<Tag>().Except(enumerableParameter.OfType<Tag>()).ToList();
+			// Handle newly selected tags
+			foreach (var tag in currentSelection.Except(previousSelection))
+			{
+				tag.IsSelected = true;
+				if (!_project.IsNullOrNew())
+				{
+					await _tagRepository.SaveItemAsync(tag, _project.ID);
+				}
+			}
 
-			if (changed.Count == 1)
-				await ToggleTag(changed[0]);
+			// Handle deselected tags
+			foreach (var tag in previousSelection.Except(currentSelection))
+			{
+				tag.IsSelected = false;
+				if (!_project.IsNullOrNew())
+				{
+					await _tagRepository.DeleteItemAsync(tag, _project.ID);
+				}
+			}
+
+			SelectedTags = new List<object>(currentSelection);
 		}
 	}
 }
