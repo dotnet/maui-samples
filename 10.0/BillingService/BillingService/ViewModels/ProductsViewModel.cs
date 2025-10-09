@@ -94,6 +94,9 @@ public class ProductsViewModel : BaseViewModel
             if (!confirm)
                 return;
 
+            // Show loading indicator during purchase
+            IsLoading = true;
+
             var result = await _billingService.PurchaseAsync(product.Id);
 
             if (result.IsSuccess)
@@ -115,7 +118,7 @@ public class ProductsViewModel : BaseViewModel
         }
         finally
         {
-
+            IsLoading = false;
         }
     }
 

@@ -207,8 +207,17 @@ public class iOSBillingService : BaseBillingService
 
             errorHandler = (sender, error) =>
             {
-                // User cancelled = true (successful cancellation), other errors = false
-                tcs.TrySetResult(error?.Code == 2);
+                // Error code 2 = user cancelled (don't show error message)
+                // Other errors = actual error (will be logged)
+                if (error?.Code == 2)
+                {
+                    _logger.LogInformation("User cancelled restore purchases");
+                }
+                else
+                {
+                    _logger.LogWarning("Restore failed with error code: {Code}", error?.Code);
+                }
+                tcs.TrySetResult(false);
             };
 
             try
