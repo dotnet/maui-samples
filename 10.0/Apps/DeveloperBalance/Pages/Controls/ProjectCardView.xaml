@@ -8,6 +8,7 @@
         xmlns:shimmer="clr-namespace:Syncfusion.Maui.Toolkit.Shimmer;assembly=Syncfusion.Maui.Toolkit"
         x:Class="DeveloperBalance.Pages.Controls.ProjectCardView"
         Style="{StaticResource CardStyle}"
+        MinimumHeightRequest="250"
         SemanticProperties.Description="{Binding AccessibilityDescription}"
         x:DataType="models:Project">
     <shimmer:SfShimmer
