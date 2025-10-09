@@ -33,14 +33,18 @@ public class ProductsViewModel : BaseViewModel
         LoadProductsCommand = new Command(async () => await LoadProductsAsync());
         PurchaseCommand = new Command<Product>(async (product) => await PurchaseProductAsync(product));
         RestorePurchasesCommand = new Command(async () => await RestorePurchasesAsync());
-        _ = Task.Run(LoadProductsAsync);
+        // REMOVED: Task.Run(LoadProductsAsync) - will be called from page lifecycle
+    }
+
+    public async Task InitializeAsync()
+    {
+        await LoadProductsAsync();
     }
 
     private async Task LoadProductsAsync()
     {
         try
         {
-
             if (!_billingService.IsInitialized)
             {
                 IsLoading = true;

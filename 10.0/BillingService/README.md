@@ -1,53 +1,60 @@
 ---
 name: .NET MAUI - BillingService
-description: Comprehensive Android billing implementation using Google Play Billing with .NET MAUI and MVVM architecture.
+description: Cross-platform billing implementation for Android (Google Play Billing) and iOS (StoreKit) using .NET MAUI with MVVM architecture.
 page_type: sample
 languages:
   - csharp
   - xaml
 products:
   - dotnet-maui
-urlFragment: android-billing-service
+urlFragment: cross-platform-billing-service
 ---
 
-# BillingService (MAUI + Google Play Billing)
+# BillingService (MAUI + Cross-Platform Billing)
 
-A comprehensive .NET MAUI sample that demonstrates implementing Google Play Billing for Android applications. This sample shows how to integrate in-app purchases, product listings, and purchase management using the Google Billing Client library with a clean MVVM architecture.
+A comprehensive .NET MAUI sample that demonstrates implementing in-app purchases for both Android and iOS applications. This sample shows how to integrate platform-specific billing systems (Google Play Billing for Android and StoreKit for iOS) with a unified interface and clean MVVM architecture.
 
 ![BillingService Demo](Images/billing_demo.png)
 
 ## What you'll learn
 
-• How to implement Google Play Billing in a .NET MAUI Android application
-• How to create a billing service for Android using Google Billing Client
-• How to use MVVM pattern with CommunityToolkit.Mvvm for billing operations
-• How to handle product listings, purchases, and purchase restoration
+• How to implement cross-platform billing in a .NET MAUI application
+• How to create a unified billing service interface for Android and iOS
+• How to use Google Play Billing Client (Android) and StoreKit (iOS)
+• How to use MVVM pattern with dependency injection for billing operations
+• How to handle product listings, purchases, and purchase restoration on both platforms
 • How to implement value converters for dynamic UI updates based on purchase state
 • How to structure a billing service with proper initialization and error handling
+• Platform-specific best practices for Android and iOS billing
 
 ## Prerequisites
 
 • .NET 10.0 SDK or later
 • Visual Studio 2022 17.13+ or Visual Studio Code with .NET MAUI extension
 • Android SDK (for Android deployment)
-• Google Play Console account (for production billing setup)
-• Android device or emulator for testing
+• Xcode and iOS SDK (for iOS deployment on macOS)
+• Google Play Console account (for Android production billing setup)
+• Apple Developer account and App Store Connect access (for iOS production billing setup)
+• Android device or emulator / iOS device or simulator for testing
 
 ## Features
 
 ### Core Billing Functionality
 
-- **Product Discovery**: Retrieve available in-app products from Google Play
-- **Purchase Flow**: Handle secure purchase transactions
+- **Product Discovery**: Retrieve available in-app products from Google Play / App Store
+- **Purchase Flow**: Handle secure purchase transactions on both platforms
 - **Purchase Restoration**: Restore previous purchases for users
 - **Ownership Verification**: Check if products are already owned
+- **Cross-Platform Abstraction**: Unified interface across Android and iOS
 
 ### Architecture Components
 
-- **IBillingService**: Billing service interface
-- **AndroidBillingService**: Android implementation using Google Billing Client
-- **BaseBillingService**: Shared base functionality
+- **IBillingService**: Unified billing service interface
+- **BaseBillingService**: Shared base functionality and business logic
+- **AndroidBillingService**: Android implementation using Google Billing Client v7
+- **iOSBillingService**: iOS implementation using Apple StoreKit
 - **MVVM Pattern**: Clean separation with ViewModels and data binding
+- **Dependency Injection**: Platform-specific service registration
 
 ### UI Features
 
@@ -61,9 +68,10 @@ A comprehensive .NET MAUI sample that demonstrates implementing Google Play Bill
 ```
 BillingService/
 ├── Services/
-│   ├── IBillingService.cs           # Billing service interface
-│   ├── BaseBillingService.cs        # Base implementation
-│   └── AndroidBillingService.cs     # Android billing implementation
+│   ├── IBillingService.cs           # Unified billing service interface
+│   ├── BaseBillingService.cs        # Shared base implementation
+│   ├── AndroidBillingService.cs     # Android billing (Google Play)
+│   └── iOSBillingService.cs         # iOS billing (StoreKit)
 ├── Models/
 │   ├── Product.cs                   # Product data model
 │   └── PurchaseResult.cs           # Purchase result model
@@ -76,20 +84,27 @@ BillingService/
 ├── Converters/
 │   └── ValueConverters.cs          # XAML value converters
 └── Platforms/
-    └── Android/
-        ├── AndroidManifest.xml     # Android permissions and configuration
-        └── MainActivity.cs         # Android main activity
+    ├── Android/
+    │   ├── AndroidManifest.xml     # Android permissions and configuration
+    │   └── MainActivity.cs         # Android main activity
+    └── iOS/
+        ├── Info.plist              # iOS configuration
+        └── AppDelegate.cs          # iOS app delegate
 ```
 
 ## How it's wired
 
-• **`Services/IBillingService.cs`**: Defines the contract for billing operations including initialization, product retrieval, and purchase handling.
+• **`Services/IBillingService.cs`**: Defines the unified contract for billing operations including initialization, product retrieval, and purchase handling across platforms.
 
-• **`Services/AndroidBillingService.cs`**: Implements the Android billing logic using `Xamarin.Android.Google.BillingClient` package.
+• **`Services/BaseBillingService.cs`**: Provides shared business logic, product definitions, and ownership tracking used by both Android and iOS.
 
-• **`MauiProgram.cs`**: Registers the billing service and ViewModels in the dependency injection container.
+• **`Services/AndroidBillingService.cs`**: Implements Android billing logic using `Xamarin.Android.Google.BillingClient` package (Google Play Billing Library v7).
 
-• **`ViewModels/ProductsViewModel.cs`**: Exposes billing operations as commands, manages product collections, and handles UI state updates.
+• **`Services/iOSBillingService.cs`**: Implements iOS billing logic using Apple's StoreKit framework with proper transaction observers.
+
+• **`MauiProgram.cs`**: Registers platform-specific billing services and ViewModels in the dependency injection container using conditional compilation.
+
+• **`ViewModels/ProductsViewModel.cs`**: Exposes billing operations as commands, manages product collections, and handles UI state updates (platform-agnostic).
 
 • **`Views/ProductsPage.xaml`**: CollectionView displaying products with purchase buttons and visual indicators for ownership status.
 
@@ -100,7 +115,32 @@ BillingService/
 ### Android Setup
 
 1. **Product Configuration**:
-   Update the product IDs in your billing service to match those configured in Google Play Console.
+   Update the product IDs in your billing service to match those configured in Google Play Console:
+   - Sign in to [Google Play Console](https://play.google.com/console)
+   - Navigate to your app → Monetize → In-app products
+   - Create products with IDs: `Team_license`, `Global_license`, `Unlimited_license`
+
+2. **Testing**:
+   - Add license testers in Google Play Console
+   - Use internal testing track for testing purchases
+
+### iOS Setup
+
+1. **Product Configuration**:
+   Update the product IDs in your billing service to match those configured in App Store Connect:
+   - Sign in to [App Store Connect](https://appstoreconnect.apple.com/)
+   - Navigate to your app → Features → In-App Purchases
+   - Create products with IDs: `Team_license`, `Global_license`, `Unlimited_license`
+
+2. **Testing**:
+   - Create sandbox tester accounts in App Store Connect
+   - Use sandbox account on device for testing purchases
+
+3. **Additional Requirements**:
+   - Sign Paid Applications Agreement in App Store Connect
+   - Configure tax and banking information
+
+For detailed iOS implementation guide, see [IMPLEMENTATION_GUIDE.md](IMPLEMENTATION_GUIDE.md).
 
 ## Run the Application
 
@@ -109,6 +149,22 @@ BillingService/
 1. Ensure Android SDK is properly configured
 2. Set up an Android device or emulator
 3. Build and deploy:
+
+   ```bash
+   dotnet build -f net10.0-android
+   dotnet run -f net10.0-android
+   ```
+
+### iOS
+
+1. Ensure Xcode and iOS SDK are installed (macOS only)
+2. Set up an iOS device or simulator
+3. Build and deploy:
+
+   ```bash
+   dotnet build -f net10.0-ios
+   dotnet run -f net10.0-ios
+   ```
 
 ### Key Features Demonstrated
 

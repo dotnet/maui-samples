@@ -1,10 +1,14 @@
-using Android.BillingClient.Api;
 using BillingService.Models;
 using Microsoft.Extensions.Logging;
+
+#if ANDROID
+using Android.BillingClient.Api;
 using AndroidBillingResult = Android.BillingClient.Api.BillingResult;
+#endif
 
 namespace BillingService.Services;
 
+#if ANDROID
 public class AndroidBillingService : BaseBillingService
 {
     private BillingClient? _billingClient;
@@ -504,3 +508,5 @@ internal class PurchasesResponseListener : Java.Lang.Object, IPurchasesResponseL
 }
 
 #endregion
+
+#endif // ANDROID

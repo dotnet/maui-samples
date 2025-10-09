@@ -22,6 +22,8 @@ public static class MauiProgram
 
 #if ANDROID
 		builder.Services.AddSingleton<IBillingService, AndroidBillingService>();
+#elif IOS
+		builder.Services.AddSingleton<IBillingService, iOSBillingService>();
 #endif
 
 		// Register ViewModels
