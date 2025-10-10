@@ -51,8 +51,8 @@ A comprehensive .NET MAUI sample that demonstrates implementing in-app purchases
 
 - **IBillingService**: Unified billing service interface
 - **BaseBillingService**: Shared base functionality and business logic
-- **AndroidBillingService**: Android implementation using Google Billing Client v7
-- **iOSBillingService**: iOS implementation using Apple StoreKit
+- **BillingService.Android.cs**: Android implementation using Google Billing Client v7
+- **BillingService.iOS.cs**: iOS implementation using Apple StoreKit 1
 - **MVVM Pattern**: Clean separation with ViewModels and data binding
 - **Dependency Injection**: Platform-specific service registration
 
@@ -70,8 +70,8 @@ BillingService/
 ├── Services/
 │   ├── IBillingService.cs           # Unified billing service interface
 │   ├── BaseBillingService.cs        # Shared base implementation
-│   ├── AndroidBillingService.cs     # Android billing (Google Play)
-│   └── iOSBillingService.cs         # iOS billing (StoreKit)
+│   ├── BillingService.Android.cs    # Android billing (Google Play)
+│   └── BillingService.iOS.cs        # iOS billing (StoreKit)
 ├── Models/
 │   ├── Product.cs                   # Product data model
 │   └── PurchaseResult.cs           # Purchase result model
@@ -98,11 +98,11 @@ BillingService/
 
 • **`Services/BaseBillingService.cs`**: Provides shared business logic, product definitions, and ownership tracking used by both Android and iOS.
 
-• **`Services/AndroidBillingService.cs`**: Implements Android billing logic using `Xamarin.Android.Google.BillingClient` package (Google Play Billing Library v7).
+• **`Services/BillingService.Android.cs`**: Implements Android billing using Google Play Billing Client v7 with support for product queries, purchases, and restoration.
 
-• **`Services/iOSBillingService.cs`**: Implements iOS billing logic using Apple's StoreKit framework with proper transaction observers.
+• **`Services/BillingService.iOS.cs`**: Implements iOS billing using StoreKit 1 APIs with transaction observers and purchase restoration.
 
-• **`MauiProgram.cs`**: Registers platform-specific billing services and ViewModels in the dependency injection container using conditional compilation.
+• **`MauiProgram.cs`**: Registers the billing service implementation (`Services.BillingService`) and ViewModels in the dependency injection container.
 
 • **`ViewModels/ProductsViewModel.cs`**: Exposes billing operations as commands, manages product collections, and handles UI state updates (platform-agnostic).
 
@@ -170,7 +170,7 @@ For detailed iOS implementation guide, see [IMPLEMENTATION_GUIDE.md](IMPLEMENTAT
 
 **Product Listing**: The app retrieves and displays available in-app products with their details and pricing.
 
-**Purchase Flow**: Tapping a product initiates the Google Play purchase flow with proper error handling.
+**Purchase Flow**: Tapping a product initiates the platform-specific purchase flow (Google Play on Android, StoreKit on iOS) with proper error handling.
 
 **Visual Feedback**: Products show different states (owned/not owned) with color coding and text changes.
 
@@ -193,8 +193,9 @@ For detailed iOS implementation guide, see [IMPLEMENTATION_GUIDE.md](IMPLEMENTAT
 
 ### Service Pattern
 
-- Billing operations through interfaces
-- Android implementation using Google Billing Client
+- Unified billing interface with platform-specific implementations
+- Android: Google Play Billing Client v7
+- iOS: StoreKit 1 with transaction observers
 - Dependency injection for loose coupling
 
 ### Error Handling
@@ -206,17 +207,20 @@ For detailed iOS implementation guide, see [IMPLEMENTATION_GUIDE.md](IMPLEMENTAT
 ## Useful docs and resources
 
 • Google Play Billing documentation — [developer.android.com/google/play/billing](https://developer.android.com/google/play/billing)
+• Apple StoreKit documentation — [developer.apple.com/storekit](https://developer.apple.com/storekit/)
 • .NET MAUI documentation — [learn.microsoft.com/dotnet/maui](https://learn.microsoft.com/dotnet/maui/)
 • NuGet packages:
-◦ [Microsoft.Maui.Controls](https://www.nuget.org/packages/Microsoft.Maui.Controls)
-◦ [Xamarin.Android.Google.BillingClient](https://www.nuget.org/packages/Xamarin.Android.Google.BillingClient)
-◦ [Syncfusion.Maui.Toolkit](https://www.nuget.org/packages/Syncfusion.Maui.Toolkit)
+  ◦ [Microsoft.Maui.Controls](https://www.nuget.org/packages/Microsoft.Maui.Controls)
+  ◦ [Xamarin.Android.Google.BillingClient](https://www.nuget.org/packages/Xamarin.Android.Google.BillingClient)
+  ◦ [Syncfusion.Maui.Toolkit](https://www.nuget.org/packages/Syncfusion.Maui.Toolkit)
 
 ## Notes
 
-• This sample focuses on Android implementation using Google Play Billing
-• Testing in-app purchases requires proper Google Play Console setup and signed APKs
-• Always test thoroughly before publishing to production
+• This sample demonstrates cross-platform billing for both Android (Google Play Billing) and iOS (StoreKit)
+• Testing in-app purchases requires:
+  - Android: Google Play Console setup and signed APKs
+  - iOS: App Store Connect setup and sandbox tester accounts
+• Always test thoroughly on both platforms before publishing to production
 
 ## Security Considerations
 

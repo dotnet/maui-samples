@@ -1,25 +1,21 @@
 using BillingService.Models;
 using Microsoft.Extensions.Logging;
-
-#if IOS
 using Foundation;
 using StoreKit;
-#endif
 
 namespace BillingService.Services;
 
-#if IOS
 // Suppress StoreKit 1 deprecation warnings
 // Note: StoreKit 1 APIs are deprecated in iOS 18.0+ but remain fully functional
 // StoreKit 2 (modern replacement) lacks comprehensive C# bindings in .NET MAUI
 // This implementation is standard practice for .NET MAUI apps as of 2025
 #pragma warning disable CA1422 // Validate platform compatibility
-public class iOSBillingService : BaseBillingService
+public class BillingService : BaseBillingService
 {
     private PaymentTransactionObserver? _paymentObserver;
     private TaskCompletionSource<bool>? _purchaseTaskCompletionSource;
 
-    public iOSBillingService(ILogger<BaseBillingService> logger) : base(logger)
+    public BillingService(ILogger<BaseBillingService> logger) : base(logger)
     {
     }
 
@@ -281,7 +277,7 @@ public class iOSBillingService : BaseBillingService
         }
     }
 
-    ~iOSBillingService()
+    ~BillingService()
     {
         if (_paymentObserver != null)
         {
@@ -312,12 +308,12 @@ internal class ProductsRequestDelegate : NSObject, ISKProductsRequestDelegate, I
 
 internal class PaymentTransactionObserver : SKPaymentTransactionObserver
 {
-    private readonly iOSBillingService _billingService;
+    private readonly BillingService _billingService;
 
     public event EventHandler? RestoreCompletedTransactionsFinishedEvent;
     public event EventHandler<NSError>? RestoreCompletedTransactionsFailedEvent;
 
-    public PaymentTransactionObserver(iOSBillingService billingService)
+    public PaymentTransactionObserver(BillingService billingService)
     {
         _billingService = billingService;
     }
@@ -339,5 +335,3 @@ internal class PaymentTransactionObserver : SKPaymentTransactionObserver
     }
 }
 #pragma warning restore CA1422 // Validate platform compatibility
-
-#endif // IOS

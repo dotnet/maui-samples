@@ -20,11 +20,7 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
 
-#if ANDROID
-		builder.Services.AddSingleton<IBillingService, AndroidBillingService>();
-#elif IOS
-		builder.Services.AddSingleton<IBillingService, iOSBillingService>();
-#endif
+		builder.Services.AddTransient<IBillingService, Services.BillingService>();
 
 		// Register ViewModels
 		builder.Services.AddTransient<ProductsViewModel>();

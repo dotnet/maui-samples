@@ -64,10 +64,15 @@
 		<PackageReference Include="Xamarin.Android.Google.BillingClient" Version="7.1.1" />
 	</ItemGroup>
 
-	<!-- iOS Release Configuration - Optimized linking for faster builds -->
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)'=='Release|net10.0-ios'">
-		<MtouchLink>SdkOnly</MtouchLink>
-		<UseInterpreter>false</UseInterpreter>
-	</PropertyGroup>
+	<!-- Platform-specific file exclusions -->
+	<ItemGroup Condition="!$(TargetFramework.Contains('-android'))">
+		<Compile Remove="**\*.Android.cs" />
+		<None Include="**\*.Android.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
+	</ItemGroup>
+
+	<ItemGroup Condition="!$(TargetFramework.Contains('-ios'))">
+		<Compile Remove="**\*.iOS.cs" />
+		<None Include="**\*.iOS.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
+	</ItemGroup>
 
 </Project>
