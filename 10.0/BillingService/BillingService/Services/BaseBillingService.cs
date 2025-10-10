@@ -70,7 +70,16 @@ public abstract class BaseBillingService : IBillingService
         catch (Exception ex)
         {
             _logger.LogError(ex, "Failed to get products");
-            return _sampleProducts.Select(p => { p.IsOwned = _ownedProducts.Contains(p.Id); return p; }).ToList();
+            return _sampleProducts.Select(p => new Product
+            {
+                Id = p.Id,
+                Name = p.Name,
+                Description = p.Description,
+                Price = p.Price,
+                PriceAmount = p.PriceAmount,
+                ImageUrl = p.ImageUrl,
+                IsOwned = _ownedProducts.Contains(p.Id)
+            }).ToList();
         }
     }
 
