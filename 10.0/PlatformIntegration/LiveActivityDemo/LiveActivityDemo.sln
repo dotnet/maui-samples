@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PlatformIntegration", "Plat
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LiveActivityDemo", "LiveActivityDemo", "{C660D040-9681-1346-521A-D83848B0A86B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveActivityDemo", "10.0\PlatformIntegration\LiveActivityDemo\LiveActivityDemo\LiveActivityDemo.csproj", "{28FC393B-F461-4FD3-B369-8F3EF01AF86A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveActivityDemo", "LiveActivityDemo\LiveActivityDemo.csproj", "{28FC393B-F461-4FD3-B369-8F3EF01AF86A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
