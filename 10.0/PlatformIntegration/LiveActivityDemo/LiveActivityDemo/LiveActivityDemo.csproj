@@ -63,7 +63,8 @@
 	</ItemGroup>
 
 	<!-- Link the Swift XCFramework (created by scripts/build-bridge.sh) -->
-	<ItemGroup Condition="Exists('Platforms/iOS/LiveActivityBridge.xcframework')">
+	<ItemGroup Condition="Condition="'$(TargetFramework)' == 'net10.0-ios' AND Exists('Platforms/iOS/LiveActivityBridge.xcframework')">
+
 		<NativeReference Include="Platforms/iOS/LiveActivityBridge.xcframework">
 			<Kind>Framework</Kind>
 			<ForceLoad>true</ForceLoad>
