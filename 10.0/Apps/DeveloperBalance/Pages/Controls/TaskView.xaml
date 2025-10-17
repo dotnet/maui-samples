@@ -11,7 +11,7 @@
     Background="{AppThemeBinding Light={StaticResource LightSecondaryBackground}, Dark={StaticResource DarkSecondaryBackground}}"
     x:DataType="models:ProjectTask">
 
-    <effectsView:SfEffectsView
+     <effectsView:SfEffectsView
         TouchDownEffects="Highlight"
         HighlightBackground="{AppThemeBinding Light={StaticResource DarkOnLightBackground}, Dark={StaticResource LightOnDarkBackground}}">
         <shimmer:SfShimmer
@@ -19,15 +19,15 @@
             VerticalOptions="Fill"
             IsActive="{Binding IsBusy, Source={RelativeSource AncestorType={x:Type pageModels:IProjectTaskPageModel}}, x:DataType=pageModels:IProjectTaskPageModel}">
             <shimmer:SfShimmer.CustomView>
-                <Grid
+                <Grid 
                     ColumnDefinitions="Auto,*"
                     Padding="{OnIdiom 15, Desktop=20}">
-                    <BoxView
+                    <BoxView 
                         WidthRequest="24"
                         HeightRequest="24"
                         Margin="12, 0"
                         Style="{StaticResource ShimmerCustomViewStyle}"/>
-                    <BoxView
+                    <BoxView 
                         Grid.Column="1"
                         HeightRequest="24"
                         Margin="12, 0"
@@ -35,45 +35,31 @@
                 </Grid>
             </shimmer:SfShimmer.CustomView>
             <shimmer:SfShimmer.Content>
-                <Grid ColumnDefinitions="*"
-                      ColumnSpacing="15"
-                      Padding="{OnIdiom 15, Desktop=20}">
+                <Grid ColumnDefinitions="*" ColumnSpacing="15" Padding="{OnIdiom 15, Desktop=20}">
 
-                    <Button
-                        BackgroundColor="Transparent"
-                        BorderColor="Transparent"
-                        BorderWidth="0"
-                        Margin="{OnIdiom -15, Desktop=-20}"
-                        Padding="0"
-                        AutomationProperties.IsInAccessibleTree="True"
-                        SemanticProperties.Description="{Binding Title}"
-                        Text="{Binding Title}"
-                        TextColor="Transparent"
-                        HorizontalOptions="Fill"
-                        VerticalOptions="Fill"
-                        Command="{Binding NavigateToTaskCommand, Source={RelativeSource AncestorType={x:Type pageModels:IProjectTaskPageModel}}, x:DataType=pageModels:IProjectTaskPageModel}"
-                        CommandParameter="{Binding .}"
-                        x:Name="TaskButton"/>
+                    <Grid SemanticProperties.Description="{Binding Title}" Margin="{OnIdiom -15, Desktop=-20}">
+                        <Label
+                            Margin="{OnIdiom '65,0,0,0', Desktop= '70,0,0,0'}"
+                            Text="{Binding Title}"
+                            HorizontalOptions="Start"
+                            VerticalOptions="Center"
+                            LineBreakMode="WordWrap"/>
 
-                    <Label
-                        Margin="{OnIdiom '65,0,0,0', Desktop= '70,0,0,0'}"
-                        Text="{Binding Title}"
-                        HorizontalOptions="Start"
-                        VerticalOptions="Center"
-                        LineBreakMode="WordWrap"
-                        FontSize="Default"
-                        AutomationProperties.IsInAccessibleTree="false"
-                        TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
-                        InputTransparent="True"/>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding NavigateToTaskCommand, Source={RelativeSource AncestorType={x:Type pageModels:IProjectTaskPageModel}}, x:DataType=pageModels:IProjectTaskPageModel}"
+                                CommandParameter="{Binding .}"/>
+                        </Grid.GestureRecognizers>
+                    </Grid>
 
                     <CheckBox Grid.Column="0"
-                              WidthRequest="50"
-                              HorizontalOptions="Start"
-                              IsChecked="{Binding IsCompleted, Mode=OneTime}"
-                              VerticalOptions="Center"
-                              CheckedChanged="CheckBox_CheckedChanged"
-                              AutomationProperties.IsInAccessibleTree="True"
-                              SemanticProperties.Description="{Binding Title}"/>
+                        WidthRequest="50"
+                        HorizontalOptions="Start"
+                        IsChecked="{Binding IsCompleted, Mode=OneTime}"
+                        VerticalOptions="Center"
+                        CheckedChanged="CheckBox_CheckedChanged"
+                        AutomationProperties.IsInAccessibleTree="True"
+                        SemanticProperties.Description="{Binding Title}"/>
                 </Grid>
             </shimmer:SfShimmer.Content>
         </shimmer:SfShimmer>
