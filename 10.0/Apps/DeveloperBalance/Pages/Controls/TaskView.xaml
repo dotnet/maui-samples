@@ -37,6 +37,7 @@
             <shimmer:SfShimmer.Content>
                 <Grid ColumnDefinitions="*" ColumnSpacing="15" Padding="{OnIdiom 15, Desktop=20}">
 
+               <!-- Transparent button covering the task view to improve accessibility and make the entire area clickable. -->
                 <Button
                     BackgroundColor="Transparent"
                     BorderColor="Transparent"
@@ -53,6 +54,7 @@
                     CommandParameter="{Binding .}"
                     x:Name="TaskButton"/>
 
+               <!-- Label displays the title visually without handling interaction. -->
                 <Label
                     Margin="{OnIdiom '65,0,0,0', Desktop= '70,0,0,0'}"
                     Text="{Binding Title}"
