@@ -46,6 +46,7 @@
                     Padding="0"
                     AutomationProperties.IsInAccessibleTree="True"
                     SemanticProperties.Description="{Binding Title}"
+                    SemanticProperties.Hint="Double-tap or press Enter to open"
                     Text="{Binding Title}"
                     TextColor="Transparent"
                     HorizontalOptions="Fill"
