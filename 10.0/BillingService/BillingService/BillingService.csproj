@@ -64,15 +64,4 @@
 		<PackageReference Include="Xamarin.Android.Google.BillingClient" Version="7.1.1" />
 	</ItemGroup>
 
-	<!-- Platform-specific file exclusions -->
-	<ItemGroup Condition="!$(TargetFramework.Contains('-android'))">
-		<Compile Remove="**\*.Android.cs" />
-		<None Include="**\*.Android.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
-	</ItemGroup>
-
-	<ItemGroup Condition="!$(TargetFramework.Contains('-ios'))">
-		<Compile Remove="**\*.iOS.cs" />
-		<None Include="**\*.iOS.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
-	</ItemGroup>
-
 </Project>
