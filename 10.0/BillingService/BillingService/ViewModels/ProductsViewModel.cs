@@ -33,14 +33,17 @@ public class ProductsViewModel : BaseViewModel
         LoadProductsCommand = new Command(async () => await LoadProductsAsync());
         PurchaseCommand = new Command<Product>(async (product) => await PurchaseProductAsync(product));
         RestorePurchasesCommand = new Command(async () => await RestorePurchasesAsync());
-        _ = Task.Run(LoadProductsAsync);
+    }
+
+    public async Task InitializeAsync()
+    {
+        await LoadProductsAsync();
     }
 
     private async Task LoadProductsAsync()
     {
         try
         {
-
             if (!_billingService.IsInitialized)
             {
                 IsLoading = true;
@@ -91,6 +94,9 @@ public class ProductsViewModel : BaseViewModel
             if (!confirm)
                 return;
 
+            // Show loading indicator during purchase
+            IsLoading = true;
+
             var result = await _billingService.PurchaseAsync(product.Id);
 
             if (result.IsSuccess)
@@ -112,7 +118,7 @@ public class ProductsViewModel : BaseViewModel
         }
         finally
         {
-
+            IsLoading = false;
         }
     }
 
