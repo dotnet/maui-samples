@@ -51,8 +51,8 @@ A comprehensive .NET MAUI sample that demonstrates implementing in-app purchases
 
 - **IBillingService**: Unified billing service interface
 - **BaseBillingService**: Shared base functionality and business logic
-- **BillingService.Android.cs**: Android implementation using Google Billing Client v7
-- **BillingService.iOS.cs**: iOS implementation using Apple StoreKit 1
+- **Platforms/Android/BillingService.cs**: Android implementation using Google Billing Client v7
+- **Platforms/iOS/BillingService.cs**: iOS implementation using Apple StoreKit 1
 - **MVVM Pattern**: Clean separation with ViewModels and data binding
 - **Dependency Injection**: Platform-specific service registration
 
@@ -69,9 +69,16 @@ A comprehensive .NET MAUI sample that demonstrates implementing in-app purchases
 BillingService/
 ├── Services/
 │   ├── IBillingService.cs           # Unified billing service interface
-│   ├── BaseBillingService.cs        # Shared base implementation
-│   ├── BillingService.Android.cs    # Android billing (Google Play)
-│   └── BillingService.iOS.cs        # iOS billing (StoreKit)
+│   └── BaseBillingService.cs        # Shared base implementation
+├── Platforms/
+│   ├── Android/
+│   │   ├── BillingService.cs        # Android billing (Google Play Billing v7)
+│   │   ├── AndroidManifest.xml      # Android permissions and configuration
+│   │   └── MainActivity.cs          # Android main activity
+│   └── iOS/
+│       ├── BillingService.cs        # iOS billing (StoreKit 1)
+│       ├── Info.plist               # iOS configuration
+│       └── AppDelegate.cs           # iOS app delegate
 ├── Models/
 │   ├── Product.cs                   # Product data model
 │   └── PurchaseResult.cs           # Purchase result model
@@ -81,15 +88,8 @@ BillingService/
 ├── Views/
 │   ├── ProductsPage.xaml           # Products listing page
 │   └── ProductsPage.xaml.cs        # Code-behind
-├── Converters/
-│   └── ValueConverters.cs          # XAML value converters
-└── Platforms/
-    ├── Android/
-    │   ├── AndroidManifest.xml     # Android permissions and configuration
-    │   └── MainActivity.cs         # Android main activity
-    └── iOS/
-        ├── Info.plist              # iOS configuration
-        └── AppDelegate.cs          # iOS app delegate
+└── Converters/
+    └── ValueConverters.cs          # XAML value converters
 ```
 
 ## How it's wired
@@ -98,9 +98,9 @@ BillingService/
 
 • **`Services/BaseBillingService.cs`**: Provides shared business logic, product definitions, and ownership tracking used by both Android and iOS.
 
-• **`Services/BillingService.Android.cs`**: Implements Android billing using Google Play Billing Client v7 with support for product queries, purchases, and restoration.
+• **`Platforms/Android/BillingService.cs`**: Implements Android billing using Google Play Billing Client v7 with support for product queries, purchases, and restoration.
 
-• **`Services/BillingService.iOS.cs`**: Implements iOS billing using StoreKit 1 APIs with transaction observers and purchase restoration.
+• **`Platforms/iOS/BillingService.cs`**: Implements iOS billing using StoreKit 1 APIs with transaction observers and purchase restoration.
 
 • **`MauiProgram.cs`**: Registers the billing service implementation (`Services.BillingService`) and ViewModels in the dependency injection container.
 
@@ -139,8 +139,6 @@ BillingService/
 3. **Additional Requirements**:
    - Sign Paid Applications Agreement in App Store Connect
    - Configure tax and banking information
-
-For detailed iOS implementation guide, see [IMPLEMENTATION_GUIDE.md](IMPLEMENTATION_GUIDE.md).
 
 ## Run the Application
 
