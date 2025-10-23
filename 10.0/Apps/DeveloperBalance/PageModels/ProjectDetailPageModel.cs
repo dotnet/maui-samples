@@ -141,7 +141,6 @@ public partial class ProjectDetailPageModel : ObservableObject, IQueryAttributab
 			Description = _project.Description;
 			Tasks = _project.Tasks;
 
-			Icon.Icon = _project.Icon;
 			foreach (var icon in Icons)
 			{
 				if (icon.Icon == _project.Icon)
