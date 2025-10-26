@@ -8,7 +8,7 @@ using Toolbar = AndroidX.AppCompat.Widget.Toolbar;
 
 namespace NativeEmbeddingDemo.Droid
 {
-    [Activity(Label = "@string/app_name", MainLauncher = true, Theme = "@style/Theme.MyApplication")]
+    [Activity(Label = "@string/app_name", MainLauncher = true, LaunchMode = LaunchMode.SingleTop, Theme = "@style/Theme.MyApplication")]
     public class MainActivity : AppCompatActivity
     {
         AppBarConfiguration? appBarConfiguration;

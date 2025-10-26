@@ -13,8 +13,8 @@ using Microsoft.Maui.Controls;
 
 namespace CustomRenderer.Android
 {
-	[Activity (Label = "CustomRenderer.Android.Android", Icon = "@drawable/icon", 
-		Theme = "@style/MainTheme", MainLauncher = true, 
+	[Activity (Label = "CustomRenderer.Android.Android", Icon = "@drawable/icon",
+		Theme = "@style/MainTheme", MainLauncher = true, LaunchMode = LaunchMode.SingleTop,
 		ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
 	public class MainActivity : MauiAppCompatActivity
 	{
