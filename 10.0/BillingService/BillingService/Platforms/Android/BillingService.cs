@@ -1,18 +1,18 @@
-using Android.BillingClient.Api;
 using BillingService.Models;
 using Microsoft.Extensions.Logging;
+using Android.BillingClient.Api;
 using AndroidBillingResult = Android.BillingClient.Api.BillingResult;
 
 namespace BillingService.Services;
 
-public class AndroidBillingService : BaseBillingService
+public class BillingService : BaseBillingService
 {
     private BillingClient? _billingClient;
     private readonly object _lockObject = new();
     private BillingClientStateListener? _stateListener;
     private PurchasesUpdatedListener? _purchaseListener;
 
-    public AndroidBillingService(ILogger<BaseBillingService> logger) : base(logger)
+    public BillingService(ILogger<BaseBillingService> logger) : base(logger)
     {
         InitializeListeners();
     }
@@ -455,9 +455,9 @@ public class AndroidBillingService : BaseBillingService
 
 internal class BillingClientStateListener : Java.Lang.Object, IBillingClientStateListener
 {
-    private readonly AndroidBillingService _service;
+    private readonly BillingService _service;
 
-    public BillingClientStateListener(AndroidBillingService service)
+    public BillingClientStateListener(BillingService service)
     {
         _service = service;
     }
@@ -475,9 +475,9 @@ internal class BillingClientStateListener : Java.Lang.Object, IBillingClientStat
 
 internal class PurchasesUpdatedListener : Java.Lang.Object, IPurchasesUpdatedListener
 {
-    private readonly AndroidBillingService _service;
+    private readonly BillingService _service;
 
-    public PurchasesUpdatedListener(AndroidBillingService service)
+    public PurchasesUpdatedListener(BillingService service)
     {
         _service = service;
     }

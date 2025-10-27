@@ -141,7 +141,14 @@ public partial class ProjectDetailPageModel : ObservableObject, IQueryAttributab
 			Description = _project.Description;
 			Tasks = _project.Tasks;
 
-			Icon.Icon = _project.Icon;
+			foreach (var icon in Icons)
+			{
+				if (icon.Icon == _project.Icon)
+				{
+					Icon = icon;
+					break;
+				}
+			}
 
 			Categories = await _categoryRepository.ListAsync();
 			Category = Categories?.FirstOrDefault(c => c.ID == _project.CategoryID);
@@ -321,8 +328,6 @@ public partial class ProjectDetailPageModel : ObservableObject, IQueryAttributab
 					await _tagRepository.DeleteItemAsync(tag, _project.ID);
 				}
 			}
-
-			SelectedTags = new List<object>(currentSelection);
 		}
 	}
 }
