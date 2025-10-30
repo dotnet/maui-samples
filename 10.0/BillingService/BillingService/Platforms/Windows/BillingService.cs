@@ -1,13 +1,14 @@
 using BillingService.Models;
 using Microsoft.Extensions.Logging;
 using Windows.Services.Store;
+using WinRT.Interop;
 
 namespace BillingService.Services;
 
 public class BillingService : BaseBillingService
 {
     private StoreContext? _storeContext;
-    private string? _storeId;
+    private bool _isInitialized = false;
 
     public BillingService(ILogger<BaseBillingService> logger) : base(logger)
     {
@@ -17,7 +18,6 @@ public class BillingService : BaseBillingService
     {
         try
         {
-            // Get the default store context for the current user
             _storeContext = StoreContext.GetDefault();
 
             if (_storeContext == null)
@@ -26,14 +26,45 @@ public class BillingService : BaseBillingService
                 return Task.FromResult(false);
             }
 
-            // For testing purposes, log initialization success
+            // Initialize the StoreContext with the window handle (required for Desktop Bridge apps)
+            // Per Microsoft documentation: https://aka.ms/storecontext-for-desktop
+            InitializeWindowHandle();
+
+            _isInitialized = true;
             _logger.LogInformation("Windows Store context initialized successfully");
             return Task.FromResult(true);
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Failed to initialize Windows billing service");
+            _logger.LogError(ex, "Failed to initialize Windows Store context");
             return Task.FromResult(false);
+        }
+    }
+
+    private void InitializeWindowHandle()
+    {
+        try
+        {
+            var mainWindow = Application.Current?.Windows?.FirstOrDefault();
+            if (mainWindow == null)
+            {
+                _logger.LogWarning("Could not retrieve main window - some Store dialogs may not display properly");
+                return;
+            }
+
+            var hwnd = WindowNative.GetWindowHandle(mainWindow.Handler?.PlatformView);
+            if (hwnd == IntPtr.Zero)
+            {
+                _logger.LogWarning("Window handle is invalid - some Store dialogs may not display properly");
+                return;
+            }
+
+            InitializeWithWindow.Initialize(_storeContext, hwnd);
+            _logger.LogInformation("StoreContext initialized with window handle");
+        }
+        catch (Exception ex)
+        {
+            _logger.LogWarning(ex, "Window initialization warning (non-critical): {Message}", ex.Message);
         }
     }
 
@@ -41,78 +72,68 @@ public class BillingService : BaseBillingService
     {
         try
         {
+            _logger.LogInformation("Retrieving product information from Microsoft Store");
+            
             if (_storeContext == null)
             {
-                _logger.LogWarning("Store context not initialized, returning base products");
+                _logger.LogWarning("StoreContext is not initialized, using base product data");
                 return baseProducts;
             }
 
-            // Batch query all products from Store for efficiency
+            if (baseProducts.Count == 0)
+            {
+                return baseProducts;
+            }
+
             var productIds = baseProducts.Select(p => p.Id).ToArray();
-            
-            if (productIds.Length == 0)
+            var storeProductsResult = await _storeContext.GetStoreProductsAsync(
+                productIds,
+                new[] { "Consumable", "Durable", "UnknownType" }
+            );
+
+            if (storeProductsResult.ExtendedError != null)
             {
-                _logger.LogWarning("No products to query");
+                _logger.LogWarning("Failed to retrieve products from Store: {Error}", storeProductsResult.ExtendedError.Message);
                 return baseProducts;
             }
 
-            try
-            {
-                var storeProductsResult = await _storeContext.GetStoreProductsAsync(productIds);
+            var products = new List<Product>();
+            var storeProductsDict = storeProductsResult.Products;
 
-                if (storeProductsResult.ExtendedError != null)
+            foreach (var baseProduct in baseProducts)
+            {
+                Product product;
+
+                if (storeProductsDict.TryGetValue(baseProduct.Id, out var storeProduct))
                 {
-                    _logger.LogWarning("Failed to retrieve products from Store: {Error}", storeProductsResult.ExtendedError.Message);
-                    return baseProducts;
+                    product = new Product
+                    {
+                        Id = baseProduct.Id,
+                        Name = storeProduct.Title ?? baseProduct.Name,
+                        Description = storeProduct.Description ?? baseProduct.Description,
+                        Price = storeProduct.Price?.FormattedPrice ?? baseProduct.Price,
+                        PriceAmount = baseProduct.PriceAmount,
+                        ImageUrl = baseProduct.ImageUrl,
+                        IsOwned = false
+                    };
+
+                    _logger.LogInformation("Retrieved product from Store: {ProductId}", baseProduct.Id);
+                }
+                else
+                {
+                    product = baseProduct;
+                    _logger.LogWarning("Product not found in Store, using local data: {ProductId}", baseProduct.Id);
                 }
 
-                // Create a dictionary for quick lookup of store products
-                var storeProductsDict = storeProductsResult.Products;
-                var products = new List<Product>();
-
-                foreach (var baseProduct in baseProducts)
-                {
-                    Product product;
-
-                    // Check if product exists in Store
-                    if (storeProductsDict.TryGetValue(baseProduct.Id, out var storeProduct))
-                    {
-                        // Create product with Store-retrieved information
-                        product = new Product
-                        {
-                            Id = baseProduct.Id,
-                            Name = storeProduct.Title ?? baseProduct.Name,
-                            Description = storeProduct.Description ?? baseProduct.Description,
-                            Price = storeProduct.Price?.FormattedPrice ?? baseProduct.Price,
-                            PriceAmount = storeProduct.Price?.UnformattedPrice ?? baseProduct.PriceAmount,
-                            ImageUrl = baseProduct.ImageUrl,
-                            IsOwned = false // Will be set by base class
-                        };
-
-                        _logger.LogInformation("Retrieved product from Store: {ProductId}", baseProduct.Id);
-                    }
-                    else
-                    {
-                        // Product not found in Store, use base product
-                        product = baseProduct;
-                        _logger.LogWarning("Product not found in Store, using fallback: {ProductId}", baseProduct.Id);
-                    }
-
-                    products.Add(product);
-                }
-
-                _logger.LogInformation("Retrieved {Count} products from Windows Store", products.Count);
-                return products;
+                products.Add(product);
             }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error querying products from Store, using fallback");
-                return baseProducts;
-            }
+
+            _logger.LogInformation("Successfully retrieved {Count} products from Store", products.Count);
+            return products;
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Failed to get platform products");
+            _logger.LogError(ex, "Error retrieving products from Store");
             return baseProducts;
         }
     }
@@ -121,8 +142,11 @@ public class BillingService : BaseBillingService
     {
         try
         {
+            _logger.LogInformation("Initiating purchase for product: {ProductId}", productId);
+
             if (_storeContext == null)
             {
+                _logger.LogError("StoreContext is not initialized");
                 return new PurchaseResult
                 {
                     IsSuccess = false,
@@ -131,73 +155,12 @@ public class BillingService : BaseBillingService
                 };
             }
 
-            _logger.LogInformation("Initiating purchase for product: {ProductId}", productId);
-
-            // Request purchase from Store
             var purchaseResult = await _storeContext.RequestPurchaseAsync(productId);
 
-            if (purchaseResult.ExtendedError == null)
+            if (purchaseResult.ExtendedError != null)
             {
-                switch (purchaseResult.Status)
-                {
-                    case StorePurchaseStatus.Succeeded:
-                        _logger.LogInformation("Purchase successful for product: {ProductId}", productId);
-                        return new PurchaseResult
-                        {
-                            IsSuccess = true,
-                            ProductId = productId,
-                            ErrorMessage = string.Empty
-                        };
-
-                    case StorePurchaseStatus.AlreadyPurchased:
-                        _logger.LogInformation("Product already owned: {ProductId}", productId);
-                        return new PurchaseResult
-                        {
-                            IsSuccess = true,
-                            ProductId = productId,
-                            ErrorMessage = "Product already owned"
-                        };
-
-                    case StorePurchaseStatus.NotPurchased:
-                        _logger.LogWarning("Purchase was not completed for product: {ProductId}", productId);
-                        return new PurchaseResult
-                        {
-                            IsSuccess = false,
-                            ProductId = productId,
-                            ErrorMessage = "Purchase was not completed"
-                        };
-
-                    case StorePurchaseStatus.NetworkError:
-                        _logger.LogError("Network error during purchase of product: {ProductId}", productId);
-                        return new PurchaseResult
-                        {
-                            IsSuccess = false,
-                            ProductId = productId,
-                            ErrorMessage = "Network error - please check your internet connection"
-                        };
-
-                    case StorePurchaseStatus.ServerError:
-                        _logger.LogError("Server error during purchase of product: {ProductId}", productId);
-                        return new PurchaseResult
-                        {
-                            IsSuccess = false,
-                            ProductId = productId,
-                            ErrorMessage = "Server error - please try again later"
-                        };
-
-                    default:
-                        _logger.LogWarning("Unknown purchase status for product: {ProductId}, Status: {Status}", productId, purchaseResult.Status);
-                        return new PurchaseResult
-                        {
-                            IsSuccess = false,
-                            ProductId = productId,
-                            ErrorMessage = $"Unknown purchase status: {purchaseResult.Status}"
-                        };
-                }
-            }
-            else
-            {
-                _logger.LogError("Purchase error for product {ProductId}: {Error}", productId, purchaseResult.ExtendedError.Message);
+                _logger.LogError("Purchase failed with error: {ErrorCode} - {ErrorMessage}", 
+                    purchaseResult.ExtendedError.ErrorCode, purchaseResult.ExtendedError.Message);
                 return new PurchaseResult
                 {
                     IsSuccess = false,
@@ -205,10 +168,67 @@ public class BillingService : BaseBillingService
                     ErrorMessage = purchaseResult.ExtendedError.Message
                 };
             }
+
+            switch (purchaseResult.Status)
+            {
+                case StorePurchaseStatus.Succeeded:
+                    _logger.LogInformation("Purchase succeeded for product: {ProductId}", productId);
+                    return new PurchaseResult
+                    {
+                        IsSuccess = true,
+                        ProductId = productId,
+                        ErrorMessage = string.Empty
+                    };
+
+                case StorePurchaseStatus.AlreadyPurchased:
+                    _logger.LogInformation("Product already owned: {ProductId}", productId);
+                    return new PurchaseResult
+                    {
+                        IsSuccess = true,
+                        ProductId = productId,
+                        ErrorMessage = "Product already owned"
+                    };
+
+                case StorePurchaseStatus.NotPurchased:
+                    _logger.LogInformation("Purchase was not completed for product: {ProductId}", productId);
+                    return new PurchaseResult
+                    {
+                        IsSuccess = false,
+                        ProductId = productId,
+                        ErrorMessage = "Purchase was not completed"
+                    };
+
+                case StorePurchaseStatus.NetworkError:
+                    _logger.LogError("Network error during purchase of: {ProductId}", productId);
+                    return new PurchaseResult
+                    {
+                        IsSuccess = false,
+                        ProductId = productId,
+                        ErrorMessage = "Network error - please check your internet connection"
+                    };
+
+                case StorePurchaseStatus.ServerError:
+                    _logger.LogError("Server error during purchase of: {ProductId}", productId);
+                    return new PurchaseResult
+                    {
+                        IsSuccess = false,
+                        ProductId = productId,
+                        ErrorMessage = "Server error - please try again later"
+                    };
+
+                default:
+                    _logger.LogWarning("Unknown purchase status for product: {ProductId}, Status: {Status}", productId, purchaseResult.Status);
+                    return new PurchaseResult
+                    {
+                        IsSuccess = false,
+                        ProductId = productId,
+                        ErrorMessage = $"Unknown purchase status: {purchaseResult.Status}"
+                    };
+            }
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Exception during purchase of product: {ProductId}", productId);
+            _logger.LogError(ex, "Exception during purchase for product {ProductId}", productId);
             return new PurchaseResult
             {
                 IsSuccess = false,
@@ -224,45 +244,31 @@ public class BillingService : BaseBillingService
         {
             if (_storeContext == null)
             {
-                _logger.LogWarning("Store context not initialized, returning empty list");
+                _logger.LogWarning("StoreContext is not initialized, cannot retrieve purchased products");
+                return new List<string>();
+            }
+
+            var sampleProductIds = _sampleProducts.Select(p => p.Id).ToArray();
+            var userCollectionResult = await _storeContext.GetUserCollectionAsync(sampleProductIds);
+
+            if (userCollectionResult.ExtendedError != null)
+            {
+                _logger.LogWarning("Failed to retrieve user collection: {ErrorCode}", userCollectionResult.ExtendedError.ErrorCode);
                 return new List<string>();
             }
 
             var purchasedProducts = new List<string>();
-
-            // Query user's licenses for the sample product IDs
-            var sampleProductIds = _sampleProducts.Select(p => p.Id).ToArray();
-
-            try
+            foreach (var product in userCollectionResult.Products.Values)
             {
-                var userLicensesResult = await _storeContext.GetUserCollectionAsync(sampleProductIds);
-
-                if (userLicensesResult.ExtendedError == null)
-                {
-                    foreach (var license in userLicensesResult.Licenses)
-                    {
-                        if (license.Value.IsActive)
-                        {
-                            purchasedProducts.Add(license.Key);
-                            _logger.LogInformation("Found purchased product: {ProductId}", license.Key);
-                        }
-                    }
-                }
-                else
-                {
-                    _logger.LogWarning("Failed to retrieve user collection: {Error}", userLicensesResult.ExtendedError.Message);
-                }
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error retrieving purchased products from Store");
+                purchasedProducts.Add(product.StoreId);
             }
 
+            _logger.LogInformation("Retrieved {Count} purchased products from Store", purchasedProducts.Count);
             return purchasedProducts;
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Failed to get platform purchased products");
+            _logger.LogError(ex, "Error retrieving purchased products from Store");
             return new List<string>();
         }
     }
@@ -273,29 +279,18 @@ public class BillingService : BaseBillingService
         {
             if (_storeContext == null)
             {
-                _logger.LogWarning("Store context not initialized, cannot restore purchases");
+                _logger.LogWarning("StoreContext is not initialized, cannot restore purchases");
                 return false;
             }
 
-            _logger.LogInformation("Restoring purchases from Microsoft Store");
-
-            // Get the user's purchased products
             var purchasedProducts = await GetPlatformPurchasedProductsAsync();
+            _logger.LogInformation("Restore purchases completed - restored {Count} products", purchasedProducts.Count);
 
-            if (purchasedProducts.Count > 0)
-            {
-                _logger.LogInformation("Successfully restored {Count} purchased products", purchasedProducts.Count);
-                return true;
-            }
-            else
-            {
-                _logger.LogInformation("No previously purchased products found to restore");
-                return true; // Still consider this a successful restoration (just no items to restore)
-            }
+            return true; // Return true even if no products (successful operation)
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Failed to restore platform purchases");
+            _logger.LogError(ex, "Error restoring purchases");
             return false;
         }
     }

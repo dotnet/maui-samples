@@ -1,6 +1,6 @@
 ---
 name: .NET MAUI - BillingService
-description: Cross-platform billing implementation for Android (Google Play Billing), iOS (StoreKit), and Windows (Microsoft Store) using .NET MAUI with MVVM architecture.
+description: Cross-platform billing implementation for Android (Google Play Billing), iOS (StoreKit), Mac Catalyst (StoreKit), and Windows (Microsoft Store) using .NET MAUI with MVVM architecture.
 page_type: sample
 languages:
   - csharp
@@ -12,32 +12,32 @@ urlFragment: cross-platform-billing-service
 
 # BillingService (MAUI + Cross-Platform Billing)
 
-A comprehensive .NET MAUI sample that demonstrates implementing in-app purchases for Android, iOS, and Windows applications. This sample shows how to integrate platform-specific billing systems (Google Play Billing for Android, StoreKit for iOS, and Microsoft Store for Windows) with a unified interface and clean MVVM architecture.
+A comprehensive .NET MAUI sample that demonstrates implementing in-app purchases for Android, iOS, Mac Catalyst, and Windows applications. This sample shows how to integrate platform-specific billing systems (Google Play Billing for Android, StoreKit for iOS/Mac Catalyst, and Microsoft Store for Windows) with a unified interface and clean MVVM architecture.
 
 ![BillingService Demo](Images/billing_demo.png)
 
 ## What you'll learn
 
 • How to implement cross-platform billing in a .NET MAUI application across multiple platforms
-• How to create a unified billing service interface for Android, iOS, and Windows
-• How to use Google Play Billing Client (Android), StoreKit (iOS), and Microsoft Store APIs (Windows)
+• How to create a unified billing service interface for Android, iOS, Mac Catalyst, and Windows
+• How to use Google Play Billing Client (Android), StoreKit (iOS/Mac Catalyst), and Microsoft Store APIs (Windows)
 • How to use MVVM pattern with dependency injection for billing operations
 • How to handle product listings, purchases, and purchase restoration on all platforms
 • How to implement value converters for dynamic UI updates based on purchase state
 • How to structure a billing service with proper initialization and error handling
-• Platform-specific best practices for Android, iOS, and Windows billing
+• Platform-specific best practices for Android, iOS, Mac Catalyst, and Windows billing
 
 ## Prerequisites
 
 • .NET 10.0 SDK or later
 • Visual Studio 2022 17.13+ or Visual Studio Code with .NET MAUI extension
 • Android SDK (for Android deployment)
-• Xcode and iOS SDK (for iOS deployment on macOS)
+• Xcode and iOS SDK (for iOS and Mac Catalyst deployment on macOS)
 • Windows SDK (for Windows deployment on Windows)
 • Google Play Console account (for Android production billing setup)
-• Apple Developer account and App Store Connect access (for iOS production billing setup)
+• Apple Developer account and App Store Connect access (for iOS and Mac Catalyst production billing setup)
 • Microsoft Partner Center account (for Windows production billing setup)
-• Android device or emulator / iOS device or simulator / Windows device for testing
+• Android device or emulator / iOS device or simulator / Mac device or simulator / Windows device for testing
 
 ## Features
 
@@ -47,7 +47,7 @@ A comprehensive .NET MAUI sample that demonstrates implementing in-app purchases
 - **Purchase Flow**: Handle secure purchase transactions on all platforms
 - **Purchase Restoration**: Restore previous purchases for users across platforms
 - **Ownership Verification**: Check if products are already owned
-- **Cross-Platform Abstraction**: Unified interface across Android, iOS, and Windows
+- **Cross-Platform Abstraction**: Unified interface across Android, iOS, Mac Catalyst, and Windows
 
 ### Architecture Components
 
@@ -55,6 +55,7 @@ A comprehensive .NET MAUI sample that demonstrates implementing in-app purchases
 - **BaseBillingService**: Shared base functionality and business logic
 - **Platforms/Android/BillingService.cs**: Android implementation using Google Billing Client v7
 - **Platforms/iOS/BillingService.cs**: iOS implementation using Apple StoreKit 1
+- **Platforms/MacCatalyst/BillingService.cs**: Mac Catalyst implementation using Apple StoreKit 1 (shares iOS bindings)
 - **Platforms/Windows/BillingService.cs**: Windows implementation using Microsoft Store APIs
 - **MVVM Pattern**: Clean separation with ViewModels and data binding
 - **Dependency Injection**: Platform-specific service registration
@@ -82,6 +83,10 @@ BillingService/
 │   │   ├── BillingService.cs        # iOS billing (StoreKit 1)
 │   │   ├── Info.plist               # iOS configuration
 │   │   └── AppDelegate.cs           # iOS app delegate
+│   ├── MacCatalyst/
+│   │   ├── BillingService.cs        # Mac Catalyst billing (StoreKit 1)
+│   │   ├── Info.plist               # Mac Catalyst configuration
+│   │   └── AppDelegate.cs           # Mac Catalyst app delegate
 │   └── Windows/
 │       ├── BillingService.cs        # Windows billing (Microsoft Store APIs)
 │       ├── Package.appxmanifest     # Windows package configuration
@@ -103,11 +108,13 @@ BillingService/
 
 • **`Services/IBillingService.cs`**: Defines the unified contract for billing operations including initialization, product retrieval, and purchase handling across all platforms.
 
-• **`Services/BaseBillingService.cs`**: Provides shared business logic, product definitions, and ownership tracking used by Android, iOS, and Windows implementations.
+• **`Services/BaseBillingService.cs`**: Provides shared business logic, product definitions, and ownership tracking used by Android, iOS, Mac Catalyst, and Windows implementations.
 
 • **`Platforms/Android/BillingService.cs`**: Implements Android billing using Google Play Billing Client v7 with support for product queries, purchases, and restoration.
 
 • **`Platforms/iOS/BillingService.cs`**: Implements iOS billing using StoreKit 1 APIs with transaction observers and purchase restoration.
+
+• **`Platforms/MacCatalyst/BillingService.cs`**: Implements Mac Catalyst billing using StoreKit 1 APIs (identical to iOS since Mac Catalyst is built on Apple frameworks and shares iOS bindings).
 
 • **`Platforms/Windows/BillingService.cs`**: Implements Windows billing using Microsoft Store APIs (Windows.Services.Store) with support for product queries, purchases, and license verification.
 
@@ -148,6 +155,24 @@ BillingService/
 3. **Additional Requirements**:
    - Sign Paid Applications Agreement in App Store Connect
    - Configure tax and banking information
+
+### Mac Catalyst Setup
+
+1. **Product Configuration**:
+   Update the product IDs in your billing service to match those configured in App Store Connect:
+   - Sign in to [App Store Connect](https://appstoreconnect.apple.com/)
+   - Navigate to your app → Features → In-App Purchases
+   - Create products with IDs: `Team_license`, `Global_license`, `Unlimited_license`
+   - Note: Mac Catalyst apps can share the same products as iOS apps
+
+2. **Testing**:
+   - Create sandbox tester accounts in App Store Connect
+   - Use sandbox account on Mac for testing purchases
+
+3. **Additional Requirements**:
+   - Sign Paid Applications Agreement in App Store Connect
+   - Configure tax and banking information
+   - Enable Mac Catalyst capability in your app
 
 ### Windows Setup
 
@@ -191,6 +216,17 @@ BillingService/
    dotnet run -f net10.0-ios
    ```
 
+### Mac Catalyst
+
+1. Ensure Xcode and macOS SDK are installed (macOS only)
+2. Set up a Mac device or simulator
+3. Build and deploy:
+
+   ```bash
+   dotnet build -f net10.0-maccatalyst
+   dotnet run -f net10.0-maccatalyst
+   ```
+
 ### Windows
 
 1. Ensure Windows SDK is properly configured (Windows only)
@@ -206,7 +242,7 @@ BillingService/
 
 **Product Listing**: The app retrieves and displays available in-app products with their details and pricing from each platform's store.
 
-**Purchase Flow**: Tapping a product initiates the platform-specific purchase flow (Google Play on Android, StoreKit on iOS, Microsoft Store on Windows) with proper error handling.
+**Purchase Flow**: Tapping a product initiates the platform-specific purchase flow (Google Play on Android, StoreKit on iOS/Mac Catalyst, Microsoft Store on Windows) with proper error handling.
 
 **Visual Feedback**: Products show different states (owned/not owned) with color coding and text changes across all platforms.
 
@@ -232,6 +268,7 @@ BillingService/
 - Unified billing interface with platform-specific implementations
 - Android: Google Play Billing Client v7
 - iOS: StoreKit 1 with transaction observers
+- Mac Catalyst: StoreKit 1 with transaction observers (identical to iOS)
 - Windows: Microsoft Store APIs (Windows.Services.Store)
 - Dependency injection for loose coupling
 
@@ -254,10 +291,11 @@ BillingService/
 
 ## Notes
 
-• This sample demonstrates cross-platform billing for Android (Google Play Billing), iOS (StoreKit), and Windows (Microsoft Store)
+• This sample demonstrates cross-platform billing for Android (Google Play Billing), iOS (StoreKit), Mac Catalyst (StoreKit), and Windows (Microsoft Store)
 • Testing in-app purchases requires:
   - Android: Google Play Console setup and signed APKs
   - iOS: App Store Connect setup and sandbox tester accounts
+  - Mac Catalyst: App Store Connect setup and sandbox tester accounts
   - Windows: Partner Center setup and published/test apps
 • Always test thoroughly on all platforms before publishing to production
 
