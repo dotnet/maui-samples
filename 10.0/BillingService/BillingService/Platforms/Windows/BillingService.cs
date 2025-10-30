@@ -8,7 +8,6 @@ namespace BillingService.Services;
 public class BillingService : BaseBillingService
 {
     private StoreContext? _storeContext;
-    private bool _isInitialized = false;
 
     public BillingService(ILogger<BaseBillingService> logger) : base(logger)
     {
