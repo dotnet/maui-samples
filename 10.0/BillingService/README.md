@@ -114,7 +114,7 @@ BillingService/
 
 • **`Platforms/iOS/BillingService.cs`**: Implements iOS billing using StoreKit 1 APIs with transaction observers and purchase restoration.
 
-• **`Platforms/MacCatalyst/BillingService.cs`**: Implements Mac Catalyst billing using StoreKit 1 APIs (identical to iOS since Mac Catalyst is built on Apple frameworks and shares iOS bindings).
+• **`Platforms/MacCatalyst/BillingService.cs`**: Implements Mac Catalyst billing using StoreKit 1 APIs (identical implementation to iOS).
 
 • **`Platforms/Windows/BillingService.cs`**: Implements Windows billing using Microsoft Store APIs (Windows.Services.Store) with support for product queries, purchases, and license verification.
 

@@ -159,8 +159,8 @@ public class BillingService : BaseBillingService
 
             if (purchaseResult.ExtendedError != null)
             {
-                _logger.LogError("Purchase failed with error: {ErrorCode} - {ErrorMessage}", 
-                    purchaseResult.ExtendedError.ErrorCode, purchaseResult.ExtendedError.Message);
+                _logger.LogError("Purchase failed with error: {ErrorMessage}", 
+                    purchaseResult.ExtendedError.Message);
                 return new PurchaseResult
                 {
                     IsSuccess = false,
@@ -253,7 +253,7 @@ public class BillingService : BaseBillingService
 
             if (userCollectionResult.ExtendedError != null)
             {
-                _logger.LogWarning("Failed to retrieve user collection: {ErrorCode}", userCollectionResult.ExtendedError.ErrorCode);
+                _logger.LogWarning("Failed to retrieve user collection: {ErrorMessage}", userCollectionResult.ExtendedError.Message);
                 return new List<string>();
             }
 
