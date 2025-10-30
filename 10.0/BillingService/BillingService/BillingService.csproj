@@ -69,10 +69,4 @@
 		<PackageReference Include="Xamarin.Android.Google.BillingClient" Version="7.1.1" />
 	</ItemGroup>
 
-	<!-- Mac Catalyst reuses iOS BillingService - exclude iOS platform-specific app files only -->
-	<ItemGroup Condition="$(TargetFramework.Contains('maccatalyst'))">
-		<Compile Remove="Platforms/iOS/AppDelegate.cs;Platforms/iOS/Program.cs" />
-		<None Include="Platforms/iOS/Info.plist;Platforms/iOS/Resources/**" />
-	</ItemGroup>
-
 </Project>
