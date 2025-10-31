@@ -67,7 +67,8 @@
 		<PackageReference Include="Xamarin.Android.Google.BillingClient" Version="7.1.1" />
 	</ItemGroup>
 
-	<!-- Platform-specific BillingService includes (single ItemGroup, no in-file #if) -->
+	<!-- Platform-specific BillingService files: Conditionally compiled per target framework -->
+	<!-- All files compile correctly for their respective platforms during build. -->
 	<ItemGroup>
 		<Compile Remove="Services/BillingService.iOS.cs" />
 		<Compile Remove="Services/BillingService.Android.cs" />

@@ -53,12 +53,11 @@ A comprehensive .NET MAUI sample that demonstrates implementing in-app purchases
 
 - **IBillingService**: Unified billing service interface
 - **BaseBillingService**: Shared base functionality and business logic
-- **Platforms/Android/BillingService.cs**: Android implementation using Google Billing Client v7
-- **Platforms/iOS/BillingService.cs**: iOS implementation using Apple StoreKit 1
-- **Platforms/MacCatalyst/BillingService.cs**: Mac Catalyst implementation using Apple StoreKit 1 (shares iOS bindings)
-- **Platforms/Windows/BillingService.cs**: Windows implementation using Microsoft Store APIs
+- **Services/BillingService.Android.cs**: Android implementation using Google Play Billing Client v7
+- **Services/BillingService.iOS.cs**: iOS and Mac Catalyst shared implementation using Apple StoreKit 1
+- **Services/BillingService.Windows.cs**: Windows implementation using Microsoft Store APIs
 - **MVVM Pattern**: Clean separation with ViewModels and data binding
-- **Dependency Injection**: Platform-specific service registration
+- **Dependency Injection**: Platform-specific service registration with conditional compilation
 
 ### UI Features
 
@@ -72,55 +71,54 @@ A comprehensive .NET MAUI sample that demonstrates implementing in-app purchases
 ```
 BillingService/
 ├── Services/
-│   ├── IBillingService.cs           # Unified billing service interface
-│   └── BaseBillingService.cs        # Shared base implementation
+│   ├── IBillingService.cs              # Unified billing service interface
+│   ├── BaseBillingService.cs           # Shared base implementation
+│   ├── BillingService.Android.cs       # Android billing (Google Play Billing v7)
+│   ├── BillingService.iOS.cs           # iOS & Mac Catalyst billing (StoreKit 1)
+│   └── BillingService.Windows.cs       # Windows billing (Microsoft Store APIs)
 ├── Platforms/
 │   ├── Android/
-│   │   ├── BillingService.cs        # Android billing (Google Play Billing v7)
-│   │   ├── AndroidManifest.xml      # Android permissions and configuration
-│   │   └── MainActivity.cs          # Android main activity
+│   │   ├── AndroidManifest.xml         # Android permissions and configuration
+│   │   └── MainActivity.cs             # Android main activity
 │   ├── iOS/
-│   │   ├── BillingService.cs        # iOS billing (StoreKit 1)
-│   │   ├── Info.plist               # iOS configuration
-│   │   └── AppDelegate.cs           # iOS app delegate
+│   │   ├── Info.plist                  # iOS configuration
+│   │   └── AppDelegate.cs              # iOS app delegate
 │   ├── MacCatalyst/
-│   │   ├── BillingService.cs        # Mac Catalyst billing (StoreKit 1)
-│   │   ├── Info.plist               # Mac Catalyst configuration
-│   │   └── AppDelegate.cs           # Mac Catalyst app delegate
+│   │   ├── Info.plist                  # Mac Catalyst configuration
+│   │   └── AppDelegate.cs              # Mac Catalyst app delegate
 │   └── Windows/
-│       ├── BillingService.cs        # Windows billing (Microsoft Store APIs)
-│       ├── Package.appxmanifest     # Windows package configuration
-│       └── App.xaml.cs              # Windows app configuration
+│       ├── Package.appxmanifest        # Windows package configuration
+│       └── App.xaml.cs                 # Windows app configuration
 ├── Models/
-│   ├── Product.cs                   # Product data model
-│   └── PurchaseResult.cs           # Purchase result model
+│   ├── Product.cs                      # Product data model
+│   └── PurchaseResult.cs               # Purchase result model
 ├── ViewModels/
-│   ├── BaseViewModel.cs            # Base ViewModel with INotifyPropertyChanged
-│   └── ProductsViewModel.cs        # Products page ViewModel
+│   ├── BaseViewModel.cs                # Base ViewModel with INotifyPropertyChanged
+│   └── ProductsViewModel.cs            # Products page ViewModel
 ├── Views/
-│   ├── ProductsPage.xaml           # Products listing page
-│   └── ProductsPage.xaml.cs        # Code-behind
+│   ├── ProductsPage.xaml               # Products listing page
+│   └── ProductsPage.xaml.cs            # Code-behind
 └── Converters/
-    └── ValueConverters.cs          # XAML value converters
+    └── ValueConverters.cs              # XAML value converters
 ```
 
 ## How it's wired
 
 • **`Services/IBillingService.cs`**: Defines the unified contract for billing operations including initialization, product retrieval, and purchase handling across all platforms.
 
-• **`Services/BaseBillingService.cs`**: Provides shared business logic, product definitions, and ownership tracking used by Android, iOS, Mac Catalyst, and Windows implementations.
+• **`Services/BaseBillingService.cs`**: Provides shared business logic, product definitions, and ownership tracking used by all platform implementations.
 
-• **`Platforms/Android/BillingService.cs`**: Implements Android billing using Google Play Billing Client v7 with support for product queries, purchases, and restoration.
+• **`Services/BillingService.Android.cs`**: Implements Android billing using Google Play Billing Client v7 with support for product queries, purchases, and restoration. Conditionally compiled for Android targets.
 
-• **`Platforms/iOS/BillingService.cs`**: Implements iOS billing using StoreKit 1 APIs with transaction observers and purchase restoration.
+• **`Services/BillingService.iOS.cs`**: Implements iOS and Mac Catalyst billing using StoreKit 1 APIs with transaction observers and purchase restoration. Shared by both iOS and Mac Catalyst platforms through conditional compilation.
 
-• **`Platforms/MacCatalyst/BillingService.cs`**: Implements Mac Catalyst billing using StoreKit 1 APIs (identical implementation to iOS).
+• **`Services/BillingService.Windows.cs`**: Implements Windows billing using Microsoft Store APIs (Windows.Services.Store) with support for product queries, purchases, and license verification. Conditionally compiled for Windows targets.
 
-• **`Platforms/Windows/BillingService.cs`**: Implements Windows billing using Microsoft Store APIs (Windows.Services.Store) with support for product queries, purchases, and license verification.
+• **`BillingService.csproj`**: Uses conditional `<Compile Include>` directives to include platform-specific billing implementations based on target framework, enabling code sharing between iOS and Mac Catalyst while maintaining clean separation.
 
-• **`MauiProgram.cs`**: Registers the billing service implementation (`Services.BillingService`) and ViewModels in the dependency injection container.
+• **`MauiProgram.cs`**: Registers the billing service implementation (`Services.BillingService`) and ViewModels in the dependency injection container, automatically resolving to the correct platform-specific implementation at runtime.
 
-• **`ViewModels/ProductsViewModel.cs`**: Exposes billing operations as commands, manages product collections, and handles UI state updates (platform-agnostic).
+• **`ViewModels/ProductsViewModel.cs`**: Exposes billing operations as commands, manages product collections, and handles UI state updates in a platform-agnostic manner.
 
 • **`Views/ProductsPage.xaml`**: CollectionView displaying products with purchase buttons and visual indicators for ownership status.
 
@@ -267,10 +265,10 @@ BillingService/
 
 - Unified billing interface with platform-specific implementations
 - Android: Google Play Billing Client v7
-- iOS: StoreKit 1 with transaction observers
-- Mac Catalyst: StoreKit 1 with transaction observers (identical to iOS)
+- iOS & Mac Catalyst: StoreKit 1 with transaction observers (shared implementation)
 - Windows: Microsoft Store APIs (Windows.Services.Store)
-- Dependency injection for loose coupling
+- Conditional compilation in `.csproj` to include appropriate platform files
+- Dependency injection for loose coupling and automatic platform resolution
 
 ### Error Handling
 
@@ -292,6 +290,8 @@ BillingService/
 ## Notes
 
 • This sample demonstrates cross-platform billing for Android (Google Play Billing), iOS (StoreKit), Mac Catalyst (StoreKit), and Windows (Microsoft Store)
+• Platform-specific billing implementations are located in the `Services/` folder and conditionally compiled based on target framework
+• iOS and Mac Catalyst share a single billing implementation file (`BillingService.iOS.cs`) as both platforms use identical StoreKit 1 APIs
 • Testing in-app purchases requires:
   - Android: Google Play Console setup and signed APKs
   - iOS: App Store Connect setup and sandbox tester accounts
