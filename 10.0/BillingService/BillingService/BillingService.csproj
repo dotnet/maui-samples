@@ -67,12 +67,21 @@
 		<PackageReference Include="Xamarin.Android.Google.BillingClient" Version="7.1.1" />
 	</ItemGroup>
 
-	<!-- Platform-specific BillingService files: Conditionally compiled per target framework -->
-	<!-- All files compile correctly for their respective platforms during build. -->
+	<!-- Disable default compile items to manually control platform-specific files -->
+	<PropertyGroup>
+		<EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+	</PropertyGroup>
+
+	<!-- Include all non-platform-specific C# files -->
 	<ItemGroup>
-		<Compile Remove="Services/BillingService.iOS.cs" />
-		<Compile Remove="Services/BillingService.Android.cs" />
-		<Compile Remove="Services/BillingService.Windows.cs" />
+		<Compile Include="**/*.cs" Exclude="Services/BillingService.*.cs;obj/**;bin/**" />
+	</ItemGroup>
+
+	<!-- Platform-specific BillingService files: Visible in Solution Explorer, conditionally compiled per target framework -->
+	<ItemGroup>
+		<None Include="Services/BillingService.iOS.cs" />
+		<None Include="Services/BillingService.Android.cs" />
+		<None Include="Services/BillingService.Windows.cs" />
 		<Compile Include="Services/BillingService.iOS.cs" Condition="$(TargetFramework)=='net10.0-ios' OR $(TargetFramework)=='net10.0-maccatalyst'" />
 		<Compile Include="Services/BillingService.Android.cs" Condition="$(TargetFramework)=='net10.0-android'" />
 		<Compile Include="Services/BillingService.Windows.cs" Condition="$(TargetFramework.Contains('windows'))" />
