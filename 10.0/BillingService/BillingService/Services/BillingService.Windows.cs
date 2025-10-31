@@ -42,29 +42,20 @@ public class BillingService : BaseBillingService
 
     private void InitializeWindowHandle()
     {
-        try
+        var mainWindow = Application.Current?.Windows?.FirstOrDefault();
+        if (mainWindow == null)
         {
-            var mainWindow = Application.Current?.Windows?.FirstOrDefault();
-            if (mainWindow == null)
-            {
-                _logger.LogWarning("Could not retrieve main window - some Store dialogs may not display properly");
-                return;
-            }
-
-            var hwnd = WindowNative.GetWindowHandle(mainWindow.Handler?.PlatformView);
-            if (hwnd == IntPtr.Zero)
-            {
-                _logger.LogWarning("Window handle is invalid - some Store dialogs may not display properly");
-                return;
-            }
-
-            InitializeWithWindow.Initialize(_storeContext, hwnd);
-            _logger.LogInformation("StoreContext initialized with window handle");
+            throw new InvalidOperationException("Could not retrieve main window - Store initialization requires a valid window");
         }
-        catch (Exception ex)
+
+        var hwnd = WindowNative.GetWindowHandle(mainWindow.Handler?.PlatformView);
+        if (hwnd == IntPtr.Zero)
         {
-            _logger.LogWarning(ex, "Window initialization warning (non-critical): {Message}", ex.Message);
+            throw new InvalidOperationException("Window handle is invalid - Store initialization requires a valid window handle");
         }
+
+        InitializeWithWindow.Initialize(_storeContext, hwnd);
+        _logger.LogInformation("StoreContext initialized with window handle");
     }
 
     protected override async Task<List<Product>> GetPlatformProductsAsync(List<Product> baseProducts)
