@@ -114,7 +114,7 @@ BillingService/
 
 • **`Services/BillingService.Windows.cs`**: Implements Windows billing using Microsoft Store APIs (Windows.Services.Store) with support for product queries, purchases, and license verification. Conditionally compiled for Windows targets.
 
-• **`BillingService.csproj`**: Uses conditional `<Compile Include>` directives to include platform-specific billing implementations based on target framework, enabling code sharing between iOS and Mac Catalyst while maintaining clean separation.
+• **`BillingService.csproj`**: Disables default compile items and uses explicit conditional `<Compile Include>` directives to include platform-specific billing implementations based on target framework. Platform files are visible in Solution Explorer via `<None Include>` while being conditionally compiled per platform, enabling code sharing between iOS and Mac Catalyst while maintaining clean separation.
 
 • **`MauiProgram.cs`**: Registers the billing service implementation (`Services.BillingService`) and ViewModels in the dependency injection container, automatically resolving to the correct platform-specific implementation at runtime.
 
