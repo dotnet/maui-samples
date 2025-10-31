@@ -67,4 +67,14 @@
 		<PackageReference Include="Xamarin.Android.Google.BillingClient" Version="7.1.1" />
 	</ItemGroup>
 
+	<!-- Platform-specific BillingService includes (single ItemGroup, no in-file #if) -->
+	<ItemGroup>
+		<Compile Remove="Services/BillingService.iOS.cs" />
+		<Compile Remove="Services/BillingService.Android.cs" />
+		<Compile Remove="Services/BillingService.Windows.cs" />
+		<Compile Include="Services/BillingService.iOS.cs" Condition="$(TargetFramework)=='net10.0-ios' OR $(TargetFramework)=='net10.0-maccatalyst'" />
+		<Compile Include="Services/BillingService.Android.cs" Condition="$(TargetFramework)=='net10.0-android'" />
+		<Compile Include="Services/BillingService.Windows.cs" Condition="$(TargetFramework.Contains('windows'))" />
+	</ItemGroup>
+
 </Project>
