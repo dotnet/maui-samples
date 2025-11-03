@@ -12,9 +12,12 @@ Sample highlights include:
 
 | Name | Description |
 | ---- | ---- |
-| [SimpleChatClient (MAUI + Microsoft.Extensions.AI)](10.0/AI/ChatClient) | A minimal .NET MAUI sample that wires Microsoft.Extensions.AI into a chat UI. |
-| [ChatClientWithTools (MAUI + Microsoft.Extensions.AI Tools)](10.0/AI/ChatClientWithTools) | A .NET MAUI sample showing how to enhance using an LLM via Microsoft.Extensions.AI with function calling. This can improve reliability and repeatability of responses, as well as enable the LLM to answer queries it otherwise could not. |
-| [.NET eShop Reference Application - "Northern Mountains"](https://github.com/dotnet/eShop) | A reference .NET application implementing an e-commerce website using a services-based architecture using Aspire. |
+| [SimpleChatClient (AI)](10.0/AI/ChatClient) | A minimal .NET MAUI sample that wires [Microsoft.Extensions.AI](https://learn.microsoft.com/dotnet/ai/microsoft-extensions-ai) into a chat UI. |
+
+| [ChatClientWithTools (AI)](10.0/AI/ChatClientWithTools) | A .NET MAUI sample showing how to enhance using an LLM via [Microsoft.Extensions.AI](https://learn.microsoft.com/dotnet/ai/microsoft-extensions-ai) with tool function calling. This can improve reliability and repeatability of responses, as well as enable the LLM to answer queries it otherwise could not. |
+
+| [.NET eShop](https://github.com/dotnet/eShop) | A reference .NET application implementing an e-commerce website using a services-based architecture using Aspire. |
+
 | [Point of Sale](10.0/Apps/PointOfSale) | This app demonstrates various techniques for building a desktop and mobile application that takes advantage of native platform features, and adapts to a wide range of device needs all from a single codebase. |
 | [Weather '21 App](10.0/Apps/WeatherTwentyOne) | This is a .NET MAUI app showcasing responsive UI that adapts to desktop and mobile, and integrates with native platform features. |
 | [Calculator App](10.0/Apps/Calculator) | This basic calculator demonstrates using span and spacing features of a Grid layout to achieve a familiar interface. |
