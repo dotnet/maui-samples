@@ -10,13 +10,16 @@ Official samples can be accessed via the [Samples browser](https://docs.microsof
 
 Sample highlights include:
 
-* [.NET eShop Reference Application - "Northern Mountains"](https://github.com/dotnet/eShop)
-* [Point of Sale](10.0/Apps/PointOfSale)
-* [Weather '21 App](10.0/Apps/WeatherTwentyOne)
-* [Calculator App](10.0/Apps/Calculator)
-* [.NET Podcasts App](https://github.com/microsoft/dotnet-podcasts)
-* [Navigation Samples](10.0/Navigation)
-* [Beginner's Series Task App Sample](10.0/Beginners-Series)
+| Name | Description |
+| ---- | ---- |
+| [SimpleChatClient (MAUI + Microsoft.Extensions.AI)](10.0/AI/ChatClient) | A minimal .NET MAUI sample that wires Microsoft.Extensions.AI into a chat UI. |
+| [ChatClientWithTools (MAUI + Microsoft.Extensions.AI Tools)](10.0/AI/ChatClientWithTools) | A .NET MAUI sample showing how to enhance using an LLM via Microsoft.Extensions.AI with function calling. This can improve reliability and repeatability of responses, as well as enable the LLM to answer queries it otherwise could not. |
+| [.NET eShop Reference Application - "Northern Mountains"](https://github.com/dotnet/eShop) | A reference .NET application implementing an e-commerce website using a services-based architecture using Aspire. |
+| [Point of Sale](10.0/Apps/PointOfSale) | This app demonstrates various techniques for building a desktop and mobile application that takes advantage of native platform features, and adapts to a wide range of device needs all from a single codebase. |
+| [Weather '21 App](10.0/Apps/WeatherTwentyOne) | This is a .NET MAUI app showcasing responsive UI that adapts to desktop and mobile, and integrates with native platform features. |
+| [Calculator App](10.0/Apps/Calculator) | This basic calculator demonstrates using span and spacing features of a Grid layout to achieve a familiar interface. |
+| [Navigation Samples](10.0/Navigation) | Various sample apps that show you how to do navigation in different scenarios. |
+| [Beginner's Series Task App Sample](10.0/Beginners-Series) | Sample code for the [.NET MAUI for Beginners Series](https://learn.microsoft.com/shows/dotnet-maui-for-beginners/) |
 
 ## Community Samples
 
@@ -42,4 +45,3 @@ This project has adopted the code of conduct defined by the [Contributor Covenan
 ## License
 
 .NET (including the maui-samples repo) is licensed under the [MIT](LICENSE) license.
-
