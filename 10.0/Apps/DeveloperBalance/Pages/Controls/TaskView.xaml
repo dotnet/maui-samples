@@ -1,23 +1,21 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Border
-    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns="http://schemas.microsoft.com/dotnet/maui/global"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:effectsView="clr-namespace:Syncfusion.Maui.Toolkit.EffectsView;assembly=Syncfusion.Maui.Toolkit"
-    xmlns:pageModels="clr-namespace:DeveloperBalance.PageModels"
-    xmlns:models="clr-namespace:DeveloperBalance.Models"
+    xmlns:effects="clr-namespace:Syncfusion.Maui.Toolkit.EffectsView;assembly=Syncfusion.Maui.Toolkit"
     xmlns:shimmer="clr-namespace:Syncfusion.Maui.Toolkit.Shimmer;assembly=Syncfusion.Maui.Toolkit"
     x:Class="DeveloperBalance.Pages.Controls.TaskView"
     StrokeShape="RoundRectangle 20"
     Background="{AppThemeBinding Light={StaticResource LightSecondaryBackground}, Dark={StaticResource DarkSecondaryBackground}}"
-    x:DataType="models:ProjectTask">
+    x:DataType="ProjectTask">
     
-    <effectsView:SfEffectsView
+    <effects:SfEffectsView
         TouchDownEffects="Highlight"
         HighlightBackground="{AppThemeBinding Light={StaticResource DarkOnLightBackground}, Dark={StaticResource LightOnDarkBackground}}">
         <shimmer:SfShimmer
             BackgroundColor="Transparent"
             VerticalOptions="Fill"
-            IsActive="{Binding IsBusy, Source={RelativeSource AncestorType={x:Type pageModels:IProjectTaskPageModel}}, x:DataType=pageModels:IProjectTaskPageModel}">
+            IsActive="{Binding IsBusy, Source={RelativeSource AncestorType={x:Type IProjectTaskPageModel}}, x:DataType=IProjectTaskPageModel}">
             <shimmer:SfShimmer.CustomView>
                 <Grid 
                     ColumnDefinitions="Auto,*"
@@ -47,7 +45,7 @@
 
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer
-                                Command="{Binding NavigateToTaskCommand, Source={RelativeSource AncestorType={x:Type pageModels:IProjectTaskPageModel}}, x:DataType=pageModels:IProjectTaskPageModel}"
+                                Command="{Binding NavigateToTaskCommand, Source={RelativeSource AncestorType={x:Type IProjectTaskPageModel}}, x:DataType=IProjectTaskPageModel}"
                                 CommandParameter="{Binding .}"/>
                         </Grid.GestureRecognizers>
                     </Grid>
@@ -63,5 +61,5 @@
                 </Grid>
             </shimmer:SfShimmer.Content>
         </shimmer:SfShimmer>
-    </effectsView:SfEffectsView>
+    </effects:SfEffectsView>
 </Border>

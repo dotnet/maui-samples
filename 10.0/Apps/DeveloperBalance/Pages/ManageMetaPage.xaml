@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/maui/global"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:pageModels="clr-namespace:DeveloperBalance.PageModels"
-             xmlns:models="clr-namespace:DeveloperBalance.Models"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             x:DataType="pageModels:ManageMetaPageModel"
+             x:DataType="ManageMetaPageModel"
              x:Class="DeveloperBalance.Pages.ManageMetaPage"
              x:Name="MetaPage"
              Title="Categories and Tags">
@@ -55,7 +53,7 @@
             <VerticalStackLayout Spacing="{StaticResource LayoutSpacing}"
                 BindableLayout.ItemsSource="{Binding Categories}">
                 <BindableLayout.ItemTemplate>
-                    <DataTemplate x:DataType="models:Category">
+                    <DataTemplate x:DataType="Category">
                         <Grid ColumnSpacing="{StaticResource LayoutSpacing}" ColumnDefinitions="4*,3*,30,Auto">
                            <Entry Text="{Binding Title}" SemanticProperties.Description="{Binding Title}" Grid.Column="0" />
                             <Entry Text="{Binding Color}" Grid.Column="1" x:Name="ColorEntry"
@@ -76,7 +74,7 @@
                             <Button 
                                 ImageSource="{StaticResource IconDelete}"
                                 Background="Transparent"
-                                Command="{Binding DeleteCategoryCommand, Source={RelativeSource AncestorType={x:Type pageModels:ManageMetaPageModel}}, x:DataType=pageModels:ManageMetaPageModel}" CommandParameter="{Binding .}"
+                                Command="{Binding DeleteCategoryCommand, Source={RelativeSource AncestorType={x:Type ManageMetaPageModel}}, x:DataType=ManageMetaPageModel}" CommandParameter="{Binding .}"
                                 Grid.Column="3"
                                 SemanticProperties.Description="{Binding Title, StringFormat='Delete {0} Category'}" />
                         </Grid>
@@ -98,7 +96,7 @@
             <VerticalStackLayout Spacing="{StaticResource LayoutSpacing}"
                 BindableLayout.ItemsSource="{Binding Tags}">
                 <BindableLayout.ItemTemplate>
-                    <DataTemplate x:DataType="models:Tag">
+                    <DataTemplate x:DataType="Tag">
                         <Grid ColumnSpacing="{StaticResource LayoutSpacing}" ColumnDefinitions="4*,3*,30,Auto">
                             <Entry Text="{Binding Title}" Grid.Column="0" SemanticProperties.Description="{Binding Title}" />
                             <Entry Text="{Binding Color}" Grid.Column="1" x:Name="ColorEntry"
@@ -120,7 +118,7 @@
                                 ImageSource="{StaticResource IconDelete}"
                                 SemanticProperties.Description="{Binding Title, StringFormat='Delete {0} Tag'}"
                                 Background="Transparent"
-                                Command="{Binding DeleteTagCommand, Source={RelativeSource AncestorType={x:Type pageModels:ManageMetaPageModel}}, x:DataType=pageModels:ManageMetaPageModel}" CommandParameter="{Binding .}"
+                                Command="{Binding DeleteTagCommand, Source={RelativeSource AncestorType={x:Type ManageMetaPageModel}}, x:DataType=ManageMetaPageModel}" CommandParameter="{Binding .}"
                                 Grid.Column="3"/>
                         </Grid>
                     </DataTemplate>
