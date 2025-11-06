@@ -37,7 +37,7 @@
             IsRefreshing="{Binding IsRefreshing}"
             RefreshCommand="{Binding RefreshCommand}">
             <pullToRefresh:SfPullToRefresh.PullableContent>
-                <ScrollView>
+                <ScrollView SafeAreaEdges="Container">
                     <Grid Padding="{StaticResource LayoutPadding}" RowSpacing="{StaticResource LayoutSpacing}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
