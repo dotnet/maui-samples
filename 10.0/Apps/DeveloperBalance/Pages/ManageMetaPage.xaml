@@ -44,7 +44,9 @@
     </ContentPage.Resources>
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Reset App" Command="{Binding ResetCommand}" />
+        <ToolbarItem Text="Reset App" 
+                     Priority="0"
+                     Command="{Binding ResetCommand}" />
     </ContentPage.ToolbarItems>
 
     <ScrollView>
