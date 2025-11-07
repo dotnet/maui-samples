@@ -25,6 +25,7 @@ public partial class CustomPickerHandler : PickerHandler
         platformView.Click += OnCustomizeDialog;
     }
 
+    // TODO: Refactor to avoid reflection if MAUI framework exposes dialog customization in future.
     static FieldInfo? GetDialogField()
     {
         return typeof(PickerHandler).GetField("_dialog",

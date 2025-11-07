@@ -28,13 +28,7 @@ public static class MauiProgram
         // Register custom handler for Windows, Android, and iOS
         builder.ConfigureMauiHandlers(handlers =>
         {
-#if ANDROID
             handlers.AddHandler<CustomPicker, CustomPickerHandler>();
-#elif WINDOWS
-            handlers.AddHandler<CustomPicker, CustomPickerHandler>();
-#elif IOS || MACCATALYST
-            handlers.AddHandler<CustomPicker, CustomPickerHandler>();
-#endif
         });
 
 #if DEBUG
