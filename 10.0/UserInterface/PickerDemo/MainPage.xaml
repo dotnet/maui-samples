@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="PickerDemo.MainPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:PickerDemo"
+             xmlns:sf="clr-namespace:Syncfusion.Maui.Toolkit.SegmentedControl;assembly=Syncfusion.Maui.Toolkit"
+             xmlns:controls="clr-namespace:PickerDemo.Control">
+    <VerticalStackLayout Spacing="20"
+                         Padding="20">
+        <Grid HorizontalOptions="End">
+            <sf:SfSegmentedControl x:Name="ThemeSegmentedControl"
+                                   SelectionChanged="SfSegmentedControl_SelectionChanged"
+                                   SegmentWidth="40"
+                                   SegmentHeight="40">
+                <sf:SfSegmentedControl.ItemsSource>
+                    <x:Array Type="{x:Type sf:SfSegmentItem}">
+                        <sf:SfSegmentItem ImageSource="{StaticResource IconLight}"/>
+                        <sf:SfSegmentItem ImageSource="{StaticResource IconDark}"/>
+                    </x:Array>
+                </sf:SfSegmentedControl.ItemsSource>
+            </sf:SfSegmentedControl>
+        </Grid>
+        <Label Text="Picker Dialog Color Customization Demo"
+               FontSize="24"
+               FontAttributes="Bold"
+               HorizontalOptions="Center"
+               Margin="0,10,0,20"/>
+
+        <Label Text="{Binding Source={x:Reference picker}, Path=SelectedItem, StringFormat='Selected Country: {0}'}"
+               FontSize="16"
+               Margin="0,5,0,5"/>
+        <controls:CustomPicker
+            x:Name="picker"
+            Title="Choose Country"
+            DialogBackgroundColor="{AppThemeBinding Light=#9880e5, Dark=#404040}"
+            DialogTextColor="{AppThemeBinding Light=#FF170453, Dark=#FFFFFF}"
+            SelectedTextColor="{AppThemeBinding Light=#FFF4F017, Dark=#2B0B98}"
+            TextColor="{AppThemeBinding Light=#0D0D0D, Dark=#F2F2F2}"
+            FontSize="16">
+            <Picker.Items>
+                <x:String>United States</x:String>
+                <x:String>Canada</x:String>
+                <x:String>United Kingdom</x:String>
+                <x:String>Australia</x:String>
+                <x:String>Germany</x:String>
+                <x:String>France</x:String>
+                <x:String>Japan</x:String>
+                <x:String>India</x:String>
+            </Picker.Items>
+        </controls:CustomPicker>
+    </VerticalStackLayout>
+</ContentPage>
