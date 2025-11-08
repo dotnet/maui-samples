@@ -12,7 +12,7 @@ namespace PickerDemo.Handlers;
 
 public partial class CustomPickerHandler : PickerHandler
 {
-    // TODO: Refactor to avoid reflection if MAUI framework exposes dialog customization in future.
+    // TODO: To avoid using reflection code, the _dialog variable should be exposed as protected in the PickerHandler.Android. 
     private FieldInfo? _dialogFieldInfo;
 
     protected override void ConnectHandler(MauiPicker platformView)
@@ -25,7 +25,7 @@ public partial class CustomPickerHandler : PickerHandler
         platformView.Click += OnCustomizeDialog;
     }
 
-    // TODO: Refactor to avoid reflection if MAUI framework exposes dialog customization in future.
+    // TODO: To avoid using reflection code, the _dialog variable should be exposed as protected in the PickerHandler.Android.
     static FieldInfo? GetDialogField()
     {
         return typeof(PickerHandler).GetField("_dialog",
