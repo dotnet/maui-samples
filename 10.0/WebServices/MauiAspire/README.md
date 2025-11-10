@@ -1,6 +1,6 @@
 ---
 name: .NET MAUI - Aspire Integration
-description: "This sample demonstrates how to integrate .NET MAUI applications with .NET Aspire for simplified service orchestration, discovery, and development. It showcases connecting a MAUI app to a web API using Aspire's App Host and service defaults."
+description: "This sample demonstrates how to integrate .NET MAUI applications with Aspire for simplified service orchestration, discovery, and development. It showcases connecting a MAUI app to a web API using Aspire's App Host and service defaults."
 page_type: sample
 languages:
 - csharp
@@ -11,13 +11,13 @@ products:
 urlFragment: maui-aspire-integration
 ---
 
-# .NET MAUI with .NET Aspire Integration
+# .NET MAUI with Aspire Integration
 
-This sample demonstrates the integration between .NET MAUI and .NET Aspire, showcasing how Aspire simplifies connecting mobile and desktop applications to local web services during development.
+This sample demonstrates the integration between .NET MAUI and Aspire, showcasing how Aspire simplifies connecting mobile and desktop applications to local web services during development.
 
-## What is .NET Aspire?
+## What is Aspire?
 
-.NET Aspire provides a consistent, opinionated set of tools and patterns for building and running distributed applications. It's designed to improve the experience of building cloud-native applications by providing:
+Aspire provides a consistent, opinionated set of tools and patterns for building and running distributed applications. It's designed to improve the experience of building cloud-native applications by providing:
 
 - **Orchestration**: Simplified management of multiple services and dependencies
 - **Components**: Pre-built integrations for common services and platforms
@@ -36,7 +36,7 @@ Integrating Aspire with your .NET MAUI applications provides several key benefit
 
 ## Platform Support
 
-.NET Aspire integration with .NET MAUI supports all platforms:
+Aspire integration with .NET MAUI supports all platforms:
 
 - **Windows**
 - **Mac Catalyst**
@@ -52,6 +52,7 @@ To use this sample or integrate Aspire with your own .NET MAUI project, you need
 
 - [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0) or later
 - [.NET MAUI workload](https://learn.microsoft.com/dotnet/maui/get-started/installation) installed
+- [Aspire 13](https://learn.microsoft.com/dotnet/aspire/fundamentals/setup-tooling) or later
 
 ## What's in This Sample?
 
@@ -67,25 +68,38 @@ This sample contains a complete working example with:
 
 ## Running the Sample
 
+You can run this sample using Visual Studio, Visual Studio Code, or the command line.
+
+### Visual Studio
+
 1. Open the solution in Visual Studio 2022 or later
 2. Set `MauiAspire.AppHost` as the startup project
 3. Press F5 to run the application
 4. The Aspire dashboard will open in your browser, showing all registered services
 5. The MAUI app will launch and automatically connect to the weather API
 
-### Alternative: Command Line
+### Visual Studio Code
 
-Navigate to the `MauiAspire.AppHost` directory and run:
+1. Open the `MauiAspire.AppHost` folder in VS Code
+2. Run the project using the debugger or the Run/Debug panel
+3. The Aspire dashboard will open in your browser
+4. The MAUI app will launch automatically
 
+### Command Line
+
+Navigate to the `MauiAspire.AppHost` directory and run one of the following commands:
+
+**Using dotnet run:**
 ```bash
 dotnet run
 ```
 
-or
-
+**Using aspire run:**
 ```bash
 aspire run
 ```
+
+Both commands will start the Aspire dashboard and launch your MAUI application with all services orchestrated.
 
 ## Applying Aspire to Your Existing .NET MAUI Project
 
@@ -321,7 +335,7 @@ If you see errors about missing service defaults:
 
 For more information about this sample and the technologies it uses, see:
 
-- [.NET Aspire overview](https://learn.microsoft.com/dotnet/aspire/get-started/aspire-overview)
-- [.NET Aspire service discovery](https://learn.microsoft.com/dotnet/aspire/service-discovery/overview)
-- [.NET Aspire app host](https://learn.microsoft.com/dotnet/aspire/fundamentals/app-host-overview)
+- [Aspire overview](https://learn.microsoft.com/dotnet/aspire/get-started/aspire-overview)
+- [Aspire service discovery](https://learn.microsoft.com/dotnet/aspire/service-discovery/overview)
+- [Aspire app host](https://learn.microsoft.com/dotnet/aspire/fundamentals/app-host-overview)
 - [Connect to local web services from iOS simulators and Android emulators](https://learn.microsoft.com/dotnet/maui/data-cloud/local-web-services)
