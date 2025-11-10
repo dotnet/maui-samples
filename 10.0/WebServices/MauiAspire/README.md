@@ -8,7 +8,7 @@ languages:
 products:
 - dotnet-maui
 - dotnet-aspire
-urlFragment: webservices-aspire
+urlFragment: maui-aspire-integration
 ---
 
 # .NET MAUI with .NET Aspire Integration
@@ -36,8 +36,15 @@ Integrating Aspire with your .NET MAUI applications provides several key benefit
 
 ## Platform Support
 
-> [!NOTE]
-> .NET Aspire 13 currently has full support for **Windows** and **Mac Catalyst**. Support for **Android** and **iOS** is coming in a future release.
+.NET Aspire integration with .NET MAUI supports all platforms:
+
+- **Windows**
+- **Mac Catalyst**
+- **iOS**
+- **Android**
+
+> [!IMPORTANT]
+> This feature is currently in preview. Some features are still being implemented, and integration with Visual Studio 2026 is not completely available yet.
 
 ## Prerequisites
 
@@ -267,9 +274,9 @@ When running:
 
 On Windows and Mac Catalyst, the Aspire integration works seamlessly using localhost. Service discovery automatically provides the correct URLs for connecting to local services.
 
-### iOS and Android (Coming Soon)
+### iOS and Android
 
-Support for iOS and Android is coming in a future Aspire release. When available, Dev Tunnels will be automatically configured to enable connectivity between mobile emulators/devices and services running on your development machine.
+iOS and Android are fully supported. Dev Tunnels are automatically configured to enable connectivity between mobile emulators/simulators/devices and services running on your development machine.
 
 ## Features Demonstrated
 
