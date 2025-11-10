@@ -305,6 +305,8 @@ grep -r "ListView\|TableView" --include="*.xaml" --include="*.cs" .
 </CollectionView>
 ```
 
+> ⚠️ **Note:** CollectionView has `SelectionMode="None"` by default (selection disabled). You must explicitly set `SelectionMode="Single"` or `SelectionMode="Multiple"` to enable selection.
+
 **Code-behind changes:**
 ```csharp
 // ❌ OLD (ListView)
@@ -352,7 +354,7 @@ void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
 **After (Grouped CollectionView):**
 ```xaml
 <CollectionView ItemsSource="{Binding GroupedItems}"
-                IsGrouped="True">
+                IsGrouped="true">
     <CollectionView.GroupHeaderTemplate>
         <DataTemplate>
             <Label Text="{Binding Key}"
@@ -373,6 +375,8 @@ void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
 ```
 
 **Step 4: Context Actions → SwipeView**
+
+> ⚠️ **Platform Note:** SwipeView requires touch input. On Windows desktop, it only works with touch screens, not with mouse/trackpad. Consider providing alternative UI for desktop scenarios (e.g., buttons, right-click menu).
 
 **Before (ListView with ContextActions):**
 ```xaml
@@ -421,7 +425,7 @@ TableView is commonly used for settings pages. Here are modern alternatives:
 **Option 1: CollectionView with Grouped Data**
 ```xaml
 <CollectionView ItemsSource="{Binding SettingGroups}"
-                IsGrouped="True"
+                IsGrouped="true"
                 SelectionMode="None">
     <CollectionView.GroupHeaderTemplate>
         <DataTemplate>
@@ -554,6 +558,43 @@ These are now obsolete in .NET 10. CollectionView has its own platform behaviors
 </CollectionView>
 ```
 
+**6. Item Sizing Optimization**
+
+CollectionView uses `ItemSizingStrategy` to control item measurement:
+
+```xaml
+<!-- Default: Each item measured individually (like HasUnevenRows="True") -->
+<CollectionView ItemSizingStrategy="MeasureAllItems">
+    <!-- ... -->
+</CollectionView>
+
+<!-- Performance: Only first item measured, rest use same height -->
+<CollectionView ItemSizingStrategy="MeasureFirstItem">
+    <!-- Use this when all items have similar heights -->
+</CollectionView>
+```
+
+> 💡 **Performance Tip:** If your list items have consistent heights, use `ItemSizingStrategy="MeasureFirstItem"` for better performance with large lists.
+
+#### .NET 10 Handler Changes (iOS/Mac Catalyst)
+
+> ℹ️ **.NET 10 uses new optimized CollectionView handlers** on iOS and Mac Catalyst by default, providing improved performance and stability.
+
+If you experience issues after migrating, you can revert to the .NET 9 handler:
+
+```csharp
+// In MauiProgram.cs
+#if IOS || MACCATALYST
+builder.ConfigureMauiHandlers(handlers =>
+{
+    handlers.AddHandler<Microsoft.Maui.Controls.CollectionView, 
+                        Microsoft.Maui.Controls.Handlers.Items.CollectionViewHandler>();
+});
+#endif
+```
+
+However, Microsoft recommends using the new handler for best results.
+
 #### Testing Checklist
 
 After migration, test these scenarios:
@@ -587,7 +628,7 @@ ListView to CollectionView migration is complex because:
 | **Selection Args** | `SelectedItemChangedEventArgs` | `SelectionChangedEventArgs` |
 | **Getting Selected** | `e.SelectedItem` | `e.CurrentSelection.FirstOrDefault()` |
 | **Context Menus** | `ContextActions` | `SwipeView` |
-| **Grouping** | `IsGroupingEnabled="True"` | `IsGrouped="True"` |
+| **Grouping** | `IsGroupingEnabled="True"` | `IsGrouped="true"` |
 | **Group Header** | `GroupDisplayBinding` | `GroupHeaderTemplate` |
 | **Even Rows** | `HasUnevenRows="False"` | Auto-sizes (default) |
 | **Empty State** | Manual | `EmptyView` property |
