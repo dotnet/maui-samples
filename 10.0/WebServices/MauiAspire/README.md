@@ -76,14 +76,15 @@ You can run this sample using Visual Studio, Visual Studio Code, or the command 
 2. Set `MauiAspire.AppHost` as the startup project
 3. Press F5 to run the application
 4. The Aspire dashboard will open in your browser, showing all registered services
-5. The MAUI app will launch and automatically connect to the weather API
+5. From the dashboard, manually start the MAUI app targets (Windows, Mac Catalyst, iOS, or Android)
+6. The MAUI app will connect to the weather API through service discovery
 
 ### Visual Studio Code
 
 1. Open the `MauiAspire.AppHost` folder in VS Code
 2. Run the project using the debugger or the Run/Debug panel
 3. The Aspire dashboard will open in your browser
-4. The MAUI app will launch automatically
+4. From the dashboard, manually start the MAUI app targets
 
 ### Command Line
 
@@ -99,7 +100,7 @@ dotnet run
 aspire run
 ```
 
-Both commands will start the Aspire dashboard and launch your MAUI application with all services orchestrated.
+Both commands will start the Aspire dashboard. From there, you can manually start the MAUI app targets for your desired platforms.
 
 ## Applying Aspire to Your Existing .NET MAUI Project
 
@@ -279,8 +280,9 @@ Run the App Host project using your preferred method:
 
 When running:
 1. The Aspire dashboard will open at `https://localhost:[port]`
-2. Your MAUI app will launch and connect to services automatically
-3. Monitor logs, traces, and metrics in the Aspire dashboard
+2. From the dashboard, manually start the MAUI app targets for your desired platforms
+3. Your MAUI app will connect to services through service discovery
+4. Monitor logs, traces, and metrics in the Aspire dashboard
 
 ## Platform-Specific Considerations
 
