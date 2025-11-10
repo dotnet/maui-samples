@@ -9,6 +9,8 @@ This guide helps you upgrade your .NET MAUI application from .NET 9 to .NET 10 b
 1. [Quick Start](#quick-start)
 2. [Update Target Framework](#update-target-framework)
 3. [Breaking Changes (P0 - Must Fix)](#breaking-changes-p0---must-fix)
+   - [MessagingCenter Made Internal](#messagingcenter-made-internal)
+   - [ListView and TableView Deprecated](#listview-and-tableview-deprecated)
 4. [Deprecated APIs (P1 - Fix Soon)](#deprecated-apis-p1---fix-soon)
 5. [Recommended Changes (P2)](#recommended-changes-p2)
 6. [Bulk Migration Tools](#bulk-migration-tools)
@@ -19,13 +21,14 @@ This guide helps you upgrade your .NET MAUI application from .NET 9 to .NET 10 b
 
 ## Quick Start
 
-**Three-Step Upgrade Process:**
+**Four-Step Upgrade Process:**
 
 1. **Update TargetFramework** to `net10.0`
 2. **Fix breaking changes** - MessagingCenter (P0)
-3. **Fix deprecated APIs** - Animation methods, DisplayAlert, IsBusy (P1)
+3. **Migrate ListView/TableView to CollectionView** (P0 - CRITICAL)
+4. **Fix deprecated APIs** - Animation methods, DisplayAlert, IsBusy (P1)
 
-**Estimated Time:** 1-3 hours depending on codebase size
+> ⚠️ **Major Breaking Change**: ListView and TableView are now obsolete. This is the most significant part of the upgrade.
 
 ---
 
@@ -222,6 +225,373 @@ public partial class MainPage : ContentPage
 - ✅ Better IntelliSense support
 - ✅ Easier to refactor
 - ⚠️ **Must remember to unregister!**
+
+---
+
+### ListView and TableView Deprecated
+
+**Status:** 🚨 **DEPRECATED (P0)** - `ListView`, `TableView`, and all Cell types are now obsolete. Migrate to `CollectionView`.
+
+**Warning You'll See:**
+```
+warning CS0618: 'ListView' is obsolete: 'ListView is deprecated. Please use CollectionView instead.'
+warning CS0618: 'TableView' is obsolete: 'Please use CollectionView instead.'
+warning CS0618: 'TextCell' is obsolete: 'The controls which use TextCell (ListView and TableView) are obsolete. Please use CollectionView instead.'
+```
+
+**Obsolete Types:**
+- `ListView` → `CollectionView`
+- `TableView` → `CollectionView` (for settings pages, consider vertical StackLayout with BindableLayout)
+- `TextCell` → Custom DataTemplate with Label(s)
+- `ImageCell` → Custom DataTemplate with Image + Label(s)
+- `EntryCell` → Custom DataTemplate with Entry
+- `SwitchCell` → Custom DataTemplate with Switch
+- `ViewCell` → DataTemplate
+
+**Impact:** This is a **MAJOR** breaking change. ListView and TableView are among the most commonly used controls in MAUI apps.
+
+#### Why This Takes Time
+
+Converting ListView/TableView to CollectionView is not a simple find-replace:
+
+1. **Different event model** - `ItemSelected` → `SelectionChanged` with different arguments
+2. **Different grouping** - GroupDisplayBinding no longer exists
+3. **Context actions** - Must convert to SwipeView
+4. **Item sizing** - `HasUnevenRows` handled differently
+5. **Platform-specific code** - iOS/Android ListView platform configurations need removal
+6. **Testing required** - CollectionView virtualizes differently, may affect performance
+
+#### Migration Strategy
+
+**Step 1: Inventory Your ListViews**
+
+```bash
+# Find all ListView/TableView usages
+grep -r "ListView\|TableView" --include="*.xaml" --include="*.cs" .
+```
+
+**Step 2: Basic ListView → CollectionView**
+
+**Before (ListView):**
+```xaml
+<ListView ItemsSource="{Binding Items}"
+          ItemSelected="OnItemSelected"
+          HasUnevenRows="True">
+    <ListView.ItemTemplate>
+        <DataTemplate>
+            <TextCell Text="{Binding Title}"
+                     Detail="{Binding Description}" />
+        </DataTemplate>
+    </ListView.ItemTemplate>
+</ListView>
+```
+
+**After (CollectionView):**
+```xaml
+<CollectionView ItemsSource="{Binding Items}"
+                SelectionMode="Single"
+                SelectionChanged="OnSelectionChanged">
+    <CollectionView.ItemTemplate>
+        <DataTemplate>
+            <VerticalStackLayout Padding="10">
+                <Label Text="{Binding Title}" 
+                       FontAttributes="Bold" />
+                <Label Text="{Binding Description}"
+                       FontSize="12"
+                       TextColor="{StaticResource Gray600}" />
+            </VerticalStackLayout>
+        </DataTemplate>
+    </CollectionView.ItemTemplate>
+</CollectionView>
+```
+
+**Code-behind changes:**
+```csharp
+// ❌ OLD (ListView)
+void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
+{
+    if (e.SelectedItem == null)
+        return;
+        
+    var item = (MyItem)e.SelectedItem;
+    // Handle selection
+    
+    // Deselect
+    ((ListView)sender).SelectedItem = null;
+}
+
+// ✅ NEW (CollectionView)
+void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+{
+    if (e.CurrentSelection.Count == 0)
+        return;
+        
+    var item = (MyItem)e.CurrentSelection.FirstOrDefault();
+    // Handle selection
+    
+    // Deselect (optional)
+    ((CollectionView)sender).SelectedItem = null;
+}
+```
+
+**Step 3: Grouped ListView → Grouped CollectionView**
+
+**Before (Grouped ListView):**
+```xaml
+<ListView ItemsSource="{Binding GroupedItems}"
+          IsGroupingEnabled="True"
+          GroupDisplayBinding="{Binding Key}">
+    <ListView.ItemTemplate>
+        <DataTemplate>
+            <TextCell Text="{Binding Name}" />
+        </DataTemplate>
+    </ListView.ItemTemplate>
+</ListView>
+```
+
+**After (Grouped CollectionView):**
+```xaml
+<CollectionView ItemsSource="{Binding GroupedItems}"
+                IsGrouped="True">
+    <CollectionView.GroupHeaderTemplate>
+        <DataTemplate>
+            <Label Text="{Binding Key}"
+                   FontAttributes="Bold"
+                   BackgroundColor="{StaticResource Gray100}"
+                   Padding="10,5" />
+        </DataTemplate>
+    </CollectionView.GroupHeaderTemplate>
+    
+    <CollectionView.ItemTemplate>
+        <DataTemplate>
+            <VerticalStackLayout Padding="20,10">
+                <Label Text="{Binding Name}" />
+            </VerticalStackLayout>
+        </DataTemplate>
+    </CollectionView.ItemTemplate>
+</CollectionView>
+```
+
+**Step 4: Context Actions → SwipeView**
+
+**Before (ListView with ContextActions):**
+```xaml
+<ListView.ItemTemplate>
+    <DataTemplate>
+        <ViewCell>
+            <ViewCell.ContextActions>
+                <MenuItem Text="Delete" 
+                         IsDestructive="True"
+                         Command="{Binding Source={RelativeSource AncestorType={x:Type local:MyPage}}, Path=DeleteCommand}"
+                         CommandParameter="{Binding .}" />
+            </ViewCell.ContextActions>
+            
+            <Label Text="{Binding Title}" Padding="10" />
+        </ViewCell>
+    </DataTemplate>
+</ListView.ItemTemplate>
+```
+
+**After (CollectionView with SwipeView):**
+```xaml
+<CollectionView.ItemTemplate>
+    <DataTemplate>
+        <SwipeView>
+            <SwipeView.RightItems>
+                <SwipeItems>
+                    <SwipeItem Text="Delete"
+                              BackgroundColor="Red"
+                              Command="{Binding Source={RelativeSource AncestorType={x:Type local:MyPage}}, Path=DeleteCommand}"
+                              CommandParameter="{Binding .}" />
+                </SwipeItems>
+            </SwipeView.RightItems>
+            
+            <VerticalStackLayout Padding="10">
+                <Label Text="{Binding Title}" />
+            </VerticalStackLayout>
+        </SwipeView>
+    </DataTemplate>
+</CollectionView.ItemTemplate>
+```
+
+**Step 5: TableView for Settings → Alternative Approaches**
+
+TableView is commonly used for settings pages. Here are modern alternatives:
+
+**Option 1: CollectionView with Grouped Data**
+```xaml
+<CollectionView ItemsSource="{Binding SettingGroups}"
+                IsGrouped="True"
+                SelectionMode="None">
+    <CollectionView.GroupHeaderTemplate>
+        <DataTemplate>
+            <Label Text="{Binding Title}" 
+                   FontAttributes="Bold"
+                   Margin="10,15,10,5" />
+        </DataTemplate>
+    </CollectionView.GroupHeaderTemplate>
+    
+    <CollectionView.ItemTemplate>
+        <DataTemplate>
+            <Grid Padding="15,10" ColumnDefinitions="*,Auto">
+                <Label Text="{Binding Title}" 
+                       VerticalOptions="Center" />
+                <Switch Grid.Column="1" 
+                        IsToggled="{Binding IsEnabled}"
+                        IsVisible="{Binding ShowSwitch}" />
+            </Grid>
+        </DataTemplate>
+    </CollectionView.ItemTemplate>
+</CollectionView>
+```
+
+**Option 2: Vertical StackLayout (for small settings lists)**
+```xaml
+<ScrollView>
+    <VerticalStackLayout BindableLayout.ItemsSource="{Binding Settings}"
+                        Spacing="10"
+                        Padding="15">
+        <BindableLayout.ItemTemplate>
+            <DataTemplate>
+                <Border StrokeThickness="0"
+                       BackgroundColor="{StaticResource Gray100}"
+                       Padding="15,10">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <Label Text="{Binding Title}" 
+                              VerticalOptions="Center" />
+                        <Switch Grid.Column="1" 
+                               IsToggled="{Binding IsEnabled}" />
+                    </Grid>
+                </Border>
+            </DataTemplate>
+        </BindableLayout.ItemTemplate>
+    </VerticalStackLayout>
+</ScrollView>
+```
+
+**Step 6: Remove Platform-Specific ListView Code**
+
+If you used platform-specific ListView features, remove them:
+
+```csharp
+// ❌ OLD - Remove these using statements
+using Microsoft.Maui.Controls.PlatformConfiguration;
+using Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;
+using Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;
+
+// ❌ OLD - Remove ListView platform configurations
+myListView.On<iOS>().SetSeparatorStyle(SeparatorStyle.FullWidth);
+myListView.On<Android>().IsFastScrollEnabled();
+```
+
+These are now obsolete in .NET 10. CollectionView has its own platform behaviors that you may need to configure differently.
+
+#### Common Patterns & Pitfalls
+
+**1. Empty View**
+```xaml
+<!-- CollectionView has built-in EmptyView support -->
+<CollectionView ItemsSource="{Binding Items}">
+    <CollectionView.EmptyView>
+        <ContentView>
+            <VerticalStackLayout Padding="50" VerticalOptions="Center">
+                <Label Text="No items found" 
+                       HorizontalTextAlignment="Center" />
+            </VerticalStackLayout>
+        </ContentView>
+    </CollectionView.EmptyView>
+    <!-- ... -->
+</CollectionView>
+```
+
+**2. Pull to Refresh**
+```xaml
+<RefreshView IsRefreshing="{Binding IsRefreshing}"
+             Command="{Binding RefreshCommand}">
+    <CollectionView ItemsSource="{Binding Items}">
+        <!-- ... -->
+    </CollectionView>
+</RefreshView>
+```
+
+**3. Item Spacing**
+```xaml
+<!-- Use ItemsLayout for spacing -->
+<CollectionView ItemsSource="{Binding Items}">
+    <CollectionView.ItemsLayout>
+        <LinearItemsLayout Orientation="Vertical" 
+                          ItemSpacing="10" />
+    </CollectionView.ItemsLayout>
+    <!-- ... -->
+</CollectionView>
+```
+
+**4. Header and Footer**
+```xaml
+<CollectionView ItemsSource="{Binding Items}">
+    <CollectionView.Header>
+        <Label Text="My List" 
+               FontSize="24" 
+               Padding="10" />
+    </CollectionView.Header>
+    
+    <CollectionView.Footer>
+        <Label Text="End of list" 
+               Padding="10" 
+               HorizontalTextAlignment="Center" />
+    </CollectionView.Footer>
+    
+    <!-- ItemTemplate -->
+</CollectionView>
+```
+
+**5. Load More / Infinite Scroll**
+```xaml
+<CollectionView ItemsSource="{Binding Items}"
+                RemainingItemsThreshold="5"
+                RemainingItemsThresholdReachedCommand="{Binding LoadMoreCommand}">
+    <!-- ItemTemplate -->
+</CollectionView>
+```
+
+#### Testing Checklist
+
+After migration, test these scenarios:
+
+- [ ] **Item selection** works correctly
+- [ ] **Grouped lists** display with proper headers
+- [ ] **Swipe actions** (if used) work on both iOS and Android
+- [ ] **Empty view** appears when list is empty
+- [ ] **Pull to refresh** works (if used)
+- [ ] **Scroll performance** is acceptable (especially for large lists)
+- [ ] **Item sizing** is correct (CollectionView auto-sizes by default)
+- [ ] **Selection visual state** shows/hides correctly
+- [ ] **Data binding** updates the list correctly
+- [ ] **Navigation** from list items works
+
+#### Migration Complexity Factors
+
+ListView to CollectionView migration is complex because:
+- Each ListView may have unique behaviors
+- Platform-specific code needs updating
+- Extensive testing required
+- Context actions need SwipeView conversion
+- Grouped lists need template updates
+- ViewModel changes may be needed
+
+#### Quick Reference: ListView vs CollectionView
+
+| Feature | ListView | CollectionView |
+|---------|----------|----------------|
+| **Selection Event** | `ItemSelected` | `SelectionChanged` |
+| **Selection Args** | `SelectedItemChangedEventArgs` | `SelectionChangedEventArgs` |
+| **Getting Selected** | `e.SelectedItem` | `e.CurrentSelection.FirstOrDefault()` |
+| **Context Menus** | `ContextActions` | `SwipeView` |
+| **Grouping** | `IsGroupingEnabled="True"` | `IsGrouped="True"` |
+| **Group Header** | `GroupDisplayBinding` | `GroupHeaderTemplate` |
+| **Even Rows** | `HasUnevenRows="False"` | Auto-sizes (default) |
+| **Empty State** | Manual | `EmptyView` property |
+| **Cells** | TextCell, ImageCell, etc. | Custom DataTemplate |
 
 ---
 
@@ -662,6 +1032,51 @@ Find:    DisplayActionSheet\(
 Replace: DisplayActionSheetAsync(
 ```
 
+#### ListView/TableView Detection (Manual Migration Required)
+
+**⚠️ Note:** ListView/TableView migration CANNOT be automated. Use these searches to find instances:
+
+```bash
+# Find all ListView usages in XAML
+grep -r "<ListView" --include="*.xaml" .
+
+# Find all TableView usages in XAML
+grep -r "<TableView" --include="*.xaml" .
+
+# Find ListView in C# code
+grep -r "new ListView\|ListView " --include="*.cs" .
+
+# Find Cell types in XAML
+grep -r "TextCell\|ImageCell\|EntryCell\|SwitchCell\|ViewCell" --include="*.xaml" .
+
+# Find ItemSelected handlers (need to change to SelectionChanged)
+grep -r "ItemSelected=" --include="*.xaml" .
+grep -r "ItemSelected\s*\+=" --include="*.cs" .
+
+# Find ContextActions (need to change to SwipeView)
+grep -r "ContextActions" --include="*.xaml" .
+
+# Find platform-specific ListView code (needs removal)
+grep -r "PlatformConfiguration.*ListView" --include="*.cs" .
+```
+
+**Create a Migration Inventory:**
+```bash
+# Generate a report of all ListView/TableView instances
+echo "=== ListView/TableView Migration Inventory ===" > migration-report.txt
+echo "" >> migration-report.txt
+echo "XAML ListView instances:" >> migration-report.txt
+grep -rn "<ListView" --include="*.xaml" . >> migration-report.txt
+echo "" >> migration-report.txt
+echo "XAML TableView instances:" >> migration-report.txt
+grep -rn "<TableView" --include="*.xaml" . >> migration-report.txt
+echo "" >> migration-report.txt
+echo "ItemSelected handlers:" >> migration-report.txt
+grep -rn "ItemSelected" --include="*.xaml" --include="*.cs" . >> migration-report.txt
+echo "" >> migration-report.txt
+cat migration-report.txt
+```
+
 ### PowerShell Script
 
 ```powershell
@@ -846,14 +1261,126 @@ DoSomethingElse();
 
 ---
 
+### Warning: ListView/TableView/TextCell is obsolete
+
+**Cause:** Using deprecated ListView, TableView, or Cell types.
+
+**Solution:** Migrate to CollectionView (see [ListView and TableView section](#listview-and-tableview-deprecated))
+
+**Quick Decision Guide:**
+- **Simple list** → CollectionView with custom DataTemplate
+- **Settings page with <20 items** → VerticalStackLayout with BindableLayout
+- **Settings page with 20+ items** → Grouped CollectionView
+- **Grouped data list** → CollectionView with `IsGrouped="True"`
+
+---
+
+### CollectionView doesn't have SelectedItem event
+
+**Cause:** CollectionView uses `SelectionChanged` instead of `ItemSelected`.
+
+**Solution:**
+```csharp
+// ❌ OLD (ListView)
+void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
+{
+    var item = e.SelectedItem as MyItem;
+}
+
+// ✅ NEW (CollectionView)
+void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+{
+    var item = e.CurrentSelection.FirstOrDefault() as MyItem;
+}
+```
+
+---
+
+### Platform-specific ListView configuration is obsolete
+
+**Cause:** Using `Microsoft.Maui.Controls.PlatformConfiguration.*Specific.ListView` extensions.
+
+**Error:**
+```
+warning CS0618: 'ListView' is obsolete: 'With the deprecation of ListView, this class is obsolete. Please use CollectionView instead.'
+```
+
+**Solution:**
+1. Remove platform-specific ListView using statements:
+   ```csharp
+   // ❌ Remove these
+   using Microsoft.Maui.Controls.PlatformConfiguration;
+   using Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;
+   using Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;
+   ```
+
+2. Remove platform-specific ListView calls:
+   ```csharp
+   // ❌ Remove these
+   myListView.On<iOS>().SetSeparatorStyle(SeparatorStyle.FullWidth);
+   myListView.On<Android>().IsFastScrollEnabled();
+   viewCell.On<iOS>().SetDefaultBackgroundColor(Colors.White);
+   ```
+
+3. CollectionView has different platform customization options - consult CollectionView docs for alternatives.
+
+---
+
+### CollectionView performance issues after ListView migration
+
+**Common Causes:**
+
+1. **Not using DataTemplate caching:**
+   ```xaml
+   <!-- ❌ Bad performance -->
+   <CollectionView.ItemTemplate>
+       <DataTemplate>
+           <ComplexView />
+       </DataTemplate>
+   </CollectionView.ItemTemplate>
+   
+   <!-- ✅ Better - use simpler templates -->
+   <CollectionView.ItemTemplate>
+       <DataTemplate>
+           <VerticalStackLayout Padding="10">
+               <Label Text="{Binding Title}" />
+           </VerticalStackLayout>
+       </DataTemplate>
+   </CollectionView.ItemTemplate>
+   ```
+
+2. **Complex nested layouts:**
+   - Avoid deeply nested layouts in ItemTemplate
+   - Use Grid instead of StackLayout when possible
+   - Consider FlexLayout for complex layouts
+
+3. **Images not being cached:**
+   ```xaml
+   <Image Source="{Binding ImageUrl}"
+          Aspect="AspectFill"
+          HeightRequest="80"
+          WidthRequest="80">
+       <Image.Behaviors>
+           <!-- Add caching behavior if needed -->
+       </Image.Behaviors>
+   </Image>
+   ```
+
+---
+
 ## Quick Reference Card
 
 ### Priority Checklist
 
-**Must Fix (P0):**
+**Must Fix (P0 - Breaking/Critical):**
 - [ ] Replace `MessagingCenter` with `WeakReferenceMessenger`
+- [ ] Migrate `ListView` to `CollectionView`
+- [ ] Migrate `TableView` to `CollectionView` or `BindableLayout`
+- [ ] Replace `TextCell`, `ImageCell`, etc. with custom DataTemplates
+- [ ] Convert `ContextActions` to `SwipeView`
+- [ ] Remove platform-specific ListView configurations
 
-**Should Fix (P1):**
+**Should Fix (P1 - Deprecated):**
 - [ ] Update animation methods: add `Async` suffix
 - [ ] Update `DisplayAlert` → `DisplayAlertAsync`
 - [ ] Update `DisplayActionSheet` → `DisplayActionSheetAsync`  
