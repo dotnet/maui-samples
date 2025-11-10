@@ -478,17 +478,53 @@ TableView is commonly used for settings pages. Here are modern alternatives:
 If you used platform-specific ListView features, remove them:
 
 ```csharp
-// ❌ OLD - Remove these using statements
+// ❌ OLD - Remove these using statements (NOW OBSOLETE IN .NET 10)
 using Microsoft.Maui.Controls.PlatformConfiguration;
 using Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;
 using Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;
 
-// ❌ OLD - Remove ListView platform configurations
+// ❌ OLD - Remove ListView platform configurations (NOW OBSOLETE IN .NET 10)
 myListView.On<iOS>().SetSeparatorStyle(SeparatorStyle.FullWidth);
 myListView.On<Android>().IsFastScrollEnabled();
+
+// ❌ OLD - Remove Cell platform configurations (NOW OBSOLETE IN .NET 10)
+viewCell.On<iOS>().SetDefaultBackgroundColor(Colors.White);
+viewCell.On<Android>().SetIsContextActionsLegacyModeEnabled(false);
 ```
 
-These are now obsolete in .NET 10. CollectionView has its own platform behaviors that you may need to configure differently.
+**Migration:** CollectionView does not have platform-specific configurations in the same way. If you need platform-specific styling:
+
+```csharp
+// ✅ NEW - Use conditional compilation
+#if IOS
+var backgroundColor = Colors.White;
+#elif ANDROID
+var backgroundColor = Colors.Transparent;
+#endif
+
+var grid = new Grid
+{
+    BackgroundColor = backgroundColor,
+    // ... rest of cell content
+};
+```
+
+Or in XAML:
+```xaml
+<CollectionView.ItemTemplate>
+    <DataTemplate>
+        <Grid>
+            <Grid.BackgroundColor>
+                <OnPlatform x:TypeArguments="Color">
+                    <On Platform="iOS" Value="White" />
+                    <On Platform="Android" Value="Transparent" />
+                </OnPlatform>
+            </Grid.BackgroundColor>
+            <!-- Cell content -->
+        </Grid>
+    </DataTemplate>
+</CollectionView.ItemTemplate>
+```
 
 #### Common Patterns & Pitfalls
 
