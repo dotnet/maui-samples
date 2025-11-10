@@ -1,4 +1,4 @@
-﻿using TodoAPI.Interfaces;
+using TodoAPI.Interfaces;
 using TodoAPI.Models;
 
 namespace TodoAPI.Services
@@ -29,20 +29,59 @@ namespace TodoAPI.Services
 
         public void Insert(TodoItem item)
         {
+            if (item == null)
+            {
+                throw new ArgumentNullException(nameof(item), "TodoItem cannot be null");
+            }
+
+            if (string.IsNullOrWhiteSpace(item.ID))
+            {
+                throw new ArgumentException("TodoItem ID cannot be null or empty", nameof(item));
+            }
+
             _todoList.Add(item);
         }
 
         public void Update(TodoItem item)
         {
+            if (item == null)
+            {
+                throw new ArgumentNullException(nameof(item), "TodoItem cannot be null");
+            }
+
+            if (string.IsNullOrWhiteSpace(item.ID))
+            {
+                throw new ArgumentException("TodoItem ID cannot be null or empty", nameof(item));
+            }
+
             var todoItem = this.Find(item.ID);
+            if (todoItem == null)
+            {
+                throw new InvalidOperationException($"TodoItem with ID '{item.ID}' not found");
+            }
+
             var index = _todoList.IndexOf(todoItem);
-            _todoList.RemoveAt(index);
-            _todoList.Insert(index, item);
+            if (index >= 0)
+            {
+                _todoList.RemoveAt(index);
+                _todoList.Insert(index, item);
+            }
         }
 
         public void Delete(string id)
         {
-            _todoList.Remove(this.Find(id));
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                throw new ArgumentException("ID cannot be null or empty", nameof(id));
+            }
+
+            var todoItem = this.Find(id);
+            if (todoItem == null)
+            {
+                throw new InvalidOperationException($"TodoItem with ID '{id}' not found");
+            }
+
+            _todoList.Remove(todoItem);
         }
 
         private void InitializeData()

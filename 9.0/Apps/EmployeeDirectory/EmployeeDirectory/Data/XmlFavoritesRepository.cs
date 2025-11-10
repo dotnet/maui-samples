@@ -63,8 +63,40 @@ namespace EmployeeDirectory.Data
                     };
                 }
             }
-            catch (Exception)
+            catch (IOException ex)
             {
+                // Log IO errors (file access issues)
+                System.Diagnostics.Debug.WriteLine($"IO Error loading favorites: {ex.Message}");
+                return new XmlFavoritesRepository
+                {
+                    IsolatedStorageName = isolatedStorageName,
+                    People = new List<Person>()
+                };
+            }
+            catch (XmlException ex)
+            {
+                // Log XML parsing errors (corrupted file)
+                System.Diagnostics.Debug.WriteLine($"XML Error loading favorites: {ex.Message}");
+                return new XmlFavoritesRepository
+                {
+                    IsolatedStorageName = isolatedStorageName,
+                    People = new List<Person>()
+                };
+            }
+            catch (InvalidOperationException ex)
+            {
+                // Log deserialization errors (schema mismatch)
+                System.Diagnostics.Debug.WriteLine($"Deserialization Error loading favorites: {ex.Message}");
+                return new XmlFavoritesRepository
+                {
+                    IsolatedStorageName = isolatedStorageName,
+                    People = new List<Person>()
+                };
+            }
+            catch (Exception ex)
+            {
+                // Log unexpected errors
+                System.Diagnostics.Debug.WriteLine($"Unexpected error loading favorites: {ex.Message}");
                 return new XmlFavoritesRepository
                 {
                     IsolatedStorageName = isolatedStorageName,
@@ -85,8 +117,40 @@ namespace EmployeeDirectory.Data
                 repo.IsolatedStorageName = Path.GetFileName(path);
                 return repo;
             }
-            catch (Exception)
+            catch (IOException ex)
             {
+                // Log IO errors (file access issues)
+                System.Diagnostics.Debug.WriteLine($"IO Error opening file: {ex.Message}");
+                return new XmlFavoritesRepository
+                {
+                    IsolatedStorageName = Path.GetFileName(path),
+                    People = new List<Person>()
+                };
+            }
+            catch (XmlException ex)
+            {
+                // Log XML parsing errors (corrupted file)
+                System.Diagnostics.Debug.WriteLine($"XML Error opening file: {ex.Message}");
+                return new XmlFavoritesRepository
+                {
+                    IsolatedStorageName = Path.GetFileName(path),
+                    People = new List<Person>()
+                };
+            }
+            catch (InvalidOperationException ex)
+            {
+                // Log deserialization errors (schema mismatch)
+                System.Diagnostics.Debug.WriteLine($"Deserialization Error opening file: {ex.Message}");
+                return new XmlFavoritesRepository
+                {
+                    IsolatedStorageName = Path.GetFileName(path),
+                    People = new List<Person>()
+                };
+            }
+            catch (Exception ex)
+            {
+                // Log unexpected errors
+                System.Diagnostics.Debug.WriteLine($"Unexpected error opening file: {ex.Message}");
                 return new XmlFavoritesRepository
                 {
                     IsolatedStorageName = Path.GetFileName(path),
@@ -107,9 +171,25 @@ namespace EmployeeDirectory.Data
                 using var f = new FileStream(filePath, FileMode.Create, FileAccess.Write);
                 serializer.Serialize(f, this);
             }
-            catch (Exception)
+            catch (IOException ex)
             {
-                // Ignore serialization errors
+                // Log IO errors during commit
+                System.Diagnostics.Debug.WriteLine($"IO Error committing favorites: {ex.Message}");
+            }
+            catch (XmlException ex)
+            {
+                // Log XML serialization errors
+                System.Diagnostics.Debug.WriteLine($"XML Error committing favorites: {ex.Message}");
+            }
+            catch (InvalidOperationException ex)
+            {
+                // Log serialization errors
+                System.Diagnostics.Debug.WriteLine($"Serialization Error committing favorites: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                // Log unexpected errors during commit
+                System.Diagnostics.Debug.WriteLine($"Unexpected error committing favorites: {ex.Message}");
             }
 
             var ev = Changed;
