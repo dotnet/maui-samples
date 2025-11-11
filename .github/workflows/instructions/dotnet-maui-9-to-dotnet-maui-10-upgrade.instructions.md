@@ -21,14 +21,17 @@ This guide helps you upgrade your .NET MAUI application from .NET 9 to .NET 10 b
 
 ## Quick Start
 
-**Four-Step Upgrade Process:**
+**Five-Step Upgrade Process:**
 
 1. **Update TargetFramework** to `net10.0`
-2. **Fix breaking changes** - MessagingCenter (P0)
-3. **Migrate ListView/TableView to CollectionView** (P0 - CRITICAL)
-4. **Fix deprecated APIs** - Animation methods, DisplayAlert, IsBusy (P1)
+2. **Update CommunityToolkit.Maui** to 12.3.0+ (if you use it) - REQUIRED
+3. **Fix breaking changes** - MessagingCenter (P0)
+4. **Migrate ListView/TableView to CollectionView** (P0 - CRITICAL)
+5. **Fix deprecated APIs** - Animation methods, DisplayAlert, IsBusy (P1)
 
-> ⚠️ **Major Breaking Change**: ListView and TableView are now obsolete. This is the most significant part of the upgrade.
+> ⚠️ **Major Breaking Changes**: 
+> - CommunityToolkit.Maui **must** be version 12.3.0 or later
+> - ListView and TableView are now obsolete (most significant migration effort)
 
 ---
 
@@ -52,6 +55,27 @@ This guide helps you upgrade your .NET MAUI application from .NET 9 to .NET 10 b
     <TargetFrameworks>net10.0-android;net10.0-ios;net10.0-maccatalyst;net10.0-windows10.0.22621.0</TargetFrameworks>
   </PropertyGroup>
 </Project>
+```
+
+### Update Required NuGet Packages
+
+> ⚠️ **CRITICAL**: If you use CommunityToolkit.Maui, you **must** update to version 12.3.0 or later. Earlier versions are not compatible with .NET 10 and will cause compilation errors.
+
+```bash
+# Update CommunityToolkit.Maui (if you use it)
+dotnet add package CommunityToolkit.Maui --version 12.3.0
+
+# Update other common packages to .NET 10 compatible versions
+dotnet add package Microsoft.Maui.Controls --version 10.0.0
+```
+
+**Check all your NuGet packages:**
+```bash
+# List all packages and check for updates
+dotnet list package --outdated
+
+# Update all packages to latest compatible versions
+dotnet list package --outdated | grep ">" | cut -d '>' -f 1 | xargs -I {} dotnet add package {}
 ```
 
 ---
@@ -126,6 +150,29 @@ WeakReferenceMessenger.Default.Register<UserLoggedInMessage>(this, (recipient, m
     CurrentUser = message.Data;
 });
 ```
+
+#### ⚠️ Important Behavioral Difference: Duplicate Subscriptions
+
+**WeakReferenceMessenger** throws an `InvalidOperationException` if you try to register the same message type multiple times on the same recipient (MessagingCenter allowed this):
+
+```csharp
+// ❌ This THROWS InvalidOperationException in WeakReferenceMessenger
+WeakReferenceMessenger.Default.Register<UserLoggedInMessage>(this, (r, m) => Handler1(m));
+WeakReferenceMessenger.Default.Register<UserLoggedInMessage>(this, (r, m) => Handler2(m)); // ❌ THROWS!
+
+// ✅ Solution 1: Unregister before re-registering
+WeakReferenceMessenger.Default.Unregister<UserLoggedInMessage>(this);
+WeakReferenceMessenger.Default.Register<UserLoggedInMessage>(this, (r, m) => Handler1(m));
+
+// ✅ Solution 2: Handle multiple actions in one registration
+WeakReferenceMessenger.Default.Register<UserLoggedInMessage>(this, (r, m) => 
+{
+    Handler1(m);
+    Handler2(m);
+});
+```
+
+**Why this matters:** If your code subscribes to the same message in multiple places (e.g., in a page constructor and in `OnAppearing`), you'll get a runtime crash.
 
 #### Step 5: Unregister When Done
 
@@ -614,12 +661,27 @@ CollectionView uses `ItemSizingStrategy` to control item measurement:
 
 #### .NET 10 Handler Changes (iOS/Mac Catalyst)
 
-> ℹ️ **.NET 10 uses new optimized CollectionView handlers** on iOS and Mac Catalyst by default, providing improved performance and stability.
+> ℹ️ **.NET 10 uses new optimized CollectionView and CarouselView handlers** on iOS and Mac Catalyst by default, providing improved performance and stability.
 
-If you experience issues after migrating, you can revert to the .NET 9 handler:
+**If you previously opted-in to the new handlers in .NET 9**, you should now **REMOVE** this code:
 
 ```csharp
-// In MauiProgram.cs
+// ❌ REMOVE THIS in .NET 10 (these handlers are now default)
+#if IOS || MACCATALYST
+builder.ConfigureMauiHandlers(handlers =>
+{
+    handlers.AddHandler<CollectionView, CollectionViewHandler2>();
+    handlers.AddHandler<CarouselView, CarouselViewHandler2>();
+});
+#endif
+```
+
+The optimized handlers are used automatically in .NET 10 - no configuration needed!
+
+**Only if you experience issues**, you can revert to the legacy handler:
+
+```csharp
+// In MauiProgram.cs - only if needed
 #if IOS || MACCATALYST
 builder.ConfigureMauiHandlers(handlers =>
 {
@@ -629,7 +691,7 @@ builder.ConfigureMauiHandlers(handlers =>
 #endif
 ```
 
-However, Microsoft recommends using the new handler for best results.
+However, Microsoft recommends using the new default handlers for best results.
 
 #### Testing Checklist
 
