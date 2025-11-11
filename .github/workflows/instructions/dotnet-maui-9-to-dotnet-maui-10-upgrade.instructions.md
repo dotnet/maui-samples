@@ -57,6 +57,33 @@ This guide helps you upgrade your .NET MAUI application from .NET 9 to .NET 10 b
 </Project>
 ```
 
+### Optional: Linux Compatibility (GitHub Copilot, WSL, etc.)
+
+> 💡 **For Linux Development**: If you're building on Linux (e.g., GitHub Codespaces, WSL, or using GitHub Copilot), you can make your project compile on Linux by conditionally excluding iOS/Mac Catalyst targets:
+
+```xml
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <!-- Start with Android (always supported) -->
+    <TargetFrameworks>net10.0-android</TargetFrameworks>
+    
+    <!-- Add iOS/Mac Catalyst only when NOT on Linux -->
+    <TargetFrameworks Condition="!$([MSBuild]::IsOSPlatform('linux'))">$(TargetFrameworks);net10.0-ios;net10.0-maccatalyst</TargetFrameworks>
+    
+    <!-- Add Windows only when on Windows -->
+    <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net10.0-windows10.0.22621.0</TargetFrameworks>
+  </PropertyGroup>
+</Project>
+```
+
+**Benefits:**
+- ✅ Compiles successfully on Linux (no iOS/Mac tools required)
+- ✅ Works with GitHub Codespaces and Copilot
+- ✅ Automatically includes correct targets based on build OS
+- ✅ No changes needed when switching between OS environments
+
+**Reference:** [dotnet/maui#32186](https://github.com/dotnet/maui/pull/32186)
+
 ### Update Required NuGet Packages
 
 > ⚠️ **CRITICAL**: If you use CommunityToolkit.Maui, you **must** update to version 12.3.0 or later. Earlier versions are not compatible with .NET 10 and will cause compilation errors.
