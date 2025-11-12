@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/maui/global"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:pageModels="clr-namespace:DeveloperBalance.PageModels"
-             xmlns:models="clr-namespace:DeveloperBalance.Models"
-             xmlns:pages="clr-namespace:DeveloperBalance.Pages"
-             xmlns:sf="clr-namespace:Syncfusion.Maui.Toolkit.TextInputLayout;assembly=Syncfusion.Maui.Toolkit"
-             xmlns:controls="clr-namespace:DeveloperBalance.Pages.Controls"
-             xmlns:fonts="clr-namespace:Fonts"
+             xmlns:textInputLayout="clr-namespace:Syncfusion.Maui.Toolkit.TextInputLayout;assembly=Syncfusion.Maui.Toolkit"
              x:Class="DeveloperBalance.Pages.ProjectDetailPage"
-             x:DataType="pageModels:ProjectDetailPageModel"
+             x:DataType="ProjectDetailPageModel"
              Title="Project">
 
     <ContentPage.ToolbarItems>
@@ -24,19 +19,19 @@
     <Grid>
         <ScrollView>
             <VerticalStackLayout Padding="{StaticResource LayoutPadding}" Spacing="{StaticResource LayoutSpacing}">
-                <sf:SfTextInputLayout 
+                <textInputLayout:SfTextInputLayout 
                     Hint="Name" >
                     <Entry
                         Text="{Binding Name}" SemanticProperties.Description="Name" />
-                </sf:SfTextInputLayout>
+                </textInputLayout:SfTextInputLayout>
 
-                <sf:SfTextInputLayout 
+                <textInputLayout:SfTextInputLayout 
                     Hint="Description">
                     <Entry
                         Text="{Binding Description}" SemanticProperties.Description="Description" />
-                </sf:SfTextInputLayout>
+                </textInputLayout:SfTextInputLayout>
 
-               <sf:SfTextInputLayout
+               <textInputLayout:SfTextInputLayout
                     Hint="Category"
                     SemanticProperties.Description="ComboBox to Select Category"
                     SemanticProperties.Hint="State Collapsed">
@@ -45,7 +40,7 @@
                             SelectedItem="{Binding Category}"
                             SelectedIndex="{Binding CategoryIndex}"
                             SemanticProperties.Description="Category State Expanded"/>
-                </sf:SfTextInputLayout>
+                </textInputLayout:SfTextInputLayout>
 
                 <Label 
                     Text="Icon" 
@@ -58,7 +53,7 @@
                     SelectionChangedCommandParameter="{Binding Icon}"
                     ItemsSource="{Binding Icons}">
                     <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="models:IconData">
+                        <DataTemplate x:DataType="IconData">
                             <Grid RowDefinitions="Auto,4" RowSpacing="{StaticResource size60}"
                                  SemanticProperties.Description="{Binding Description}">
                                 <VisualStateManager.VisualStateGroups>
@@ -82,7 +77,7 @@
                                 <Label 
                                     Text="{Binding Icon}"
                                     x:Name="IconImage"
-                                    FontFamily="{x:Static fonts:FluentUI.FontFamily}" 
+                                    FontFamily="{x:Static FluentUI.FontFamily}" 
                                     FontSize="24" 
                                     VerticalOptions="Center"
                                     HorizontalOptions="Center"
@@ -115,7 +110,7 @@
                         <LinearItemsLayout Orientation="Horizontal" ItemSpacing="{StaticResource LayoutSpacing}" />
                     </CollectionView.ItemsLayout>
                     <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="models:Tag">
+                        <DataTemplate x:DataType="Tag">
                             <Border StrokeShape="RoundRectangle 22" 
                                 HeightRequest="44" 
                                 VerticalOptions="Center"
@@ -176,14 +171,14 @@
                     BindableLayout.ItemsSource="{Binding Tasks}">
                     <BindableLayout.ItemTemplate>
                         <DataTemplate>
-                            <controls:TaskView TaskCompletedCommand="{Binding TaskCompletedCommand, Source={RelativeSource AncestorType={x:Type pageModels:ProjectDetailPageModel}}, x:DataType=pageModels:ProjectDetailPageModel}" />
+                            <TaskView TaskCompletedCommand="{Binding TaskCompletedCommand, Source={RelativeSource AncestorType={x:Type ProjectDetailPageModel}}, x:DataType=ProjectDetailPageModel}" />
                         </DataTemplate>
                     </BindableLayout.ItemTemplate>
                 </VerticalStackLayout>
             </VerticalStackLayout>
         </ScrollView>
 
-        <controls:AddButton Command="{Binding AddTaskCommand}" 
+        <AddButton Command="{Binding AddTaskCommand}" 
                             SemanticProperties.Description="Add task" />
     </Grid>
     

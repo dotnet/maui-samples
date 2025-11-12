@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<Border xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<Border xmlns="http://schemas.microsoft.com/dotnet/maui/global"
         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
         xmlns:chart="clr-namespace:Syncfusion.Maui.Toolkit.Charts;assembly=Syncfusion.Maui.Toolkit"
-        xmlns:controls="clr-namespace:DeveloperBalance.Pages.Controls"
         xmlns:shimmer="clr-namespace:Syncfusion.Maui.Toolkit.Shimmer;assembly=Syncfusion.Maui.Toolkit"
-        xmlns:pageModels="clr-namespace:DeveloperBalance.PageModels"
         x:Class="DeveloperBalance.Pages.Controls.CategoryChart"
         HeightRequest="{OnIdiom 300, Phone=200}"
-        x:DataType="pageModels:MainPageModel"
+        x:DataType="MainPageModel"
         Style="{StaticResource CardStyle}">
     <shimmer:SfShimmer
         AutomationProperties.IsInAccessibleTree="False"
@@ -24,9 +22,9 @@
         </shimmer:SfShimmer.CustomView>
         <shimmer:SfShimmer.Content>
             <chart:SfCircularChart x:Name="Chart"
-                    SemanticProperties.Description="Task Categories Chart">
+                                   SemanticProperties.Description="Task Categories Chart">
                 <chart:SfCircularChart.Resources>
-                    <controls:ChartDataLabelConverter x:Key="ChartDataLabelConverter"/>
+                    <ChartDataLabelConverter x:Key="ChartDataLabelConverter"/>
                 </chart:SfCircularChart.Resources>
                 <chart:DoughnutSeries 
                     ItemsSource="{Binding TodoCategoryData}"
@@ -62,10 +60,10 @@
 
                     <chart:DoughnutSeries.DataLabelSettings>
                         <chart:CircularDataLabelSettings LabelPosition="Outside"
-                                SmartLabelAlignment="Shift">
+                                                         SmartLabelAlignment="Shift">
                             <chart:CircularDataLabelSettings.ConnectorLineSettings>
                                 <chart:ConnectorLineStyle ConnectorType="Line"
-                                        StrokeWidth="3"></chart:ConnectorLineStyle>
+                                                         StrokeWidth="3"></chart:ConnectorLineStyle>
                             </chart:CircularDataLabelSettings.ConnectorLineSettings>
                         </chart:CircularDataLabelSettings>
                     </chart:DoughnutSeries.DataLabelSettings>

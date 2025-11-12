@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<Border xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<Border xmlns="http://schemas.microsoft.com/dotnet/maui/global"
         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-        xmlns:controls="clr-namespace:DeveloperBalance.Pages.Controls"
-        xmlns:models="clr-namespace:DeveloperBalance.Models"
         xmlns:fonts="clr-namespace:Fonts"
-        xmlns:pageModels="clr-namespace:DeveloperBalance.PageModels"
         xmlns:shimmer="clr-namespace:Syncfusion.Maui.Toolkit.Shimmer;assembly=Syncfusion.Maui.Toolkit"
         x:Class="DeveloperBalance.Pages.Controls.ProjectCardView"
         Style="{StaticResource CardStyle}"
         MinimumHeightRequest="250"
         SemanticProperties.Description="{Binding AccessibilityDescription}"
-        x:DataType="models:Project">
+        x:DataType="Project">
     <shimmer:SfShimmer
         BackgroundColor="Transparent"
-        IsActive="{Binding IsBusy, Source={RelativeSource AncestorType={x:Type pageModels:MainPageModel}}, x:DataType=pageModels:IProjectTaskPageModel}">
+        IsActive="{Binding IsBusy, Source={RelativeSource AncestorType={x:Type MainPageModel}}, x:DataType=IProjectTaskPageModel}">
         <shimmer:SfShimmer.CustomView>
             <VerticalStackLayout Spacing="15">
                 <BoxView 
@@ -50,8 +47,8 @@
                 <Label Text="{Binding Description}" LineBreakMode="WordWrap"/>
                 <FlexLayout Wrap="Wrap" Direction="Row" AlignItems="Start" JustifyContent="Start" BindableLayout.ItemsSource="{Binding Tags}">
                     <BindableLayout.ItemTemplate>
-                        <DataTemplate x:DataType="models:Tag">
-                            <controls:TagView />
+                        <DataTemplate x:DataType="Tag">
+                            <TagView />
                         </DataTemplate>
                     </BindableLayout.ItemTemplate>
                 </FlexLayout>

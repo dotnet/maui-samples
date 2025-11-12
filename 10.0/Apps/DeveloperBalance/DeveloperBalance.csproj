@@ -23,6 +23,10 @@
 		<NoWarn>XC0103</NoWarn>
 		<MauiEnableXamlCBindingWithSourceCompilation>true</MauiEnableXamlCBindingWithSourceCompilation>
 
+		<!-- Enable Global and Implicit XML Namespaces for .NET 10 MAUI -->
+		<DefineConstants>$(DefineConstants);MauiAllowImplicitXmlnsDeclaration</DefineConstants>
+		<EnablePreviewFeatures>true</EnablePreviewFeatures>
+
 		<!-- Display name -->
 		<ApplicationTitle>DeveloperBalance</ApplicationTitle>
 
