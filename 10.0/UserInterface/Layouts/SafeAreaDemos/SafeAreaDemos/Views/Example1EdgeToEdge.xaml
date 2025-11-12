@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SafeAreaDemos.Views.Example1EdgeToEdge"
+             SafeAreaEdges="None"
+             Title="Edge-to-Edge Content">
+    <Grid SafeAreaEdges="None">
+        <Image Source="dotnet_bot.png" 
+               Aspect="AspectFill" />
+        
+        <!-- Semi-transparent background for better text readability -->
+        <BoxView Color="Black"
+                 Opacity="0.7"
+                 VerticalOptions="End"
+                 HeightRequest="180"/>
+        
+        <VerticalStackLayout Padding="30"
+                             Spacing="10"
+                             VerticalOptions="End">
+            <Label Text="Edge-to-Edge Content"
+                   TextColor="White"
+                   FontSize="28"
+                   FontAttributes="Bold" />
+            <Label Text="This content extends behind system bars and notches, creating an immersive full-screen experience."
+                   TextColor="White"
+                   FontSize="18"
+                   LineBreakMode="WordWrap" />
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>
