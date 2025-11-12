@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Maui.Controls.Sample.ExampleTransparentNavBar"
+             SafeAreaEdges="None"
+             Title="Transparent Nav Bar">
+    
+    <Grid SafeAreaEdges="None">
+        <!-- Background image that extends edge-to-edge -->
+        <Image Source="dotnet_bot.png" 
+               Aspect="AspectFill" />
+        
+        <!-- Darker semi-transparent overlay for better text readability -->
+        <BoxView Color="Black"
+                 Opacity="0.7"
+                 VerticalOptions="Fill"/>
+        
+        <!-- Content positioned with manual padding to avoid notch/home indicator -->
+        <VerticalStackLayout Padding="30,120,30,50"
+                             Spacing="20"
+                             VerticalOptions="Center">
+            
+            <!-- Add background box behind text for better readability -->
+            <Border StrokeThickness="0"
+                    BackgroundColor="#E6000000"
+                    Padding="20"
+                    Margin="10,0">
+                <VerticalStackLayout Spacing="15">
+                    <Label Text="Content Behind Navigation Bar"
+                           TextColor="White"
+                           FontSize="28"
+                           FontAttributes="Bold"
+                           HorizontalTextAlignment="Center" />
+                    
+                    <Label Text="This demonstrates SafeAreaEdges.None with a transparent navigation bar on iOS."
+                           TextColor="White"
+                           FontSize="16"
+                           HorizontalTextAlignment="Center"
+                           LineBreakMode="WordWrap" />
+                    
+                    <BoxView HeightRequest="1"
+                             Color="White"
+                             Opacity="0.3"
+                             Margin="0,10,0,10" />
+                    
+                    <Label Text="The navigation bar has a semi-transparent background (BarBackgroundColor with alpha), allowing the background image to be visible behind it."
+                           TextColor="#CCCCCC"
+                           FontSize="14"
+                           HorizontalTextAlignment="Center"
+                           LineBreakMode="WordWrap" />
+                    
+                    <Label Text="⚠️ Without the transparent BarBackgroundColor, content would NOT extend behind the navigation bar, even with SafeAreaEdges.None."
+                           TextColor="#FFD700"
+                           FontSize="13"
+                           FontAttributes="Italic"
+                           Margin="0,10,0,0"
+                           HorizontalTextAlignment="Center"
+                           LineBreakMode="WordWrap" />
+                </VerticalStackLayout>
+            </Border>
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>
