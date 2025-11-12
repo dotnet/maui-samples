@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SafeAreaDemos.Views.Example5PerLayoutControl"
+             SafeAreaEdges="None"
+             Title="Per-Layout Control">
+    <Grid RowDefinitions="Auto,*,Auto">
+        <!-- Header extends edge-to-edge -->
+        <Grid BackgroundColor="#512BD4"
+              Padding="20,40,20,20">
+            <Label Text="App Header" 
+                   TextColor="White"
+                   FontSize="20"
+                   FontAttributes="Bold" />
+        </Grid>
+        
+        <!-- Main content respects safe areas -->
+        <ScrollView Grid.Row="1" 
+                    SafeAreaEdges="All">
+            <VerticalStackLayout Padding="20" Spacing="15">
+                <Label Text="Main content area"
+                       FontSize="24"
+                       FontAttributes="Bold" />
+                <Label Text="This section respects all safe areas including system bars, notches, and keyboard."
+                       FontSize="16" />
+                <Entry Placeholder="Type something..." />
+                <Label Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+                       FontSize="16" />
+            </VerticalStackLayout>
+        </ScrollView>
+        
+        <!-- Footer respects only keyboard -->
+        <Grid Grid.Row="2" 
+              SafeAreaEdges="SoftInput"
+              BackgroundColor="LightGray"
+              Padding="20">
+            <Entry Placeholder="Type a message..." />
+        </Grid>
+    </Grid>
+</ContentPage>
