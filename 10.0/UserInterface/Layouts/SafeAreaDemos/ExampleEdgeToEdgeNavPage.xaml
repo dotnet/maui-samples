@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Maui.Controls.Sample.ExampleEdgeToEdgeNavPage"
+             SafeAreaEdges="None"
+             Title="Edge to Edge">
+    
+    <Grid SafeAreaEdges="None">
+        <!-- Background gradient that extends edge-to-edge with text behind navbar -->
+        <VerticalStackLayout Spacing="0" SafeAreaEdges="None">
+            <!-- Text at the very top that will appear behind the navigation bar -->
+            <Label Text="🎨 CONTENT EXTENDS BEHIND NAVIGATION BAR 🎨"
+                   FontSize="16"
+                   FontAttributes="Bold"
+                   TextColor="White"
+                   BackgroundColor="#FF6B6B"
+                   HorizontalTextAlignment="Center"
+                   Padding="10,60,10,10"
+                   LineBreakMode="WordWrap" />
+            
+            <BoxView Color="#FF6B6B" HeightRequest="100" />
+            <BoxView Color="#4ECDC4" HeightRequest="150" />
+            <BoxView Color="#45B7D1" HeightRequest="150" />
+            <BoxView Color="#96CEB4" HeightRequest="150" />
+            <BoxView Color="#FFEAA7" VerticalOptions="FillAndExpand" />
+        </VerticalStackLayout>
+        
+        <!-- Content centered with text box for readability -->
+        <Border StrokeThickness="0"
+                BackgroundColor="#E6FFFFFF"
+                Padding="20"
+                Margin="40"
+                VerticalOptions="Center"
+                HorizontalOptions="Center">
+            <VerticalStackLayout Spacing="15">
+                <Label Text="Edge-to-Edge with NavigationPage"
+                       FontSize="24"
+                       FontAttributes="Bold"
+                       HorizontalTextAlignment="Center"
+                       TextColor="#333333" />
+                
+                <BoxView HeightRequest="2"
+                         Color="#333333"
+                         Opacity="0.2" />
+                
+                <Label Text="This demonstrates SafeAreaEdges.None with a transparent NavigationPage."
+                       FontSize="16"
+                       HorizontalTextAlignment="Center"
+                       TextColor="#555555"
+                       LineBreakMode="WordWrap" />
+                
+                <Label Text="The colorful gradient extends behind the navigation bar because BarBackgroundColor has transparency."
+                       FontSize="14"
+                       HorizontalTextAlignment="Center"
+                       TextColor="#666666"
+                       LineBreakMode="WordWrap"
+                       Margin="0,10,0,0" />
+                
+                <Label Text="✅ BarBackgroundColor with alpha channel"
+                       FontSize="13"
+                       TextColor="#27AE60"
+                       HorizontalTextAlignment="Center"
+                       FontAttributes="Italic" />
+                
+                <Label Text="✅ SafeAreaEdges.None on ContentPage"
+                       FontSize="13"
+                       TextColor="#27AE60"
+                       HorizontalTextAlignment="Center"
+                       FontAttributes="Italic" />
+            </VerticalStackLayout>
+        </Border>
+    </Grid>
+</ContentPage>

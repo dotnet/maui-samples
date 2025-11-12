@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Maui.Controls.Sample.Example2RespectAll"
+             SafeAreaEdges="All"
+             Title="Respect All Safe Areas">
+    <Grid RowDefinitions="Auto,Auto,*,Auto" Padding="30" RowSpacing="20">
+        <Label Grid.Row="0"
+               Text="Respect All Safe Areas"
+               FontSize="28"
+               FontAttributes="Bold" />
+        
+        <Label Grid.Row="1"
+               Text="SafeAreaEdges='All' ensures content avoids system bars, notches, and keyboard."
+               FontSize="18"
+               LineBreakMode="WordWrap" />
+        
+        <VerticalStackLayout Grid.Row="2" Spacing="15" VerticalOptions="End">
+            <Entry x:Name="NameEntry"
+                   Placeholder="Enter your name"
+                   FontSize="16"
+                   HeightRequest="50" />
+            <Entry x:Name="EmailEntry"
+                   Placeholder="Enter your email"
+                   FontSize="16"
+                   HeightRequest="50" />
+            <Entry x:Name="PhoneEntry"
+                   Placeholder="Enter your phone"
+                   FontSize="16"
+                   HeightRequest="50" />
+        </VerticalStackLayout>
+        
+        <Button Grid.Row="3"
+                Text="Submit" 
+                BackgroundColor="#0078D4" 
+                TextColor="White"
+                FontSize="18"
+                FontAttributes="Bold"
+                HeightRequest="60" />
+    </Grid>
+</ContentPage>
