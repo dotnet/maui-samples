@@ -54,7 +54,7 @@
 	<!-- iOS Binding Project Reference -->
 	<!-- Note: Only loaded on macOS. This project requires DeclaredAgeRangeWrapper.xcframework to be built first -->
 	<!-- See README.md for instructions. Project will build without it but API won't work -->
-	<ItemGroup Condition="$(TargetFramework)=='net10.0-ios' AND $([MSBuild]::IsOSPlatform('osx')) AND Exists('../DeclaredAgeRangeWrapperBinding.iOS/DeclaredAgeRangeWrapper.xcframework')">
+	<ItemGroup Condition="$(TargetFramework)=='net10.0-ios' AND $([MSBuild]::IsOSPlatform('osx'))">
 		<ProjectReference Include="../DeclaredAgeRangeWrapperBinding.iOS/DeclaredAgeRangeWrapperBinding.iOS.csproj" />
 	</ItemGroup>
 
@@ -81,6 +81,12 @@
 	<!-- iOS Entitlements -->
 	<PropertyGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">
 		<CodesignEntitlements>Platforms\iOS\Entitlements.plist</CodesignEntitlements>
+	</PropertyGroup>
+
+	<!-- iOS Simulator Code Signing (ad-hoc for simulator) -->
+	<PropertyGroup Condition="$(TargetFramework)=='net10.0-ios' AND $(RuntimeIdentifier.Contains('simulator'))">
+		<CodesignKey>-</CodesignKey>
+		<CodesignProvision></CodesignProvision>
 	</PropertyGroup>
 
 </Project>
