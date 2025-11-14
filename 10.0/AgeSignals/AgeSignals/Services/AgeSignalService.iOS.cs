@@ -19,7 +19,7 @@ public partial class AgeSignalService : IAgeSignalService
 
     public bool IsSupported()
     {
-        return OperatingSystem.IsIOSVersionAtLeast(18, 0);
+        return OperatingSystem.IsIOSVersionAtLeast(26, 0);
     }
 
     public string GetPlatformName()
@@ -40,7 +40,7 @@ public partial class AgeSignalService : IAgeSignalService
     {
         if (!IsSupported())
         {
-            return AgeVerificationResult.Failure("Declared Age Range API requires iOS 18.0+");
+            return AgeVerificationResult.Failure("Declared Age Range API requires iOS 26.0+");
         }
 
         var tcs = new TaskCompletionSource<AgeVerificationResult>();
