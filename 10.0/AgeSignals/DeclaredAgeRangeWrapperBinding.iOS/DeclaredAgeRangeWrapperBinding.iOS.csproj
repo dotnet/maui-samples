@@ -1,24 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <!-- Only build on macOS - this project requires Xcode and the iOS SDK -->
-    <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('osx'))">net10.0-ios</TargetFrameworks>
+    <TargetFrameworks>net10.0-ios</TargetFrameworks>
     <Nullable>enable</Nullable>
     <ImplicitUsings>true</ImplicitUsings>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <IsBindingProject>true</IsBindingProject>
   </PropertyGroup>
 
-  <!-- On non-macOS platforms, skip the build entirely -->
-  <Target Name="Build" Condition="!$([MSBuild]::IsOSPlatform('osx'))">
-    <Message Text="Skipping iOS binding project build on non-macOS platform" Importance="high" />
-  </Target>
-
-  <ItemGroup Condition="$([MSBuild]::IsOSPlatform('osx'))">
+  <ItemGroup>
     <ObjcBindingApiDefinition Include="ApiDefinition.cs" />
     <ObjcBindingCoreSource Include="StructsAndEnums.cs" />
   </ItemGroup>
 
-  <ItemGroup Condition="$([MSBuild]::IsOSPlatform('osx'))">
+  <ItemGroup>
     <NativeReference Include="DeclaredAgeRangeWrapper.xcframework">
       <Kind>Framework</Kind>
       <Frameworks></Frameworks>
