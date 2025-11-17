@@ -2,12 +2,16 @@
   <PropertyGroup>
     <!-- Only build on macOS - this project requires Xcode and the iOS SDK -->
     <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('osx'))">net10.0-ios</TargetFrameworks>
-    <TargetFrameworks Condition="!$([MSBuild]::IsOSPlatform('osx'))"></TargetFrameworks>
     <Nullable>enable</Nullable>
     <ImplicitUsings>true</ImplicitUsings>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <IsBindingProject>true</IsBindingProject>
   </PropertyGroup>
+
+  <!-- On non-macOS platforms, skip the build entirely -->
+  <Target Name="Build" Condition="!$([MSBuild]::IsOSPlatform('osx'))">
+    <Message Text="Skipping iOS binding project build on non-macOS platform" Importance="high" />
+  </Target>
 
   <ItemGroup Condition="$([MSBuild]::IsOSPlatform('osx'))">
     <ObjcBindingApiDefinition Include="ApiDefinition.cs" />
