@@ -16,8 +16,10 @@ This sample demonstrates:
 | Platform | API | Min Version | Status |
 |----------|-----|-------------|--------|
 | **Android** | Google Play Age Signals | API 23 (Android 6.0+) | Implemented |
-| **iOS** | Declared Age Range | iOS 18.0+ | Implemented |
+| **iOS** | Declared Age Range | iOS 26.0+ | Implemented |
 | **Windows** | Age Consent API | Windows 11 Build 22000+ | Implemented |
+
+**Note**: Mac Catalyst is **not supported**. Apple's DeclaredAgeRange framework is unavailable for Mac Catalyst targets in current Xcode versions.
 
 ## Requirements
 
@@ -34,9 +36,9 @@ This sample demonstrates:
 - NuGet package: `Xamarin.Google.Android.Play.Age.Signals` v0.0.1-beta02
 
 **iOS:**
-- **Xcode 16.0+** (for iOS 18.0+ SDK)
+- **Xcode 16.0+** (for iOS 26.0+ SDK)
 - **macOS** for building
-- **Physical iOS device** (iOS 18.0+) - API not available in simulator
+- **Physical iOS device** (iOS 26.0+) - API not available in simulator
 - Declared Age Range entitlement: `com.apple.developer.declared-age-range`
 
 **Windows:**
@@ -78,12 +80,28 @@ AgeSignals/
 │   │
 │   └── Resources/                                # App resources
 │
-└── DeclaredAgeRangeWrapperBinding.iOS/           # iOS Swift binding project
+└── DeclaredAgeRangeWrapperBinding.iOS/           # iOS Swift binding project (REQUIRED for iOS)
     ├── DeclaredAgeRangeWrapperBinding.iOS.csproj # Binding project
     ├── ApiDefinition.cs                          # Objective-C binding definitions
     ├── StructsAndEnums.cs                        # Enums and structures
-    └── DeclaredAgeRangeWrapper.xcframework/      # Swift XCFramework (must be built separately)
-        └── Info.plist
+    └── DeclaredAgeRangeWrapper.xcframework/      # Swift XCFramework (16 files, 420 KB)
+        ├── Info.plist                            # Framework metadata
+        ├── ios-arm64/                            # Physical device slice
+        └── ios-arm64_x86_64-simulator/           # Simulator slice (Intel + Apple Silicon)
+
+**Why the Binding Project is Required:**
+
+Apple's DeclaredAgeRange API is **Swift-only** and cannot be called directly from C#/.NET. The binding project bridges this gap:
+
+1. **Swift API** (Apple) → Only accessible from Swift code
+2. **Swift Wrapper** (DeclaredAgeRangeWrapper.swift) → Makes API Objective-C compatible using `@objc` attributes
+3. **XCFramework** → Packages Swift wrapper for multiple architectures (device + simulator)
+4. **Objective-C Binding** (ApiDefinition.cs) → Generated with Objective Sharpie, maps Objective-C to C#
+5. **C# Code** (AgeSignalService.iOS.cs) → Calls the binding like any .NET API
+
+Without this binding chain, .NET MAUI cannot access the API at all.
+
+**Reference Implementation:** [dalexsoto/DeclaredAgeRangeSample](https://github.com/dalexsoto/DeclaredAgeRangeSample)
 ```
 
 ## Building the Project
@@ -140,7 +158,16 @@ dotnet build AgeSignals/AgeSignals.csproj -f net10.0-windows10.0.22000.0 -t:Run
 
 #### Step 1: Build Swift XCFramework (Required - One-time setup)
 
-The iOS implementation requires a Swift XCFramework that bridges Apple's Declared Age Range API to Objective-C/C#. This framework must be built separately.
+The iOS implementation requires a Swift XCFramework that bridges Apple's Declared Age Range API to Objective-C/C#.
+
+**Why This Step is Necessary:**
+
+Apple's DeclaredAgeRange API is Swift-only and inaccessible from C#. The XCFramework contains a Swift wrapper that:
+- Exposes the Swift API with `@objc` compatibility attributes
+- Provides an Objective-C-callable interface
+- Enables .NET bindings through Objective Sharpie
+
+Without the XCFramework, the .NET binding project cannot compile, and iOS builds will fail.
 
 **Requirements:**
 - macOS with Xcode 16.0+
@@ -190,9 +217,9 @@ dotnet build AgeSignals/AgeSignals.csproj -f net10.0-ios -r ios-arm64
 ```
 
 **Testing Notes:**
-- **Simulator**: API will return error "The operation couldn't be completed" (expected)
+- **Simulator**: API will return error "The operation couldn't be completed" (expected - Apple blocks API in simulator)
 - **Physical Device**: Requires:
-  - iOS 18.0+ device
+  - iOS 26.0+ device
   - Provisioning profile with `com.apple.developer.declared-age-range` entitlement
   - Age configured in Family Sharing settings on device
 
@@ -223,16 +250,27 @@ dotnet build AgeSignals/AgeSignals.csproj -f net10.0-ios -r ios-arm64
 
 ### iOS: Declared Age Range API
 
-**Framework**: `DeclaredAgeRange` (iOS 18.0+)
+**Framework**: `DeclaredAgeRange` (iOS 26.0+)
 
 **Implementation**: `AgeSignals/Services/AgeSignalService.iOS.cs`
 
-**Binding Project**: `DeclaredAgeRangeWrapperBinding.iOS/`
+**Binding Project**: `DeclaredAgeRangeWrapperBinding.iOS/` (**Required** - see explanation below)
+
+**Why Binding Project is Necessary:**
+
+Apple's DeclaredAgeRange API is **Swift-only**. .NET cannot directly call Swift code. The binding project solves this through a multi-layer bridge:
 
 **Architecture:**
 ```
 Swift API → Swift Wrapper → XCFramework → Objective-C Binding → C# Binding → MAUI App
+     ↑            ↑              ↑                ↑                  ↑            ↑
+   Apple      @objc attrs   Multi-arch      Obj Sharpie         .NET       Your Code
+   Native     Make Swift    Package for     Generated         Bindings
+              Obj-C         Device+Sim      C# Interop
+              Compatible
 ```
+
+Without this binding chain, .NET MAUI apps cannot access the API. This complexity is unavoidable due to Swift-only restriction.
 
 **Key Types:**
 - `DeclaredAgeRangeBridge` - Static method for requesting age range
@@ -249,9 +287,10 @@ Swift API → Swift Wrapper → XCFramework → Objective-C Binding → C# Bindi
 - `Unknown`: Declaration method unknown
 
 **Limitations:**
-- **Physical device only** - API not available in simulator
+- **Physical device only** - API not available in simulator (Apple restriction)
 - Requires Family Sharing configuration on device
 - Entitlement required: `com.apple.developer.declared-age-range`
+- **Mac Catalyst not supported** - DeclaredAgeRange module unavailable for Catalyst targets
 
 ### Windows: Age Consent API
 
@@ -337,8 +376,8 @@ builder.Services.AddSingleton<IAgeSignalService, AgeSignalService>();
 - **Limitation**: API behavior varies by device jurisdiction
 
 ### iOS Testing
-- ❌ **Simulator**: API returns "operation couldn't be completed" (expected behavior)
-- ✅ **Physical Device**: Full functionality (requires iOS 18.0+, proper entitlements, Family Sharing setup)
+- ❌ **Simulator**: API returns "operation couldn't be completed" (expected - [documented by Apple sample](https://github.com/dalexsoto/DeclaredAgeRangeSample#step-3-build-and-run-the-sample-app))
+- ✅ **Physical Device**: Full functionality (requires iOS 26.0+, proper entitlements, Family Sharing setup)
 - **Limitation**: Requires proper provisioning and device configuration
 
 ### Windows Testing
@@ -409,7 +448,23 @@ This sample is provided as-is for educational purposes.
 
 ## Notes
 
-- **Mac Catalyst**: Not supported. The DeclaredAgeRange framework is not available for Mac Catalyst in current Xcode versions (16.0/16.1)
+### Mac Catalyst Support
+
+**Mac Catalyst is NOT supported** for the following technical reasons:
+
+1. **Framework Unavailability**: Apple's `DeclaredAgeRange` module does not exist in Mac Catalyst SDK
+   - Verified in Xcode 16.0 and 16.1
+   - Native Swift apps also fail with "No such module DeclaredAgeRange" when targeting Catalyst
+   - Module is iOS-only, not available for macOS or Catalyst
+
+2. **Build Errors**: Attempting to build for Mac Catalyst produces:
+   ```
+   error: module 'DeclaredAgeRange' not found
+   ```
+
+### Other Notes
+
 - **Beta APIs**: Android Age Signals API is in beta; production use requires careful testing
 - **Regional Limitations**: Age verification APIs have regional restrictions and requirements
+- **iOS Version**: Requires iOS 26.0+.
 
