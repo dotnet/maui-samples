@@ -5,7 +5,7 @@
         // Change to true for grid-wrapping logic
         const bool Wrap = false;
 
-        // Internal structure for encapsulting integer cell coordinates
+        // Internal structure for encapsulating integer cell coordinates
         // Keep this a structure for automatic equality comparison!
         struct Coordinate
         {
