@@ -8,12 +8,6 @@ namespace AgeSignals.Services;
 public interface IAgeSignalService
 {
     /// <summary>
-    /// Checks if age verification is available on the current platform
-    /// </summary>
-    /// <returns>True if age verification is supported</returns>
-    bool IsSupported();
-
-    /// <summary>
     /// Requests age verification from the user
     /// </summary>
     /// <param name="minimumAge">The minimum age required</param>

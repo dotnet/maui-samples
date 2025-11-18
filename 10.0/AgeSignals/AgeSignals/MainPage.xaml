@@ -46,11 +46,6 @@
                         x:Name="PlatformLabel"
                         Text="Platform: Loading..."
                         FontSize="14" />
-                    
-                    <Label
-                        x:Name="SupportedLabel"
-                        Text="Supported: Loading..."
-                        FontSize="14" />
                 </VerticalStackLayout>
             </Border>
 

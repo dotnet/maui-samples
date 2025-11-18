@@ -3,6 +3,7 @@ using AgeSignals.Services;
 using Microsoft.Extensions.Logging;
 using Google.Android.Play.AgeSignals;
 using Android.Gms.Tasks;
+using Android.Gms.Common.Apis;
 using Java.Lang;
 
 namespace AgeSignals.Services;
@@ -15,11 +16,6 @@ public partial class AgeSignalService : IAgeSignalService
     public AgeSignalService(ILogger<AgeSignalService> logger)
     {
         _logger = logger;
-    }
-
-    public bool IsSupported()
-    {
-        return OperatingSystem.IsAndroidVersionAtLeast(23);
     }
 
     public string GetPlatformName() => "Android";
@@ -35,11 +31,6 @@ public partial class AgeSignalService : IAgeSignalService
 
     public async Task<AgeVerificationResult> RequestAgeVerificationAsync(AgeVerificationRequest request)
     {
-        if (!IsSupported())
-        {
-            return AgeVerificationResult.Failure("Age Signals API requires Android 6.0+ (API 23)");
-        }
-
         try
         {
             var context = global::Android.App.Application.Context;
@@ -49,14 +40,12 @@ public partial class AgeSignalService : IAgeSignalService
                 return AgeVerificationResult.Failure("Unable to get Android context");
             }
 
-            // Initialize the Age Signals Manager if not already done
             if (_ageSignalsManager == null)
             {
                 _ageSignalsManager = AgeSignalsManagerFactory.Create(context);
                 _logger.LogInformation("Age Signals Manager initialized");
             }
 
-            // Create the age signals request
             var ageSignalsRequest = AgeSignalsRequest.InvokeBuilder().Build();
 
             _logger.LogInformation("Requesting age signals...");
@@ -148,7 +137,6 @@ public partial class AgeSignalService : IAgeSignalService
                                 break;
 
                             default:
-                                // Empty or other status
                                 tcs.SetResult(AgeVerificationResult.Failure(
                                     "Age signals not available for this user.\n" +
                                     "User may not be in an applicable jurisdiction."));
@@ -163,9 +151,9 @@ public partial class AgeSignalService : IAgeSignalService
                 }))
                 .AddOnFailureListener(new AgeSignalsFailureListener((exception) =>
                 {
-                    _logger.LogError("Age Signals API error: {Error}", exception.Message);
+                    _logger.LogError("Age Signals API error: Type={ExceptionType}, Message={Error}", 
+                        exception.GetType().FullName, exception.Message);
                     
-                    // Map error codes to user-friendly messages
                     var errorMessage = MapErrorCodeToMessage(exception);
                     tcs.SetResult(AgeVerificationResult.Failure(errorMessage));
                 }));
@@ -181,63 +169,44 @@ public partial class AgeSignalService : IAgeSignalService
 
     private string MapErrorCodeToMessage(Java.Lang.Exception exception)
     {
-        // Error codes from the API documentation
-        var message = exception.Message ?? "";
-        
-        if (message.Contains("-1") || message.Contains("API_NOT_AVAILABLE"))
+        if (exception is Java.Lang.UnsupportedOperationException)
         {
-            return "Play Age Signals API not available.\n" +
-                   "The Play Store version may be outdated.\n" +
-                   "Ask user to update Google Play Store.";
-        }
-        else if (message.Contains("-2") || message.Contains("PLAY_STORE_NOT_FOUND"))
-        {
-            return "Google Play Store not found.\n" +
-                   "Ask user to install or enable Play Store.";
-        }
-        else if (message.Contains("-3") || message.Contains("NETWORK_ERROR"))
-        {
-            return "Network error.\n" +
-                   "Check internet connection and try again.";
-        }
-        else if (message.Contains("-4") || message.Contains("PLAY_SERVICES_NOT_FOUND"))
-        {
-            return "Google Play Services not found.\n" +
-                   "Ask user to install, update, or enable Play Services.";
-        }
-        else if (message.Contains("-5") || message.Contains("CANNOT_BIND_TO_SERVICE"))
-        {
-            return "Cannot bind to Play Store service.\n" +
-                   "Play Store may need update or device memory is low.\n" +
-                   "Ask user to update Play Store and try again.";
-        }
-        else if (message.Contains("-6") || message.Contains("PLAY_STORE_VERSION_OUTDATED"))
-        {
-            return "Google Play Store is outdated.\n" +
-                   "Ask user to update Play Store.";
-        }
-        else if (message.Contains("-7") || message.Contains("PLAY_SERVICES_VERSION_OUTDATED"))
-        {
-            return "Google Play Services is outdated.\n" +
-                   "Ask user to update Play Services.";
-        }
-        else if (message.Contains("-8") || message.Contains("CLIENT_TRANSIENT_ERROR"))
-        {
-            return "Transient error occurred.\n" +
-                   "Please try again in a moment.";
-        }
-        else if (message.Contains("-9") || message.Contains("APP_NOT_OWNED"))
-        {
-            return "App not installed from Google Play Store.\n" +
-                   "Age Signals API requires app from Play Store (not sideloaded).";
-        }
-        else if (message.Contains("-100") || message.Contains("INTERNAL_ERROR"))
-        {
-            return "Internal error occurred.\n" +
-                   "Please try again later.";
+            return $"Age Signals API is not supported on this device.\n{exception.Message}";
         }
         
-        return $"Age Signals API error: {message}";
+        // Age Signals API may use the same error codes as Play Integrity API
+        // Reference: https://developer.android.com/google/play/integrity/error-codes
+        if (exception is ApiException apiException)
+        {
+            int statusCode = apiException.StatusCode;
+            
+            return statusCode switch
+            {
+                -1 => "Play Age Signals API not available.\n" +
+                      "The Play Store version may be outdated.\n" +
+                      "Ask user to update Google Play Store.",
+                      
+                -2 => "Google Play Store not found.\n" +
+                      "Ask user to install or enable Play Store.",
+                      
+                -3 => "Network error.\n" +
+                      "Check internet connection and try again.",
+                      
+                -6 => "Google Play Services not found.\n" +
+                      "Ask user to install, update, or enable Play Services.",
+                      
+                -9 => "Cannot bind to Play Store service.\n" +
+                      "Ask user to update Play Store and try again.",
+                      
+                -100 => "Internal error occurred.\n" +
+                        "Please try again later.",
+                        
+                _ => $"Age Signals API error (code {statusCode}): {apiException.Message}"
+            };
+        }
+        
+        // Fallback: return the exception message
+        return $"Age Signals API error: {exception.Message}";
     }
 }
 

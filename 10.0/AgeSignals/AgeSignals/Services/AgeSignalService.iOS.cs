@@ -4,7 +4,6 @@ using Microsoft.Extensions.Logging;
 using System.Linq;
 using UIKit;
 using DeclaredAgeRangeWrapper;
-using Foundation;
 
 namespace AgeSignals.Services;
 
@@ -15,11 +14,6 @@ public partial class AgeSignalService : IAgeSignalService
     public AgeSignalService(ILogger<AgeSignalService> logger)
     {
         _logger = logger;
-    }
-
-    public bool IsSupported()
-    {
-        return OperatingSystem.IsIOSVersionAtLeast(26, 0);
     }
 
     public string GetPlatformName()
@@ -38,21 +32,14 @@ public partial class AgeSignalService : IAgeSignalService
 
     public async Task<AgeVerificationResult> RequestAgeVerificationAsync(AgeVerificationRequest request)
     {
-        if (!IsSupported())
-        {
-            return AgeVerificationResult.Failure("Declared Age Range API requires iOS 26.0+");
-        }
-
         var tcs = new TaskCompletionSource<AgeVerificationResult>();
 
         try
         {
-            // iOS: Use UIViewController - get from PlatformContext or find root view controller
             var anchor = request.PlatformContext as UIViewController;
             
             if (anchor == null)
             {
-                // Try to get the root view controller from the key window
                 var windowScene = UIApplication.SharedApplication.ConnectedScenes
                     .OfType<UIWindowScene>()
                     .FirstOrDefault(scene => scene.ActivationState == UISceneActivationState.ForegroundActive);
@@ -73,29 +60,10 @@ public partial class AgeSignalService : IAgeSignalService
             {
                 if (error != null)
                 {
-                    var errorCode = error.Code;
-                    var errorMsg = error.LocalizedDescription;
+                    _logger.LogError("Age verification error: Domain={Domain}, Code={Code}, Message={Message}", 
+                        error.Domain, error.Code, error.LocalizedDescription);
                     
-                    _logger.LogError("Age verification error: Code={Code}, Message={Message}", errorCode, errorMsg);
-                    
-                    // Provide helpful error messages
-                    string userMessage;
-                    if (errorCode == 0 || errorMsg.Contains("not supported", StringComparison.OrdinalIgnoreCase))
-                    {
-                        userMessage = 
-                            "Declared Age Range Not Available\n\n" +
-                            "This error typically means:\n" +
-                            "- Running in Simulator (API only works on physical devices)\n" +
-                            "- iOS version < 18.0\n" +
-                            "- No age configured in Apple ID Settings\n" +
-                            "- App not properly signed with entitlement\n\n" +
-                            $"Error: {errorMsg}";
-                    }
-                    else
-                    {
-                        userMessage = $"Error ({errorCode}): {errorMsg}";
-                    }
-                    
+                    string userMessage = MapIOSErrorCodeToMessage(error.Code, error.LocalizedDescription);
                     tcs.SetResult(AgeVerificationResult.Failure(userMessage));
                     return;
                 }
@@ -112,13 +80,11 @@ public partial class AgeSignalService : IAgeSignalService
                         case MyAgeRangeResponseType.Sharing:
                             if (response.Range != null)
                             {
-                                // NSNumber properties are already nullable - access IntValue property directly
                                 var lowerBound = (int)(response.Range.LowerBound?.Int32Value ?? 0);
                                 var upperBound = response.Range.UpperBound?.Int32Value;
-                                var declaration = response.Range.Declaration;
 
                                 _logger.LogInformation("Age range received: {Lower}-{Upper}, Declaration: {Declaration}", 
-                                    lowerBound, upperBound?.ToString() ?? "∞", declaration);
+                                    lowerBound, upperBound?.ToString() ?? "∞", response.Range.Declaration);
 
                                 var meetsRequirement = lowerBound >= request.MinimumAge;
                                 tcs.SetResult(new AgeVerificationResult
@@ -156,5 +122,10 @@ public partial class AgeSignalService : IAgeSignalService
             _logger.LogError(ex, "Error requesting age verification");
             return AgeVerificationResult.Failure($"Error: {ex.Message}");
         }
+    }
+
+    private string MapIOSErrorCodeToMessage(nint errorCode, string errorMsg)
+    {
+        return $"Declared Age Range API error (Code {errorCode}):\n{errorMsg}";
     }
 }

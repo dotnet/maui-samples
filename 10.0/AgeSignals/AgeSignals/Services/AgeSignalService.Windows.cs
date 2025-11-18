@@ -14,11 +14,6 @@ public partial class AgeSignalService : IAgeSignalService
         _logger = logger;
     }
 
-    public bool IsSupported()
-    {
-        return OperatingSystem.IsWindowsVersionAtLeast(10, 0, 22000);
-    }
-
     public string GetPlatformName() => "Windows";
 
     public Task<AgeVerificationResult> RequestAgeVerificationAsync(int minimumAge = 13, object? platformContext = null)
@@ -32,11 +27,6 @@ public partial class AgeSignalService : IAgeSignalService
 
     public async Task<AgeVerificationResult> RequestAgeVerificationAsync(AgeVerificationRequest request)
     {
-        if (!IsSupported())
-        {
-            return AgeVerificationResult.Failure("Windows Age Consent API requires Windows 11 (Build 22000+)");
-        }
-
         try
         {
             var users = await User.FindAllAsync();
@@ -48,70 +38,80 @@ public partial class AgeSignalService : IAgeSignalService
                 return AgeVerificationResult.Failure("No user logged in");
             }
 
-            // Check Adult group first (18+)
+            // Check Adult first, then Minor, then Child to determine exact age group
+            // Per Microsoft docs: Adult ⊃ Minor ⊃ Child (higher groups include lower groups)
             var adultResult = await currentUser.CheckUserAgeConsentGroupAsync(UserAgeConsentGroup.Adult);
 
-            _logger.LogInformation("Age consent check result: {Result}", adultResult);
+            _logger.LogInformation("Age consent check result (Adult): {Result}", adultResult);
 
-            switch (adultResult)
+            if (adultResult == UserAgeConsentResult.Included)
+            {
+                return new AgeVerificationResult
+                {
+                    IsSuccess = true,
+                    MinAge = 18,
+                    MaxAge = null,
+                    VerificationMethod = AgeVerificationMethod.WindowsAgeConsent
+                };
+            }
+
+            // If not adult, check Minor group
+            var minorResult = await currentUser.CheckUserAgeConsentGroupAsync(UserAgeConsentGroup.Minor);
+
+            _logger.LogInformation("Age consent check result (Minor): {Result}", minorResult);
+
+            if (minorResult == UserAgeConsentResult.Included)
+            {
+                return new AgeVerificationResult
+                {
+                    IsSuccess = request.MinimumAge <= 13, // Minors are typically 13-17
+                    MinAge = 13,
+                    MaxAge = 17,
+                    VerificationMethod = AgeVerificationMethod.WindowsAgeConsent,
+                    ErrorMessage = request.MinimumAge > 13 
+                        ? $"Age requirement not met. Required: {request.MinimumAge}+, User is Minor (13-17)"
+                        : null
+                };
+            }
+
+            var childResult = await currentUser.CheckUserAgeConsentGroupAsync(UserAgeConsentGroup.Child);
+
+            _logger.LogInformation("Age consent check result (Child): {Result}", childResult);
+
+            switch (childResult)
             {
                 case UserAgeConsentResult.Included:
                     return new AgeVerificationResult
                     {
-                        IsSuccess = true,
-                        MinAge = 18,
-                        MaxAge = null,
-                        VerificationMethod = AgeVerificationMethod.WindowsAgeConsent
+                        IsSuccess = request.MinimumAge < 13,
+                        MinAge = 0,
+                        MaxAge = 12,
+                        VerificationMethod = AgeVerificationMethod.WindowsAgeConsent,
+                        ErrorMessage = request.MinimumAge >= 13
+                            ? $"Age requirement not met. Required: {request.MinimumAge}+, User is Child (under 13)"
+                            : null
                     };
 
                 case UserAgeConsentResult.NotIncluded:
-                    // Not adult, check Child group
-                    var childResult = await currentUser.CheckUserAgeConsentGroupAsync(UserAgeConsentGroup.Child);
-                    
-                    switch (childResult)
-                    {
-                        case UserAgeConsentResult.Included:
-                            return new AgeVerificationResult
-                            {
-                                IsSuccess = true,
-                                MinAge = 0,
-                                MaxAge = 17,
-                                VerificationMethod = AgeVerificationMethod.WindowsAgeConsent
-                            };
-                        
-                        case UserAgeConsentResult.Unknown:
-                            _logger.LogWarning("Age information not available");
-                            return AgeVerificationResult.Failure(
-                                "Age information not available.\n" +
-                                "User should configure age in Microsoft account settings.");
-                        
-                        case UserAgeConsentResult.NotEnforced:
-                            _logger.LogInformation("Age consent not enforced in this region");
-                            return AgeVerificationResult.Failure(
-                                "Age consent groups not enforced in this region");
-                        
-                        default:
-                            return AgeVerificationResult.Failure("Unable to determine child age consent group");
-                    }
+                    return AgeVerificationResult.Failure(
+                        "User does not belong to any age consent group");
 
                 case UserAgeConsentResult.Unknown:
-                    _logger.LogWarning("Age information not available");
                     return AgeVerificationResult.Failure(
                         "Age information not available.\n" +
                         "User should configure age in Microsoft account settings.");
 
                 case UserAgeConsentResult.NotEnforced:
-                    _logger.LogInformation("Age consent not enforced in this region");
                     return AgeVerificationResult.Failure(
                         "Age consent groups not enforced in this region");
 
                 case UserAgeConsentResult.Ambiguous:
-                    _logger.LogWarning("Age consent group is ambiguous");
                     return AgeVerificationResult.Failure(
                         "Age consent group information is ambiguous");
-            }
 
-            return AgeVerificationResult.Failure("Unable to determine age consent group");
+                default:
+                    return AgeVerificationResult.Failure("Unable to determine age consent group");
+            }
         }
         catch (UnauthorizedAccessException ex)
         {

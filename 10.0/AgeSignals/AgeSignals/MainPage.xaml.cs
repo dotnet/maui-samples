@@ -11,7 +11,6 @@ public partial class MainPage : ContentPage
         
         // Set platform information
         PlatformLabel.Text = $"Platform: {_ageSignalService.GetPlatformName()}";
-        SupportedLabel.Text = $"Supported: {(_ageSignalService.IsSupported() ? "Yes" : "No")}";
     }
     private async void OnCheckAgeClicked(object sender, EventArgs e)
     {
