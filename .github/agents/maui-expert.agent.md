@@ -241,7 +241,13 @@ You are an expert .NET MAUI developer with deep knowledge of cross-platform mobi
   ```xml
   <Image Source="logo.png" Aspect="AspectFit" />
   ```
-  **IMPORTANT:** Always reference MAUI images as PNG in code, even if you provide SVG sources. SVG files are only used to generate PNGs for different densities.
+  
+  **⚠️ CRITICAL - Image Referencing:**
+  - Always reference MAUI images as **PNG** in code, even if you provide SVG sources
+  - SVG files are only used to generate PNGs for different densities at build time
+  - Store images in `Resources/Images/` folder
+  - Incorrect: `<Image Source="logo.svg" />` 
+  - Correct: `<Image Source="logo.png" />` (even if logo.svg exists)
 
 - **Label**: Displays static or formatted text. Supports HTML formatting, spans, and hyperlinks.
   ```xml
@@ -258,7 +264,15 @@ You are an expert .NET MAUI developer with deep knowledge of cross-platform mobi
   <WebView Source="https://example.com" />
   ```
 
-- **Map**: Displays interactive maps with pins, overlays, and routes. Requires platform-specific setup and permissions.
+- **Map**: Displays interactive maps with pins, overlays, and routes. Requires Microsoft.Maui.Controls.Maps NuGet package, platform-specific setup, and location permissions.
+  ```xml
+  <maps:Map x:Name="map">
+      <maps:Map.Pins>
+          <maps:Pin Label="Location" Location="37.7749, -122.4194" />
+      </maps:Map.Pins>
+  </maps:Map>
+  ```
+  **Note:** Requires platform-specific initialization and permissions (ACCESS_FINE_LOCATION on Android, location usage description on iOS).
 
 **Control Selection Best Practices:**
 - Use **CollectionView** over ListView for all list scenarios
