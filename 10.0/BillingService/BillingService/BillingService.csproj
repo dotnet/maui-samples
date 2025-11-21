@@ -1,7 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net10.0-android;net10.0-ios</TargetFrameworks>
+		<TargetFrameworks>net10.0-android;net10.0-ios;net10.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net10.0-windows10.0.19041.0</TargetFrameworks>
+
 		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
 		<!-- <TargetFrameworks>$(TargetFrameworks);net10.0-tizen</TargetFrameworks> -->
 
@@ -34,6 +36,8 @@
 
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">15.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">15.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -62,6 +66,26 @@
 
 	<ItemGroup Condition="$(TargetFramework.Contains('android'))">
 		<PackageReference Include="Xamarin.Android.Google.BillingClient" Version="7.1.1" />
+	</ItemGroup>
+
+	<!-- Disable default compile items to manually control platform-specific files -->
+	<PropertyGroup>
+		<EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+	</PropertyGroup>
+
+	<!-- Include all non-platform-specific C# files -->
+	<ItemGroup>
+		<Compile Include="**/*.cs" Exclude="Services/BillingService.*.cs;$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
+	</ItemGroup>
+
+	<!-- Platform-specific BillingService files: Visible in Solution Explorer, conditionally compiled per target framework -->
+	<ItemGroup>
+		<None Include="Services/BillingService.iOS.cs" />
+		<None Include="Services/BillingService.Android.cs" />
+		<None Include="Services/BillingService.Windows.cs" />
+		<Compile Include="Services/BillingService.iOS.cs" Condition="$(TargetFramework)=='net10.0-ios' OR $(TargetFramework)=='net10.0-maccatalyst'" />
+		<Compile Include="Services/BillingService.Android.cs" Condition="$(TargetFramework)=='net10.0-android'" />
+		<Compile Include="Services/BillingService.Windows.cs" Condition="$(TargetFramework.Contains('windows'))" />
 	</ItemGroup>
 
 </Project>
