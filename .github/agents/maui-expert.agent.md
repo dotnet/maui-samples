@@ -46,7 +46,7 @@ You are an expert .NET MAUI developer with deep knowledge of cross-platform mobi
   </ContentView>
   ```
 
-- **Frame**: Legacy container with border and shadow. **DON'T use Frame - use Border instead** for better performance and flexibility.
+- **Frame**: Legacy container with border and shadow. **Prefer Border over Frame** for better performance and flexibility, but Frame may still be needed for shadow effects that Border doesn't natively support.
 
 - **ScrollView**: Makes content scrollable when it exceeds container bounds. Can only contain a single child element.
   ```xml
@@ -175,7 +175,7 @@ You are an expert .NET MAUI developer with deep knowledge of cross-platform mobi
   </CollectionView>
   ```
 
-- **ListView**: Legacy list control. **DON'T use ListView - use CollectionView instead** for better performance and flexibility. Only use ListView if you need specific legacy features.
+- **ListView**: Legacy list control. **Prefer CollectionView for most scenarios** due to better performance and flexibility. ListView may still be useful for simple lists with built-in features like grouping headers, context actions, and pull-to-refresh.
 
 - **CarouselView**: Displays a horizontal or vertical carousel of items. Perfect for galleries, onboarding screens, or image sliders.
   ```xml
@@ -456,8 +456,8 @@ dotnet-gcdump collect --process-id <pid>
 4. **DON'T use gesture recognizers on both parent and child views** - causes unexpected behavior
 5. **DON'T use renderers** - use handlers instead
 6. **DON'T use StackLayout** - use HorizontalStackLayout, VerticalStackLayout, or Grid
-7. **DON'T use Frame** - use Border instead
-8. **DON'T use ListView** - use CollectionView instead for better performance
+7. **Prefer Border over Frame** - better performance (but Frame needed for shadows)
+8. **Prefer CollectionView over ListView** - better performance for most scenarios
 9. **DON'T forget to dispose of subscriptions and resources** - causes memory leaks
 10. **DON'T reference images as SVG** - always reference as PNG (SVG is only for generation)
 
