@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AgeSignals.MainPage"
+             Title="Age Signals"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="20"
+            Spacing="20">
+
+            <!-- Header Section -->
+            <VerticalStackLayout Spacing="8" Margin="0,20,0,0">
+                <Label
+                    Text=".NET MAUI Age Signals"
+                    FontSize="28"
+                    FontAttributes="Bold"
+                    HorizontalOptions="Center" />
+
+                <Label
+                    Text="Cross-platform age verification demo"
+                    FontSize="14"
+                    HorizontalOptions="Center"
+                    TextColor="{DynamicResource Gray600}" />
+            </VerticalStackLayout>
+
+            <!-- Platform Info Card -->
+            <Border
+                Stroke="{DynamicResource Primary}"
+                StrokeThickness="2"
+                Padding="16"
+                Margin="0,10,0,0"
+                BackgroundColor="{DynamicResource CardBackground}">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="12" />
+                </Border.StrokeShape>
+                
+                <VerticalStackLayout Spacing="8">
+                    <Label
+                        Text="Platform Information"
+                        FontSize="16"
+                        FontAttributes="Bold" />
+                    
+                    <Label
+                        x:Name="PlatformLabel"
+                        Text="Platform: Loading..."
+                        FontSize="14" />
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Action Button -->
+            <Button
+                x:Name="CheckAgeButton"
+                Text="Verify Age"
+                FontSize="18"
+                FontAttributes="Bold"
+                Clicked="OnCheckAgeClicked"
+                HorizontalOptions="Fill"
+                BackgroundColor="{DynamicResource Primary}"
+                TextColor="White"
+                CornerRadius="8"
+                HeightRequest="54"
+                Margin="0,10,0,0" />
+
+            <!-- Result Display -->
+            <Border
+                x:Name="ResultBorder"
+                IsVisible="False"
+                Stroke="{DynamicResource Gray300}"
+                StrokeThickness="1"
+                Padding="16"
+                BackgroundColor="{DynamicResource CardBackground}">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="8" />
+                </Border.StrokeShape>
+                
+                <VerticalStackLayout Spacing="8">
+                    <Label
+                        x:Name="ResultTitleLabel"
+                        Text="Result"
+                        FontSize="14"
+                        FontAttributes="Bold" />
+                    
+                    <Label
+                        x:Name="ResultLabel"
+                        FontSize="13"
+                        LineBreakMode="WordWrap" />
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Requirements Section -->
+            <Border
+                Stroke="{DynamicResource Gray300}"
+                StrokeThickness="1"
+                Padding="16"
+                Margin="0,10,0,20"
+                BackgroundColor="{DynamicResource CardBackground}">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="8" />
+                </Border.StrokeShape>
+                
+                <VerticalStackLayout Spacing="12">
+                    <Label
+                        Text="Platform Requirements"
+                        FontSize="15"
+                        FontAttributes="Bold" />
+                    
+                    <VerticalStackLayout Spacing="10">
+                        <!-- Android -->
+                        <VerticalStackLayout Spacing="4">
+                            <Label
+                                Text="Android"
+                                FontSize="13"
+                                FontAttributes="Bold"
+                                TextColor="{DynamicResource Primary}" />
+                            <Label
+                                Text="Google Play Age Signals API"
+                                FontSize="12"
+                                TextColor="{DynamicResource Gray600}" />
+                            <Label
+                                Text="• Requires Google Play Store installation&#x0a;• API 23+ (Android 6.0+)&#x0a;• Applicable jurisdiction only"
+                                FontSize="11"
+                                TextColor="{DynamicResource Gray500}" />
+                        </VerticalStackLayout>
+
+                        <!-- iOS -->
+                        <VerticalStackLayout Spacing="4">
+                            <Label
+                                Text="iOS"
+                                FontSize="13"
+                                FontAttributes="Bold"
+                                TextColor="{DynamicResource Primary}" />
+                            <Label
+                                Text="Declared Age Range API"
+                                FontSize="12"
+                                TextColor="{DynamicResource Gray600}" />
+                            <Label
+                                Text="• iOS 18.0+ required&#x0a;• Physical device only (not available on simulator)&#x0a;• User must configure Family Sharing settings"
+                                FontSize="11"
+                                TextColor="{DynamicResource Gray500}" />
+                        </VerticalStackLayout>
+
+                        <!-- Windows -->
+                        <VerticalStackLayout Spacing="4">
+                            <Label
+                                Text="Windows"
+                                FontSize="13"
+                                FontAttributes="Bold"
+                                TextColor="{DynamicResource Primary}" />
+                            <Label
+                                Text="Age Consent API"
+                                FontSize="12"
+                                TextColor="{DynamicResource Gray600}" />
+                            <Label
+                                Text="• Windows 11+ (Build 22000+)&#x0a;• UserAccountInformation capability required"
+                                FontSize="11"
+                                TextColor="{DynamicResource Gray500}" />
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </Border>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
