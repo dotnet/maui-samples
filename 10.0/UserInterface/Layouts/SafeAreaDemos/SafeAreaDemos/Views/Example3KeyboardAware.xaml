@@ -2,31 +2,90 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SafeAreaDemos.Views.Example3KeyboardAware"
+             SafeAreaEdges="SoftInput"
              Title="Keyboard-Aware Layout">
-    <Grid RowDefinitions="*,Auto" SafeAreaEdges="SoftInput">
-        <ScrollView Grid.Row="0">
-            <VerticalStackLayout Padding="20" Spacing="10">
-                <Label Text="User Profile" FontSize="24" FontAttributes="Bold" />
-                <Entry Placeholder="Name" />
-                <Entry Placeholder="Email" />
-                <Entry Placeholder="Phone" />
-                <Editor Placeholder="Bio" HeightRequest="100" />
-                <Label Text="Tap the message box below to see keyboard avoidance"
-                       FontSize="14"
-                       TextColor="Gray"
-                       Margin="0,20,0,0"/>
-            </VerticalStackLayout>
-        </ScrollView>
-        
-        <Border Grid.Row="1" 
-                BackgroundColor="LightGray"
-                Padding="20">
-            <HorizontalStackLayout Spacing="10">
-                <Entry x:Name="MessageEntry"
-                       Placeholder="Type a message..." 
-                       HorizontalOptions="FillAndExpand" />
-                <Button Text="Send" />
-            </HorizontalStackLayout>
+
+    <Grid>
+        <!-- Gradient Background spanning entire screen -->
+        <Border>
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0"
+                                     EndPoint="1,1">
+                    <GradientStop Color="#667eea"
+                                  Offset="0.0"/>
+                    <GradientStop Color="#764ba2"
+                                  Offset="0.5"/>
+                    <GradientStop Color="#f093fb"
+                                  Offset="1.0"/>
+                </LinearGradientBrush>
+            </Border.Background>
         </Border>
+
+
+        <!-- Animated background pattern -->
+        <Grid Opacity="0.1">
+            <Ellipse WidthRequest="400"
+                     HeightRequest="400"
+                     Fill="White"
+                     HorizontalOptions="Start"
+                     VerticalOptions="Start"
+                     Margin="-200,-200,0,0"/>
+            <Ellipse WidthRequest="300"
+                     HeightRequest="300"
+                     Fill="White"
+                     HorizontalOptions="End"
+                     VerticalOptions="Center"
+                     Margin="0,0,-150,0"/>
+            <Ellipse WidthRequest="350"
+                     HeightRequest="350"
+                     Fill="White"
+                     HorizontalOptions="Center"
+                     VerticalOptions="End"
+                     Margin="0,0,0,-175"/>
+        </Grid>
+
+        <Grid
+            RowDefinitions="80,5,*, Auto">
+            <!-- StatusBar Overlay -->
+            <Grid Padding="15,10"
+                  Grid.Row="0">
+                <Label Grid.Column="1"
+                       Text="SoftInput ensures the UI automatically adds padding whenever the on-screen keyboard appears."
+                       TextColor="White"
+                       FontSize="14"
+                       FontAttributes="Bold"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"/>
+            </Grid>
+            <BoxView Grid.Row="1"
+                     Color="#40FFFFFF"/>
+
+            <!-- Content (No ScrollView) -->
+            <VerticalStackLayout Grid.Row="2"
+                                 Padding="20"
+                                 Spacing="10"
+                                 SafeAreaEdges="Container">
+                <Label Text="User Profile"
+                       FontSize="24"
+                       FontAttributes="Bold"/>
+
+                <Entry Placeholder="Name"/>
+                <Entry Placeholder="Email"/>
+                <Entry Placeholder="Phone"/>
+            </VerticalStackLayout>
+
+            <!-- Bottom Input Bar -->
+            <Grid Grid.Row="3">
+                <HorizontalStackLayout Spacing="10"
+                                       Padding="10,0,10,0">
+                    <Entry x:Name="MessageEntry"
+                           WidthRequest="300"
+                           Placeholder="Type a message..."
+                           HorizontalOptions="Fill"/>
+                    <Button Text="Send"/>
+                </HorizontalStackLayout>
+            </Grid>
+        </Grid>
+
     </Grid>
 </ContentPage>

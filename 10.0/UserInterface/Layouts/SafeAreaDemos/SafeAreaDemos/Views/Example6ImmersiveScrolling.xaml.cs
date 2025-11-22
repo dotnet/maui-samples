@@ -1,12 +1,11 @@
 namespace SafeAreaDemos.Views;
 
-public partial class Example1EdgeToEdge : ContentPage
+public partial class Example6ImmersiveScrolling : ContentPage
 {
-	public Example1EdgeToEdge()
+	public Example6ImmersiveScrolling()
 	{
 		InitializeComponent();
 	}
-
 	async void Button_Clicked(object sender, EventArgs e)
 	{
 		await Navigation.PopAsync();

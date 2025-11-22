@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SafeAreaDemos.Views.Example5Container"
+             Shell.NavBarIsVisible="False"
+             SafeAreaEdges="Container"
+             Background="Gray">
+
+       <Grid SafeAreaEdges="Container">
+              <!-- Background Layer -->
+              <Border>
+                     <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0"
+                                                 EndPoint="1,1">
+                                   <GradientStop Color="#667eea"
+                                                 Offset="0.0"/>
+                                   <GradientStop Color="#764ba2"
+                                                 Offset="0.5"/>
+                                   <GradientStop Color="#f093fb"
+                                                 Offset="1.0"/>
+                            </LinearGradientBrush>
+                     </Border.Background>
+              </Border>
+
+              <!-- Pattern Layer -->
+              <Grid Opacity="0.1">
+                     <Ellipse WidthRequest="400"
+                              HeightRequest="400"
+                              Fill="White"
+                              HorizontalOptions="Start"
+                              VerticalOptions="Start"
+                              Margin="-200,-200,0,0"/>
+                     <Ellipse WidthRequest="300"
+                              HeightRequest="300"
+                              Fill="White"
+                              HorizontalOptions="End"
+                              VerticalOptions="Center"
+                              Margin="0,0,-150,0"/>
+                     <Ellipse WidthRequest="350"
+                              HeightRequest="350"
+                              Fill="White"
+                              HorizontalOptions="Center"
+                              VerticalOptions="End"
+                              Margin="0,0,0,-175"/>
+              </Grid>
+
+              <!-- Main Content -->
+              <Grid RowDefinitions="80,5,*"
+                    SafeAreaEdges="Container">
+
+                     <!-- Header -->
+                     <Grid Padding="15,10"
+                           Grid.Row="0"
+                           ColumnDefinitions="Auto,*,Auto"
+                           SafeAreaEdges="Container">
+
+                            <Border Grid.Column="0"
+                                    Background="#FFFFFF"
+                                    Stroke="Transparent"
+                                    StrokeShape="RoundRectangle 20"
+                                    WidthRequest="40"
+                                    HeightRequest="40"
+                                    VerticalOptions="Center">
+                                   <Border.Shadow>
+                                          <Shadow Brush="Black"
+                                                  Opacity="0.3"
+                                                  Radius="10"
+                                                  Offset="0,4"/>
+                                   </Border.Shadow>
+                                   <Button Text="←"
+                                           TextColor="#667eea"
+                                           FontSize="24"
+                                           FontAttributes="Bold"
+                                           Background="Transparent"
+                                           Clicked="Button_Clicked"
+                                           Padding="0"/>
+                            </Border>
+
+                            <Label Grid.Column="1"
+                                   Text="SafeAreaEdges='Container'"
+                                   TextColor="White"
+                                   FontSize="14"
+                                   FontAttributes="Bold"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center"/>
+                     </Grid>
+
+                     <BoxView Grid.Row="1"
+                              Color="#40FFFFFF"/>
+                     <!-- Content Area with Grid -->
+                     <Grid Grid.Row="2"
+                           Padding="20"
+                           RowDefinitions="Auto,*"
+                           SafeAreaEdges="Container">
+
+                            <!-- Explanation -->
+                            <VerticalStackLayout Grid.Row="0"
+                                                 Spacing="15"
+                                                 Margin="0,0,0,20">
+                                   <Label Text="SafeAreaEdges='Container'"
+                                          FontSize="20"
+                                          FontAttributes="Bold"
+                                          TextColor="White"/>
+
+                                   <Label TextColor="White"
+                                          FontSize="14"
+                                          LineBreakMode="WordWrap">
+                                          <Label.FormattedText>
+                                                 <FormattedString>
+                                                        <Span Text="Content respects device safe areas (status bar, notch, home indicator)"/>
+                                                        <Span Text="&#10;&#10;"/>
+                                                        <Span Text="Content can extend beneath the keyboard"/>
+                                                        <Span Text="&#10;&#10;"/>
+                                                        <Span Text="No automatic padding added for keyboard"/>
+                                                        <Span Text="&#10;&#10;"/>
+                                                        <Span Text="To test: Tap the entry field below and verify content flows under the keyboard."/>
+                                                 </FormattedString>
+                                          </Label.FormattedText>
+                                   </Label>
+                            </VerticalStackLayout>
+
+                            <!-- Dummy Content to Test Scrolling -->
+                            <ScrollView Grid.Row="1">
+                                   <VerticalStackLayout Spacing="15">
+                                          <Entry Placeholder="Type here to show keyboard"
+                                                 x:Name="MessageEntry"
+                                                 BackgroundColor="White"
+                                                 PlaceholderColor="Gray"/>
+                                          <Label Text="SafeAreaEdges='Container' allows content to flow naturally under the keyboard when it appears."
+                                                 TextColor="White"
+                                                 FontSize="14"
+                                                 LineBreakMode="WordWrap"
+                                                 Margin="0,0,0,10"/>
+                                          <Label Text="Notice how this content can be scrolled behind the keyboard. The container respects device safe areas (notch, status bar, home indicator) but does not automatically adjust for the soft keyboard."
+                                                 TextColor="White"
+                                                 FontSize="14"
+                                                 LineBreakMode="WordWrap"
+                                                 Margin="0,0,0,10"/>
+
+                                          <Label Text="This is ideal when you want full control over keyboard behavior and prefer to handle it through ScrollView or manual adjustments. The content remains accessible through scrolling."
+                                                 TextColor="White"
+                                                 FontSize="14"
+                                                 LineBreakMode="WordWrap"
+                                                 Margin="0,0,0,10"/>
+
+                                          <Label Text="Compare this with SafeAreaEdges='All' or 'Keyboard' where automatic padding would be applied. With 'Container', you maintain design flexibility and can create custom keyboard handling behaviors."
+                                                 TextColor="White"
+                                                 FontSize="14"
+                                                 LineBreakMode="WordWrap"
+                                                 Margin="0,0,0,10"/>
+                                   </VerticalStackLayout>
+                            </ScrollView>
+                     </Grid>
+              </Grid>
+       </Grid>
+</ContentPage>

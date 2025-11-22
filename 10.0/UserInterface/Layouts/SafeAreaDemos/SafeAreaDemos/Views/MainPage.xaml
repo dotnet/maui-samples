@@ -5,72 +5,90 @@
              x:Class="SafeAreaDemos.MainPage"
              Title="SafeArea demos"
              x:DataType="local:MainPage">
-    <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="15">
-            <Label Text="SafeArea Demos" 
-                   FontSize="32" 
-                   FontAttributes="Bold"
-                   HorizontalOptions="Center"
-                   Margin="0,10,0,20" />
+       <ScrollView>
+              <VerticalStackLayout Padding="20"
+                                   Spacing="15">
+                     <Label Text="SafeArea Demos"
+                            FontSize="32"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Center"
+                            Margin="0,10,0,20"/>
 
-            <Label Text="SafeAreaEdges Property Overview" 
-                   FontSize="Medium" 
-                   FontAttributes="Bold" />
-            <Label Text="The SafeAreaEdges property controls which edges of a view should respect system safe areas like notches, status bars, and keyboards. It can be set to None, All, Top, Bottom, Left, Right, Container, or SoftInput."
-                   FontSize="14"
-                   TextColor="Gray"
-                   LineBreakMode="WordWrap"
-                   Margin="0,0,0,10" />
+                     <Label Text="SafeAreaEdges Property Overview"
+                            FontSize="Medium"
+                            FontAttributes="Bold"/>
+                     <Label Text="The SafeAreaEdges property controls which edges of a view should respect system safe areas like notches, status bars, and keyboards. It can be set to None, All, Top, Bottom, Left, Right, Container, or SoftInput."
+                            FontSize="14"
+                            TextColor="Gray"
+                            LineBreakMode="WordWrap"
+                            Margin="0,0,0,10"/>
 
-            <!-- Basic Examples Section -->
-            <Label Text="Basic Examples" FontSize="Medium" FontAttributes="Bold" Margin="0,10,0,0" />
+                     <!-- Basic Examples Section -->
+                     <Label Text="Basic Examples"
+                            FontSize="Medium"
+                            FontAttributes="Bold"
+                            Margin="0,10,0,0"/>
 
-            <Label Text="Edge-to-edge content (SafeAreaEdges=None)" FontSize="Small" />
-            <Button Text="Example 1: Edge-to-Edge Content"
-                Command="{Binding NavigateCommand}"
-                CommandParameter="{x:Type views:Example1EdgeToEdge}" />
+                     <Label Text="Edge-to-edge content (SafeAreaEdges=None)"
+                            FontSize="Small"/>
+                     <Button Text="Example 1: Edge-to-Edge Content"
+                             Command="{Binding NavigateCommand}"
+                             CommandParameter="{x:Type views:Example1EdgeToEdge}"/>
 
-            <Label Text="Respect all safe areas (SafeAreaEdges=All)" FontSize="Small" />
-            <Button Text="Example 2: Respect All Safe Areas"
-                Command="{Binding NavigateCommand}"
-                CommandParameter="{x:Type views:Example2RespectAll}" />
+                     <Label Text="Respect all safe areas (SafeAreaEdges=All)"
+                            FontSize="Small"/>
+                     <Button Text="Example 2: Respect All Safe Areas"
+                             Command="{Binding NavigateCommand}"
+                             CommandParameter="{x:Type views:Example2RespectAll}"/>
 
-            <Label Text="Keyboard-aware layout (SafeAreaEdges=SoftInput)" FontSize="Small" />
-            <Button Text="Example 3: Keyboard-Aware Layout"
-                Command="{Binding NavigateCommand}"
-                CommandParameter="{x:Type views:Example3KeyboardAware}" />
+                     <Label Text="Keyboard-aware layout (SafeAreaEdges=SoftInput)"
+                            FontSize="Small"/>
+                     <Button Text="Example 3: Keyboard-Aware Layout"
+                             Command="{Binding NavigateCommand}"
+                             CommandParameter="{x:Type views:Example3KeyboardAware}"/>
 
-            <!-- Advanced Examples Section -->
-            <Label Text="Advanced Examples" FontSize="Medium" FontAttributes="Bold" Margin="0,20,0,0" />
+                     <Label Text="Platform default behavior (SafeAreaEdges=Default)"
+                            FontSize="Small"/>
+                     <Button Text="Example 4: Default Safe Area"
+                             Command="{Binding NavigateCommand}"
+                             CommandParameter="{x:Type views:Example4Default}"/>
 
-            <Label Text="Immersive scrolling with Container" FontSize="Small" />
-            <Button Text="Example 4: Immersive Scrolling"
-                Command="{Binding NavigateCommand}"
-                CommandParameter="{x:Type views:Example4ImmersiveScrolling}" />
+                     <Label Text="Container with automatic padding (SafeAreaEdges=Container)"
+                            FontSize="Small"/>
+                     <Button Text="Example 5: Container Safe Area"
+                             Command="{Binding NavigateCommand}"
+                             CommandParameter="{x:Type views:Example5Container}"/>
 
-            <Label Text="Different SafeAreaEdges per layout" FontSize="Small" />
-            <Button Text="Example 5: Per-Layout Control"
-                Command="{Binding NavigateCommand}"
-                CommandParameter="{x:Type views:Example5PerLayoutControl}" />
+                     <!-- Advanced Examples Section -->
+                     <Label Text="Advanced Examples"
+                            FontSize="Medium"
+                            FontAttributes="Bold"
+                            Margin="0,20,0,0"/>
 
-            <Label Text="Combining SafeAreaEdges with custom padding" FontSize="Small" />
-            <Button Text="Example 6: Best Practices"
-                Command="{Binding NavigateCommand}"
-                CommandParameter="{x:Type views:Example6BestPractices}" />
+                     <Label Text="Immersive scrolling with Container"
+                            FontSize="Small"/>
+                     <Button Text="Example 6: Immersive Scrolling"
+                             Command="{Binding NavigateCommand}"
+                             CommandParameter="{x:Type views:Example6ImmersiveScrolling}"/>
 
-            <!-- NavigationPage Examples Section -->
-            <Label Text="NavigationPage Examples" FontSize="Medium" FontAttributes="Bold" Margin="0,20,0,0" />
+                     <!-- NavigationPage Examples Section -->
+                     <Label Text="NavigationPage Examples"
+                            FontSize="Medium"
+                            FontAttributes="Bold"
+                            Margin="0,20,0,0"/>
 
-            <Label Text="Edge-to-edge with NavigationPage" FontSize="Small" />
-            <Button Text="Edge-to-Edge with Nav Bar"
-                Command="{Binding NavigateToNavPageCommand}"
-                CommandParameter="{x:Type views:ExampleEdgeToEdgeNavPage}" />
+                     <Label Text="Edge-to-edge with NavigationPage"
+                            FontSize="Small"/>
+                     <Button Text="Edge-to-Edge with Nav Bar"
+                             Command="{Binding NavigateToNavPageCommand}"
+                             CommandParameter="{x:Type views:ExampleEdgeToEdgeNavPage}"/>
 
-            <Label Text="Transparent navigation bar" FontSize="Small" />
-            <Button Text="Transparent Nav Bar"
-                Command="{Binding NavigateToNavPageCommand}"
-                CommandParameter="{x:Type views:ExampleTransparentNavBar}" />
+                     <Label Text="Transparent navigation bar"
+                            FontSize="Small"/>
+                     <Button Text="Transparent Nav Bar"
+                             Command="{Binding NavigateToNavPageCommand}"
+                             CommandParameter="{x:Type views:ExampleTransparentNavBar}"/>
 
-        </VerticalStackLayout>
-    </ScrollView>
+              </VerticalStackLayout>
+       </ScrollView>
 </ContentPage>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SafeAreaDemos.Views.Example4Default"
+             SafeAreaEdges="Default"
+             Background="Gray"
+             Title="SafeAreaEdges: Default">
+       <Grid>
+              <!-- Gradient Background spanning entire screen -->
+              <Border>
+                     <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0"
+                                                 EndPoint="1,1">
+                                   <GradientStop Color="#667eea"
+                                                 Offset="0.0"/>
+                                   <GradientStop Color="#764ba2"
+                                                 Offset="0.5"/>
+                                   <GradientStop Color="#f093fb"
+                                                 Offset="1.0"/>
+                            </LinearGradientBrush>
+                     </Border.Background>
+              </Border>
+              <!-- Animated background pattern -->
+              <Grid Opacity="0.1">
+                     <Ellipse WidthRequest="400"
+                              HeightRequest="400"
+                              Fill="White"
+                              HorizontalOptions="Start"
+                              VerticalOptions="Start"
+                              Margin="-200,-200,0,0"/>
+                     <Ellipse WidthRequest="300"
+                              HeightRequest="300"
+                              Fill="White"
+                              HorizontalOptions="End"
+                              VerticalOptions="Center"
+                              Margin="0,0,-150,0"/>
+                     <Ellipse WidthRequest="350"
+                              HeightRequest="350"
+                              Fill="White"
+                              HorizontalOptions="Center"
+                              VerticalOptions="End"
+                              Margin="0,0,0,-175"/>
+              </Grid>
+
+              <!-- Main Content -->
+              <Grid RowDefinitions="Auto,*,Auto">
+                     <!-- Description Banner -->
+                     <Border Grid.Row="0"
+                             Background="#8B7FE8"
+                             Stroke="Transparent"
+                             Padding="20,15"
+                             Margin="15,0,15,10">
+                            <Label TextColor="White"
+                                   FontSize="15"
+                                   LineHeight="1.4"
+                                   Text="Default applies the platform’s built-in safe area rules, letting each device automatically decide how content should adjust around notches, status bars, and system UI."/>
+                     </Border>
+
+                     <!-- Contact List with Search -->
+                     <Grid Grid.Row="1"
+                           Background="#F5F5F5"
+                           RowDefinitions="Auto,*">
+                            <!-- Contact List -->
+                            <CollectionView Grid.Row="1"
+                                            ItemsSource="{Binding Contacts}"
+                                            SelectionMode="None"
+                                            BackgroundColor="White">
+                                   <CollectionView.ItemsLayout>
+                                          <LinearItemsLayout Orientation="Vertical"
+                                                             ItemSpacing="0"/>
+                                   </CollectionView.ItemsLayout>
+                                   <CollectionView.ItemTemplate>
+                                          <DataTemplate>
+                                                 <Grid BackgroundColor="White">
+                                                        <!-- Section Header -->
+                                                        <Label Text="{Binding Section}"
+                                                               TextColor="Black"
+                                                               FontSize="13"
+                                                               FontAttributes="Bold"
+                                                               Margin="25,15,25,10"
+                                                               IsVisible="{Binding IsSection}"/>
+
+                                                        <!-- Contact Item -->
+                                                        <Grid Padding="25,15"
+                                                              IsVisible="{Binding IsContact}">
+                                                               <Label Text="{Binding Name}"
+                                                                      TextColor="#666666"
+                                                                      FontSize="16"
+                                                                      VerticalOptions="Center"/>
+
+                                                               <!-- Separator Line -->
+                                                               <BoxView Color="#E0E0E0"
+                                                                        HeightRequest="0.5"
+                                                                        VerticalOptions="End"/>
+                                                        </Grid>
+                                                 </Grid>
+                                          </DataTemplate>
+                                   </CollectionView.ItemTemplate>
+                            </CollectionView>
+
+                            <!-- Floating Action Button -->
+                            <Border Grid.Row="1"
+                                    Background="#4CAF50"
+                                    Stroke="Transparent"
+                                    StrokeShape="RoundRectangle 30"
+                                    WidthRequest="60"
+                                    HeightRequest="60"
+                                    HorizontalOptions="End"
+                                    VerticalOptions="End"
+                                    Margin="0,0,20,20">
+                                   <Border.Shadow>
+                                          <Shadow Brush="Black"
+                                                  Opacity="0.3"
+                                                  Radius="15"
+                                                  Offset="0,5"/>
+                                   </Border.Shadow>
+                                   <Label Text="💬"
+                                          FontSize="28"
+                                          HorizontalOptions="Center"
+                                          VerticalOptions="Center"/>
+                            </Border>
+                     </Grid>
+              </Grid>
+       </Grid>
+</ContentPage>

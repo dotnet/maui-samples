@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SafeAreaDemos.Views.Example6ImmersiveScrolling"
+             Shell.NavBarIsVisible="False"
+             SafeAreaEdges="Container">
+       <Grid SafeAreaEdges="Container">
+
+              <!-- Gradient Background spanning entire screen -->
+              <Border>
+                     <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0"
+                                                 EndPoint="1,1">
+                                   <GradientStop Color="#667eea"
+                                                 Offset="0.0"/>
+                                   <GradientStop Color="#764ba2"
+                                                 Offset="0.5"/>
+                                   <GradientStop Color="#f093fb"
+                                                 Offset="1.0"/>
+                            </LinearGradientBrush>
+                     </Border.Background>
+              </Border>
+
+              <!-- Animated background pattern -->
+              <Grid Opacity="0.1">
+                     <Ellipse WidthRequest="400"
+                              HeightRequest="400"
+                              Fill="White"
+                              HorizontalOptions="Start"
+                              VerticalOptions="Start"
+                              Margin="-200,-200,0,0"/>
+                     <Ellipse WidthRequest="300"
+                              HeightRequest="300"
+                              Fill="White"
+                              HorizontalOptions="End"
+                              VerticalOptions="Center"
+                              Margin="0,0,-150,0"/>
+                     <Ellipse WidthRequest="350"
+                              HeightRequest="350"
+                              Fill="White"
+                              HorizontalOptions="Center"
+                              VerticalOptions="End"
+                              Margin="0,0,0,-175"/>
+              </Grid>
+
+              <Grid SafeAreaEdges="None"
+                    RowDefinitions="75,5,*">
+                     <Grid Padding="15,10"
+                           Grid.Row="0"
+                           ColumnDefinitions="Auto,*,Auto">
+                            <!-- Back Button -->
+                            <Border Grid.Column="0"
+                                    Background="#FFFFFF"
+                                    Stroke="Transparent"
+                                    StrokeShape="RoundRectangle 20"
+                                    WidthRequest="40"
+                                    HeightRequest="40"
+                                    VerticalOptions="Center">
+                                   <Border.Shadow>
+                                          <Shadow Brush="Black"
+                                                  Opacity="0.3"
+                                                  Radius="10"
+                                                  Offset="0,4"/>
+                                   </Border.Shadow>
+                                   <Button Text="←"
+                                           TextColor="#667eea"
+                                           FontSize="24"
+                                           FontAttributes="Bold"
+                                           Background="Transparent"
+                                           Clicked="Button_Clicked"
+                                           Padding="0"/>
+                            </Border>
+
+                            <Label Grid.Column="1"
+                                   Text="Immersive Scrolling"
+                                   TextColor="White"
+                                   FontSize="14"
+                                   FontAttributes="Bold"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center"/>
+
+
+                     </Grid>
+                     <BoxView Grid.Row="1"
+                              Color="#40FFFFFF"/>
+                     <ScrollView Grid.Row="2">
+                            <VerticalStackLayout Spacing="10">
+                                   <Image Source="dotnet_bot.png"
+                                          Aspect="AspectFill"
+                                          HeightRequest="300"/>
+                                   <VerticalStackLayout Padding="20"
+                                                        Spacing="15">
+                                          <Label Text="Article Title"
+                                                 FontSize="28"
+                                                 FontAttributes="Bold"/>
+                                          <Label Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                                                 FontSize="16"/>
+                                          <Label Text="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+                                                 FontSize="16"/>
+                                          <Label Text="Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+                                                 FontSize="16"/>
+                                          <Label Text="Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                                                 FontSize="16"/>
+                                          <Label Text="Scroll to see the immersive scrolling experience with content extending edge-to-edge."
+                                                 FontSize="14"
+                                                 Margin="0,20,0,0"/>
+                                   </VerticalStackLayout>
+                            </VerticalStackLayout>
+                     </ScrollView>
+              </Grid>
+       </Grid>
+</ContentPage>
