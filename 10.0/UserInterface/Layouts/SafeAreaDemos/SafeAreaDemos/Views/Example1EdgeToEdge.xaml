@@ -3,28 +3,167 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SafeAreaDemos.Views.Example1EdgeToEdge"
              SafeAreaEdges="None"
-             Title="Edge-to-Edge Content">
-    <Grid SafeAreaEdges="None">
-        <Image Source="dotnet_bot.png" 
-               Aspect="AspectFill" />
-        
-        <!-- Semi-transparent background for better text readability -->
-        <BoxView Color="Black"
-                 Opacity="0.7"
-                 VerticalOptions="End"
-                 HeightRequest="180"/>
-        
-        <VerticalStackLayout Padding="30"
-                             Spacing="10"
-                             VerticalOptions="End">
-            <Label Text="Edge-to-Edge Content"
-                   TextColor="White"
-                   FontSize="28"
-                   FontAttributes="Bold" />
-            <Label Text="This content extends behind system bars and notches, creating an immersive full-screen experience."
-                   TextColor="White"
-                   FontSize="18"
-                   LineBreakMode="WordWrap" />
-        </VerticalStackLayout>
-    </Grid>
+             Shell.NavBarIsVisible="False">
+
+       <!-- Main Grid with edge-to-edge content -->
+       <Grid SafeAreaEdges="None">
+              <!-- Gradient Background spanning entire screen -->
+              <Border>
+                     <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0"
+                                                 EndPoint="1,1">
+                                   <GradientStop Color="#667eea"
+                                                 Offset="0.0"/>
+                                   <GradientStop Color="#764ba2"
+                                                 Offset="0.5"/>
+                                   <GradientStop Color="#f093fb"
+                                                 Offset="1.0"/>
+                            </LinearGradientBrush>
+                     </Border.Background>
+              </Border>
+
+              <!-- Animated background pattern -->
+              <Grid Opacity="0.1"
+                    SafeAreaEdges="None">
+                     <Ellipse WidthRequest="400"
+                              HeightRequest="400"
+                              Fill="White"
+                              HorizontalOptions="Start"
+                              VerticalOptions="Start"
+                              Margin="-200,-200,0,0"/>
+                     <Ellipse WidthRequest="300"
+                              HeightRequest="300"
+                              Fill="White"
+                              HorizontalOptions="End"
+                              VerticalOptions="Center"
+                              Margin="0,0,-150,0"/>
+                     <Ellipse WidthRequest="350"
+                              HeightRequest="350"
+                              Fill="White"
+                              HorizontalOptions="Center"
+                              VerticalOptions="End"
+                              Margin="0,0,0,-175"/>
+              </Grid>
+
+              <Grid SafeAreaEdges="None"
+                    RowDefinitions="50,75,5,*,5,75,30">
+                     <!-- StatusBar Overlay -->
+                     <Grid Background="#40FFFFFF">
+                            <Label Text="Status Bar Overlay"
+                                   TextColor="White"
+                                   FontSize="14"
+                                   FontAttributes="Bold"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center"/>
+                     </Grid>
+
+                     <Grid Padding="15,10"
+                           Grid.Row="1"
+                           ColumnDefinitions="Auto,*,Auto">
+                            <!-- Back Button -->
+                            <Border Grid.Column="0"
+                                    Background="#FFFFFF"
+                                    Stroke="Transparent"
+                                    StrokeShape="RoundRectangle 20"
+                                    WidthRequest="40"
+                                    HeightRequest="40"
+                                    VerticalOptions="Center">
+                                   <Border.Shadow>
+                                          <Shadow Brush="Black"
+                                                  Opacity="0.3"
+                                                  Radius="10"
+                                                  Offset="0,4"/>
+                                   </Border.Shadow>
+                                   <Button Text="←"
+                                           TextColor="#667eea"
+                                           FontSize="24"
+                                           FontAttributes="Bold"
+                                           Background="Transparent"
+                                           Clicked="Button_Clicked"
+                                           Padding="0"/>
+                            </Border>
+
+                            <Label Grid.Column="1"
+                                   Text="The above control is a grid that is Behind Status Bar"
+                                   TextColor="White"
+                                   FontSize="14"
+                                   FontAttributes="Bold"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center"/>
+
+
+                     </Grid>
+                     <BoxView Grid.Row="2"
+                              Color="#40FFFFFF"/>
+                     <Grid Grid.Row="3"
+                           Padding="0,10,0,0">
+                            <VerticalStackLayout Spacing="15">
+                                   <Label Text="Full Screen Experience"
+                                          TextColor="White"
+                                          FontSize="20"
+                                          FontAttributes="Bold"/>
+                                   <BoxView Color="#40FFFFFF"
+                                            HeightRequest="1"/>
+                                   <Label TextColor="#E0FFFFFF"
+                                          FontSize="15"
+                                          LineHeight="1.5">
+                                          <Label.FormattedText>
+                                                 <FormattedString>
+                                                        <Span Text="Content extends "/>
+                                                        <Span Text="completely edge-to-edge"
+                                                              FontAttributes="Bold"
+                                                              TextColor="Black"/>
+                                                        <Span Text=", going behind system UI elements like the status bar and home indicator. Perfect for immersive experiences!"/>
+                                                 </FormattedString>
+                                          </Label.FormattedText>
+                                   </Label>
+                                   <Entry Placeholder="Edge-to-Edge Input"
+                                          VerticalOptions="End"
+                                          PlaceholderColor="Gray"/>
+                            </VerticalStackLayout>
+                            <!-- </Border> -->
+                     </Grid>
+                     <BoxView Grid.Row="4"
+                              Color="#40FFFFFF"/>
+                     <Grid Padding="15,10"
+                           Grid.Row="5"
+                           ColumnDefinitions="Auto,*,Auto">
+
+                            <Label Grid.Column="1"
+                                   Text="The below control is a grid that is Behind Home indicator."
+                                   TextColor="White"
+                                   FontSize="14"
+                                   FontAttributes="Bold"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center"/>
+
+                            <!-- Down Arrow -->
+                            <!-- <Border Grid.Column="2"
+                                    Background="#FFFFFF"
+                                    Stroke="Transparent"
+                                    WidthRequest="40"
+                                    HeightRequest="40"
+                                    VerticalOptions="Center">
+                                   <Border.Shadow>
+                                          <Shadow Brush="Black"
+                                                  Opacity="0.3"
+                                                  Radius="10"
+                                                  Offset="0,4"/>
+                                   </Border.Shadow> -->
+                            <!-- <Label Text="↓"
+                                          Grid.Column="2"
+                                   TextColor="#667eea"
+                                   FontSize="24"
+                                   FontAttributes="Bold"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center"/> -->
+                            <!-- </Border> -->
+
+                     </Grid>
+
+                     <!-- Bottom Overlay -->
+                     <Grid Background="#40FFFFFF"
+                           Grid.Row="6"/>
+              </Grid>
+       </Grid>
 </ContentPage>

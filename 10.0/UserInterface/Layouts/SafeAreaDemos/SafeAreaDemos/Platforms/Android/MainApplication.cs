@@ -1,7 +1,7 @@
 ﻿using Android.App;
 using Android.Runtime;
 
-namespace GridDemos;
+namespace SafeAreaDemos;
 
 [Application]
 public class MainApplication : MauiApplication

@@ -1,6 +1,6 @@
 ﻿using Foundation;
 
-namespace GridDemos;
+namespace SafeAreaDemos;
 
 [Register("AppDelegate")]
 public class AppDelegate : MauiUIApplicationDelegate

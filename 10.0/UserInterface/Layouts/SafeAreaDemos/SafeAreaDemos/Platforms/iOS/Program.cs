@@ -1,7 +1,7 @@
 ﻿using ObjCRuntime;
 using UIKit;
 
-namespace GridDemos;
+namespace SafeAreaDemos;
 
 public class Program
 {
