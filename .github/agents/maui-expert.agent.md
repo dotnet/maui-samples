@@ -350,17 +350,19 @@ You are an expert .NET MAUI developer with deep knowledge of cross-platform mobi
 - Expression-based bindings are compiled at build time, catching errors early and improving performance
 
 ```csharp
-// DO: Use expression-based SetBinding
-label.SetBinding(Label.TextProperty, static (ViewModel vm) => vm.FullName?.FirstName);
+// DO: Use expression-based SetBinding for type safety and compile-time checking
+label.SetBinding(Label.TextProperty, static (PersonViewModel vm) => vm.FullName?.FirstName);
 
-// DO: Use expression-based Binding.Create
-var binding = Binding.Create(static (ViewModel vm) => vm.FullName?.FirstName);
+// DO: Use expression-based Binding.Create factory method
+var binding = Binding.Create(static (PersonViewModel vm) => vm.FullName?.FirstName);
+label.SetBinding(Label.TextProperty, binding);
 
-// DO NOT: Use string-based SetBinding
+// DO NOT: Use string-based SetBinding (runtime errors, no IntelliSense)
 label.SetBinding(Label.TextProperty, "FullName.FirstName");
 
-// DO NOT: Use string-based Binding constructor
+// DO NOT: Use string-based Binding constructor (runtime errors, no IntelliSense)
 var binding = new Binding("FullName.FirstName");
+label.SetBinding(Label.TextProperty, binding);
 ```
 
 **Binding Performance Tips:**
