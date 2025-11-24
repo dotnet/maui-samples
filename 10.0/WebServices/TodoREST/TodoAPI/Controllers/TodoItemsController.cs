@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using TodoAPI.Interfaces;
 using TodoAPI.Models;
 
@@ -54,9 +54,19 @@ namespace TodoAPI.Controllers
                 }
                 _todoRepository.Insert(item);
             }
-            catch (Exception)
+            catch (ArgumentNullException ex)
             {
-                return BadRequest(ErrorCode.CouldNotCreateItem.ToString());
+                return BadRequest($"{ErrorCode.CouldNotCreateItem}: {ex.Message}");
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest($"{ErrorCode.CouldNotCreateItem}: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                // Log the exception here in production
+                return StatusCode(StatusCodes.Status500InternalServerError, 
+                    $"{ErrorCode.CouldNotCreateItem}: An unexpected error occurred");
             }
             return Ok(item);
         }
@@ -79,9 +89,23 @@ namespace TodoAPI.Controllers
                 }
                 _todoRepository.Update(item);
             }
-            catch (Exception)
+            catch (ArgumentNullException ex)
             {
-                return BadRequest(ErrorCode.CouldNotUpdateItem.ToString());
+                return BadRequest($"{ErrorCode.CouldNotUpdateItem}: {ex.Message}");
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest($"{ErrorCode.CouldNotUpdateItem}: {ex.Message}");
+            }
+            catch (InvalidOperationException ex)
+            {
+                return NotFound($"{ErrorCode.RecordNotFound}: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                // Log the exception here in production
+                return StatusCode(StatusCodes.Status500InternalServerError, 
+                    $"{ErrorCode.CouldNotUpdateItem}: An unexpected error occurred");
             }
             return NoContent();
         }
@@ -100,9 +124,19 @@ namespace TodoAPI.Controllers
                 }
                 _todoRepository.Delete(id);
             }
-            catch (Exception)
+            catch (ArgumentException ex)
             {
-                return BadRequest(ErrorCode.CouldNotDeleteItem.ToString());
+                return BadRequest($"{ErrorCode.CouldNotDeleteItem}: {ex.Message}");
+            }
+            catch (InvalidOperationException ex)
+            {
+                return NotFound($"{ErrorCode.RecordNotFound}: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                // Log the exception here in production
+                return StatusCode(StatusCodes.Status500InternalServerError, 
+                    $"{ErrorCode.CouldNotDeleteItem}: An unexpected error occurred");
             }
             return NoContent();
         }
