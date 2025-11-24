@@ -48,7 +48,7 @@
                             <VerticalStackLayout Padding="20,10,20,20"
                                                  Spacing="15">
                                    <!-- Title -->
-                                   <Label Text="SafeAreaEdges = &quot;None&quot;"
+                                   <Label Text="SafeAreaEdges = &quot;Container&quot;"
                                           FontSize="24"
                                           FontAttributes="Bold"
                                           Margin="0,0,0,10"/>

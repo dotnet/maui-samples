@@ -58,37 +58,6 @@
                      <Button Text="Example 5: Container Safe Area"
                              Command="{Binding NavigateCommand}"
                              CommandParameter="{x:Type views:Example5Container}"/>
-
-                     <!-- Advanced Examples Section -->
-                     <Label Text="Advanced Examples"
-                            FontSize="Medium"
-                            FontAttributes="Bold"
-                            Margin="0,20,0,0"/>
-
-                     <Label Text="Immersive scrolling with Container"
-                            FontSize="Small"/>
-                     <Button Text="Example 6: Immersive Scrolling"
-                             Command="{Binding NavigateCommand}"
-                             CommandParameter="{x:Type views:Example6ImmersiveScrolling}"/>
-
-                     <!-- NavigationPage Examples Section -->
-                     <Label Text="NavigationPage Examples"
-                            FontSize="Medium"
-                            FontAttributes="Bold"
-                            Margin="0,20,0,0"/>
-
-                     <Label Text="Edge-to-edge with NavigationPage"
-                            FontSize="Small"/>
-                     <Button Text="Edge-to-Edge with Nav Bar"
-                             Command="{Binding NavigateToNavPageCommand}"
-                             CommandParameter="{x:Type views:ExampleEdgeToEdgeNavPage}"/>
-
-                     <Label Text="Transparent navigation bar"
-                            FontSize="Small"/>
-                     <Button Text="Transparent Nav Bar"
-                             Command="{Binding NavigateToNavPageCommand}"
-                             CommandParameter="{x:Type views:ExampleTransparentNavBar}"/>
-
               </VerticalStackLayout>
        </ScrollView>
 </ContentPage>
