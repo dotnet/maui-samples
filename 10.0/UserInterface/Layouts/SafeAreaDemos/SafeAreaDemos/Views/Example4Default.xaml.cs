@@ -7,7 +7,7 @@ public partial class Example4Default : ContentPage
         InitializeComponent();
     }
 
-    private async void OnBackButtonTapped(object sender, EventArgs e)
+    async void Button_Clicked(object sender, EventArgs e)
     {
         await Navigation.PopAsync();
     }
