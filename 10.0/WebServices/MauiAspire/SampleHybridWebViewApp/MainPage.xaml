@@ -4,6 +4,8 @@
              x:Class="SampleHybridWebViewApp.MainPage"
              Title="Weather Forecast">
 
-    <HybridWebView x:Name="hybridWebView" />
+    <HybridWebView x:Name="hybridWebView" 
+                   HybridRoot="wwwroot" 
+                   DefaultFile="index.html" />
 
 </ContentPage>
