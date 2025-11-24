@@ -5,49 +5,21 @@
              Shell.NavBarIsVisible="False"
              SafeAreaEdges="Container">
        <Grid SafeAreaEdges="Container">
+              <Grid
+                     RowDefinitions="50,75,*,75,30">
+                     <!-- StatusBar Overlay -->
+                     <Grid Background="{StaticResource OverlayColor}"
+                           SafeAreaEdges="None">
+                            <Label Text="Top Overlay"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"
+                                   TextColor="Black"/>
+                     </Grid>
 
-              <!-- Gradient Background spanning entire screen -->
-              <Border>
-                     <Border.Background>
-                            <LinearGradientBrush StartPoint="0,0"
-                                                 EndPoint="1,1">
-                                   <GradientStop Color="#667eea"
-                                                 Offset="0.0"/>
-                                   <GradientStop Color="#764ba2"
-                                                 Offset="0.5"/>
-                                   <GradientStop Color="#f093fb"
-                                                 Offset="1.0"/>
-                            </LinearGradientBrush>
-                     </Border.Background>
-              </Border>
 
-              <!-- Animated background pattern -->
-              <Grid Opacity="0.1">
-                     <Ellipse WidthRequest="400"
-                              HeightRequest="400"
-                              Fill="White"
-                              HorizontalOptions="Start"
-                              VerticalOptions="Start"
-                              Margin="-200,-200,0,0"/>
-                     <Ellipse WidthRequest="300"
-                              HeightRequest="300"
-                              Fill="White"
-                              HorizontalOptions="End"
-                              VerticalOptions="Center"
-                              Margin="0,0,-150,0"/>
-                     <Ellipse WidthRequest="350"
-                              HeightRequest="350"
-                              Fill="White"
-                              HorizontalOptions="Center"
-                              VerticalOptions="End"
-                              Margin="0,0,0,-175"/>
-              </Grid>
-
-              <Grid SafeAreaEdges="None"
-                    RowDefinitions="75,5,*">
                      <Grid Padding="15,10"
-                           Grid.Row="0"
-                           ColumnDefinitions="Auto,*,Auto">
+                           Grid.Row="1"
+                           HorizontalOptions="Start">
                             <!-- Back Button -->
                             <Border Grid.Column="0"
                                     Background="#FFFFFF"
@@ -70,19 +42,7 @@
                                            Clicked="Button_Clicked"
                                            Padding="0"/>
                             </Border>
-
-                            <Label Grid.Column="1"
-                                   Text="Immersive Scrolling"
-                                   TextColor="White"
-                                   FontSize="14"
-                                   FontAttributes="Bold"
-                                   VerticalOptions="Center"
-                                   HorizontalOptions="Center"/>
-
-
                      </Grid>
-                     <BoxView Grid.Row="1"
-                              Color="#40FFFFFF"/>
                      <ScrollView Grid.Row="2">
                             <VerticalStackLayout Spacing="10">
                                    <Image Source="dotnet_bot.png"
@@ -107,6 +67,19 @@
                                    </VerticalStackLayout>
                             </VerticalStackLayout>
                      </ScrollView>
+                     <Grid Padding="15,10"
+                           Grid.Row="3">
+                            <Entry Placeholder="Enter text here"/>
+                     </Grid>
+
+                     <!-- Bottom Overlay -->
+                     <Grid Background="{StaticResource OverlayColor}"
+                           Grid.Row="6">
+                            <Label Text="Bottom Overlay"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"
+                                   TextColor="black"/>
+                     </Grid>
               </Grid>
        </Grid>
 </ContentPage>

@@ -5,87 +5,96 @@
              SafeAreaEdges="SoftInput"
              Title="Keyboard-Aware Layout">
 
-    <Grid>
-        <!-- Gradient Background spanning entire screen -->
-        <Border>
-            <Border.Background>
-                <LinearGradientBrush StartPoint="0,0"
-                                     EndPoint="1,1">
-                    <GradientStop Color="#667eea"
-                                  Offset="0.0"/>
-                    <GradientStop Color="#764ba2"
-                                  Offset="0.5"/>
-                    <GradientStop Color="#f093fb"
-                                  Offset="1.0"/>
-                </LinearGradientBrush>
-            </Border.Background>
-        </Border>
+    <Grid Background="White">
 
+        <Grid RowDefinitions="*,75,30">
 
-        <!-- Animated background pattern -->
-        <Grid Opacity="0.1">
-            <Ellipse WidthRequest="400"
-                     HeightRequest="400"
-                     Fill="White"
-                     HorizontalOptions="Start"
-                     VerticalOptions="Start"
-                     Margin="-200,-200,0,0"/>
-            <Ellipse WidthRequest="300"
-                     HeightRequest="300"
-                     Fill="White"
-                     HorizontalOptions="End"
-                     VerticalOptions="Center"
-                     Margin="0,0,-150,0"/>
-            <Ellipse WidthRequest="350"
-                     HeightRequest="350"
-                     Fill="White"
-                     HorizontalOptions="Center"
-                     VerticalOptions="End"
-                     Margin="0,0,0,-175"/>
-        </Grid>
+            <ScrollView Grid.Row="0">
+                <VerticalStackLayout Padding="20,10,20,20"
+                                     Spacing="15">
+                    <!-- Title -->
+                    <Label Text="SafeAreaEdges = &quot;SoftInput&quot;"
+                           FontSize="24"
+                           FontAttributes="Bold"
+                           Margin="0,0,0,10"/>
 
-        <Grid
-            RowDefinitions="80,5,*, Auto">
-            <!-- StatusBar Overlay -->
+                    <!-- Behavior Section -->
+                    <Label Text="Behavior:"
+                           FontSize="18"
+                           FontAttributes="Bold"/>
+
+                    <Label Text="• Respects only the soft input (keyboard) safe area"
+                           FontSize="16"
+                           Margin="10,0,0,5"/>
+
+                    <Label Text="• Content flows under system bars and notches"
+                           FontSize="16"
+                           Margin="10,0,0,5"/>
+
+                    <Label Text="• Automatically adds padding when the keyboard appears"
+                           FontSize="16"
+                           Margin="10,0,0,5"/>
+
+                    <Label Text="• Removes padding when the keyboard is dismissed"
+                           FontSize="16"
+                           Margin="10,0,0,10"/>
+
+                    <!-- Use Cases Section -->
+                    <Label Text="Use Cases:"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           Margin="0,10,0,0"/>
+
+                    <Label Text="• Messaging apps with bottom input bars"
+                           FontSize="16"
+                           Margin="10,0,0,5"/>
+
+                    <Label Text="• Chat interfaces"
+                           FontSize="16"
+                           Margin="10,0,0,5"/>
+
+                    <Label Text="• Forms with input fields at the bottom"
+                           FontSize="16"
+                           Margin="10,0,0,5"/>
+
+                    <Label Text="• Any UI where keyboard overlap must be avoided but edge-to-edge display is desired"
+                           FontSize="16"
+                           Margin="10,0,0,10"/>
+
+                    <!-- Important Note Section -->
+                    <Label Text="Important Note:"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="#FF6B6B"
+                           Margin="0,10,0,0"/>
+
+                    <Label Text="SoftInput doesn't work directly on ScrollView. To make a ScrollView keyboard-aware, wrap it in a layout (Grid or VerticalStackLayout) and set SafeAreaEdges='SoftInput' on the wrapping container."
+                           FontSize="14"
+                           LineBreakMode="WordWrap"
+                           Margin="10,0,0,0"/>
+                </VerticalStackLayout>
+            </ScrollView>
+
             <Grid Padding="15,10"
-                  Grid.Row="0">
-                <Label Grid.Column="1"
-                       Text="SoftInput ensures the UI automatically adds padding whenever the on-screen keyboard appears."
-                       TextColor="White"
-                       FontSize="14"
-                       FontAttributes="Bold"
-                       VerticalOptions="Center"
-                       HorizontalOptions="Center"/>
+                  ColumnDefinitions="*,AUTO"
+                  Grid.Row="1">
+                <Entry Placeholder="Enter text here"/>
+                <Button Text="Send"
+                        TextColor="White"
+                        Grid.Column="1"
+                        BackgroundColor="#667eea"
+                        Margin="10,0,0,0"
+                        VerticalOptions="Center"/>
             </Grid>
-            <BoxView Grid.Row="1"
-                     Color="#40FFFFFF"/>
 
-            <!-- Content (No ScrollView) -->
-            <VerticalStackLayout Grid.Row="2"
-                                 Padding="20"
-                                 Spacing="10"
-                                 SafeAreaEdges="Container">
-                <Label Text="User Profile"
-                       FontSize="24"
-                       FontAttributes="Bold"/>
-
-                <Entry Placeholder="Name"/>
-                <Entry Placeholder="Email"/>
-                <Entry Placeholder="Phone"/>
-            </VerticalStackLayout>
-
-            <!-- Bottom Input Bar -->
-            <Grid Grid.Row="3">
-                <HorizontalStackLayout Spacing="10"
-                                       Padding="10,0,10,0">
-                    <Entry x:Name="MessageEntry"
-                           WidthRequest="300"
-                           Placeholder="Type a message..."
-                           HorizontalOptions="Fill"/>
-                    <Button Text="Send"/>
-                </HorizontalStackLayout>
+            <!-- Bottom Overlay -->
+            <Grid Background="{StaticResource OverlayColor}"
+                  Grid.Row="2">
+                <Label Text="Bottom Overlay"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       TextColor="black"/>
             </Grid>
         </Grid>
-
     </Grid>
 </ContentPage>

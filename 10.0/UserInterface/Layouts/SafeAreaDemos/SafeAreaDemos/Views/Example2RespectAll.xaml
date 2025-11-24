@@ -4,53 +4,24 @@
              x:Class="SafeAreaDemos.Views.Example2RespectAll"
              SafeAreaEdges="All"
              Shell.NavBarIsVisible="False"
-             Background="Gray"
+             Background="#a2d2ff"
              Title="Respect All Safe Areas">
 
-       <Grid>
-              <!-- Gradient Background spanning entire screen -->
-              <Border>
-                     <Border.Background>
-                            <LinearGradientBrush StartPoint="0,0"
-                                                 EndPoint="1,1">
-                                   <GradientStop Color="#667eea"
-                                                 Offset="0.0"/>
-                                   <GradientStop Color="#764ba2"
-                                                 Offset="0.5"/>
-                                   <GradientStop Color="#f093fb"
-                                                 Offset="1.0"/>
-                            </LinearGradientBrush>
-                     </Border.Background>
-              </Border>
+       <Grid Background="White">
 
-              <!-- Animated background pattern -->
-              <Grid Opacity="0.1">
-                     <Ellipse WidthRequest="400"
-                              HeightRequest="400"
-                              Fill="White"
-                              HorizontalOptions="Start"
-                              VerticalOptions="Start"
-                              Margin="-200,-200,0,0"/>
-                     <Ellipse WidthRequest="300"
-                              HeightRequest="300"
-                              Fill="White"
-                              HorizontalOptions="End"
-                              VerticalOptions="Center"
-                              Margin="0,0,-150,0"/>
-                     <Ellipse WidthRequest="350"
-                              HeightRequest="350"
-                              Fill="White"
-                              HorizontalOptions="Center"
-                              VerticalOptions="End"
-                              Margin="0,0,0,-175"/>
-              </Grid>
+              <Grid RowDefinitions="50,75,*,75,30">
+                     <!-- StatusBar Overlay -->
+                     <Grid Background="{StaticResource OverlayColor}">
+                            <Label Text="Top Overlay"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"
+                                   TextColor="Black"/>
+                     </Grid>
 
-              <Grid RowDefinitions="Auto,Auto,*,Auto">
 
-                     <!-- Header with Back Button -->
                      <Grid Padding="15,10"
-                           Grid.Row="0"
-                           ColumnDefinitions="Auto,*">
+                           Grid.Row="1"
+                           HorizontalOptions="Start">
                             <!-- Back Button -->
                             <Border Grid.Column="0"
                                     Background="#FFFFFF"
@@ -74,86 +45,78 @@
                                            Padding="0"/>
                             </Border>
 
-                            <Label Grid.Column="1"
-                                   Text="This ensures the content stays fully within all safe insets, avoiding overlap with notches, status bars, gesture areas, and system UI."
-                                   TextColor="White"
-                                   FontSize="14"
-                                   FontAttributes="Bold"
-                                   VerticalOptions="Center"
-                                   HorizontalOptions="Center"
-                                   Margin="10,0,0,0"/>
                      </Grid>
 
-                     <!-- Search Bar -->
-                     <Border Grid.Row="1"
-                             Margin="15,5"
-                             Background="White"
-                             Stroke="Transparent"
-                             HeightRequest="50">
-                            <Border.Shadow>
-                                   <Shadow Brush="Black"
-                                           Opacity="0.1"
-                                           Radius="8"
-                                           Offset="0,2"/>
-                            </Border.Shadow>
-                            <Entry x:Name="contactSearchBar"
-                                   Placeholder="Search contacts..."
-                                   PlaceholderColor="#999999"
-                                   Background="Transparent"
-                                   TextColor="#2C2C2C"
+                     <ScrollView Grid.Row="2">
+                            <VerticalStackLayout Padding="20,10,20,20"
+                                                 Spacing="15">
+                                   <!-- Title -->
+                                   <Label Text="SafeAreaEdges = &quot;All&quot;"
+                                          FontSize="24"
+                                          FontAttributes="Bold"
+                                          Margin="0,0,0,10"/>
+
+                                   <!-- Behavior Section -->
+                                   <Label Text="Behavior:"
+                                          FontSize="18"
+                                          FontAttributes="Bold"/>
+
+                                   <Label Text="• Respects all safe area insets"
+                                          FontSize="16"
+                                          Margin="10,0,0,5"/>
+
+                                   <Label Text="• Content avoids system bars, notches, and the keyboard"
+                                          FontSize="16"
+                                          Margin="10,0,0,5"/>
+
+                                   <Label Text="• Ensures content is never obscured by any system UI element"
+                                          FontSize="16"
+                                          Margin="10,0,0,5"/>
+
+                                   <Label Text="• Maximum safety for critical content"
+                                          FontSize="16"
+                                          Margin="10,0,0,10"/>
+
+                                   <!-- Use Cases Section -->
+                                   <Label Text="Use Cases:"
+                                          FontSize="18"
+                                          FontAttributes="Bold"
+                                          Margin="0,10,0,0"/>
+
+                                   <Label Text="• Forms with critical input fields"
+                                          FontSize="16"
+                                          Margin="10,0,0,5"/>
+
+                                   <Label Text="• Login screens"
+                                          FontSize="16"
+                                          Margin="10,0,0,5"/>
+
+                                   <Label Text="• Settings pages"
+                                          FontSize="16"
+                                          Margin="10,0,0,5"/>
+
+                                   <Label Text="• Any UI where visibility of all content is essential"
+                                          FontSize="16"
+                                          Margin="10,0,0,5"/>
+
+                                   <Label Text="• Contact lists and data entry screens"
+                                          FontSize="16"
+                                          Margin="10,0,0,0"/>
+                            </VerticalStackLayout>
+                     </ScrollView>
+
+                     <Grid Padding="15,10"
+                           Grid.Row="3">
+                            <Entry Placeholder="Enter text here"/>
+                     </Grid>
+
+                     <!-- Bottom Overlay -->
+                     <Grid Background="{StaticResource OverlayColor}"
+                           Grid.Row="6">
+                            <Label Text="Bottom Overlay"
+                                   HorizontalOptions="Center"
                                    VerticalOptions="Center"
-                                   Margin="15,0"
-                                   TextChanged="OnSearchTextChanged"
-                                   ReturnCommand="{Binding Source={x:Reference contactSearchBar}, Path=UnfocusCommand}"/>
-                     </Border>
-
-                     <!-- Contact List Area -->
-                     <Grid Grid.Row="2"
-                           Background="White">
-                            <Grid.GestureRecognizers>
-                                   <TapGestureRecognizer Tapped="OnContactListTapped"/>
-                            </Grid.GestureRecognizers>
-                            <CollectionView x:Name="contactsCollectionView"
-                                            ItemsSource="{Binding FilteredContacts}">
-                                   <CollectionView.ItemTemplate>
-                                          <DataTemplate>
-                                                 <Grid Padding="20,15"
-                                                       BackgroundColor="White">
-                                                        <Label Text="{Binding Name}"
-                                                               TextColor="#2C2C2C"
-                                                               FontSize="16"
-                                                               VerticalOptions="Center"/>
-
-                                                        <!-- Bottom Separator -->
-                                                        <BoxView Color="#EDEDED"
-                                                                 HeightRequest="1"
-                                                                 VerticalOptions="End"/>
-                                                 </Grid>
-                                          </DataTemplate>
-                                   </CollectionView.ItemTemplate>
-                            </CollectionView>
-
-                            <!-- Floating Action Button -->
-                            <Border Background="#4CAF50"
-                                    Stroke="Transparent"
-                                    StrokeShape="RoundRectangle 30"
-                                    WidthRequest="60"
-                                    HeightRequest="60"
-                                    HorizontalOptions="End"
-                                    VerticalOptions="End"
-                                    Margin="0,0,20,20"
-                                    InputTransparent="False">
-                                   <Border.Shadow>
-                                          <Shadow Brush="Black"
-                                                  Opacity="0.3"
-                                                  Radius="15"
-                                                  Offset="0,5"/>
-                                   </Border.Shadow>
-                                   <Label Text="💬"
-                                          FontSize="28"
-                                          HorizontalOptions="Center"
-                                          VerticalOptions="Center"/>
-                            </Border>
+                                   TextColor="black"/>
                      </Grid>
               </Grid>
        </Grid>

@@ -7,59 +7,23 @@
 
        <!-- Main Grid with edge-to-edge content -->
        <Grid SafeAreaEdges="None">
-              <!-- Gradient Background spanning entire screen -->
-              <Border>
-                     <Border.Background>
-                            <LinearGradientBrush StartPoint="0,0"
-                                                 EndPoint="1,1">
-                                   <GradientStop Color="#667eea"
-                                                 Offset="0.0"/>
-                                   <GradientStop Color="#764ba2"
-                                                 Offset="0.5"/>
-                                   <GradientStop Color="#f093fb"
-                                                 Offset="1.0"/>
-                            </LinearGradientBrush>
-                     </Border.Background>
-              </Border>
 
-              <!-- Animated background pattern -->
-              <Grid Opacity="0.1"
-                    SafeAreaEdges="None">
-                     <Ellipse WidthRequest="400"
-                              HeightRequest="400"
-                              Fill="White"
-                              HorizontalOptions="Start"
-                              VerticalOptions="Start"
-                              Margin="-200,-200,0,0"/>
-                     <Ellipse WidthRequest="300"
-                              HeightRequest="300"
-                              Fill="White"
-                              HorizontalOptions="End"
-                              VerticalOptions="Center"
-                              Margin="0,0,-150,0"/>
-                     <Ellipse WidthRequest="350"
-                              HeightRequest="350"
-                              Fill="White"
-                              HorizontalOptions="Center"
-                              VerticalOptions="End"
-                              Margin="0,0,0,-175"/>
-              </Grid>
 
               <Grid SafeAreaEdges="None"
-                    RowDefinitions="50,75,5,*,5,75,30">
+                    RowDefinitions="50,75,*,75,30">
                      <!-- StatusBar Overlay -->
-                     <Grid Background="#40FFFFFF">
-                            <Label Text="Status Bar Overlay"
-                                   TextColor="White"
-                                   FontSize="14"
-                                   FontAttributes="Bold"
+                     <Grid Background="{StaticResource OverlayColor}"
+                           SafeAreaEdges="None">
+                            <Label Text="Top Overlay"
+                                   HorizontalOptions="Center"
                                    VerticalOptions="Center"
-                                   HorizontalOptions="Center"/>
+                                   TextColor="Black"/>
                      </Grid>
+
 
                      <Grid Padding="15,10"
                            Grid.Row="1"
-                           ColumnDefinitions="Auto,*,Auto">
+                           HorizontalOptions="Start">
                             <!-- Back Button -->
                             <Border Grid.Column="0"
                                     Background="#FFFFFF"
@@ -82,65 +46,75 @@
                                            Clicked="Button_Clicked"
                                            Padding="0"/>
                             </Border>
-
-                            <Label Grid.Column="1"
-                                   Text="The above control is a grid that is Behind Status Bar"
-                                   TextColor="White"
-                                   FontSize="14"
-                                   FontAttributes="Bold"
-                                   VerticalOptions="Center"
-                                   HorizontalOptions="Center"/>
-
-
                      </Grid>
-                     <BoxView Grid.Row="2"
-                              Color="#40FFFFFF"/>
-                     <Grid Grid.Row="3"
-                           Padding="0,10,0,0">
-                            <VerticalStackLayout Spacing="15">
-                                   <Label Text="Full Screen Experience"
-                                          TextColor="White"
-                                          FontSize="20"
+
+                     <ScrollView Grid.Row="2">
+                            <VerticalStackLayout Padding="20,10,20,20"
+                                                 Spacing="15">
+                                   <!-- Title -->
+                                   <Label Text="SafeAreaEdges = &quot;None&quot;"
+                                          FontSize="24"
+                                          FontAttributes="Bold"
+                                          Margin="0,0,0,10"/>
+
+                                   <!-- Behavior Section -->
+                                   <Label Text="Behavior:"
+                                          FontSize="18"
                                           FontAttributes="Bold"/>
-                                   <BoxView Color="#40FFFFFF"
-                                            HeightRequest="1"/>
-                                   <Label TextColor="#E0FFFFFF"
-                                          FontSize="15"
-                                          LineHeight="1.5">
-                                          <Label.FormattedText>
-                                                 <FormattedString>
-                                                        <Span Text="Content extends "/>
-                                                        <Span Text="completely edge-to-edge"
-                                                              FontAttributes="Bold"
-                                                              TextColor="Black"/>
-                                                        <Span Text=", going behind system UI elements like the status bar and home indicator. Perfect for immersive experiences!"/>
-                                                 </FormattedString>
-                                          </Label.FormattedText>
-                                   </Label>
-                                   <Entry Placeholder="Edge-to-Edge Input"
-                                          VerticalOptions="End"
-                                          PlaceholderColor="Gray"/>
-                            </VerticalStackLayout>
-                            <!-- </Border> -->
-                     </Grid>
-                     <BoxView Grid.Row="4"
-                              Color="#40FFFFFF"/>
-                     <Grid Padding="15,10"
-                           Grid.Row="5"
-                           ColumnDefinitions="Auto,*,Auto">
 
-                            <Label Grid.Column="1"
-                                   Text="The below control is a grid that is Behind Home indicator."
-                                   TextColor="White"
-                                   FontSize="14"
-                                   FontAttributes="Bold"
-                                   VerticalOptions="Center"
-                                   HorizontalOptions="Center"/>
+                                   <Label Text="• Content extends completely edge-to-edge with no safe area padding"
+                                          FontSize="16"
+                                          Margin="10,0,0,5"/>
+
+                                   <Label Text="• Content can extend behind system bars, notches, and the keyboard"
+                                          FontSize="16"
+                                          Margin="10,0,0,5"/>
+
+                                   <Label Text="• Provides fully immersive experiences"
+                                          FontSize="16"
+                                          Margin="10,0,0,10"/>
+
+                                   <!-- Use Cases Section -->
+                                   <Label Text="Use Cases:"
+                                          FontSize="18"
+                                          FontAttributes="Bold"
+                                          Margin="0,10,0,0"/>
+
+                                   <Label Text="• Photo viewers and galleries"
+                                          FontSize="16"
+                                          Margin="10,0,0,5"/>
+
+                                   <Label Text="• Video players"
+                                          FontSize="16"
+                                          Margin="10,0,0,5"/>
+
+                                   <Label Text="• Games with immersive UI"
+                                          FontSize="16"
+                                          Margin="10,0,0,5"/>
+
+                                   <Label Text="• Splash screens"
+                                          FontSize="16"
+                                          Margin="10,0,0,5"/>
+
+                                   <Label Text="• Background images that should span the entire screen"
+                                          FontSize="16"
+                                          Margin="10,0,0,0"/>
+                            </VerticalStackLayout>
+                     </ScrollView>
+
+                     <Grid Padding="15,10"
+                           Grid.Row="3">
+                            <Entry Placeholder="Enter text here"/>
                      </Grid>
 
                      <!-- Bottom Overlay -->
-                     <Grid Background="#40FFFFFF"
-                           Grid.Row="6"/>
+                     <Grid Background="{StaticResource OverlayColor}"
+                           Grid.Row="6">
+                            <Label Text="Bottom Overlay"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"
+                                   TextColor="black"/>
+                     </Grid>
               </Grid>
        </Grid>
 </ContentPage>
