@@ -136,29 +136,6 @@
                                    FontAttributes="Bold"
                                    VerticalOptions="Center"
                                    HorizontalOptions="Center"/>
-
-                            <!-- Down Arrow -->
-                            <!-- <Border Grid.Column="2"
-                                    Background="#FFFFFF"
-                                    Stroke="Transparent"
-                                    WidthRequest="40"
-                                    HeightRequest="40"
-                                    VerticalOptions="Center">
-                                   <Border.Shadow>
-                                          <Shadow Brush="Black"
-                                                  Opacity="0.3"
-                                                  Radius="10"
-                                                  Offset="0,4"/>
-                                   </Border.Shadow> -->
-                            <!-- <Label Text="↓"
-                                          Grid.Column="2"
-                                   TextColor="#667eea"
-                                   FontSize="24"
-                                   FontAttributes="Bold"
-                                   VerticalOptions="Center"
-                                   HorizontalOptions="Center"/> -->
-                            <!-- </Border> -->
-
                      </Grid>
 
                      <!-- Bottom Overlay -->
