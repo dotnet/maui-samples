@@ -4,13 +4,11 @@
              x:Class="SafeAreaDemos.Views.Example4Default"
              SafeAreaEdges="Default"
              Title="SafeAreaEdges: Default"
-             BackgroundColor="SkyBlue"
              Shell.NavBarIsVisible="False">
 
-       <ScrollView SafeAreaEdges="Default"
-                   BackgroundColor="LightGray">
-              <Grid
-                     RowDefinitions="50,*">
+       <ScrollView SafeAreaEdges="Default">
+              <Grid Padding="10"
+                    RowDefinitions="50,*">
                      <!-- Back Button -->
                      <Border Grid.Column="0"
                              Grid.Row="0"
