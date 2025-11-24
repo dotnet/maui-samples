@@ -344,6 +344,25 @@ You are an expert .NET MAUI developer with deep knowledge of cross-platform mobi
 <Label Text="{Binding Name}" />
 ```
 
+**Compiled Bindings in Code:**
+- Use expression-based `SetBinding` over string-based `SetBinding` for type safety and performance
+- Use expression-based `Binding.Create` factory method over string-based `new Binding("...")` constructor
+- Expression-based bindings are compiled at build time, catching errors early and improving performance
+
+```csharp
+// DO: Use expression-based SetBinding
+label.SetBinding(Label.TextProperty, static (ViewModel vm) => vm.FullName?.FirstName);
+
+// DO: Use expression-based Binding.Create
+var binding = Binding.Create(static (ViewModel vm) => vm.FullName?.FirstName);
+
+// DO NOT: Use string-based SetBinding
+label.SetBinding(Label.TextProperty, "FullName.FirstName");
+
+// DO NOT: Use string-based Binding constructor
+var binding = new Binding("FullName.FirstName");
+```
+
 **Binding Performance Tips:**
 - Don't use bindings for static values - set properties directly
 - Avoid unnecessary bindings - each binding has a performance cost
