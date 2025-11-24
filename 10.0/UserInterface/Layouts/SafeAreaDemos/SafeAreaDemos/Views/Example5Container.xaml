@@ -2,58 +2,24 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SafeAreaDemos.Views.Example5Container"
-             Shell.NavBarIsVisible="False"
              SafeAreaEdges="Container"
-             Background="Gray">
+             Shell.NavBarIsVisible="False">
 
-       <Grid SafeAreaEdges="Container">
-              <!-- Background Layer -->
-              <Border>
-                     <Border.Background>
-                            <LinearGradientBrush StartPoint="0,0"
-                                                 EndPoint="1,1">
-                                   <GradientStop Color="#667eea"
-                                                 Offset="0.0"/>
-                                   <GradientStop Color="#764ba2"
-                                                 Offset="0.5"/>
-                                   <GradientStop Color="#f093fb"
-                                                 Offset="1.0"/>
-                            </LinearGradientBrush>
-                     </Border.Background>
-              </Border>
+       <!-- Main Grid with edge-to-edge content -->
+       <Grid>
+              <Grid RowDefinitions="50,75,*,75,30">
+                     <!-- StatusBar Overlay -->
+                     <Grid Background="{StaticResource OverlayColor}">
+                            <Label Text="Top Overlay"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"
+                                   TextColor="Black"/>
+                     </Grid>
 
-              <!-- Pattern Layer -->
-              <Grid Opacity="0.1">
-                     <Ellipse WidthRequest="400"
-                              HeightRequest="400"
-                              Fill="White"
-                              HorizontalOptions="Start"
-                              VerticalOptions="Start"
-                              Margin="-200,-200,0,0"/>
-                     <Ellipse WidthRequest="300"
-                              HeightRequest="300"
-                              Fill="White"
-                              HorizontalOptions="End"
-                              VerticalOptions="Center"
-                              Margin="0,0,-150,0"/>
-                     <Ellipse WidthRequest="350"
-                              HeightRequest="350"
-                              Fill="White"
-                              HorizontalOptions="Center"
-                              VerticalOptions="End"
-                              Margin="0,0,0,-175"/>
-              </Grid>
-
-              <!-- Main Content -->
-              <Grid RowDefinitions="80,5,*"
-                    SafeAreaEdges="Container">
-
-                     <!-- Header -->
                      <Grid Padding="15,10"
-                           Grid.Row="0"
-                           ColumnDefinitions="Auto,*,Auto"
-                           SafeAreaEdges="Container">
-
+                           Grid.Row="1"
+                           HorizontalOptions="Start">
+                            <!-- Back Button -->
                             <Border Grid.Column="0"
                                     Background="#FFFFFF"
                                     Stroke="Transparent"
@@ -75,81 +41,89 @@
                                            Clicked="Button_Clicked"
                                            Padding="0"/>
                             </Border>
-
-                            <Label Grid.Column="1"
-                                   Text="SafeAreaEdges='Container'"
-                                   TextColor="White"
-                                   FontSize="14"
-                                   FontAttributes="Bold"
-                                   VerticalOptions="Center"
-                                   HorizontalOptions="Center"/>
                      </Grid>
 
-                     <BoxView Grid.Row="1"
-                              Color="#40FFFFFF"/>
-                     <!-- Content Area with Grid -->
-                     <Grid Grid.Row="2"
-                           Padding="20"
-                           RowDefinitions="Auto,*"
-                           SafeAreaEdges="Container">
-
-                            <!-- Explanation -->
-                            <VerticalStackLayout Grid.Row="0"
-                                                 Spacing="15"
-                                                 Margin="0,0,0,20">
-                                   <Label Text="SafeAreaEdges='Container'"
-                                          FontSize="20"
+                     <ScrollView Grid.Row="2"
+                                 SafeAreaEdges="Container">
+                            <VerticalStackLayout Padding="20,10,20,20"
+                                                 Spacing="15">
+                                   <!-- Title -->
+                                   <Label Text="SafeAreaEdges = &quot;None&quot;"
+                                          FontSize="24"
                                           FontAttributes="Bold"
-                                          TextColor="White"/>
+                                          Margin="0,0,0,10"/>
 
-                                   <Label TextColor="White"
+                                   <!-- Behavior Section -->
+                                   <Label Text="Behavior:"
+                                          FontSize="18"
+                                          FontAttributes="Bold"/>
+
+                                   <Label Text="• Content avoids status bars, notches, and home indicators"
+                                          FontSize="16"
+                                          Margin="10,0,0,5"/>
+
+                                   <Label Text="• Content flows under the keyboard (no keyboard padding)"
+                                          FontSize="16"
+                                          Margin="10,0,0,5"/>
+
+                                   <Label Text="• Balances immersive design with visibility of system UI elements"
+                                          FontSize="16"
+                                          Margin="10,0,0,5"/>
+
+                                   <Label Text="• Allows keyboard to overlay content while keeping important UI visible"
+                                          FontSize="16"
+                                          Margin="10,0,0,10"/>
+
+                                   <!-- Use Cases Section -->
+                                   <Label Text="Use Cases:"
+                                          FontSize="18"
+                                          FontAttributes="Bold"
+                                          Margin="0,10,0,0"/>
+
+                                   <Label Text="• Scrollable content where keyboard overlay is acceptable"
+                                          FontSize="16"
+                                          Margin="10,0,0,5"/>
+
+                                   <Label Text="• Social media feeds with bottom input bars"
+                                          FontSize="16"
+                                          Margin="10,0,0,5"/>
+
+                                   <Label Text="• Content viewers with comments at bottom"
+                                          FontSize="16"
+                                          Margin="10,0,0,5"/>
+
+                                   <Label Text="• Apps that need edge-to-edge content but must avoid notches and system bars"
+                                          FontSize="16"
+                                          Margin="10,0,0,5"/>
+
+                                   <Label Text="• UIs where manual scroll adjustment is preferred over automatic keyboard avoidance"
+                                          FontSize="16"
+                                          Margin="10,0,0,10"/>
+                                   <Label Text="Important Note:"
+                                          FontSize="18"
+                                          FontAttributes="Bold"
+                                          TextColor="#FF6B6B"
+                                          Margin="0,10,0,0"/>
+
+                                   <Label Text="Container is ideal when you want a hybrid approach: respect safe areas for system UI elements but let the keyboard overlay content. This is useful for scrollable interfaces where users can manually scroll to see content behind the keyboard."
                                           FontSize="14"
-                                          LineBreakMode="WordWrap">
-                                          <Label.FormattedText>
-                                                 <FormattedString>
-                                                        <Span Text="Content respects device safe areas (status bar, notch, home indicator)"/>
-                                                        <Span Text="&#10;&#10;"/>
-                                                        <Span Text="Content can extend beneath the keyboard"/>
-                                                        <Span Text="&#10;&#10;"/>
-                                                        <Span Text="No automatic padding added for keyboard"/>
-                                                        <Span Text="&#10;&#10;"/>
-                                                        <Span Text="To test: Tap the entry field below and verify content flows under the keyboard."/>
-                                                 </FormattedString>
-                                          </Label.FormattedText>
-                                   </Label>
+                                          LineBreakMode="WordWrap"
+                                          Margin="10,0,0,0"/>
                             </VerticalStackLayout>
+                     </ScrollView>
 
-                            <!-- Dummy Content to Test Scrolling -->
-                            <ScrollView Grid.Row="1">
-                                   <VerticalStackLayout Spacing="15">
-                                          <Entry Placeholder="Type here to show keyboard"
-                                                 x:Name="MessageEntry"
-                                                 BackgroundColor="White"
-                                                 PlaceholderColor="Gray"/>
-                                          <Label Text="SafeAreaEdges='Container' allows content to flow naturally under the keyboard when it appears."
-                                                 TextColor="White"
-                                                 FontSize="14"
-                                                 LineBreakMode="WordWrap"
-                                                 Margin="0,0,0,10"/>
-                                          <Label Text="Notice how this content can be scrolled behind the keyboard. The container respects device safe areas (notch, status bar, home indicator) but does not automatically adjust for the soft keyboard."
-                                                 TextColor="White"
-                                                 FontSize="14"
-                                                 LineBreakMode="WordWrap"
-                                                 Margin="0,0,0,10"/>
+                     <Grid Padding="15,10"
+                           Grid.Row="3">
+                            <Entry Placeholder="Enter text here"/>
+                     </Grid>
 
-                                          <Label Text="This is ideal when you want full control over keyboard behavior and prefer to handle it through ScrollView or manual adjustments. The content remains accessible through scrolling."
-                                                 TextColor="White"
-                                                 FontSize="14"
-                                                 LineBreakMode="WordWrap"
-                                                 Margin="0,0,0,10"/>
-
-                                          <Label Text="Compare this with SafeAreaEdges='All' or 'Keyboard' where automatic padding would be applied. With 'Container', you maintain design flexibility and can create custom keyboard handling behaviors."
-                                                 TextColor="White"
-                                                 FontSize="14"
-                                                 LineBreakMode="WordWrap"
-                                                 Margin="0,0,0,10"/>
-                                   </VerticalStackLayout>
-                            </ScrollView>
+                     <!-- Bottom Overlay -->
+                     <Grid Background="{StaticResource OverlayColor}"
+                           Grid.Row="6">
+                            <Label Text="Bottom Overlay"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"
+                                   TextColor="black"/>
                      </Grid>
               </Grid>
        </Grid>

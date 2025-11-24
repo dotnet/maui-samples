@@ -3,123 +3,71 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SafeAreaDemos.Views.Example4Default"
              SafeAreaEdges="Default"
-             Background="Gray"
              Title="SafeAreaEdges: Default">
-       <Grid>
-              <!-- Gradient Background spanning entire screen -->
-              <Border>
-                     <Border.Background>
-                            <LinearGradientBrush StartPoint="0,0"
-                                                 EndPoint="1,1">
-                                   <GradientStop Color="#667eea"
-                                                 Offset="0.0"/>
-                                   <GradientStop Color="#764ba2"
-                                                 Offset="0.5"/>
-                                   <GradientStop Color="#f093fb"
-                                                 Offset="1.0"/>
-                            </LinearGradientBrush>
-                     </Border.Background>
-              </Border>
-              <!-- Animated background pattern -->
-              <Grid Opacity="0.1">
-                     <Ellipse WidthRequest="400"
-                              HeightRequest="400"
-                              Fill="White"
-                              HorizontalOptions="Start"
-                              VerticalOptions="Start"
-                              Margin="-200,-200,0,0"/>
-                     <Ellipse WidthRequest="300"
-                              HeightRequest="300"
-                              Fill="White"
-                              HorizontalOptions="End"
-                              VerticalOptions="Center"
-                              Margin="0,0,-150,0"/>
-                     <Ellipse WidthRequest="350"
-                              HeightRequest="350"
-                              Fill="White"
-                              HorizontalOptions="Center"
-                              VerticalOptions="End"
-                              Margin="0,0,0,-175"/>
-              </Grid>
+       <ScrollView SafeAreaEdges="Default">
+              <VerticalStackLayout Padding="20,10,20,20"
+                                   Spacing="15">
+                     <!-- Title -->
+                     <Label Text="SafeAreaEdges = &quot;Default&quot;"
+                            FontSize="24"
+                            FontAttributes="Bold"
+                            Margin="0,0,0,10"/>
 
-              <!-- Main Content -->
-              <Grid RowDefinitions="Auto,*,Auto">
-                     <!-- Description Banner -->
-                     <Border Grid.Row="0"
-                             Background="#8B7FE8"
-                             Stroke="Transparent"
-                             Padding="20,15"
-                             Margin="15,0,15,10">
-                            <Label TextColor="White"
-                                   FontSize="15"
-                                   LineHeight="1.4"
-                                   Text="Default applies the platform’s built-in safe area rules, letting each device automatically decide how content should adjust around notches, status bars, and system UI."/>
-                     </Border>
+                     <!-- Behavior Section -->
+                     <Label Text="Behavior:"
+                            FontSize="18"
+                            FontAttributes="Bold"/>
 
-                     <!-- Contact List with Search -->
-                     <Grid Grid.Row="1"
-                           Background="#F5F5F5"
-                           RowDefinitions="Auto,*">
-                            <!-- Contact List -->
-                            <CollectionView Grid.Row="1"
-                                            ItemsSource="{Binding Contacts}"
-                                            SelectionMode="None"
-                                            BackgroundColor="White">
-                                   <CollectionView.ItemsLayout>
-                                          <LinearItemsLayout Orientation="Vertical"
-                                                             ItemSpacing="0"/>
-                                   </CollectionView.ItemsLayout>
-                                   <CollectionView.ItemTemplate>
-                                          <DataTemplate>
-                                                 <Grid BackgroundColor="White">
-                                                        <!-- Section Header -->
-                                                        <Label Text="{Binding Section}"
-                                                               TextColor="Black"
-                                                               FontSize="13"
-                                                               FontAttributes="Bold"
-                                                               Margin="25,15,25,10"
-                                                               IsVisible="{Binding IsSection}"/>
+                     <Label Text="• Uses platform-specific default safe area behavior"
+                            FontSize="16"
+                            Margin="10,0,0,5"/>
 
-                                                        <!-- Contact Item -->
-                                                        <Grid Padding="25,15"
-                                                              IsVisible="{Binding IsContact}">
-                                                               <Label Text="{Binding Name}"
-                                                                      TextColor="#666666"
-                                                                      FontSize="16"
-                                                                      VerticalOptions="Center"/>
+                     <Label Text="• ContentPage returns 'All' when value is Default"
+                            FontSize="16"
+                            Margin="10,0,0,5"/>
 
-                                                               <!-- Separator Line -->
-                                                               <BoxView Color="#E0E0E0"
-                                                                        HeightRequest="0.5"
-                                                                        VerticalOptions="End"/>
-                                                        </Grid>
-                                                 </Grid>
-                                          </DataTemplate>
-                                   </CollectionView.ItemTemplate>
-                            </CollectionView>
+                     <Label Text="• Layout/ContentView/Border: Returns None when value is Default"
+                            FontSize="16"
+                            Margin="10,0,0,5"/>
 
-                            <!-- Floating Action Button -->
-                            <Border Grid.Row="1"
-                                    Background="#4CAF50"
-                                    Stroke="Transparent"
-                                    StrokeShape="RoundRectangle 30"
-                                    WidthRequest="60"
-                                    HeightRequest="60"
-                                    HorizontalOptions="End"
-                                    VerticalOptions="End"
-                                    Margin="0,0,20,20">
-                                   <Border.Shadow>
-                                          <Shadow Brush="Black"
-                                                  Opacity="0.3"
-                                                  Radius="15"
-                                                  Offset="0,5"/>
-                                   </Border.Shadow>
-                                   <Label Text="💬"
-                                          FontSize="28"
-                                          HorizontalOptions="Center"
-                                          VerticalOptions="Center"/>
-                            </Border>
-                     </Grid>
-              </Grid>
-       </Grid>
+                     <Label Text="• ScrollView: Returns Default when value is Default (uses iOS ContentInsetAdjustmentBehavior)"
+                            FontSize="16"
+                            Margin="10,0,0,5"/>
+
+                     <!-- Use Cases Section -->
+                     <Label Text="Use Cases:"
+                            FontSize="18"
+                            FontAttributes="Bold"
+                            Margin="0,10,0,0"/>
+
+                     <Label Text="• Standard content pages with expected platform behavior"
+                            FontSize="16"
+                            Margin="10,0,0,5"/>
+
+                     <Label Text="• Migrating existing apps without breaking layouts"
+                            FontSize="16"
+                            Margin="10,0,0,5"/>
+
+                     <Label Text="• When you want the system to handle safe areas automatically"
+                            FontSize="16"
+                            Margin="10,0,0,5"/>
+
+                     <Label Text="• General-purpose UIs that don't require custom safe area handling"
+                            FontSize="16"
+                            Margin="10,0,0,10"/>
+
+                     <!-- Important Note Section -->
+                     <Label Text="Important Note:"
+                            FontSize="18"
+                            FontAttributes="Bold"
+                            TextColor="#FF6B6B"
+                            Margin="0,10,0,0"/>
+
+                     <Label Text="Default behavior varies by control type. Use explicit values (None, All, SoftInput, Container) when you need consistent, predictable behavior across different controls."
+                            FontSize="14"
+                            LineBreakMode="WordWrap"
+                            Margin="10,0,0,0"/>
+                     <Entry Placeholder="Enter text here"/>
+              </VerticalStackLayout>
+       </ScrollView>
 </ContentPage>
