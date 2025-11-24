@@ -1,15 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
 	<Nullable>enable</Nullable>
   </PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Maui.Core" Version="9.0.81" />
-		<PackageReference Include="Microsoft.Extensions.Http.Resilience" Version="9.6.0" />
-		<PackageReference Include="Microsoft.Extensions.ServiceDiscovery" Version="10.0.0-preview.1.25555.1" />
+		<PackageReference Include="Microsoft.Maui.Core" Version="10.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Http.Resilience" Version="10.0.0" />
+		<PackageReference Include="Microsoft.Extensions.ServiceDiscovery" Version="10.0.0" />
 		<PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.12.0" />
 		<PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.12.0" />
 		<PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.12.0" />
