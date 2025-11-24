@@ -155,18 +155,6 @@
                                           VerticalOptions="Center"/>
                             </Border>
                      </Grid>
-
-                     <!-- Footer -->
-                     <!-- <Border Grid.Row="3"
-                             Background="#B794E8"
-                             Stroke="Transparent"
-                             Padding="15,15">
-                            <Label Text="The SafeArea = All respects the all safe area insets."
-                                   TextColor="White"
-                                   FontSize="14"
-                                   FontAttributes="Bold"
-                                   HorizontalTextAlignment="Center"/>
-                     </Border> -->
               </Grid>
        </Grid>
 </ContentPage>
