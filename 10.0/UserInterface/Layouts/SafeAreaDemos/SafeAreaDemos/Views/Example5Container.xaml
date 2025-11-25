@@ -38,13 +38,20 @@
                                            FontSize="24"
                                            FontAttributes="Bold"
                                            Background="Transparent"
-                                           Clicked="Button_Clicked"
-                                           Padding="0"/>
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Center"
+                                           Clicked="Button_Clicked">
+                                          <Button.Padding>
+                                                 <OnPlatform x:TypeArguments="Thickness">
+                                                        <On Platform="Android"
+                                                            Value="0,-10,0,0"/>
+                                                 </OnPlatform>
+                                          </Button.Padding>
+                                   </Button>
                             </Border>
                      </Grid>
 
-                     <ScrollView Grid.Row="2"
-                                 SafeAreaEdges="Container">
+                     <ScrollView Grid.Row="2">
                             <VerticalStackLayout Padding="20,10,20,20"
                                                  Spacing="15">
                                    <!-- Title -->

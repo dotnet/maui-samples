@@ -6,14 +6,13 @@
              Shell.NavBarIsVisible="False">
 
        <!-- Main Grid with edge-to-edge content -->
-       <Grid SafeAreaEdges="None">
+       <Grid>
 
 
-              <Grid SafeAreaEdges="None"
-                    RowDefinitions="50,75,*,75,30">
+              <Grid
+                     RowDefinitions="50,75,*,75,30">
                      <!-- StatusBar Overlay -->
-                     <Grid Background="{StaticResource OverlayColor}"
-                           SafeAreaEdges="None">
+                     <Grid Background="{StaticResource OverlayColor}">
                             <Label Text="Top Overlay"
                                    HorizontalOptions="Center"
                                    VerticalOptions="Center"
@@ -43,8 +42,16 @@
                                            FontSize="24"
                                            FontAttributes="Bold"
                                            Background="Transparent"
-                                           Clicked="Button_Clicked"
-                                           Padding="0"/>
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Center"
+                                           Clicked="Button_Clicked">
+                                          <Button.Padding>
+                                                 <OnPlatform x:TypeArguments="Thickness">
+                                                        <On Platform="Android"
+                                                            Value="0,-10,0,0"/>
+                                                 </OnPlatform>
+                                          </Button.Padding>
+                                   </Button>
                             </Border>
                      </Grid>
 
