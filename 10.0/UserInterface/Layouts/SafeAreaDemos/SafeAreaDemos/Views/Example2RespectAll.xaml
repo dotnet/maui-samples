@@ -41,8 +41,16 @@
                                            FontSize="24"
                                            FontAttributes="Bold"
                                            Background="Transparent"
-                                           Clicked="Button_Clicked"
-                                           Padding="0"/>
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Center"
+                                           Clicked="Button_Clicked">
+                                          <Button.Padding>
+                                                 <OnPlatform x:TypeArguments="Thickness">
+                                                        <On Platform="Android"
+                                                            Value="0,-10,0,0"/>
+                                                 </OnPlatform>
+                                          </Button.Padding>
+                                   </Button>
                             </Border>
 
                      </Grid>

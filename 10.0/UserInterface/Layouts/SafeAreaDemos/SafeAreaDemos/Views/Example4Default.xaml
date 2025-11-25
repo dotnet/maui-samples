@@ -3,11 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SafeAreaDemos.Views.Example4Default"
              SafeAreaEdges="Default"
-             Title="SafeAreaEdges: Default"
              Shell.NavBarIsVisible="False">
-
-       <ScrollView SafeAreaEdges="Default">
+       <Grid RowDefinitions="Auto,*">
               <Grid Padding="10"
+                    Grid.Row="0"
                     RowDefinitions="50,*">
                      <!-- Back Button -->
                      <Border Grid.Column="0"
@@ -30,10 +29,19 @@
                                     FontSize="24"
                                     FontAttributes="Bold"
                                     Background="Transparent"
-                                    Clicked="Button_Clicked"
-                                    Padding="0"/>
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="Center"
+                                    Clicked="Button_Clicked">
+                                   <Button.Padding>
+                                          <OnPlatform x:TypeArguments="Thickness">
+                                                 <On Platform="Android"
+                                                     Value="0,-10,0,0"/>
+                                          </OnPlatform>
+                                   </Button.Padding>
+                            </Button>
                      </Border>
-
+              </Grid>
+              <ScrollView Grid.Row="1">
                      <VerticalStackLayout Padding="20,10,20,20"
                                           Grid.Row="1"
                                           Spacing="15">
@@ -99,6 +107,6 @@
                                    Margin="10,0,0,0"/>
                             <Entry Placeholder="Enter text here"/>
                      </VerticalStackLayout>
-              </Grid>
-       </ScrollView>
+              </ScrollView>
+       </Grid>
 </ContentPage>
