@@ -6,11 +6,11 @@
              Shell.NavBarIsVisible="False">
 
        <!-- Main Grid with edge-to-edge content -->
-       <Grid>
+       <Grid SafeAreaEdges="None">
 
 
-              <Grid
-                     RowDefinitions="50,75,*,75,30">
+              <Grid SafeAreaEdges="None"
+                    RowDefinitions="50,75,*,75,30">
                      <!-- StatusBar Overlay -->
                      <Grid Background="{StaticResource OverlayColor}">
                             <Label Text="Top Overlay"
