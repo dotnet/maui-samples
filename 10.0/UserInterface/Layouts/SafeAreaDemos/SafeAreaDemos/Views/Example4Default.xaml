@@ -24,6 +24,14 @@
                                            Radius="10"
                                            Offset="0,4"/>
                             </Border.Shadow>
+                            <Border.IsVisible>
+                                   <OnPlatform x:TypeArguments="x:Boolean">
+                                          <On Platform="Windows"
+                                              Value="False"/>
+                                          <On Platform="Android, iOS, MacCatalyst"
+                                              Value="True"/>
+                                   </OnPlatform>
+                            </Border.IsVisible>
                             <Button Text="←"
                                     TextColor="#667eea"
                                     FontSize="24"
