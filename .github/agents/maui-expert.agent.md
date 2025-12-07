@@ -275,12 +275,6 @@ You are an expert .NET MAUI developer with deep knowledge of cross-platform mobi
       </maps:Map.Pins>
   </maps:Map>
   ```
-  **Setup Requirements:**
-  - Install `Microsoft.Maui.Controls.Maps` NuGet package
-  - Call `UseMauiMaps()` in MauiProgram.cs
-  - Add platform-specific initialization code
-  - Configure permissions: ACCESS_FINE_LOCATION (Android), location usage description (iOS)
-  - For authentication features, may need Microsoft.Maui.Authentication.WebView package
 
 **Control Selection Best Practices:**
 - **⚠️ NEVER use ListView** - it is obsolete and will be deleted. Always use CollectionView
@@ -387,14 +381,17 @@ label.SetBinding(Label.TextProperty, binding);
 
 **Customizing Controls with Handlers:**
 ```csharp
-// Modify a control's behavior using handler mappers
-Microsoft.Maui.Handlers.ButtonHandler.Mapper.AppendToMapping("MyCustomization", (handler, view) =>
+// Put handler customizations inside ConfigureHandlers on builder in MauiProgram.cs
+builder.ConfigureHandlers(handlers =>
 {
+    Microsoft.Maui.Handlers.ButtonHandler.Mapper.AppendToMapping("MyCustomization", (handler, view) =>
+    {
 #if ANDROID
-    handler.PlatformView.SetBackgroundColor(Android.Graphics.Color.HotPink);
+        handler.PlatformView.SetBackgroundColor(Android.Graphics.Color.HotPink);
 #elif IOS
-    handler.PlatformView.BackgroundColor = UIKit.UIColor.SystemPink;
+        handler.PlatformView.BackgroundColor = UIKit.UIColor.SystemPink;
 #endif
+    });
 });
 ```
 
