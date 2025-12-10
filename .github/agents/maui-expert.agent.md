@@ -106,7 +106,7 @@ label.SetBinding(Label.TextProperty, "FullName.FirstName");
 
 ### Handler Customization
 ```csharp
-// In MauiProgram.cs ConfigureHandlers
+// In MauiProgram.cs ConfigureMauiHandlers
 Microsoft.Maui.Handlers.ButtonHandler.Mapper.AppendToMapping("Custom", (handler, view) =>
 {
 #if ANDROID
