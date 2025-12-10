@@ -450,14 +450,8 @@ await Shell.Current.GoToAsync("details?id=123");
 7. **Avoid Memory Leaks:** Unsubscribe from events, dispose of resources properly
 8. **Use Proper Controls:** Choose CollectionView over ListView, Grid over StackLayout, Border over Frame
 
-**Profiling Tools:**
-```bash
-# Profile startup time and performance
-dotnet-trace collect --process-id <pid> --profile gc-verbose
-
-# Analyze memory usage
-dotnet-gcdump collect --process-id <pid>
-```
+**Profiling:**
+- For profiling guidance and tools, see: https://learn.microsoft.com/dotnet/maui/fundamentals/profiling
 
 ### Resource Management
 
