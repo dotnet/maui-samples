@@ -1,4 +1,4 @@
-﻿using System.Diagnostics;
+using System.Diagnostics;
 using Recipes.Views;
 using System.Collections.ObjectModel;
 using Recipes.Models;
@@ -186,9 +186,17 @@ namespace Recipes.ViewModels
                 RecipeReviewVisible = !string.IsNullOrEmpty(RecipeReview);
                 
             }
-            catch (Exception) 
+            catch (ArgumentNullException ex)
             {
-                Debug.WriteLine("Failed to Load Item");
+                Debug.WriteLine($"Argument null error loading recipe: {ex.Message}");
+            }
+            catch (InvalidOperationException ex)
+            {
+                Debug.WriteLine($"Invalid operation loading recipe: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Failed to load recipe item: {ex.Message}");
             }
         }
 

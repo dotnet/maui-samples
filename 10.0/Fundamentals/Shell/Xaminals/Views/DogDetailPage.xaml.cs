@@ -1,4 +1,4 @@
-﻿using Xaminals.Data;
+using Xaminals.Data;
 using Xaminals.Models;
 
 namespace Xaminals.Views
@@ -26,9 +26,17 @@ namespace Xaminals.Views
                 Animal animal = DogData.Dogs.FirstOrDefault(a => a.Name == name);
                 BindingContext = animal;
             }
-            catch (Exception)
+            catch (ArgumentNullException ex)
             {
-                Console.WriteLine("Failed to load animal.");
+                System.Diagnostics.Debug.WriteLine($"Argument null error loading dog: {ex.Message}");
+            }
+            catch (InvalidOperationException ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Invalid operation loading dog: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Failed to load dog: {ex.Message}");
             }
         }
     }

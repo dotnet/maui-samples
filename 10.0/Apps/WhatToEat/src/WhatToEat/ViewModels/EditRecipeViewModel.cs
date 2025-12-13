@@ -1,4 +1,4 @@
-﻿using System.Diagnostics;
+using System.Diagnostics;
 using Recipes.Models;
 
 namespace Recipes.ViewModels
@@ -104,9 +104,17 @@ namespace Recipes.ViewModels
                 RecipeRating = item.RecipeRating;
                 RecipeReview = item.RecipeReview;
             }
-            catch (Exception)
+            catch (ArgumentNullException ex)
             {
-                Debug.WriteLine("Failed to Load Item");
+                Debug.WriteLine($"Argument null error loading recipe for edit: {ex.Message}");
+            }
+            catch (InvalidOperationException ex)
+            {
+                Debug.WriteLine($"Invalid operation loading recipe for edit: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Failed to load recipe item for edit: {ex.Message}");
             }
         }
 
