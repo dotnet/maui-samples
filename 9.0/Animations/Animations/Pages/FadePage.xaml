@@ -3,27 +3,70 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Animations.FadePage"
              Title="Fade">
-			 
-    <ScrollView>
-        <VerticalStackLayout 
-            Spacing="25" 
-            Padding="30,0" 
-            VerticalOptions="Center">
+    <Grid RowDefinitions="Auto, Auto, Auto" 
+          Padding="20"
+          RowSpacing="20">
 
-            <Image
-                x:Name="BotImg"
-                Source="dotnet_bot.png"
-                SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                HeightRequest="200"
-                HorizontalOptions="Center" />
-                
-            <Button 
-                Text="Say Goodbye"
-                SemanticProperties.Hint="Fades out the dot net bot"
-                Clicked="OnClickedAsync"
-                HorizontalOptions="Center" />
+        <Border Grid.Row="0"
+                Stroke="Transparent"
+                StrokeThickness="0"
+                Margin="0,10,0,10">
+            <Grid VerticalOptions="Center">
+                <Image x:Name="BotImg"
+                       Source="dotnet_bot.png"
+                       SemanticProperties.Description="Cute dot net bot waving hi to you!"
+                       HeightRequest="400"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center" />
+            </Grid>
+        </Border>
 
-        </VerticalStackLayout>
-    </ScrollView>
- 
+        <Grid Grid.Row="1" 
+      ColumnDefinitions="*,*"
+      ColumnSpacing="15"
+      RowDefinitions="Auto,Auto"
+      RowSpacing="15">
+
+            <Button Grid.Column="0" Grid.Row="0"
+            Text="Say Goodbye"
+            SemanticProperties.Hint="Fades out the dot net bot"
+            Clicked="OnClickedAsync"
+            HorizontalOptions="Fill"/>
+
+            <Button Grid.Column="1" Grid.Row="0"
+            Text="Ghost Mode"
+            SemanticProperties.Hint="Makes the bot fade in and out like a ghost"
+            Clicked="OnGhostClickedAsync"
+            HorizontalOptions="Fill"/>
+
+            <Button Grid.Column="0" Grid.Row="1"
+            Text="Pulse"
+            SemanticProperties.Hint="Creates a pulsing effect with fade"
+            Clicked="OnPulseClickedAsync"
+            HorizontalOptions="Fill"/>
+
+            <Button Grid.Column="1" Grid.Row="1"
+            Text="Digital Glitch"
+            SemanticProperties.Hint="Creates a digital glitch fade effect"
+            Clicked="OnDigitalGlitchClickedAsync"
+            HorizontalOptions="Fill"/>
+
+        </Grid>
+
+        <Border Grid.Row="2"
+                StrokeThickness="1"
+                BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}"
+                StrokeShape="RoundRectangle 8"
+                Stroke="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}"
+                Padding="15,10"
+                MinimumHeightRequest="50">
+            <Label x:Name="TooltipLabel"
+                   Text="Click any button to see what it does!"
+                   TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}"
+                   FontFamily="OpenSansRegular"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"/>
+        </Border>
+    </Grid>
+
 </ContentPage>
