@@ -133,16 +133,11 @@ await Shell.Current.GoToAsync("details?id=123");
 #elif MACCATALYST
 #endif
 ```
-- Use `MainThread.BeginInvokeOnMainThread()` for UI updates from background threads
+- Prefer `BindableObject.Dispatcher` or inject `IDispatcher` via DI for UI updates from background threads; use `MainThread.BeginInvokeOnMainThread()` as a fallback
 
 ### Performance
 1. Use compiled bindings (`x:DataType`)
-2. Enable `<TrimMode>full</TrimMode>`
-3. Enable `<PublishAot>true</PublishAot>` (.NET 9+)
-4. Profile release builds only
-5. Lazy load resources
-6. Unsubscribe events, dispose resources
-7. Use Grid > StackLayout, CollectionView > ListView, Border > Frame
+2. Use Grid > StackLayout, CollectionView > ListView, Border > Frame
 
 ### Security
 ```csharp
