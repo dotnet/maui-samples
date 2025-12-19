@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SafeAreaDemos.Views.Example4Default"
+             SafeAreaEdges="Default"
+              Background="#a2d2ff"
+             Shell.NavBarIsVisible="False">
+       <Grid RowDefinitions="Auto,*"
+              SafeAreaEdges="None"
+              Background="White">
+              <Grid Padding="10"
+                    Grid.Row="0"
+                    RowDefinitions="50,*">
+                     <!-- Back Button -->
+                     <Border Grid.Column="0"
+                             Grid.Row="0"
+                             Background="#FFFFFF"
+                             Stroke="Transparent"
+                             StrokeShape="RoundRectangle 20"
+                             WidthRequest="40"
+                             HeightRequest="40"
+                             VerticalOptions="Center"
+                             HorizontalOptions="Start">
+                            <Border.Shadow>
+                                   <Shadow Brush="Black"
+                                           Opacity="0.3"
+                                           Radius="10"
+                                           Offset="0,4"/>
+                            </Border.Shadow>
+                            <Border.IsVisible>
+                                   <OnPlatform x:TypeArguments="x:Boolean">
+                                          <On Platform="Windows"
+                                              Value="False"/>
+                                          <On Platform="Android, iOS, MacCatalyst"
+                                              Value="True"/>
+                                   </OnPlatform>
+                            </Border.IsVisible>
+                            <Button Text="←"
+                                    TextColor="#667eea"
+                                    FontSize="24"
+                                    FontAttributes="Bold"
+                                    Background="Transparent"
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="Center"
+                                    Clicked="Button_Clicked">
+                                   <Button.Padding>
+                                          <OnPlatform x:TypeArguments="Thickness">
+                                                 <On Platform="Android"
+                                                     Value="0,-10,0,0"/>
+                                          </OnPlatform>
+                                   </Button.Padding>
+                            </Button>
+                     </Border>
+              </Grid>
+              <ScrollView Grid.Row="1">
+                     <VerticalStackLayout Padding="20,10,20,20"
+                                          Grid.Row="1"
+                                          Spacing="15">
+                            <!-- Title -->
+                            <Label Text="SafeAreaEdges = &quot;Default&quot;"
+                                   FontSize="24"
+                                   FontAttributes="Bold"
+                                   Margin="0,0,0,10"/>
+
+                            <!-- Behavior Section -->
+                            <Label Text="Behavior:"
+                                   FontSize="18"
+                                   FontAttributes="Bold"/>
+
+                            <Label Text="• Uses platform-specific default safe area behavior"
+                                   FontSize="16"
+                                   Margin="10,0,0,5"/>
+
+                            <Label Text="• ContentPage returns 'All' when value is Default"
+                                   FontSize="16"
+                                   Margin="10,0,0,5"/>
+
+                            <Label Text="• Layout/ContentView/Border: Returns None when value is Default"
+                                   FontSize="16"
+                                   Margin="10,0,0,5"/>
+
+                            <Label Text="• ScrollView: Returns Default when value is Default (uses iOS ContentInsetAdjustmentBehavior)"
+                                   FontSize="16"
+                                   Margin="10,0,0,5"/>
+
+                            <!-- Use Cases Section -->
+                            <Label Text="Use Cases:"
+                                   FontSize="18"
+                                   FontAttributes="Bold"
+                                   Margin="0,10,0,0"/>
+
+                            <Label Text="• Standard content pages with expected platform behavior"
+                                   FontSize="16"
+                                   Margin="10,0,0,5"/>
+
+                            <Label Text="• Migrating existing apps without breaking layouts"
+                                   FontSize="16"
+                                   Margin="10,0,0,5"/>
+
+                            <Label Text="• When you want the system to handle safe areas automatically"
+                                   FontSize="16"
+                                   Margin="10,0,0,5"/>
+
+                            <Label Text="• General-purpose UIs that don't require custom safe area handling"
+                                   FontSize="16"
+                                   Margin="10,0,0,10"/>
+
+                            <!-- Important Note Section -->
+                            <Label Text="Important Note:"
+                                   FontSize="18"
+                                   FontAttributes="Bold"
+                                   TextColor="#FF6B6B"
+                                   Margin="0,10,0,0"/>
+
+                            <Label Text="Default behavior varies by control type. Use explicit values (None, All, SoftInput, Container) when you need consistent, predictable behavior across different controls."
+                                   FontSize="14"
+                                   LineBreakMode="WordWrap"
+                                   Margin="10,0,0,0"/>
+                            <Entry Placeholder="Enter text here"/>
+                     </VerticalStackLayout>
+              </ScrollView>
+       </Grid>
+</ContentPage>
