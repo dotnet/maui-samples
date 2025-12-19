@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:strings="clr-namespace:procrastinate.Services"
+             x:Class="procrastinate.Pages.SettingsPage"
+             Title="{Binding Settings, Source={x:Static strings:AppStrings.Instance}}"
+             BackgroundColor="{AppThemeBinding Light={StaticResource Nord6}, Dark={StaticResource Nord0}}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="24">
+            <Label Text="&#xf013;" 
+                   FontFamily="FontAwesomeSolid"
+                   FontSize="48" 
+                   TextColor="{AppThemeBinding Light={StaticResource Nord3}, Dark={StaticResource Nord4}}"
+                   HorizontalOptions="Center"/>
+            <Label Text="{Binding Settings, Source={x:Static strings:AppStrings.Instance}}" 
+                   FontSize="28" 
+                   FontAttributes="Bold"
+                   TextColor="{AppThemeBinding Light={StaticResource Nord0}, Dark={StaticResource Nord6}}"
+                   HorizontalOptions="Center"/>
+
+            <!-- Language -->
+            <Border BackgroundColor="{AppThemeBinding Light={StaticResource Nord5}, Dark={StaticResource Nord1}}" 
+                    StrokeShape="RoundRectangle 16"
+                    Stroke="Transparent"
+                    Padding="20">
+                <VerticalStackLayout Spacing="16">
+                    <HorizontalStackLayout Spacing="10">
+                        <Label Text="&#xf1ab;" FontFamily="FontAwesomeSolid" FontSize="18" TextColor="{StaticResource Nord8}" VerticalOptions="Center"/>
+                        <Label Text="{Binding Language, Source={x:Static strings:AppStrings.Instance}}" 
+                               FontSize="18" 
+                               FontAttributes="Bold"
+                               TextColor="{AppThemeBinding Light={StaticResource Nord1}, Dark={StaticResource Nord5}}"
+                               VerticalOptions="Center"/>
+                    </HorizontalStackLayout>
+                    
+                    <Picker x:Name="LanguagePicker"
+                            AutomationId="LanguagePicker"
+                            TextColor="{AppThemeBinding Light={StaticResource Nord0}, Dark={StaticResource Nord6}}"
+                            BackgroundColor="{AppThemeBinding Light={StaticResource Nord4}, Dark={StaticResource Nord2}}"
+                            SelectedIndexChanged="OnLanguageChanged"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Accessibility -->
+            <Border BackgroundColor="{AppThemeBinding Light={StaticResource Nord5}, Dark={StaticResource Nord1}}" 
+                    StrokeShape="RoundRectangle 16"
+                    Stroke="Transparent"
+                    Padding="20">
+                <VerticalStackLayout Spacing="16">
+                    <HorizontalStackLayout Spacing="10">
+                        <Label Text="&#xf29a;" FontFamily="FontAwesomeSolid" FontSize="18" TextColor="{StaticResource Nord9}" VerticalOptions="Center"/>
+                        <Label Text="{Binding Accessibility, Source={x:Static strings:AppStrings.Instance}}" 
+                               FontSize="18" 
+                               FontAttributes="Bold"
+                               TextColor="{AppThemeBinding Light={StaticResource Nord1}, Dark={StaticResource Nord5}}"
+                               VerticalOptions="Center"/>
+                    </HorizontalStackLayout>
+                    
+                    <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto">
+                        <VerticalStackLayout Grid.Column="0" Spacing="4">
+                            <Label Text="{Binding HighContrastMode, Source={x:Static strings:AppStrings.Instance}}" 
+                                   FontSize="16" 
+                                   TextColor="{AppThemeBinding Light={StaticResource Nord0}, Dark={StaticResource Nord6}}"/>
+                            <Label Text="{Binding HighContrastDesc, Source={x:Static strings:AppStrings.Instance}}" 
+                                   FontSize="13" 
+                                   TextColor="{AppThemeBinding Light={StaticResource Nord3}, Dark={StaticResource Nord4}}"/>
+                        </VerticalStackLayout>
+                        <Switch x:Name="HighContrastSwitch" 
+                                Grid.Column="1"
+                                OnColor="{StaticResource Nord8}"
+                                Toggled="OnHighContrastToggled"
+                                VerticalOptions="Center"/>
+                    </Grid>
+
+                    <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto">
+                        <VerticalStackLayout Grid.Column="0" Spacing="4">
+                            <Label Text="{Binding ZalgoMode, Source={x:Static strings:AppStrings.Instance}}" 
+                                   FontSize="16" 
+                                   TextColor="{AppThemeBinding Light={StaticResource Nord0}, Dark={StaticResource Nord6}}"/>
+                            <Label x:Name="ZalgoDescLabel"
+                                   FontSize="13" 
+                                   TextColor="{AppThemeBinding Light={StaticResource Nord3}, Dark={StaticResource Nord4}}"/>
+                        </VerticalStackLayout>
+                        <Switch x:Name="ZalgoSwitch" 
+                                AutomationId="ZalgoSwitch"
+                                Grid.Column="1"
+                                OnColor="{StaticResource Nord10}"
+                                Toggled="OnZalgoToggled"
+                                VerticalOptions="Center"/>
+                    </Grid>
+                    
+                    <!-- Theme Preview -->
+                    <BoxView HeightRequest="1" BackgroundColor="{AppThemeBinding Light={StaticResource Nord4}, Dark={StaticResource Nord2}}" Margin="0,8,0,8"/>
+                    
+                    <Label Text="{Binding ThemePreview, Source={x:Static strings:AppStrings.Instance}}" 
+                           FontSize="14" 
+                           TextColor="{AppThemeBinding Light={StaticResource Nord3}, Dark={StaticResource Nord4}}"/>
+                    
+                    <HorizontalStackLayout Spacing="12" HorizontalOptions="Center">
+                        <Border x:Name="PreviewPrimary" 
+                                BackgroundColor="{StaticResource Nord8}"
+                                StrokeShape="RoundRectangle 8"
+                                Stroke="Transparent"
+                                WidthRequest="50" HeightRequest="50"/>
+                        <Border x:Name="PreviewSecondary" 
+                                BackgroundColor="{StaticResource Nord9}"
+                                StrokeShape="RoundRectangle 8"
+                                Stroke="Transparent"
+                                WidthRequest="50" HeightRequest="50"/>
+                        <Border x:Name="PreviewTertiary" 
+                                BackgroundColor="{StaticResource Nord10}"
+                                StrokeShape="RoundRectangle 8"
+                                Stroke="Transparent"
+                                WidthRequest="50" HeightRequest="50"/>
+                        <Border x:Name="PreviewAccent" 
+                                BackgroundColor="{StaticResource Nord13}"
+                                StrokeShape="RoundRectangle 8"
+                                Stroke="Transparent"
+                                WidthRequest="50" HeightRequest="50"/>
+                    </HorizontalStackLayout>
+                    
+                    <Label x:Name="ThemeLabel"
+                           Text="Current: Default Theme"
+                           FontSize="14"
+                           TextColor="{AppThemeBinding Light={StaticResource Nord3}, Dark={StaticResource Nord4}}"
+                           HorizontalOptions="Center"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Excuse Engine -->
+            <Border BackgroundColor="{AppThemeBinding Light={StaticResource Nord5}, Dark={StaticResource Nord1}}" 
+                    StrokeShape="RoundRectangle 16"
+                    Stroke="Transparent"
+                    Padding="20">
+                <VerticalStackLayout Spacing="16">
+                    <HorizontalStackLayout Spacing="10">
+                        <Label Text="&#xf075;" FontFamily="FontAwesomeSolid" FontSize="18" TextColor="{StaticResource Nord8}" VerticalOptions="Center"/>
+                        <Label Text="{Binding ExcuseEngine, Source={x:Static strings:AppStrings.Instance}}" 
+                               FontSize="18" 
+                               FontAttributes="Bold"
+                               TextColor="{AppThemeBinding Light={StaticResource Nord1}, Dark={StaticResource Nord5}}"
+                               VerticalOptions="Center"/>
+                    </HorizontalStackLayout>
+
+                    <Label Text="{Binding ExcuseEngineDesc, Source={x:Static strings:AppStrings.Instance}}" 
+                           FontSize="13" 
+                           TextColor="{AppThemeBinding Light={StaticResource Nord3}, Dark={StaticResource Nord4}}"/>
+                    
+                    <Picker x:Name="ExcuseModePicker"
+                            AutomationId="ExcuseModePicker"
+                            TextColor="{AppThemeBinding Light={StaticResource Nord0}, Dark={StaticResource Nord6}}"
+                            BackgroundColor="{AppThemeBinding Light={StaticResource Nord4}, Dark={StaticResource Nord2}}"
+                            SelectedIndexChanged="OnExcuseModeChanged"/>
+
+                    <VerticalStackLayout x:Name="CloudSettingsPanel" Spacing="12" IsVisible="False">
+                        <Label Text="{Binding GroqApiKeyLabel, Source={x:Static strings:AppStrings.Instance}}" 
+                               FontSize="14" 
+                               TextColor="{AppThemeBinding Light={StaticResource Nord3}, Dark={StaticResource Nord4}}"/>
+                        <Entry x:Name="GroqApiKeyEntry"
+                               AutomationId="GroqApiKeyEntry"
+                               Placeholder="{Binding GroqApiKeyPlaceholder, Source={x:Static strings:AppStrings.Instance}}"
+                               IsPassword="True"
+                               TextColor="{AppThemeBinding Light={StaticResource Nord0}, Dark={StaticResource Nord6}}"
+                                PlaceholderColor="{AppThemeBinding Light={StaticResource Nord3}, Dark={StaticResource Nord4}}"
+                               BackgroundColor="{AppThemeBinding Light={StaticResource Nord4}, Dark={StaticResource Nord2}}"
+                               TextChanged="OnGroqApiKeyChanged"/>
+                        
+                        <HorizontalStackLayout Spacing="8">
+                            <Label Text="{Binding AiModel, Source={x:Static strings:AppStrings.Instance}}" 
+                                   FontSize="14" 
+                                   TextColor="{AppThemeBinding Light={StaticResource Nord3}, Dark={StaticResource Nord4}}"
+                                   VerticalOptions="Center"/>
+                            <Picker x:Name="GroqModelPicker"
+                                    WidthRequest="250"
+                                    TextColor="{AppThemeBinding Light={StaticResource Nord0}, Dark={StaticResource Nord6}}"
+                                    BackgroundColor="{AppThemeBinding Light={StaticResource Nord4}, Dark={StaticResource Nord2}}"
+                                    SelectedIndexChanged="OnGroqModelChanged"/>
+                        </HorizontalStackLayout>
+                        
+                        <Label Text="{Binding GroqGetKeyHint, Source={x:Static strings:AppStrings.Instance}}" 
+                               FontSize="12" 
+                               TextColor="{StaticResource Nord3}"/>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout x:Name="OnDeviceAISettingsPanel" Spacing="12" IsVisible="False">
+                        <HorizontalStackLayout Spacing="8">
+                            <Label Text="&#xf538;" 
+                                   FontFamily="FontAwesomeSolid" 
+                                   FontSize="16" 
+                                   TextColor="{StaticResource Nord9}"
+                                   VerticalOptions="Center"/>
+                            <Label x:Name="OnDeviceAIStatusLabel"
+                                   FontSize="14" 
+                                   TextColor="{AppThemeBinding Light={StaticResource Nord3}, Dark={StaticResource Nord4}}"/>
+                        </HorizontalStackLayout>
+                        <Label Text="{Binding OnDeviceAIHint, Source={x:Static strings:AppStrings.Instance}}" 
+                               FontSize="12" 
+                               TextColor="{StaticResource Nord3}"/>
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </Border>
+
+            <Label Text="{Binding ChangesApply, Source={x:Static strings:AppStrings.Instance}}"
+                   FontSize="13"
+                   TextColor="{StaticResource Nord3}"
+                   HorizontalOptions="Center"/>
+
+            <!-- About -->
+            <Border BackgroundColor="{AppThemeBinding Light={StaticResource Nord5}, Dark={StaticResource Nord1}}" 
+                    StrokeShape="RoundRectangle 16"
+                    Stroke="Transparent"
+                    Padding="20"
+                    Margin="0,10,0,0">
+                <VerticalStackLayout Spacing="12">
+                    <HorizontalStackLayout Spacing="10">
+                        <Label Text="&#xf05a;" FontFamily="FontAwesomeSolid" FontSize="18" TextColor="{StaticResource Nord10}" VerticalOptions="Center"/>
+                        <Label Text="{Binding About, Source={x:Static strings:AppStrings.Instance}}" 
+                               FontSize="18" 
+                               FontAttributes="Bold"
+                               TextColor="{AppThemeBinding Light={StaticResource Nord1}, Dark={StaticResource Nord5}}"
+                               VerticalOptions="Center"/>
+                    </HorizontalStackLayout>
+                    
+                    <Label Text="{Binding AboutDescription, Source={x:Static strings:AppStrings.Instance}}"
+                           FontSize="14"
+                           TextColor="{AppThemeBinding Light={StaticResource Nord3}, Dark={StaticResource Nord4}}"/>
+                    
+                    <HorizontalStackLayout Spacing="8">
+                        <Label Text="&#xf121;" FontFamily="FontAwesomeSolid" FontSize="14" TextColor="{AppThemeBinding Light={StaticResource Nord3}, Dark={StaticResource Nord4}}" VerticalOptions="Center"/>
+                        <Label Text="{Binding Author, Source={x:Static strings:AppStrings.Instance}}"
+                               FontSize="14"
+                               TextColor="{AppThemeBinding Light={StaticResource Nord3}, Dark={StaticResource Nord4}}"/>
+                    </HorizontalStackLayout>
+                    
+                    <HorizontalStackLayout Spacing="8">
+                        <Label Text="&#xf09b;" FontFamily="FontAwesomeBrands" FontSize="14" TextColor="{AppThemeBinding Light={StaticResource Nord3}, Dark={StaticResource Nord4}}" VerticalOptions="Center"/>
+                        <Label Text="github.com/StephaneDelcroix/procrastinate"
+                               FontSize="14"
+                               TextColor="{StaticResource Nord8}"
+                               TextDecorations="Underline">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnGitHubTapped"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Version -->
+            <Label x:Name="VersionLabel"
+                   FontSize="12"
+                   TextColor="{AppThemeBinding Light={StaticResource Nord4}, Dark={StaticResource Nord3}}"
+                   HorizontalOptions="Center"
+                   Margin="0,20,0,0"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

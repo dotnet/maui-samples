@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:strings="clr-namespace:procrastinate.Services"
+             x:Class="procrastinate.Pages.Games.SimonSaysGameView">
+    <VerticalStackLayout Spacing="16">
+        <Grid ColumnDefinitions="95,95" RowDefinitions="95,95" ColumnSpacing="8" RowSpacing="8" HorizontalOptions="Center">
+            <Button x:Name="RedBtn" Grid.Row="0" Grid.Column="0" 
+                    BackgroundColor="{StaticResource Nord11}" CornerRadius="12" 
+                    WidthRequest="90" HeightRequest="90"
+                    Clicked="OnRedClicked"/>
+            <Button x:Name="GreenBtn" Grid.Row="0" Grid.Column="1" 
+                    BackgroundColor="{StaticResource Nord14}" CornerRadius="12" 
+                    WidthRequest="90" HeightRequest="90"
+                    Clicked="OnGreenClicked"/>
+            <Button x:Name="BlueBtn" Grid.Row="1" Grid.Column="0" 
+                    BackgroundColor="{StaticResource Nord9}" CornerRadius="12" 
+                    WidthRequest="90" HeightRequest="90"
+                    Clicked="OnBlueClicked"/>
+            <Button x:Name="YellowBtn" Grid.Row="1" Grid.Column="1" 
+                    BackgroundColor="{StaticResource Nord13}" CornerRadius="12" 
+                    WidthRequest="90" HeightRequest="90"
+                    Clicked="OnYellowClicked"/>
+        </Grid>
+        <Label x:Name="ScoreLabel" 
+               Text="Score: 0" 
+               HorizontalOptions="Center" 
+               FontSize="16" 
+               TextColor="{AppThemeBinding Light={StaticResource Nord3}, Dark={StaticResource Nord4}}"/>
+        <Button x:Name="StartBtn" 
+                Text="{Binding StartGame, Source={x:Static strings:AppStrings.Instance}}"
+                BackgroundColor="{StaticResource Nord9}" 
+                TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Nord0}}" 
+                CornerRadius="12" 
+                HeightRequest="44"
+                Clicked="OnStartClicked"/>
+    </VerticalStackLayout>
+</ContentView>
