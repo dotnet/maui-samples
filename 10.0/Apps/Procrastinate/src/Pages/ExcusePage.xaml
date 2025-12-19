@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:strings="clr-namespace:procrastinate.Services"
+             x:Class="procrastinate.Pages.ExcusePage"
+             Title="{Binding ExcuseGenerator, Source={x:Static strings:AppStrings.Instance}}"
+             BackgroundColor="{AppThemeBinding Light={StaticResource Nord6}, Dark={StaticResource Nord0}}">
+
+    <Shell.TitleView>
+        <Grid ColumnDefinitions="*,Auto">
+            <Label Text="{Binding ExcuseGenerator, Source={x:Static strings:AppStrings.Instance}}" 
+                   FontSize="18" FontAttributes="Bold" 
+                   TextColor="{AppThemeBinding Light={StaticResource Nord0}, Dark={StaticResource Nord6}}"
+                   VerticalOptions="Center"/>
+            <Button Grid.Column="1" Text="&#xf013;" 
+                    AutomationId="SettingsBtn"
+                    FontFamily="FontAwesomeSolid"
+                    BackgroundColor="Transparent"
+                    TextColor="{AppThemeBinding Light={StaticResource Nord3}, Dark={StaticResource Nord4}}"
+                    FontSize="20"
+                    Clicked="OnSettingsClicked"
+                    VerticalOptions="Center"/>
+        </Grid>
+    </Shell.TitleView>
+
+    <ScrollView>
+    <VerticalStackLayout Padding="24" Spacing="24" VerticalOptions="Start">
+        <Label Text="&#xf630;" 
+               FontFamily="FontAwesomeSolid"
+               FontSize="48" 
+               TextColor="{StaticResource Nord10}"
+               HorizontalOptions="Center"/>
+        <Label Text="{Binding ExcuseGenerator, Source={x:Static strings:AppStrings.Instance}}" 
+               FontSize="28" 
+               FontAttributes="Bold"
+               TextColor="{StaticResource Nord10}"
+               HorizontalOptions="Center"/>
+        
+        <Label Text="{Binding NeedAReason, Source={x:Static strings:AppStrings.Instance}}"
+               FontSize="14"
+               TextColor="{AppThemeBinding Light={StaticResource Nord3}, Dark={StaticResource Nord4}}"
+               HorizontalOptions="Center"
+               HorizontalTextAlignment="Center"/>
+        
+        <Grid>
+            <Border BackgroundColor="{AppThemeBinding Light={StaticResource Nord5}, Dark={StaticResource Nord1}}" 
+                    StrokeShape="RoundRectangle 20"
+                    Stroke="Transparent"
+                    Padding="28"
+                    MinimumHeightRequest="140">
+                <Border.Shadow>
+                    <Shadow Brush="#40000000" Offset="0,4" Radius="12" Opacity="0.3"/>
+                </Border.Shadow>
+                <VerticalStackLayout Spacing="16" VerticalOptions="Center">
+                    <Label x:Name="ExcuseLabel"
+                           AutomationId="ExcuseLabel"
+                           Text="{Binding TapForExcuse, Source={x:Static strings:AppStrings.Instance}}"
+                           FontSize="18"
+                           TextColor="{AppThemeBinding Light={StaticResource Nord1}, Dark={StaticResource Nord5}}"
+                           HorizontalTextAlignment="Center"
+                           VerticalOptions="Center"/>
+                </VerticalStackLayout>
+            </Border>
+            <Button x:Name="ShareIconBtn"
+                         IsVisible="False"
+                         Clicked="OnShareClicked"
+                         BackgroundColor="Transparent"
+                         HorizontalOptions="End"
+                         VerticalOptions="End"
+                         Margin="0,0,8,8">
+                <Button.ImageSource>
+                    <OnPlatform x:TypeArguments="ImageSource">
+                        <On Platform="iOS, MacCatalyst">
+                            <FontImageSource Glyph="&#xe09a;" FontFamily="FontAwesomeSolid" Color="{AppThemeBinding Light={StaticResource Nord1}, Dark={StaticResource Nord5}}" Size="18"/>
+                        </On>
+                        <On Platform="Android">
+                            <FontImageSource Glyph="&#xf1e0;" FontFamily="FontAwesomeSolid" Color="{AppThemeBinding Light={StaticResource Nord1}, Dark={StaticResource Nord5}}" Size="18"/>
+                        </On>
+                    </OnPlatform>
+                </Button.ImageSource>
+            </Button>
+        </Grid>
+        
+        <Label x:Name="GeneratorInfoLabel"
+               IsVisible="False"
+               FontSize="11"
+               TextColor="{AppThemeBinding Light={StaticResource Nord2}, Dark={StaticResource Nord4}}"
+               HorizontalOptions="Center"
+               HorizontalTextAlignment="Center"
+               Margin="0,-16,0,0"/>
+        
+        <Button x:Name="GenerateBtn"
+                AutomationId="GenerateBtn"
+                Text="{Binding GenerateExcuse, Source={x:Static strings:AppStrings.Instance}}"
+                FontSize="18"
+                HeightRequest="56"
+                BackgroundColor="{StaticResource Nord10}"
+                TextColor="White"
+                CornerRadius="14"
+                Clicked="OnGenerateClicked">
+            <Button.ImageSource>
+                <FontImageSource Glyph="&#xf522;" FontFamily="FontAwesomeSolid" Color="White" Size="18"/>
+            </Button.ImageSource>
+        </Button>
+        
+        <Label x:Name="CounterLabel"
+               Text="Excuses generated today: 0"
+               FontSize="13"
+               TextColor="{AppThemeBinding Light={StaticResource Nord2}, Dark={StaticResource Nord4}}"
+               HorizontalOptions="Center"/>
+    </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

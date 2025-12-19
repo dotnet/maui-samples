@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:strings="clr-namespace:procrastinate.Services"
+             x:Class="procrastinate.Pages.Games.MemoryMatchGameView">
+    <VerticalStackLayout Spacing="12">
+        <Grid x:Name="GameGrid" ColumnDefinitions="60,60,60,60" RowDefinitions="60,60,60,60" ColumnSpacing="6" RowSpacing="6" HorizontalOptions="Center">
+        </Grid>
+        <Label x:Name="StatusLabel" 
+               Text="Moves: 0 | Pairs: 0/8" 
+               HorizontalOptions="Center" 
+               FontSize="14" 
+               TextColor="{AppThemeBinding Light={StaticResource Nord3}, Dark={StaticResource Nord4}}"/>
+        <Button x:Name="ResetBtn" 
+                Text="{Binding NewGame, Source={x:Static strings:AppStrings.Instance}}"
+                BackgroundColor="{StaticResource Nord15}" 
+                TextColor="White" 
+                CornerRadius="12" 
+                HeightRequest="44"
+                Clicked="OnResetClicked"/>
+    </VerticalStackLayout>
+</ContentView>
