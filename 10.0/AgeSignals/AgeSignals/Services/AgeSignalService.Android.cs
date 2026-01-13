@@ -2,6 +2,7 @@ using AgeSignals.Models;
 using AgeSignals.Services;
 using Microsoft.Extensions.Logging;
 using Google.Android.Play.AgeSignals;
+using Google.Android.Play.AgeSignals.Testing;
 using Android.Gms.Tasks;
 using Android.Gms.Common.Apis;
 using Java.Lang;
@@ -12,6 +13,10 @@ public partial class AgeSignalService : IAgeSignalService
 {
     private readonly ILogger<AgeSignalService> _logger;
     private IAgeSignalsManager? _ageSignalsManager;
+    
+    // Set to true to use FakeAgeSignalsManager since Google has paused the live API
+    // Change to false when Google launches the API live (expected May/July 2026)
+    private static readonly bool UseFakeForTesting = true;
 
     public AgeSignalService(ILogger<AgeSignalService> logger)
     {
@@ -42,8 +47,17 @@ public partial class AgeSignalService : IAgeSignalService
 
             if (_ageSignalsManager == null)
             {
-                _ageSignalsManager = AgeSignalsManagerFactory.Create(context);
-                _logger.LogInformation("Age Signals Manager initialized");
+                if (UseFakeForTesting)
+                {
+                    // Use FakeAgeSignalsManager since Google has paused live responses
+                    _ageSignalsManager = CreateFakeAgeSignalsManager();
+                    _logger.LogWarning("Using FakeAgeSignalsManager - Live API paused by Google (returns error -1)");
+                }
+                else
+                {
+                    _ageSignalsManager = AgeSignalsManagerFactory.Create(context);
+                    _logger.LogInformation("Age Signals Manager initialized");
+                }
             }
 
             var ageSignalsRequest = AgeSignalsRequest.InvokeBuilder().Build();
@@ -207,6 +221,62 @@ public partial class AgeSignalService : IAgeSignalService
         
         // Fallback: return the exception message
         return $"Age Signals API error: {exception.Message}";
+    }
+
+    /// <summary>
+    /// Creates a FakeAgeSignalsManager for testing while Google has paused live API responses.
+    /// You can modify this method to test different user scenarios.
+    /// </summary>
+    private IAgeSignalsManager CreateFakeAgeSignalsManager()
+    {
+        var fakeManager = new FakeAgeSignalsManager();
+        
+        // SCENARIO 1: Verified adult user (18+) - Default for testing
+        // Status: 1 = VERIFIED
+        var fakeVerifiedUser = AgeSignalsResult.InvokeBuilder()
+            .SetUserStatus(Java.Lang.Integer.ValueOf(1))
+            .Build();
+        fakeManager.SetNextAgeSignalsResult(fakeVerifiedUser);
+        
+        // SCENARIO 2: Supervised user (13-17 years old) - Uncomment to test
+        // Status: 2 = SUPERVISED
+        // var fakeSupervisedUser = AgeSignalsResult.InvokeBuilder()
+        //     .SetUserStatus(Java.Lang.Integer.ValueOf(2))
+        //     .SetAgeLower(Java.Lang.Integer.ValueOf(13))
+        //     .SetAgeUpper(Java.Lang.Integer.ValueOf(17))
+        //     .SetInstallId("fake_install_id_12345")
+        //     .Build();
+        // fakeManager.SetNextAgeSignalsResult(fakeSupervisedUser);
+        
+        // SCENARIO 3: Unknown status (not verified) - Uncomment to test
+        // Status: 0 = UNKNOWN
+        // var fakeUnknownUser = AgeSignalsResult.InvokeBuilder()
+        //     .SetUserStatus(Java.Lang.Integer.ValueOf(0))
+        //     .Build();
+        // fakeManager.SetNextAgeSignalsResult(fakeUnknownUser);
+        
+        // SCENARIO 4: Supervised user with pending parental approval - Uncomment to test
+        // Status: 3 = SUPERVISED_APPROVAL_PENDING
+        // var fakePendingUser = AgeSignalsResult.InvokeBuilder()
+        //     .SetUserStatus(Java.Lang.Integer.ValueOf(3))
+        //     .SetAgeLower(Java.Lang.Integer.ValueOf(13))
+        //     .SetAgeUpper(Java.Lang.Integer.ValueOf(17))
+        //     .SetInstallId("fake_install_id_12345")
+        //     .Build();
+        // fakeManager.SetNextAgeSignalsResult(fakePendingUser);
+        
+        // SCENARIO 5: Supervised user with denied parental approval - Uncomment to test
+        // Status: 4 = SUPERVISED_APPROVAL_DENIED
+        // var fakeDeniedUser = AgeSignalsResult.InvokeBuilder()
+        //     .SetUserStatus(Java.Lang.Integer.ValueOf(4))
+        //     .SetAgeLower(Java.Lang.Integer.ValueOf(13))
+        //     .SetAgeUpper(Java.Lang.Integer.ValueOf(17))
+        //     .SetInstallId("fake_install_id_12345")
+        //     .Build();
+        // fakeManager.SetNextAgeSignalsResult(fakeDeniedUser);
+        
+        _logger.LogInformation("FakeAgeSignalsManager created with VERIFIED adult user scenario");
+        return fakeManager;
     }
 }
 

@@ -50,7 +50,7 @@
 	</ItemGroup>
 
 	<ItemGroup Condition="$(TargetFramework)=='net10.0-android'">
-		<PackageReference Include="Xamarin.Google.Android.Play.Age.Signals" Version="0.0.1-beta02" />
+		<PackageReference Include="Xamarin.Google.Android.Play.Age.Signals" Version="0.0.2" />
 	</ItemGroup>
 
 	<!-- iOS Binding Project Reference -->

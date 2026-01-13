@@ -14,3 +14,6 @@
 # The NuGet packaging test project must be built after the package has been created at least once. The effort to adapt the standard build process has limited benefit
 ./9.0/Packaging/NuGetWithMSBuildFiles/src/PackageConsumerApp/PackageConsumerApp.csproj
 ./10.0/Packaging/NuGetWithMSBuildFiles/src/PackageConsumerApp/PackageConsumerApp.csproj
+
+# The Age Signals sample requires iOS code signing certificates that aren't available in CI environments
+./10.0/AgeSignals/AgeSignals/AgeSignals.csproj
