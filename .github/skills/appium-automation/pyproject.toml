@@ -1,0 +1,20 @@
+[project]
+name = "appium-automation-agent"
+version = "1.0.0"
+description = "Cross-platform Appium agent for iOS, Android, and Mac Catalyst automation"
+readme = "SKILL.md"
+requires-python = ">=3.9"
+dependencies = [
+    "Appium-Python-Client>=3.0.0",
+    "selenium>=4.0.0",
+]
+
+[project.scripts]
+appium-agent = "scripts.appium_agent:main"
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "black",
+    "mypy",
+]
