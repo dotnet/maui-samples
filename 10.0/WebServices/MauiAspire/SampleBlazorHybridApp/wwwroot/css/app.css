@@ -1,0 +1,174 @@
+html, body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+a, .btn-link {
+    color: #0071c1;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #1861ac;
+}
+
+.btn-primary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.content {
+    padding-top: 1.1rem;
+}
+
+.valid.modified:not([type=checkbox]) {
+    outline: 1px solid #26b050;
+}
+
+.invalid {
+    outline: 1px solid red;
+}
+
+.validation-message {
+    color: red;
+}
+
+#blazor-error-ui {
+    background: lightyellow;
+    bottom: 0;
+    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+    display: none;
+    left: 0;
+    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+    #blazor-error-ui .dismiss {
+        cursor: pointer;
+        position: absolute;
+        right: 0.75rem;
+        top: 0.5rem;
+    }
+
+.status-bar-safe-area {
+    display: block;
+    height: env(safe-area-inset-top);
+    background-color: #f7f7f7;
+}
+
+.weather-container {
+    padding: 30px 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.logo {
+    width: 120px;
+    height: auto;
+    margin-bottom: 16px;
+}
+
+.header h1 {
+    font-size: 28px;
+    margin: 0 0 8px 0;
+}
+
+.subtitle {
+    color: #666;
+    font-size: 16px;
+    margin: 0;
+}
+
+.actions {
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.status-message {
+    text-align: center;
+    padding: 12px;
+    margin-bottom: 16px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+}
+
+.weather-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.weather-card {
+    background-color: #F3F6FF;
+    padding: 14px;
+    border-radius: 12px;
+}
+
+@media (prefers-color-scheme: dark) {
+    .weather-card {
+        background-color: #1F2633;
+    }
+    
+    .status-message {
+        background-color: #2a2a2a;
+        color: #e0e0e0;
+    }
+}
+
+.weather-card .date {
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.weather-card .temperature {
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.temp-c {
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+.temp-f {
+    color: #666;
+}
+
+.weather-card .summary {
+    font-style: italic;
+    color: #394867;
+}
+
+@media (prefers-color-scheme: dark) {
+    .weather-card .summary {
+        color: #C5D1EB;
+    }
+    
+    .temp-f {
+        color: #999;
+    }
+}
+
+.empty-state {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+}

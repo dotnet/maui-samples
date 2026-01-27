@@ -1,0 +1,1383 @@
+{
+  "ABIRoot": {
+    "kind": "Root",
+    "name": "DeclaredAgeRangeWrapper",
+    "printedName": "DeclaredAgeRangeWrapper",
+    "children": [
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "DeclaredAgeRangeWrapper",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "DeclaredAgeRange",
+        "printedName": "DeclaredAgeRange",
+        "declKind": "Import",
+        "moduleName": "DeclaredAgeRangeWrapper"
+      },
+      {
+        "kind": "Import",
+        "name": "UIKit",
+        "printedName": "UIKit",
+        "declKind": "Import",
+        "moduleName": "DeclaredAgeRangeWrapper"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "MyAgeRangeDeclaration",
+        "printedName": "MyAgeRangeDeclaration",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "selfDeclared",
+            "printedName": "selfDeclared",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(DeclaredAgeRangeWrapper.MyAgeRangeDeclaration.Type) -> DeclaredAgeRangeWrapper.MyAgeRangeDeclaration",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "MyAgeRangeDeclaration",
+                    "printedName": "DeclaredAgeRangeWrapper.MyAgeRangeDeclaration",
+                    "usr": "c:@M@DeclaredAgeRangeWrapper@E@MyAgeRangeDeclaration"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "DeclaredAgeRangeWrapper.MyAgeRangeDeclaration.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "MyAgeRangeDeclaration",
+                        "printedName": "DeclaredAgeRangeWrapper.MyAgeRangeDeclaration",
+                        "usr": "c:@M@DeclaredAgeRangeWrapper@E@MyAgeRangeDeclaration"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "c:@M@DeclaredAgeRangeWrapper@E@MyAgeRangeDeclaration@MyAgeRangeDeclarationSelfDeclared",
+            "mangledName": "$s23DeclaredAgeRangeWrapper02MybC11DeclarationO04selfA0yA2CmF",
+            "moduleName": "DeclaredAgeRangeWrapper",
+            "declAttributes": [
+              "ObjC"
+            ],
+            "fixedbinaryorder": 0
+          },
+          {
+            "kind": "Var",
+            "name": "guardianDeclared",
+            "printedName": "guardianDeclared",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(DeclaredAgeRangeWrapper.MyAgeRangeDeclaration.Type) -> DeclaredAgeRangeWrapper.MyAgeRangeDeclaration",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "MyAgeRangeDeclaration",
+                    "printedName": "DeclaredAgeRangeWrapper.MyAgeRangeDeclaration",
+                    "usr": "c:@M@DeclaredAgeRangeWrapper@E@MyAgeRangeDeclaration"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "DeclaredAgeRangeWrapper.MyAgeRangeDeclaration.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "MyAgeRangeDeclaration",
+                        "printedName": "DeclaredAgeRangeWrapper.MyAgeRangeDeclaration",
+                        "usr": "c:@M@DeclaredAgeRangeWrapper@E@MyAgeRangeDeclaration"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "c:@M@DeclaredAgeRangeWrapper@E@MyAgeRangeDeclaration@MyAgeRangeDeclarationGuardianDeclared",
+            "mangledName": "$s23DeclaredAgeRangeWrapper02MybC11DeclarationO08guardianA0yA2CmF",
+            "moduleName": "DeclaredAgeRangeWrapper",
+            "declAttributes": [
+              "ObjC"
+            ],
+            "fixedbinaryorder": 1
+          },
+          {
+            "kind": "Var",
+            "name": "unknown",
+            "printedName": "unknown",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(DeclaredAgeRangeWrapper.MyAgeRangeDeclaration.Type) -> DeclaredAgeRangeWrapper.MyAgeRangeDeclaration",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "MyAgeRangeDeclaration",
+                    "printedName": "DeclaredAgeRangeWrapper.MyAgeRangeDeclaration",
+                    "usr": "c:@M@DeclaredAgeRangeWrapper@E@MyAgeRangeDeclaration"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "DeclaredAgeRangeWrapper.MyAgeRangeDeclaration.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "MyAgeRangeDeclaration",
+                        "printedName": "DeclaredAgeRangeWrapper.MyAgeRangeDeclaration",
+                        "usr": "c:@M@DeclaredAgeRangeWrapper@E@MyAgeRangeDeclaration"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "c:@M@DeclaredAgeRangeWrapper@E@MyAgeRangeDeclaration@MyAgeRangeDeclarationUnknown",
+            "mangledName": "$s23DeclaredAgeRangeWrapper02MybC11DeclarationO7unknownyA2CmF",
+            "moduleName": "DeclaredAgeRangeWrapper",
+            "declAttributes": [
+              "ObjC"
+            ],
+            "fixedbinaryorder": 2
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(rawValue:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "DeclaredAgeRangeWrapper.MyAgeRangeDeclaration?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "MyAgeRangeDeclaration",
+                    "printedName": "DeclaredAgeRangeWrapper.MyAgeRangeDeclaration",
+                    "usr": "c:@M@DeclaredAgeRangeWrapper@E@MyAgeRangeDeclaration"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:23DeclaredAgeRangeWrapper02MybC11DeclarationO8rawValueACSgSi_tcfc",
+            "mangledName": "$s23DeclaredAgeRangeWrapper02MybC11DeclarationO8rawValueACSgSi_tcfc",
+            "moduleName": "DeclaredAgeRangeWrapper",
+            "implicit": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Var",
+            "name": "rawValue",
+            "printedName": "rawValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:23DeclaredAgeRangeWrapper02MybC11DeclarationO8rawValueSivp",
+            "mangledName": "$s23DeclaredAgeRangeWrapper02MybC11DeclarationO8rawValueSivp",
+            "moduleName": "DeclaredAgeRangeWrapper",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:23DeclaredAgeRangeWrapper02MybC11DeclarationO8rawValueSivg",
+                "mangledName": "$s23DeclaredAgeRangeWrapper02MybC11DeclarationO8rawValueSivg",
+                "moduleName": "DeclaredAgeRangeWrapper",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          }
+        ],
+        "declKind": "Enum",
+        "usr": "c:@M@DeclaredAgeRangeWrapper@E@MyAgeRangeDeclaration",
+        "mangledName": "$s23DeclaredAgeRangeWrapper02MybC11DeclarationO",
+        "moduleName": "DeclaredAgeRangeWrapper",
+        "declAttributes": [
+          "AccessControl",
+          "ObjC"
+        ],
+        "enumRawTypeName": "Int",
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "RawRepresentable",
+            "printedName": "RawRepresentable",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "RawValue",
+                "printedName": "RawValue",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:SY",
+            "mangledName": "$sSY"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "MyAgeRange",
+        "printedName": "MyAgeRange",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "lowerBound",
+            "printedName": "lowerBound",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Foundation.NSNumber?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "NSNumber",
+                    "printedName": "Foundation.NSNumber",
+                    "usr": "c:objc(cs)NSNumber"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@DeclaredAgeRangeWrapper@objc(cs)MyAgeRange(py)lowerBound",
+            "mangledName": "$s23DeclaredAgeRangeWrapper02MybC0C10lowerBoundSo8NSNumberCSgvp",
+            "moduleName": "DeclaredAgeRangeWrapper",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Foundation.NSNumber?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "NSNumber",
+                        "printedName": "Foundation.NSNumber",
+                        "usr": "c:objc(cs)NSNumber"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@DeclaredAgeRangeWrapper@objc(cs)MyAgeRange(im)lowerBound",
+                "mangledName": "$s23DeclaredAgeRangeWrapper02MybC0C10lowerBoundSo8NSNumberCSgvg",
+                "moduleName": "DeclaredAgeRangeWrapper",
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "upperBound",
+            "printedName": "upperBound",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Foundation.NSNumber?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "NSNumber",
+                    "printedName": "Foundation.NSNumber",
+                    "usr": "c:objc(cs)NSNumber"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@DeclaredAgeRangeWrapper@objc(cs)MyAgeRange(py)upperBound",
+            "mangledName": "$s23DeclaredAgeRangeWrapper02MybC0C10upperBoundSo8NSNumberCSgvp",
+            "moduleName": "DeclaredAgeRangeWrapper",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Foundation.NSNumber?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "NSNumber",
+                        "printedName": "Foundation.NSNumber",
+                        "usr": "c:objc(cs)NSNumber"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@DeclaredAgeRangeWrapper@objc(cs)MyAgeRange(im)upperBound",
+                "mangledName": "$s23DeclaredAgeRangeWrapper02MybC0C10upperBoundSo8NSNumberCSgvg",
+                "moduleName": "DeclaredAgeRangeWrapper",
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "declaration",
+            "printedName": "declaration",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "MyAgeRangeDeclaration",
+                "printedName": "DeclaredAgeRangeWrapper.MyAgeRangeDeclaration",
+                "usr": "c:@M@DeclaredAgeRangeWrapper@E@MyAgeRangeDeclaration"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@DeclaredAgeRangeWrapper@objc(cs)MyAgeRange(py)declaration",
+            "mangledName": "$s23DeclaredAgeRangeWrapper02MybC0C11declarationAA0ebC11DeclarationOvp",
+            "moduleName": "DeclaredAgeRangeWrapper",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "MyAgeRangeDeclaration",
+                    "printedName": "DeclaredAgeRangeWrapper.MyAgeRangeDeclaration",
+                    "usr": "c:@M@DeclaredAgeRangeWrapper@E@MyAgeRangeDeclaration"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@DeclaredAgeRangeWrapper@objc(cs)MyAgeRange(im)declaration",
+                "mangledName": "$s23DeclaredAgeRangeWrapper02MybC0C11declarationAA0ebC11DeclarationOvg",
+                "moduleName": "DeclaredAgeRangeWrapper",
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(lowerBound:upperBound:declaration:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "MyAgeRange",
+                "printedName": "DeclaredAgeRangeWrapper.MyAgeRange",
+                "usr": "c:@M@DeclaredAgeRangeWrapper@objc(cs)MyAgeRange"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Foundation.NSNumber?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "NSNumber",
+                    "printedName": "Foundation.NSNumber",
+                    "usr": "c:objc(cs)NSNumber"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Foundation.NSNumber?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "NSNumber",
+                    "printedName": "Foundation.NSNumber",
+                    "usr": "c:objc(cs)NSNumber"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "MyAgeRangeDeclaration",
+                "printedName": "DeclaredAgeRangeWrapper.MyAgeRangeDeclaration",
+                "usr": "c:@M@DeclaredAgeRangeWrapper@E@MyAgeRangeDeclaration"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@DeclaredAgeRangeWrapper@objc(cs)MyAgeRange(im)initWithLowerBound:upperBound:declaration:",
+            "mangledName": "$s23DeclaredAgeRangeWrapper02MybC0C10lowerBound05upperG011declarationACSo8NSNumberCSg_AiA0ebC11DeclarationOtcfc",
+            "moduleName": "DeclaredAgeRangeWrapper",
+            "objc_name": "initWithLowerBound:upperBound:declaration:",
+            "declAttributes": [
+              "AccessControl",
+              "ObjC"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "MyAgeRange",
+                "printedName": "DeclaredAgeRangeWrapper.MyAgeRange",
+                "usr": "c:@M@DeclaredAgeRangeWrapper@objc(cs)MyAgeRange"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@DeclaredAgeRangeWrapper@objc(cs)MyAgeRange(im)init",
+            "mangledName": "$s23DeclaredAgeRangeWrapper02MybC0CACycfc",
+            "moduleName": "DeclaredAgeRangeWrapper",
+            "overriding": true,
+            "implicit": true,
+            "objc_name": "init",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Override"
+            ],
+            "init_kind": "Designated"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:@M@DeclaredAgeRangeWrapper@objc(cs)MyAgeRange",
+        "mangledName": "$s23DeclaredAgeRangeWrapper02MybC0C",
+        "moduleName": "DeclaredAgeRangeWrapper",
+        "declAttributes": [
+          "AccessControl",
+          "ObjC"
+        ],
+        "superclassUsr": "c:objc(cs)NSObject",
+        "superclassNames": [
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "MyAgeRangeResponseType",
+        "printedName": "MyAgeRangeResponseType",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "sharing",
+            "printedName": "sharing",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(DeclaredAgeRangeWrapper.MyAgeRangeResponseType.Type) -> DeclaredAgeRangeWrapper.MyAgeRangeResponseType",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "MyAgeRangeResponseType",
+                    "printedName": "DeclaredAgeRangeWrapper.MyAgeRangeResponseType",
+                    "usr": "c:@M@DeclaredAgeRangeWrapper@E@MyAgeRangeResponseType"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "DeclaredAgeRangeWrapper.MyAgeRangeResponseType.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "MyAgeRangeResponseType",
+                        "printedName": "DeclaredAgeRangeWrapper.MyAgeRangeResponseType",
+                        "usr": "c:@M@DeclaredAgeRangeWrapper@E@MyAgeRangeResponseType"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "c:@M@DeclaredAgeRangeWrapper@E@MyAgeRangeResponseType@MyAgeRangeResponseTypeSharing",
+            "mangledName": "$s23DeclaredAgeRangeWrapper02MybC12ResponseTypeO7sharingyA2CmF",
+            "moduleName": "DeclaredAgeRangeWrapper",
+            "declAttributes": [
+              "ObjC"
+            ],
+            "fixedbinaryorder": 0
+          },
+          {
+            "kind": "Var",
+            "name": "declinedSharing",
+            "printedName": "declinedSharing",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(DeclaredAgeRangeWrapper.MyAgeRangeResponseType.Type) -> DeclaredAgeRangeWrapper.MyAgeRangeResponseType",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "MyAgeRangeResponseType",
+                    "printedName": "DeclaredAgeRangeWrapper.MyAgeRangeResponseType",
+                    "usr": "c:@M@DeclaredAgeRangeWrapper@E@MyAgeRangeResponseType"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "DeclaredAgeRangeWrapper.MyAgeRangeResponseType.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "MyAgeRangeResponseType",
+                        "printedName": "DeclaredAgeRangeWrapper.MyAgeRangeResponseType",
+                        "usr": "c:@M@DeclaredAgeRangeWrapper@E@MyAgeRangeResponseType"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "c:@M@DeclaredAgeRangeWrapper@E@MyAgeRangeResponseType@MyAgeRangeResponseTypeDeclinedSharing",
+            "mangledName": "$s23DeclaredAgeRangeWrapper02MybC12ResponseTypeO15declinedSharingyA2CmF",
+            "moduleName": "DeclaredAgeRangeWrapper",
+            "declAttributes": [
+              "ObjC"
+            ],
+            "fixedbinaryorder": 1
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(rawValue:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "DeclaredAgeRangeWrapper.MyAgeRangeResponseType?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "MyAgeRangeResponseType",
+                    "printedName": "DeclaredAgeRangeWrapper.MyAgeRangeResponseType",
+                    "usr": "c:@M@DeclaredAgeRangeWrapper@E@MyAgeRangeResponseType"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:23DeclaredAgeRangeWrapper02MybC12ResponseTypeO8rawValueACSgSi_tcfc",
+            "mangledName": "$s23DeclaredAgeRangeWrapper02MybC12ResponseTypeO8rawValueACSgSi_tcfc",
+            "moduleName": "DeclaredAgeRangeWrapper",
+            "implicit": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Var",
+            "name": "rawValue",
+            "printedName": "rawValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:23DeclaredAgeRangeWrapper02MybC12ResponseTypeO8rawValueSivp",
+            "mangledName": "$s23DeclaredAgeRangeWrapper02MybC12ResponseTypeO8rawValueSivp",
+            "moduleName": "DeclaredAgeRangeWrapper",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:23DeclaredAgeRangeWrapper02MybC12ResponseTypeO8rawValueSivg",
+                "mangledName": "$s23DeclaredAgeRangeWrapper02MybC12ResponseTypeO8rawValueSivg",
+                "moduleName": "DeclaredAgeRangeWrapper",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          }
+        ],
+        "declKind": "Enum",
+        "usr": "c:@M@DeclaredAgeRangeWrapper@E@MyAgeRangeResponseType",
+        "mangledName": "$s23DeclaredAgeRangeWrapper02MybC12ResponseTypeO",
+        "moduleName": "DeclaredAgeRangeWrapper",
+        "declAttributes": [
+          "AccessControl",
+          "ObjC"
+        ],
+        "enumRawTypeName": "Int",
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "RawRepresentable",
+            "printedName": "RawRepresentable",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "RawValue",
+                "printedName": "RawValue",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:SY",
+            "mangledName": "$sSY"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "MyAgeRangeResponse",
+        "printedName": "MyAgeRangeResponse",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "type",
+            "printedName": "type",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "MyAgeRangeResponseType",
+                "printedName": "DeclaredAgeRangeWrapper.MyAgeRangeResponseType",
+                "usr": "c:@M@DeclaredAgeRangeWrapper@E@MyAgeRangeResponseType"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@DeclaredAgeRangeWrapper@objc(cs)MyAgeRangeResponse(py)type",
+            "mangledName": "$s23DeclaredAgeRangeWrapper02MybC8ResponseC4typeAA0ebcF4TypeOvp",
+            "moduleName": "DeclaredAgeRangeWrapper",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "MyAgeRangeResponseType",
+                    "printedName": "DeclaredAgeRangeWrapper.MyAgeRangeResponseType",
+                    "usr": "c:@M@DeclaredAgeRangeWrapper@E@MyAgeRangeResponseType"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@DeclaredAgeRangeWrapper@objc(cs)MyAgeRangeResponse(im)type",
+                "mangledName": "$s23DeclaredAgeRangeWrapper02MybC8ResponseC4typeAA0ebcF4TypeOvg",
+                "moduleName": "DeclaredAgeRangeWrapper",
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "range",
+            "printedName": "range",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "DeclaredAgeRangeWrapper.MyAgeRange?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "MyAgeRange",
+                    "printedName": "DeclaredAgeRangeWrapper.MyAgeRange",
+                    "usr": "c:@M@DeclaredAgeRangeWrapper@objc(cs)MyAgeRange"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@DeclaredAgeRangeWrapper@objc(cs)MyAgeRangeResponse(py)range",
+            "mangledName": "$s23DeclaredAgeRangeWrapper02MybC8ResponseC5rangeAA0ebC0CSgvp",
+            "moduleName": "DeclaredAgeRangeWrapper",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "DeclaredAgeRangeWrapper.MyAgeRange?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "MyAgeRange",
+                        "printedName": "DeclaredAgeRangeWrapper.MyAgeRange",
+                        "usr": "c:@M@DeclaredAgeRangeWrapper@objc(cs)MyAgeRange"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@DeclaredAgeRangeWrapper@objc(cs)MyAgeRangeResponse(im)range",
+                "mangledName": "$s23DeclaredAgeRangeWrapper02MybC8ResponseC5rangeAA0ebC0CSgvg",
+                "moduleName": "DeclaredAgeRangeWrapper",
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(type:range:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "MyAgeRangeResponse",
+                "printedName": "DeclaredAgeRangeWrapper.MyAgeRangeResponse",
+                "usr": "c:@M@DeclaredAgeRangeWrapper@objc(cs)MyAgeRangeResponse"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "MyAgeRangeResponseType",
+                "printedName": "DeclaredAgeRangeWrapper.MyAgeRangeResponseType",
+                "usr": "c:@M@DeclaredAgeRangeWrapper@E@MyAgeRangeResponseType"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "DeclaredAgeRangeWrapper.MyAgeRange?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "MyAgeRange",
+                    "printedName": "DeclaredAgeRangeWrapper.MyAgeRange",
+                    "usr": "c:@M@DeclaredAgeRangeWrapper@objc(cs)MyAgeRange"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@DeclaredAgeRangeWrapper@objc(cs)MyAgeRangeResponse(im)initWithType:range:",
+            "mangledName": "$s23DeclaredAgeRangeWrapper02MybC8ResponseC4type5rangeAcA0ebcF4TypeO_AA0ebC0CSgtcfc",
+            "moduleName": "DeclaredAgeRangeWrapper",
+            "objc_name": "initWithType:range:",
+            "declAttributes": [
+              "AccessControl",
+              "ObjC"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "MyAgeRangeResponse",
+                "printedName": "DeclaredAgeRangeWrapper.MyAgeRangeResponse",
+                "usr": "c:@M@DeclaredAgeRangeWrapper@objc(cs)MyAgeRangeResponse"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@DeclaredAgeRangeWrapper@objc(cs)MyAgeRangeResponse(im)init",
+            "mangledName": "$s23DeclaredAgeRangeWrapper02MybC8ResponseCACycfc",
+            "moduleName": "DeclaredAgeRangeWrapper",
+            "overriding": true,
+            "implicit": true,
+            "objc_name": "init",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Override"
+            ],
+            "init_kind": "Designated"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:@M@DeclaredAgeRangeWrapper@objc(cs)MyAgeRangeResponse",
+        "mangledName": "$s23DeclaredAgeRangeWrapper02MybC8ResponseC",
+        "moduleName": "DeclaredAgeRangeWrapper",
+        "declAttributes": [
+          "AccessControl",
+          "ObjC"
+        ],
+        "superclassUsr": "c:objc(cs)NSObject",
+        "superclassNames": [
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "DeclaredAgeRangeBridge",
+        "printedName": "DeclaredAgeRangeBridge",
+        "children": [
+          {
+            "kind": "Function",
+            "name": "requestAgeRange",
+            "printedName": "requestAgeRange(withAgeGates:_:_:in:completion:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Foundation.NSNumber?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "NSNumber",
+                    "printedName": "Foundation.NSNumber",
+                    "usr": "c:objc(cs)NSNumber"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Foundation.NSNumber?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "NSNumber",
+                    "printedName": "Foundation.NSNumber",
+                    "usr": "c:objc(cs)NSNumber"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "UIViewController",
+                "printedName": "UIKit.UIViewController",
+                "usr": "c:objc(cs)UIViewController"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(DeclaredAgeRangeWrapper.MyAgeRangeResponse?, Foundation.NSError?) -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Tuple",
+                    "printedName": "(DeclaredAgeRangeWrapper.MyAgeRangeResponse?, Foundation.NSError?)",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "DeclaredAgeRangeWrapper.MyAgeRangeResponse?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "MyAgeRangeResponse",
+                            "printedName": "DeclaredAgeRangeWrapper.MyAgeRangeResponse",
+                            "usr": "c:@M@DeclaredAgeRangeWrapper@objc(cs)MyAgeRangeResponse"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "Foundation.NSError?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "NSError",
+                            "printedName": "Foundation.NSError",
+                            "usr": "c:objc(cs)NSError"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@DeclaredAgeRangeWrapper@objc(cs)DeclaredAgeRangeBridge(cm)requestAgeRangeWithAgeGates:::in:completion:",
+            "mangledName": "$s23DeclaredAgeRangeWrapper0abC6BridgeC07requestbC004withB5Gates__2in10completionySi_So8NSNumberCSgAJSo16UIViewControllerCyAA02MybC8ResponseCSg_So7NSErrorCSgtctFZ",
+            "moduleName": "DeclaredAgeRangeWrapper",
+            "static": true,
+            "objc_name": "requestAgeRangeWithAgeGates:::in:completion:",
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "ObjC",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "DeclaredAgeRangeBridge",
+                "printedName": "DeclaredAgeRangeWrapper.DeclaredAgeRangeBridge",
+                "usr": "c:@M@DeclaredAgeRangeWrapper@objc(cs)DeclaredAgeRangeBridge"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@DeclaredAgeRangeWrapper@objc(cs)DeclaredAgeRangeBridge(im)init",
+            "mangledName": "$s23DeclaredAgeRangeWrapper0abC6BridgeCACycfc",
+            "moduleName": "DeclaredAgeRangeWrapper",
+            "overriding": true,
+            "implicit": true,
+            "objc_name": "init",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Override"
+            ],
+            "init_kind": "Designated"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:@M@DeclaredAgeRangeWrapper@objc(cs)DeclaredAgeRangeBridge",
+        "mangledName": "$s23DeclaredAgeRangeWrapper0abC6BridgeC",
+        "moduleName": "DeclaredAgeRangeWrapper",
+        "declAttributes": [
+          "AccessControl",
+          "ObjC"
+        ],
+        "superclassUsr": "c:objc(cs)NSObject",
+        "inheritsConvenienceInitializers": true,
+        "superclassNames": [
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          }
+        ]
+      }
+    ],
+    "json_format_version": 8
+  },
+  "ConstValues": [
+    {
+      "filePath": "\/tmp\/DeclaredAgeRangeSample\/DeclaredAgeRangeWrapper\/DeclaredAgeRangeWrapper\/DeclaredAgeRangeWrapper.swift",
+      "kind": "IntegerLiteral",
+      "offset": 446,
+      "length": 16,
+      "value": "1"
+    },
+    {
+      "filePath": "\/tmp\/DeclaredAgeRangeSample\/DeclaredAgeRangeWrapper\/DeclaredAgeRangeWrapper\/DeclaredAgeRangeWrapper.swift",
+      "kind": "IntegerLiteral",
+      "offset": 472,
+      "length": 7,
+      "value": "2"
+    },
+    {
+      "filePath": "\/tmp\/DeclaredAgeRangeSample\/DeclaredAgeRangeWrapper\/DeclaredAgeRangeWrapper\/DeclaredAgeRangeWrapper.swift",
+      "kind": "IntegerLiteral",
+      "offset": 970,
+      "length": 15,
+      "value": "1"
+    }
+  ]
+}

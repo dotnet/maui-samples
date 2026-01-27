@@ -6,6 +6,7 @@
         xmlns:shimmer="clr-namespace:Syncfusion.Maui.Toolkit.Shimmer;assembly=Syncfusion.Maui.Toolkit"
         xmlns:pageModels="clr-namespace:DeveloperBalance.PageModels"
         x:Class="DeveloperBalance.Pages.Controls.CategoryChart"
+        SemanticProperties.Description="{Binding TodoCategoryData, Converter={controls:ChartDataSemanticConverter}}"
         HeightRequest="{OnIdiom 300, Phone=200}"
         x:DataType="pageModels:MainPageModel"
         Style="{StaticResource CardStyle}">
