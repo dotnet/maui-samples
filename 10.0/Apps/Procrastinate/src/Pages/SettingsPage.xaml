@@ -198,6 +198,114 @@
                                FontSize="12" 
                                TextColor="{StaticResource Nord3}"/>
                     </VerticalStackLayout>
+
+                    <!-- Agent Pipeline info -->
+                    <VerticalStackLayout x:Name="PipelineSettingsPanel" Spacing="12" IsVisible="False">
+                        <HorizontalStackLayout Spacing="8">
+                            <Label Text="&#xf544;" 
+                                   FontFamily="FontAwesomeSolid" 
+                                   FontSize="16" 
+                                   TextColor="{StaticResource Nord13}"
+                                   VerticalOptions="Center"/>
+                            <Label Text="3-Agent Pipeline: Researcher → Writer → Editor"
+                                   FontSize="14" 
+                                   FontAttributes="Bold"
+                                   TextColor="{AppThemeBinding Light={StaticResource Nord3}, Dark={StaticResource Nord4}}"/>
+                        </HorizontalStackLayout>
+                        <Label Text="Each agent is a separate MEAI IChatClient call, chained sequentially. Uses on-device AI if available, cloud AI otherwise." 
+                               FontSize="12" 
+                               TextColor="{StaticResource Nord3}"/>
+                    </VerticalStackLayout>
+
+                    <!-- Custom endpoint (BYOM) -->
+                    <VerticalStackLayout x:Name="CustomEndpointPanel" Spacing="12" IsVisible="False">
+                        <HorizontalStackLayout Spacing="8">
+                            <Label Text="&#xf6ff;" 
+                                   FontFamily="FontAwesomeSolid" 
+                                   FontSize="16" 
+                                   TextColor="{StaticResource Nord15}"
+                                   VerticalOptions="Center"/>
+                            <Label Text="Bring Your Own Model"
+                                   FontSize="14" 
+                                   FontAttributes="Bold"
+                                   TextColor="{AppThemeBinding Light={StaticResource Nord3}, Dark={StaticResource Nord4}}"/>
+                        </HorizontalStackLayout>
+                        <Label Text="Endpoint URL (OpenAI-compatible)" 
+                               FontSize="13" 
+                               TextColor="{AppThemeBinding Light={StaticResource Nord3}, Dark={StaticResource Nord4}}"/>
+                        <Entry x:Name="CustomEndpointEntry"
+                               Placeholder="http://localhost:11434/v1"
+                               TextColor="{AppThemeBinding Light={StaticResource Nord0}, Dark={StaticResource Nord6}}"
+                               PlaceholderColor="{AppThemeBinding Light={StaticResource Nord3}, Dark={StaticResource Nord4}}"
+                               BackgroundColor="{AppThemeBinding Light={StaticResource Nord4}, Dark={StaticResource Nord2}}"
+                               TextChanged="OnCustomEndpointChanged"/>
+                        <Label Text="API Key (optional for local models)" 
+                               FontSize="13" 
+                               TextColor="{AppThemeBinding Light={StaticResource Nord3}, Dark={StaticResource Nord4}}"/>
+                        <Entry x:Name="CustomApiKeyEntry"
+                               IsPassword="True"
+                               Placeholder="sk-... or leave empty"
+                               TextColor="{AppThemeBinding Light={StaticResource Nord0}, Dark={StaticResource Nord6}}"
+                               PlaceholderColor="{AppThemeBinding Light={StaticResource Nord3}, Dark={StaticResource Nord4}}"
+                               BackgroundColor="{AppThemeBinding Light={StaticResource Nord4}, Dark={StaticResource Nord2}}"
+                               TextChanged="OnCustomApiKeyChanged"/>
+                        <Label Text="Model name" 
+                               FontSize="13" 
+                               TextColor="{AppThemeBinding Light={StaticResource Nord3}, Dark={StaticResource Nord4}}"/>
+                        <Entry x:Name="CustomModelEntry"
+                               Placeholder="llama3, mistral, gpt-4o..."
+                               TextColor="{AppThemeBinding Light={StaticResource Nord0}, Dark={StaticResource Nord6}}"
+                               PlaceholderColor="{AppThemeBinding Light={StaticResource Nord3}, Dark={StaticResource Nord4}}"
+                               BackgroundColor="{AppThemeBinding Light={StaticResource Nord4}, Dark={StaticResource Nord2}}"
+                               TextChanged="OnCustomModelChanged"/>
+                        <Label Text="Works with Ollama, LM Studio, vLLM, or any OpenAI-compatible endpoint." 
+                               FontSize="12" 
+                               TextColor="{StaticResource Nord3}"/>
+                    </VerticalStackLayout>
+
+                    <!-- Embedded ONNX Model -->
+                    <VerticalStackLayout x:Name="EmbeddedModelPanel" Spacing="12" IsVisible="False">
+                        <HorizontalStackLayout Spacing="8">
+                            <Label Text="&#xf538;" 
+                                   FontFamily="FontAwesomeSolid" 
+                                   FontSize="16" 
+                                   TextColor="{StaticResource Nord14}"
+                                   VerticalOptions="Center"/>
+                            <Label Text="Embedded ONNX Model"
+                                   FontSize="14" 
+                                   FontAttributes="Bold"
+                                   TextColor="{AppThemeBinding Light={StaticResource Nord3}, Dark={StaticResource Nord4}}"/>
+                        </HorizontalStackLayout>
+                        <Label Text="Run a full language model entirely on-device using ONNX Runtime GenAI. No server, no internet, full privacy." 
+                               FontSize="12" 
+                               TextColor="{StaticResource Nord3}"/>
+                        <Label x:Name="EmbeddedModelStatusLabel"
+                               FontSize="14" 
+                               TextColor="{AppThemeBinding Light={StaticResource Nord3}, Dark={StaticResource Nord4}}"/>
+                        <ProgressBar x:Name="EmbeddedDownloadProgress"
+                                     IsVisible="False"
+                                     ProgressColor="{StaticResource Nord14}"
+                                     Progress="0"/>
+                        <Label x:Name="EmbeddedDownloadDetailLabel"
+                               IsVisible="False"
+                               FontSize="11" 
+                               TextColor="{StaticResource Nord3}"/>
+                        <Button x:Name="EmbeddedDownloadBtn"
+                                Text="Download Phi-3 Mini (2.5 GB)"
+                                BackgroundColor="{StaticResource Nord14}"
+                                TextColor="White"
+                                CornerRadius="10"
+                                HeightRequest="44"
+                                Clicked="OnDownloadEmbeddedModel"/>
+                        <Button x:Name="EmbeddedDeleteBtn"
+                                Text="Delete Model"
+                                IsVisible="False"
+                                BackgroundColor="{StaticResource Nord11}"
+                                TextColor="White"
+                                CornerRadius="10"
+                                HeightRequest="44"
+                                Clicked="OnDeleteEmbeddedModel"/>
+                    </VerticalStackLayout>
                 </VerticalStackLayout>
             </Border>
 

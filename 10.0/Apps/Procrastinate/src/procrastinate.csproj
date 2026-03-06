@@ -17,7 +17,6 @@
 		<SingleProject>true</SingleProject>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		
 		<!-- Enable XAML Source Generator (XSG) -->
 		<MauiXamlInflator>SourceGen</MauiXamlInflator>
@@ -52,7 +51,9 @@
 		<PublishReadyToRunCrossgen2ExtraArgs>--partial</PublishReadyToRunCrossgen2ExtraArgs>
 	</PropertyGroup>
 
-
+	<ItemGroup Condition="'$(UseMonoRuntime)' == 'false' AND '$(Configuration)' == 'Release'">
+		<_ReadyToRunPgoFiles Include="$(MSBuildThisFileDirectory)\profiles\*.mibc" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<!-- App Icon -->
@@ -75,6 +76,10 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Maui.Controls" Version="10.0.20" />
 		<PackageReference Include="Microsoft.Maui.Essentials" Version="10.0.20" />
+		<PackageReference Include="Microsoft.Maui.Essentials.AI" Version="10.0.50-ci.main.26126.2" />
+		<PackageReference Include="Microsoft.Extensions.AI" Version="10.0.0" />
+		<PackageReference Include="Microsoft.Extensions.AI.OpenAI" Version="10.0.0-preview.1.25559.3" />
+		<PackageReference Include="Microsoft.ML.OnnxRuntimeGenAI" Version="0.12.2" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'ios'" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.0" />
 		<PackageReference Include="Plugin.Maui.Audio" Version="4.0.0" />
 	</ItemGroup>
@@ -89,12 +94,11 @@
 		</EmbeddedResource>
 	</ItemGroup>
 
-	<!-- Native iOS Framework for Foundation Models wrapper -->
-	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">
-		<NativeReference Include="Platforms\iOS\FMWrapper.xcframework">
-			<Kind>Framework</Kind>
-			<SmartLink>true</SmartLink>
-		</NativeReference>
-	</ItemGroup>
+	<!-- iOS signing configuration (configure for your development team) -->
+	<PropertyGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">
+		<CodesignProvision></CodesignProvision>
+		<CodesignKey>Apple Development</CodesignKey>
+	</PropertyGroup>
+
 
 </Project>

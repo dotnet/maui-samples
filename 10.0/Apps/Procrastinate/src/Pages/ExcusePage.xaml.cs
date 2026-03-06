@@ -22,6 +22,13 @@ public partial class ExcusePage : ContentPage
         UpdateCounterLabel();
     }
 
+    protected override void OnDisappearing()
+    {
+        base.OnDisappearing();
+        _excuseService.OnPipelineStageChanged = null;
+        _excuseService.OnAgentOutput = null;
+    }
+
     private void UpdateCounterLabel()
     {
         CounterLabel.Text = AppStrings.GetString("ExcusesGenerated", _statsService.ExcusesGenerated);
@@ -39,10 +46,50 @@ public partial class ExcusePage : ContentPage
         
         ShareIconBtn.IsVisible = false;
         GeneratorInfoLabel.IsVisible = false;
+        PipelineStageLabel.IsVisible = false;
+        AgentReasoningBorder.IsVisible = false;
+        AgentReasoningContent.IsVisible = false;
+        AgentOutputStack.Children.Clear();
         
         // Show loading state
         GenerateBtn.IsEnabled = false;
         ExcuseLabel.Text = AppStrings.GetString("Generating");
+
+        // Wire up pipeline stage callback for agent pipeline mode
+        _excuseService.OnPipelineStageChanged = (stage) =>
+        {
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                PipelineStageLabel.Text = stage;
+                PipelineStageLabel.IsVisible = true;
+            });
+        };
+
+        // Wire up agent reasoning output
+        _excuseService.OnAgentOutput = (agentName, output) =>
+        {
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                var card = new VerticalStackLayout { Spacing = 4 };
+                card.Children.Add(new Label
+                {
+                    Text = agentName,
+                    FontSize = 13,
+                    FontAttributes = FontAttributes.Bold,
+                    TextColor = Color.FromArgb("#EBCB8B") // Nord13 — yellow, high contrast on both themes
+                });
+                card.Children.Add(new Label
+                {
+                    Text = output,
+                    FontSize = 13,
+                    TextColor = Application.Current?.RequestedTheme == AppTheme.Light
+                        ? Color.FromArgb("#2E3440")   // Nord0 — dark text on light bg
+                        : Color.FromArgb("#ECEFF4"),   // Nord6 — bright text on dark bg
+                    LineBreakMode = LineBreakMode.WordWrap
+                });
+                AgentOutputStack.Children.Add(card);
+            });
+        };
 
         try
         {
@@ -58,12 +105,17 @@ public partial class ExcusePage : ContentPage
             // Show generator info
             UpdateGeneratorInfo(result);
             
+            // Show reasoning panel if pipeline mode produced agent outputs
+            if (AgentOutputStack.Children.Count > 0)
+                AgentReasoningBorder.IsVisible = true;
+            
             // Show the share button
             ShareIconBtn.IsVisible = true;
         }
         catch (Exception ex)
         {
-            ExcuseLabel.Text = $"Error: {ex.Message}";
+            System.Diagnostics.Debug.WriteLine($"Excuse generation error: {ex}");
+            ExcuseLabel.Text = "Something went wrong. Tap to try again! 🔄";
         }
         finally
         {
@@ -73,20 +125,26 @@ public partial class ExcusePage : ContentPage
 
     private void UpdateGeneratorInfo(ExcuseResult result)
     {
-        var parts = new List<string> { result.GeneratorName };
-        
+        var parts = new List<string>();
+
+        // Show MEAI badge for AI-powered generators
+        if (result.GeneratorName.Contains("AI"))
+            parts.Add("MEAI");
+
+        parts.Add(result.GeneratorName);
+
         if (result.Model != null)
         {
             parts.Add(result.Model);
         }
-        
+
         parts.Add($"{result.Duration.TotalMilliseconds:F0}ms");
-        
+
         if (result.TokenCount.HasValue)
         {
             parts.Add($"{result.TokenCount} tokens");
         }
-        
+
         GeneratorInfoLabel.Text = string.Join(" · ", parts);
         GeneratorInfoLabel.IsVisible = true;
     }
@@ -100,5 +158,11 @@ public partial class ExcusePage : ContentPage
             Text = _currentExcuse,
             Title = AppStrings.GetString("ShareExcuse")
         });
+    }
+
+    private void OnToggleReasoning(object? sender, EventArgs e)
+    {
+        AgentReasoningContent.IsVisible = !AgentReasoningContent.IsVisible;
+        ReasoningToggleIcon.Text = AgentReasoningContent.IsVisible ? "\uf077" : "\uf078"; // chevron-up / chevron-down
     }
 }

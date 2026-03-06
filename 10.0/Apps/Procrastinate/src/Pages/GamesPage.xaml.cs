@@ -10,7 +10,7 @@ public partial class GamesPage : ContentPage
     private readonly List<MiniGame> _allGames;
     private readonly List<MiniGame> _currentGames = [];
 
-    public GamesPage(StatsService statsService)
+    public GamesPage(StatsService statsService, TicTacToeAI ticTacToeAI)
     {
         InitializeComponent();
         _statsService = statsService;
@@ -20,7 +20,7 @@ public partial class GamesPage : ContentPage
             new SimonSaysGame(),
             new ClickSpeedGame(),
             new ReactionTimeGame(),
-            new TicTacToeGame(),
+            new TicTacToeGame { AI = ticTacToeAI },
             new MinesweeperGame(),
             new SnakeGame(),
             new MemoryMatchGame(),

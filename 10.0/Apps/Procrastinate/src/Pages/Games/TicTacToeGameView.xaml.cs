@@ -9,6 +9,7 @@ public partial class TicTacToeGameView : ContentView
     private bool _playerTurn = true;
     private bool _gameOver;
     private int _gamesPlayed;
+    private TicTacToeAI? _ticTacToeAI;
     
     public Action? OnGamePlayed { get; set; }
 
@@ -19,6 +20,11 @@ public partial class TicTacToeGameView : ContentView
         CreateCells();
         ResetGame();
     }
+
+    /// <summary>
+    /// Set the TicTacToeAI instance (injected from parent page).
+    /// </summary>
+    public void SetAI(TicTacToeAI ai) => _ticTacToeAI = ai;
 
     private void CreateCells()
     {
@@ -79,7 +85,7 @@ public partial class TicTacToeGameView : ContentView
         }
 
         _playerTurn = false;
-        StatusLabel.Text = TicTacToeAI.IsAvailable 
+        StatusLabel.Text = _ticTacToeAI?.IsAvailable == true 
             ? AppStrings.GetString("AIThinking") + " 🤖" 
             : AppStrings.GetString("AIThinking");
         AIDebugLabel.Text = "";
@@ -88,7 +94,7 @@ public partial class TicTacToeGameView : ContentView
         var aiMove = await GetAIMoveAsync();
         
         // Show AI debug info
-        AIDebugLabel.Text = TicTacToeAI.LastDebugInfo;
+        AIDebugLabel.Text = _ticTacToeAI?.LastDebugInfo ?? "";
         
         if (aiMove >= 0)
         {
@@ -158,9 +164,9 @@ public partial class TicTacToeGameView : ContentView
     private async Task<int> GetAIMoveAsync()
     {
         // Try real AI if available
-        if (TicTacToeAI.IsAvailable)
+        if (_ticTacToeAI?.IsAvailable == true)
         {
-            var aiMove = await TicTacToeAI.GetMoveAsync(_board);
+            var aiMove = await _ticTacToeAI.GetMoveAsync(_board);
             if (aiMove >= 0) return aiMove;
         }
         

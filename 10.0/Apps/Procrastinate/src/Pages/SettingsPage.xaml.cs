@@ -11,8 +11,11 @@ public partial class SettingsPage : ContentPage
         "gemma2-9b-it"
     };
 
-    public SettingsPage()
+    private readonly ExcuseService _excuseService;
+
+    public SettingsPage(ExcuseService excuseService)
     {
+        _excuseService = excuseService;
         InitializeComponent();
         LoadSettings();
     }
@@ -46,7 +49,7 @@ public partial class SettingsPage : ContentPage
         var modeIndex = ExcuseService.AvailableModes.Keys.ToList().IndexOf(currentMode);
         ExcuseModePicker.SelectedIndex = modeIndex >= 0 ? modeIndex : 0;
 
-        GroqApiKeyEntry.Text = Preferences.Get("GroqApiKey", "");
+        GroqApiKeyEntry.Text = SecureStorage.GetAsync("GroqApiKey").GetAwaiter().GetResult() ?? "";
         
         // Load Groq models picker
         foreach (var model in GroqModels)
@@ -107,31 +110,41 @@ public partial class SettingsPage : ContentPage
     {
         CloudSettingsPanel.IsVisible = ExcuseService.CurrentMode == "cloud";
         OnDeviceAISettingsPanel.IsVisible = ExcuseService.CurrentMode == "ondevice";
+        PipelineSettingsPanel.IsVisible = ExcuseService.CurrentMode == "pipeline";
+        CustomEndpointPanel.IsVisible = ExcuseService.CurrentMode == "custom";
+        EmbeddedModelPanel.IsVisible = ExcuseService.CurrentMode == "embedded";
         
         if (ExcuseService.CurrentMode == "ondevice")
         {
             UpdateOnDeviceAIStatus();
         }
+        if (ExcuseService.CurrentMode == "custom")
+        {
+            LoadCustomEndpointSettings();
+        }
+        if (ExcuseService.CurrentMode == "embedded")
+        {
+            UpdateEmbeddedModelStatus();
+        }
     }
 
     private void UpdateOnDeviceAIStatus()
     {
-        var generator = new OnDeviceAIExcuseGenerator();
-        if (generator.IsAvailable)
+        if (_excuseService.IsOnDeviceAvailable)
         {
-            OnDeviceAIStatusLabel.Text = AppStrings.Instance.OnDeviceAIAvailable;
-            OnDeviceAIStatusLabel.TextColor = Color.FromArgb("#88C0D0"); // Secondary/teal
+            OnDeviceAIStatusLabel.Text = "✅ " + AppStrings.Instance.OnDeviceAIAvailable + " (via MEAI IChatClient)";
+            OnDeviceAIStatusLabel.TextColor = Color.FromArgb("#88C0D0");
         }
         else
         {
             OnDeviceAIStatusLabel.Text = AppStrings.Instance.OnDeviceAIUnavailable;
-            OnDeviceAIStatusLabel.TextColor = Color.FromArgb("#D08770"); // Primary/amber warning
+            OnDeviceAIStatusLabel.TextColor = Color.FromArgb("#D08770");
         }
     }
 
     private void OnGroqApiKeyChanged(object? sender, TextChangedEventArgs e)
     {
-        Preferences.Set("GroqApiKey", e.NewTextValue ?? "");
+        _ = SecureStorage.SetAsync("GroqApiKey", e.NewTextValue ?? "");
     }
 
     private void OnGroqModelChanged(object? sender, EventArgs e)
@@ -168,5 +181,110 @@ public partial class SettingsPage : ContentPage
             await Launcher.OpenAsync("https://github.com/StephaneDelcroix/procrastinate");
         }
         catch { }
+    }
+
+    private void LoadCustomEndpointSettings()
+    {
+        CustomEndpointEntry.Text = Preferences.Get("CustomAIEndpoint", "");
+        CustomApiKeyEntry.Text = SecureStorage.GetAsync("CustomAIApiKey").GetAwaiter().GetResult() ?? "";
+        CustomModelEntry.Text = Preferences.Get("CustomAIModel", "");
+    }
+
+    private void OnCustomEndpointChanged(object? sender, TextChangedEventArgs e)
+    {
+        Preferences.Set("CustomAIEndpoint", e.NewTextValue ?? "");
+    }
+
+    private void OnCustomApiKeyChanged(object? sender, TextChangedEventArgs e)
+    {
+        _ = SecureStorage.SetAsync("CustomAIApiKey", e.NewTextValue ?? "");
+    }
+
+    private void OnCustomModelChanged(object? sender, TextChangedEventArgs e)
+    {
+        Preferences.Set("CustomAIModel", e.NewTextValue ?? "");
+    }
+
+    // -- Embedded ONNX Model --
+
+    private CancellationTokenSource? _downloadCts;
+
+    private void UpdateEmbeddedModelStatus()
+    {
+        var model = OnnxModelManager.AvailableModels[0];
+        if (OnnxModelManager.IsModelDownloaded(model.Id))
+        {
+            var size = OnnxModelManager.GetDownloadedSize(model.Id);
+            EmbeddedModelStatusLabel.Text = $"✅ {model.Name} — Ready ({size / (1024.0 * 1024 * 1024):F1} GB)";
+            EmbeddedModelStatusLabel.TextColor = Color.FromArgb("#A3BE8C");
+            EmbeddedDownloadBtn.IsVisible = false;
+            EmbeddedDeleteBtn.IsVisible = true;
+            EmbeddedDownloadProgress.IsVisible = false;
+            EmbeddedDownloadDetailLabel.IsVisible = false;
+        }
+        else
+        {
+            EmbeddedModelStatusLabel.Text = $"⬇ {model.Name} — Not downloaded";
+            EmbeddedModelStatusLabel.TextColor = Color.FromArgb("#D08770");
+            EmbeddedDownloadBtn.IsVisible = true;
+            EmbeddedDownloadBtn.Text = $"Download {model.Name}";
+            EmbeddedDeleteBtn.IsVisible = false;
+        }
+    }
+
+    private async void OnDownloadEmbeddedModel(object? sender, EventArgs e)
+    {
+        var model = OnnxModelManager.AvailableModels[0];
+        _downloadCts?.Cancel();
+        _downloadCts = new CancellationTokenSource();
+
+        EmbeddedDownloadBtn.IsEnabled = false;
+        EmbeddedDownloadBtn.Text = "Downloading...";
+        EmbeddedDownloadProgress.IsVisible = true;
+        EmbeddedDownloadProgress.Progress = 0;
+        EmbeddedDownloadDetailLabel.IsVisible = true;
+
+        var progress = new Progress<(long downloaded, long total, string file)>(p =>
+        {
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                var pct = p.total > 0 ? (double)p.downloaded / p.total : 0;
+                EmbeddedDownloadProgress.Progress = pct;
+                var dlMB = p.downloaded / (1024.0 * 1024);
+                var totalMB = p.total / (1024.0 * 1024);
+                EmbeddedDownloadDetailLabel.Text = $"{dlMB:F0} / {totalMB:F0} MB ({pct:P0}) — {p.file}";
+            });
+        });
+
+        try
+        {
+            await OnnxModelManager.DownloadModelAsync(model, progress, _downloadCts.Token);
+            UpdateEmbeddedModelStatus();
+        }
+        catch (OperationCanceledException)
+        {
+            EmbeddedModelStatusLabel.Text = "Download cancelled.";
+        }
+        catch (Exception ex)
+        {
+            EmbeddedModelStatusLabel.Text = $"❌ Download failed: {ex.Message}";
+            EmbeddedDownloadBtn.IsEnabled = true;
+            EmbeddedDownloadBtn.Text = "Retry Download";
+        }
+    }
+
+    private async void OnDeleteEmbeddedModel(object? sender, EventArgs e)
+    {
+        var confirm = await DisplayAlert("Delete Model",
+            "Delete the downloaded ONNX model? This frees ~2.5 GB of storage.",
+            "Delete", "Cancel");
+        if (!confirm) return;
+
+        var model = OnnxModelManager.AvailableModels[0];
+#if !IOS
+        OnnxGenAIChatClient.UnloadCached();
+#endif
+        OnnxModelManager.DeleteModel(model.Id);
+        UpdateEmbeddedModelStatus();
     }
 }

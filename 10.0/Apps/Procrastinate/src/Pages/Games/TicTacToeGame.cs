@@ -11,12 +11,15 @@ public class TicTacToeGame : MiniGame
 
     private TicTacToeGameView? _gameView;
 
+    public TicTacToeAI? AI { get; set; }
+
     public override View CreateGameView()
     {
         _gameView = new TicTacToeGameView
         {
             OnGamePlayed = () => OnGamePlayed?.Invoke()
         };
+        if (AI is not null) _gameView.SetAI(AI);
         return _gameView;
     }
 
