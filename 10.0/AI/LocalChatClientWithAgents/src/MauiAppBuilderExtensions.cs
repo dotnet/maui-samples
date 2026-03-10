@@ -1,5 +1,6 @@
 ﻿using LocalChatClientWithAgents.Services;
 using Microsoft.Extensions.AI;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Maui.Essentials.AI;
 
@@ -15,37 +16,31 @@ public static class MauiAppBuilderExtensions
 		builder.Services.AddSingleton<AppleIntelligenceChatClient>();
 
 		// Register the Apple Intelligence client as IChatClient to allow direct use
-		builder.Services.AddSingleton<IChatClient>(sp =>
+		builder.Services.AddChatClient(sp =>
 		{
 			var appleClient = sp.GetRequiredService<AppleIntelligenceChatClient>();
-			var loggerFactory = sp.GetRequiredService<ILoggerFactory>();
-			return appleClient
-				.AsBuilder()
-				.UseLogging(loggerFactory)
-				.Build();
+			return appleClient.AsBuilder()
+				.UseLogging()
+				.Build(sp);
 		});
 
 		// Register the Agent Framework wrapper as "local-model"
-		builder.Services.AddKeyedSingleton<IChatClient>("local-model", (sp, _) =>
+		builder.Services.AddKeyedChatClient("local-model", sp =>
 		{
 			var appleClient = sp.GetRequiredService<AppleIntelligenceChatClient>();
-			var loggerFactory = sp.GetRequiredService<ILoggerFactory>();
-			return appleClient
-				.AsBuilder()
-				.UseLogging(loggerFactory)
-				.Build();
+			return appleClient.AsBuilder()
+				.UseLogging()
+				.Build(sp);
 		});
 
 		// Register "cloud-model" with buffering
-		builder.Services.AddKeyedSingleton<IChatClient>("cloud-model", (sp, _) =>
+		builder.Services.AddKeyedChatClient("cloud-model", sp =>
 		{
 			var appleClient = sp.GetRequiredService<AppleIntelligenceChatClient>();
-			var loggerFactory = sp.GetRequiredService<ILoggerFactory>();
-			return appleClient
-				.AsBuilder()
-				.UseLogging(loggerFactory)
+			return appleClient.AsBuilder()
+				.UseLogging()
 				.Use(cc => new BufferedChatClient(cc))
-				.Build();
+				.Build(sp);
 		});
 
 		// Register the Natural Language Embedding generator

@@ -193,7 +193,7 @@ public class ChatService
 		}
 	}
 
-	[Description("Change the language for AI-generated responses. Supported: English, French, Spanish, German, Chinese, Japanese, Korean, Arabic, Indonesian, Italian, Portuguese.")]
+	[Description("Change the language for AI-generated responses. Supported: English, French, Spanish, German, Chinese, Japanese, Korean, Indonesian, Italian, Portuguese.")]
 	string SetLanguage(
 		[Description("The language name to switch to, e.g. 'Spanish', 'French', 'Japanese'")] string language)
 	{
