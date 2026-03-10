@@ -3,7 +3,7 @@ using Microsoft.Extensions.AI;
 using Microsoft.Extensions.Logging;
 using Microsoft.Maui.Essentials.AI;
 
-namespace LocalChatClientWithAgents.AI;
+namespace LocalChatClientWithAgents;
 
 public static class MauiAppBuilderExtensions
 {
