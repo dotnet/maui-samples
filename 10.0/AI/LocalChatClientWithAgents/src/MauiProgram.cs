@@ -36,10 +36,12 @@ public static class MauiProgram
 		// Register Pages
 		builder.Services.AddTransient<LandmarksPage>();
 		builder.Services.AddTransient<TripPlanningPage>();
+		builder.Services.AddTransient<ItineraryPage>();
 
 		// Register ViewModels
 		builder.Services.AddTransient<LandmarksViewModel>();
 		builder.Services.AddTransient<TripPlanningViewModel>();
+		builder.Services.AddTransient<ItineraryPageViewModel>();
 		builder.Services.AddSingleton<ChatViewModel>();
 
 		// Register Services

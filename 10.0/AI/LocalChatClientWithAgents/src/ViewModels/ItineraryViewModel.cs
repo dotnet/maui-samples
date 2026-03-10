@@ -17,6 +17,9 @@ public partial class ItineraryViewModel(Itinerary itinerary, Landmark landmark) 
 
 	private ObservableCollection<DayPlanViewModel> CreateDays()
 	{
+		if (itinerary.Days is null or { Count: 0 })
+			return [];
+
 		var startDate = DateOnly.FromDateTime(DateTime.Today);
 
 		var list = new ObservableCollection<DayPlanViewModel>();

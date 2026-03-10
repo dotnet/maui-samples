@@ -7,8 +7,8 @@ namespace LocalChatClientWithAgents.Pages;
 public partial class LandmarksPage : ContentPage
 {
 	private readonly LandmarksViewModel _viewModel;
-	private readonly ChatOverlayView _chatOverlay;
 	private readonly ChatViewModel _chatViewModel;
+	private readonly ChatOverlayView _chatOverlay;
 
 	public LandmarksPage(LandmarksViewModel viewModel, ChatViewModel chatViewModel)
 	{
@@ -36,16 +36,16 @@ public partial class LandmarksPage : ContentPage
 		base.OnDisappearing();
 	}
 
-	private async void OnNavigateToTrip(Landmark landmark)
+	private async void OnNavigateToTrip(Landmark landmark, int dayCount)
 	{
-		// Close chat overlay first if open
 		await _chatOverlay.Hide();
 
 		var parameters = new Dictionary<string, object>
 		{
-			{ "Landmark", landmark }
+			{ "Landmark", landmark },
+			{ "DayCount", dayCount }
 		};
-		await Shell.Current.GoToAsync(nameof(TripPlanningPage), parameters);
+		await Shell.Current.GoToAsync(nameof(ItineraryPage), parameters);
 	}
 
 	private async void OnLandmarkTapped(object? sender, Landmark landmark)
@@ -54,7 +54,6 @@ public partial class LandmarksPage : ContentPage
 		{
 			{ "Landmark", landmark }
 		};
-
 		await Shell.Current.GoToAsync(nameof(TripPlanningPage), parameters);
 	}
 

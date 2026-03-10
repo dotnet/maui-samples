@@ -31,7 +31,7 @@ public class ChatService
 	readonly LanguagePreferenceService _languageService;
 	readonly IList<AITool> _tools;
 
-	public event Action<Landmark>? NavigateToTripRequested;
+	public event Action<Landmark, int>? NavigateToTripRequested;
 
 	public ChatService(
 		IChatClient chatClient,
@@ -207,17 +207,19 @@ public class ChatService
 		return $"Language changed to {match}. AI-generated itineraries will now be in {match}.";
 	}
 
-	[Description("Navigate the user to the trip planning page to generate a detailed multi-day itinerary for a landmark. Use this when the user wants to plan or start a trip.")]
+	[Description("Start generating a detailed multi-day itinerary for a landmark. This navigates the user directly to the itinerary generation page.")]
 	async Task<string> PlanTripAsync(
-		[Description("The name of the landmark to plan a trip to")] string landmarkName)
+		[Description("The name of the landmark to plan a trip to")] string landmarkName,
+		[Description("Number of days for the itinerary (1-7, default 3)")] int dayCount = 3)
 	{
 		var landmark = await FindLandmarkByNameAsync(landmarkName);
 
 		if (landmark is null)
 			return $"Landmark '{landmarkName}' not found. Try searching with search_landmarks first.";
 
-		MainThread.BeginInvokeOnMainThread(() => NavigateToTripRequested?.Invoke(landmark));
-		return $"Navigating to trip planner for {landmark.Name}! A multi-day itinerary will be generated for you.";
+		dayCount = Math.Clamp(dayCount, 1, 7);
+		MainThread.BeginInvokeOnMainThread(() => NavigateToTripRequested?.Invoke(landmark, dayCount));
+		return $"Navigating to trip planner for {landmark.Name}! A {dayCount}-day itinerary will be generated for you.";
 	}
 
 	async Task<Landmark?> FindLandmarkByNameAsync(string name)

@@ -6,7 +6,7 @@
     xmlns:viewModels="clr-namespace:LocalChatClientWithAgents.ViewModels"
     xmlns:views="clr-namespace:LocalChatClientWithAgents.Views.Itinerary"
     x:Class="LocalChatClientWithAgents.Views.Itinerary.ItineraryView"
-    x:DataType="viewModels:TripPlanningViewModel">
+    x:DataType="viewModels:ItineraryPageViewModel">
 
     <VerticalStackLayout Padding="20" Spacing="20">
         <VerticalStackLayout Spacing="10">

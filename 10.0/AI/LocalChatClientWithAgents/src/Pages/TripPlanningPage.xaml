@@ -11,37 +11,71 @@
 
     <Grid>
 
-        <!-- If AI is available, show LandmarkTripView -->
-        <views:LandmarkTripView IsVisible="{Binding IsNotErrorState}" />
-        
-        <!-- If AI is unavailable or error, show MessageView -->
-        <views:MessageView IsVisible="{Binding IsErrorState}" />
-        
+        <!-- Background Header Image -->
+        <Image
+            VerticalOptions="Start" HeightRequest="420" Aspect="AspectFill"
+            Source="{Binding Landmark.BackgroundImageName, StringFormat='Images/Backgrounds/{0}.jpg'}" />
+
+        <!-- Gradient overlay -->
+        <BoxView VerticalOptions="Start" HeightRequest="420">
+            <BoxView.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="{AppThemeBinding Light=#00FFFFFF, Dark=#001C1C1E}" Offset="0.3" />
+                    <GradientStop Color="{AppThemeBinding Light=White, Dark=#1C1C1E}" Offset="1.0" />
+                </LinearGradientBrush>
+            </BoxView.Background>
+        </BoxView>
+
+        <!-- Main Content -->
+        <ScrollView>
+            <VerticalStackLayout Spacing="20" Padding="0,180,0,20">
+                <views:LandmarkDescriptionView />
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Bottom panel: Day counter + Generate button -->
+        <VerticalStackLayout VerticalOptions="End" Spacing="16" Padding="20,16,20,20">
+
+            <!-- Day counter stepper -->
+            <Grid ColumnDefinitions="Auto,*,Auto" HorizontalOptions="Center" ColumnSpacing="20">
+                <Button
+                    Text="−" Command="{Binding DecrementDaysCommand}"
+                    HeightRequest="48" WidthRequest="48" CornerRadius="24" Padding="0"
+                    FontSize="24" FontAttributes="Bold"
+                    Background="{AppThemeBinding Light=#E0E0E0, Dark=#3A3A3C}"
+                    TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark=White}" />
+
+                <VerticalStackLayout Grid.Column="1" Spacing="0" VerticalOptions="Center">
+                    <Label Text="{Binding DayCount}" FontSize="36" FontAttributes="Bold"
+                           HorizontalTextAlignment="Center" />
+                    <Label Text="{Binding DayCount, StringFormat='{0} days'}" FontSize="13"
+                           HorizontalTextAlignment="Center" Opacity="0.6" />
+                </VerticalStackLayout>
+
+                <Button
+                    Grid.Column="2"
+                    Text="+" Command="{Binding IncrementDaysCommand}"
+                    HeightRequest="48" WidthRequest="48" CornerRadius="24" Padding="0"
+                    FontSize="24" FontAttributes="Bold"
+                    Background="{AppThemeBinding Light=#E0E0E0, Dark=#3A3A3C}"
+                    TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark=White}" />
+            </Grid>
+
+            <!-- Generate button -->
+            <Button
+                Text="✨ Generate Itinerary" Clicked="OnGenerateClicked"
+                FontSize="18" FontAttributes="Bold" Padding="30,20" CornerRadius="12" HorizontalOptions="Center"
+                Background="{StaticResource PrimaryBrush}" TextColor="White" />
+
+        </VerticalStackLayout>
+
         <!-- Floating Back Button (top left) -->
         <Button
             Text="←" Clicked="OnBackButtonClicked"
-            VerticalOptions="Start" HorizontalOptions="Start" Margin="20,20,0,0" 
+            VerticalOptions="Start" HorizontalOptions="Start" Margin="20,20,0,0"
             HeightRequest="44" WidthRequest="44" CornerRadius="22" Padding="0"
             FontSize="24" Background="{AppThemeBinding Light=#80FFFFFF, Dark=#80000000}"
             TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark=White}" />
-
-        <!-- Floating Chat Button (bottom right) -->
-        <Button
-            x:Name="ChatFab"
-            AutomationId="ChatFab"
-            Text="💬"
-            Clicked="OnChatButtonClicked"
-            VerticalOptions="End"
-            HorizontalOptions="End"
-            Margin="0,0,20,20"
-            HeightRequest="56"
-            WidthRequest="56"
-            CornerRadius="28"
-            Padding="0"
-            FontSize="24"
-            BackgroundColor="{StaticResource Primary}"
-            TextColor="White"
-            Shadow="{Shadow Brush=Black, Offset='0,4', Radius=8, Opacity=0.3}" />
 
     </Grid>
 
