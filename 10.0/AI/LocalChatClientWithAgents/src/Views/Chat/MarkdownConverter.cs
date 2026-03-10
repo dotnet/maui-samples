@@ -3,7 +3,7 @@ using Markdig;
 using Markdig.Syntax;
 using Markdig.Syntax.Inlines;
 
-namespace LocalChatClientWithAgents.Views;
+namespace LocalChatClientWithAgents.Views.Chat;
 
 /// <summary>
 /// Converts a markdown string to a FormattedString using Markdig's AST.

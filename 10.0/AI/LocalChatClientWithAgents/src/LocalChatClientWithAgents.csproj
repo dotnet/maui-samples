@@ -30,20 +30,20 @@
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
 
     <!-- Microsoft Agent Framework -->
-    <PackageReference Include="Microsoft.Agents.AI" Version="0.5.0-preview" />
-    <PackageReference Include="Microsoft.Agents.AI.Hosting" Version="0.5.0-preview" />
-    <PackageReference Include="Microsoft.Agents.AI.Workflows" Version="0.5.0-preview" />
-    <PackageReference Include="Microsoft.Agents.AI.Workflows.Generators" Version="0.5.0-preview" />
+    <PackageReference Include="Microsoft.Agents.AI" Version="1.0.0-rc3" />
+    <PackageReference Include="Microsoft.Agents.AI.Hosting" Version="1.0.0-preview.260304.1" />
+    <PackageReference Include="Microsoft.Agents.AI.Workflows" Version="1.0.0-rc3" />
+    <PackageReference Include="Microsoft.Agents.AI.Workflows.Generators" Version="1.0.0-rc3" />
 
     <!-- Microsoft Extensions -->
-    <PackageReference Include="Microsoft.Extensions.AI" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Console" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Debug" />
-    <PackageReference Include="Microsoft.Extensions.Http" />
+    <PackageReference Include="Microsoft.Extensions.AI" Version="10.3.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="10.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="10.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="10.0.0" />
 
     <!-- Apple Intelligence (on-device AI) -->
-    <PackageReference Include="Microsoft.Maui.Essentials.AI" Version="10.0.0-*" />
+    <PackageReference Include="Microsoft.Maui.Essentials.AI" Version="10.0.*-*" />
 
     <!-- Maps -->
     <PackageReference Include="Microsoft.Maui.Controls.Maps" Version="10.0.0-*" />

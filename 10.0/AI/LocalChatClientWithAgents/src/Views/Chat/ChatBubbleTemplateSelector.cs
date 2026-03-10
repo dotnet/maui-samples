@@ -1,6 +1,6 @@
 using LocalChatClientWithAgents.ViewModels;
 
-namespace LocalChatClientWithAgents.Views;
+namespace LocalChatClientWithAgents.Views.Chat;
 
 public class ChatBubbleTemplateSelector : DataTemplateSelector
 {

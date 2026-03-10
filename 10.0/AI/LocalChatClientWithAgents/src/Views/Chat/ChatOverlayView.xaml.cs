@@ -1,7 +1,7 @@
 using System.Collections.Specialized;
 using LocalChatClientWithAgents.ViewModels;
 
-namespace LocalChatClientWithAgents.Views;
+namespace LocalChatClientWithAgents.Views.Chat;
 
 public partial class ChatOverlayView : ContentView
 {

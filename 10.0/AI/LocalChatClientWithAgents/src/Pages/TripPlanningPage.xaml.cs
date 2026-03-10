@@ -1,5 +1,5 @@
 using LocalChatClientWithAgents.ViewModels;
-using LocalChatClientWithAgents.Views;
+using LocalChatClientWithAgents.Views.Chat;
 
 namespace LocalChatClientWithAgents.Pages;
 
