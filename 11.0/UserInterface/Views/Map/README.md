@@ -25,7 +25,7 @@ This sample demonstrates the pin clustering feature introduced in .NET MAUI 11 f
 
 ## Prerequisites
 
-- .NET 11 Preview 3 or later
+- .NET 11 Preview 2 or later
 - .NET MAUI workload installed
 - Android: Google Maps API key configured in `AndroidManifest.xml`
 - iOS/Mac Catalyst: No additional configuration required
