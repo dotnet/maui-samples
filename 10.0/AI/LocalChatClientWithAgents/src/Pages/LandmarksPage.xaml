@@ -9,9 +9,10 @@
     xmlns:views="clr-namespace:LocalChatClientWithAgents.Views.Landmarks"
     x:Class="LocalChatClientWithAgents.Pages.LandmarksPage"
     x:DataType="viewModels:LandmarksViewModel"
+    SafeAreaEdges="None"
     Title=".NET MAUI Trip Planner">
 
-    <Grid>
+    <Grid SafeAreaEdges="None">
         <ScrollView>
             <VerticalStackLayout Padding="20" Spacing="20">
 
@@ -70,14 +71,14 @@
             CornerRadius="28"
             Padding="0"
             FontSize="24"
-            BackgroundColor="{StaticResource Primary}"
+            Background="{StaticResource Primary}"
             TextColor="White"
             Shadow="{Shadow Brush=Black, Offset='0,4', Radius=8, Opacity=0.3}" />
 
         <!-- Loading Overlay — blocks interaction until embeddings are ready -->
         <Grid
             IsVisible="{Binding IsGeneratingEmbeddings}"
-            BackgroundColor="{AppThemeBinding Light=#E0FFFFFF, Dark=#E0000000}"
+            Background="{AppThemeBinding Light=#E0FFFFFF, Dark=#E0000000}"
             InputTransparent="False"
             CascadeInputTransparent="False">
             <VerticalStackLayout

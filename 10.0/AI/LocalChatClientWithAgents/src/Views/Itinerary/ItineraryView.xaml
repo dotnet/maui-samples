@@ -16,7 +16,7 @@
         </VerticalStackLayout>
         
         <Border Padding="15" StrokeShape="RoundRectangle 12" StrokeThickness="0"
-                BackgroundColor="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray900}}">
+                Background="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray900}}">
             <Grid ColumnSpacing="10" ColumnDefinitions="Auto, *">
                 <Label Text="✨" FontSize="20" VerticalOptions="Start" />
                 <Label

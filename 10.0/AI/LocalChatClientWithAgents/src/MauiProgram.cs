@@ -50,7 +50,6 @@ public static class MauiProgram
 		builder.Services.AddTransient<ItineraryService>();
 		builder.Services.AddTransient<TaggingService>();
 		builder.Services.AddHttpClient<WeatherService>();
-		builder.Services.AddSingleton<ChatService>();
 
 		// Configure Logging
 		builder.Services.AddLogging();

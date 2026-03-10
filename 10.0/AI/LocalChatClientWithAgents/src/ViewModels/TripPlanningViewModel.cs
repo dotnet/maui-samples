@@ -48,6 +48,7 @@ public partial class TripPlanningViewModel(TaggingService taggingService) : Obse
 	public void Cancel()
 	{
 		_cancellationTokenSource.Cancel();
+		_cancellationTokenSource.Dispose();
 	}
 
 	private async Task GenerateTagsAsync(CancellationToken cancellationToken)

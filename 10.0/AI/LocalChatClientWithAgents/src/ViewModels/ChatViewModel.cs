@@ -1,6 +1,7 @@
 using System.Collections.ObjectModel;
 using System.Text.Json;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using LocalChatClientWithAgents.Services;
 using Microsoft.Extensions.AI;
 
@@ -22,23 +23,22 @@ public partial class ChatViewModel : ObservableObject
 	public ObservableCollection<ChatBubbleViewModel> Messages { get; } = [];
 
 	[ObservableProperty]
+	[NotifyCanExecuteChangedFor(nameof(SendMessageCommand))]
 	public partial string MessageText { get; set; } = string.Empty;
 
 	[ObservableProperty]
 	public partial bool IsOverlayVisible { get; set; }
 
 	[ObservableProperty]
+	[NotifyCanExecuteChangedFor(nameof(SendMessageCommand))]
 	public partial bool IsSending { get; set; }
 
-	public Command SendMessageCommand => field ??= new Command(
-		async () => await SendMessageAsync(),
-		() => !string.IsNullOrWhiteSpace(MessageText) && !IsSending);
+	bool CanSendMessage() => !string.IsNullOrWhiteSpace(MessageText) && !IsSending;
 
-	public Command ToggleOverlayCommand => field ??= new Command(
-		() => IsOverlayVisible = !IsOverlayVisible);
+	[RelayCommand]
+	void ToggleOverlay() => IsOverlayVisible = !IsOverlayVisible;
 
-	public Command NewChatCommand => field ??= new Command(NewChat);
-
+	[RelayCommand]
 	void NewChat()
 	{
 		_cts?.Cancel();
@@ -50,16 +50,7 @@ public partial class ChatViewModel : ObservableObject
 		IsSending = false;
 	}
 
-	partial void OnMessageTextChanged(string value)
-	{
-		SendMessageCommand.ChangeCanExecute();
-	}
-
-	partial void OnIsSendingChanged(bool value)
-	{
-		SendMessageCommand.ChangeCanExecute();
-	}
-
+	[RelayCommand(CanExecute = nameof(CanSendMessage))]
 	async Task SendMessageAsync()
 	{
 		var userText = MessageText.Trim();

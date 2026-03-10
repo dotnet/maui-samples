@@ -6,11 +6,12 @@
     xmlns:views="clr-namespace:LocalChatClientWithAgents.Views.Landmarks"
     x:Class="LocalChatClientWithAgents.Views.Landmarks.LandmarkHorizontalListView">
     
-    <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Never">
+    <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Never" Margin="-20,0">
         <HorizontalStackLayout
             x:Name="LandmarksStack"
             BindableLayout.ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type views:LandmarkHorizontalListView}}, Path=Landmarks}"
-            Spacing="15">
+            Spacing="15"
+            Padding="20,0">
             <BindableLayout.ItemTemplate>
                 <DataTemplate x:DataType="models:Landmark">
                     <views:LandmarkListItemView

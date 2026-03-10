@@ -63,6 +63,7 @@ public partial class ItineraryPageViewModel(ItineraryService itineraryService, W
 	public async Task GenerateAsync()
 	{
 		_cancellationTokenSource.Cancel();
+		_cancellationTokenSource.Dispose();
 		_cancellationTokenSource = new CancellationTokenSource();
 		var cancellationToken = _cancellationTokenSource.Token;
 
@@ -112,6 +113,7 @@ public partial class ItineraryPageViewModel(ItineraryService itineraryService, W
 	public void Cancel()
 	{
 		_cancellationTokenSource.Cancel();
+		_cancellationTokenSource.Dispose();
 	}
 
 	private async Task BuildItineraryAsync(CancellationToken cancellationToken)

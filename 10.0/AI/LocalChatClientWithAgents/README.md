@@ -56,17 +56,20 @@ User Input → [Travel Planner] → [Researcher] → [Itinerary Planner] → [Tr
 - `Services/ItineraryService.cs`: Orchestrates streaming itinerary generation with progressive JSON deserialization.
 - `Services/DataService.cs`: Manages a local landmark database with semantic embedding search.
 - `Pages/LandmarksPage.xaml`: Browse world landmarks with semantic search.
-- `Pages/TripPlanningPage.xaml`: Generate and view AI-powered travel itineraries.
+- `Pages/TripPlanningPage.xaml`: Configure trip duration and language for a selected landmark.
+- `Pages/ItineraryPage.xaml`: Stream and display an AI-generated multi-day itinerary.
 
 ## Run
 
-Build and run on an iOS 26+ simulator/device or macCatalyst:
+Build and run on an iOS 26+ simulator/device or macCatalyst target:
 
 ```bash
 dotnet build -t:Run -f net10.0-maccatalyst
 ```
 
-Or open `LocalChatClientWithAgents.sln` in Visual Studio / VS Code and select an iOS or Mac Catalyst target.
+Or open `LocalChatClientWithAgents.slnx` in Visual Studio / VS Code and select an iOS or Mac Catalyst target.
+
+Once running, browse landmarks on the home page, tap a destination to see details, configure duration and language, then tap **Generate Itinerary** to stream an AI-generated travel plan. You can also use the 💬 chat button to ask the assistant to plan trips, search destinations, check weather, and more.
 
 ## NuGet feed configuration
 

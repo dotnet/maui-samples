@@ -27,7 +27,7 @@
             <Label 
                 IsVisible="{Binding IsErrorState}"
                 Text="{Binding ErrorMessage}" 
-                TextColor="Red" 
+                TextColor="{AppThemeBinding Light=DarkRed, Dark=#FF6B6B}" 
                 FontSize="20" 
                 HorizontalTextAlignment="Center" 
                 LineBreakMode="WordWrap" />
