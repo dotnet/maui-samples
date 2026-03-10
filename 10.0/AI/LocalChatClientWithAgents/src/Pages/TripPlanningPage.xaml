@@ -33,54 +33,95 @@
             </VerticalStackLayout>
         </ScrollView>
 
-        <!-- Bottom panel: Options + Generate button -->
-        <VerticalStackLayout VerticalOptions="End" Spacing="16" Padding="20,16,20,20">
+        <!-- Bottom panel: Trip configuration card -->
+        <Border
+            VerticalOptions="End"
+            HorizontalOptions="Fill"
+            MaximumWidthRequest="400"
+            Margin="20,0,20,16"
+            StrokeThickness="0"
+            StrokeShape="RoundRectangle 24"
+            Background="{AppThemeBinding Light=#F2F5F5F7, Dark=#F21C1C1E}">
+            <Border.Shadow>
+                <Shadow Brush="Black" Opacity="0.15" Offset="0,-4" Radius="16" />
+            </Border.Shadow>
 
-            <!-- Language picker -->
-            <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12" HorizontalOptions="Center">
-                <Label Text="🌐" FontSize="20" VerticalOptions="Center" />
-                <Border Grid.Column="1" Padding="4,0" StrokeShape="RoundRectangle 10" StrokeThickness="1"
-                        Stroke="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray600}}"
-                        BackgroundColor="{AppThemeBinding Light=#E0FFFFFF, Dark=#E02C2C2E}">
-                    <Picker
-                        ItemsSource="{Binding AvailableLanguages}"
-                        SelectedItem="{Binding SelectedLanguage}"
-                        FontSize="15" />
-                </Border>
+            <Grid RowDefinitions="Auto,Auto,Auto" RowSpacing="18" Padding="20,24,20,28">
+
+                <!-- Duration -->
+                <Grid RowDefinitions="Auto,Auto" RowSpacing="10">
+                    <Label Text="DURATION" FontSize="11" FontAttributes="Bold"
+                           CharacterSpacing="1"
+                           TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray300}}" />
+                    <Grid Grid.Row="1" ColumnDefinitions="48,*,48" ColumnSpacing="12">
+                        <Button Text="−"
+                                Command="{Binding DecrementDaysCommand}"
+                                HeightRequest="48" WidthRequest="48"
+                                CornerRadius="12" Padding="0"
+                                FontSize="22" FontAttributes="Bold"
+                                Background="{AppThemeBinding Light=White, Dark=#2C2C2E}"
+                                TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark=White}"
+                                BorderWidth="1"
+                                BorderColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}" />
+
+                        <Label Grid.Column="1"
+                               Text="{Binding DayCount, StringFormat='{0} days'}"
+                               FontSize="22" FontAttributes="Bold"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center" />
+
+                        <Button Grid.Column="2" Text="+"
+                                Command="{Binding IncrementDaysCommand}"
+                                HeightRequest="48" WidthRequest="48"
+                                CornerRadius="12" Padding="0"
+                                FontSize="22" FontAttributes="Bold"
+                                Background="{AppThemeBinding Light=White, Dark=#2C2C2E}"
+                                TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark=White}"
+                                BorderWidth="1"
+                                BorderColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}" />
+                    </Grid>
+                </Grid>
+
+                <!-- Language -->
+                <Grid Grid.Row="1" RowDefinitions="Auto,Auto" RowSpacing="10">
+                    <Label Text="LANGUAGE" FontSize="11" FontAttributes="Bold"
+                           CharacterSpacing="1"
+                           TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray300}}" />
+                    <Border Grid.Row="1"
+                            StrokeShape="RoundRectangle 12"
+                            StrokeThickness="1"
+                            Stroke="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}"
+                            Background="{AppThemeBinding Light=White, Dark=#2C2C2E}"
+                            Padding="14,0,10,0"
+                            HeightRequest="48">
+                        <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10">
+                            <Label Text="🌐" FontSize="18" VerticalOptions="Center" />
+                            <Picker Grid.Column="1"
+                                    ItemsSource="{Binding AvailableLanguages}"
+                                    SelectedItem="{Binding SelectedLanguage}"
+                                    FontSize="16"
+                                    VerticalOptions="Center" />
+                        </Grid>
+                    </Border>
+                </Grid>
+
+                <!-- Generate button (full-width CTA) -->
+                <Button Grid.Row="2"
+                        Text="✨ Generate Itinerary"
+                        Clicked="OnGenerateClicked"
+                        FontSize="18" FontAttributes="Bold"
+                        Padding="0,18" CornerRadius="14"
+                        Margin="0,4,0,0"
+                        HorizontalOptions="Fill"
+                        Background="{StaticResource PrimaryBrush}"
+                        TextColor="White">
+                    <Button.Shadow>
+                        <Shadow Brush="Black" Opacity="0.2" Offset="0,4" Radius="8" />
+                    </Button.Shadow>
+                </Button>
+
             </Grid>
-
-            <!-- Day counter stepper -->
-            <Grid ColumnDefinitions="Auto,*,Auto" HorizontalOptions="Center" ColumnSpacing="20">
-                <Button
-                    Text="−" Command="{Binding DecrementDaysCommand}"
-                    HeightRequest="48" WidthRequest="48" CornerRadius="24" Padding="0"
-                    FontSize="24" FontAttributes="Bold"
-                    Background="{AppThemeBinding Light=#E0E0E0, Dark=#3A3A3C}"
-                    TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark=White}" />
-
-                <VerticalStackLayout Grid.Column="1" Spacing="0" VerticalOptions="Center">
-                    <Label Text="{Binding DayCount}" FontSize="36" FontAttributes="Bold"
-                           HorizontalTextAlignment="Center" />
-                    <Label Text="{Binding DayCount, StringFormat='{0} days'}" FontSize="13"
-                           HorizontalTextAlignment="Center" Opacity="0.6" />
-                </VerticalStackLayout>
-
-                <Button
-                    Grid.Column="2"
-                    Text="+" Command="{Binding IncrementDaysCommand}"
-                    HeightRequest="48" WidthRequest="48" CornerRadius="24" Padding="0"
-                    FontSize="24" FontAttributes="Bold"
-                    Background="{AppThemeBinding Light=#E0E0E0, Dark=#3A3A3C}"
-                    TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark=White}" />
-            </Grid>
-
-            <!-- Generate button -->
-            <Button
-                Text="✨ Generate Itinerary" Clicked="OnGenerateClicked"
-                FontSize="18" FontAttributes="Bold" Padding="30,20" CornerRadius="12" HorizontalOptions="Center"
-                Background="{StaticResource PrimaryBrush}" TextColor="White" />
-
-        </VerticalStackLayout>
+        </Border>
 
         <!-- Floating Back Button (top left) -->
         <Button

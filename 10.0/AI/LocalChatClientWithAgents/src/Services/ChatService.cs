@@ -19,6 +19,7 @@ public class ChatService
 		Today's date is {DateTime.Now:yyyy-MM-dd} ({DateTime.Now:dddd}).
 
 		When users ask about destinations, search first to provide relevant results. When they want to plan a trip, use plan_trip to navigate them to the planning page.
+		Always use default values for plan_trip parameters the user didn't specify: 3 days and English. Do not ask the user for values they haven't mentioned.
 		For weather requests with relative dates like "tomorrow" or "next week", calculate the actual date from today before calling get_weather.
 		Be concise and helpful. Use the tools available to provide accurate information.
 		""";
