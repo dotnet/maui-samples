@@ -20,6 +20,12 @@ public partial class TripPlanningViewModel(TaggingService taggingService) : Obse
 	[NotifyCanExecuteChangedFor(nameof(DecrementDaysCommand))]
 	public partial int DayCount { get; set; } = 3;
 
+	[ObservableProperty]
+	public partial string SelectedLanguage { get; set; } = "English";
+
+	public string[] AvailableLanguages { get; } =
+		["English", "Chinese", "French", "German", "Indonesian", "Italian", "Japanese", "Korean", "Portuguese", "Spanish"];
+
 	public ObservableCollection<string> GeneratedTags => field ??= [];
 
 	[RelayCommand(CanExecute = nameof(CanIncrementDays))]

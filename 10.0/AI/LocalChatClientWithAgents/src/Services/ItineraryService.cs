@@ -12,8 +12,7 @@ namespace LocalChatClientWithAgents.Services;
 /// Uses the workflow-as-agent pattern for a cleaner, more unified API.
 /// </summary>
 public class ItineraryService(
-	[FromKeyedServices("itinerary-workflow-agent")] AIAgent workflowAgent,
-	LanguagePreferenceService languagePreference)
+	[FromKeyedServices("itinerary-workflow-agent")] AIAgent workflowAgent)
 {
 	private static readonly JsonSerializerOptions s_jsonOptions = new()
 	{
@@ -29,10 +28,9 @@ public class ItineraryService(
 	public async IAsyncEnumerable<ItineraryStreamUpdate> StreamItineraryAsync(
 		Landmark landmark,
 		int dayCount,
+		string language = "English",
 		[EnumeratorCancellation] CancellationToken cancellationToken = default)
 	{
-		// Build natural language request from UI parameters
-		var language = languagePreference.SelectedLanguage;
 		var userRequest = language.Equals("English", StringComparison.OrdinalIgnoreCase)
 			? $"Create a {dayCount}-day itinerary for {landmark.Name}"
 			: $"Create a {dayCount}-day itinerary for {landmark.Name} in {language}";

@@ -33,8 +33,21 @@
             </VerticalStackLayout>
         </ScrollView>
 
-        <!-- Bottom panel: Day counter + Generate button -->
+        <!-- Bottom panel: Options + Generate button -->
         <VerticalStackLayout VerticalOptions="End" Spacing="16" Padding="20,16,20,20">
+
+            <!-- Language picker -->
+            <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12" HorizontalOptions="Center">
+                <Label Text="🌐" FontSize="20" VerticalOptions="Center" />
+                <Border Grid.Column="1" Padding="4,0" StrokeShape="RoundRectangle 10" StrokeThickness="1"
+                        Stroke="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray600}}"
+                        BackgroundColor="{AppThemeBinding Light=#E0FFFFFF, Dark=#E02C2C2E}">
+                    <Picker
+                        ItemsSource="{Binding AvailableLanguages}"
+                        SelectedItem="{Binding SelectedLanguage}"
+                        FontSize="15" />
+                </Border>
+            </Grid>
 
             <!-- Day counter stepper -->
             <Grid ColumnDefinitions="Auto,*,Auto" HorizontalOptions="Center" ColumnSpacing="20">

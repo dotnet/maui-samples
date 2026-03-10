@@ -7,6 +7,7 @@ namespace LocalChatClientWithAgents.ViewModels;
 
 [QueryProperty(nameof(Landmark), "Landmark")]
 [QueryProperty(nameof(DayCount), "DayCount")]
+[QueryProperty(nameof(Language), "Language")]
 public partial class ItineraryPageViewModel(ItineraryService itineraryService, WeatherService weatherService, IDispatcher dispatcher) : ObservableObject
 {
 	public enum GenerationState
@@ -23,6 +24,9 @@ public partial class ItineraryPageViewModel(ItineraryService itineraryService, W
 
 	[ObservableProperty]
 	public partial int DayCount { get; set; } = 3;
+
+	[ObservableProperty]
+	public partial string Language { get; set; } = "English";
 
 	[ObservableProperty]
 	[NotifyPropertyChangedFor(nameof(IsGeneratingState))]
@@ -112,7 +116,7 @@ public partial class ItineraryPageViewModel(ItineraryService itineraryService, W
 
 	private async Task BuildItineraryAsync(CancellationToken cancellationToken)
 	{
-		await foreach (var update in itineraryService.StreamItineraryAsync(Landmark, DayCount, cancellationToken))
+		await foreach (var update in itineraryService.StreamItineraryAsync(Landmark, DayCount, Language, cancellationToken))
 		{
 			if (cancellationToken.IsCancellationRequested)
 				break;

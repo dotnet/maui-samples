@@ -23,7 +23,8 @@ public partial class TripPlanningPage : ContentPage
 		var parameters = new Dictionary<string, object>
 		{
 			{ "Landmark", _viewModel.Landmark },
-			{ "DayCount", _viewModel.DayCount }
+			{ "DayCount", _viewModel.DayCount },
+			{ "Language", _viewModel.SelectedLanguage }
 		};
 		await Shell.Current.GoToAsync($"../{nameof(ItineraryPage)}", parameters);
 	}

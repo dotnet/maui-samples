@@ -14,8 +14,7 @@ public class ChatService
 		- Find nearby hotels, restaurants, cafes, and museums
 		- Check weather forecasts
 		- Generate social media hashtags for trips
-		- Change the AI response language
-		- Start planning a trip by navigating to the trip planner
+		- Start planning a trip by navigating to the trip planner (supports specifying language and day count)
 
 		Today's date is {DateTime.Now:yyyy-MM-dd} ({DateTime.Now:dddd}).
 
@@ -28,22 +27,19 @@ public class ChatService
 	readonly DataService _dataService;
 	readonly WeatherService _weatherService;
 	readonly TaggingService _taggingService;
-	readonly LanguagePreferenceService _languageService;
 	readonly IList<AITool> _tools;
 
-	public event Action<Landmark, int>? NavigateToTripRequested;
+	public event Action<Landmark, int, string>? NavigateToTripRequested;
 
 	public ChatService(
 		IChatClient chatClient,
 		DataService dataService,
 		WeatherService weatherService,
-		TaggingService taggingService,
-		LanguagePreferenceService languageService)
+		TaggingService taggingService)
 	{
 		_dataService = dataService;
 		_weatherService = weatherService;
 		_taggingService = taggingService;
-		_languageService = languageService;
 
 		_tools =
 		[
@@ -53,7 +49,6 @@ public class ChatService
 			AIFunctionFactory.Create(SearchPointsOfInterestAsync),
 			AIFunctionFactory.Create(GetWeatherAsync),
 			AIFunctionFactory.Create(GenerateTagsAsync),
-			AIFunctionFactory.Create(SetLanguage),
 			AIFunctionFactory.Create(PlanTripAsync),
 		];
 
@@ -193,24 +188,11 @@ public class ChatService
 		}
 	}
 
-	[Description("Change the language for AI-generated responses. Supported: English, French, Spanish, German, Chinese, Japanese, Korean, Indonesian, Italian, Portuguese.")]
-	string SetLanguage(
-		[Description("The language name to switch to, e.g. 'Spanish', 'French', 'Japanese'")] string language)
-	{
-		var match = _languageService.SupportedLanguages.Keys.FirstOrDefault(k =>
-			k.Equals(language, StringComparison.OrdinalIgnoreCase));
-
-		if (match is null)
-			return $"Language '{language}' is not supported. Available: {string.Join(", ", _languageService.SupportedLanguages.Keys)}";
-
-		_languageService.SelectedLanguage = match;
-		return $"Language changed to {match}. AI-generated itineraries will now be in {match}.";
-	}
-
-	[Description("Start generating a detailed multi-day itinerary for a landmark. This navigates the user directly to the itinerary generation page.")]
+	[Description("Start generating a detailed multi-day itinerary for a landmark. Supports specifying the number of days (1-7) and response language.")]
 	async Task<string> PlanTripAsync(
 		[Description("The name of the landmark to plan a trip to")] string landmarkName,
-		[Description("Number of days for the itinerary (1-7, default 3)")] int dayCount = 3)
+		[Description("Number of days for the itinerary (1-7, default 3)")] int dayCount = 3,
+		[Description("Language for the itinerary, e.g. 'English', 'Spanish', 'Japanese'. Default is English.")] string language = "English")
 	{
 		var landmark = await FindLandmarkByNameAsync(landmarkName);
 
@@ -218,8 +200,8 @@ public class ChatService
 			return $"Landmark '{landmarkName}' not found. Try searching with search_landmarks first.";
 
 		dayCount = Math.Clamp(dayCount, 1, 7);
-		MainThread.BeginInvokeOnMainThread(() => NavigateToTripRequested?.Invoke(landmark, dayCount));
-		return $"Navigating to trip planner for {landmark.Name}! A {dayCount}-day itinerary will be generated for you.";
+		MainThread.BeginInvokeOnMainThread(() => NavigateToTripRequested?.Invoke(landmark, dayCount, language));
+		return $"Navigating to trip planner for {landmark.Name}! A {dayCount}-day itinerary will be generated in {language}.";
 	}
 
 	async Task<Landmark?> FindLandmarkByNameAsync(string name)

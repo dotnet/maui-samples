@@ -36,14 +36,15 @@ public partial class LandmarksPage : ContentPage
 		base.OnDisappearing();
 	}
 
-	private async void OnNavigateToTrip(Landmark landmark, int dayCount)
+	private async void OnNavigateToTrip(Landmark landmark, int dayCount, string language)
 	{
 		await _chatOverlay.Hide();
 
 		var parameters = new Dictionary<string, object>
 		{
 			{ "Landmark", landmark },
-			{ "DayCount", dayCount }
+			{ "DayCount", dayCount },
+			{ "Language", language }
 		};
 		await Shell.Current.GoToAsync(nameof(ItineraryPage), parameters);
 	}
@@ -55,20 +56,6 @@ public partial class LandmarksPage : ContentPage
 			{ "Landmark", landmark }
 		};
 		await Shell.Current.GoToAsync(nameof(TripPlanningPage), parameters);
-	}
-
-	private async void OnLanguageButtonClicked(object? sender, EventArgs e)
-	{
-		string? action = await DisplayActionSheetAsync(
-			"Select Language for AI Responses",
-			"Cancel",
-			null,
-			_viewModel.AvailableLanguages);
-
-		if (!string.IsNullOrEmpty(action) && action != "Cancel")
-		{
-			_viewModel.SelectedLanguage = action;
-		}
 	}
 
 	private async void OnChatButtonClicked(object? sender, EventArgs e)

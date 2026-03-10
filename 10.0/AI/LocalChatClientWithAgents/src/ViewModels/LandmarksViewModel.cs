@@ -8,8 +8,7 @@ namespace LocalChatClientWithAgents.ViewModels;
 public record ContinentGroup(string Name, List<Landmark> Landmarks);
 
 public partial class LandmarksViewModel(
-	DataService dataService,
-	LanguagePreferenceService languagePreference) : ObservableObject
+	DataService dataService) : ObservableObject
 {
 	[ObservableProperty]
 	public partial Landmark? FeaturedLandmark { get; private set; }
@@ -26,24 +25,13 @@ public partial class LandmarksViewModel(
 	[ObservableProperty]
 	public partial string? EmbeddingStatusText { get; set; }
 
-	[ObservableProperty]
-	public partial string SelectedLanguage { get; set; } = "English";
-
-	public string[] AvailableLanguages => languagePreference.SupportedLanguages.Keys.ToArray();
-
 	public ObservableCollection<ContinentGroup> ContinentGroups => field ??= [];
-
-	partial void OnSelectedLanguageChanged(string value)
-	{
-		languagePreference.SelectedLanguage = value;
-	}
 
 	public async Task InitializeAsync()
 	{
 		if (IsLoading || ContinentGroups.Count > 0)
 			return;
 
-		SelectedLanguage = languagePreference.SelectedLanguage;
 		await LoadLandmarksAsync();
 		await WaitForEmbeddingsAsync();
 	}
