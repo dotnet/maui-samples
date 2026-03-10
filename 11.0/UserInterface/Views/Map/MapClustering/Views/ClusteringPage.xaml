@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:maps="http://schemas.microsoft.com/dotnet/2021/maui/maps"
+             xmlns:sensors="clr-namespace:Microsoft.Maui.Devices.Sensors;assembly=Microsoft.Maui.Essentials"
+             x:Class="MapClustering.Views.ClusteringPage"
+             Title="Pin clustering demo">
+    <Grid RowDefinitions="*,Auto">
+        <!-- #docregion clustering_xaml -->
+        <maps:Map x:Name="map"
+                  IsClusteringEnabled="True">
+            <x:Arguments>
+                <maps:MapSpan>
+                    <x:Arguments>
+                        <sensors:Location>
+                            <x:Arguments>
+                                <x:Double>47.6062</x:Double>
+                                <x:Double>-122.3321</x:Double>
+                            </x:Arguments>
+                        </sensors:Location>
+                        <x:Double>0.15</x:Double>
+                        <x:Double>0.15</x:Double>
+                    </x:Arguments>
+                </maps:MapSpan>
+            </x:Arguments>
+        </maps:Map>
+        <!-- #enddocregion clustering_xaml -->
+
+        <VerticalStackLayout Grid.Row="1" Padding="10" Spacing="5">
+            <Button Text="Add clustered pins"
+                    Clicked="OnAddPinsClicked" />
+            <Button Text="Toggle clustering"
+                    Clicked="OnToggleClusteringClicked" />
+            <Label x:Name="statusLabel"
+                   Text="Tap 'Add clustered pins' to populate the map."
+                   HorizontalOptions="Center" />
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>
