@@ -14,7 +14,9 @@ urlFragment: local-chat-client-with-tools
 
 A .NET MAUI sample showing how to enhance an on-device LLM with `Microsoft.Extensions.AI` function calling (tools) using Apple Intelligence. All inference runs locally — **no API keys, no cloud services, no cost**.
 
-![chat with tools image](images/chat-tool-prompts.png)
+| Prompt buttons | Weather tool | Calculator tool | Multi-tool calls |
+|:-:|:-:|:-:|:-:|
+| ![prompts](images/prompts.png) | ![weather](images/weather.png) | ![calculator](images/calculator.png) | ![multi-tool](images/multi_tool.png) |
 
 ## What you'll learn
 
