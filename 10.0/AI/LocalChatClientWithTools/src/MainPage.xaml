@@ -160,37 +160,36 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:ChatMessage">
                     <Grid>
+                        <!-- Inline tool-call divider (no bubble) -->
+                        <HorizontalStackLayout Spacing="6"
+                                               HorizontalOptions="Center"
+                                               Padding="0,2"
+                                               IsVisible="{Binding IsToolCall}">
+                            <BoxView HeightRequest="1" WidthRequest="40"
+                                     Color="#BDBDBD" VerticalOptions="Center"/>
+                            <Label Text="{Binding Text}"
+                                   TextColor="#9E9E9E"
+                                   FontSize="12"
+                                   VerticalOptions="Center"/>
+                            <BoxView HeightRequest="1" WidthRequest="40"
+                                     Color="#BDBDBD" VerticalOptions="Center"/>
+                        </HorizontalStackLayout>
+
                         <Border x:Name="Bubble"
                                 StrokeThickness="0"
                                 Padding="12"
                                 MaximumWidthRequest="520"
                                 Background="#F1F1F1"
                                 HorizontalOptions="Start"
-                                StrokeShape="RoundRectangle 14">
+                                StrokeShape="RoundRectangle 14"
+                                IsVisible="{Binding IsPlainText}">
 
                             <VerticalStackLayout Spacing="8">
                                 <!-- Regular text content -->
                                 <Label x:Name="MessageText"
                                        Text="{Binding Text}"
                                        TextColor="#222"
-                                       LineBreakMode="WordWrap"
-                                       IsVisible="{Binding IsPlainText}"/>
-
-                                <!-- Tool call indicator -->
-                                <Border Background="#ECEFF1"
-                                        Stroke="#90A4AE"
-                                        StrokeThickness="1"
-                                        StrokeShape="RoundRectangle 8"
-                                        Padding="10,8"
-                                        IsVisible="{Binding IsToolCall}">
-                                    <HorizontalStackLayout Spacing="8">
-                                        <Label Text="{Binding Text}"
-                                               TextColor="#546E7A"
-                                               FontSize="13"
-                                               VerticalOptions="Center"
-                                               LineBreakMode="WordWrap"/>
-                                    </HorizontalStackLayout>
-                                </Border>
+                                       LineBreakMode="WordWrap"/>
 
                                 <!-- Weather result display -->
                                 <Border Background="#E3F2FD"
