@@ -26,6 +26,7 @@ public partial class DataService
 	private List<PointOfInterest>? _pointsOfInterest;
 
 	private Dictionary<string, List<Landmark>>? _landmarksByContinent;
+	private Dictionary<string, Embedding<float>>? _continentEmbeddings;
 	private Dictionary<int, Landmark>? _landmarksById;
 	private Landmark? _featuredLandmark;
 
@@ -63,6 +64,38 @@ public partial class DataService
 	{
 		await _initializationTask;
 		return _landmarksByContinent ?? [];
+	}
+
+	/// <summary>
+	/// Finds the best matching continent name using embedding similarity.
+	/// </summary>
+	public async Task<string?> FindContinentAsync(string query)
+	{
+		await _initializationTask;
+		if (_embeddingsTask is not null)
+			await _embeddingsTask;
+
+		if (_continentEmbeddings is null || _continentEmbeddings.Count == 0)
+			return null;
+
+		var queryEmbedding = await _generator.GenerateAsync(query.ToLowerInvariant());
+
+		string? bestMatch = null;
+		var bestScore = -1f;
+
+		foreach (var (continent, embedding) in _continentEmbeddings)
+		{
+			var score = TensorPrimitives.CosineSimilarity(
+				queryEmbedding.Vector.Span, embedding.Vector.Span);
+
+			if (score > bestScore)
+			{
+				bestScore = score;
+				bestMatch = continent;
+			}
+		}
+
+		return bestMatch;
 	}
 
 	public async Task<Landmark?> GetFeaturedLandmarkAsync()
@@ -166,6 +199,16 @@ public partial class DataService
 			}
 
 			_logger.LogInformation("Successfully generated embeddings for {LandmarkCount} landmarks and {POICount} points of interest.", _landmarks?.Count ?? 0, _pointsOfInterest?.Count ?? 0);
+
+			if (_landmarksByContinent is not null)
+			{
+				_continentEmbeddings = [];
+				foreach (var continent in _landmarksByContinent.Keys)
+				{
+					_continentEmbeddings[continent] = await _generator.GenerateAsync(continent.ToLowerInvariant());
+				}
+				_logger.LogInformation("Generated embeddings for {Count} continents.", _continentEmbeddings.Count);
+			}
 		}
 		catch (Exception ex)
 		{

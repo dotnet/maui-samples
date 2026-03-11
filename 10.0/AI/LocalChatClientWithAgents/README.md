@@ -14,7 +14,9 @@ urlFragment: local-chat-client-with-agents
 
 A .NET MAUI sample that demonstrates a multi-agent AI Travel Planner powered entirely by on-device Apple Intelligence. It uses the Microsoft Agent Framework to orchestrate a pipeline of specialized agents — from parsing user intent, to RAG-based destination matching, to streaming itinerary generation with tool calling, to conditional translation — all running locally on iOS and macCatalyst.
 
-<!-- ![travel planner](images/travel_planner.png) -->
+| Landmarks | Trip Planning | Itinerary | Chat |
+|:-:|:-:|:-:|:-:|
+| ![landmarks](images/landmarks.png) | ![trip planning](images/trip_planning.png) | ![itinerary](images/itinerary.png) | ![chat](images/chat.png) |
 
 ## What you'll learn
 
@@ -48,16 +50,27 @@ User Input → [Travel Planner] → [Researcher] → [Itinerary Planner] → [Tr
 | **Itinerary Planner** | Generates a multi-day itinerary with real places | Tool calling + streaming JSON |
 | **Translator** | Translates the itinerary if a non-English language was requested | Conditional routing |
 
-## How it's wired
+## Key files
 
-- `MauiProgram.cs`: Registers Apple Intelligence as `IChatClient` (keyed as `local-model` and `cloud-model`), plus `NLEmbeddingGenerator` for embeddings. Throws `PlatformNotSupportedException` on non-Apple platforms.
-- `AI/ItineraryWorkflowExtensions.cs`: Configures the 4-agent workflow graph with conditional branching for translation.
-- `AI/ItineraryWorkflowTools.cs`: Provides RAG search and `findPointsOfInterest` tool for the agents.
-- `Services/ItineraryService.cs`: Orchestrates streaming itinerary generation with progressive JSON deserialization.
-- `Services/DataService.cs`: Manages a local landmark database with semantic embedding search.
-- `Pages/LandmarksPage.xaml`: Browse world landmarks with semantic search.
-- `Pages/TripPlanningPage.xaml`: Configure trip duration and language for a selected landmark.
-- `Pages/ItineraryPage.xaml`: Stream and display an AI-generated multi-day itinerary.
+- `MauiProgram.cs` — Registers Apple Intelligence as `IChatClient` (keyed as `local-model` and `cloud-model`), plus `NLEmbeddingGenerator` for embeddings. Throws `PlatformNotSupportedException` on non-Apple platforms.
+- `AI/ItineraryWorkflowExtensions.cs` — Configures the 4-agent workflow graph with conditional branching for translation.
+- `AI/ItineraryWorkflowTools.cs` — Provides RAG search and `findPointsOfInterest` tool for the agents.
+- `Services/ItineraryService.cs` — Orchestrates streaming itinerary generation with progressive JSON deserialization.
+- `Services/DataService.cs` — Manages a local landmark database with semantic embedding search.
+- `Services/ChatService.cs` — Chat assistant with tool calling for landmark search, trip planning, and weather.
+- `Pages/LandmarksPage.xaml` — Browse world landmarks with semantic search.
+- `Pages/TripPlanningPage.xaml` — Configure trip duration and language for a selected landmark.
+- `Pages/ItineraryPage.xaml` — Stream and display an AI-generated multi-day itinerary.
+
+## Sample prompts
+
+Try these in the 💬 chat:
+
+- "Show me landmarks in Oceania"
+- "Plan a 3-day trip to the Grand Canyon"
+- "What can I do in Maui?"
+- "Search for desert landmarks"
+- "Plan a trip to Mount Fuji in Japanese"
 
 ## Run
 

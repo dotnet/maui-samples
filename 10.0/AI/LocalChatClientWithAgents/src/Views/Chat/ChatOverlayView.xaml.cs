@@ -13,10 +13,18 @@ public partial class ChatOverlayView : ContentView
 		SizeChanged += (s, e) =>
 		{
 			if (Width > 0)
-				ChatPanel.WidthRequest = Math.Min(Width - 16, 500);
+				ChatPanel.WidthRequest = Math.Min(Width * 0.90, 500);
 			if (Height > 0)
-				ChatPanel.HeightRequest = Math.Min(Height - 16, 800);
+				ChatPanel.HeightRequest = Height * 0.80;
 		};
+
+#if IOS || MACCATALYST
+		MessageEntry.Loaded += (s, e) =>
+		{
+			if (MessageEntry.Handler?.PlatformView is UIKit.UITextField textField)
+				textField.InputAccessoryView = null;
+		};
+#endif
 	}
 
 	public void Initialize(ChatViewModel viewModel)

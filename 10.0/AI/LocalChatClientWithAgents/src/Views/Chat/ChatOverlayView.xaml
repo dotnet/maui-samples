@@ -137,7 +137,7 @@
             ToolResultTemplate="{StaticResource ToolResultBubbleTemplate}" />
     </ContentView.Resources>
 
-    <Grid x:Name="RootGrid">
+    <Grid x:Name="RootGrid" SafeAreaEdges="None">
 
         <!-- Semi-transparent backdrop -->
         <BoxView
@@ -150,26 +150,27 @@
             </BoxView.GestureRecognizers>
         </BoxView>
 
-        <!-- Chat panel: sized via code-behind SizeChanged (MAUI centers MaxWidth-capped elements,
-             so pure XAML can't do right-aligned + max-capped + responsive) -->
-        <Border
-            x:Name="ChatPanel"
-            AutomationId="ChatPanel"
-            InputTransparent="False"
-            VerticalOptions="End"
-            HorizontalOptions="End"
-            Margin="8"
-            StrokeShape="RoundRectangle 20"
-            StrokeThickness="0"
-            Background="{AppThemeBinding Light=White, Dark=#1F1F1F}"
-            Shadow="{Shadow Brush=Black, Offset='0,-4', Radius=16, Opacity=0.3}"
-            TranslationY="800">
+        <!-- Safe area + keyboard-aware wrapper -->
+        <Grid SafeAreaEdges="SoftInput, Container" InputTransparent="True" CascadeInputTransparent="False">
+            <Border
+                x:Name="ChatPanel"
+                AutomationId="ChatPanel"
+                InputTransparent="False"
+                VerticalOptions="End"
+                HorizontalOptions="End"
+                Margin="8"
+                StrokeShape="RoundRectangle 20"
+                StrokeThickness="0"
+                Background="{AppThemeBinding Light=White, Dark=#1F1F1F}"
+                Shadow="{Shadow Brush=Black, Offset='0,-4', Radius=16, Opacity=0.3}"
+                TranslationY="800">
 
             <Grid RowDefinitions="Auto,*,Auto" Padding="0">
                 <!-- Header -->
                 <Border
                     Grid.Row="0"
                     StrokeThickness="0"
+                    StrokeShape="RoundRectangle 20,20,0,0"
                     Background="{AppThemeBinding Light=#F8F8F8, Dark=#2D2D2D}"
                     Padding="16,12">
                     <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="4">
@@ -218,6 +219,7 @@
                 <Border
                     Grid.Row="2"
                     StrokeThickness="0"
+                    StrokeShape="RoundRectangle 0,0,20,20"
                     Background="{AppThemeBinding Light=#F8F8F8, Dark=#2D2D2D}"
                     Padding="12,8">
                     <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
@@ -245,6 +247,7 @@
                     </Grid>
                 </Border>
             </Grid>
-        </Border>
+            </Border>
+        </Grid>
     </Grid>
 </ContentView>

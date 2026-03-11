@@ -97,8 +97,8 @@ public class ChatService
 	{
 		var groups = await _dataService.GetLandmarksByContinentAsync();
 
-		var match = groups.Keys.FirstOrDefault(k =>
-			k.Contains(continent, StringComparison.OrdinalIgnoreCase));
+		// Use embedding similarity to find the best matching continent
+		var match = await _dataService.FindContinentAsync(continent);
 
 		if (match is null || !groups.TryGetValue(match, out var landmarks))
 			return $"No landmarks found for continent '{continent}'. Available: {string.Join(", ", groups.Keys)}";
