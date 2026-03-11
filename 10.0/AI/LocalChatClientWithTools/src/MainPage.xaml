@@ -177,11 +177,20 @@
                                        IsVisible="{Binding IsPlainText}"/>
 
                                 <!-- Tool call indicator -->
-                                <Label Text="{Binding Text}"
-                                       TextColor="#666"
-                                       FontAttributes="Italic"
-                                       LineBreakMode="WordWrap"
-                                       IsVisible="{Binding IsToolCall}"/>
+                                <Border Background="#ECEFF1"
+                                        Stroke="#90A4AE"
+                                        StrokeThickness="1"
+                                        StrokeShape="RoundRectangle 8"
+                                        Padding="10,8"
+                                        IsVisible="{Binding IsToolCall}">
+                                    <HorizontalStackLayout Spacing="8">
+                                        <Label Text="{Binding Text}"
+                                               TextColor="#546E7A"
+                                               FontSize="13"
+                                               VerticalOptions="Center"
+                                               LineBreakMode="WordWrap"/>
+                                    </HorizontalStackLayout>
+                                </Border>
 
                                 <!-- Weather result display -->
                                 <Border Background="#E3F2FD"

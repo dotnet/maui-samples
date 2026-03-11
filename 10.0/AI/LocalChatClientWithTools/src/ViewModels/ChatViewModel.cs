@@ -1,4 +1,6 @@
 using System.Collections.ObjectModel;
+using System.Text;
+using System.Text.Json;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using LocalChatClientWithTools.Models;
@@ -42,74 +44,63 @@ public partial class ChatViewModel : ObservableObject
 
         try
         {
-            // Add the user's message
-            var userMessage = new UiChatMessage
+            Messages.Add(new UiChatMessage
             {
                 From = Sender.User,
                 Text = text,
                 Type = MessageType.Text
-            };
-            Messages.Add(userMessage);
-
-
-            // Clear input
+            });
             InputText = string.Empty;
 
-            // Add a placeholder assistant message 
-            var placeholder = new UiChatMessage
+            // Streaming placeholder — always the last message in the collection.
+            // Tool-call indicators are inserted *before* it so the index stays valid.
+            Messages.Add(new UiChatMessage
             {
                 From = Sender.Assistant,
-                Text = "🤔 Thinking...",
+                Text = "⏳",
                 Type = MessageType.Text
+            });
+
+            var chatOptions = new ChatOptions
+            {
+                Tools = WrapToolsWithNotifications(await GetAvailableToolsAsync())
             };
-            Messages.Add(placeholder);
-            var placeholderIndex = Messages.IndexOf(placeholder);
 
-            // Call AI and update the placeholder with assistant response
-            try
+            var textBuilder = new StringBuilder();
+
+            await foreach (var update in _chatClient.GetStreamingResponseAsync(text, chatOptions))
             {
-                // Include tools in the chat options
-                var chatOptions = new ChatOptions
+                if (string.IsNullOrEmpty(update.Text))
+                    continue;
+
+                textBuilder.Append(update.Text);
+                Messages[^1] = new UiChatMessage
                 {
-                    Tools = await GetAvailableToolsAsync()
+                    From = Sender.Assistant,
+                    Text = textBuilder.ToString(),
+                    Type = MessageType.Text
                 };
-
-                var response = await _chatClient.GetResponseAsync(text, chatOptions);
-                var reply = response?.Messages?.LastOrDefault()?.Text ?? "(no response)";
-
-                if (placeholderIndex >= 0 && placeholderIndex < Messages.Count)
-                {
-                    Messages[placeholderIndex] = new UiChatMessage { From = Sender.Assistant, Text = reply };
-                }
-                else
-                {
-                    Messages.Add(new UiChatMessage { From = Sender.Assistant, Text = reply });
-                }
             }
-            catch (Exception ex)
+
+            if (textBuilder.Length == 0)
             {
-                _logger.LogError(ex, "Error during chat completion");
-                var errorMessage = $"❌ Error: {ex.Message}";
-
-                if (placeholderIndex >= 0 && placeholderIndex < Messages.Count)
+                Messages[^1] = new UiChatMessage
                 {
-                    Messages[placeholderIndex] = new UiChatMessage
-                    {
-                        From = Sender.Assistant,
-                        Text = errorMessage,
-                        IsError = true
-                    };
-                }
-                else
-                {
-                    Messages.Add(new UiChatMessage
-                    {
-                        From = Sender.Assistant,
-                        Text = errorMessage,
-                        IsError = true
-                    });
-                }
+                    From = Sender.Assistant,
+                    Text = "(no response)",
+                    Type = MessageType.Text
+                };
             }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error during chat completion");
+            Messages.Add(new UiChatMessage
+            {
+                From = Sender.Assistant,
+                Text = $"❌ Error: {ex.Message}",
+                IsError = true
+            });
         }
         finally
         {
@@ -136,13 +127,72 @@ public partial class ChatViewModel : ObservableObject
         Messages.Clear();
     }
 
+    // ── Tool observability ───────────────────────────────────────────
+
+    private IList<AITool> WrapToolsWithNotifications(IList<AITool> tools)
+    {
+        return tools.Select(t => t is AIFunction fn
+            ? (AITool)new ObservableAIFunction(fn, OnToolInvoking, OnToolInvoked)
+            : t).ToList();
+    }
+
+    private void OnToolInvoking(string toolName)
+    {
+        MainThread.BeginInvokeOnMainThread(() =>
+        {
+            // Insert the tool-call indicator *before* the streaming placeholder
+            // so the placeholder remains the last item in the collection.
+            var insertIndex = Math.Max(0, Messages.Count - 1);
+            Messages.Insert(insertIndex, new UiChatMessage
+            {
+                From = Sender.Assistant,
+                Text = $"🔧 Calling {FormatToolName(toolName)}…",
+                Type = MessageType.ToolCall,
+                ToolName = toolName
+            });
+        });
+    }
+
+    private void OnToolInvoked(string toolName)
+    {
+        MainThread.BeginInvokeOnMainThread(() =>
+        {
+            for (int i = Messages.Count - 1; i >= 0; i--)
+            {
+                if (Messages[i].IsToolCall && Messages[i].ToolName == toolName
+                    && Messages[i].Text.StartsWith("🔧"))
+                {
+                    Messages[i] = new UiChatMessage
+                    {
+                        From = Sender.Assistant,
+                        Text = $"✅ {FormatToolName(toolName)} completed",
+                        Type = MessageType.ToolCall,
+                        ToolName = toolName
+                    };
+                    break;
+                }
+            }
+        });
+    }
+
+    private static string FormatToolName(string name) => name switch
+    {
+        "get_weather" => "Weather",
+        "calculate" => "Calculator",
+        "list_files" => "File Operations",
+        "get_system_info" => "System Info",
+        "set_timer" => "Timer",
+        _ => name
+    };
+
+    // ── Helpers ──────────────────────────────────────────────────────
+
     private Task<IList<AITool>> GetAvailableToolsAsync()
     {
         var tools = new List<AITool>();
 
         try
         {
-            // Get all registered tools from DI
             tools.Add(_serviceProvider.GetRequiredService<CalculatorTool>());
             tools.Add(_serviceProvider.GetRequiredService<WeatherTool>());
             tools.Add(_serviceProvider.GetRequiredService<FileOperationsTool>());
@@ -160,4 +210,43 @@ public partial class ChatViewModel : ObservableObject
     }
 
     private bool CanSend() => !string.IsNullOrWhiteSpace(InputText) && !IsProcessing;
+
+    // ── Observable tool wrapper ──────────────────────────────────────
+
+    /// <summary>
+    /// Wraps an <see cref="AIFunction"/> to fire callbacks when the tool is
+    /// invoked, giving the UI a chance to show real-time tool-call status.
+    /// </summary>
+    private sealed class ObservableAIFunction : AIFunction
+    {
+        private readonly AIFunction _inner;
+        private readonly Action<string> _onInvoking;
+        private readonly Action<string> _onInvoked;
+
+        public ObservableAIFunction(AIFunction inner, Action<string> onInvoking, Action<string> onInvoked)
+        {
+            _inner = inner;
+            _onInvoking = onInvoking;
+            _onInvoked = onInvoked;
+        }
+
+        public override string Name => _inner.Name;
+        public override string Description => _inner.Description;
+        public override JsonElement JsonSchema => _inner.JsonSchema;
+
+        protected override async ValueTask<object?> InvokeCoreAsync(
+            AIFunctionArguments arguments,
+            CancellationToken cancellationToken)
+        {
+            _onInvoking(_inner.Name);
+            try
+            {
+                return await _inner.InvokeAsync(arguments, cancellationToken);
+            }
+            finally
+            {
+                _onInvoked(_inner.Name);
+            }
+        }
+    }
 }
