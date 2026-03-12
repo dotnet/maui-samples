@@ -63,7 +63,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.AI" Version="10.3.0" />
-		<PackageReference Include="Microsoft.Maui.Essentials.AI" Version="10.0.50-preview.1.26161.6" />
+		<PackageReference Include="Microsoft.Maui.Essentials.AI" Version="10.0.50-preview.1.26158.1" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.0" />
