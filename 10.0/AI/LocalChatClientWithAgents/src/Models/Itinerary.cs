@@ -18,7 +18,7 @@ public record Itinerary
 	public required string Rationale { get; init; }
 
 	[Description("A list of day-by-day plans.")]
-	[Length(1, 7)]
+	[Length(3, 3)]
 	public required List<DayPlan> Days { get; init; }
 
 	public static Itinerary GetExampleTripToJapan() =>

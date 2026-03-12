@@ -43,7 +43,7 @@
     <PackageReference Include="Microsoft.Extensions.Http" Version="10.0.0" />
 
     <!-- Apple Intelligence (on-device AI) -->
-    <PackageReference Include="Microsoft.Maui.Essentials.AI" Version="10.0.50-preview.1.26161.6" />
+    <PackageReference Include="Microsoft.Maui.Essentials.AI" Version="10.0.50-preview.1.26158.1" />
 
     <!-- Maps -->
     <PackageReference Include="Microsoft.Maui.Controls.Maps" Version="10.0.0-*" />
