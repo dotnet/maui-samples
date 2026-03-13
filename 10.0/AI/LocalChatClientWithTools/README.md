@@ -79,14 +79,6 @@ Use a sample prompt or type your own. Use the toolbar **Clear** to reset and rev
 
 > **Note:** This sample only runs on Apple platforms (iOS / macCatalyst) with Apple Intelligence. Other platforms will throw `PlatformNotSupportedException` at startup.
 
-## NuGet feed configuration
-
-This sample requires the .NET 10 preview NuGet feed for `Microsoft.Maui.Essentials.AI`. The included `NuGet.config` adds:
-
-```
-https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet10/nuget/v3/index.json
-```
-
 ## Architecture highlights
 
 ### Tool invocation flow
@@ -127,7 +119,7 @@ This sample is a local-only variant of the `ChatClientWithTools` sample. The key
 - Requires iOS 26.0+ or macCatalyst 26.0+ with Apple Intelligence available and enabled.
 - All AI inference runs on-device — no data leaves the device for LLM processing.
 - Weather data comes from [open-meteo.com](https://open-meteo.com) (free, open-source weather API).
-- Timers are in-memory only (lost on app exit) and currently surface completion via console log.
+- Timers are in-memory only (lost on app exit) and surface completion via a `DisplayAlertAsync` dialog.
 - File operations are intentionally conservative; expand with care for security.
 - This sample emphasizes pedagogy over exhaustive production hardening.
 

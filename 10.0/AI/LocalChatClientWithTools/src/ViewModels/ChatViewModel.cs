@@ -14,6 +14,10 @@ public partial class ChatViewModel(
     IEnumerable<AIFunction> tools,
     ILogger<ChatViewModel> logger) : ObservableObject
 {
+    // Conversation history for multi-turn context — the AI sees all prior
+    // messages, tool calls, and tool results when generating each response.
+    private readonly List<ChatMessage> _conversationHistory = [];
+
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(SendCommand))]
     private string _inputText = string.Empty;
@@ -37,6 +41,9 @@ public partial class ChatViewModel(
             Messages.Add(new TextMessageViewModel { IsUser = true, Text = text });
             InputText = string.Empty;
 
+            // Add user message to conversation history for multi-turn context.
+            _conversationHistory.Add(new ChatMessage(ChatRole.User, text));
+
             // Streaming placeholder — always the last message in the collection.
             Messages.Add(new TextMessageViewModel { Text = "⏳" });
 
@@ -46,17 +53,48 @@ public partial class ChatViewModel(
             };
 
             var textBuilder = new StringBuilder();
+            ChatMessage? currentTextMessage = null;
+            var seenCallIds = new HashSet<string>();
 
-            await foreach (var update in chatClient.GetStreamingResponseAsync(text, chatOptions))
+            await foreach (var update in chatClient.GetStreamingResponseAsync(_conversationHistory, chatOptions))
             {
-                if (string.IsNullOrEmpty(update.Text))
-                    continue;
-
-                textBuilder.Append(update.Text);
-                Messages[^1] = new TextMessageViewModel
+                foreach (var content in update.Contents)
                 {
-                    Text = textBuilder.ToString()
-                };
+                    switch (content)
+                    {
+                        case TextContent textContent when !string.IsNullOrEmpty(textContent.Text):
+                            // Accumulate text deltas into one assistant message in history.
+                            if (currentTextMessage is null)
+                            {
+                                currentTextMessage = new ChatMessage(ChatRole.Assistant, [textContent]);
+                                _conversationHistory.Add(currentTextMessage);
+                            }
+                            else
+                            {
+                                currentTextMessage.Contents.Add(textContent);
+                            }
+
+                            textBuilder.Append(textContent.Text);
+                            Messages[^1] = new TextMessageViewModel
+                            {
+                                Text = textBuilder.ToString()
+                            };
+                            break;
+
+                        case FunctionCallContent functionCall:
+                            if (!seenCallIds.Add($"call:{functionCall.CallId}"))
+                                break;
+                            _conversationHistory.Add(new ChatMessage(ChatRole.Assistant, [functionCall]));
+                            currentTextMessage = null;
+                            break;
+
+                        case FunctionResultContent functionResult:
+                            if (!seenCallIds.Add($"result:{functionResult.CallId}"))
+                                break;
+                            _conversationHistory.Add(new ChatMessage(ChatRole.Tool, [functionResult]));
+                            break;
+                    }
+                }
             }
 
             if (textBuilder.Length == 0)
@@ -90,7 +128,11 @@ public partial class ChatViewModel(
     }
 
     [RelayCommand]
-    private void ClearChat() => Messages.Clear();
+    private void ClearChat()
+    {
+        Messages.Clear();
+        _conversationHistory.Clear();
+    }
 
     // ── Tool observability ───────────────────────────────────────────
 
