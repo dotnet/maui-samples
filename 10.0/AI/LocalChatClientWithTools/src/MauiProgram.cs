@@ -27,7 +27,7 @@ public static class MauiProgram
 		builder.Services.AddSingleton<MainPage>();
 
         // Register tool services
-        builder.Services.AddSingleton<HttpClient>();
+        builder.Services.AddHttpClient();
         builder.Services.AddSingleton<CalculatorTool>();
         builder.Services.AddSingleton<WeatherTool>();
         builder.Services.AddSingleton<FileOperationsTool>();

@@ -5,7 +5,7 @@ using Microsoft.Extensions.AI;
 
 namespace LocalChatClientWithTools.Services.Tools;
 
-public partial class WeatherTool(HttpClient httpClient)
+public partial class WeatherTool(IHttpClientFactory httpClientFactory)
 {
     public static AIFunction CreateAIFunction(IServiceProvider services)
         => AIFunctionFactory.Create(
@@ -24,6 +24,8 @@ public partial class WeatherTool(HttpClient httpClient)
 
         try
         {
+            using var httpClient = httpClientFactory.CreateClient();
+
             var geoUrl = $"https://geocoding-api.open-meteo.com/v1/search?name={Uri.EscapeDataString(location)}&count=1";
             using var geoResponse = await httpClient.GetAsync(geoUrl, cancellationToken);
             geoResponse.EnsureSuccessStatusCode();
