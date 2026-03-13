@@ -29,7 +29,7 @@ A .NET MAUI sample showing how to enhance an on-device LLM with `Microsoft.Exten
 
 ## Prerequisites
 
-- .NET 10 SDK (preview)
+- .NET 10 SDK
 - iOS 26.0+ or macCatalyst 26.0+ device/simulator with Apple Intelligence enabled
 - No API keys or cloud accounts needed
 

@@ -9,9 +9,6 @@
         <!-- When App Sandbox is enabled, this value is required to open outgoing network connections. -->
         <key>com.apple.security.network.client</key>
         <true/>
-        <!-- Allow incoming network connections (needed for MauiDevFlow agent in Debug) -->
-        <key>com.apple.security.network.server</key>
-        <true/>
     </dict>
 </plist>
 

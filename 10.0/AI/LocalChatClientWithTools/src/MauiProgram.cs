@@ -5,10 +5,6 @@ using LocalChatClientWithTools.Services.Tools;
 using Fonts;
 using Syncfusion.Maui.Toolkit.Hosting;
 
-#if DEBUG
-using MauiDevFlow.Agent;
-#endif
-
 namespace LocalChatClientWithTools;
 
 public static class MauiProgram
@@ -65,7 +61,6 @@ public static class MauiProgram
 
 #if DEBUG
 		builder.Logging.AddDebug();
-		builder.AddMauiDevFlowAgent();
 #endif
 
 		return builder.Build();

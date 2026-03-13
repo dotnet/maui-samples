@@ -18,10 +18,11 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 
+		<NoWarn>$(NoWarn);MAUIAI0001</NoWarn>
+
 		<!-- Enable implicit + global XAML xmlns for .NET 10 previews -->
 		<DefineConstants>$(DefineConstants);MauiAllowImplicitXmlnsDeclaration</DefineConstants>
 		<EnablePreviewFeatures>true</EnablePreviewFeatures>
-		<NoWarn>$(NoWarn);MAUIAI0001</NoWarn>
 
 		<!-- Display name -->
 		<ApplicationTitle>LocalChatClientWithTools</ApplicationTitle>
@@ -65,16 +66,10 @@
 		<PackageReference Include="Microsoft.Extensions.AI" Version="10.3.0" />
 		<PackageReference Include="Microsoft.Maui.Essentials.AI" Version="10.0.50-preview.1.26158.1" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
-		<PackageReference Include="Microsoft.Maui.Controls" Version="10.0.31" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.0" />
 		<PackageReference Include="Syncfusion.Maui.Toolkit" Version="1.0.6" />
 		<PackageReference Include="Microsoft.Extensions.Http" Version="10.0.0" />
-		<PackageReference Include="Redth.MauiDevFlow.Agent" Version="*" Condition="'$(Configuration)' == 'Debug'" />
 	</ItemGroup>
-
-	<!-- Allow version range for MauiDevFlow transitive dependencies -->
-	<PropertyGroup>
-		<NoWarn>$(NoWarn);NU1605</NoWarn>
-	</PropertyGroup>
 
 </Project>
