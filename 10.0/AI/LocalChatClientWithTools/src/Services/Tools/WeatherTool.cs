@@ -1,71 +1,44 @@
-using Microsoft.Extensions.AI;
+using System.ComponentModel;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using LocalChatClientWithTools.Models;
+using Microsoft.Extensions.AI;
 
 namespace LocalChatClientWithTools.Services.Tools;
 
-public class WeatherTool : AIFunction
+public partial class WeatherTool(HttpClient httpClient)
 {
-    private readonly HttpClient _httpClient;
+    public static AIFunction CreateAIFunction(IServiceProvider services)
+        => AIFunctionFactory.Create(
+            services.GetRequiredService<WeatherTool>().GetWeatherAsync,
+            name: "get_weather",
+            serializerOptions: ToolJsonContext.Default.Options);
 
-    public WeatherTool(HttpClient httpClient)
+    [Description("Gets current weather information for a specified location using the free open-meteo.com API (no API key required)")]
+    public async Task<WeatherResult> GetWeatherAsync(
+        [Description("The city or location to get weather for (e.g., 'Seattle', 'Cape Town')")] string location,
+        [Description("Temperature units")] TemperatureUnit units = TemperatureUnit.Fahrenheit,
+        CancellationToken cancellationToken = default)
     {
-        _httpClient = httpClient;
-    }
-
-    public override string Name => "get_weather";
-    public override string Description => "Gets current weather information for a specified location using the free open-meteo.com API (no API key required)";
-
-    public override JsonElement JsonSchema => JsonSerializer.SerializeToElement(new
-    {
-        type = "object",
-        properties = new
-        {
-            location = new
-            {
-                type = "string",
-                description = "The city or location to get weather for (e.g., 'Seattle', 'London, UK')"
-            },
-            units = new
-            {
-                type = "string",
-                description = "Temperature units: fahrenheit or celsius",
-                @enum = new[] { "fahrenheit", "celsius" },
-                @default = "fahrenheit"
-            }
-        },
-        required = new[] { "location" }
-    });
-
-    protected override async ValueTask<object?> InvokeCoreAsync(AIFunctionArguments arguments, CancellationToken cancellationToken)
-    {
-        var locationQuery = GetStringArgument(arguments, "location");
-        var units = GetStringArgument(arguments, "units", "fahrenheit").ToLowerInvariant();
-
-        if (string.IsNullOrWhiteSpace(locationQuery))
-        {
+        if (string.IsNullOrWhiteSpace(location))
             throw new ArgumentException("Location cannot be empty");
-        }
 
         try
         {
-            // 1. Geocode using open-meteo geocoding API (free, no key)
-            var geoUrl = $"https://geocoding-api.open-meteo.com/v1/search?name={Uri.EscapeDataString(locationQuery)}&count=1";
-            using var geoResponse = await _httpClient.GetAsync(geoUrl, cancellationToken);
+            var geoUrl = $"https://geocoding-api.open-meteo.com/v1/search?name={Uri.EscapeDataString(location)}&count=1";
+            using var geoResponse = await httpClient.GetAsync(geoUrl, cancellationToken);
             geoResponse.EnsureSuccessStatusCode();
 
             var geoJson = await geoResponse.Content.ReadAsStringAsync(cancellationToken);
-            var geoData = JsonSerializer.Deserialize<GeocodingResponse>(geoJson);
-            var location = geoData?.Results?.FirstOrDefault();
+            var geoData = JsonSerializer.Deserialize(geoJson, WeatherApiJsonContext.Default.GeocodingResponse);
+            var geoResult = geoData?.Results?.FirstOrDefault();
 
-            if (location is null)
+            if (geoResult is null)
             {
                 return new WeatherResult
                 {
-                    Location = locationQuery,
+                    Location = location,
                     Temperature = 0,
-                    TemperatureUnit = units == "celsius" ? "°C" : "°F",
+                    TemperatureUnit = units == TemperatureUnit.Celsius ? "°C" : "°F",
                     Description = "Location not found",
                     Condition = "Unknown",
                     Humidity = 0,
@@ -74,27 +47,26 @@ public class WeatherTool : AIFunction
                 };
             }
 
-            // 2. Fetch current weather from open-meteo forecast API (free, no key)
-            var tempUnit = units == "celsius" ? "celsius" : "fahrenheit";
-            var windUnit = units == "celsius" ? "kmh" : "mph";
-            var weatherUrl = $"https://api.open-meteo.com/v1/forecast?latitude={location.Latitude:F4}&longitude={location.Longitude:F4}" +
+            var tempUnit = units == TemperatureUnit.Celsius ? "celsius" : "fahrenheit";
+            var windUnit = units == TemperatureUnit.Celsius ? "kmh" : "mph";
+            var weatherUrl = $"https://api.open-meteo.com/v1/forecast?latitude={geoResult.Latitude:F4}&longitude={geoResult.Longitude:F4}" +
                 $"&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m" +
                 $"&temperature_unit={tempUnit}&wind_speed_unit={windUnit}";
 
-            using var weatherResponse = await _httpClient.GetAsync(weatherUrl, cancellationToken);
+            using var weatherResponse = await httpClient.GetAsync(weatherUrl, cancellationToken);
             weatherResponse.EnsureSuccessStatusCode();
 
             var weatherJson = await weatherResponse.Content.ReadAsStringAsync(cancellationToken);
-            var weatherData = JsonSerializer.Deserialize<OpenMeteoResponse>(weatherJson);
+            var weatherData = JsonSerializer.Deserialize(weatherJson, WeatherApiJsonContext.Default.OpenMeteoResponse);
             var current = weatherData?.Current;
 
             if (current is null)
             {
                 return new WeatherResult
                 {
-                    Location = FormatLocation(location),
+                    Location = FormatLocation(geoResult),
                     Temperature = 0,
-                    TemperatureUnit = units == "celsius" ? "°C" : "°F",
+                    TemperatureUnit = units == TemperatureUnit.Celsius ? "°C" : "°F",
                     Description = "Weather data unavailable",
                     Condition = "Unknown",
                     Humidity = 0,
@@ -103,12 +75,12 @@ public class WeatherTool : AIFunction
                 };
             }
 
-            var unitSymbol = units == "celsius" ? "°C" : "°F";
+            var unitSymbol = units == TemperatureUnit.Celsius ? "°C" : "°F";
             var (condition, description, icon) = GetWeatherInfo(current.WeatherCode);
 
             return new WeatherResult
             {
-                Location = FormatLocation(location),
+                Location = FormatLocation(geoResult),
                 Temperature = Math.Round(current.Temperature, 1),
                 TemperatureUnit = unitSymbol,
                 Description = description,
@@ -122,9 +94,9 @@ public class WeatherTool : AIFunction
         {
             return new WeatherResult
             {
-                Location = $"{locationQuery} (error: {ex.Message})",
+                Location = $"{location} (error: {ex.Message})",
                 Temperature = 0,
-                TemperatureUnit = units == "celsius" ? "°C" : "°F",
+                TemperatureUnit = units == TemperatureUnit.Celsius ? "°C" : "°F",
                 Description = "Weather fetch failed",
                 Condition = "Unknown",
                 Humidity = 0,
@@ -132,11 +104,6 @@ public class WeatherTool : AIFunction
                 Icon = "⚠️"
             };
         }
-    }
-
-    private static string GetStringArgument(AIFunctionArguments arguments, string name, string defaultValue = "")
-    {
-        return arguments.TryGetValue(name, out var value) ? value?.ToString() ?? defaultValue : defaultValue;
     }
 
     private static string FormatLocation(GeocodingResult location)
@@ -171,7 +138,26 @@ public class WeatherTool : AIFunction
         };
     }
 
-    // open-meteo API response models
+    [JsonConverter(typeof(JsonStringEnumConverter<TemperatureUnit>))]
+    public enum TemperatureUnit
+    {
+        Fahrenheit,
+        Celsius
+    }
+
+    public record WeatherResult
+    {
+        public required string Location { get; init; }
+        public required double Temperature { get; init; }
+        public required string TemperatureUnit { get; init; }
+        public required string Description { get; init; }
+        public required string Condition { get; init; }
+        public required double Humidity { get; init; }
+        public required double WindSpeed { get; init; }
+        public string? Icon { get; init; }
+    }
+
+    // open-meteo API response models (private, AOT-safe via nested source gen)
     private class GeocodingResponse
     {
         [JsonPropertyName("results")]
@@ -209,4 +195,8 @@ public class WeatherTool : AIFunction
         [JsonPropertyName("wind_speed_10m")]
         public double WindSpeed { get; set; }
     }
+
+    [JsonSerializable(typeof(GeocodingResponse))]
+    [JsonSerializable(typeof(OpenMeteoResponse))]
+    private partial class WeatherApiJsonContext : JsonSerializerContext;
 }

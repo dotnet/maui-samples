@@ -1,174 +1,108 @@
-using Microsoft.Extensions.AI;
+using System.ComponentModel;
 using System.Text.Json;
-using LocalChatClientWithTools.Models;
-using System.IO;
-using System.Linq;
+using System.Text.Json.Serialization;
+using Microsoft.Extensions.AI;
 
 namespace LocalChatClientWithTools.Services.Tools;
 
-public class SystemInfoTool : AIFunction
+public class SystemInfoTool
 {
-    private static readonly string[] BatteryStatesMobile = new[] { "Charging", "Discharging", "Full", "Not Charging" };
-    private static readonly Random Rng = new();
+    public static AIFunction CreateAIFunction(IServiceProvider services)
+        => AIFunctionFactory.Create(
+            services.GetRequiredService<SystemInfoTool>().GetSystemInfo,
+            name: "get_system_info",
+            serializerOptions: ToolJsonContext.Default.Options);
 
-    public override string Name => "get_system_info";
-    public override string Description => "Gets system information (battery, storage, memory, device)";
-
-    public override JsonElement JsonSchema => JsonSerializer.SerializeToElement(new
+    [Description("Gets real device system information (battery, storage, device details)")]
+    public SystemInfoResult GetSystemInfo(
+        [Description("Subset of info to return")] InfoCategory infoType = InfoCategory.All)
     {
-        type = "object",
-        properties = new
-        {
-            info_type = new
-            {
-                type = "string",
-                description = "Subset of info to return: all | battery | storage | memory | device",
-                // enum suggestion for LLM
-                enum_values = new[] { "all", "battery", "storage", "memory", "device" }
-            }
-        }
-    });
+        var result = new SystemInfoResult();
 
-    protected override ValueTask<object?> InvokeCoreAsync(AIFunctionArguments arguments, CancellationToken cancellationToken)
-    {
-        var infoType = GetString(arguments, "info_type", "all").ToLowerInvariant();
-
-        var result = new SystemInfoResult
-        {
-            BatteryLevel = -1,
-            BatteryState = "Unknown",
-            AvailableStorage = 0,
-            TotalStorage = 0,
-            AvailableMemory = 0,
-            TotalMemory = 0,
-            DeviceName = string.Empty,
-            Platform = string.Empty,
-            Version = string.Empty
-        };
-
-        if (infoType is "all" or "battery")
+        if (infoType is InfoCategory.All or InfoCategory.Battery)
         {
             result.BatteryLevel = GetBatteryLevel();
             result.BatteryState = GetBatteryState();
         }
-        if (infoType is "all" or "storage")
+
+        if (infoType is InfoCategory.All or InfoCategory.Storage)
         {
-            result.TotalStorage = GetTotalStorage();
-            result.AvailableStorage = GetAvailableStorage();
-        }
-        if (infoType is "all" or "memory")
-        {
-            result.TotalMemory = GetTotalMemory();
-            result.AvailableMemory = GetAvailableMemory();
-        }
-        if (infoType is "all" or "device")
-        {
-            result.DeviceName = GetDeviceName();
-            result.Platform = GetPlatform();
-            result.Version = GetVersion();
+            var (total, available) = GetStorageInfo();
+            result.TotalStorage = FormatBytes(total);
+            result.AvailableStorage = FormatBytes(available);
         }
 
-        return ValueTask.FromResult<object?>(result);
+        if (infoType is InfoCategory.All or InfoCategory.Device)
+        {
+            result.DeviceName = DeviceInfo.Current.Name;
+            result.DeviceModel = DeviceInfo.Current.Model;
+            result.DeviceManufacturer = DeviceInfo.Current.Manufacturer;
+            result.Platform = DeviceInfo.Current.Platform.ToString();
+            result.Version = DeviceInfo.Current.VersionString;
+        }
+
+        return result;
     }
 
-    private static string GetString(AIFunctionArguments args, string name, string def = "") =>
-        args.TryGetValue(name, out var v) ? v?.ToString() ?? def : def;
-
-    private static double GetBatteryLevel()
+    private static double? GetBatteryLevel()
     {
         try
         {
-#if ANDROID || IOS
-            return Math.Round(Rng.NextDouble() * 100, 1);
-#else
-            return Math.Round(20 + (Rng.NextDouble() * 60), 1); // 20-80%
-#endif
+            var level = Battery.Default.ChargeLevel;
+            return level >= 0 ? Math.Round(level * 100, 1) : null;
         }
-        catch { return -1; }
+        catch { return null; }
     }
 
-    private static string GetBatteryState()
+    private static string? GetBatteryState()
     {
         try
         {
-#if ANDROID || IOS
-            return BatteryStatesMobile[Rng.Next(BatteryStatesMobile.Length)];
-#else
-            return "Unknown";
-#endif
+            return Battery.Default.State.ToString();
         }
-        catch { return "Unknown"; }
+        catch { return null; }
     }
 
-    private static long GetAvailableStorage()
+    private static string? FormatBytes(long? bytes)
+    {
+        if (bytes is null) return null;
+        string[] units = ["B", "KB", "MB", "GB", "TB"];
+        double size = bytes.Value;
+        int i = 0;
+        while (size >= 1024 && i < units.Length - 1) { size /= 1024; i++; }
+        return $"{size:0.#} {units[i]}";
+    }
+
+    private static (long? Total, long? Available) GetStorageInfo()
     {
         try
         {
-            var drives = DriveInfo.GetDrives().Where(d => d.IsReady);
-            var systemDrive = drives.FirstOrDefault(d => d.DriveType == DriveType.Fixed) ?? drives.FirstOrDefault();
-            return systemDrive?.AvailableFreeSpace ?? 0;
+            var appDataPath = FileSystem.Current.AppDataDirectory;
+            var driveInfo = new DriveInfo(appDataPath);
+            return (driveInfo.TotalSize, driveInfo.AvailableFreeSpace);
         }
-        catch { return 0; }
+        catch { return (null, null); }
     }
 
-    private static long GetTotalStorage()
+    [JsonConverter(typeof(JsonStringEnumConverter<InfoCategory>))]
+    public enum InfoCategory
     {
-        try
-        {
-            var drives = DriveInfo.GetDrives().Where(d => d.IsReady);
-            var systemDrive = drives.FirstOrDefault(d => d.DriveType == DriveType.Fixed) ?? drives.FirstOrDefault();
-            return systemDrive?.TotalSize ?? 0;
-        }
-        catch { return 0; }
+        All,
+        Battery,
+        Storage,
+        Device
     }
 
-    private static long GetAvailableMemory()
+    public record SystemInfoResult
     {
-        try
-        {
-            var gcInfo = GC.GetGCMemoryInfo();
-            var totalCommitted = gcInfo.TotalCommittedBytes;
-            var assumedTotal = 8L * 1024 * 1024 * 1024; // 8GB assumption
-            return Math.Max(0, assumedTotal - totalCommitted);
-        }
-        catch { return 0; }
-    }
-
-    private static long GetTotalMemory()
-    {
-        try
-        {
-            return 8L * 1024 * 1024 * 1024; // assumed 8GB
-        }
-        catch { return 0; }
-    }
-
-    private static string GetDeviceName()
-    {
-        try { return Environment.MachineName; } catch { return "Unknown Device"; }
-    }
-
-    private static string GetPlatform()
-    {
-        try
-        {
-#if WINDOWS
-            return "Windows";
-#elif ANDROID
-            return "Android";
-#elif IOS
-            return "iOS";
-#elif MACCATALYST
-            return "macOS";
-#else
-            return Environment.OSVersion.Platform.ToString();
-#endif
-        }
-        catch { return "Unknown"; }
-    }
-
-    private static string GetVersion()
-    {
-        try { return Environment.OSVersion.VersionString; } catch { return "Unknown"; }
+        public double? BatteryLevel { get; set; }
+        public string? BatteryState { get; set; }
+        public string? AvailableStorage { get; set; }
+        public string? TotalStorage { get; set; }
+        public string? DeviceName { get; set; }
+        public string? DeviceModel { get; set; }
+        public string? DeviceManufacturer { get; set; }
+        public string? Platform { get; set; }
+        public string? Version { get; set; }
     }
 }

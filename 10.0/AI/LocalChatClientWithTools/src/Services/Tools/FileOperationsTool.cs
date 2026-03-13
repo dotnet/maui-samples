@@ -1,60 +1,41 @@
+using System.ComponentModel;
 using Microsoft.Extensions.AI;
-using System.Text.Json;
-using LocalChatClientWithTools.Models;
-using System.IO;
-using System.Linq;
 
 namespace LocalChatClientWithTools.Services.Tools;
 
-public class FileOperationsTool : AIFunction
+public class FileOperationsTool
 {
-    public override string Name => "list_files";
-    public override string Description => "Lists files and directories in a specified path";
+    public static AIFunction CreateAIFunction(IServiceProvider services)
+        => AIFunctionFactory.Create(
+            services.GetRequiredService<FileOperationsTool>().ListFiles,
+            name: "list_files",
+            serializerOptions: ToolJsonContext.Default.Options);
 
-    public override JsonElement JsonSchema => JsonSerializer.SerializeToElement(new
+    [Description("Lists files and directories in a specified path")]
+    public FileListResult ListFiles(
+        [Description("Directory path or common name (Documents, Desktop, Downloads)")] string path = "Documents",
+        [Description("Maximum number of entries to return (1-100)")] int maxFiles = 20)
     {
-        type = "object",
-        properties = new
-        {
-            path = new
-            {
-                type = "string",
-                description = "Directory path or common name (Documents, Desktop, Downloads)",
-                // default captured in logic
-            },
-            max_files = new
-            {
-                type = "integer",
-                description = "Maximum number of entries to return (1-100)",
-                minimum = 1,
-                maximum = 100
-            }
-        }
-    });
-
-    protected override ValueTask<object?> InvokeCoreAsync(AIFunctionArguments arguments, CancellationToken cancellationToken)
-    {
-        var path = GetString(arguments, "path", "Documents");
-        var max = Math.Clamp(GetInt(arguments, "max_files", 20), 1, 100);
+        var max = Math.Clamp(maxFiles, 1, 100);
         var resolved = ResolveCommonPath(path);
 
         try
         {
             if (!Directory.Exists(resolved))
             {
-                return ValueTask.FromResult<object?>(new FileListResult
+                return new FileListResult
                 {
                     Path = resolved,
-                    Files = new List<FileListResult.FileInfo>()
-                });
+                    Files = new List<FileListResult.FileEntry>()
+                };
             }
 
             var dirInfo = new DirectoryInfo(resolved);
-            var entries = new List<FileListResult.FileInfo>();
+            var entries = new List<FileListResult.FileEntry>();
 
             foreach (var dir in dirInfo.GetDirectories().Take(max))
             {
-                entries.Add(new FileListResult.FileInfo
+                entries.Add(new FileListResult.FileEntry
                 {
                     Name = dir.Name,
                     FullPath = dir.FullName,
@@ -69,7 +50,7 @@ public class FileOperationsTool : AIFunction
             {
                 foreach (var file in dirInfo.GetFiles().Take(max - entries.Count))
                 {
-                    entries.Add(new FileListResult.FileInfo
+                    entries.Add(new FileListResult.FileEntry
                     {
                         Name = file.Name,
                         FullPath = file.FullName,
@@ -80,27 +61,21 @@ public class FileOperationsTool : AIFunction
                 }
             }
 
-            return ValueTask.FromResult<object?>(new FileListResult
+            return new FileListResult
             {
                 Path = resolved,
                 Files = entries.OrderBy(e => !e.IsDirectory).ThenBy(e => e.Name).ToList()
-            });
+            };
         }
         catch
         {
-            return ValueTask.FromResult<object?>(new FileListResult
+            return new FileListResult
             {
                 Path = resolved,
-                Files = new List<FileListResult.FileInfo>()
-            });
+                Files = new List<FileListResult.FileEntry>()
+            };
         }
     }
-
-    private static string GetString(AIFunctionArguments args, string name, string def = "") =>
-        args.TryGetValue(name, out var v) ? v?.ToString() ?? def : def;
-
-    private static int GetInt(AIFunctionArguments args, string name, int def = 0) =>
-        args.TryGetValue(name, out var v) && v is not null && int.TryParse(v.ToString(), out var i) ? i : def;
 
     private static string ResolveCommonPath(string path)
     {
@@ -123,5 +98,40 @@ public class FileOperationsTool : AIFunction
         var userProfile = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
         var downloads = Path.Combine(userProfile, "Downloads");
         return Directory.Exists(downloads) ? downloads : Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+    }
+
+    public record FileListResult
+    {
+        public required string Path { get; init; }
+        public required List<FileEntry> Files { get; init; }
+
+        public record FileEntry
+        {
+            public required string Name { get; init; }
+            public required string FullPath { get; init; }
+            public required long Size { get; init; }
+            public required DateTimeOffset Modified { get; init; }
+            public required bool IsDirectory { get; init; }
+            public string Icon => IsDirectory ? "📁" : GetFileIcon();
+
+            private string GetFileIcon()
+            {
+                var extension = System.IO.Path.GetExtension(Name).ToLower();
+                return extension switch
+                {
+                    ".txt" => "📄",
+                    ".pdf" => "📕",
+                    ".doc" or ".docx" => "📘",
+                    ".xls" or ".xlsx" => "📗",
+                    ".ppt" or ".pptx" => "📙",
+                    ".jpg" or ".jpeg" or ".png" or ".gif" => "🖼️",
+                    ".mp4" or ".avi" or ".mov" => "🎬",
+                    ".mp3" or ".wav" => "🎵",
+                    ".zip" or ".rar" => "📦",
+                    ".exe" => "⚙️",
+                    _ => "📄"
+                };
+            }
+        }
     }
 }

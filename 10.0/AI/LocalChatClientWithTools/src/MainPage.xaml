@@ -2,9 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/maui/global"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="LocalChatClientWithTools.MainPage"
-             xmlns:vm="clr-namespace:LocalChatClientWithTools.ViewModels"
-             xmlns:models="clr-namespace:LocalChatClientWithTools.Models"
-             x:DataType="vm:ChatViewModel">
+             x:DataType="ChatViewModel"
+             Background="#FAFAFA">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Clear"
@@ -14,8 +13,8 @@
     </ContentPage.ToolbarItems>
 
     <Grid RowDefinitions="*,Auto"
-          Padding="10"
-          RowSpacing="8">
+          Padding="12"
+          RowSpacing="10">
 
         <!-- Chat messages -->
         <CollectionView Grid.Row="0"
@@ -26,368 +25,360 @@
                         SelectionMode="None">
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout Orientation="Vertical"
-                                   ItemSpacing="8"/>
+                                   ItemSpacing="6"/>
             </CollectionView.ItemsLayout>
 
-            <!-- Empty view with tool-specific sample prompts -->
+            <!-- Empty state -->
             <CollectionView.EmptyView>
                 <ScrollView>
-                    <VerticalStackLayout Spacing="16"
-                                         Padding="24">
-                        <Label Text="🔧 AI Chat with Tools"
-                               FontSize="28"
-                               FontAttributes="Bold"
-                               HorizontalTextAlignment="Center"/>
+                    <VerticalStackLayout Spacing="12"
+                                         Padding="20,40,20,20"
+                                         MaximumWidthRequest="780"
+                                         HorizontalOptions="Center">
 
-                        <Label Text="Try these tool-powered prompts:"
-                               FontSize="16"
+                        <!-- Hero -->
+                        <Border Background="{StaticResource PrimaryBrush}"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 16"
+                                Padding="28,32"
+                                Margin="0,0,0,8">
+                            <VerticalStackLayout Spacing="8">
+                                <Label Text="🤖"
+                                       FontSize="40"
+                                       HorizontalTextAlignment="Center"/>
+                                <Label Text="AI Chat with Tools"
+                                       FontSize="24"
+                                       FontAttributes="Bold"
+                                       TextColor="White"
+                                       HorizontalTextAlignment="Center"/>
+                                <Label Text="Powered by Apple Intelligence"
+                                       FontSize="13"
+                                       TextColor="#CCBDE8"
+                                       HorizontalTextAlignment="Center"/>
+                            </VerticalStackLayout>
+                        </Border>
+
+                        <Label Text="Try a prompt"
+                               FontSize="14"
+                               TextColor="{StaticResource Gray400}"
                                HorizontalTextAlignment="Center"
-                               TextColor="#666"/>
+                               Margin="0,4,0,0"/>
 
-                        <!-- Weather Tool Examples -->
-                        <Label Text="🌤️ Weather"
-                               FontSize="18"
-                               FontAttributes="Bold"
-                               Margin="0,10,0,5"/>
+                        <!-- Prompt cards in a wrapping FlexLayout for responsive 2-column -->
+                        <FlexLayout Wrap="Wrap"
+                                    JustifyContent="Center"
+                                    AlignContent="Start">
 
-                        <Button Text="What's the weather in Seattle?"
-                                Command="{Binding SendPromptCommand}"
-                                CommandParameter="What's the weather in Seattle?"
-                                Padding="16"
-                                Background="Transparent"
-                                TextColor="#222"
-                                BorderColor="#4A90E2"
-                                BorderWidth="1.5"
-                                CornerRadius="10"/>
+                            <Border StrokeThickness="0"
+                                    Background="White"
+                                    StrokeShape="RoundRectangle 12"
+                                    Shadow="{Shadow Brush=#18000000, Offset='0,2', Radius=8}"
+                                    FlexLayout.Basis="300" HeightRequest="56"
+                                    FlexLayout.Grow="1"
+                                    Margin="4">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SendPromptCommand}"
+                                                          CommandParameter="What's the weather in Seattle?"/>
+                                </Border.GestureRecognizers>
+                                <Grid ColumnDefinitions="Auto,*" Padding="14" ColumnSpacing="12">
+                                    <Label Text="🌤️" FontSize="22" VerticalOptions="Center"/>
+                                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                                        <Label Text="Weather" FontSize="11" TextColor="{StaticResource Gray400}"/>
+                                        <Label Text="What's the weather in Seattle?" FontSize="14" TextColor="{StaticResource Gray900}"/>
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </Border>
 
-                        <Button Text="Check the weather in Tokyo and London"
-                                Command="{Binding SendPromptCommand}"
-                                CommandParameter="Check the current weather in Tokyo and London"
-                                Padding="16"
-                                Background="Transparent"
-                                TextColor="#222"
-                                BorderColor="#4A90E2"
-                                BorderWidth="1.5"
-                                CornerRadius="10"/>
+                            <Border StrokeThickness="0"
+                                    Background="White"
+                                    StrokeShape="RoundRectangle 12"
+                                    Shadow="{Shadow Brush=#18000000, Offset='0,2', Radius=8}"
+                                    FlexLayout.Basis="300" HeightRequest="56"
+                                    FlexLayout.Grow="1"
+                                    Margin="4">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SendPromptCommand}"
+                                                          CommandParameter="Check the current weather in Tokyo and London"/>
+                                </Border.GestureRecognizers>
+                                <Grid ColumnDefinitions="Auto,*" Padding="14" ColumnSpacing="12">
+                                    <Label Text="🌤️" FontSize="22" VerticalOptions="Center"/>
+                                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                                        <Label Text="Weather" FontSize="11" TextColor="{StaticResource Gray400}"/>
+                                        <Label Text="Weather in Tokyo and London" FontSize="14" TextColor="{StaticResource Gray900}"/>
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </Border>
 
-                        <!-- Calculator Tool Examples -->
-                        <Label Text="🔢 Calculator"
-                               FontSize="18"
-                               FontAttributes="Bold"
-                               Margin="0,10,0,5"/>
+                            <Border StrokeThickness="0"
+                                    Background="White"
+                                    StrokeShape="RoundRectangle 12"
+                                    Shadow="{Shadow Brush=#18000000, Offset='0,2', Radius=8}"
+                                    FlexLayout.Basis="300" HeightRequest="56"
+                                    FlexLayout.Grow="1"
+                                    Margin="4">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SendPromptCommand}"
+                                                          CommandParameter="Calculate 15% tip on $47.50"/>
+                                </Border.GestureRecognizers>
+                                <Grid ColumnDefinitions="Auto,*" Padding="14" ColumnSpacing="12">
+                                    <Label Text="🔢" FontSize="22" VerticalOptions="Center"/>
+                                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                                        <Label Text="Calculator" FontSize="11" TextColor="{StaticResource Gray400}"/>
+                                        <Label Text="Calculate 15% tip on $47.50" FontSize="14" TextColor="{StaticResource Gray900}"/>
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </Border>
 
-                        <Button Text="Calculate 15% tip on $47.50"
-                                Command="{Binding SendPromptCommand}"
-                                CommandParameter="Calculate 15% tip on $47.50"
-                                Padding="16"
-                                Background="Transparent"
-                                TextColor="#222"
-                                BorderColor="#FF6B6B"
-                                BorderWidth="1.5"
-                                CornerRadius="10"/>
+                            <Border StrokeThickness="0"
+                                    Background="White"
+                                    StrokeShape="RoundRectangle 12"
+                                    Shadow="{Shadow Brush=#18000000, Offset='0,2', Radius=8}"
+                                    FlexLayout.Basis="300" HeightRequest="56"
+                                    FlexLayout.Grow="1"
+                                    Margin="4">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SendPromptCommand}"
+                                                          CommandParameter="What's 25 * 18 + 150?"/>
+                                </Border.GestureRecognizers>
+                                <Grid ColumnDefinitions="Auto,*" Padding="14" ColumnSpacing="12">
+                                    <Label Text="🔢" FontSize="22" VerticalOptions="Center"/>
+                                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                                        <Label Text="Calculator" FontSize="11" TextColor="{StaticResource Gray400}"/>
+                                        <Label Text="What's 25 × 18 + 150?" FontSize="14" TextColor="{StaticResource Gray900}"/>
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </Border>
 
-                        <Button Text="What's 25 × 18 + 150?"
-                                Command="{Binding SendPromptCommand}"
-                                CommandParameter="What's 25 * 18 + 150?"
-                                Padding="16"
-                                Background="Transparent"
-                                TextColor="#222"
-                                BorderColor="#FF6B6B"
-                                BorderWidth="1.5"
-                                CornerRadius="10"/>
+                            <Border StrokeThickness="0"
+                                    Background="White"
+                                    StrokeShape="RoundRectangle 12"
+                                    Shadow="{Shadow Brush=#18000000, Offset='0,2', Radius=8}"
+                                    FlexLayout.Basis="300" HeightRequest="56"
+                                    FlexLayout.Grow="1"
+                                    Margin="4">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SendPromptCommand}"
+                                                          CommandParameter="List the files in my Documents folder"/>
+                                </Border.GestureRecognizers>
+                                <Grid ColumnDefinitions="Auto,*" Padding="14" ColumnSpacing="12">
+                                    <Label Text="📁" FontSize="22" VerticalOptions="Center"/>
+                                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                                        <Label Text="Files" FontSize="11" TextColor="{StaticResource Gray400}"/>
+                                        <Label Text="List files in my Documents folder" FontSize="14" TextColor="{StaticResource Gray900}"/>
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </Border>
 
-                        <!-- File Operations Examples -->
-                        <Label Text="📁 File Operations"
-                               FontSize="18"
-                               FontAttributes="Bold"
-                               Margin="0,10,0,5"/>
+                            <Border StrokeThickness="0"
+                                    Background="White"
+                                    StrokeShape="RoundRectangle 12"
+                                    Shadow="{Shadow Brush=#18000000, Offset='0,2', Radius=8}"
+                                    FlexLayout.Basis="300" HeightRequest="56"
+                                    FlexLayout.Grow="1"
+                                    Margin="4">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SendPromptCommand}"
+                                                          CommandParameter="Show me current battery level and available storage space"/>
+                                </Border.GestureRecognizers>
+                                <Grid ColumnDefinitions="Auto,*" Padding="14" ColumnSpacing="12">
+                                    <Label Text="⚙️" FontSize="22" VerticalOptions="Center"/>
+                                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                                        <Label Text="System Info" FontSize="11" TextColor="{StaticResource Gray400}"/>
+                                        <Label Text="Battery level and storage info" FontSize="14" TextColor="{StaticResource Gray900}"/>
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </Border>
 
-                        <Button Text="List files in my Documents folder"
-                                Command="{Binding SendPromptCommand}"
-                                CommandParameter="List the files in my Documents folder"
-                                Padding="16"
-                                Background="Transparent"
-                                TextColor="#222"
-                                BorderColor="#4ECDC4"
-                                BorderWidth="1.5"
-                                CornerRadius="10"/>
+                            <Border StrokeThickness="0"
+                                    Background="White"
+                                    StrokeShape="RoundRectangle 12"
+                                    Shadow="{Shadow Brush=#18000000, Offset='0,2', Radius=8}"
+                                    FlexLayout.Basis="300" HeightRequest="56"
+                                    FlexLayout.Grow="1"
+                                    Margin="4">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SendPromptCommand}"
+                                                          CommandParameter="Set a 5-minute timer for my coffee break"/>
+                                </Border.GestureRecognizers>
+                                <Grid ColumnDefinitions="Auto,*" Padding="14" ColumnSpacing="12">
+                                    <Label Text="⏲️" FontSize="22" VerticalOptions="Center"/>
+                                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                                        <Label Text="Timer" FontSize="11" TextColor="{StaticResource Gray400}"/>
+                                        <Label Text="Set a 5-minute timer for my coffee" FontSize="14" TextColor="{StaticResource Gray900}"/>
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </Border>
 
-                        <!-- System Info Examples -->
-                        <Label Text="⚙️ System Information"
-                               FontSize="18"
-                               FontAttributes="Bold"
-                               Margin="0,10,0,5"/>
+                            <Border StrokeThickness="0"
+                                    Background="White"
+                                    StrokeShape="RoundRectangle 12"
+                                    Shadow="{Shadow Brush=#18000000, Offset='0,2', Radius=8}"
+                                    FlexLayout.Basis="300" HeightRequest="56"
+                                    FlexLayout.Grow="1"
+                                    Margin="4">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SendPromptCommand}"
+                                                          CommandParameter="What's the weather in Seattle and how much is a 20% tip on $85?"/>
+                                </Border.GestureRecognizers>
+                                <Grid ColumnDefinitions="Auto,*" Padding="14" ColumnSpacing="12">
+                                    <Label Text="🧩" FontSize="22" VerticalOptions="Center"/>
+                                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                                        <Label Text="Multi-Tool" FontSize="11" TextColor="{StaticResource Gray400}"/>
+                                        <Label Text="Weather + tip on $85" FontSize="14" TextColor="{StaticResource Gray900}"/>
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </Border>
 
-                        <Button Text="Show me system battery and storage info"
-                                Command="{Binding SendPromptCommand}"
-                                CommandParameter="Show me current battery level and available storage space"
-                                Padding="16"
-                                Background="Transparent"
-                                TextColor="#222"
-                                BorderColor="#45B7D1"
-                                BorderWidth="1.5"
-                                CornerRadius="10"/>
+                        </FlexLayout>
 
-                        <!-- Timer Examples -->
-                        <Label Text="⏲️ Timers"
-                               FontSize="18"
-                               FontAttributes="Bold"
-                               Margin="0,10,0,5"/>
-
-                        <Button Text="Set a 5-minute timer for my coffee"
-                                Command="{Binding SendPromptCommand}"
-                                CommandParameter="Set a 5-minute timer for my coffee break"
-                                Padding="16"
-                                Background="Transparent"
-                                TextColor="#222"
-                                BorderColor="#F7B731"
-                                BorderWidth="1.5"
-                                CornerRadius="10"/>
-
-                        <!-- Clear chat button -->
-                        <Button Text="🗑️ Clear Chat"
-                                Command="{Binding ClearChatCommand}"
-                                Padding="12"
-                                Background="#FF6B6B"
-                                TextColor="White"
-                                CornerRadius="8"
-                                Margin="0,20,0,0"/>
                     </VerticalStackLayout>
                 </ScrollView>
             </CollectionView.EmptyView>
 
-            <!-- Message template with rich tool result display -->
+            <!-- Templates selected by message type -->
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="models:ChatMessage">
-                    <Grid>
-                        <!-- Inline tool-call divider (no bubble) -->
-                        <HorizontalStackLayout Spacing="6"
-                                               HorizontalOptions="Center"
-                                               Padding="0,2"
-                                               IsVisible="{Binding IsToolCall}">
-                            <BoxView HeightRequest="1" WidthRequest="40"
-                                     Color="#BDBDBD" VerticalOptions="Center"/>
-                            <Label Text="{Binding Text}"
-                                   TextColor="#9E9E9E"
-                                   FontSize="12"
-                                   VerticalOptions="Center"/>
-                            <BoxView HeightRequest="1" WidthRequest="40"
-                                     Color="#BDBDBD" VerticalOptions="Center"/>
-                        </HorizontalStackLayout>
+                <ChatTemplateSelector>
 
-                        <Border x:Name="Bubble"
-                                StrokeThickness="0"
-                                Padding="12"
-                                MaximumWidthRequest="520"
-                                Background="#F1F1F1"
-                                HorizontalOptions="Start"
-                                StrokeShape="RoundRectangle 14"
-                                IsVisible="{Binding IsPlainText}">
-
-                            <VerticalStackLayout Spacing="8">
-                                <!-- Regular text content -->
-                                <Label x:Name="MessageText"
-                                       Text="{Binding Text}"
-                                       TextColor="#222"
-                                       LineBreakMode="WordWrap"/>
-
-                                <!-- Weather result display -->
-                                <Border Background="#E3F2FD"
-                                        Stroke="#2196F3"
-                                        StrokeThickness="1"
-                                        StrokeShape="RoundRectangle 8"
-                                        Padding="12"
-                                        IsVisible="{Binding IsWeatherResult}">
-                                    <VerticalStackLayout Spacing="4">
-                                        <Label Text="{Binding AsWeatherResult.Location}"
-                                               FontSize="16"
-                                               FontAttributes="Bold"/>
-                                        <HorizontalStackLayout Spacing="8">
-                                            <Label Text="{Binding AsWeatherResult.Icon}"
-                                                   FontSize="20"/>
-                                            <Label FontSize="18">
-                                                <Label.Text>
-                                                    <MultiBinding StringFormat="{}{0:F1}{1}">
-                                                        <Binding Path="AsWeatherResult.Temperature"/>
-                                                        <Binding Path="AsWeatherResult.TemperatureUnit"/>
-                                                    </MultiBinding>
-                                                </Label.Text>
-                                            </Label>
-                                            <Label Text="{Binding AsWeatherResult.Description}"
-                                                   FontAttributes="Italic"
-                                                   VerticalOptions="Center"/>
-                                        </HorizontalStackLayout>
-                                        <HorizontalStackLayout Spacing="16">
-                                            <Label>
-                                                <Label.Text>
-                                                    <MultiBinding StringFormat="💧 {0:F0}%">
-                                                        <Binding Path="AsWeatherResult.Humidity"/>
-                                                    </MultiBinding>
-                                                </Label.Text>
-                                            </Label>
-                                            <Label>
-                                                <Label.Text>
-                                                    <MultiBinding StringFormat="💨 {0:F1} mph">
-                                                        <Binding Path="AsWeatherResult.WindSpeed"/>
-                                                    </MultiBinding>
-                                                </Label.Text>
-                                            </Label>
-                                        </HorizontalStackLayout>
-                                    </VerticalStackLayout>
+                    <!-- Text messages (user + assistant) -->
+                    <ChatTemplateSelector.TextTemplate>
+                        <DataTemplate x:DataType="TextMessageViewModel">
+                            <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="8">
+                                <!-- Assistant avatar (left) -->
+                                <Border Grid.Column="0"
+                                        WidthRequest="36" HeightRequest="36"
+                                        StrokeThickness="0"
+                                        Background="{StaticResource SecondaryBrush}"
+                                        StrokeShape="RoundRectangle 18"
+                                        VerticalOptions="End">
+                                    <Label Text="🤖" FontSize="16"
+                                           HorizontalOptions="Center" VerticalOptions="Center"/>
+                                    <Border.Triggers>
+                                        <DataTrigger TargetType="Border" Binding="{Binding IsUser}" Value="True">
+                                            <Setter Property="IsVisible" Value="False"/>
+                                        </DataTrigger>
+                                    </Border.Triggers>
                                 </Border>
 
-                                <!-- Calculator result display -->
-                                <Border Background="#FFF3E0"
-                                        Stroke="#FF9800"
-                                        StrokeThickness="1"
-                                        StrokeShape="RoundRectangle 8"
-                                        Padding="12"
-                                        IsVisible="{Binding IsCalculatorResult}">
+                                <!-- Bubble -->
+                                <Border Grid.Column="1"
+                                        StrokeThickness="0"
+                                        Padding="14,10"
+                                        MaximumWidthRequest="500"
+                                        Background="#F0F0F0"
+                                        HorizontalOptions="Start"
+                                        StrokeShape="RoundRectangle 16,16,4,16"
+                                        Shadow="{Shadow Brush=#10000000, Offset='0,1', Radius=4}">
                                     <VerticalStackLayout Spacing="4">
-                                        <Label Text="{Binding AsCalculationResult.Expression}"
-                                               FontSize="14"/>
-                                        <Label Text="{Binding AsCalculationResult.Result}"
-                                               FontSize="20"
-                                               FontAttributes="Bold"
-                                               TextColor="#E65100"/>
-                                        <Label Text="{Binding AsCalculationResult.Steps}"
+                                        <Label Text="{Binding Text}"
+                                               TextColor="#1A1A1A"
+                                               FontSize="15"
+                                               LineBreakMode="WordWrap">
+                                            <Label.Triggers>
+                                                <DataTrigger TargetType="Label" Binding="{Binding IsUser}" Value="True">
+                                                    <Setter Property="TextColor" Value="White"/>
+                                                </DataTrigger>
+                                            </Label.Triggers>
+                                        </Label>
+                                        <Label Text="{Binding Timestamp, StringFormat='{0:t}'}"
+                                               FontSize="10"
+                                               TextColor="#AAA"
+                                               HorizontalTextAlignment="End">
+                                            <Label.Triggers>
+                                                <DataTrigger TargetType="Label" Binding="{Binding IsUser}" Value="True">
+                                                    <Setter Property="TextColor" Value="#D0C4F0"/>
+                                                </DataTrigger>
+                                            </Label.Triggers>
+                                        </Label>
+                                    </VerticalStackLayout>
+
+                                    <Border.Triggers>
+                                        <DataTrigger TargetType="Border" Binding="{Binding IsUser}" Value="True">
+                                            <Setter Property="HorizontalOptions" Value="End"/>
+                                            <Setter Property="Background" Value="{StaticResource PrimaryBrush}"/>
+                                            <Setter Property="StrokeShape" Value="RoundRectangle 16,16,16,4"/>
+                                        </DataTrigger>
+                                        <DataTrigger TargetType="Border" Binding="{Binding IsError}" Value="True">
+                                            <Setter Property="Background" Value="#FFF0F0"/>
+                                            <Setter Property="Stroke" Value="#E53935"/>
+                                            <Setter Property="StrokeThickness" Value="1"/>
+                                        </DataTrigger>
+                                    </Border.Triggers>
+                                </Border>
+
+                                <!-- User avatar (right) -->
+                                <Border Grid.Column="2"
+                                        WidthRequest="36" HeightRequest="36"
+                                        StrokeThickness="0"
+                                        Background="{StaticResource SecondaryBrush}"
+                                        StrokeShape="RoundRectangle 18"
+                                        VerticalOptions="End"
+                                        IsVisible="False">
+                                    <Label Text="👤" FontSize="16"
+                                           HorizontalOptions="Center" VerticalOptions="Center"/>
+                                    <Border.Triggers>
+                                        <DataTrigger TargetType="Border" Binding="{Binding IsUser}" Value="True">
+                                            <Setter Property="IsVisible" Value="True"/>
+                                        </DataTrigger>
+                                    </Border.Triggers>
+                                </Border>
+                            </Grid>
+                        </DataTemplate>
+                    </ChatTemplateSelector.TextTemplate>
+
+                    <!-- Tool call indicator -->
+                    <ChatTemplateSelector.ToolCallTemplate>
+                        <DataTemplate x:DataType="ToolCallMessageViewModel">
+                            <VerticalStackLayout Padding="0,4">
+                                <Border StrokeThickness="0"
+                                        Background="#F5F3FF"
+                                        StrokeShape="RoundRectangle 20"
+                                        Padding="12,6"
+                                        HorizontalOptions="Center">
+                                    <Border.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding ToggleExpandedCommand}"/>
+                                    </Border.GestureRecognizers>
+                                    <HorizontalStackLayout Spacing="6">
+                                        <Label Text="{Binding Text}"
+                                               TextColor="{StaticResource Primary}"
                                                FontSize="12"
-                                               TextColor="#666"
-                                               IsVisible="{Binding AsCalculationResult.Steps, Converter={x:Null}}"/>
-                                    </VerticalStackLayout>
+                                               VerticalOptions="Center"/>
+                                        <Label Text="▾"
+                                               TextColor="{StaticResource Gray300}"
+                                               FontSize="11"
+                                               VerticalOptions="Center"
+                                               IsVisible="{Binding HasRawJson}"/>
+                                    </HorizontalStackLayout>
                                 </Border>
 
-                                <!-- File list result display -->
-                                <Border Background="#F1F8E9"
-                                        Stroke="#8BC34A"
+                                <!-- Expandable raw JSON -->
+                                <Border Background="#FAFAFF"
+                                        Stroke="{StaticResource Gray200}"
                                         StrokeThickness="1"
-                                        StrokeShape="RoundRectangle 8"
+                                        StrokeShape="RoundRectangle 10"
                                         Padding="12"
-                                        IsVisible="{Binding IsFileResult}">
-                                    <VerticalStackLayout Spacing="8">
-                                        <Label Text="{Binding AsFileListResult.Path}"
-                                               FontSize="14"
-                                               FontAttributes="Bold"/>
-                                        <CollectionView ItemsSource="{Binding AsFileListResult.Files}"
-                                                        MaximumHeightRequest="200">
-                                            <CollectionView.ItemTemplate>
-                                                <DataTemplate>
-                                                    <Grid ColumnDefinitions="Auto,*,Auto"
-                                                          ColumnSpacing="8"
-                                                          Padding="4">
-                                                        <Label Grid.Column="0"
-                                                               Text="{Binding Icon}"
-                                                               VerticalOptions="Center"/>
-                                                        <Label Grid.Column="1"
-                                                               Text="{Binding Name}"
-                                                               VerticalOptions="Center"
-                                                               LineBreakMode="TailTruncation"/>
-                                                        <Label Grid.Column="2"
-                                                               Text="{Binding Size, StringFormat='{0:N0} bytes'}"
-                                                               FontSize="12"
-                                                               TextColor="#666"
-                                                               VerticalOptions="Center"
-                                                               IsVisible="{Binding IsDirectory}"/>
-                                                    </Grid>
-                                                </DataTemplate>
-                                            </CollectionView.ItemTemplate>
-                                        </CollectionView>
-                                    </VerticalStackLayout>
+                                        Margin="32,6"
+                                        MaximumWidthRequest="480"
+                                        HorizontalOptions="Center"
+                                        IsVisible="{Binding IsExpanded}">
+                                    <ScrollView MaximumHeightRequest="200">
+                                        <Label Text="{Binding RawJson}"
+                                               FontFamily="Courier New"
+                                               FontSize="11"
+                                               TextColor="{StaticResource Gray500}"
+                                               LineBreakMode="WordWrap"/>
+                                    </ScrollView>
                                 </Border>
-
-                                <!-- System info result display -->
-                                <Border Background="#F3E5F5"
-                                        Stroke="#9C27B0"
-                                        StrokeThickness="1"
-                                        StrokeShape="RoundRectangle 8"
-                                        Padding="12"
-                                        IsVisible="{Binding IsSystemInfoResult}">
-                                    <VerticalStackLayout Spacing="8">
-                                        <Label Text="{Binding AsSystemInfoResult.DeviceName}"
-                                               FontSize="16"
-                                               FontAttributes="Bold"/>
-                                        <HorizontalStackLayout Spacing="16">
-                                            <Label>
-                                                <Label.Text>
-                                                    <MultiBinding StringFormat="🔋 {0:F1}%">
-                                                        <Binding Path="AsSystemInfoResult.BatteryLevel"/>
-                                                    </MultiBinding>
-                                                </Label.Text>
-                                            </Label>
-                                            <Label Text="{Binding AsSystemInfoResult.BatteryState}"/>
-                                        </HorizontalStackLayout>
-                                        <Label Text="💾 Storage info available"/>
-                                    </VerticalStackLayout>
-                                </Border>
-
-                                <!-- Timer result display -->
-                                <Border Background="#FFEBEE"
-                                        Stroke="#F44336"
-                                        StrokeThickness="1"
-                                        StrokeShape="RoundRectangle 8"
-                                        Padding="12"
-                                        IsVisible="{Binding IsTimerResult}">
-                                    <VerticalStackLayout Spacing="4">
-                                        <Label Text="{Binding AsTimerResult.Title}"
-                                               FontSize="16"
-                                               FontAttributes="Bold"/>
-                                        <HorizontalStackLayout Spacing="16">
-                                            <Label>
-                                                <Label.Text>
-                                                    <MultiBinding StringFormat="⏰ {0} minutes">
-                                                        <Binding Path="AsTimerResult.DurationMinutes"/>
-                                                    </MultiBinding>
-                                                </Label.Text>
-                                            </Label>
-                                            <Label>
-                                                <Label.Text>
-                                                    <MultiBinding StringFormat="Ends at {0:t}">
-                                                        <Binding Path="AsTimerResult.EndTime"/>
-                                                    </MultiBinding>
-                                                </Label.Text>
-                                            </Label>
-                                        </HorizontalStackLayout>
-                                    </VerticalStackLayout>
-                                </Border>
-
-                                <!-- Timestamp -->
-                                <Label Text="{Binding Timestamp, StringFormat='{0:t}'}"
-                                       FontSize="10"
-                                       TextColor="#888"
-                                       HorizontalTextAlignment="End"/>
                             </VerticalStackLayout>
+                        </DataTemplate>
+                    </ChatTemplateSelector.ToolCallTemplate>
 
-                            <Border.Triggers>
-                                <!-- User messages: right aligned, accent background -->
-                                <DataTrigger TargetType="Border"
-                                             Binding="{Binding From}"
-                                             Value="User">
-                                    <Setter Property="HorizontalOptions"
-                                            Value="End"/>
-                                    <Setter Property="Background"
-                                            Value="#D1E8FF"/>
-                                </DataTrigger>
-                                <!-- Error messages: red background -->
-                                <DataTrigger TargetType="Border"
-                                             Binding="{Binding IsError}"
-                                             Value="True">
-                                    <Setter Property="Background"
-                                            Value="#FFEBEE"/>
-                                    <Setter Property="Stroke"
-                                            Value="#F44336"/>
-                                    <Setter Property="StrokeThickness"
-                                            Value="1"/>
-                                </DataTrigger>
-                            </Border.Triggers>
-                        </Border>
-                    </Grid>
-                </DataTemplate>
+                </ChatTemplateSelector>
             </CollectionView.ItemTemplate>
         </CollectionView>
 
         <!-- Input area -->
         <SfTextInputLayout ContainerType="Outlined"
-                           Hint="Ask something or try a tool..."
+                           Hint="Ask something or try a tool…"
                            Grid.Row="1">
             <Entry x:Name="PromptEditor"
                    Text="{Binding InputText, Mode=TwoWay}"

@@ -63,7 +63,7 @@ Try:
 - "Show me current battery level and available storage"
 - "Set a 5-minute timer for my coffee break"
 - "What's 25 × 18 + 150?"
-- "Check the weather in Tokyo and London"
+- "Check the weather in Tokyo and Cape Town"
 
 ## Run
 

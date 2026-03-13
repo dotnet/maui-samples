@@ -3,16 +3,16 @@ using System.Text;
 using System.Text.Json;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using LocalChatClientWithTools.Models;
 using LocalChatClientWithTools.Services.Tools;
 using Microsoft.Extensions.AI;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.DependencyInjection;
-using UiChatMessage = LocalChatClientWithTools.Models.ChatMessage;
 
 namespace LocalChatClientWithTools.ViewModels;
 
-public partial class ChatViewModel : ObservableObject
+public partial class ChatViewModel(
+    IChatClient chatClient,
+    IEnumerable<AIFunction> tools,
+    ILogger<ChatViewModel> logger) : ObservableObject
 {
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(SendCommand))]
@@ -21,86 +21,55 @@ public partial class ChatViewModel : ObservableObject
     [ObservableProperty]
     private bool _isProcessing = false;
 
-    public ObservableCollection<UiChatMessage> Messages { get; } = new();
-
-    private readonly IChatClient _chatClient;
-    private readonly ILogger<ChatViewModel> _logger;
-    private readonly IServiceProvider _serviceProvider;
-
-    public ChatViewModel(IChatClient chatClient, ILogger<ChatViewModel> logger, IServiceProvider serviceProvider)
-    {
-        _chatClient = chatClient;
-        _logger = logger;
-        _serviceProvider = serviceProvider;
-    }
+    public ObservableCollection<ChatMessageViewModel> Messages { get; } = [];
 
     [RelayCommand(CanExecute = nameof(CanSend))]
     private async Task Send()
     {
         var text = InputText?.Trim();
-        if (string.IsNullOrEmpty(text) || IsProcessing) return;
+        if (string.IsNullOrEmpty(text) || IsProcessing)
+            return;
 
         IsProcessing = true;
 
         try
         {
-            Messages.Add(new UiChatMessage
-            {
-                From = Sender.User,
-                Text = text,
-                Type = MessageType.Text
-            });
+            Messages.Add(new TextMessageViewModel { IsUser = true, Text = text });
             InputText = string.Empty;
 
             // Streaming placeholder — always the last message in the collection.
-            // Tool-call indicators are inserted *before* it so the index stays valid.
-            Messages.Add(new UiChatMessage
-            {
-                From = Sender.Assistant,
-                Text = "⏳",
-                Type = MessageType.Text
-            });
+            Messages.Add(new TextMessageViewModel { Text = "⏳" });
 
             var chatOptions = new ChatOptions
             {
-                Tools = WrapToolsWithNotifications(await GetAvailableToolsAsync())
+                Tools = WrapToolsWithNotifications(tools)
             };
 
             var textBuilder = new StringBuilder();
 
-            await foreach (var update in _chatClient.GetStreamingResponseAsync(text, chatOptions))
+            await foreach (var update in chatClient.GetStreamingResponseAsync(text, chatOptions))
             {
                 if (string.IsNullOrEmpty(update.Text))
                     continue;
 
                 textBuilder.Append(update.Text);
-                Messages[^1] = new UiChatMessage
+                Messages[^1] = new TextMessageViewModel
                 {
-                    From = Sender.Assistant,
-                    Text = textBuilder.ToString(),
-                    Type = MessageType.Text
+                    Text = textBuilder.ToString()
                 };
             }
 
             if (textBuilder.Length == 0)
-            {
-                Messages[^1] = new UiChatMessage
-                {
-                    From = Sender.Assistant,
-                    Text = "(no response)",
-                    Type = MessageType.Text
-                };
-            }
+                Messages.RemoveAt(Messages.Count - 1);
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error during chat completion");
-            Messages.Add(new UiChatMessage
+            logger.LogError(ex, "Error during chat completion");
+            Messages[^1] = new TextMessageViewModel
             {
-                From = Sender.Assistant,
                 Text = $"❌ Error: {ex.Message}",
                 IsError = true
-            });
+            };
         }
         finally
         {
@@ -115,137 +84,141 @@ public partial class ChatViewModel : ObservableObject
             return;
 
         InputText = prompt.Trim();
+
         if (CanSend())
-        {
             await Send();
-        }
     }
 
     [RelayCommand]
-    private void ClearChat()
-    {
-        Messages.Clear();
-    }
+    private void ClearChat() => Messages.Clear();
 
     // ── Tool observability ───────────────────────────────────────────
 
-    private IList<AITool> WrapToolsWithNotifications(IList<AITool> tools)
-    {
-        return tools.Select(t => t is AIFunction fn
-            ? (AITool)new ObservableAIFunction(fn, OnToolInvoking, OnToolInvoked)
-            : t).ToList();
-    }
+    private IList<AITool> WrapToolsWithNotifications(IEnumerable<AIFunction> tools) =>
+        [.. tools.Select(t => new ObservableAIFunction(t, OnToolInvoking, OnToolInvoked))];
 
     private void OnToolInvoking(string toolName)
     {
         MainThread.BeginInvokeOnMainThread(() =>
         {
-            // Insert the tool-call indicator *before* the streaming placeholder
-            // so the placeholder remains the last item in the collection.
             var insertIndex = Math.Max(0, Messages.Count - 1);
-            Messages.Insert(insertIndex, new UiChatMessage
+            Messages.Insert(insertIndex, new ToolCallMessageViewModel
             {
-                From = Sender.Assistant,
-                Text = $"🔧 Calling {FormatToolName(toolName)}…",
-                Type = MessageType.ToolCall,
-                ToolName = toolName
+                ToolName = toolName,
+                Text = $"🔧 Calling {toolName}…"
             });
         });
     }
 
-    private void OnToolInvoked(string toolName)
+    private void OnToolInvoked(string toolName, AIFunctionArguments arguments, object? result)
     {
+        var rawJson = BuildRawJson(arguments, result);
+
         MainThread.BeginInvokeOnMainThread(() =>
         {
             for (int i = Messages.Count - 1; i >= 0; i--)
             {
-                if (Messages[i].IsToolCall && Messages[i].ToolName == toolName
-                    && Messages[i].Text.StartsWith("🔧"))
+                if (Messages[i] is ToolCallMessageViewModel tc && tc.ToolName == toolName
+                    && tc.Text.StartsWith("🔧"))
                 {
-                    Messages[i] = new UiChatMessage
-                    {
-                        From = Sender.Assistant,
-                        Text = $"✅ {FormatToolName(toolName)} completed",
-                        Type = MessageType.ToolCall,
-                        ToolName = toolName
-                    };
+                    // Update in-place (observable properties)
+                    tc.Text = $"✅ {toolName} completed";
+                    tc.RawJson = rawJson;
                     break;
                 }
             }
         });
     }
 
-    private static string FormatToolName(string name) => name switch
+    private static string? BuildRawJson(AIFunctionArguments arguments, object? result)
     {
-        "get_weather" => "Weather",
-        "calculate" => "Calculator",
-        "list_files" => "File Operations",
-        "get_system_info" => "System Info",
-        "set_timer" => "Timer",
-        _ => name
-    };
-
-    // ── Helpers ──────────────────────────────────────────────────────
-
-    private Task<IList<AITool>> GetAvailableToolsAsync()
-    {
-        var tools = new List<AITool>();
+        var sb = new StringBuilder();
+        var indented = new JsonSerializerOptions
+        {
+            WriteIndented = true,
+            Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+        };
 
         try
         {
-            tools.Add(_serviceProvider.GetRequiredService<CalculatorTool>());
-            tools.Add(_serviceProvider.GetRequiredService<WeatherTool>());
-            tools.Add(_serviceProvider.GetRequiredService<FileOperationsTool>());
-            tools.Add(_serviceProvider.GetRequiredService<SystemInfoTool>());
-            tools.Add(_serviceProvider.GetRequiredService<TimerTool>());
-
-            _logger.LogDebug("Retrieved {ToolCount} tools for chat completion", tools.Count);
+            if (arguments.Count > 0)
+            {
+                var argsDict = new Dictionary<string, object?>();
+                foreach (var kv in arguments) argsDict[kv.Key] = kv.Value;
+                sb.AppendLine("── Arguments ──");
+                sb.AppendLine(JsonSerializer.Serialize(argsDict, indented));
+            }
         }
-        catch (Exception ex)
+        catch { }
+
+        try
         {
-            _logger.LogWarning(ex, "Error retrieving tools for chat completion");
+            if (result is string jsonString)
+            {
+                var parsed = JsonDocument.Parse(jsonString);
+                if (sb.Length > 0) sb.AppendLine();
+                sb.AppendLine("── Result ──");
+                sb.Append(JsonSerializer.Serialize(parsed.RootElement, indented));
+            }
+            else if (result is not null)
+            {
+                var json = JsonSerializer.Serialize(result, result.GetType(), ToolJsonContext.Default.Options);
+                var parsed = JsonDocument.Parse(json);
+                if (sb.Length > 0) sb.AppendLine();
+                sb.AppendLine("── Result ──");
+                sb.Append(JsonSerializer.Serialize(parsed.RootElement, indented));
+            }
+        }
+        catch
+        {
+            if (result is not null)
+            {
+                if (sb.Length > 0) sb.AppendLine();
+                sb.AppendLine("── Result ──");
+                sb.Append(result);
+            }
         }
 
-        return Task.FromResult<IList<AITool>>(tools);
+        return sb.Length > 0 ? sb.ToString() : null;
     }
 
-    private bool CanSend() => !string.IsNullOrWhiteSpace(InputText) && !IsProcessing;
+    private bool CanSend() =>
+        !string.IsNullOrWhiteSpace(InputText) && !IsProcessing;
 
     // ── Observable tool wrapper ──────────────────────────────────────
 
-    /// <summary>
-    /// Wraps an <see cref="AIFunction"/> to fire callbacks when the tool is
-    /// invoked, giving the UI a chance to show real-time tool-call status.
-    /// </summary>
-    private sealed class ObservableAIFunction : AIFunction
+    private sealed class ObservableAIFunction(
+        AIFunction inner,
+        Action<string> onInvoking,
+        Action<string, AIFunctionArguments, object?> onInvoked)
+        : AIFunction
     {
-        private readonly AIFunction _inner;
-        private readonly Action<string> _onInvoking;
-        private readonly Action<string> _onInvoked;
-
-        public ObservableAIFunction(AIFunction inner, Action<string> onInvoking, Action<string> onInvoked)
-        {
-            _inner = inner;
-            _onInvoking = onInvoking;
-            _onInvoked = onInvoked;
-        }
-
-        public override string Name => _inner.Name;
-        public override string Description => _inner.Description;
-        public override JsonElement JsonSchema => _inner.JsonSchema;
+        public override string Name => inner.Name;
+        public override string Description => inner.Description;
+        public override JsonElement JsonSchema => inner.JsonSchema;
+        public override JsonElement? ReturnJsonSchema => inner.ReturnJsonSchema;
+        public override JsonSerializerOptions JsonSerializerOptions => inner.JsonSerializerOptions;
+        public override IReadOnlyDictionary<string, object?> AdditionalProperties => inner.AdditionalProperties;
 
         protected override async ValueTask<object?> InvokeCoreAsync(
             AIFunctionArguments arguments,
             CancellationToken cancellationToken)
         {
-            _onInvoking(_inner.Name);
+            onInvoking(inner.Name);
+            object? result = null;
             try
             {
-                return await _inner.InvokeAsync(arguments, cancellationToken);
+                result = await inner.InvokeAsync(arguments, cancellationToken);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                result = $"{{\"error\": \"{ex.GetType().Name}: {ex.Message.Replace("\"", "\\\"").Replace("\n", " ")}\"}}";
+                return result;
             }
             finally
             {
-                _onInvoked(_inner.Name);
+                onInvoked(inner.Name, arguments, result);
             }
         }
     }

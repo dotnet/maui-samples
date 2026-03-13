@@ -1,8 +1,13 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.AI;
+using Microsoft.Extensions.Logging;
 using LocalChatClientWithTools.ViewModels;
-using LocalChatClientWithTools.Services;
+using LocalChatClientWithTools.Services.Tools;
 using Fonts;
 using Syncfusion.Maui.Toolkit.Hosting;
+
+#if DEBUG
+using MauiDevFlow.Agent;
+#endif
 
 namespace LocalChatClientWithTools;
 
@@ -25,9 +30,34 @@ public static class MauiProgram
 		builder.Services.AddSingleton<ChatViewModel>();
 		builder.Services.AddSingleton<MainPage>();
 
-		// Register AI chat client with tools (Apple Intelligence — iOS/macCatalyst only)
+        // Register tool services
+        builder.Services.AddSingleton<HttpClient>();
+        builder.Services.AddSingleton<CalculatorTool>();
+        builder.Services.AddSingleton<WeatherTool>();
+        builder.Services.AddSingleton<FileOperationsTool>();
+        builder.Services.AddSingleton<SystemInfoTool>();
+        builder.Services.AddSingleton<TimerTool>();
+
+        // Register AI tool functions
+        builder.Services.AddSingleton(CalculatorTool.CreateAIFunction);
+        builder.Services.AddSingleton(WeatherTool.CreateAIFunction);
+        builder.Services.AddSingleton(FileOperationsTool.CreateAIFunction);
+        builder.Services.AddSingleton(SystemInfoTool.CreateAIFunction);
+        builder.Services.AddSingleton(TimerTool.CreateAIFunction);
+
 #if IOS || MACCATALYST
-		builder.AddLocalChatClientWithTools();
+#pragma warning disable CA1416
+        builder.Services.AddSingleton<Microsoft.Maui.Essentials.AI.AppleIntelligenceChatClient>();
+
+        builder.Services.AddChatClient(sp =>
+        {
+            var appleClient = sp.GetRequiredService<Microsoft.Maui.Essentials.AI.AppleIntelligenceChatClient>();
+            return new ChatClientBuilder(appleClient)
+                .UseFunctionInvocation()
+                .UseLogging()
+                .Build(sp);
+        });
+#pragma warning restore CA1416
 #else
 		throw new PlatformNotSupportedException(
 			"This sample requires Apple Intelligence and only runs on iOS 26+ or macCatalyst 26+.");
@@ -35,6 +65,7 @@ public static class MauiProgram
 
 #if DEBUG
 		builder.Logging.AddDebug();
+		builder.AddMauiDevFlowAgent();
 #endif
 
 		return builder.Build();
