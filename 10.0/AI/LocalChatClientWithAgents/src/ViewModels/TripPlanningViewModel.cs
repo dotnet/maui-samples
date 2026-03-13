@@ -35,7 +35,7 @@ public partial class TripPlanningViewModel(TaggingService taggingService) : Obse
 	void DecrementDays() => DayCount--;
 
 	bool CanIncrementDays() => DayCount < 7;
-	bool CanDecrementDays() => DayCount > 1;
+	bool CanDecrementDays() => DayCount > 2;
 
 	public async Task InitializeAsync()
 	{
