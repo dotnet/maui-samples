@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:viewModels="clr-namespace:LocalChatClientWithAgents.ViewModels"
-    xmlns:views="clr-namespace:LocalChatClientWithAgents.Views.Itinerary"
     x:Class="LocalChatClientWithAgents.Pages.TripPlanningPage"
-    x:DataType="viewModels:TripPlanningViewModel"
+    x:DataType="TripPlanningViewModel"
     SafeAreaEdges="None"
     Title="{Binding Landmark.Name}">
 
@@ -29,7 +25,7 @@
         <!-- Main Content -->
         <ScrollView>
             <VerticalStackLayout Spacing="20" Padding="0,180,0,20">
-                <views:LandmarkDescriptionView />
+                <LandmarkDescriptionView />
             </VerticalStackLayout>
         </ScrollView>
 

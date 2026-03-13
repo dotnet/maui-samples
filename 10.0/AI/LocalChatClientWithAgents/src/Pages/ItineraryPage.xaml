@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:viewModels="clr-namespace:LocalChatClientWithAgents.ViewModels"
-    xmlns:views="clr-namespace:LocalChatClientWithAgents.Views.Itinerary"
     x:Class="LocalChatClientWithAgents.Pages.ItineraryPage"
-    x:DataType="viewModels:ItineraryPageViewModel"
+    x:DataType="ItineraryPageViewModel"
     SafeAreaEdges="None"
     Title="{Binding Landmark.Name}">
 
@@ -31,16 +27,16 @@
             <VerticalStackLayout Spacing="20" Padding="0,180,0,20">
 
                 <!-- Generating status -->
-                <views:ItineraryPlanningView IsVisible="{Binding IsGeneratingState}" />
+                <ItineraryPlanningView IsVisible="{Binding IsGeneratingState}" />
 
                 <!-- Itinerary result -->
-                <views:ItineraryView IsVisible="{Binding HasItinerary}" />
+                <ItineraryView IsVisible="{Binding HasItinerary}" />
 
             </VerticalStackLayout>
         </ScrollView>
 
         <!-- Error overlay -->
-        <views:MessageView IsVisible="{Binding IsErrorState}" />
+        <MessageView IsVisible="{Binding IsErrorState}" />
 
         <!-- Floating Back Button (top left, pushed below status bar) -->
         <Grid VerticalOptions="Start" HorizontalOptions="Start" SafeAreaEdges="Container">

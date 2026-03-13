@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView
-    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:views="clr-namespace:LocalChatClientWithAgents.Views.Chat"
-    xmlns:models="clr-namespace:LocalChatClientWithAgents.ViewModels"
     x:Class="LocalChatClientWithAgents.Views.Chat.ChatOverlayView">
 
     <ContentView.Resources>
-        <views:MarkdownConverter x:Key="MarkdownConverter" />
+        <MarkdownConverter x:Key="MarkdownConverter" />
 
         <!-- User bubble: right-aligned, blue -->
-        <DataTemplate x:Key="UserBubbleTemplate" x:DataType="models:ChatBubbleViewModel">
+        <DataTemplate x:Key="UserBubbleTemplate" x:DataType="ChatBubbleViewModel">
             <Border
                 Background="{StaticResource Primary}"
                 StrokeThickness="0"
@@ -29,7 +25,7 @@
         </DataTemplate>
 
         <!-- Assistant bubble: left-aligned, gray -->
-        <DataTemplate x:Key="AssistantBubbleTemplate" x:DataType="models:ChatBubbleViewModel">
+        <DataTemplate x:Key="AssistantBubbleTemplate" x:DataType="ChatBubbleViewModel">
             <Grid Margin="16,4,60,4" HorizontalOptions="Start" MaximumWidthRequest="400">
                 <Border
                     Background="{AppThemeBinding Light=#F0F0F0, Dark=#2D2D2D}"
@@ -54,7 +50,7 @@
         </DataTemplate>
 
         <!-- Tool Call bubble: left-aligned, amber border, collapsible -->
-        <DataTemplate x:Key="ToolCallBubbleTemplate" x:DataType="models:ChatBubbleViewModel">
+        <DataTemplate x:Key="ToolCallBubbleTemplate" x:DataType="ChatBubbleViewModel">
             <Border
                 Stroke="{AppThemeBinding Light=#C98A00, Dark=#E6A817}"
                 StrokeThickness="1"
@@ -95,7 +91,7 @@
         </DataTemplate>
 
         <!-- Tool Result bubble: left-aligned, green border, collapsible -->
-        <DataTemplate x:Key="ToolResultBubbleTemplate" x:DataType="models:ChatBubbleViewModel">
+        <DataTemplate x:Key="ToolResultBubbleTemplate" x:DataType="ChatBubbleViewModel">
             <Border
                 Stroke="{AppThemeBinding Light=#388E3C, Dark=#4CAF50}"
                 StrokeThickness="1"
@@ -129,7 +125,7 @@
             </Border>
         </DataTemplate>
 
-        <views:ChatBubbleTemplateSelector
+        <ChatBubbleTemplateSelector
             x:Key="BubbleSelector"
             UserTemplate="{StaticResource UserBubbleTemplate}"
             AssistantTemplate="{StaticResource AssistantBubbleTemplate}"

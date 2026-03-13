@@ -10,7 +10,11 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <LangVersion>preview</LangVersion>
-    <NoWarn>$(NoWarn);MAUIAI0001</NoWarn>
+    <NoWarn>$(NoWarn);MAUIAI0001;CA2252</NoWarn>
+
+    <!-- Enable implicit + global XAML xmlns for .NET 10 -->
+    <DefineConstants>$(DefineConstants);MauiAllowImplicitXmlnsDeclaration</DefineConstants>
+    <EnablePreviewFeatures>true</EnablePreviewFeatures>
 
     <!-- Display name and identifiers -->
     <ApplicationTitle>LocalChatClientWithAgents</ApplicationTitle>

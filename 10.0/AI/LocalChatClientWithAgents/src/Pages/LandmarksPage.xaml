@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:models="clr-namespace:LocalChatClientWithAgents.Models"
-    xmlns:pages="clr-namespace:LocalChatClientWithAgents.Pages"
-    xmlns:viewModels="clr-namespace:LocalChatClientWithAgents.ViewModels"
-    xmlns:chat="clr-namespace:LocalChatClientWithAgents.Views.Chat"
-    xmlns:views="clr-namespace:LocalChatClientWithAgents.Views.Landmarks"
     x:Class="LocalChatClientWithAgents.Pages.LandmarksPage"
-    x:DataType="viewModels:LandmarksViewModel"
+    x:DataType="LandmarksViewModel"
     SafeAreaEdges="None"
     Title=".NET MAUI Trip Planner">
 
@@ -23,7 +16,7 @@
                     FontAttributes="Bold"
                     TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray400}}" />
 
-                <views:LandmarkFeaturedItemView
+                <LandmarkFeaturedItemView
                     Landmark="{Binding FeaturedLandmark}"
                     IsVisible="{Binding FeaturedLandmark, Converter={StaticResource IsNotNullConverter}}"
                     LandmarkTapped="OnLandmarkTapped" />
@@ -33,14 +26,14 @@
                     BindableLayout.ItemsSource="{Binding ContinentGroups}"
                     Spacing="25">
                     <BindableLayout.ItemTemplate>
-                        <DataTemplate x:DataType="viewModels:ContinentGroup">
+                        <DataTemplate x:DataType="ContinentGroup">
                             <VerticalStackLayout Spacing="12">
                                 <Label
                                     Text="{Binding Name}"
                                     FontSize="24"
                                     FontAttributes="Bold" />
                                 
-                                <views:LandmarkHorizontalListView
+                                <LandmarkHorizontalListView
                                     Landmarks="{Binding Landmarks}"
                                     LandmarkTapped="OnLandmarkTapped" />
                             </VerticalStackLayout>
