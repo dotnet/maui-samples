@@ -18,11 +18,4 @@ public partial class MainPage : ContentPage
             await viewModel.SendCommand.ExecuteAsync(null);
         }
     }
-
-    private void OnTextChanged(object? sender, TextChangedEventArgs e)
-    {
-        // This will trigger CanExecute updates for the SendCommand
-        var viewModel = BindingContext as ChatViewModel;
-        viewModel?.SendCommand.NotifyCanExecuteChanged();
-    }
 }

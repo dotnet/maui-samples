@@ -1,3 +1,4 @@
+using System.Collections.Concurrent;
 using System.ComponentModel;
 using Microsoft.Extensions.AI;
 
@@ -11,7 +12,7 @@ public class TimerTool
             name: "set_timer",
             serializerOptions: ToolJsonContext.Default.Options);
 
-    private static readonly Dictionary<string, System.Timers.Timer> _activeTimers = [];
+    private static readonly ConcurrentDictionary<string, System.Timers.Timer> _activeTimers = new();
 
     [Description("Sets a timer for a specified number of minutes with a title")]
     public TimerResult SetTimer(
@@ -57,10 +58,9 @@ public class TimerTool
 
     private static void OnTimerElapsed(string timerId, string title)
     {
-        if (_activeTimers.TryGetValue(timerId, out var timer))
+        if (_activeTimers.TryRemove(timerId, out var timer))
         {
             timer.Dispose();
-            _activeTimers.Remove(timerId);
         }
 
         MainThread.BeginInvokeOnMainThread(async () =>
@@ -72,11 +72,10 @@ public class TimerTool
 
     public static bool CancelTimer(string timerId)
     {
-        if (_activeTimers.TryGetValue(timerId, out var timer))
+        if (_activeTimers.TryRemove(timerId, out var timer))
         {
             timer.Stop();
             timer.Dispose();
-            _activeTimers.Remove(timerId);
             return true;
         }
         return false;

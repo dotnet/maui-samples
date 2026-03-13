@@ -42,4 +42,16 @@
     <SolidColorBrush x:Key="Gray600Brush" Color="{StaticResource Gray600}"/>
     <SolidColorBrush x:Key="Gray900Brush" Color="{StaticResource Gray900}"/>
     <SolidColorBrush x:Key="Gray950Brush" Color="{StaticResource Gray950}"/>
+
+    <!-- Chat UI colors -->
+    <Color x:Key="PageBackground">#FAFAFA</Color>
+    <Color x:Key="HeroBannerSubtitle">#CCBDE8</Color>
+    <Color x:Key="AssistantBubble">#F0F0F0</Color>
+    <Color x:Key="AssistantText">#1A1A1A</Color>
+    <Color x:Key="TimestampText">#888888</Color>
+    <Color x:Key="UserTimestampText">#D0C4F0</Color>
+    <Color x:Key="ErrorBubble">#FFF0F0</Color>
+    <Color x:Key="ErrorStroke">#E53935</Color>
+    <Color x:Key="ToolCallBackground">#F5F3FF</Color>
+    <Color x:Key="ToolJsonBackground">#FAFAFF</Color>
 </ResourceDictionary>

@@ -90,14 +90,14 @@ public partial class WeatherTool(HttpClient httpClient)
                 Icon = icon
             };
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             return new WeatherResult
             {
-                Location = $"{location} (error: {ex.Message})",
+                Location = location,
                 Temperature = 0,
                 TemperatureUnit = units == TemperatureUnit.Celsius ? "°C" : "°F",
-                Description = "Weather fetch failed",
+                Description = "Weather data is currently unavailable",
                 Condition = "Unknown",
                 Humidity = 0,
                 WindSpeed = 0,

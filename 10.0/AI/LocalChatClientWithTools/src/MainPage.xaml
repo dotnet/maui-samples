@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="LocalChatClientWithTools.MainPage"
              x:DataType="ChatViewModel"
-             Background="#FAFAFA">
+             Background="{StaticResource PageBackground}">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Clear"
@@ -53,7 +53,7 @@
                                        HorizontalTextAlignment="Center"/>
                                 <Label Text="Powered by Apple Intelligence"
                                        FontSize="13"
-                                       TextColor="#CCBDE8"
+                                       TextColor="{StaticResource HeroBannerSubtitle}"
                                        HorizontalTextAlignment="Center"/>
                             </VerticalStackLayout>
                         </Border>
@@ -264,13 +264,13 @@
                                         StrokeThickness="0"
                                         Padding="14,10"
                                         MaximumWidthRequest="500"
-                                        Background="#F0F0F0"
+                                        Background="{StaticResource AssistantBubble}"
                                         HorizontalOptions="Start"
                                         StrokeShape="RoundRectangle 16,16,4,16"
                                         Shadow="{Shadow Brush=#10000000, Offset='0,1', Radius=4}">
                                     <VerticalStackLayout Spacing="4">
                                         <Label Text="{Binding Text}"
-                                               TextColor="#1A1A1A"
+                                               TextColor="{StaticResource AssistantText}"
                                                FontSize="15"
                                                LineBreakMode="WordWrap">
                                             <Label.Triggers>
@@ -281,11 +281,11 @@
                                         </Label>
                                         <Label Text="{Binding Timestamp, StringFormat='{0:t}'}"
                                                FontSize="10"
-                                               TextColor="#AAA"
+                                               TextColor="{StaticResource TimestampText}"
                                                HorizontalTextAlignment="End">
                                             <Label.Triggers>
                                                 <DataTrigger TargetType="Label" Binding="{Binding IsUser}" Value="True">
-                                                    <Setter Property="TextColor" Value="#D0C4F0"/>
+                                                    <Setter Property="TextColor" Value="{StaticResource UserTimestampText}"/>
                                                 </DataTrigger>
                                             </Label.Triggers>
                                         </Label>
@@ -298,8 +298,8 @@
                                             <Setter Property="StrokeShape" Value="RoundRectangle 16,16,16,4"/>
                                         </DataTrigger>
                                         <DataTrigger TargetType="Border" Binding="{Binding IsError}" Value="True">
-                                            <Setter Property="Background" Value="#FFF0F0"/>
-                                            <Setter Property="Stroke" Value="#E53935"/>
+                                            <Setter Property="Background" Value="{StaticResource ErrorBubble}"/>
+                                            <Setter Property="Stroke" Value="{StaticResource ErrorStroke}"/>
                                             <Setter Property="StrokeThickness" Value="1"/>
                                         </DataTrigger>
                                     </Border.Triggers>
@@ -330,7 +330,7 @@
                         <DataTemplate x:DataType="ToolCallMessageViewModel">
                             <VerticalStackLayout Padding="0,4">
                                 <Border StrokeThickness="0"
-                                        Background="#F5F3FF"
+                                        Background="{StaticResource ToolCallBackground}"
                                         StrokeShape="RoundRectangle 20"
                                         Padding="12,6"
                                         HorizontalOptions="Center">
@@ -351,7 +351,7 @@
                                 </Border>
 
                                 <!-- Expandable raw JSON -->
-                                <Border Background="#FAFAFF"
+                                <Border Background="{StaticResource ToolJsonBackground}"
                                         Stroke="{StaticResource Gray200}"
                                         StrokeThickness="1"
                                         StrokeShape="RoundRectangle 10"
@@ -383,7 +383,6 @@
             <Entry x:Name="PromptEditor"
                    Text="{Binding InputText, Mode=TwoWay}"
                    Completed="OnCompleted"
-                   TextChanged="OnTextChanged"
                    Keyboard="Chat"
                    MaxLength="4000"
                    Background="Transparent"

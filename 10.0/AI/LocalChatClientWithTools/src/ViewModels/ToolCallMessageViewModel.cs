@@ -16,6 +16,8 @@ public partial class ToolCallMessageViewModel : ChatMessageViewModel
     [ObservableProperty]
     private string? _rawJson;
 
+    public bool IsCompleted { get; set; }
+
     public bool HasRawJson => RawJson is not null;
 
     [RelayCommand]

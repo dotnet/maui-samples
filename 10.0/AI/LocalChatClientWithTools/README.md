@@ -41,17 +41,17 @@ A .NET MAUI sample showing how to enhance an on-device LLM with `Microsoft.Exten
 | CalculatorTool | `calculate` | Evaluate arithmetic / percentages | Sanitizes expression & returns formatted result |
 | FileOperationsTool | `list_files` | List files & folders in a common or given path | Limits count; resolves shortcuts (Documents, Desktop, Downloads) |
 | SystemInfoTool | `get_system_info` | Battery, storage, memory, device info | Uses safe simulated values on unsupported platforms |
-| TimerTool | `set_timer` | Create a one‑shot timer with title | Keeps in-memory timers; prints completion to console |
+| TimerTool | `set_timer` | Create a one‑shot timer with title | Keeps in-memory timers; shows alert on completion |
 
-Each tool subclasses `AIFunction` and overrides: `Name`, `Description`, `JsonSchema`, and `InvokeCoreAsync` (returning a serializable object for binding).
+Each tool is created via `AIFunctionFactory.Create` using strongly-typed methods and AOT-compatible JSON serialization via `ToolJsonContext`.
 
 ## Key files
 
-- `Services/HostingExtensions.cs` – Registers `IChatClient` via `AppleIntelligenceChatClient` with `UseFunctionInvocation()` for automatic tool dispatch.
-- `Services/Tools/*.cs` – Tool implementations (plain `AIFunction` subclasses; no custom base abstraction to keep things clear).
-- `ViewModels/ChatViewModel.cs` – Collects tools and invokes `_chatClient.GetResponseAsync` passing `ChatOptions.Tools`.
-- `Models/ChatMessage.cs` – Chat + tool result model with typed helper accessors and UI flags.
-- `MainPage.xaml` – Chat layout, rich cards per tool result, EmptyView sample prompts, and a `Clear` toolbar item (resets to EmptyView).
+- `MauiProgram.cs` – Registers `IChatClient` via `AppleIntelligenceChatClient` with `UseFunctionInvocation()` for automatic tool dispatch, and registers all tool functions.
+- `Services/Tools/*.cs` – Tool implementations using `AIFunctionFactory.Create` for clean, factory-based tool registration.
+- `ViewModels/ChatViewModel.cs` – Collects tools and invokes `_chatClient.GetStreamingResponseAsync` passing `ChatOptions.Tools`.
+- `ViewModels/ChatMessageViewModel.cs` – Base view model for chat messages, with `TextMessageViewModel` and `ToolCallMessageViewModel` subclasses.
+- `MainPage.xaml` – Chat layout with `ChatTemplateSelector`, EmptyView sample prompts, and a `Clear` toolbar item (resets to EmptyView).
 
 ## Sample prompts
 

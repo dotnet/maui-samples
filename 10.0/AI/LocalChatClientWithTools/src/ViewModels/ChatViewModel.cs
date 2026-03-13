@@ -119,11 +119,11 @@ public partial class ChatViewModel(
             for (int i = Messages.Count - 1; i >= 0; i--)
             {
                 if (Messages[i] is ToolCallMessageViewModel tc && tc.ToolName == toolName
-                    && tc.Text.StartsWith("🔧"))
+                    && !tc.IsCompleted)
                 {
-                    // Update in-place (observable properties)
                     tc.Text = $"✅ {toolName} completed";
                     tc.RawJson = rawJson;
+                    tc.IsCompleted = true;
                     break;
                 }
             }
