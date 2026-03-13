@@ -14,6 +14,7 @@ public partial class ToolCallMessageViewModel : ChatMessageViewModel
     private bool _isExpanded;
 
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(HasRawJson))]
     private string? _rawJson;
 
     public bool IsCompleted { get; set; }
@@ -21,5 +22,9 @@ public partial class ToolCallMessageViewModel : ChatMessageViewModel
     public bool HasRawJson => RawJson is not null;
 
     [RelayCommand]
-    void ToggleExpanded() => IsExpanded = !IsExpanded;
+    void ToggleExpanded()
+    {
+        if (HasRawJson)
+            IsExpanded = !IsExpanded;
+    }
 }

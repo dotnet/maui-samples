@@ -18,7 +18,7 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 
-		<NoWarn>$(NoWarn);MAUIAI0001</NoWarn>
+		<NoWarn>$(NoWarn);MAUIAI0001;CA2252</NoWarn>
 
 		<!-- Enable implicit + global XAML xmlns for .NET 10 previews -->
 		<DefineConstants>$(DefineConstants);MauiAllowImplicitXmlnsDeclaration</DefineConstants>

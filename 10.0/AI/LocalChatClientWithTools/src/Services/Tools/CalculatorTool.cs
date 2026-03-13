@@ -29,7 +29,7 @@ public class CalculatorTool
 
         try
         {
-            if (expression.Contains("% of"))
+            if (expression.Contains("% of", StringComparison.OrdinalIgnoreCase))
                 return CalculatePercentage(expression);
 
             expression = PreprocessExpression(expression);

@@ -24,7 +24,7 @@ A .NET MAUI sample showing how to enhance an on-device LLM with `Microsoft.Exten
 - Supplying a set of `AIFunction` tools to `IChatClient` via `ChatOptions.Tools`
 - Implementing strongly described tool schemas (JSON schema) for better argument selection
 - Resolving user-friendly locations to coordinates with the free [open-meteo.com](https://open-meteo.com) API
-- Building rich MAUI UI cards for different tool result types (weather, files, timers, etc.)
+- Building a MAUI chat UI with template selectors for different message types (text, tool calls)
 - Running AI inference entirely on-device with no external API keys
 
 ## Prerequisites
@@ -40,7 +40,7 @@ A .NET MAUI sample showing how to enhance an on-device LLM with `Microsoft.Exten
 | WeatherTool | `get_weather` | Current conditions for a location | Geocodes via open-meteo.com, then fetches forecast — free, no API key |
 | CalculatorTool | `calculate` | Evaluate arithmetic / percentages | Sanitizes expression & returns formatted result |
 | FileOperationsTool | `list_files` | List files & folders in a common or given path | Limits count; resolves shortcuts (Documents, Desktop, Downloads) |
-| SystemInfoTool | `get_system_info` | Battery, storage, memory, device info | Uses safe simulated values on unsupported platforms |
+| SystemInfoTool | `get_system_info` | Battery, storage, memory, device info | Returns live device values on Apple platforms |
 | TimerTool | `set_timer` | Create a one‑shot timer with title | Keeps in-memory timers; shows alert on completion |
 
 Each tool is created via `AIFunctionFactory.Create` using strongly-typed methods and AOT-compatible JSON serialization via `ToolJsonContext`.
