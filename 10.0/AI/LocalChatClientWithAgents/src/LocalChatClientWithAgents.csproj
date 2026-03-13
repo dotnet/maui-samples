@@ -46,7 +46,8 @@
     <PackageReference Include="Microsoft.Maui.Essentials.AI" Version="10.0.50-preview.1.26158.1" />
 
     <!-- Maps -->
-    <PackageReference Include="Microsoft.Maui.Controls.Maps" Version="10.0.0-*" />
+    <PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
+    <PackageReference Include="Microsoft.Maui.Controls.Maps" Version="$(MauiVersion)" />
 
     <!-- Markdown rendering -->
     <PackageReference Include="Markdig" Version="0.31.0" />
@@ -56,7 +57,6 @@
     <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
     <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
     <MauiImage Include="Resources\Images\*" />
-    <MauiImage Update="Resources\Images\dotnet_bot.png" Resize="True" BaseSize="300,185" />
     <MauiFont Include="Resources\Fonts\*" />
     <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
   </ItemGroup>

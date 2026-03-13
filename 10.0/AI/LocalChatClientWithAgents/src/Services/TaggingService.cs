@@ -1,6 +1,5 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Text.Json;
 using Microsoft.Extensions.AI;
 
 namespace LocalChatClientWithAgents.Services;
@@ -29,14 +28,7 @@ public class TaggingService(IChatClient chatClient)
 		};
 
 		var response = await chatClient.GetResponseAsync<TaggingResponse>(messages, cancellationToken: cancellationToken);
-		var jsonText = response.ToString();
-
-		var jsonOptions = new JsonSerializerOptions
-		{
-			PropertyNameCaseInsensitive = true
-		};
-
-		return JsonSerializer.Deserialize<TaggingResponse>(jsonText, jsonOptions)?.Tags ?? [];
+		return response.TryGetResult(out var result) ? result?.Tags ?? [] : [];
 	}
 
 	public class TaggingResponse
