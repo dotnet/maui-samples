@@ -24,7 +24,7 @@ public class SeedDataService
 
 	public async Task LoadSeedDataAsync()
 	{
-		ClearTables();
+		await ClearTables();
 
 		await using Stream templateStream = await FileSystem.OpenAppPackageFileAsync(_seedDataFilePath);
 
@@ -83,19 +83,9 @@ public class SeedDataService
 		}
 	}
 
-	private async void ClearTables()
+	private async Task ClearTables()
 	{
-		try
-		{
-			await Task.WhenAll(
-				_projectRepository.DropTableAsync(),
-				_taskRepository.DropTableAsync(),
-				_tagRepository.DropTableAsync(),
-				_categoryRepository.DropTableAsync());
-		}
-		catch (Exception e)
-		{
-			Console.WriteLine(e);
-		}
+		await _projectRepository.DropTableAsync();
+		await _categoryRepository.DropTableAsync();
 	}
 }
