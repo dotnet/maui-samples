@@ -39,32 +39,29 @@ public class TagRepository
 			await using var connection = new SqliteConnection(Constants.DatabasePath);
 			await connection.OpenAsync();
 
-			try
-			{
-				var createTableCmd = connection.CreateCommand();
-				createTableCmd.CommandText = @"
+			var createTableCmd = connection.CreateCommand();
+			createTableCmd.CommandText = @"
             CREATE TABLE IF NOT EXISTS Tag (
                 ID INTEGER PRIMARY KEY AUTOINCREMENT,
                 Title TEXT NOT NULL,
                 Color TEXT NOT NULL
             );";
-				await createTableCmd.ExecuteNonQueryAsync();
+			await createTableCmd.ExecuteNonQueryAsync();
 
-				createTableCmd.CommandText = @"
+			createTableCmd.CommandText = @"
             CREATE TABLE IF NOT EXISTS ProjectsTags (
                 ProjectID INTEGER NOT NULL,
                 TagID INTEGER NOT NULL,
                 PRIMARY KEY(ProjectID, TagID)
             );";
-				await createTableCmd.ExecuteNonQueryAsync();
-			}
-			catch (Exception e)
-			{
-				_logger.LogError(e, "Error creating tables");
-				throw;
-			}
+			await createTableCmd.ExecuteNonQueryAsync();
 
 			_hasBeenInitialized = true;
+		}
+		catch (Exception e)
+		{
+			_logger.LogError(e, "Error creating tables");
+			throw;
 		}
 		finally
 		{
@@ -346,12 +343,12 @@ public class TagRepository
 			await using var connection = new SqliteConnection(Constants.DatabasePath);
 			await connection.OpenAsync();
 
-		var dropTableCmd = connection.CreateCommand();
-		dropTableCmd.CommandText = "DROP TABLE IF EXISTS Tag";
-		await dropTableCmd.ExecuteNonQueryAsync();
+			var dropTableCmd = connection.CreateCommand();
+			dropTableCmd.CommandText = "DROP TABLE IF EXISTS Tag";
+			await dropTableCmd.ExecuteNonQueryAsync();
 
-		dropTableCmd.CommandText = "DROP TABLE IF EXISTS ProjectsTags";
-		await dropTableCmd.ExecuteNonQueryAsync();
+			dropTableCmd.CommandText = "DROP TABLE IF EXISTS ProjectsTags";
+			await dropTableCmd.ExecuteNonQueryAsync();
 
 			_hasBeenInitialized = false;
 		}

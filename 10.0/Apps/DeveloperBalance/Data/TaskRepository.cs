@@ -39,25 +39,22 @@ public class TaskRepository
 			await using var connection = new SqliteConnection(Constants.DatabasePath);
 			await connection.OpenAsync();
 
-			try
-			{
-				var createTableCmd = connection.CreateCommand();
-				createTableCmd.CommandText = @"
+			var createTableCmd = connection.CreateCommand();
+			createTableCmd.CommandText = @"
             CREATE TABLE IF NOT EXISTS Task (
                 ID INTEGER PRIMARY KEY AUTOINCREMENT,
                 Title TEXT NOT NULL,
                 IsCompleted INTEGER NOT NULL,
                 ProjectID INTEGER NOT NULL
             );";
-				await createTableCmd.ExecuteNonQueryAsync();
-			}
-			catch (Exception e)
-			{
-				_logger.LogError(e, "Error creating Task table");
-				throw;
-			}
+			await createTableCmd.ExecuteNonQueryAsync();
 
 			_hasBeenInitialized = true;
+		}
+		catch (Exception e)
+		{
+			_logger.LogError(e, "Error creating Task table");
+			throw;
 		}
 		finally
 		{

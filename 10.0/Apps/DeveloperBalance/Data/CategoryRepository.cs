@@ -39,24 +39,21 @@ public class CategoryRepository
 			await using var connection = new SqliteConnection(Constants.DatabasePath);
 			await connection.OpenAsync();
 
-			try
-			{
-				var createTableCmd = connection.CreateCommand();
-				createTableCmd.CommandText = @"
+			var createTableCmd = connection.CreateCommand();
+			createTableCmd.CommandText = @"
             CREATE TABLE IF NOT EXISTS Category (
                 ID INTEGER PRIMARY KEY AUTOINCREMENT,
                 Title TEXT NOT NULL,
                 Color TEXT NOT NULL
             );";
-				await createTableCmd.ExecuteNonQueryAsync();
-			}
-			catch (Exception e)
-			{
-				_logger.LogError(e, "Error creating Category table");
-				throw;
-			}
+			await createTableCmd.ExecuteNonQueryAsync();
 
 			_hasBeenInitialized = true;
+		}
+		catch (Exception e)
+		{
+			_logger.LogError(e, "Error creating Category table");
+			throw;
 		}
 		finally
 		{
