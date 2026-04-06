@@ -183,14 +183,22 @@ public class CategoryRepository
 	/// </summary>
 	public async Task DropTableAsync()
 	{
-		await Init();
-		await using var connection = new SqliteConnection(Constants.DatabasePath);
-		await connection.OpenAsync();
+		await _initLock.WaitAsync();
+		try
+		{
+			await using var connection = new SqliteConnection(Constants.DatabasePath);
+			await connection.OpenAsync();
 
-		var dropTableCmd = connection.CreateCommand();
-		dropTableCmd.CommandText = "DROP TABLE IF EXISTS Category";
+			var dropTableCmd = connection.CreateCommand();
+			dropTableCmd.CommandText = "DROP TABLE IF EXISTS Category";
 
-		await dropTableCmd.ExecuteNonQueryAsync();
-		_hasBeenInitialized = false;
+			await dropTableCmd.ExecuteNonQueryAsync();
+
+			_hasBeenInitialized = false;
+		}
+		finally
+		{
+			_initLock.Release();
+		}
 	}
 }

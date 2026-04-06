@@ -340,9 +340,11 @@ public class TagRepository
 	/// </summary>
 	public async Task DropTableAsync()
 	{
-		await Init();
-		await using var connection = new SqliteConnection(Constants.DatabasePath);
-		await connection.OpenAsync();
+		await _initLock.WaitAsync();
+		try
+		{
+			await using var connection = new SqliteConnection(Constants.DatabasePath);
+			await connection.OpenAsync();
 
 		var dropTableCmd = connection.CreateCommand();
 		dropTableCmd.CommandText = "DROP TABLE IF EXISTS Tag";
@@ -351,6 +353,11 @@ public class TagRepository
 		dropTableCmd.CommandText = "DROP TABLE IF EXISTS ProjectsTags";
 		await dropTableCmd.ExecuteNonQueryAsync();
 
-		_hasBeenInitialized = false;
+			_hasBeenInitialized = false;
+		}
+		finally
+		{
+			_initLock.Release();
+		}
 	}
 }

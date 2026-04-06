@@ -218,16 +218,24 @@ public class ProjectRepository
 	/// </summary>
 	public async Task DropTableAsync()
 	{
-		await Init();
-		await using var connection = new SqliteConnection(Constants.DatabasePath);
-		await connection.OpenAsync();
+		await _initLock.WaitAsync();
+		try
+		{
+			await using var connection = new SqliteConnection(Constants.DatabasePath);
+			await connection.OpenAsync();
 
-		var dropCmd = connection.CreateCommand();
-		dropCmd.CommandText = "DROP TABLE IF EXISTS Project";
-		await dropCmd.ExecuteNonQueryAsync();
+			var dropCmd = connection.CreateCommand();
+			dropCmd.CommandText = "DROP TABLE IF EXISTS Project";
+			await dropCmd.ExecuteNonQueryAsync();
+
+			_hasBeenInitialized = false;
+		}
+		finally
+		{
+			_initLock.Release();
+		}
 
 		await _taskRepository.DropTableAsync();
 		await _tagRepository.DropTableAsync();
-		_hasBeenInitialized = false;
 	}
 }
