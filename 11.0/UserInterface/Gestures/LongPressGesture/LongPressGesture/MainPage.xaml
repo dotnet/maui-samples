@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:LongPressGesture.ViewModels"
+             x:Class="LongPressGesture.MainPage"
+             x:DataType="vm:LongPressViewModel"
+             BackgroundColor="#F0F2F5">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20,40" Spacing="20">
+
+            <!-- Title -->
+            <Label Text="Long Press Gesture"
+                   FontSize="28"
+                   FontAttributes="Bold"
+                   TextColor="#512BD4"
+                   HorizontalOptions="Center" />
+
+            <Label Text="Press and hold to interact with the elements below"
+                   FontSize="14"
+                   TextColor="#666666"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center" />
+
+            <!-- ============================================================ -->
+            <!-- DEMO 1: BoxView with LongPressGestureRecognizer              -->
+            <!-- Shows Command, MinimumPressDuration, AllowableMovement,      -->
+            <!-- LongPressing event for state tracking, and GetPosition()     -->
+            <!-- ============================================================ -->
+
+            <Label Text="1. Long Press on BoxView"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   TextColor="#333333"
+                   Margin="0,10,0,0" />
+
+            <Label Text="Hold for 750ms (Android uses system default). Color changes on completion."
+                   FontSize="13"
+                   TextColor="#888888" />
+
+            <!-- <docregion_longpress_boxview> -->
+            <BoxView x:Name="InteractiveBox"
+                     Color="{Binding BoxColor}"
+                     HeightRequest="150"
+                     WidthRequest="300"
+                     CornerRadius="15"
+                     HorizontalOptions="Center">
+                <BoxView.GestureRecognizers>
+                    <LongPressGestureRecognizer
+                        Command="{Binding LongPressCommand}"
+                        CommandParameter="BoxView"
+                        MinimumPressDuration="750"
+                        AllowableMovement="20"
+                        LongPressed="OnLongPressed"
+                        LongPressing="OnLongPressing" />
+                </BoxView.GestureRecognizers>
+            </BoxView>
+            <!-- </docregion_longpress_boxview> -->
+
+            <!-- State and position readout -->
+            <Border BackgroundColor="White"
+                    Padding="15"
+                    StrokeThickness="0"
+                    HorizontalOptions="Center">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="10" />
+                </Border.StrokeShape>
+                <Border.Shadow>
+                    <Shadow Brush="Black" Opacity="0.1" Radius="6" Offset="0,3" />
+                </Border.Shadow>
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="{Binding GestureStatus}"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           TextColor="#2E2E2E"
+                           HorizontalTextAlignment="Center" />
+                    <Label Text="{Binding LongPressState}"
+                           FontSize="13"
+                           TextColor="#512BD4"
+                           HorizontalTextAlignment="Center" />
+                    <Label Text="{Binding PositionText}"
+                           FontSize="13"
+                           TextColor="#888888"
+                           HorizontalTextAlignment="Center" />
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- ============================================================ -->
+            <!-- DEMO 2: NumberOfTouchesRequired                              -->
+            <!-- ============================================================ -->
+
+            <Label Text="2. Two-Finger Long Press"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   TextColor="#333333"
+                   Margin="0,10,0,0" />
+
+            <Label Text="Requires two fingers (iOS/Mac Catalyst only)."
+                   FontSize="13"
+                   TextColor="#888888" />
+
+            <!-- <docregion_multitouch> -->
+            <BoxView x:Name="MultiTouchBox"
+                     Color="Teal"
+                     HeightRequest="100"
+                     WidthRequest="300"
+                     CornerRadius="15"
+                     HorizontalOptions="Center">
+                <BoxView.GestureRecognizers>
+                    <LongPressGestureRecognizer
+                        NumberOfTouchesRequired="2"
+                        LongPressed="OnMultiTouchLongPressed" />
+                </BoxView.GestureRecognizers>
+            </BoxView>
+            <!-- </docregion_multitouch> -->
+
+            <Label x:Name="MultiTouchStatus"
+                   Text="Waiting for two-finger long press..."
+                   FontSize="13"
+                   TextColor="#888888"
+                   HorizontalOptions="Center" />
+
+            <!-- ============================================================ -->
+            <!-- DEMO 3: Combining LongPress with Tap on the same element     -->
+            <!-- ============================================================ -->
+
+            <Label Text="3. Tap + Long Press on Image"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   TextColor="#333333"
+                   Margin="0,10,0,0" />
+
+            <Label Text="Tap shows alert. Long press shows context info."
+                   FontSize="13"
+                   TextColor="#888888" />
+
+            <!-- <docregion_combined_gestures> -->
+            <Border StrokeThickness="0"
+                    BackgroundColor="White"
+                    HorizontalOptions="Center"
+                    Padding="10">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="15" />
+                </Border.StrokeShape>
+                <Border.Shadow>
+                    <Shadow Brush="Black" Opacity="0.15" Radius="10" Offset="0,5" />
+                </Border.Shadow>
+                <Image Source="dotnet_bot.png"
+                       HeightRequest="180"
+                       WidthRequest="180">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding TapCommand}"
+                            CommandParameter="dotnet_bot"
+                            Tapped="OnImageTapped" />
+                        <LongPressGestureRecognizer
+                            Command="{Binding LongPressCommand}"
+                            CommandParameter="dotnet_bot"
+                            MinimumPressDuration="500"
+                            LongPressed="OnImageLongPressed" />
+                    </Image.GestureRecognizers>
+                </Image>
+            </Border>
+            <!-- </docregion_combined_gestures> -->
+
+            <Label Text="{Binding ImageStatus}"
+                   FontSize="14"
+                   FontAttributes="Bold"
+                   TextColor="#2E2E2E"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
