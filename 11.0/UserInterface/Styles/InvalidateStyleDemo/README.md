@@ -1,3 +1,15 @@
+---
+name: .NET MAUI - InvalidateStyle Demo
+description: "Demonstrates InvalidateStyle() and VisualStateManager.InvalidateVisualStates() for dynamically reapplying styles at runtime in .NET MAUI 11."
+page_type: sample
+languages:
+- csharp
+- xaml
+products:
+- dotnet-maui
+urlFragment: userinterface-styles-invalidatestyle
+---
+
 # InvalidateStyle Demo
 
 Demonstrates two new .NET MAUI 11 APIs for dynamically reapplying styles after mutating setter values at runtime:
