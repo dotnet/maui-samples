@@ -28,7 +28,7 @@
             <!-- LongPressing event for state tracking, and GetPosition()     -->
             <!-- ============================================================ -->
 
-            <Label Text="1. Long Press on BoxView"
+            <Label Text="Long Press on BoxView"
                    FontSize="18"
                    FontAttributes="Bold"
                    TextColor="#333333"
@@ -41,11 +41,13 @@
             <!-- <docregion_longpress_boxview> -->
             <BoxView x:Name="InteractiveBox"
                      Color="{Binding BoxColor}"
+                     BackgroundColor="Transparent"
                      HeightRequest="150"
                      WidthRequest="300"
                      CornerRadius="15"
                      HorizontalOptions="Center">
                 <BoxView.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnBoxTapped" />
                     <LongPressGestureRecognizer
                         Command="{Binding LongPressCommand}"
                         CommandParameter="BoxView"
@@ -86,45 +88,50 @@
             </Border>
 
             <!-- ============================================================ -->
-            <!-- DEMO 2: NumberOfTouchesRequired                              -->
+            <!-- DEMO 2: NumberOfTouchesRequired (iOS/Mac Catalyst only)       -->
             <!-- ============================================================ -->
 
-            <Label Text="2. Two-Finger Long Press"
-                   FontSize="18"
-                   FontAttributes="Bold"
-                   TextColor="#333333"
-                   Margin="0,10,0,0" />
+            <VerticalStackLayout x:Name="MultiTouchSection" Spacing="10">
 
-            <Label Text="Requires two fingers (iOS/Mac Catalyst only)."
-                   FontSize="13"
-                   TextColor="#888888" />
+                <Label Text="Two-Finger Long Press"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       TextColor="#333333"
+                       Margin="0,10,0,0" />
 
-            <!-- <docregion_multitouch> -->
-            <BoxView x:Name="MultiTouchBox"
-                     Color="Teal"
-                     HeightRequest="100"
-                     WidthRequest="300"
-                     CornerRadius="15"
-                     HorizontalOptions="Center">
-                <BoxView.GestureRecognizers>
-                    <LongPressGestureRecognizer
-                        NumberOfTouchesRequired="2"
-                        LongPressed="OnMultiTouchLongPressed" />
-                </BoxView.GestureRecognizers>
-            </BoxView>
-            <!-- </docregion_multitouch> -->
+                <Label Text="Requires two fingers (iOS/Mac Catalyst only)."
+                       FontSize="13"
+                       TextColor="#888888" />
 
-            <Label x:Name="MultiTouchStatus"
-                   Text="Waiting for two-finger long press..."
-                   FontSize="13"
-                   TextColor="#888888"
-                   HorizontalOptions="Center" />
+                <!-- <docregion_multitouch> -->
+                <BoxView x:Name="MultiTouchBox"
+                         Color="Teal"
+                         BackgroundColor="Transparent"
+                         HeightRequest="100"
+                         WidthRequest="300"
+                         CornerRadius="15"
+                         HorizontalOptions="Center">
+                    <BoxView.GestureRecognizers>
+                        <LongPressGestureRecognizer
+                            NumberOfTouchesRequired="2"
+                            LongPressed="OnMultiTouchLongPressed" />
+                    </BoxView.GestureRecognizers>
+                </BoxView>
+                <!-- </docregion_multitouch> -->
+
+                <Label x:Name="MultiTouchStatus"
+                       Text="Waiting for two-finger long press..."
+                       FontSize="13"
+                       TextColor="#888888"
+                       HorizontalOptions="Center" />
+
+            </VerticalStackLayout>
 
             <!-- ============================================================ -->
             <!-- DEMO 3: Combining LongPress with Tap on the same element     -->
             <!-- ============================================================ -->
 
-            <Label Text="3. Tap + Long Press on Image"
+            <Label Text="Tap + Long Press on Image"
                    FontSize="18"
                    FontAttributes="Bold"
                    TextColor="#333333"
@@ -154,8 +161,6 @@
                             CommandParameter="dotnet_bot"
                             Tapped="OnImageTapped" />
                         <LongPressGestureRecognizer
-                            Command="{Binding LongPressCommand}"
-                            CommandParameter="dotnet_bot"
                             MinimumPressDuration="500"
                             LongPressed="OnImageLongPressed" />
                     </Image.GestureRecognizers>

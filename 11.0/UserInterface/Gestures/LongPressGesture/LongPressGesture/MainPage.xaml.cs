@@ -8,6 +8,21 @@ public partial class MainPage : ContentPage
     {
         InitializeComponent();
         BindingContext = new LongPressViewModel();
+
+        // Demo 2 (two-finger long press) is iOS/Mac Catalyst only
+        if (DeviceInfo.Platform == DevicePlatform.Android ||
+            DeviceInfo.Platform == DevicePlatform.WinUI)
+        {
+            MultiTouchSection.IsVisible = false;
+        }
+    }
+
+    void OnBoxTapped(object? sender, TappedEventArgs e)
+    {
+        if (BindingContext is LongPressViewModel vm)
+        {
+            vm.OnBoxTapped();
+        }
     }
 
     // <docregion_longpressed_handler>
@@ -57,8 +72,8 @@ public partial class MainPage : ContentPage
         {
             var position = e.GetPosition(sender as Element);
             vm.ImageStatus = position.HasValue
-                ? $"Long pressed at ({position.Value.X:F0}, {position.Value.Y:F0}) — context menu here!"
-                : "Long pressed — context menu here!";
+                ? $"✅ Long pressed at ({position.Value.X:F0}, {position.Value.Y:F0})"
+                : "✅ Long press detected!";
         }
     }
 }

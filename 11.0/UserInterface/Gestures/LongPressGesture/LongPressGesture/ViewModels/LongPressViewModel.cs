@@ -5,7 +5,7 @@ namespace LongPressGesture.ViewModels;
 // <docregion_viewmodel>
 public class LongPressViewModel : INotifyPropertyChanged
 {
-    string _gestureStatus = "Press and hold on the box below";
+    string _gestureStatus = "Waiting for long press...";
     string _positionText = string.Empty;
     Color _boxColor = Colors.MediumPurple;
     string _longPressState = string.Empty;
@@ -73,13 +73,18 @@ public class LongPressViewModel : INotifyPropertyChanged
 
     void OnLongPressed(string source)
     {
-        GestureStatus = $"Long press completed on {source}!";
+        GestureStatus = $"✅ Long press completed on {source}!";
         BoxColor = GetRandomColor();
     }
 
     void OnTapped(string source)
     {
         ImageStatus = $"Tapped on {source}!";
+    }
+
+    public void OnBoxTapped()
+    {
+        GestureStatus = "👆 That was a tap, not a long press. Hold longer!";
     }
 
     static Color GetRandomColor()
