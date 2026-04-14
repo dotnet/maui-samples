@@ -6,9 +6,13 @@
 		<OutputType>Exe</OutputType>
 		<RootNamespace>MapClustering</RootNamespace>
 		<UseMaui>true</UseMaui>
+		<UseMauiMaps>true</UseMauiMaps>
 		<SingleProject>true</SingleProject>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
+
+		<!-- Skip Xcode version check for preview SDK -->
+		<ValidateXcodeVersion>false</ValidateXcodeVersion>
 
 		<!-- Display name -->
 		<ApplicationTitle>MapClustering</ApplicationTitle>
@@ -47,9 +51,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
-		<PackageReference Include="Microsoft.Maui.Controls.Maps" Version="11.0.0-ci.pr33991.1.26151.13" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="11.0.0-preview.3.25264.7" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="11.0.0-preview.3.26203.7" />
+		<PackageReference Include="Microsoft.Maui.Controls.Maps" Version="11.0.0-preview.3.26203.7" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="11.0.0-preview.3.26207.106" />
 	</ItemGroup>
 
 </Project>

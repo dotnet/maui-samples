@@ -7,7 +7,7 @@
     Shell.FlyoutBehavior="Disabled">
 
     <ShellContent
-        Title="Pin Clustering"
+        Title="Maps Features"
         ContentTemplate="{DataTemplate views:ClusteringPage}"
         Route="ClusteringPage" />
 
