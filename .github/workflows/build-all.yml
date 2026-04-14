@@ -28,7 +28,7 @@ jobs:
 
     - name: Install .NET MAUI Workload
       run: |
-        dotnet workload update
+        dotnet workload config --update-mode manifests
         dotnet workload install maui
 
     - name: Select Xcode Version
