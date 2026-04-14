@@ -27,7 +27,9 @@ jobs:
         dotnet-quality: 'preview'
 
     - name: Install .NET MAUI Workload
-      run: dotnet workload install maui
+      run: |
+        dotnet workload config --update-mode manifests
+        dotnet workload install maui
 
     - name: Select Xcode Version
       run: sudo xcode-select -s /Applications/Xcode_26.2.app
