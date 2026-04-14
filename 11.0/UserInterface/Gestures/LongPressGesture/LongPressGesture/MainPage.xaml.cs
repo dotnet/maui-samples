@@ -51,6 +51,10 @@ public partial class MainPage : ContentPage
                 GestureStatus.Canceled => "Status: Canceled — gesture aborted",
                 _ => $"Status: {e.Status}"
             };
+
+            var position = e.GetPosition(InteractiveBox);
+            if (position.HasValue)
+                vm.PositionText = $"Position: ({position.Value.X:F0}, {position.Value.Y:F0})";
         }
     }
     // </docregion_longpressing_handler>
@@ -63,7 +67,7 @@ public partial class MainPage : ContentPage
 
     async void OnImageTapped(object? sender, TappedEventArgs e)
     {
-        await DisplayAlert("Tap Detected", "You tapped the .NET bot!", "OK");
+        await DisplayAlertAsync("Tap Detected", "You tapped the .NET bot!", "OK");
     }
 
     void OnImageLongPressed(object? sender, LongPressedEventArgs e)
