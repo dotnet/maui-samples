@@ -40,7 +40,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="11.0.0-preview.3.25264.7" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="$(DotNetVersion)" />
 	</ItemGroup>
 
 </Project>
