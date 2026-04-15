@@ -3,8 +3,5 @@
     <!-- .NET MAUI 11 Preview 3 versions — update these when a new preview drops -->
     <MauiVersion>11.0.0-preview.3.26203.7</MauiVersion>
     <DotNetVersion>11.0.0-preview.3.26207.106</DotNetVersion>
-
-    <!-- Preview SDK may require a newer Xcode than currently available -->
-    <ValidateXcodeVersion>false</ValidateXcodeVersion>
   </PropertyGroup>
 </Project>
