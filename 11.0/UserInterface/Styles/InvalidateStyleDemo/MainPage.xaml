@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="InvalidateStyleDemo.MainPage"
+             Title="InvalidateStyle Demo">
+
+    <ContentPage.Resources>
+        <!-- <docregion:explicit-style> -->
+        <Style x:Key="StyledButtonStyle" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="DodgerBlue" />
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="Padding" Value="16,8" />
+            <Setter Property="CornerRadius" Value="8" />
+        </Style>
+        <!-- </docregion:explicit-style> -->
+
+        <!-- <docregion:visual-state-style> -->
+        <Style x:Key="StatefulLabelStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="HorizontalTextAlignment" Value="Center" />
+            <Setter Property="Padding" Value="24,16" />
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="LightGray" />
+                                <Setter Property="TextColor" Value="Black" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="PointerOver">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="LightBlue" />
+                                <Setter Property="TextColor" Value="DarkBlue" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+        <!-- </docregion:visual-state-style> -->
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="20" Padding="30">
+
+            <!-- Section 1: InvalidateStyle -->
+            <Label Text="1. StyleableElement.InvalidateStyle()"
+                   FontSize="16"
+                   FontAttributes="Bold" />
+
+            <Label Text="Mutate a Style Setter value in code, then call InvalidateStyle() to reapply."
+                   FontSize="14" />
+
+            <!-- <docregion:styled-button> -->
+            <Button x:Name="StyledButton"
+                    Text="I am styled"
+                    Style="{StaticResource StyledButtonStyle}" />
+            <!-- </docregion:styled-button> -->
+
+            <!-- <docregion:change-style-button> -->
+            <Button Text="Change Style"
+                    Clicked="OnChangeStyleClicked"
+                    BackgroundColor="Gray"
+                    TextColor="White" />
+            <!-- </docregion:change-style-button> -->
+
+            <Label x:Name="StyleStatusLabel"
+                   Text="Current: DodgerBlue background, FontSize 18"
+                   FontSize="12"
+                   TextColor="Gray" />
+
+            <BoxView HeightRequest="1" Color="LightGray" />
+
+            <!-- Section 2: InvalidateVisualStates -->
+            <Label Text="2. VisualStateManager.InvalidateVisualStates()"
+                   FontSize="16"
+                   FontAttributes="Bold" />
+
+            <Label Text="Mutate a VisualState Setter value in code, then call InvalidateVisualStates() to reapply. Hover over the label to see PointerOver state."
+                   FontSize="14" />
+
+            <!-- <docregion:stateful-label> -->
+            <Label x:Name="StatefulLabel"
+                   Text="Hover over me (PointerOver) or tap the button below"
+                   Style="{StaticResource StatefulLabelStyle}" />
+            <!-- </docregion:stateful-label> -->
+
+            <!-- <docregion:change-visual-state-button> -->
+            <Button Text="Change Visual State Colors"
+                    Clicked="OnChangeVisualStateClicked"
+                    BackgroundColor="Gray"
+                    TextColor="White" />
+            <!-- </docregion:change-visual-state-button> -->
+
+            <Label x:Name="VisualStateStatusLabel"
+                   Text="Normal: LightGray bg / PointerOver: LightBlue bg"
+                   FontSize="12"
+                   TextColor="Gray" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
+             x:Class="MapClustering.Views.ClusteringPage"
+             Title="Maps features demo">
+    <Grid RowDefinitions="*,Auto">
+        <!-- #docregion clustering_xaml -->
+        <maps:Map x:Name="map"
+                  IsClusteringEnabled="True"
+                  MapClicked="OnMapClicked"
+                  MapLongClicked="OnMapLongClicked" />
+        <!-- #enddocregion clustering_xaml -->
+
+        <Border Grid.Row="1"
+                StrokeThickness="0"
+                Padding="12,8">
+            <VerticalStackLayout Spacing="8">
+                <HorizontalStackLayout Spacing="8">
+                    <Button Text="Reset Pins"
+                            Clicked="OnResetPinsClicked" />
+                    <Button x:Name="clusterToggleButton"
+                            Text="Clustering: On"
+                            Clicked="OnToggleClusteringClicked" />
+                    <Button x:Name="overlayToggleButton"
+                            Text="Toggle Overlays"
+                            Clicked="OnToggleOverlaysClicked" />
+                </HorizontalStackLayout>
+
+                <Border StrokeThickness="1"
+                        Stroke="#E0E0E0"
+                        Padding="10,6"
+                        StrokeShape="RoundRectangle 6">
+                    <Label x:Name="statusLabel"
+                           Text="Long press the map to drop a pin. Tap overlays to interact."
+                           FontSize="12" />
+                </Border>
+            </VerticalStackLayout>
+        </Border>
+    </Grid>
+</ContentPage>

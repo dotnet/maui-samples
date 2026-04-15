@@ -22,11 +22,14 @@ jobs:
         dotnet-version: |
           9.0.x
           10.0.x
+          11.0.x
         include-prerelease: true
         dotnet-quality: 'preview'
 
     - name: Install .NET MAUI Workload
-      run: dotnet workload install maui
+      run: |
+        dotnet workload config --update-mode manifests
+        dotnet workload install maui
 
     - name: Select Xcode Version
       run: sudo xcode-select -s /Applications/Xcode_26.2.app
