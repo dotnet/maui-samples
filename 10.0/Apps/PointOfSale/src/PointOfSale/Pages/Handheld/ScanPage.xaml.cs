@@ -1,5 +1,6 @@
 ﻿using PointOfSale.Models;
 using ZXing.Net.Maui;
+using ZXing.Net.Maui.Controls;
 
 namespace PointOfSale.Pages.Handheld;
 
