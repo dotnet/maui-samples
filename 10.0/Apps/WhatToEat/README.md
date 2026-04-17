@@ -1,6 +1,6 @@
 ---
 name: .NET MAUI - WhatToEat
-description: Weather '21 application that demonstrates how to effectively use Shell for intuitive navigation and seamless app structuring.
+description: WhatToEat application that demonstrates how to effectively use Shell for intuitive navigation and seamless app structuring.
 page_type: sample
 languages:
 - csharp
