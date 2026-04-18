@@ -7,5 +7,4 @@
 
     <ShellContent ContentTemplate="{DataTemplate p:MobileLoginPage}" Route="login"/>
     <ShellContent ContentTemplate="{DataTemplate p:OrdersPage}" Route="orders"/>
-
 </Shell>
