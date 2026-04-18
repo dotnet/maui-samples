@@ -72,6 +72,7 @@ public partial class ScanPage : ContentPage
                     var r = e.Results.FirstOrDefault();
                     if (r == null)
                         return;
+
                     await CloseModal(r.Value);
                 }
                 catch (Exception ex)

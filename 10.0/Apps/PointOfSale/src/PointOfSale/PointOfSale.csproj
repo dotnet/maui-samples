@@ -81,8 +81,8 @@
 	  <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="10.0.6" />
 	  <PackageReference Include="AsyncAwaitBestPractices" Version="10.0.0" />
 	  <PackageReference Include="Plugin.Maui.KeyListener" Version="1.0.0-preview1" />
-	  <PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
-	  <PackageReference Include="Microsoft.AspNetCore.Components.WebView.Maui" Version="$(MauiVersion)" />
+	  <PackageReference Include="Microsoft.Maui.Controls" Version="10.0.51" />
+	  <PackageReference Include="Microsoft.AspNetCore.Components.WebView.Maui" Version="10.0.51" />
 	  <PackageReference Include="ZXing.Net.Maui" Version="0.7.4" />
 	  <PackageReference Include="ZXing.Net.Maui.Controls" Version="0.7.4" />
 	</ItemGroup>

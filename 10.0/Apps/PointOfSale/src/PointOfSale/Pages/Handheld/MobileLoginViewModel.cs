@@ -9,6 +9,7 @@ public partial class MobileLoginViewModel : ObservableObject
         await Shell.Current.GoToAsync("//orders");
     }
 
+
     // display the message
     private async Task ShowMessage(string title, string message)
     {
