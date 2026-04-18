@@ -10,6 +10,7 @@ namespace DeveloperBalance.Data;
 public class ProjectRepository
 {
 	private bool _hasBeenInitialized = false;
+	private readonly SemaphoreSlim _initLock = new(1, 1);
 	private readonly ILogger _logger;
 	private readonly TaskRepository _taskRepository;
 	private readonly TagRepository _tagRepository;
@@ -35,11 +36,15 @@ public class ProjectRepository
 		if (_hasBeenInitialized)
 			return;
 
-		await using var connection = new SqliteConnection(Constants.DatabasePath);
-		await connection.OpenAsync();
-
+		await _initLock.WaitAsync();
 		try
 		{
+			if (_hasBeenInitialized)
+				return;
+
+			await using var connection = new SqliteConnection(Constants.DatabasePath);
+			await connection.OpenAsync();
+
 			var createTableCmd = connection.CreateCommand();
 			createTableCmd.CommandText = @"
             CREATE TABLE IF NOT EXISTS Project (
@@ -50,14 +55,18 @@ public class ProjectRepository
                 CategoryID INTEGER NOT NULL
             );";
 			await createTableCmd.ExecuteNonQueryAsync();
+
+			_hasBeenInitialized = true;
 		}
 		catch (Exception e)
 		{
 			_logger.LogError(e, "Error creating Project table");
 			throw;
 		}
-
-		_hasBeenInitialized = true;
+		finally
+		{
+			_initLock.Release();
+		}
 	}
 
 	/// <summary>
@@ -87,10 +96,19 @@ public class ProjectRepository
 			});
 		}
 
+		// Fetch all tasks and all tags in one query each, then assign in memory.
+		// This reduces 2N+1 queries to 3 regardless of project count.
+		var allTasks = await _taskRepository.ListAsync();
+		var allTagsByProject = await _tagRepository.ListAllByProjectAsync();
+
+		var tasksByProject = allTasks
+			.GroupBy(t => t.ProjectID)
+			.ToDictionary(g => g.Key, g => g.ToList());
+
 		foreach (var project in projects)
 		{
-			project.Tags = await _tagRepository.ListAsync(project.ID);
-			project.Tasks = await _taskRepository.ListAsync(project.ID);
+			project.Tasks = tasksByProject.TryGetValue(project.ID, out var tasks) ? tasks : [];
+			project.Tags = allTagsByProject.TryGetValue(project.ID, out var tags) ? tags : [];
 		}
 
 		return projects;
@@ -197,16 +215,24 @@ public class ProjectRepository
 	/// </summary>
 	public async Task DropTableAsync()
 	{
-		await Init();
-		await using var connection = new SqliteConnection(Constants.DatabasePath);
-		await connection.OpenAsync();
+		await _initLock.WaitAsync();
+		try
+		{
+			await using var connection = new SqliteConnection(Constants.DatabasePath);
+			await connection.OpenAsync();
 
-		var dropCmd = connection.CreateCommand();
-		dropCmd.CommandText = "DROP TABLE IF EXISTS Project";
-		await dropCmd.ExecuteNonQueryAsync();
+			var dropCmd = connection.CreateCommand();
+			dropCmd.CommandText = "DROP TABLE IF EXISTS Project";
+			await dropCmd.ExecuteNonQueryAsync();
+
+			_hasBeenInitialized = false;
+		}
+		finally
+		{
+			_initLock.Release();
+		}
 
 		await _taskRepository.DropTableAsync();
 		await _tagRepository.DropTableAsync();
-		_hasBeenInitialized = false;
 	}
 }

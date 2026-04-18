@@ -10,6 +10,7 @@ namespace DeveloperBalance.Data;
 public class TagRepository
 {
 	private bool _hasBeenInitialized = false;
+	private readonly SemaphoreSlim _initLock = new(1, 1);
 	private readonly ILogger _logger;
 
 	/// <summary>
@@ -29,11 +30,15 @@ public class TagRepository
 		if (_hasBeenInitialized)
 			return;
 
-		await using var connection = new SqliteConnection(Constants.DatabasePath);
-		await connection.OpenAsync();
-
+		await _initLock.WaitAsync();
 		try
 		{
+			if (_hasBeenInitialized)
+				return;
+
+			await using var connection = new SqliteConnection(Constants.DatabasePath);
+			await connection.OpenAsync();
+
 			var createTableCmd = connection.CreateCommand();
 			createTableCmd.CommandText = @"
             CREATE TABLE IF NOT EXISTS Tag (
@@ -50,14 +55,18 @@ public class TagRepository
                 PRIMARY KEY(ProjectID, TagID)
             );";
 			await createTableCmd.ExecuteNonQueryAsync();
+
+			_hasBeenInitialized = true;
 		}
 		catch (Exception e)
 		{
 			_logger.LogError(e, "Error creating tables");
 			throw;
 		}
-
-		_hasBeenInitialized = true;
+		finally
+		{
+			_initLock.Release();
+		}
 	}
 
 	/// <summary>
@@ -89,6 +98,46 @@ public class TagRepository
 	}
 
 	/// <summary>
+	/// Retrieves all tags grouped by their associated project ID in a single query.
+	/// </summary>
+	/// <returns>A dictionary mapping project ID to its list of <see cref="Tag"/> objects.</returns>
+	public async Task<Dictionary<int, List<Tag>>> ListAllByProjectAsync()
+	{
+		await Init();
+		await using var connection = new SqliteConnection(Constants.DatabasePath);
+		await connection.OpenAsync();
+
+		var selectCmd = connection.CreateCommand();
+		selectCmd.CommandText = @"
+        SELECT t.ID, t.Title, t.Color, pt.ProjectID
+        FROM Tag t
+        JOIN ProjectsTags pt ON t.ID = pt.TagID";
+
+		var result = new Dictionary<int, List<Tag>>();
+
+		await using var reader = await selectCmd.ExecuteReaderAsync();
+		while (await reader.ReadAsync())
+		{
+			var tag = new Tag
+			{
+				ID = reader.GetInt32(0),
+				Title = reader.GetString(1),
+				Color = reader.GetString(2)
+			};
+			var projectID = reader.GetInt32(3);
+
+			if (!result.TryGetValue(projectID, out var list))
+			{
+				list = [];
+				result[projectID] = list;
+			}
+			list.Add(tag);
+		}
+
+		return result;
+	}
+
+	/// <summary>
 	/// Retrieves a list of tags associated with a specific project.
 	/// </summary>
 	/// <param name="projectID">The ID of the project.</param>
@@ -105,7 +154,7 @@ public class TagRepository
         FROM Tag t
         JOIN ProjectsTags pt ON t.ID = pt.TagID
         WHERE pt.ProjectID = @ProjectID";
-		selectCmd.Parameters.AddWithValue("ProjectID", projectID);
+		selectCmd.Parameters.AddWithValue("@ProjectID", projectID);
 
 		var tags = new List<Tag>();
 
@@ -288,17 +337,24 @@ public class TagRepository
 	/// </summary>
 	public async Task DropTableAsync()
 	{
-		await Init();
-		await using var connection = new SqliteConnection(Constants.DatabasePath);
-		await connection.OpenAsync();
+		await _initLock.WaitAsync();
+		try
+		{
+			await using var connection = new SqliteConnection(Constants.DatabasePath);
+			await connection.OpenAsync();
 
-		var dropTableCmd = connection.CreateCommand();
-		dropTableCmd.CommandText = "DROP TABLE IF EXISTS Tag";
-		await dropTableCmd.ExecuteNonQueryAsync();
+			var dropTableCmd = connection.CreateCommand();
+			dropTableCmd.CommandText = "DROP TABLE IF EXISTS Tag";
+			await dropTableCmd.ExecuteNonQueryAsync();
 
-		dropTableCmd.CommandText = "DROP TABLE IF EXISTS ProjectsTags";
-		await dropTableCmd.ExecuteNonQueryAsync();
+			dropTableCmd.CommandText = "DROP TABLE IF EXISTS ProjectsTags";
+			await dropTableCmd.ExecuteNonQueryAsync();
 
-		_hasBeenInitialized = false;
+			_hasBeenInitialized = false;
+		}
+		finally
+		{
+			_initLock.Release();
+		}
 	}
 }
