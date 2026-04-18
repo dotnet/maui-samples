@@ -102,13 +102,13 @@
                                     CheckedChanged="OnMenuItemChanged">
                     <RadioButton.Content>                            
                         <Image Source="graph.png">
-                            <!--<Image.Behaviors>
+                            <Image.Behaviors>
                                 <mct:IconTintColorBehavior
                                     TintColor="{Binding IsChecked,
                                                     Source={RelativeSource AncestorType={x:Type RadioButton}, AncestorLevel=3},
                                     Converter={StaticResource CheckedColorConverter}}"/>
 
-                            </Image.Behaviors>-->
+                            </Image.Behaviors>
                             </Image>
                     </RadioButton.Content>
                 </RadioButton>
