@@ -141,8 +141,8 @@
                     AlignContent="SpaceAround" 
                     JustifyContent="SpaceAround"
                     Background="{StaticResource DarkBg1Transparent}">
-            <Image Source="home.png"/>
-            <ImageButton Source="logout.png"
+            <Image Source="home.svg"/>
+            <ImageButton Source="logout.svg"
                          Command="{Binding LogOutCommand}"
                          />
                 

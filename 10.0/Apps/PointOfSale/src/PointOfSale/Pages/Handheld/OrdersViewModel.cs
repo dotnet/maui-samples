@@ -25,7 +25,7 @@ public partial class OrdersViewModel : ObservableObject
     [RelayCommand]
     public async Task LogOut()
     {
-        var result = await App.Current.Windows[0].Page.DisplayAlert("", "Do you want to logout?", "Yes", "Ooops, no");
+        var result = await App.Current.Windows[0].Page.DisplayAlertAsync ("", "Do you want to logout?", "Yes", "Ooops, no");
         if (!result)
             return;
 

@@ -48,6 +48,6 @@ public partial class DashboardPage : ContentPage
 
     async void TapGestureRecognizer_Tapped(System.Object sender, System.EventArgs e)
     {
-        await DisplayAlert("Filter", "You are looking for a filter dialog that isn't yet implemented. Come back later", "Okay");
+        await DisplayAlertAsync("Filter", "You are looking for a filter dialog that isn't yet implemented. Come back later", "Okay");
     }
 }
