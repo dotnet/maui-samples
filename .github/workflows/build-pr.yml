@@ -32,17 +32,17 @@ jobs:
       - name: Build macOS
         run: dotnet build ./10.0/Apps/PointOfSale/src/PointOfSale/PointOfSale.csproj -f net10.0-maccatalyst
 
-build-windows:
-  runs-on: windows-latest
-  steps:
-    - uses: actions/checkout@v4
-      with:
-        fetch-depth: 2
-    - uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: 10.0.x
-    - name: Restore dependencies
-      run: dotnet restore ./10.0/Apps/PointOfSale/src/PointOfSale/PointOfSale.csproj
-    - run: dotnet workload install maui
-    - name: Build Windows
-      run: dotnet build ./10.0/Apps/PointOfSale/src/PointOfSale/PointOfSale.csproj -f net10.0-windows10.0.19041.0
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+      - name: Restore dependencies
+        run: dotnet restore ./10.0/Apps/PointOfSale/src/PointOfSale/PointOfSale.csproj
+      - run: dotnet workload install maui
+      - name: Build Windows
+        run: dotnet build ./10.0/Apps/PointOfSale/src/PointOfSale/PointOfSale.csproj -f net10.0-windows10.0.19041.0
