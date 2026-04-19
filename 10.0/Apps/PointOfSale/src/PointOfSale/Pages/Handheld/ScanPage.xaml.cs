@@ -32,7 +32,7 @@ public partial class ScanPage : ContentPage
 
             if (status != PermissionStatus.Granted)
             {
-                await DisplayAlert("Permission required", "Camera permission is required to scan barcodes.", "OK");
+                await DisplayAlertAsync("Permission required", "Camera permission is required to scan barcodes.", "OK");
                 await Shell.Current.GoToAsync("..");
                 return;
             }
