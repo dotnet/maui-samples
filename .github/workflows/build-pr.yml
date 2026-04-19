@@ -17,7 +17,7 @@ jobs:
           dotnet-version: 10.0.x
       - run: dotnet workload install maui
       - name: Build Android
-        run: dotnet build ./10.0/Apps/PointOfSale/src/PointOfSale/PointOfSale.csproj  -f net10.0-android
+        run: dotnet build ./10.0/Apps/PointOfSale/src/PointOfSale/PointOfSale.csproj -f net10.0-android
 
   build-macos:
     runs-on: macos-26
@@ -30,9 +30,9 @@ jobs:
           dotnet-version: 10.0.x
       - run: dotnet workload install maui
       - name: Build macOS
-        run: dotnet build ./10.0/Apps/PointOfSale/src/PointOfSale/PointOfSale.csproj  -f net10.0-maccatalyst
+        run: dotnet build ./10.0/Apps/PointOfSale/src/PointOfSale/PointOfSale.csproj -f net10.0-maccatalyst
 
- build-windows:
+  build-windows:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
@@ -43,4 +43,4 @@ jobs:
           dotnet-version: 10.0.x
       - run: dotnet workload install maui
       - name: Build Windows
-        run: dotnet build ./10.0/Apps/PointOfSale/src/PointOfSale/PointOfSale.csproj  -f net10.0-windows10.0.19041.0
+        run: dotnet build ./10.0/Apps/PointOfSale/src/PointOfSale/PointOfSale.csproj -f net10.0-windows10.0.19041.0
