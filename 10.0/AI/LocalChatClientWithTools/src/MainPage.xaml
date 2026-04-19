@@ -1,0 +1,403 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/maui/global"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LocalChatClientWithTools.MainPage"
+             x:DataType="ChatViewModel"
+             Background="{StaticResource PageBackground}">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Clear"
+                     Priority="0"
+                     Order="Primary"
+                     Command="{Binding ClearChatCommand}"/>
+    </ContentPage.ToolbarItems>
+
+    <Grid RowDefinitions="*,Auto"
+          Padding="12"
+          RowSpacing="10">
+
+        <!-- Chat messages -->
+        <CollectionView Grid.Row="0"
+                        x:Name="MessagesView"
+                        ItemsSource="{Binding Messages}"
+                        ItemsUpdatingScrollMode="KeepLastItemInView"
+                        Background="Transparent"
+                        SelectionMode="None">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical"
+                                   ItemSpacing="6"/>
+            </CollectionView.ItemsLayout>
+
+            <!-- Empty state -->
+            <CollectionView.EmptyView>
+                <ScrollView>
+                    <VerticalStackLayout Spacing="12"
+                                         Padding="20,40,20,20"
+                                         MaximumWidthRequest="780"
+                                         HorizontalOptions="Center">
+
+                        <!-- Hero -->
+                        <Border Background="{StaticResource PrimaryBrush}"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 16"
+                                Padding="28,32"
+                                Margin="0,0,0,8">
+                            <VerticalStackLayout Spacing="8">
+                                <Label Text="🤖"
+                                       FontSize="40"
+                                       HorizontalTextAlignment="Center"/>
+                                <Label Text="AI Chat with Tools"
+                                       FontSize="24"
+                                       FontAttributes="Bold"
+                                       TextColor="White"
+                                       HorizontalTextAlignment="Center"/>
+                                <Label Text="Powered by Apple Intelligence"
+                                       FontSize="13"
+                                       TextColor="{StaticResource HeroBannerSubtitle}"
+                                       HorizontalTextAlignment="Center"/>
+                            </VerticalStackLayout>
+                        </Border>
+
+                        <Label Text="Try a prompt"
+                               FontSize="14"
+                               TextColor="{StaticResource Gray400}"
+                               HorizontalTextAlignment="Center"
+                               Margin="0,4,0,0"/>
+
+                        <!-- Prompt cards in a wrapping FlexLayout for responsive 2-column -->
+                        <FlexLayout Wrap="Wrap"
+                                    JustifyContent="Center"
+                                    AlignContent="Start">
+
+                            <Border StrokeThickness="0"
+                                    Background="White"
+                                    StrokeShape="RoundRectangle 12"
+                                    Shadow="{Shadow Brush=#18000000, Offset='0,2', Radius=8}"
+                                    FlexLayout.Basis="300" HeightRequest="56"
+                                    FlexLayout.Grow="1"
+                                    Margin="4">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SendPromptCommand}"
+                                                          CommandParameter="What's the weather in Seattle?"/>
+                                </Border.GestureRecognizers>
+                                <Grid ColumnDefinitions="Auto,*" Padding="14" ColumnSpacing="12">
+                                    <Label Text="🌤️" FontSize="22" VerticalOptions="Center"/>
+                                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                                        <Label Text="Weather" FontSize="11" TextColor="{StaticResource Gray400}"/>
+                                        <Label Text="What's the weather in Seattle?" FontSize="14" TextColor="{StaticResource Gray900}"/>
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </Border>
+
+                            <Border StrokeThickness="0"
+                                    Background="White"
+                                    StrokeShape="RoundRectangle 12"
+                                    Shadow="{Shadow Brush=#18000000, Offset='0,2', Radius=8}"
+                                    FlexLayout.Basis="300" HeightRequest="56"
+                                    FlexLayout.Grow="1"
+                                    Margin="4">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SendPromptCommand}"
+                                                          CommandParameter="Check the current weather in Tokyo and London"/>
+                                </Border.GestureRecognizers>
+                                <Grid ColumnDefinitions="Auto,*" Padding="14" ColumnSpacing="12">
+                                    <Label Text="🌤️" FontSize="22" VerticalOptions="Center"/>
+                                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                                        <Label Text="Weather" FontSize="11" TextColor="{StaticResource Gray400}"/>
+                                        <Label Text="Weather in Tokyo and London" FontSize="14" TextColor="{StaticResource Gray900}"/>
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </Border>
+
+                            <Border StrokeThickness="0"
+                                    Background="White"
+                                    StrokeShape="RoundRectangle 12"
+                                    Shadow="{Shadow Brush=#18000000, Offset='0,2', Radius=8}"
+                                    FlexLayout.Basis="300" HeightRequest="56"
+                                    FlexLayout.Grow="1"
+                                    Margin="4">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SendPromptCommand}"
+                                                          CommandParameter="Calculate 15% tip on $47.50"/>
+                                </Border.GestureRecognizers>
+                                <Grid ColumnDefinitions="Auto,*" Padding="14" ColumnSpacing="12">
+                                    <Label Text="🔢" FontSize="22" VerticalOptions="Center"/>
+                                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                                        <Label Text="Calculator" FontSize="11" TextColor="{StaticResource Gray400}"/>
+                                        <Label Text="Calculate 15% tip on $47.50" FontSize="14" TextColor="{StaticResource Gray900}"/>
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </Border>
+
+                            <Border StrokeThickness="0"
+                                    Background="White"
+                                    StrokeShape="RoundRectangle 12"
+                                    Shadow="{Shadow Brush=#18000000, Offset='0,2', Radius=8}"
+                                    FlexLayout.Basis="300" HeightRequest="56"
+                                    FlexLayout.Grow="1"
+                                    Margin="4">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SendPromptCommand}"
+                                                          CommandParameter="What's 25 * 18 + 150?"/>
+                                </Border.GestureRecognizers>
+                                <Grid ColumnDefinitions="Auto,*" Padding="14" ColumnSpacing="12">
+                                    <Label Text="🔢" FontSize="22" VerticalOptions="Center"/>
+                                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                                        <Label Text="Calculator" FontSize="11" TextColor="{StaticResource Gray400}"/>
+                                        <Label Text="What's 25 × 18 + 150?" FontSize="14" TextColor="{StaticResource Gray900}"/>
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </Border>
+
+                            <Border StrokeThickness="0"
+                                    Background="White"
+                                    StrokeShape="RoundRectangle 12"
+                                    Shadow="{Shadow Brush=#18000000, Offset='0,2', Radius=8}"
+                                    FlexLayout.Basis="300" HeightRequest="56"
+                                    FlexLayout.Grow="1"
+                                    Margin="4">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SendPromptCommand}"
+                                                          CommandParameter="List the files in my Documents folder"/>
+                                </Border.GestureRecognizers>
+                                <Grid ColumnDefinitions="Auto,*" Padding="14" ColumnSpacing="12">
+                                    <Label Text="📁" FontSize="22" VerticalOptions="Center"/>
+                                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                                        <Label Text="Files" FontSize="11" TextColor="{StaticResource Gray400}"/>
+                                        <Label Text="List files in my Documents folder" FontSize="14" TextColor="{StaticResource Gray900}"/>
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </Border>
+
+                            <Border StrokeThickness="0"
+                                    Background="White"
+                                    StrokeShape="RoundRectangle 12"
+                                    Shadow="{Shadow Brush=#18000000, Offset='0,2', Radius=8}"
+                                    FlexLayout.Basis="300" HeightRequest="56"
+                                    FlexLayout.Grow="1"
+                                    Margin="4">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SendPromptCommand}"
+                                                          CommandParameter="Show me current battery level and available storage space"/>
+                                </Border.GestureRecognizers>
+                                <Grid ColumnDefinitions="Auto,*" Padding="14" ColumnSpacing="12">
+                                    <Label Text="⚙️" FontSize="22" VerticalOptions="Center"/>
+                                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                                        <Label Text="System Info" FontSize="11" TextColor="{StaticResource Gray400}"/>
+                                        <Label Text="Battery level and storage info" FontSize="14" TextColor="{StaticResource Gray900}"/>
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </Border>
+
+                            <Border StrokeThickness="0"
+                                    Background="White"
+                                    StrokeShape="RoundRectangle 12"
+                                    Shadow="{Shadow Brush=#18000000, Offset='0,2', Radius=8}"
+                                    FlexLayout.Basis="300" HeightRequest="56"
+                                    FlexLayout.Grow="1"
+                                    Margin="4">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SendPromptCommand}"
+                                                          CommandParameter="Set a 5-minute timer for my coffee break"/>
+                                </Border.GestureRecognizers>
+                                <Grid ColumnDefinitions="Auto,*" Padding="14" ColumnSpacing="12">
+                                    <Label Text="⏲️" FontSize="22" VerticalOptions="Center"/>
+                                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                                        <Label Text="Timer" FontSize="11" TextColor="{StaticResource Gray400}"/>
+                                        <Label Text="Set a 5-minute timer for my coffee" FontSize="14" TextColor="{StaticResource Gray900}"/>
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </Border>
+
+                            <Border StrokeThickness="0"
+                                    Background="White"
+                                    StrokeShape="RoundRectangle 12"
+                                    Shadow="{Shadow Brush=#18000000, Offset='0,2', Radius=8}"
+                                    FlexLayout.Basis="300" HeightRequest="56"
+                                    FlexLayout.Grow="1"
+                                    Margin="4">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SendPromptCommand}"
+                                                          CommandParameter="What's the weather in Seattle and how much is a 20% tip on $85?"/>
+                                </Border.GestureRecognizers>
+                                <Grid ColumnDefinitions="Auto,*" Padding="14" ColumnSpacing="12">
+                                    <Label Text="🧩" FontSize="22" VerticalOptions="Center"/>
+                                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                                        <Label Text="Multi-Tool" FontSize="11" TextColor="{StaticResource Gray400}"/>
+                                        <Label Text="Weather + tip on $85" FontSize="14" TextColor="{StaticResource Gray900}"/>
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </Border>
+
+                        </FlexLayout>
+
+                    </VerticalStackLayout>
+                </ScrollView>
+            </CollectionView.EmptyView>
+
+            <!-- Templates selected by message type -->
+            <CollectionView.ItemTemplate>
+                <ChatTemplateSelector>
+
+                    <!-- Text messages (user + assistant) -->
+                    <ChatTemplateSelector.TextTemplate>
+                        <DataTemplate x:DataType="TextMessageViewModel">
+                            <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="8">
+                                <!-- Assistant avatar (left) -->
+                                <Border Grid.Column="0"
+                                        WidthRequest="36" HeightRequest="36"
+                                        StrokeThickness="0"
+                                        Background="{StaticResource SecondaryBrush}"
+                                        StrokeShape="RoundRectangle 18"
+                                        VerticalOptions="End">
+                                    <Label Text="🤖" FontSize="16"
+                                           HorizontalOptions="Center" VerticalOptions="Center"/>
+                                    <Border.Triggers>
+                                        <DataTrigger TargetType="Border" Binding="{Binding IsUser}" Value="True">
+                                            <Setter Property="IsVisible" Value="False"/>
+                                        </DataTrigger>
+                                    </Border.Triggers>
+                                </Border>
+
+                                <!-- Bubble -->
+                                <Border Grid.Column="1"
+                                        StrokeThickness="0"
+                                        Padding="14,10"
+                                        MaximumWidthRequest="500"
+                                        Background="{StaticResource AssistantBubble}"
+                                        HorizontalOptions="Start"
+                                        StrokeShape="RoundRectangle 16,16,4,16"
+                                        Shadow="{Shadow Brush=#10000000, Offset='0,1', Radius=4}">
+                                    <VerticalStackLayout Spacing="4">
+                                        <Label Text="{Binding Text}"
+                                               TextColor="{StaticResource AssistantText}"
+                                               FontSize="15"
+                                               LineBreakMode="WordWrap">
+                                            <Label.Triggers>
+                                                <DataTrigger TargetType="Label" Binding="{Binding IsUser}" Value="True">
+                                                    <Setter Property="TextColor" Value="White"/>
+                                                </DataTrigger>
+                                            </Label.Triggers>
+                                        </Label>
+                                        <Label Text="{Binding Timestamp, StringFormat='{0:t}'}"
+                                               FontSize="10"
+                                               TextColor="{StaticResource TimestampText}"
+                                               HorizontalTextAlignment="End">
+                                            <Label.Triggers>
+                                                <DataTrigger TargetType="Label" Binding="{Binding IsUser}" Value="True">
+                                                    <Setter Property="TextColor" Value="{StaticResource UserTimestampText}"/>
+                                                </DataTrigger>
+                                            </Label.Triggers>
+                                        </Label>
+                                    </VerticalStackLayout>
+
+                                    <Border.Triggers>
+                                        <DataTrigger TargetType="Border" Binding="{Binding IsUser}" Value="True">
+                                            <Setter Property="HorizontalOptions" Value="End"/>
+                                            <Setter Property="Background" Value="{StaticResource PrimaryBrush}"/>
+                                            <Setter Property="StrokeShape" Value="RoundRectangle 16,16,16,4"/>
+                                        </DataTrigger>
+                                        <DataTrigger TargetType="Border" Binding="{Binding IsError}" Value="True">
+                                            <Setter Property="Background" Value="{StaticResource ErrorBubble}"/>
+                                            <Setter Property="Stroke" Value="{StaticResource ErrorStroke}"/>
+                                            <Setter Property="StrokeThickness" Value="1"/>
+                                        </DataTrigger>
+                                    </Border.Triggers>
+                                </Border>
+
+                                <!-- User avatar (right) -->
+                                <Border Grid.Column="2"
+                                        WidthRequest="36" HeightRequest="36"
+                                        StrokeThickness="0"
+                                        Background="{StaticResource SecondaryBrush}"
+                                        StrokeShape="RoundRectangle 18"
+                                        VerticalOptions="End"
+                                        IsVisible="False">
+                                    <Label Text="👤" FontSize="16"
+                                           HorizontalOptions="Center" VerticalOptions="Center"/>
+                                    <Border.Triggers>
+                                        <DataTrigger TargetType="Border" Binding="{Binding IsUser}" Value="True">
+                                            <Setter Property="IsVisible" Value="True"/>
+                                        </DataTrigger>
+                                    </Border.Triggers>
+                                </Border>
+                            </Grid>
+                        </DataTemplate>
+                    </ChatTemplateSelector.TextTemplate>
+
+                    <!-- Tool call indicator -->
+                    <ChatTemplateSelector.ToolCallTemplate>
+                        <DataTemplate x:DataType="ToolCallMessageViewModel">
+                            <VerticalStackLayout Padding="0,4">
+                                <Border StrokeThickness="0"
+                                        Background="{StaticResource ToolCallBackground}"
+                                        StrokeShape="RoundRectangle 20"
+                                        Padding="12,6"
+                                        HorizontalOptions="Center">
+                                    <Border.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding ToggleExpandedCommand}"/>
+                                    </Border.GestureRecognizers>
+                                    <HorizontalStackLayout Spacing="6">
+                                        <Label Text="{Binding Text}"
+                                               TextColor="{StaticResource Primary}"
+                                               FontSize="12"
+                                               VerticalOptions="Center"/>
+                                        <Label Text="▾"
+                                               TextColor="{StaticResource Gray300}"
+                                               FontSize="11"
+                                               VerticalOptions="Center"
+                                               IsVisible="{Binding HasRawJson}"/>
+                                    </HorizontalStackLayout>
+                                </Border>
+
+                                <!-- Expandable raw JSON -->
+                                <Border Background="{StaticResource ToolJsonBackground}"
+                                        Stroke="{StaticResource Gray200}"
+                                        StrokeThickness="1"
+                                        StrokeShape="RoundRectangle 10"
+                                        Padding="12"
+                                        Margin="32,6"
+                                        MaximumWidthRequest="480"
+                                        HorizontalOptions="Center"
+                                        IsVisible="{Binding IsExpanded}">
+                                    <ScrollView MaximumHeightRequest="200">
+                                        <Label Text="{Binding RawJson}"
+                                               FontFamily="Courier New"
+                                               FontSize="11"
+                                               TextColor="{StaticResource Gray500}"
+                                               LineBreakMode="WordWrap"/>
+                                    </ScrollView>
+                                </Border>
+                            </VerticalStackLayout>
+                        </DataTemplate>
+                    </ChatTemplateSelector.ToolCallTemplate>
+
+                </ChatTemplateSelector>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Input area -->
+        <SfTextInputLayout ContainerType="Outlined"
+                           Hint="Ask something or try a tool…"
+                           Grid.Row="1">
+            <Entry x:Name="PromptEditor"
+                   Text="{Binding InputText, Mode=TwoWay}"
+                   Completed="OnCompleted"
+                   Keyboard="Chat"
+                   MaxLength="4000"
+                   Background="Transparent"
+                   Margin="16,12"/>
+
+            <SfTextInputLayout.TrailingView>
+                <ImageButton Source="{StaticResource IconSend}"
+                             Background="Transparent"
+                             Command="{Binding SendCommand}"
+                             WidthRequest="44"
+                             HeightRequest="44"
+                             Padding="10"
+                             Margin="8,0"/>
+            </SfTextInputLayout.TrailingView>
+        </SfTextInputLayout>
+    </Grid>
+
+</ContentPage>
