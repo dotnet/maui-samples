@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="LocalChatClientWithAgents.Pages.LandmarksPage"
+    x:DataType="LandmarksViewModel"
+    SafeAreaEdges="None"
+    Title=".NET MAUI Trip Planner">
+
+    <Grid SafeAreaEdges="None">
+        <ScrollView>
+            <VerticalStackLayout Padding="20" Spacing="20">
+
+                <!-- Featured Section -->
+                <Label 
+                    Text="Featured"
+                    FontSize="18"
+                    FontAttributes="Bold"
+                    TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray400}}" />
+
+                <LandmarkFeaturedItemView
+                    Landmark="{Binding FeaturedLandmark}"
+                    IsVisible="{Binding FeaturedLandmark, Converter={StaticResource IsNotNullConverter}}"
+                    LandmarkTapped="OnLandmarkTapped" />
+
+                <!-- Continents -->
+                <VerticalStackLayout 
+                    BindableLayout.ItemsSource="{Binding ContinentGroups}"
+                    Spacing="25">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate x:DataType="ContinentGroup">
+                            <VerticalStackLayout Spacing="12">
+                                <Label
+                                    Text="{Binding Name}"
+                                    FontSize="24"
+                                    FontAttributes="Bold" />
+                                
+                                <LandmarkHorizontalListView
+                                    Landmarks="{Binding Landmarks}"
+                                    LandmarkTapped="OnLandmarkTapped" />
+                            </VerticalStackLayout>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </VerticalStackLayout>
+
+                <ActivityIndicator 
+                    IsVisible="{Binding IsLoading}"
+                    IsRunning="{Binding IsLoading}"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Margin="0,50,0,0" />
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Floating Chat Button (bottom right) -->
+        <Button
+            x:Name="ChatFab"
+            Text="💬"
+            Clicked="OnChatButtonClicked"
+            VerticalOptions="End"
+            HorizontalOptions="End"
+            Margin="0,0,20,20"
+            HeightRequest="56"
+            WidthRequest="56"
+            CornerRadius="28"
+            Padding="0"
+            FontSize="24"
+            Background="{StaticResource Primary}"
+            TextColor="White"
+            Shadow="{Shadow Brush=Black, Offset='0,4', Radius=8, Opacity=0.3}" />
+
+        <!-- Loading Overlay — blocks interaction until embeddings are ready -->
+        <Grid
+            IsVisible="{Binding IsGeneratingEmbeddings}"
+            Background="{AppThemeBinding Light=#E0FFFFFF, Dark=#E0000000}"
+            InputTransparent="False"
+            CascadeInputTransparent="False">
+            <VerticalStackLayout
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Spacing="16"
+                Padding="40">
+                <ActivityIndicator
+                    IsRunning="{Binding IsGeneratingEmbeddings}"
+                    Color="{StaticResource Primary}"
+                    HeightRequest="48"
+                    WidthRequest="48" />
+                <Label
+                    Text="{Binding EmbeddingStatusText}"
+                    FontSize="15"
+                    HorizontalTextAlignment="Center"
+                    TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray400}}" />
+                <ProgressBar
+                    Progress="{Binding EmbeddingProgress}"
+                    ProgressColor="{StaticResource Primary}"
+                    WidthRequest="220"
+                    HeightRequest="4" />
+            </VerticalStackLayout>
+        </Grid>
+    </Grid>
+
+</ContentPage>

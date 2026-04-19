@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="LocalChatClientWithAgents.Views.Landmarks.LandmarkHorizontalListView">
+    
+    <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Never" Margin="-20,0">
+        <HorizontalStackLayout
+            x:Name="LandmarksStack"
+            BindableLayout.ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type LandmarkHorizontalListView}}, Path=Landmarks}"
+            Spacing="15"
+            Padding="20,0">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate x:DataType="Landmark">
+                    <LandmarkListItemView
+                        Landmark="{Binding .}"
+                        LandmarkTapped="OnLandmarkItemTapped" />
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </HorizontalStackLayout>
+    </ScrollView>
+    
+</ContentView>

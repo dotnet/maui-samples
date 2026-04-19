@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="LocalChatClientWithAgents.Views.Itinerary.LandmarkDescriptionView"
+    x:DataType="TripPlanningViewModel">
+
+    <VerticalStackLayout Padding="20" Spacing="16">
+
+        <Label Text="{Binding Landmark.Name}" FontSize="32" FontAttributes="Bold" />
+        
+        <FlexLayout Wrap="Wrap" JustifyContent="Start" AlignItems="Start" BindableLayout.ItemsSource="{Binding GeneratedTags}">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate x:DataType="{x:Type x:String}">
+                    <Border Padding="12,8" Margin="0,0,8,8" StrokeShape="RoundRectangle 20" StrokeThickness="0"
+                            Background="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray800}}">
+                        <Label Text="{Binding ., StringFormat='#{0}'}" FontSize="14" FontAttributes="Bold"
+                               TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray400}}" />
+                    </Border>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </FlexLayout>
+        
+        <Label Text="{Binding Landmark.ShortDescription}" FontSize="16" LineBreakMode="WordWrap" />
+
+    </VerticalStackLayout>
+
+</ContentView>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="LocalChatClientWithAgents.Views.Itinerary.MessageView"
+    x:DataType="ItineraryPageViewModel">
+
+    <Grid>
+        <!-- Background Header Image -->
+        <Image 
+            VerticalOptions="Start" 
+            HeightRequest="420" 
+            Aspect="AspectFill" 
+            Source="{Binding Landmark.BackgroundImageName, StringFormat='Images/Backgrounds/{0}.jpg'}"
+            Opacity="0.6"
+            ZIndex="0" />
+
+        <!-- Message Content -->
+        <VerticalStackLayout 
+            Padding="20" 
+            Spacing="20" 
+            VerticalOptions="Center" 
+            ZIndex="1">
+            
+            <!-- Error Message (if error) -->
+            <Label 
+                IsVisible="{Binding IsErrorState}"
+                Text="{Binding ErrorMessage}" 
+                TextColor="{AppThemeBinding Light=DarkRed, Dark=#FF6B6B}" 
+                FontSize="20" 
+                HorizontalTextAlignment="Center" 
+                LineBreakMode="WordWrap" />
+
+            <!-- General Message (if not error) -->
+            <Label 
+                IsVisible="{Binding IsNotErrorState}"
+                Text="{Binding Status3}" 
+                FontSize="20" 
+                HorizontalTextAlignment="Center" 
+                LineBreakMode="WordWrap" />
+        </VerticalStackLayout>
+    </Grid>
+
+</ContentView>
