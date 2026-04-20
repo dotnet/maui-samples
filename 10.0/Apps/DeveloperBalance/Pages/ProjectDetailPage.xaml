@@ -183,7 +183,8 @@
         </ScrollView>
 
         <controls:AddButton Command="{Binding AddTaskCommand}" 
-                            SemanticProperties.Description="Add task" />
+                            SemanticProperties.Description="Add task" 
+                            ToolTipProperties.Text="Add task" />
     </Grid>
     
 </ContentPage>
