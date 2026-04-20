@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SafeAreaDemos.Views.Example3KeyboardAware"
+             SafeAreaEdges="SoftInput"
+             Title="Keyboard-Aware Layout">
+
+    <Grid Background="White">
+
+        <Grid RowDefinitions="*,75,30">
+
+            <ScrollView Grid.Row="0">
+                <VerticalStackLayout Padding="20,10,20,20"
+                                     Spacing="15">
+                    <!-- Title -->
+                    <Label Text="SafeAreaEdges = &quot;SoftInput&quot;"
+                           FontSize="24"
+                           FontAttributes="Bold"
+                           Margin="0,0,0,10"/>
+
+                    <!-- Behavior Section -->
+                    <Label Text="Behavior:"
+                           FontSize="18"
+                           FontAttributes="Bold"/>
+
+                    <Label Text="• Respects only the soft input (keyboard) safe area"
+                           FontSize="16"
+                           Margin="10,0,0,5"/>
+
+                    <Label Text="• Content flows under system bars and notches"
+                           FontSize="16"
+                           Margin="10,0,0,5"/>
+
+                    <Label Text="• Automatically adds padding when the keyboard appears"
+                           FontSize="16"
+                           Margin="10,0,0,5"/>
+
+                    <Label Text="• Removes padding when the keyboard is dismissed"
+                           FontSize="16"
+                           Margin="10,0,0,10"/>
+
+                    <!-- Use Cases Section -->
+                    <Label Text="Use Cases:"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           Margin="0,10,0,0"/>
+
+                    <Label Text="• Messaging apps with bottom input bars"
+                           FontSize="16"
+                           Margin="10,0,0,5"/>
+
+                    <Label Text="• Chat interfaces"
+                           FontSize="16"
+                           Margin="10,0,0,5"/>
+
+                    <Label Text="• Forms with input fields at the bottom"
+                           FontSize="16"
+                           Margin="10,0,0,5"/>
+
+                    <Label Text="• Any UI where keyboard overlap must be avoided but edge-to-edge display is desired"
+                           FontSize="16"
+                           Margin="10,0,0,10"/>
+
+                    <!-- Important Note Section -->
+                    <Label Text="Important Note:"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="#FF6B6B"
+                           Margin="0,10,0,0"/>
+
+                    <Label Text="SoftInput doesn't work directly on ScrollView. To make a ScrollView keyboard-aware, wrap it in a layout (Grid or VerticalStackLayout) and set SafeAreaEdges='SoftInput' on the wrapping container."
+                           FontSize="14"
+                           LineBreakMode="WordWrap"
+                           Margin="10,0,0,0"/>
+                </VerticalStackLayout>
+            </ScrollView>
+
+            <Grid Padding="15,10"
+                  ColumnDefinitions="*,AUTO"
+                  Grid.Row="1">
+                <Entry Placeholder="Enter text here"/>
+                <Button Text="Send"
+                        TextColor="White"
+                        Grid.Column="1"
+                        BackgroundColor="#667eea"
+                        Margin="10,0,0,0"
+                        VerticalOptions="Center"/>
+            </Grid>
+
+            <!-- Bottom Overlay -->
+            <Grid Background="{StaticResource OverlayColor}"
+                  Grid.Row="2">
+                <Label Text="Bottom Overlay"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       TextColor="black"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</ContentPage>
