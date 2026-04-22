@@ -46,8 +46,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.6" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="*"/>
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="*" />
 	</ItemGroup>
 
 </Project>
