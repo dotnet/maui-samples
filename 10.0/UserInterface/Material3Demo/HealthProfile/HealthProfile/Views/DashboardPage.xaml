@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:fonts="clr-namespace:Fonts"
+             x:Class="HealthProfile.Views.DashboardPage"
+             Title="Dashboard">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20,24" Spacing="16">
+
+            <Label Text="Here's your health summary for today."
+                     FontSize="14"/>
+
+            <!-- Summary Cards -->
+                 <Border BackgroundColor="{AppThemeBinding Light={StaticResource SurfaceLight}, Dark={StaticResource SurfaceContainerDark}}"
+                    StrokeShape="RoundRectangle 14"
+                    Padding="20,18">
+                <VerticalStackLayout Spacing="10">
+                    <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12">
+                        <Label Grid.Column="0"
+                               Text="{x:Static fonts:FluentUI.person_walking_20_regular}"
+                               FontFamily="FluentUI"
+                               FontSize="32"
+                               TextColor="{StaticResource Primary}"
+                               VerticalOptions="Start"
+                               Margin="0,4,0,0"/>
+                        <VerticalStackLayout Grid.Column="1" Spacing="10">
+                            <Label Text="Today's Activity"
+                                   FontSize="16"
+                                FontAttributes="Bold"/>
+                            <Label Text="Steps Taken"
+                                FontSize="13"/>
+                            <Label x:Name="StepsLabel"
+                                   Text="6,125 / 12,500"
+                                   FontSize="22"
+                                FontAttributes="Bold"
+                                TextColor="{StaticResource Primary}"/>
+                            <ProgressBar x:Name="StepProgressBar"
+                                         Progress="0.49"
+                                         HeightRequest="8"/>
+                        </VerticalStackLayout>
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+
+                <Border BackgroundColor="{AppThemeBinding Light={StaticResource SurfaceLight}, Dark={StaticResource SurfaceContainerDark}}"
+                    StrokeShape="RoundRectangle 14"
+                    Padding="20,18">
+                <VerticalStackLayout Spacing="6">
+                    <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12">
+                        <Label Grid.Column="0"
+                               Text="{x:Static fonts:FluentUI.heart_12_regular}"
+                               FontFamily="FluentUI"
+                               FontSize="32"
+                               TextColor="{StaticResource Primary}"
+                               VerticalOptions="Start"/>
+                        <VerticalStackLayout Grid.Column="1" Spacing="4">
+                            <Label Text="Health Score"
+                                   FontSize="16"
+                                   FontAttributes="Bold"/>
+                            <Label x:Name="HealthScoreLabel"
+                                Text="82 / 100"
+                                   FontSize="28"
+                                   FontAttributes="Bold"
+                                   TextColor="{StaticResource Primary}"/>
+                            <Label x:Name="HealthMessageLabel"
+                                Text="Great progress! Keep it up."
+                                   FontSize="13"/>
+                            <ProgressBar x:Name="HealthScoreProgressBar"
+                                         Progress="0.82"
+                                         HeightRequest="8"
+                                         Margin="0,8,0,0"/>
+                        </VerticalStackLayout>
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
