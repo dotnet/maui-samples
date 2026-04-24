@@ -1,38 +1,36 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<Shell
+<TabbedPage
     x:Class="HealthProfile.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:android="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;assembly=Microsoft.Maui.Controls"
     xmlns:fonts="clr-namespace:Fonts"
     xmlns:views="clr-namespace:HealthProfile.Views"
     Title="Health Profile"
-    Shell.NavBarHasShadow="True"
-    FlyoutBehavior="Disabled">
+    android:TabbedPage.ToolbarPlacement="Bottom">
 
-    <TabBar>
-        <ShellContent
-            Title="Dashboard"
-            ContentTemplate="{DataTemplate views:DashboardPage}"
-            Route="DashboardPage">
-            <ShellContent.Icon>
-                <FontImageSource 
-                    FontFamily="FluentUI"
-                    Glyph="{x:Static fonts:FluentUI.data_trending_20_regular}"
-                    Color="{StaticResource Primary}"/>
-            </ShellContent.Icon>
-        </ShellContent>
+    <NavigationPage Title="Dashboard">
+        <x:Arguments>
+            <views:DashboardPage />
+        </x:Arguments>
+        <NavigationPage.IconImageSource>
+            <FontImageSource
+                FontFamily="FluentUI"
+                Glyph="{x:Static fonts:FluentUI.data_trending_20_regular}"
+                Color="{StaticResource Primary}" />
+        </NavigationPage.IconImageSource>
+    </NavigationPage>
 
-        <ShellContent
-            Title="Profile"
-            ContentTemplate="{DataTemplate views:ProfilePage}"
-            Route="ProfilePage">
-            <ShellContent.Icon>
-                <FontImageSource 
-                    FontFamily="FluentUI"
-                    Glyph="{x:Static fonts:FluentUI.person_24_regular}"
-                    Color="{StaticResource Primary}"/>
-            </ShellContent.Icon>
-        </ShellContent>
-    </TabBar>
+    <NavigationPage Title="Profile">
+        <x:Arguments>
+            <views:ProfilePage />
+        </x:Arguments>
+        <NavigationPage.IconImageSource>
+            <FontImageSource
+                FontFamily="FluentUI"
+                Glyph="{x:Static fonts:FluentUI.person_24_regular}"
+                Color="{StaticResource Primary}" />
+        </NavigationPage.IconImageSource>
+    </NavigationPage>
 
-</Shell>
+</TabbedPage>

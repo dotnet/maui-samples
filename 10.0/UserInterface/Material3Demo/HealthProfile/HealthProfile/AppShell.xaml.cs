@@ -1,6 +1,6 @@
 ﻿namespace HealthProfile;
 
-public partial class AppShell : Shell
+public partial class AppShell : TabbedPage
 {
 	public AppShell()
 	{
