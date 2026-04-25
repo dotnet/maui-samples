@@ -1,4 +1,4 @@
-﻿using System.Windows.Input;
+using System.Windows.Input;
 using System.Diagnostics;
 using Recipes.Models;
 using System.Collections.ObjectModel;
@@ -147,9 +147,21 @@ namespace Recipes.ViewModels
                 OnPropertyChanged(nameof(Hit));
                 LoadSearchResultDetails();
             }
-            catch (Exception)
+            catch (ArgumentNullException ex)
             {
-                Debug.WriteLine("Failed to Load Hit");
+                Debug.WriteLine($"Argument null error loading search result: {ex.Message}");
+            }
+            catch (FormatException ex)
+            {
+                Debug.WriteLine($"Format error parsing hit ID: {ex.Message}");
+            }
+            catch (InvalidOperationException ex)
+            {
+                Debug.WriteLine($"Invalid operation loading search result: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Failed to load search result hit: {ex.Message}");
             }
         }
 
