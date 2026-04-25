@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:strings="clr-namespace:procrastinate.Services"
+             x:Class="procrastinate.Pages.TasksPage"
+             Title="{Binding TodaysTasks, Source={x:Static strings:AppStrings.Instance}}"
+             BackgroundColor="{AppThemeBinding Light={StaticResource Nord6}, Dark={StaticResource Nord0}}">
+
+    <Shell.TitleView>
+        <Grid ColumnDefinitions="*,Auto">
+            <Label Text="{Binding TodaysTasks, Source={x:Static strings:AppStrings.Instance}}" 
+                   FontSize="18" FontAttributes="Bold" 
+                   TextColor="{AppThemeBinding Light={StaticResource Nord0}, Dark={StaticResource Nord6}}"
+                   VerticalOptions="Center"/>
+            <Button Grid.Column="1" Text="&#xf013;" 
+                    AutomationId="SettingsBtn"
+                    FontFamily="FontAwesomeSolid"
+                    BackgroundColor="Transparent"
+                    TextColor="{AppThemeBinding Light={StaticResource Nord3}, Dark={StaticResource Nord4}}"
+                    FontSize="20"
+                    Clicked="OnSettingsClicked"
+                    VerticalOptions="Center"/>
+        </Grid>
+    </Shell.TitleView>
+
+    <ScrollView>
+    <VerticalStackLayout Padding="24" Spacing="24" VerticalOptions="Start">
+        <Label Text="&#xf46d;" 
+               FontFamily="FontAwesomeSolid"
+               FontSize="48" 
+               TextColor="{StaticResource Nord8}"
+               HorizontalOptions="Center"/>
+        <Label Text="{Binding TodaysTasks, Source={x:Static strings:AppStrings.Instance}}" 
+               FontSize="28" 
+               FontAttributes="Bold"
+               TextColor="{StaticResource Nord8}"
+               HorizontalOptions="Center"/>
+        
+        <VerticalStackLayout Spacing="12">
+            <Label Text="{Binding YourProductivityList, Source={x:Static strings:AppStrings.Instance}}" 
+                   FontSize="14" 
+                   TextColor="{AppThemeBinding Light={StaticResource Nord3}, Dark={StaticResource Nord4}}"/>
+            
+            <Border BackgroundColor="{AppThemeBinding Light={StaticResource Nord5}, Dark={StaticResource Nord1}}"
+                    StrokeShape="RoundRectangle 12"
+                    Stroke="Transparent"
+                    Padding="16">
+                <Border.Shadow>
+                    <Shadow Brush="#40000000" Offset="0,2" Radius="8" Opacity="0.2"/>
+                </Border.Shadow>
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnTaskCardTapped"/>
+                </Border.GestureRecognizers>
+                <HorizontalStackLayout Spacing="12">
+                    <CheckBox x:Name="TaskCheckBox" 
+                              AutomationId="TaskCheckBox"
+                              Color="{StaticResource Nord8}"
+                              CheckedChanged="OnTaskChecked"/>
+                    <HorizontalStackLayout Spacing="8" VerticalOptions="Center">
+                        <Label Text="&#xf0f4;" 
+                               FontFamily="FontAwesomeSolid"
+                               FontSize="18" 
+                               TextColor="{AppThemeBinding Light={StaticResource Nord3}, Dark={StaticResource Nord4}}"
+                               VerticalOptions="Center"/>
+                        <Label Text="{Binding TakeABreak, Source={x:Static strings:AppStrings.Instance}}" 
+                               FontSize="18" 
+                               TextColor="{AppThemeBinding Light={StaticResource Nord0}, Dark={StaticResource Nord6}}"
+                               VerticalOptions="Center"/>
+                    </HorizontalStackLayout>
+                </HorizontalStackLayout>
+            </Border>
+        </VerticalStackLayout>
+        
+        <Label x:Name="MotivationLabel"
+               Text="{Binding DoingGreat, Source={x:Static strings:AppStrings.Instance}}"
+               FontSize="14"
+               TextColor="{AppThemeBinding Light={StaticResource Nord3}, Dark={StaticResource Nord4}}"
+               HorizontalOptions="Center"/>
+        
+        <Button x:Name="AddTaskBtn"
+                AutomationId="AddTaskBtn"
+                Clicked="OnAddTaskClicked"
+                BackgroundColor="{AppThemeBinding Light={StaticResource Nord4}, Dark={StaticResource Nord2}}"
+                TextColor="{AppThemeBinding Light={StaticResource Nord1}, Dark={StaticResource Nord5}}"
+                FontSize="16"
+                HeightRequest="50"
+                CornerRadius="12"
+                Text="{Binding AddMoreTasks, Source={x:Static strings:AppStrings.Instance}}">
+            <Button.ImageSource>
+                <FontImageSource Glyph="&#xf067;" FontFamily="FontAwesomeSolid" Color="{AppThemeBinding Light={StaticResource Nord2}, Dark={StaticResource Nord4}}" Size="16"/>
+            </Button.ImageSource>
+        </Button>
+    </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

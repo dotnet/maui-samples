@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:strings="clr-namespace:procrastinate.Services"
+             x:Class="procrastinate.Pages.Games.WhackAMoleGameView">
+    <VerticalStackLayout Spacing="16">
+        <Grid x:Name="GameGrid" ColumnDefinitions="80,80,80" RowDefinitions="80,80,80" ColumnSpacing="8" RowSpacing="8" HorizontalOptions="Center">
+        </Grid>
+        <Label x:Name="ScoreLabel" 
+               Text="Score: 0 | Misses: 0" 
+               HorizontalOptions="Center" 
+               FontSize="16" 
+               TextColor="{AppThemeBinding Light={StaticResource Nord3}, Dark={StaticResource Nord4}}"/>
+        <Button x:Name="StartBtn" 
+                Text="{Binding StartGame30s, Source={x:Static strings:AppStrings.Instance}}"
+                BackgroundColor="{StaticResource Nord15}" 
+                TextColor="White" 
+                CornerRadius="12" 
+                HeightRequest="44"
+                Clicked="OnStartClicked"/>
+    </VerticalStackLayout>
+</ContentView>

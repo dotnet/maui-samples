@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <!-- Nord Theme - Arctic, north-bluish color palette -->
+    <!-- https://www.nordtheme.com/docs/colors-and-palettes -->
+    
+    <!-- Polar Night - Dark backgrounds -->
+    <Color x:Key="Nord0">#2E3440</Color>
+    <Color x:Key="Nord1">#3B4252</Color>
+    <Color x:Key="Nord2">#434C5E</Color>
+    <Color x:Key="Nord3">#4C566A</Color>
+    
+    <!-- Snow Storm - Light text -->
+    <Color x:Key="Nord4">#D8DEE9</Color>
+    <Color x:Key="Nord5">#E5E9F0</Color>
+    <Color x:Key="Nord6">#ECEFF4</Color>
+    
+    <!-- Frost - Accent colors -->
+    <Color x:Key="Nord7">#8FBCBB</Color>
+    <Color x:Key="Nord8">#88C0D0</Color>
+    <Color x:Key="Nord9">#81A1C1</Color>
+    <Color x:Key="Nord10">#5E81AC</Color>
+    
+    <!-- Aurora - Semantic colors -->
+    <Color x:Key="Nord11">#BF616A</Color>
+    <Color x:Key="Nord12">#D08770</Color>
+    <Color x:Key="Nord13">#EBCB8B</Color>
+    <Color x:Key="Nord14">#A3BE8C</Color>
+    <Color x:Key="Nord15">#B48EAD</Color>
+
+    <!-- Standard colors -->
+    <Color x:Key="White">#FFFFFF</Color>
+    <Color x:Key="Black">#000000</Color>
+    <Color x:Key="Transparent">Transparent</Color>
+
+    <!-- Brushes -->
+    <SolidColorBrush x:Key="Nord8Brush" Color="{StaticResource Nord8}"/>
+    <SolidColorBrush x:Key="Nord9Brush" Color="{StaticResource Nord9}"/>
+    <SolidColorBrush x:Key="Nord10Brush" Color="{StaticResource Nord10}"/>
+    <SolidColorBrush x:Key="WhiteBrush" Color="{StaticResource White}"/>
+    <SolidColorBrush x:Key="BlackBrush" Color="{StaticResource Black}"/>
+</ResourceDictionary>

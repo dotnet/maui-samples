@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:strings="clr-namespace:procrastinate.Services"
+             x:Class="procrastinate.Pages.Games.SnakeGameView">
+    <VerticalStackLayout Spacing="12">
+        <Grid x:Name="GameGrid" ColumnSpacing="1" RowSpacing="1" HorizontalOptions="Center" BackgroundColor="{AppThemeBinding Light={StaticResource Nord5}, Dark={StaticResource Nord1}}"/>
+        <Label x:Name="ScoreLabel" 
+               Text="Score: 0" 
+               HorizontalOptions="Center" 
+               FontSize="16" 
+               TextColor="{AppThemeBinding Light={StaticResource Nord3}, Dark={StaticResource Nord4}}"/>
+        <Label x:Name="StatusLabel" 
+               Text="{Binding TiltToMove, Source={x:Static strings:AppStrings.Instance}}" 
+               HorizontalOptions="Center" 
+               FontSize="12" 
+               TextColor="{StaticResource Nord3}"/>
+        <Button x:Name="StartBtn" 
+                Text="{Binding StartGame, Source={x:Static strings:AppStrings.Instance}}"
+                BackgroundColor="{StaticResource Nord9}" 
+                TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Nord0}}" 
+                CornerRadius="12" 
+                HeightRequest="44"
+                Clicked="OnStartClicked"/>
+    </VerticalStackLayout>
+</ContentView>

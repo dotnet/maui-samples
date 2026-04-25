@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+		<xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+		<xsd:element name="root" msdata:IsDataSet="true">
+			<xsd:complexType>
+				<xsd:choice maxOccurs="unbounded">
+					<xsd:element name="metadata">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" />
+							</xsd:sequence>
+							<xsd:attribute name="name" use="required" type="xsd:string" />
+							<xsd:attribute name="type" type="xsd:string" />
+							<xsd:attribute name="mimetype" type="xsd:string" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="assembly">
+						<xsd:complexType>
+							<xsd:attribute name="alias" type="xsd:string" />
+							<xsd:attribute name="name" type="xsd:string" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="data">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="resheader">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" />
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:choice>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:schema>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>2.0</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+
+	<data name="AppName" xml:space="preserve"><value>Прокрастинація</value></data>
+	<data name="Settings" xml:space="preserve"><value>Налаштування</value></data>
+	<data name="TabTasks" xml:space="preserve"><value>Завдання</value></data>
+	<data name="TabGames" xml:space="preserve"><value>Ігри</value></data>
+	<data name="TabExcuses" xml:space="preserve"><value>Виправдання</value></data>
+	<data name="TabStats" xml:space="preserve"><value>Статистика</value></data>
+	<data name="Accessibility" xml:space="preserve"><value>Зовнішній вигляд</value></data>
+	<data name="HighContrastMode" xml:space="preserve"><value>Світла тема</value></data>
+	<data name="HighContrastDesc" xml:space="preserve"><value>Перемкнутися на світлу колірну схему Nord</value></data>
+	<data name="DefaultTheme" xml:space="preserve"><value>Темна</value></data>
+	<data name="HighContrast" xml:space="preserve"><value>Світла</value></data>
+	<data name="ZalgoMode" xml:space="preserve"><value>Випадковий Zalgo</value></data>
+	<data name="ZalgoModeDesc" xml:space="preserve"><value>Хаос з'являється, коли ви найменше на це очікуєте</value></data>
+	<data name="ThemePreview" xml:space="preserve"><value>Попередній перегляд теми</value></data>
+	<data name="CurrentTheme" xml:space="preserve"><value>Поточна: Nord {0}</value></data>
+	<data name="ChangesApply" xml:space="preserve"><value>Зміни застосовуються миттєво</value></data>
+	<data name="Language" xml:space="preserve"><value>Мова</value></data>
+
+	<data name="TodaysTasks" xml:space="preserve"><value>Завдання на сьогодні</value></data>
+	<data name="YourProductivityList" xml:space="preserve"><value>Ваш список продуктивності:</value></data>
+	<data name="TakeABreak" xml:space="preserve"><value>Зробіть перерву</value></data>
+	<data name="DoingGreat" xml:space="preserve"><value>Ви чудово справляєтесь! Лише 1 завдання на сьогодні!</value></data>
+	<data name="AddMoreTasks" xml:space="preserve"><value>Додати більше завдань</value></data>
+	<data name="Congratulations" xml:space="preserve"><value>🎉 Вітаємо! Ви виконали ВСІ свої завдання!</value></data>
+	<data name="NeedAnotherBreak" xml:space="preserve"><value>Зачекайте... вам потрібна ще одна перерва!</value></data>
+
+	<data name="MiniGames" xml:space="preserve"><value>Міні-ігри</value></data>
+	<data name="ProductivityOverrated" xml:space="preserve"><value>Бо продуктивність — це переоцінена річ!</value></data>
+	<data name="ShuffleGames" xml:space="preserve"><value>Перемішати ігри</value></data>
+	<data name="Score" xml:space="preserve"><value>Рахунок: {0}</value></data>
+	<data name="GameOver" xml:space="preserve"><value>Гра закінчена! Фінальний рахунок: {0}</value></data>
+	<data name="StartGame" xml:space="preserve"><value>Почати гру</value></data>
+	<data name="NewGame" xml:space="preserve"><value>Нова гра</value></data>
+	<data name="YourTurn" xml:space="preserve"><value>Ваш хід (X)</value></data>
+	<data name="AIThinking" xml:space="preserve"><value>ШІ думає...</value></data>
+	<data name="YouWin" xml:space="preserve"><value>Ви перемогли! 🎉</value></data>
+	<data name="AIWins" xml:space="preserve"><value>ШІ переміг! 🤖</value></data>
+	<data name="Draw" xml:space="preserve"><value>Нічия!</value></data>
+	<data name="Clicks" xml:space="preserve"><value>Кліки: {0}</value></data>
+	<data name="StartChallenge" xml:space="preserve"><value>Почати виклик</value></data>
+	<data name="WaitForGreen" xml:space="preserve"><value>Чекайте на зелений!</value></data>
+	<data name="TapNow" xml:space="preserve"><value>ТИСНІТЬ ЗАРАЗ!</value></data>
+	<data name="TooEarly" xml:space="preserve"><value>Занадто рано! Спробуйте ще раз.</value></data>
+	<data name="ReactionTime" xml:space="preserve"><value>Час реакції: {0} мс</value></data>
+	<data name="MinifigGenerator" xml:space="preserve"><value>Творець мініфігурок</value></data>
+	<data name="MinifigGeneratorDesc" xml:space="preserve"><value>Створюйте випадкові мініфігурки!</value></data>
+	<data name="Generate" xml:space="preserve"><value>Згенерувати</value></data>
+	<data name="MinifigDesc1" xml:space="preserve"><value>Хоробрий шукач пригод із Брікленда!</value></data>
+	<data name="MinifigDesc2" xml:space="preserve"><value>Експерт-будівельник з 10-річним досвідом.</value></data>
+	<data name="MinifigDesc3" xml:space="preserve"><value>Мріє стати майстром-будівельником.</value></data>
+	<data name="MinifigDesc4" xml:space="preserve"><value>Колекціонер рідкісних цеглинок з дитинства.</value></data>
+	<data name="MinifigDesc5" xml:space="preserve"><value>Відомий своїми неймовірними MOC-творіннями.</value></data>
+	<data name="EggsCatch" xml:space="preserve"><value>Лови яйця</value></data>
+	<data name="EggsCatchDesc" xml:space="preserve"><value>Ловіть яйця, що падають, у свій кошик!</value></data>
+	<data name="TapStartToBegin" xml:space="preserve"><value>Натисніть «Старт», щоб почати</value></data>
+
+	<data name="ExcuseGenerator" xml:space="preserve"><value>Генератор виправдань</value></data>
+	<data name="NeedAReason" xml:space="preserve"><value>Потрібна причина, щоб нічого не робити? Ми допоможемо!</value></data>
+	<data name="TapForExcuse" xml:space="preserve"><value>Натисніть кнопку, щоб отримати нове виправдання!</value></data>
+	<data name="GenerateExcuse" xml:space="preserve"><value>Згенерувати виправдання</value></data>
+	<data name="CopyToClipboard" xml:space="preserve"><value>Копіювати в буфер</value></data>
+	<data name="Copied" xml:space="preserve"><value>Скопійовано!</value></data>
+	<data name="ExcusesGenerated" xml:space="preserve"><value>Виправдань згенеровано сьогодні: {0}</value></data>
+
+	<data name="YourStats" xml:space="preserve"><value>Ваша статистика</value></data>
+	<data name="BeProud" xml:space="preserve"><value>Пишайтеся своїми досягненнями!</value></data>
+	<data name="TasksAvoided" xml:space="preserve"><value>Проігноровані завдання</value></data>
+	<data name="BreaksTaken" xml:space="preserve"><value>Зроблені перерви</value></data>
+	<data name="ExcusesGeneratedStat" xml:space="preserve"><value>Згенеровані виправдання</value></data>
+	<data name="GamesPlayed" xml:space="preserve"><value>Зіграні ігри</value></data>
+	<data name="AchievementUnlocked" xml:space="preserve"><value>Досягнення розблоковано</value></data>
+	<data name="GettingStarted" xml:space="preserve"><value>Початок покладено: Відкрито додаток!</value></data>
+	<data name="BeginnerProcrastinator" xml:space="preserve"><value>Прокрастинатор-початківець</value></data>
+	<data name="LegendaryProcrastinator" xml:space="preserve"><value>ЛЕГЕНДАРНИЙ ПРОКРАСТИНАТОР</value></data>
+
+	<data name="SimonSays" xml:space="preserve"><value>Саймон каже</value></data>
+	<data name="SimonSaysDesc" xml:space="preserve"><value>Спостерігайте за послідовністю та повторюйте її!</value></data>
+	<data name="ClickSpeed" xml:space="preserve"><value>Швидкість кліків</value></data>
+	<data name="ClickSpeedDesc" xml:space="preserve"><value>Скільки кліків за 5 секунд?</value></data>
+	<data name="ReactionTimeGame" xml:space="preserve"><value>Час реакції</value></data>
+	<data name="ReactionTimeDesc" xml:space="preserve"><value>Чекайте на зелений, потім тисніть!</value></data>
+	<data name="TicTacToe" xml:space="preserve"><value>Хрестики-нулики</value></data>
+	<data name="TicTacToeDesc" xml:space="preserve"><value>Класична гра в хрестики та нулики!</value></data>
+	<data name="Minesweeper" xml:space="preserve"><value>Сапер</value></data>
+	<data name="MinesweeperDesc" xml:space="preserve"><value>Знайдіть усі безпечні клітинки!</value></data>
+	<data name="TiltSnake" xml:space="preserve"><value>Змійка нахилом</value></data>
+	<data name="TiltSnakeDesc" xml:space="preserve"><value>Нахиляйте телефон, щоб керувати змійкою!</value></data>
+	<data name="MemoryMatch" xml:space="preserve"><value>Пари пам'яті</value></data>
+	<data name="MemoryMatchDesc" xml:space="preserve"><value>Знайдіть однакові пари!</value></data>
+	<data name="NumberGuess" xml:space="preserve"><value>Вгадай число</value></data>
+	<data name="NumberGuessDesc" xml:space="preserve"><value>Вгадайте число від 1 до 100!</value></data>
+	<data name="WhackAMole" xml:space="preserve"><value>Впіймай крота</value></data>
+	<data name="WhackAMoleDesc" xml:space="preserve"><value>Тицяйте на кротів якомога швидше!</value></data>
+
+	<data name="ClickMe" xml:space="preserve"><value>Тисни мене!</value></data>
+	<data name="FinalClicks" xml:space="preserve"><value>Разом: {0} кліків! ({1:F1}/сек)</value></data>
+	<data name="Wait" xml:space="preserve"><value>Чекайте...</value></data>
+	<data name="Start" xml:space="preserve"><value>Старт</value></data>
+	<data name="TooSoon" xml:space="preserve"><value>Занадто рано!</value></data>
+	<data name="Done" xml:space="preserve"><value>Готово!</value></data>
+	<data name="FindSafeCells" xml:space="preserve"><value>Знайдіть безпечні клітинки! ({0} мін)</value></data>
+	<data name="BoomGameOver" xml:space="preserve"><value>Бум! Гру закінчено 💥</value></data>
+	<data name="TiltToMove" xml:space="preserve"><value>Нахиляйте телефон для руху!</value></data>
+	<data name="AccelerometerNotAvailable" xml:space="preserve"><value>Акселерометр недоступний</value></data>
+	<data name="GameOverScore" xml:space="preserve"><value>Гра закінчена! Рахунок: {0}</value></data>
+	<data name="MovesAndPairs" xml:space="preserve"><value>Ходи: {0} | Пари: {1}/{2}</value></data>
+	<data name="WinInMoves" xml:space="preserve"><value>Ви перемогли за {0} ходів! 🎉</value></data>
+	<data name="ThinkingOfNumber" xml:space="preserve"><value>Я загадав число від 1 до 100...</value></data>
+	<data name="Attempts" xml:space="preserve"><value>Спроби: {0}</value></data>
+	<data name="EnterGuess" xml:space="preserve"><value>Введіть число</value></data>
+	<data name="Guess" xml:space="preserve"><value>Вгадати!</value></data>
+	<data name="EnterNumber1to100" xml:space="preserve"><value>Будь ласка, введіть число від 1 до 100</value></data>
+	<data name="Correct" xml:space="preserve"><value>🎉 Правильно! Це було {0}!</value></data>
+	<data name="TooLow" xml:space="preserve"><value>📈 {0} — це замало!</value></data>
+	<data name="TooHigh" xml:space="preserve"><value>📉 {0} — це забагато!</value></data>
+	<data name="ScoreAndMisses" xml:space="preserve"><value>Рахунок: {0} | Промахи: {1}</value></data>
+	<data name="StartGame30s" xml:space="preserve"><value>Почати гру (30с)</value></data>
+
+	<data name="ExcuseEngine" xml:space="preserve"><value>Рушій виправдань</value></data>
+	<data name="ExcuseEngineDesc" xml:space="preserve"><value>Оберіть, як генеруються виправдання</value></data>
+	<data name="RandomGenerator" xml:space="preserve"><value>Випадковий генератор</value></data>
+	<data name="CloudAI" xml:space="preserve"><value>Хмарний ШІ (Groq)</value></data>
+	<data name="ApiEndpoint" xml:space="preserve"><value>Кінцева точка API</value></data>
+	<data name="ApiEndpointPlaceholder" xml:space="preserve"><value>http://localhost:11434</value></data>
+	<data name="AiModel" xml:space="preserve"><value>Модель ШІ</value></data>
+	<data name="Generating" xml:space="preserve"><value>Генерація...</value></data>
+	<data name="GroqApiKeyLabel" xml:space="preserve"><value>Ключ API Groq</value></data>
+	<data name="GroqApiKeyPlaceholder" xml:space="preserve"><value>Введіть ваш API ключ Groq</value></data>
+	<data name="GroqGetKeyHint" xml:space="preserve"><value>Отримайте безкоштовний ключ на console.groq.com</value></data>
+	<data name="OnDeviceAI" xml:space="preserve"><value>Локальний ШІ (Apple)</value></data>
+	<data name="OnDeviceAIHint" xml:space="preserve"><value>Використовує Apple Intelligence на iOS 26+. Інтернет не потрібен, повна приватність.</value></data>
+	<data name="OnDeviceAIAvailable" xml:space="preserve"><value>Apple Intelligence готовий до роботи!</value></data>
+	<data name="OnDeviceAIUnavailable" xml:space="preserve"><value>Потрібна iOS 26+ з увімкненим Apple Intelligence</value></data>
+
+	<data name="AIExcuseCalls" xml:space="preserve"><value>Запити до AI API</value></data>
+	<data name="HighScores" xml:space="preserve"><value>Рекорди</value></data>
+	<data name="NoHighScoresYet" xml:space="preserve"><value>Рекордів ще немає. Зіграйте в якусь гру!</value></data>
+	<data name="TakeANap" xml:space="preserve"><value>Поспіть трохи</value></data>
+	<data name="GrabACoffee" xml:space="preserve"><value>Випийте кави</value></data>
+	<data name="StretchABit" xml:space="preserve"><value>Трохи розімніться</value></data>
+	<data name="StareAtCeiling" xml:space="preserve"><value>Подивіться у стелю</value></data>
+	<data name="About" xml:space="preserve"><value>Про програму</value></data>
+	<data name="AboutDescription" xml:space="preserve"><value>Найкращий антипродуктивний додаток. Побудований на .NET MAUI з повним ігноруванням дедлайнів.</value></data>
+	<data name="Author" xml:space="preserve"><value>Автор: Стефан Делькруа (Stephane Delcroix)</value></data>
+	<data name="Share" xml:space="preserve"><value>Поділитися</value></data>
+	<data name="ShareExcuse" xml:space="preserve"><value>Поділитися цим виправданням</value></data>
+	<data name="Last7Days" xml:space="preserve"><value>Останні 7 днів</value></data>
+	<data name="GenerateCartoon" xml:space="preserve"><value>Згенерувати комікс</value></data>
+	<data name="ImageGenerationFailed" xml:space="preserve"><value>Не вдалося згенерувати зображення. Спробуйте пізніше.</value></data>
+</root>

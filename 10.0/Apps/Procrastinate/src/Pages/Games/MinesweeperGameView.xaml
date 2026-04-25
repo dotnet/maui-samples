@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:strings="clr-namespace:procrastinate.Services"
+             x:Class="procrastinate.Pages.Games.MinesweeperGameView">
+    <VerticalStackLayout Spacing="12">
+        <Grid x:Name="GameGrid" ColumnSpacing="2" RowSpacing="2" HorizontalOptions="Center"/>
+        <Label x:Name="StatusLabel" 
+               Text="Find the safe cells!" 
+               HorizontalOptions="Center" 
+               FontSize="14" 
+               TextColor="{AppThemeBinding Light={StaticResource Nord3}, Dark={StaticResource Nord4}}"/>
+        <Button x:Name="ResetBtn" 
+                Text="{Binding NewGame, Source={x:Static strings:AppStrings.Instance}}"
+                BackgroundColor="{StaticResource Nord14}" 
+                TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Nord0}}" 
+                CornerRadius="12" 
+                HeightRequest="44"
+                Clicked="OnResetClicked"/>
+    </VerticalStackLayout>
+</ContentView>

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:strings="clr-namespace:procrastinate.Services"
+             x:Class="procrastinate.Pages.StatsPage"
+             Title="{Binding YourStats, Source={x:Static strings:AppStrings.Instance}}"
+             BackgroundColor="{AppThemeBinding Light={StaticResource Nord6}, Dark={StaticResource Nord0}}">
+
+    <Shell.TitleView>
+        <Grid ColumnDefinitions="*,Auto">
+            <Label Text="{Binding YourStats, Source={x:Static strings:AppStrings.Instance}}" 
+                   FontSize="18" FontAttributes="Bold" 
+                   TextColor="{AppThemeBinding Light={StaticResource Nord0}, Dark={StaticResource Nord6}}"
+                   VerticalOptions="Center"/>
+            <Button Grid.Column="1" Text="&#xf013;" 
+                    AutomationId="SettingsBtn"
+                    FontFamily="FontAwesomeSolid"
+                    BackgroundColor="Transparent"
+                    TextColor="{AppThemeBinding Light={StaticResource Nord3}, Dark={StaticResource Nord4}}"
+                    FontSize="20"
+                    Clicked="OnSettingsClicked"
+                    VerticalOptions="Center"/>
+        </Grid>
+    </Shell.TitleView>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="16">
+            <Label Text="&#xf201;" 
+                   FontFamily="FontAwesomeSolid"
+                   FontSize="48" 
+                   TextColor="{StaticResource Nord13}"
+                   HorizontalOptions="Center"/>
+            <Label Text="{Binding YourStats, Source={x:Static strings:AppStrings.Instance}}" 
+                   FontSize="28" 
+                   FontAttributes="Bold"
+                   TextColor="{StaticResource Nord13}"
+                   HorizontalOptions="Center"/>
+            
+            <Label Text="{Binding BeProud, Source={x:Static strings:AppStrings.Instance}}"
+                   FontSize="14"
+                   TextColor="{AppThemeBinding Light={StaticResource Nord3}, Dark={StaticResource Nord4}}"
+                   HorizontalOptions="Center"/>
+
+            <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto,Auto" ColumnSpacing="12" RowSpacing="12">
+                <Border BackgroundColor="{AppThemeBinding Light={StaticResource Nord5}, Dark={StaticResource Nord1}}" 
+                        StrokeShape="RoundRectangle 16" Stroke="Transparent" Padding="20"
+                        Grid.Row="0" Grid.Column="0">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="&#xf05e;" FontFamily="FontAwesomeSolid" FontSize="28" TextColor="{StaticResource Nord8}"/>
+                        <Label Text="{Binding TasksAvoided, Source={x:Static strings:AppStrings.Instance}}" FontSize="12" TextColor="{AppThemeBinding Light={StaticResource Nord3}, Dark={StaticResource Nord4}}"/>
+                        <Label x:Name="TasksAvoidedLabel" AutomationId="TasksAvoidedLabel" Text="0" FontSize="32" FontAttributes="Bold" TextColor="{StaticResource Nord8}"/>
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border BackgroundColor="{AppThemeBinding Light={StaticResource Nord5}, Dark={StaticResource Nord1}}" 
+                        StrokeShape="RoundRectangle 16" Stroke="Transparent" Padding="20"
+                        Grid.Row="0" Grid.Column="1">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="&#xf0f4;" FontFamily="FontAwesomeSolid" FontSize="28" TextColor="{StaticResource Nord9}"/>
+                        <Label Text="{Binding BreaksTaken, Source={x:Static strings:AppStrings.Instance}}" FontSize="12" TextColor="{AppThemeBinding Light={StaticResource Nord3}, Dark={StaticResource Nord4}}"/>
+                        <Label x:Name="BreaksTakenLabel" Text="0" FontSize="32" FontAttributes="Bold" TextColor="{StaticResource Nord9}"/>
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border BackgroundColor="{AppThemeBinding Light={StaticResource Nord5}, Dark={StaticResource Nord1}}" 
+                        StrokeShape="RoundRectangle 16" Stroke="Transparent" Padding="20"
+                        Grid.Row="1" Grid.Column="0">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="&#xf630;" FontFamily="FontAwesomeSolid" FontSize="28" TextColor="{StaticResource Nord10}"/>
+                        <Label Text="{Binding ExcusesGeneratedStat, Source={x:Static strings:AppStrings.Instance}}" FontSize="12" TextColor="{AppThemeBinding Light={StaticResource Nord3}, Dark={StaticResource Nord4}}"/>
+                        <Label x:Name="ExcusesLabel" AutomationId="ExcusesStatLabel" Text="0" FontSize="32" FontAttributes="Bold" TextColor="{StaticResource Nord10}"/>
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border BackgroundColor="{AppThemeBinding Light={StaticResource Nord5}, Dark={StaticResource Nord1}}" 
+                        StrokeShape="RoundRectangle 16" Stroke="Transparent" Padding="20"
+                        Grid.Row="1" Grid.Column="1">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="&#xf11b;" FontFamily="FontAwesomeSolid" FontSize="28" TextColor="{StaticResource Nord13}"/>
+                        <Label Text="{Binding GamesPlayed, Source={x:Static strings:AppStrings.Instance}}" FontSize="12" TextColor="{AppThemeBinding Light={StaticResource Nord3}, Dark={StaticResource Nord4}}"/>
+                        <Label x:Name="GamesPlayedLabel" Text="0" FontSize="32" FontAttributes="Bold" TextColor="{StaticResource Nord13}"/>
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border BackgroundColor="{AppThemeBinding Light={StaticResource Nord5}, Dark={StaticResource Nord1}}" 
+                        StrokeShape="RoundRectangle 16" Stroke="Transparent" Padding="20"
+                        Grid.Row="2" Grid.Column="0">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="&#xf544;" FontFamily="FontAwesomeSolid" FontSize="28" TextColor="{StaticResource Nord12}"/>
+                        <Label Text="{Binding AIExcuseCalls, Source={x:Static strings:AppStrings.Instance}}" FontSize="12" TextColor="{AppThemeBinding Light={StaticResource Nord3}, Dark={StaticResource Nord4}}"/>
+                        <Label x:Name="AICallsLabel" Text="0" FontSize="32" FontAttributes="Bold" TextColor="{StaticResource Nord12}"/>
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border BackgroundColor="{AppThemeBinding Light={StaticResource Nord5}, Dark={StaticResource Nord1}}" 
+                        StrokeShape="RoundRectangle 16" Stroke="Transparent" Padding="20"
+                        Grid.Row="2" Grid.Column="1">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="&#xf245;" FontFamily="FontAwesomeSolid" FontSize="28" TextColor="{StaticResource Nord15}"/>
+                        <Label Text="{Binding TotalClicks, Source={x:Static strings:AppStrings.Instance}}" FontSize="12" TextColor="{AppThemeBinding Light={StaticResource Nord3}, Dark={StaticResource Nord4}}"/>
+                        <Label x:Name="TotalClicksLabel" Text="0" FontSize="32" FontAttributes="Bold" TextColor="{StaticResource Nord15}"/>
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+
+            <!-- Weekly Activity Chart -->
+            <Border BackgroundColor="{AppThemeBinding Light={StaticResource Nord5}, Dark={StaticResource Nord1}}" 
+                    StrokeShape="RoundRectangle 16" 
+                    Stroke="Transparent"
+                    Padding="20">
+                <VerticalStackLayout Spacing="12">
+                    <HorizontalStackLayout Spacing="8">
+                        <Label Text="&#xf080;" FontFamily="FontAwesomeSolid" FontSize="24" TextColor="{StaticResource Nord9}"/>
+                        <Label x:Name="ChartTitleLabel" Text="Last 7 Days" FontSize="18" FontAttributes="Bold" TextColor="{AppThemeBinding Light={StaticResource Nord0}, Dark={StaticResource Nord6}}" VerticalOptions="Center"/>
+                    </HorizontalStackLayout>
+                    <Grid x:Name="ChartGrid" HeightRequest="120" ColumnSpacing="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- High Scores Section -->
+            <Border BackgroundColor="{AppThemeBinding Light={StaticResource Nord5}, Dark={StaticResource Nord1}}" 
+                    StrokeShape="RoundRectangle 16" 
+                    Stroke="Transparent"
+                    Padding="20">
+                <VerticalStackLayout Spacing="12">
+                    <HorizontalStackLayout Spacing="8">
+                        <Label Text="&#xf091;" FontFamily="FontAwesomeSolid" FontSize="24" TextColor="{StaticResource Nord12}"/>
+                        <Label Text="{Binding HighScores, Source={x:Static strings:AppStrings.Instance}}" FontSize="18" FontAttributes="Bold" TextColor="{AppThemeBinding Light={StaticResource Nord0}, Dark={StaticResource Nord6}}" VerticalOptions="Center"/>
+                    </HorizontalStackLayout>
+                    <VerticalStackLayout x:Name="HighScoresStack" Spacing="8">
+                        <Label x:Name="NoHighScoresLabel" 
+                               Text="{Binding NoHighScoresYet, Source={x:Static strings:AppStrings.Instance}}"
+                               FontSize="14"
+                               TextColor="{AppThemeBinding Light={StaticResource Nord3}, Dark={StaticResource Nord4}}"/>
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border BackgroundColor="{AppThemeBinding Light={StaticResource Nord5}, Dark={StaticResource Nord1}}" 
+                    StrokeShape="RoundRectangle 16" 
+                    Stroke="{StaticResource Nord10}"
+                    StrokeThickness="1"
+                    Padding="20">
+                <HorizontalStackLayout Spacing="16">
+                    <Label Text="&#xf091;" FontFamily="FontAwesomeSolid" FontSize="36" TextColor="{StaticResource Nord12}" VerticalOptions="Center"/>
+                    <VerticalStackLayout Spacing="4" VerticalOptions="Center">
+                        <Label Text="{Binding AchievementUnlocked, Source={x:Static strings:AppStrings.Instance}}" FontSize="14" FontAttributes="Bold" TextColor="{StaticResource Nord12}"/>
+                        <Label x:Name="AchievementLabel" 
+                               Text="Loading achievement..."
+                               FontSize="14"
+                               TextColor="{AppThemeBinding Light={StaticResource Nord3}, Dark={StaticResource Nord4}}"/>
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+            </Border>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
