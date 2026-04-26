@@ -6,7 +6,6 @@ on:
       - '**.md'
 
 jobs:
-jobs:
   build-macos:
     runs-on: macos-13
     steps:
