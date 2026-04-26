@@ -5,7 +5,7 @@ on:
     branches: [ main ]
 
 jobs:
-   build-android:
+  build-android:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -15,10 +15,7 @@ jobs:
         with:
           dotnet-version: 10.0.x
 
-      - name: Restore workloads
-        run: dotnet workload restore
-
-      - name: Install MAUI workloads
+      - name: Install MAUI Workload
         run: dotnet workload install maui
 
       - name: Restore dependencies
@@ -26,29 +23,42 @@ jobs:
 
       - name: Build Android
         run: dotnet build ./10.0/Apps/PointOfSale/src/PointOfSale/PointOfSale.csproj -f net10.0-android --configuration Release --no-restore
-        
+
   build-windows:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3
+
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: 10.0.x # Disamakan ke 10.0
+
+      - name: Install MAUI Workload
+        run: dotnet workload install maui # Wajib ada
+
       - name: Restore dependencies
         run: dotnet restore ./10.0/Apps/PointOfSale/src/PointOfSale/PointOfSale.csproj
-      - name: Build
+
+      - name: Build Windows
+        # Tambahkan target framework spesifik jika perlu, contoh: -f net10.0-windows10.0.19041.0
         run: dotnet build ./10.0/Apps/PointOfSale/src/PointOfSale/PointOfSale.csproj --configuration Release --no-restore
 
   build-macos:
     runs-on: macos-13
     steps:
       - uses: actions/checkout@v3
+
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: 10.0.x # Disamakan ke 10.0
+
+      - name: Install MAUI Workload
+        run: dotnet workload install maui # Wajib ada
+
       - name: Restore dependencies
         run: dotnet restore ./10.0/Apps/PointOfSale/src/PointOfSale/PointOfSale.csproj
-      - name: Build
-        run: dotnet build ./10.0/Apps/PointOfSale/src/PointOfSale/PointOfSale.csproj --configuration Release --no-restore
+
+      - name: Build macOS
+        run: dotnet build ./10.0/Apps/PointOfSale/src/PointOfSale/PointOfSale.csproj -f net10.0-maccatalyst --configuration Release --no-restore
