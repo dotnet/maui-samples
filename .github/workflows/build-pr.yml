@@ -1,11 +1,36 @@
-name: Build Android Project for PR
+name: Build Project for PR
 
 on:
   pull_request:
-    paths-ignore:
-      - '**.md'
+    branches: [ main ]
 
 jobs:
+  build-android:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 8.0.x
+      - name: Restore dependencies
+        run: dotnet restore ./src/PointOfSale/PointOfSale.csproj
+      - name: Build
+        run: dotnet build ./src/PointOfSale/PointOfSale.csproj --configuration Release --no-restore
+
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 8.0.x
+      - name: Restore dependencies
+        run: dotnet restore ./src/PointOfSale/PointOfSale.csproj
+      - name: Build
+        run: dotnet build ./src/PointOfSale/PointOfSale.csproj --configuration Release --no-restore
+
   build-macos:
     runs-on: macos-13
     steps:
@@ -18,31 +43,3 @@ jobs:
         run: dotnet restore ./src/PointOfSale/PointOfSale.csproj
       - name: Build
         run: dotnet build ./src/PointOfSale/PointOfSale.csproj --configuration Release --no-restore
-  build-android:
-    runs-on: macos-26
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 2
-      - uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: 10.0.x
-      - run: dotnet workload install maui
-      - name: Build Android
-        run: dotnet build ./10.0/Apps/PointOfSale/src/PointOfSale/PointOfSale.csproj -f net10.0-android
-
-  
-  build-windows:
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 2
-      - uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: 10.0.x
-      - run: dotnet workload install maui
-      - name: Restore dependencies
-        run: dotnet restore ./10.0/Apps/PointOfSale/src/PointOfSale/PointOfSale.csproj
-      - name: Build Windows
-        run: dotnet build ./10.0/Apps/PointOfSale/src/PointOfSale/PointOfSale.csproj -f net10.0-windows10.0.19041.0
