@@ -14,9 +14,9 @@ jobs:
         with:
           dotnet-version: 8.0.x
       - name: Restore dependencies
-        run: dotnet restore ./src/PointOfSale/PointOfSale.csproj
+        run: dotnet restore ./10.0/Apps/PointOfSale/src/PointOfSale/PointOfSale.csproj
       - name: Build
-        run: dotnet build ./src/PointOfSale/PointOfSale.csproj --configuration Release --no-restore
+        run: dotnet build ./10.0/Apps/PointOfSale/src/PointOfSale/PointOfSale.csproj --configuration Release --no-restore
 
   build-windows:
     runs-on: windows-latest
@@ -27,9 +27,9 @@ jobs:
         with:
           dotnet-version: 8.0.x
       - name: Restore dependencies
-        run: dotnet restore ./src/PointOfSale/PointOfSale.csproj
+        run: dotnet restore ./10.0/Apps/PointOfSale/src/PointOfSale/PointOfSale.csproj
       - name: Build
-        run: dotnet build ./src/PointOfSale/PointOfSale.csproj --configuration Release --no-restore
+        run: dotnet build ./10.0/Apps/PointOfSale/src/PointOfSale/PointOfSale.csproj --configuration Release --no-restore
 
   build-macos:
     runs-on: macos-13
@@ -40,6 +40,6 @@ jobs:
         with:
           dotnet-version: 8.0.x
       - name: Restore dependencies
-        run: dotnet restore ./src/PointOfSale/PointOfSale.csproj
+        run: dotnet restore ./10.0/Apps/PointOfSale/src/PointOfSale/PointOfSale.csproj
       - name: Build
-        run: dotnet build ./src/PointOfSale/PointOfSale.csproj --configuration Release --no-restore
+        run: dotnet build ./10.0/Apps/PointOfSale/src/PointOfSale/PointOfSale.csproj --configuration Release --no-restore
