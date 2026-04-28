@@ -49,9 +49,9 @@ public partial class HomePage : ContentPage
 			Grid.SetRowSpan(addForm, 3);
 			// translate off screen right
 			addForm.TranslationX = displayWidth - addForm.X;
-			_ = addForm.TranslateTo(0, 0, 800, easing: Easing.CubicOut);
+			_ = addForm.TranslateToAsync(0, 0, 800, easing: Easing.CubicOut);
 
-            _ = BlockScreen.FadeTo(0.8, 800, easing: Easing.CubicOut);
+            _ = BlockScreen.FadeToAsync(0.8, 800, easing: Easing.CubicOut);
             BlockScreen.InputTransparent = false;
 
         }
@@ -62,9 +62,9 @@ public partial class HomePage : ContentPage
 			var view = (AddProductView)PageGrid.Children.Where(v => v.GetType() == typeof(AddProductView)).SingleOrDefault();
 
             var x = DeviceDisplay.Current.MainDisplayInfo.Width;
-            _ = view.TranslateTo(displayWidth - view.X, 0, 800, easing: Easing.CubicIn);
+            _ = view.TranslateToAsync(displayWidth - view.X, 0, 800, easing: Easing.CubicIn);
 
-            _ = BlockScreen.FadeTo(0, 800, easing: Easing.CubicOut);
+            _ = BlockScreen.FadeToAsync(0, 800, easing: Easing.CubicOut);
             BlockScreen.InputTransparent = true;
 
             await Task.Delay(800);

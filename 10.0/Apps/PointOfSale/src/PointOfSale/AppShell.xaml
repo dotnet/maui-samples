@@ -7,7 +7,7 @@
        xmlns:b="clr-namespace:PointOfSale.Common.Behaviors"
        xmlns:v="clr-namespace:PointOfSale.Pages.Views"
        x:Class="PointOfSale.AppShell"
-       FlyoutWidth="104" 
+       FlyoutWidth="240" 
        FlyoutBehavior="Locked">
 
     <Shell.Resources>
@@ -46,7 +46,7 @@
                         StrokeThickness="0"
                         HorizontalOptions="Fill"
                         HeightRequest="70"
-                        Margin="15,0,0,0">
+                        Margin="8,0,0,0"> <!-- reduced margin -->
                     <Border.StrokeShape>
                         <RoundRectangle CornerRadius="12,0,12,0" />
                     </Border.StrokeShape>
@@ -54,7 +54,7 @@
 
                 <Border x:Name="InnerBorder" 
                         Background="Transparent"
-                        Margin="20" 
+                        Margin="8" 
                         HorizontalOptions="Center" 
                         VerticalOptions="Center"
                         Stroke="{StaticResource PrimaryBrush}" 
@@ -84,91 +84,59 @@
 
                 <Image Source="logo.png"
                        Grid.Row="0"
-                       Margin="0,15,0,15"/>                    
+                       Margin="0,15,0,15"/>
 
                 <RadioButton Value="home" IsChecked="True" Grid.Row="1"
-                             ToolTipProperties.Text="Home"
-                             b:CursorBehavior.AttachBehavior="True"
-                             CheckedChanged="OnMenuItemChanged">
+                       ToolTipProperties.Text="Home"
+                       b:CursorBehavior.AttachBehavior="True"
+                       CheckedChanged="OnMenuItemChanged">
                     <RadioButton.Content>
                         <Image Source="home.png">
-                            
+
                         </Image>
                     </RadioButton.Content>
                 </RadioButton>
 
                 <RadioButton Value="dashboard" Grid.Row="2"
-                             ToolTipProperties.Text="Dashboard"
-                                    CheckedChanged="OnMenuItemChanged">
-                    <RadioButton.Content>                            
-                        <Image Source="graph.png">
-                            <!--<Image.Behaviors>
-                                <mct:IconTintColorBehavior
-                                    TintColor="{Binding IsChecked,
-                                                    Source={RelativeSource AncestorType={x:Type RadioButton}, AncestorLevel=3},
-                                    Converter={StaticResource CheckedColorConverter}}"/>
-
-                            </Image.Behaviors>-->
-                            </Image>
+                       ToolTipProperties.Text="Dashboard"
+                              CheckedChanged="OnMenuItemChanged">
+                    <RadioButton.Content>
+                        <Image Source="graph.png"/>
                     </RadioButton.Content>
                 </RadioButton>
 
                 <RadioButton Value="settings" Grid.Row="3"
-                             ToolTipProperties.Text="Settings"
-                                CheckedChanged="OnMenuItemChanged">
-                    <RadioButton.Content>                            
-                        <Image Source="setting.png">
-                            <!--<Image.Behaviors>
-                                <mct:IconTintColorBehavior
-                                    TintColor="{Binding IsChecked,
-                                                    Source={RelativeSource AncestorType={x:Type RadioButton}, AncestorLevel=1 ,Mode=FindAncestor},
-                                    Converter={StaticResource CheckedColorConverter}}"/>
-
-                            </Image.Behaviors>-->
-                        </Image>
+                       ToolTipProperties.Text="Settings"
+                          CheckedChanged="OnMenuItemChanged">
+                    <RadioButton.Content>
+                        <Image Source="setting.png"/>
                     </RadioButton.Content>
                 </RadioButton>
 
                 <RadioButton Value="discount" Grid.Row="4"
-                             ToolTipProperties.Text="Discount"
-                                CheckedChanged="OnMenuItemChanged">
-                    <RadioButton.Content>                            
-                        <Image Source="discount.png">
-                            <!--<Image.Behaviors>
-                                <mct:IconTintColorBehavior
-                                    TintColor="{Binding IsChecked,
-                                                    Source={RelativeSource AncestorType={x:Type RadioButton}, AncestorLevel=2},
-                                    Converter={StaticResource CheckedColorConverter}}"/>
-
-                            </Image.Behaviors>-->
-                            </Image>
+                       ToolTipProperties.Text="Discount"
+                          CheckedChanged="OnMenuItemChanged">
+                    <RadioButton.Content>
+                        <Image Source="discount.png"/>
                     </RadioButton.Content>
-                </RadioButton>                    
+                </RadioButton>
 
                 <RadioButton Value="message" Grid.Row="5"
-                             ToolTipProperties.Text="Messages"
-                                    CheckedChanged="OnMenuItemChanged">
-                    <RadioButton.Content>                            
-                        <Image Source="message.png">
-                            <!--<Image.Behaviors>
-                                <mct:IconTintColorBehavior
-                                    TintColor="{Binding IsChecked,
-                                                    Source={RelativeSource AncestorType={x:Type RadioButton}, AncestorLevel=4},
-                                    Converter={StaticResource CheckedColorConverter}}"/>
-
-                            </Image.Behaviors>-->
-                            </Image>
-                </RadioButton.Content>
+                       ToolTipProperties.Text="Messages"
+                              CheckedChanged="OnMenuItemChanged">
+                    <RadioButton.Content>
+                        <Image Source="message.png"/>
+                    </RadioButton.Content>
                 </RadioButton>
 
                 <RadioButton Value="notification" Grid.Row="6"
-                             ToolTipProperties.Text="Notifications"
-                                    CheckedChanged="OnMenuItemChanged">
-                    <RadioButton.Content>                            
-                        <Image Source="notification.png" />                            
+                       ToolTipProperties.Text="Notifications"
+                              CheckedChanged="OnMenuItemChanged">
+                    <RadioButton.Content>
+                        <Image Source="notification.png" />
                     </RadioButton.Content>
                 </RadioButton>
-
+         
                 <Image Source="logout.png"
                        ToolTipProperties.Text="Logout"
                        Margin="0,15,0,15" Grid.Row="7"/>
@@ -176,23 +144,23 @@
         </DataTemplate>
     </Shell.FlyoutContentTemplate>
 
-    <FlyoutItem Title="Home" Route="home">
-        <ShellContent ContentTemplate="{DataTemplate pages:HomePage}"/>
+    <FlyoutItem Title="Home" Route="home" >
+        <ShellContent ContentTemplate="{DataTemplate pages:HomePage}" FlyoutIcon="home.png"/>
     </FlyoutItem>
-    <FlyoutItem Title="Dashboard" Route="dashboard">
-        <ShellContent ContentTemplate="{DataTemplate pages:DashboardPage}"/>
+    <FlyoutItem Title="Dashboard" Route="dashboard" >
+        <ShellContent ContentTemplate="{DataTemplate pages:DashboardPage}" FlyoutIcon="dashboard.png"/>
     </FlyoutItem>
-    <FlyoutItem Title="Settings" Route="settings">
-        <ShellContent ContentTemplate="{DataTemplate pages:SettingsPage}"/>
+    <FlyoutItem Title="Settings" Route="settings" >
+        <ShellContent ContentTemplate="{DataTemplate pages:SettingsPage}" FlyoutIcon="settings.png"/>
     </FlyoutItem>
-    <FlyoutItem Title="Discounts" Route="discount">
-        <ShellContent ContentTemplate="{DataTemplate pages:EmptyPage}"/>
+    <FlyoutItem Title="Discounts" Route="discount" >
+        <ShellContent ContentTemplate="{DataTemplate pages:EmptyPage}" FlyoutIcon="discount.png"/>
     </FlyoutItem>
-    <FlyoutItem Title="Messages" Route="message">
-        <ShellContent ContentTemplate="{DataTemplate pages:EmptyPage}"/>
+    <FlyoutItem Title="Messages" Route="message" >
+        <ShellContent ContentTemplate="{DataTemplate pages:EmptyPage}" FlyoutIcon="message.png"/>
     </FlyoutItem>
-    <FlyoutItem Title="Notifications" Route="notification">
-        <ShellContent ContentTemplate="{DataTemplate pages:EmptyPage}"/>
+    <FlyoutItem Title="Notifications" Route="notification" >
+        <ShellContent ContentTemplate="{DataTemplate pages:EmptyPage}" FlyoutIcon="notification.png"/>
     </FlyoutItem>
     
 </Shell>
