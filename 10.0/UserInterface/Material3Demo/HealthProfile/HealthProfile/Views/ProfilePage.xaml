@@ -1,0 +1,514 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:fonts="clr-namespace:Fonts"
+             x:Class="HealthProfile.Views.ProfilePage"
+             Title="Profile">
+    <Grid>
+
+        <!-- Scrollable profile content -->
+        <ScrollView>
+            <VerticalStackLayout Padding="16,20,16,40" Spacing="14">
+
+                <SearchBar x:Name="ProfileSearchBar"
+                           Placeholder="Search profile sections"
+                           Focused="OnProfileSearchFocused"
+                           Unfocused="OnProfileSearchUnfocused"
+                           TextChanged="OnProfileSearchTextChanged"
+                           SearchButtonPressed="OnProfileSearchButtonPressed"/>
+
+                <Border x:Name="SearchSuggestionsCard"
+                    StrokeShape="RoundRectangle 12"
+                    Stroke="{StaticResource Gray200}"
+                    Padding="12"
+                    IsVisible="False">
+                    <VerticalStackLayout Spacing="10">
+                    <Label Text="Suggestions"
+                           FontSize="12"
+                              FontAttributes="Bold"/>
+                    <FlexLayout Wrap="Wrap"
+                            Direction="Row"
+                            JustifyContent="Start"
+                            AlignItems="Start">
+                        <Button Text="Profile Picture"
+                            Margin="0,0,8,8"
+                            Padding="12,6"
+                            Clicked="OnSearchSuggestionClicked"/>
+                        <Button Text="Personal Info"
+                            Margin="0,0,8,8"
+                            Padding="12,6"
+                            Clicked="OnSearchSuggestionClicked"/>
+                        <Button Text="Activity Goals"
+                            Margin="0,0,8,8"
+                            Padding="12,6"
+                            Clicked="OnSearchSuggestionClicked"/>
+                        <Button Text="Reminders"
+                            Margin="0,0,8,8"
+                            Padding="12,6"
+                            Clicked="OnSearchSuggestionClicked"/>
+                        <Button Text="Data Sync"
+                            Margin="0,0,8,8"
+                            Padding="12,6"
+                            Clicked="OnSearchSuggestionClicked"/>
+                        <Button Text="Health Targets"
+                            Margin="0,0,8,8"
+                            Padding="12,6"
+                            Clicked="OnSearchSuggestionClicked"/>
+                        <Button Text="Diet Preferences"
+                            Margin="0,0,8,8"
+                            Padding="12,6"
+                            Clicked="OnSearchSuggestionClicked"/>
+                        <Button Text="Alerts"
+                            Margin="0,0,8,8"
+                            Padding="12,6"
+                            Clicked="OnSearchSuggestionClicked"/>
+                        <Button Text="Medical Notes"
+                            Margin="0,0,8,8"
+                            Padding="12,6"
+                            Clicked="OnSearchSuggestionClicked"/>
+                    </FlexLayout>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- ═══════════════════════════════════════ -->
+                <!--  Profile Picture Section                -->
+                <!-- ═══════════════════════════════════════ -->
+                <VerticalStackLayout x:Name="ProfilePhotoSection" HorizontalOptions="Center" Spacing="12">
+                    <Label Text="PROFILE PICTURE"
+                           FontSize="12"
+                           FontAttributes="Bold"
+                           CharacterSpacing="1.1"
+                           HorizontalOptions="Center"
+                           Margin="0,8,0,0"/>
+                    <Grid WidthRequest="100" HeightRequest="100" HorizontalOptions="Center">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnEditPhotoBtnClicked"/>
+                        </Grid.GestureRecognizers>
+                        <!-- Circular profile image -->
+                        <Border StrokeShape="RoundRectangle 50"
+                            Stroke="{StaticResource Primary}"
+                                StrokeThickness="3"
+                                BackgroundColor="#1A2540"
+                                WidthRequest="100"
+                                HeightRequest="100">
+                            <Image x:Name="ProfileImage"
+                                Source="dotnet_bot.svg"
+                                   Aspect="AspectFill"
+                                   WidthRequest="94"
+                                   HeightRequest="94"/>
+                        </Border>
+                        <!-- ImageButton: Edit photo badge (blue circle) -->
+                        <ImageButton x:Name="EditPhotoBtn"
+                                     BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray950}}"
+                                     CornerRadius="16"
+                                     WidthRequest="32"
+                                     HeightRequest="32"
+                                     Aspect="AspectFit"
+                                     Padding="0"
+                                     BorderColor="{StaticResource Gray400}"
+                                     BorderWidth="1"
+                                     HorizontalOptions="End"
+                                     VerticalOptions="End"
+                                     Margin="0,0,0,0"
+                                     Clicked="OnEditPhotoBtnClicked"
+                                     ToolTipProperties.Text="Change profile photo">
+                            <ImageButton.Source>
+                                <FontImageSource FontFamily="FluentUI"
+                                                 Glyph="{x:Static fonts:FluentUI.camera_off_20_regular}"
+                                                 Size="18"
+                                                 Color="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}"/>
+                            </ImageButton.Source>
+                        </ImageButton>
+                    </Grid>
+                </VerticalStackLayout>
+
+                <!-- ═══════════════════════════════════════ -->
+                <!--  Personal Info Card                     -->
+                <!-- ═══════════════════════════════════════ -->
+                <Label x:Name="PersonalInfoHeader"
+                       Text="PERSONAL INFORMATION"
+                       FontSize="14"
+                       FontAttributes="Bold"
+                       Margin="0,0,0,8"/>
+
+                <Border x:Name="PersonalInfoCard"
+                        StrokeShape="RoundRectangle 14"
+                    Stroke="{StaticResource Gray200}"
+                        Padding="18,16">
+                    <VerticalStackLayout Spacing="16">
+
+                        <!-- Full Name -->
+                        <VerticalStackLayout Spacing="6">
+                            <Entry x:Name="FullNameEntry"
+                                Text="Elena Rodriguez"
+                                Placeholder="Full Name"
+                                BackgroundColor="Transparent"
+                                FontSize="15"
+                                HorizontalOptions="Fill"
+                                VerticalOptions="Center"
+                                VerticalTextAlignment="Center"/>
+                        </VerticalStackLayout>
+
+                        <!-- Date of Birth -->
+                        <VerticalStackLayout Spacing="6">
+                            <Label Text="DATE OF BIRTH"
+                                   FontSize="11"
+                                   FontAttributes="Bold"
+                                   CharacterSpacing="1.1"/>
+                            <DatePicker x:Name="DobPicker"
+                                        Date="2001-06-18"
+                                        BackgroundColor="Transparent"
+                                        Format="MMMM dd, yyyy"
+                                        FontSize="15"
+                                        HeightRequest="46"/>
+                        </VerticalStackLayout>
+
+                        <!-- Blood Type -->
+                        <VerticalStackLayout Spacing="6">
+                            <Label Text="BLOOD TYPE"
+                                   FontSize="11"
+                                   FontAttributes="Bold"
+                                   CharacterSpacing="1.1"/>
+                            <Picker x:Name="BloodTypePicker"
+                                    Title="Select blood type"
+                                    BackgroundColor="Transparent"
+                                    FontSize="15"
+                                    HeightRequest="46">
+                                <Picker.Items>
+                                    <x:String>A Positive (A+)</x:String>
+                                    <x:String>A Negative (A-)</x:String>
+                                    <x:String>B Positive (B+)</x:String>
+                                    <x:String>B Negative (B-)</x:String>
+                                    <x:String>O Positive (O+)</x:String>
+                                    <x:String>O Negative (O-)</x:String>
+                                    <x:String>AB Positive (AB+)</x:String>
+                                    <x:String>AB Negative (AB-)</x:String>
+                                </Picker.Items>
+                            </Picker>
+                        </VerticalStackLayout>
+
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- ═══════════════════════════════════════ -->
+                <!--  Daily Step Goal Card                   -->
+                <!-- ═══════════════════════════════════════ -->
+                <Label x:Name="ActivityGoalsHeader"
+                       Text="ACTIVITY GOALS"
+                       FontSize="14"
+                       FontAttributes="Bold"
+                       Margin="0,0,0,8"/>
+
+                <Border x:Name="StepGoalCard"
+                        StrokeShape="RoundRectangle 14"
+                    Stroke="{StaticResource Gray200}"
+                        Padding="18,16">
+                    <VerticalStackLayout Spacing="10">
+
+                        <Grid ColumnDefinitions="*,Auto">
+                            <VerticalStackLayout Spacing="2">
+                                <Label Text="Daily Step Goal"
+                                       FontSize="16"
+                                    FontAttributes="Bold"/>
+                                <Label Text="Your ideal daily activity target"
+                                    FontSize="12"/>
+                            </VerticalStackLayout>
+                            <Label x:Name="StepGoalValueLabel"
+                                   Grid.Column="1"
+                                Text="10k"
+                                   FontSize="26"
+                                   FontAttributes="Bold"
+                                              TextColor="{StaticResource Primary}"
+                                   VerticalOptions="Center"/>
+                        </Grid>
+
+                        <!-- Slider for step goal -->
+                        <Slider x:Name="StepGoalSlider"
+                            Minimum="1"
+                            Maximum="10"
+                            Value="10"
+                                ValueChanged="OnStepGoalChanged"
+                                DragCompleted="OnStepGoalDragCompleted"/>
+
+                        <!-- Current Progress -->
+                        <Grid ColumnDefinitions="*,Auto" Margin="0,4,0,0">
+                            <Label Text="CURRENT PROGRESS"
+                                   FontSize="10"
+                                   FontAttributes="Bold"
+                                   CharacterSpacing="0.8"
+                                   VerticalOptions="Center"/>
+                            <Label x:Name="StepProgressLabel"
+                                   Grid.Column="1"
+                                   Text="6,125 STEPS"
+                                   FontSize="11"
+                                FontAttributes="Bold"/>
+                        </Grid>
+
+                        <ProgressBar x:Name="StepProgressBar"
+                                     Progress="0.49"
+                                     HeightRequest="8"/>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- ═══════════════════════════════════════ -->
+                <!--  Morning Reminder Card                  -->
+                <!-- ═══════════════════════════════════════ -->
+                <Label x:Name="RemindersHeader"
+                       Text="REMINDERS"
+                       FontSize="14"
+                       FontAttributes="Bold"
+                       Margin="0,0,0,8"/>
+
+                <Border x:Name="ReminderCard"
+                        StrokeShape="RoundRectangle 14"
+                    Stroke="{StaticResource Gray200}"
+                        Padding="18,16">
+                    <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto">
+                        <Label Grid.Row="0" Grid.Column="0"
+                               Text="MORNING REMINDER"
+                               FontSize="11"
+                               FontAttributes="Bold"
+                               CharacterSpacing="1.1"
+                               VerticalOptions="Center"/>
+                        <Label Grid.Row="1" Grid.Column="0"
+                               x:Name="ReminderTimeLabel"
+                               Text="07:30 AM"
+                               FontSize="36"
+                               FontAttributes="Bold"
+                               Margin="0,6,0,0"/>
+                        <TimePicker x:Name="MorningReminderPicker"
+                                    Grid.Row="0" Grid.Column="1"
+                                    Grid.RowSpan="2"
+                                    Time="07:30:00"
+                                    BackgroundColor="Transparent"
+                                    Format="hh:mm tt"
+                                    FontSize="14"
+                                    VerticalOptions="Center"
+                                    PropertyChanged="OnReminderTimeChanged"/>
+                    </Grid>
+                </Border>
+
+                <!-- ═══════════════════════════════════════ -->
+                <!--  Sync Status Row                        -->
+                <!-- ═══════════════════════════════════════ -->
+                <Label x:Name="DataSyncHeader"
+                       Text="DATA SYNC"
+                       FontSize="14"
+                       FontAttributes="Bold"
+                       Margin="0,0,0,8"/>
+
+                <Border x:Name="SyncCard"
+                        StrokeShape="RoundRectangle 14"
+                    Stroke="{StaticResource Gray200}"
+                        Padding="18,14">
+                    <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+                        <ActivityIndicator x:Name="SyncIndicator"
+                                     IsRunning="False"
+                                     IsVisible="False"
+                                           WidthRequest="24"
+                                           HeightRequest="24"
+                                           VerticalOptions="Center"/>
+                        <VerticalStackLayout Grid.Column="1" Spacing="2" VerticalOptions="Center">
+                            <Label x:Name="SyncStatusLabel"
+                                Text="Health data is up to date"
+                                   FontSize="14"
+                                   FontAttributes="Bold"/>
+                            <Label x:Name="LastSyncLabel"
+                                Text="Last sync: 2m ago"
+                                   FontSize="12"/>
+                        </VerticalStackLayout>
+                        <!-- ImageButton: Manual refresh -->
+                        <ImageButton Grid.Column="2"
+                                     x:Name="RefreshSyncBtn"
+                                     BackgroundColor="Transparent"
+                                     WidthRequest="32"
+                                     HeightRequest="32"
+                                     Aspect="AspectFit"
+                                     VerticalOptions="Center"
+                                     Clicked="OnRefreshSyncClicked"
+                                     ToolTipProperties.Text="Refresh sync">
+                            <ImageButton.Source>
+                                <FontImageSource FontFamily="FluentUI"
+                                                 Glyph="{x:Static fonts:FluentUI.arrow_clockwise_20_regular}"
+                                                 Size="22"
+                                                 Color="{StaticResource Primary}"/>
+                            </ImageButton.Source>
+                        </ImageButton>
+                    </Grid>
+                </Border>
+
+                <!-- ═══════════════════════════════════════ -->
+                <!--  Primary Health Goal Card               -->
+                <!-- ═══════════════════════════════════════ -->
+                <Label x:Name="HealthTargetsHeader"
+                       Text="HEALTH TARGETS"
+                       FontSize="14"
+                       FontAttributes="Bold"
+                       Margin="0,0,0,8"/>
+
+                <Border x:Name="HealthGoalCard"
+                        StrokeShape="RoundRectangle 14"
+                    Stroke="{StaticResource Gray200}"
+                        Padding="18,16">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="Primary Health Goal"
+                               FontSize="16"
+                               FontAttributes="Bold"
+                               Margin="0,0,0,4"/>
+
+                        <!-- Weight Loss -->
+                        <RadioButton
+                                     x:Name="RadioWeightLoss"
+                                     Content="Weight Loss"
+                                     IsChecked="True"
+                                     GroupName="HealthGoal"
+                                     CheckedChanged="OnHealthGoalChanged"/>
+
+                        <!-- Muscle Gain -->
+                        <RadioButton
+                                     x:Name="RadioMuscleGain"
+                                     Content="Muscle Gain"
+                                     IsChecked="False"
+                                     GroupName="HealthGoal"
+                                     CheckedChanged="OnHealthGoalChanged"/>
+
+                        <!-- Maintenance -->
+                        <RadioButton
+                                     x:Name="RadioMaintenance"
+                                     Content="Maintenance"
+                                     IsChecked="False"
+                                     GroupName="HealthGoal"
+                                     CheckedChanged="OnHealthGoalChanged"/>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- ═══════════════════════════════════════ -->
+                <!--  Dietary Preferences Card               -->
+                <!-- ═══════════════════════════════════════ -->
+                <Label x:Name="DietPreferencesHeader"
+                       Text="DIET PREFERENCES"
+                       FontSize="14"
+                       FontAttributes="Bold"
+                       Margin="0,0,0,8"/>
+
+                <Border x:Name="DietaryCard"
+                        StrokeShape="RoundRectangle 14"
+                    Stroke="{StaticResource Gray200}"
+                        Padding="18,16">
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Dietary Preferences"
+                               FontSize="16"
+                               FontAttributes="Bold"
+                               Margin="0,0,0,4"/>
+
+                        <Grid ColumnDefinitions="Auto,*" ColumnSpacing="8">
+                            <CheckBox x:Name="VeganCheck"
+                                      IsChecked="False"
+                                      VerticalOptions="Center"
+                                      CheckedChanged="OnDietaryChanged"/>
+                            <Label Grid.Column="1"
+                                   Text="Vegan"
+                                   FontSize="15"
+                                   VerticalOptions="Center"/>
+                        </Grid>
+
+                        <Grid ColumnDefinitions="Auto,*" ColumnSpacing="8">
+                            <CheckBox x:Name="GlutenFreeCheck"
+                                      IsChecked="True"
+                                      VerticalOptions="Center"
+                                      CheckedChanged="OnDietaryChanged"/>
+                            <Label Grid.Column="1"
+                                   Text="Gluten-Free"
+                                   FontSize="15"
+                                   VerticalOptions="Center"/>
+                        </Grid>
+
+                        <Grid ColumnDefinitions="Auto,*" ColumnSpacing="8">
+                            <CheckBox x:Name="DairyFreeCheck"
+                                      IsChecked="False"
+                                      VerticalOptions="Center"
+                                      CheckedChanged="OnDietaryChanged"/>
+                            <Label Grid.Column="1"
+                                   Text="Dairy-Free"
+                                   FontSize="15"
+                                   VerticalOptions="Center"/>
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- ═══════════════════════════════════════ -->
+                <!--  Health Notifications Card              -->
+                <!-- ═══════════════════════════════════════ -->
+                <Label x:Name="AlertsHeader"
+                       Text="ALERTS"
+                       FontSize="14"
+                       FontAttributes="Bold"
+                       Margin="0,0,0,8"/>
+
+                <Border x:Name="NotificationsCard"
+                        StrokeShape="RoundRectangle 14"
+                    Stroke="{StaticResource Gray200}"
+                        Padding="18,14">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <VerticalStackLayout VerticalOptions="Center" Spacing="2">
+                            <Label Text="Health Notifications"
+                                   FontSize="15"
+                                FontAttributes="Bold"/>
+                            <Label Text="In-app reminders only"
+                                FontSize="12"/>
+                        </VerticalStackLayout>
+                        <Switch x:Name="NotificationsSwitch"
+                                Grid.Column="1"
+                                IsToggled="True"
+                                VerticalOptions="Center"
+                                Toggled="OnNotificationsToggled"/>
+                    </Grid>
+                </Border>
+
+                <!-- ═══════════════════════════════════════ -->
+                <!--  Notes & Medical History Card           -->
+                <!-- ═══════════════════════════════════════ -->
+                <Label x:Name="MedicalNotesHeader"
+                       Text="MEDICAL NOTES"
+                       FontSize="14"
+                       FontAttributes="Bold"
+                       Margin="0,0,0,8"/>
+
+                <Border x:Name="NotesCard"
+                        StrokeShape="RoundRectangle 14"
+                    Stroke="{StaticResource Gray200}"
+                        Padding="18,16">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="NOTES &amp; MEDICAL HISTORY"
+                               FontSize="11"
+                               FontAttributes="Bold"
+                               CharacterSpacing="1.1"/>
+                        <Border StrokeShape="RoundRectangle 8"
+                            Stroke="{StaticResource Gray200}"
+                                BackgroundColor="Transparent"
+                                Padding="10,4">
+                            <Editor x:Name="MedicalNotesEditor"
+                                    Text="Patient maintains a consistent workout schedule but has occasional lower back sensitivity. Allergic to penicillin. Maintains a high-protein gluten-free diet."
+
+                                    FontSize="14"
+                                    AutoSize="TextChanges"
+                                    MinimumHeightRequest="100"
+                                    Placeholder="Add notes or medical history..."/>
+                        </Border>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- ═══════════════════════════════════════ -->
+                <!--  Save Profile Button                    -->
+                <!-- ═══════════════════════════════════════ -->
+                <Button x:Name="SaveProfileButton"
+                        Text="SAVE PROFILE"
+                        FontSize="15"
+                        Margin="0,6,0,0"
+                        Clicked="OnSaveProfileClicked"/>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+
+</ContentPage>
