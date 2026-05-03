@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SafeAreaDemos.Views.Example1EdgeToEdge"
+             SafeAreaEdges="None"
+             Shell.NavBarIsVisible="False">
+
+       <!-- Main Grid with edge-to-edge content -->
+       <Grid SafeAreaEdges="None">
+
+
+              <Grid SafeAreaEdges="None"
+                    RowDefinitions="50,75,*,75,30">
+                     <!-- StatusBar Overlay -->
+                     <Grid Background="{StaticResource OverlayColor}">
+                            <Label Text="Top Overlay"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"
+                                   TextColor="Black"/>
+                     </Grid>
+
+
+                     <Grid Padding="15,10"
+                           Grid.Row="1"
+                           HorizontalOptions="Start">
+                            <!-- Back Button -->
+                            <Border Grid.Column="0"
+                                    Background="#FFFFFF"
+                                    Stroke="Transparent"
+                                    StrokeShape="RoundRectangle 20"
+                                    WidthRequest="40"
+                                    HeightRequest="40"
+                                    VerticalOptions="Center">
+                                   <Border.Shadow>
+                                          <Shadow Brush="Black"
+                                                  Opacity="0.3"
+                                                  Radius="10"
+                                                  Offset="0,4"/>
+                                   </Border.Shadow>
+                                   <Border.IsVisible>
+                                          <OnPlatform x:TypeArguments="x:Boolean">
+                                                 <On Platform="Windows"
+                                                     Value="False"/>
+                                                 <On Platform="Android, iOS, MacCatalyst"
+                                                     Value="True"/>
+                                          </OnPlatform>
+                                   </Border.IsVisible>
+                                   <Button Text="←"
+                                           TextColor="#667eea"
+                                           FontSize="24"
+                                           FontAttributes="Bold"
+                                           Background="Transparent"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Center"
+                                           Clicked="Button_Clicked">
+                                          <Button.Padding>
+                                                 <OnPlatform x:TypeArguments="Thickness">
+                                                        <On Platform="Android"
+                                                            Value="0,-10,0,0"/>
+                                                 </OnPlatform>
+                                          </Button.Padding>
+                                   </Button>
+                            </Border>
+                     </Grid>
+
+                     <ScrollView Grid.Row="2">
+                            <VerticalStackLayout Padding="20,10,20,20"
+                                                 Spacing="15">
+                                   <!-- Title -->
+                                   <Label Text="SafeAreaEdges = &quot;None&quot;"
+                                          FontSize="24"
+                                          FontAttributes="Bold"
+                                          Margin="0,0,0,10"/>
+
+                                   <!-- Behavior Section -->
+                                   <Label Text="Behavior:"
+                                          FontSize="18"
+                                          FontAttributes="Bold"/>
+
+                                   <Label Text="• Content extends completely edge-to-edge with no safe area padding"
+                                          FontSize="16"
+                                          Margin="10,0,0,5"/>
+
+                                   <Label Text="• Content can extend behind system bars, notches, and the keyboard"
+                                          FontSize="16"
+                                          Margin="10,0,0,5"/>
+
+                                   <Label Text="• Provides fully immersive experiences"
+                                          FontSize="16"
+                                          Margin="10,0,0,10"/>
+
+                                   <!-- Use Cases Section -->
+                                   <Label Text="Use Cases:"
+                                          FontSize="18"
+                                          FontAttributes="Bold"
+                                          Margin="0,10,0,0"/>
+
+                                   <Label Text="• Photo viewers and galleries"
+                                          FontSize="16"
+                                          Margin="10,0,0,5"/>
+
+                                   <Label Text="• Video players"
+                                          FontSize="16"
+                                          Margin="10,0,0,5"/>
+
+                                   <Label Text="• Games with immersive UI"
+                                          FontSize="16"
+                                          Margin="10,0,0,5"/>
+
+                                   <Label Text="• Splash screens"
+                                          FontSize="16"
+                                          Margin="10,0,0,5"/>
+
+                                   <Label Text="• Background images that should span the entire screen"
+                                          FontSize="16"
+                                          Margin="10,0,0,0"/>
+                            </VerticalStackLayout>
+                     </ScrollView>
+
+                     <Grid Padding="15,10"
+                           Grid.Row="3">
+                            <Entry Placeholder="Enter text here"/>
+                     </Grid>
+
+                     <!-- Bottom Overlay -->
+                     <Grid Background="{StaticResource OverlayColor}"
+                           Grid.Row="6">
+                            <Label Text="Bottom Overlay"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"
+                                   TextColor="black"/>
+                     </Grid>
+              </Grid>
+       </Grid>
+</ContentPage>
