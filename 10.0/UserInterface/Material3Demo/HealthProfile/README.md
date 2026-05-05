@@ -14,7 +14,7 @@ urlFragment: userinterface-material3
 
 | Material3 Light Theme Output | Material3 Dark Theme Output |
 | --- | --- |
-| <img width="320" alt="Material3 light theme output" src="Screenshots/LightTheme.png"> | <img width="320" alt="Material3 dark theme output" src="Screenshots/DarkTheme.png"> |
+| ![Material3 light theme output](Screenshots/LightTheme.png) | ![Material3 dark theme output](Screenshots/DarkTheme.png) |
 
 .NET Multi-platform App UI (.NET MAUI) apps can enable Material 3 styling on Android by setting the `UseMaterial3` build property to `true` in the project file.
 
