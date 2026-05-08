@@ -46,7 +46,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.0-preview.4.25258.110" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="$(DotNetVersion)" />
 	</ItemGroup>
 
 	<ItemGroup Condition="$(TargetFramework)=='net10.0-android'">

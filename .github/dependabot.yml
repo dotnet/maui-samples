@@ -1,0 +1,19 @@
+version: 2
+updates:
+  - package-ecosystem: "nuget"
+    directory: "/10.0"
+    schedule:
+      interval: "weekly"
+    groups:
+      maui-and-extensions:
+        patterns: ["Microsoft.Maui.*", "Microsoft.Extensions.*"]
+    open-pull-requests-limit: 5
+
+  - package-ecosystem: "nuget"
+    directory: "/11.0"
+    schedule:
+      interval: "weekly"
+    groups:
+      maui-and-extensions:
+        patterns: ["Microsoft.Maui.*", "Microsoft.Extensions.*"]
+    open-pull-requests-limit: 5

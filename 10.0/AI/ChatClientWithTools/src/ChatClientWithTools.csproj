@@ -66,9 +66,9 @@
 		<PackageReference Include="Azure.AI.OpenAI" Version="2.1.0" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.2" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.0-preview.7.25380.108" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="$(DotNetVersion)" />
 		<PackageReference Include="Syncfusion.Maui.Toolkit" Version="1.0.6" />
-		<PackageReference Include="Microsoft.Extensions.Http" Version="10.0.0-preview.6.25327.7" />
+		<PackageReference Include="Microsoft.Extensions.Http" Version="$(DotNetVersion)" />
 	</ItemGroup>
 
 </Project>

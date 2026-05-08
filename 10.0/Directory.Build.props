@@ -1,0 +1,7 @@
+<Project>
+  <PropertyGroup>
+    <!-- .NET MAUI 10 stable versions — updated automatically via Dependabot -->
+    <MauiVersion>10.0.60</MauiVersion>
+    <DotNetVersion>10.0.7</DotNetVersion>
+  </PropertyGroup>
+</Project>

@@ -4,6 +4,15 @@ Samples built with .NET Multi-platform App UI (.NET MAUI).
 
 [.NET MAUI](https://dot.net/maui) is a cross-platform framework for creating mobile and desktop apps with C# and XAML. Using .NET MAUI, you can develop apps that can run on Android, iOS, iPadOS, macOS, and Windows from a single shared codebase.
 
+## Repository Structure
+
+| Folder | Description |
+| ------ | ----------- |
+| [`10.0/`](10.0/) | **.NET MAUI 10 (current stable)** - Full set of samples targeting the latest supported release. |
+| [`11.0/`](11.0/) | **.NET MAUI 11 (preview)** - Samples for features specific to .NET 11. See [safe preview testing](11.0/README.md). |
+| [`9.0/`](9.0/) | **Deprecated** - .NET 9 is out of support. See the [deprecation notice](9.0/README.md). |
+| [`Upgrading/`](Upgrading/) | Migration guides from Xamarin.Forms to .NET MAUI. |
+
 ## Official Samples
 
 Official samples can be accessed via the [Samples browser](https://docs.microsoft.com/samples/browse/?expanded=dotnet&products=dotnet-maui).
@@ -20,6 +29,10 @@ Sample highlights include:
 | [Calculator App](10.0/Apps/Calculator) | This basic calculator demonstrates using span and spacing features of a Grid layout to achieve a familiar interface. |
 | [Navigation Samples](10.0/Navigation) | Various sample apps that show you how to do navigation in different scenarios. |
 | [Beginner's Series Task App Sample](10.0/Beginners-Series) | Sample code for the [.NET MAUI for Beginners Series](https://learn.microsoft.com/shows/dotnet-maui-for-beginners/) |
+
+## Package Versions
+
+The `10.0/` and `11.0/` folders use centralized version management via `Directory.Build.props`. See [PACKAGE-VERSIONS.md](10.0/PACKAGE-VERSIONS.md) for details on how this works.
 
 ## Community Samples
 
