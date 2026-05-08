@@ -14,3 +14,7 @@
 
 # iOS-only binding project - requires Xcode and macOS to build
 ./10.0/AgeSignals/DeclaredAgeRangeWrapperBinding.iOS/DeclaredAgeRangeWrapperBinding.iOS.csproj
+
+# Syncfusion.Maui.Toolkit does not ship net10.0 native Windows assets yet
+./10.0/BillingService/BillingService/BillingService.csproj
+./10.0/UserInterface/PickerDemo/PickerDemo.csproj

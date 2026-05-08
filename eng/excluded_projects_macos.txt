@@ -14,3 +14,6 @@
 
 # The Age Signals sample requires iOS code signing certificates that aren't available in CI environments
 ./10.0/AgeSignals/AgeSignals/AgeSignals.csproj
+
+# PlatformIntegrationDemo requires iOS code signing certificates
+./10.0/PlatformIntegration/PlatformIntegrationDemos/PlatformIntegrationDemo/PlatformIntegrationDemo.csproj

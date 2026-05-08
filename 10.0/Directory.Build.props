@@ -3,5 +3,7 @@
     <!-- .NET MAUI 10 stable versions — updated automatically via Dependabot -->
     <MauiVersion>10.0.60</MauiVersion>
     <DotNetVersion>10.0.7</DotNetVersion>
+    <!-- Suppress CA2252: MAUI source generator uses AllowImplicitXmlnsDeclarationAttribute (preview API) -->
+    <NoWarn>$(NoWarn);CA2252</NoWarn>
   </PropertyGroup>
 </Project>
