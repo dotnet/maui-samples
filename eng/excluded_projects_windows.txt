@@ -18,3 +18,6 @@
 # Syncfusion.Maui.Toolkit does not ship net10.0 native Windows assets yet
 ./10.0/BillingService/BillingService/BillingService.csproj
 ./10.0/UserInterface/PickerDemo/PickerDemo.csproj
+./10.0/AI/ChatClient/src/SimpleChatClient.csproj
+./10.0/AI/ChatClientWithTools/src/ChatClientWithTools.csproj
+./10.0/Apps/DeveloperBalance/DeveloperBalance.csproj
