@@ -10,6 +10,7 @@ namespace DeveloperBalance.Data;
 public class TaskRepository
 {
 	private bool _hasBeenInitialized = false;
+	private readonly SemaphoreSlim _initLock = new(1, 1);
 	private readonly ILogger _logger;
 
 	/// <summary>
@@ -29,11 +30,15 @@ public class TaskRepository
 		if (_hasBeenInitialized)
 			return;
 
-		await using var connection = new SqliteConnection(Constants.DatabasePath);
-		await connection.OpenAsync();
-
+		await _initLock.WaitAsync();
 		try
 		{
+			if (_hasBeenInitialized)
+				return;
+
+			await using var connection = new SqliteConnection(Constants.DatabasePath);
+			await connection.OpenAsync();
+
 			var createTableCmd = connection.CreateCommand();
 			createTableCmd.CommandText = @"
             CREATE TABLE IF NOT EXISTS Task (
@@ -43,14 +48,18 @@ public class TaskRepository
                 ProjectID INTEGER NOT NULL
             );";
 			await createTableCmd.ExecuteNonQueryAsync();
+
+			_hasBeenInitialized = true;
 		}
 		catch (Exception e)
 		{
 			_logger.LogError(e, "Error creating Task table");
 			throw;
 		}
-
-		_hasBeenInitialized = true;
+		finally
+		{
+			_initLock.Release();
+		}
 	}
 
 	/// <summary>
@@ -204,13 +213,21 @@ public class TaskRepository
 	/// </summary>
 	public async Task DropTableAsync()
 	{
-		await Init();
-		await using var connection = new SqliteConnection(Constants.DatabasePath);
-		await connection.OpenAsync();
+		await _initLock.WaitAsync();
+		try
+		{
+			await using var connection = new SqliteConnection(Constants.DatabasePath);
+			await connection.OpenAsync();
 
-		var dropTableCmd = connection.CreateCommand();
-		dropTableCmd.CommandText = "DROP TABLE IF EXISTS Task";
-		await dropTableCmd.ExecuteNonQueryAsync();
-		_hasBeenInitialized = false;
+			var dropTableCmd = connection.CreateCommand();
+			dropTableCmd.CommandText = "DROP TABLE IF EXISTS Task";
+			await dropTableCmd.ExecuteNonQueryAsync();
+
+			_hasBeenInitialized = false;
+		}
+		finally
+		{
+			_initLock.Release();
+		}
 	}
 }

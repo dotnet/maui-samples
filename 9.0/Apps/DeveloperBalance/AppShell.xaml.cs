@@ -16,7 +16,7 @@ public partial class AppShell : Shell
 	}
 	public static async Task DisplaySnackbarAsync(string message)
 	{
-		CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+		using var cancellationTokenSource = new CancellationTokenSource(TimeSpan.FromSeconds(5));
 
 		var snackbarOptions = new SnackbarOptions
 		{
@@ -41,7 +41,7 @@ public partial class AppShell : Shell
 
 		var toast = Toast.Make(message, textSize: 18);
 
-		var cts = new CancellationTokenSource(TimeSpan.FromSeconds(5));
+		using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(5));
 		await toast.Show(cts.Token);
 	}
 
