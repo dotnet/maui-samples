@@ -70,7 +70,22 @@ When migrating to a new stable .NET version (e.g., N-1 → N, with N+1 as previe
 - Update `.github/dependabot.yml` directory paths to reflect new folder structure
 - Ensure groups cover both stable and preview folders
 
-### 8. Update documentation
+### 8. Scan for stale version references
+
+Search **all** non-code files for hardcoded paths to the deprecated version folder. Common hiding spots:
+- **README.md files** — navigation links, code examples, folder references
+- **DevOps pipeline files** — `devops/AzureDevOps/*.yml` inside samples with old paths, TFMs, SDK versions, and NuGet feed URLs
+- **CI workflow instructions** — `.github/workflows/instructions/copilot-instructions.md`
+- **Exclusion file comments** — `eng/excluded_projects_*.txt` header examples
+- **Copilot/agent files** — `.github/copilot-instructions.md`, `.github/agents/*.agent.md`
+
+Run this scan:
+```bash
+grep -rn 'OLD_VERSION\.0/' --include='*.md' --include='*.yml' --include='*.yaml' --include='*.txt' .
+```
+Replace `OLD_VERSION` with the deprecated version number.
+
+### 9. Update documentation
 
 - **Root `README.md`**: Update the repository structure table
 - **`.github/copilot-instructions.md`**: Update folder descriptions to reflect current versions
@@ -126,3 +141,9 @@ Before creating a migration PR, verify:
 - [ ] Root README reflects current structure
 - [ ] Deprecated folder has only README.md
 - [ ] Preview folder has global.json + README documenting sdk.paths
+- [ ] **No stale version folder references** — scan all `.md`, `.yml`, `.yaml`, and `.txt` files for hardcoded paths to deprecated version folders (e.g., `9.0/`, `8.0/`). Update or remove them. Pay special attention to:
+  - README files with navigation links or code examples
+  - DevOps pipeline files (`devops/` folders inside samples) that reference old paths and TFMs
+  - CI workflow instruction files (`.github/workflows/instructions/`)
+  - Exclusion file comments (`eng/excluded_projects_*.txt`)
+  - Copilot instructions and agent files

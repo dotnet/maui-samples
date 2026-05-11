@@ -70,41 +70,50 @@ The preview folder uses a `global.json` with `sdk.paths` to isolate the preview 
 
 ## Version migration pattern
 
-When a new stable .NET version ships, use this playbook:
+When a new stable .NET version ships, use this playbook (see `.github/agents/version-migration.agent.md` for the full detailed guide):
 
 ### Phase 1: Infrastructure
 
-1. **Promote the preview folder** to the new  copy all samples from the old stable into it, update `Directory.Build.props` with new stable package versionsstable 
-2. **Create a new preview folder** for the next .NET version (only net-new feature samples)
-3. **Deprecate the old stable  delete all content except a `README.md` noting end-of-support and linking to the new stable folderfolder** 
-4. **Update `Directory.Build.props`** in each versioned folder with the correct `MauiVersion` and `DotNetVersion`
-5. **Update `.github/dependabot.yml`** to point at the new folder paths
+1. Promote the preview folder to the new stable with all samples
+2. Create a new preview folder for the next .NET version
+3. Deprecate the old stable folder (replace content with a README)
+4. Update `Directory.Build.props` in each versioned folder with correct versions
+5. Update `.github/dependabot.yml` to point at the new folder paths
 
-### Phase 2: CI Workflows (`.github/workflows/`)
+### Phase 2: CI Workflows
 
-1. **Remove the deprecated SDK version** from `dotnet-version` lists
-2. **Add the new preview SDK version** if not already present
-3. **Check Xcode  new .NET versions often require newer Xcode (update `xcode-select` path)requirements** 
-4. **Workload  preview SDKs may need `dotnet workload config --update-mode manifests` before `dotnet workload install maui`installation** 
-5. **Validate analyzer  new MAUI versions may trigger new analyzer errors in source-generated code (e.g., CA2252). Add suppressions to `Directory.Build.props` as `<NoWarn>` if they come from generated codesuppressions** 
+1. Remove the deprecated SDK version from `dotnet-version` lists
+2. Add the new preview SDK version if not already present
+3. Check Xcode requirements and update `xcode-select` path
+4. Ensure `dotnet workload config --update-mode manifests` is present for preview SDKs
+5. Add analyzer suppressions to `Directory.Build.props` if needed (e.g., CA2252)
 
 ### Phase 3: Project Updates
 
-1. **Update all TFMs** from old version to new (e.g., `net9.0-*` to `net10.0-*`) in all csproj files
-2. **Update ` minimum iOS/macCatalyst is `15.0`SupportedOSPlatformVersion`** 
-3. **Check third-party  packages like Syncfusion, SkiaSharp may not have net-new TFM assets yet. Add them to `eng/excluded_projects_*.txt` temporarilypackages** 
-4. **Update `eng/excluded_projects_macos.txt`** and `eng/excluded_projects_windows. remove old version paths, add any new exclusions for projects that can't build in CItxt`** 
+1. Update all TFMs from old version to new in all csproj files
+2. Update `SupportedOSPlatformVersion` (minimum iOS/macCatalyst is 15.0)
+3. Check third-party packages for compatibility, exclude broken ones temporarily
+4. Update `eng/excluded_projects_*.txt` (remove old paths, add new exclusions)
 
-### Phase 4: Documentation
+### Phase 4: Scan for stale version references
 
-1. **Root `README. update the repository structure tablemd`** 
-2. **Deprecation  create `README.md` in the deprecated folder with upgrade guide linknotice** 
-3. **`PACKAGE-VERSIONS. create/update in new stable foldermd`** 
-4. **Preview folder `README. document `sdk.paths` pattern for safe testingmd`** 
+Search all non-code files for hardcoded paths to the deprecated version folder:
+- README files with navigation links or code examples
+- DevOps pipeline files (`devops/` folders inside samples)
+- CI workflow instruction files (`.github/workflows/instructions/`)
+- Exclusion file comments (`eng/excluded_projects_*.txt`)
+- Copilot instructions and agent files
+
+### Phase 5: Documentation
+
+1. Root `README.md` -- update the repository structure table
+2. Deprecation notice -- create README in the deprecated folder with upgrade guide link
+3. `PACKAGE-VERSIONS.md` -- create/update in new stable folder
+4. Preview folder `README.md` -- document `sdk.paths` pattern for safe testing
 
 ### Known CI gotchas
 
-- **iOS code signing**: Projects that require code signing certificates will fail on macOS CI. Exclude them in `eng/excluded_projects_macos.txt`
-- **Third-party Windows native assets**: Some packages only ship native Windows DLLs for specific TFMs. If a package hasn't updated for the new TFM, exclude affected projects in `eng/excluded_projects_windows.txt`
-- **Source generator analyzer errors**: MAUI's source generator may use preview APIs. Suppress with `<NoWarn>` in `Directory.Build. not in individual projectsprops` 
-- **Workload mode**: Preview SDKs default to workload-set mode but may not have published workload sets. Use `dotnet workload config --update-mode manifests` to switch to loose mode
+- **iOS code signing**: Projects requiring signing certs fail on macOS CI. Exclude in `eng/excluded_projects_macos.txt`
+- **Third-party Windows native assets**: Some packages lack native DLLs for new TFMs. Exclude in `eng/excluded_projects_windows.txt`
+- **Source generator analyzer errors**: MAUI source gen may use preview APIs. Suppress with `<NoWarn>` in `Directory.Build.props`, not individual projects
+- **Workload mode**: Preview SDKs default to workload-set mode but may lack published workload sets. Use `dotnet workload config --update-mode manifests`

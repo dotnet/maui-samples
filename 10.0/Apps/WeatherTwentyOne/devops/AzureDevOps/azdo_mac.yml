@@ -3,7 +3,7 @@ trigger:
 
 variables:
     BuildConfiguration: Release
-    DotNetVersion: 8.0.100
+    DotNetVersion: 10.0.x
 
 stages:
 - stage: BuildMacCatalyst
@@ -11,7 +11,7 @@ stages:
   - job: BuildMAUIApps
     displayName: Build Weather21 App
     pool:
-      vmImage: 'macOS-12'
+      vmImage: 'macOS-latest'
       demands:
       - MSBuild
 
@@ -29,15 +29,14 @@ stages:
         targetType: 'inline'
         script: |
           dotnet nuget locals all --clear
-          dotnet workload install maui --source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet7/nuget/v3/index.json --source https://api.nuget.org/v3/index.json
-          dotnet workload install android ios maccatalyst tvos macos maui wasm-tools --source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet7/nuget/v3/index.json --source https://api.nuget.org/v3/index.json
+          dotnet workload install maui
 
     - task: Bash@3
       displayName: Restore nuget
       inputs:
         targetType: 'inline'
         script: |
-          cd 6.0/Apps/WeatherTwentyOne/src/
+          cd 10.0/Apps/WeatherTwentyOne/src/
           dotnet restore WeatherTwentyOne.sln
 
     # https://docs.microsoft.com/en-us/dotnet/maui/macos/deployment/overview
@@ -46,15 +45,15 @@ stages:
       inputs:
         targetType: 'inline'
         script: |
-          cd 6.0/Apps/WeatherTwentyOne/src
-          dotnet build -f net7.0-maccatalyst -c Release -o ./artifacts
-          dotnet publish -f net7.0-maccatalyst -c Release -p:BuildIpa=True -o ./artifacts
+          cd 10.0/Apps/WeatherTwentyOne/src
+          dotnet build -f net10.0-maccatalyst -c Release -o ./artifacts
+          dotnet publish -f net10.0-maccatalyst -c Release -p:BuildIpa=True -o ./artifacts
 
     - task: CopyFiles@2
       inputs:
         Contents: |
-          **/**/6.0/Apps/WeatherTwentyOne/src/artifacts/**/*.pkg
-          6.0/Apps/WeatherTwentyOne/src/artifacts/**/*.pkg
+          **/10.0/Apps/WeatherTwentyOne/src/artifacts/**/*.pkg
+          10.0/Apps/WeatherTwentyOne/src/artifacts/**/*.pkg
         TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
     - task: PublishBuildArtifacts@1
@@ -68,7 +67,7 @@ stages:
   - job: BuildMAUIApps
     displayName: Build Weather21 App
     pool:
-      vmImage: 'macOS-12'
+      vmImage: 'macOS-latest'
       demands:
       - MSBuild
 
@@ -99,15 +98,14 @@ stages:
         targetType: 'inline'
         script: |
           dotnet nuget locals all --clear
-          dotnet workload install maui --source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet7/nuget/v3/index.json --source https://api.nuget.org/v3/index.json
-          dotnet workload install android ios maccatalyst tvos macos maui wasm-tools --source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet7/nuget/v3/index.json --source https://api.nuget.org/v3/index.json
+          dotnet workload install maui
 
     - task: Bash@3
       displayName: Restore nuget
       inputs:
         targetType: 'inline'
         script: |
-          cd 6.0/Apps/WeatherTwentyOne/src/
+          cd 10.0/Apps/WeatherTwentyOne/src/
           dotnet restore WeatherTwentyOne.sln
 
   # https://docs.microsoft.com/en-us/dotnet/maui/ios/deployment/overview
@@ -116,8 +114,8 @@ stages:
       inputs:
         targetType: 'inline'
         script: |
-          cd 6.0/Apps/WeatherTwentyOne/src
-          dotnet publish -f net7.0-ios -c Release
+          cd 10.0/Apps/WeatherTwentyOne/src
+          dotnet publish -f net10.0-ios -c Release
 
     - task: CopyFiles@2
       inputs:

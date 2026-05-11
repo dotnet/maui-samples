@@ -3,8 +3,7 @@ trigger:
 
 variables:
     BuildConfiguration: Release
-    DotNetVersion: 9.0.100
-    VSVERSION: 17/pre
+    DotNetVersion: 10.0.x
 
 stages:
 - stage: BuildAndroid
@@ -12,7 +11,7 @@ stages:
   - job: BuildMAUIApps
     displayName: Build Weather21 App
     pool:
-      vmImage: 'windows-2022'
+      vmImage: 'windows-latest'
       demands:
       - MSBuild
 
@@ -30,15 +29,14 @@ stages:
         targetType: 'inline'
         script: |
           dotnet nuget locals all --clear
-          dotnet workload install maui --source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet7/nuget/v3/index.json --source https://api.nuget.org/v3/index.json
-          dotnet workload install android ios maccatalyst tvos macos maui wasm-tools --source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet7/nuget/v3/index.json --source https://api.nuget.org/v3/index.json
+          dotnet workload install maui
 
     - task: Bash@3
       displayName: Restore nuget
       inputs:
         targetType: 'inline'
         script: |
-          cd 9.0/Apps/WeatherTwentyOne/src/
+          cd 10.0/Apps/WeatherTwentyOne/src/
           dotnet restore WeatherTwentyOne.sln
 
   # https://docs.microsoft.com/en-us/dotnet/maui/android/deployment/overview
@@ -47,16 +45,16 @@ stages:
       inputs:
         targetType: 'inline'
         script: |
-          cd 9.0/Apps/WeatherTwentyOne/src
-          dotnet build -f net9.0-android -c Release
+          cd 10.0/Apps/WeatherTwentyOne/src
+          dotnet build -f net10.0-android -c Release
 
     # Signing Android App : https://docs.microsoft.com/en-us/azure/devops/pipelines/apps/mobile/app-signing?view=azure-devops&tabs=apple-install-during-build#sign-your-android-app
 
     - task: CopyFiles@2
       inputs:
         Contents: |
-          **\**\9.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\bin\Release\net9.0-android\publish\*.apk
-          9.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\bin\Release\net9.0-android\publish\*.apk
+          **\**\10.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\bin\Release\net10.0-android\publish\*.apk
+          10.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\bin\Release\net10.0-android\publish\*.apk
         TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
     - task: PublishBuildArtifacts@1
@@ -70,7 +68,7 @@ stages:
   - job: BuildMAUIApps
     displayName: Build Weather21 App
     pool:
-      vmImage: 'windows-2022'
+      vmImage: 'windows-latest'
       demands:
       - MSBuild
 
@@ -87,8 +85,7 @@ stages:
         targetType: 'inline'
         script: |
           & dotnet nuget locals all --clear
-          & dotnet workload install maui --source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet7/nuget/v3/index.json --source https://api.nuget.org/v3/index.json
-          & dotnet workload install android ios maccatalyst tvos macos maui wasm-tools maui-maccatalyst --source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet7/nuget/v3/index.json --source https://api.nuget.org/v3/index.json
+          & dotnet workload install maui
 
     # https://docs.microsoft.com/en-us/dotnet/maui/windows/deployment/overview
     - task: PowerShell@2
@@ -96,8 +93,8 @@ stages:
       inputs:
         targetType: 'inline'
         script: |
-          cd 9.0\Apps\WeatherTwentyOne\src\
-          dotnet publish -f net9.0-windows10.0.19041.0 -c Release
+          cd 10.0\Apps\WeatherTwentyOne\src\
+          dotnet publish -f net10.0-windows10.0.19041.0 -c Release
 
     # https://docs.microsoft.com/en-us/windows/msix/desktop/cicd-overview
     - task: DownloadSecureFile@1
@@ -107,13 +104,13 @@ stages:
     - task: CopyFiles@2
       inputs:
         Contents: |
-          **\**\9.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\bin\Release\net9.0-windows10.0.19041.0\win10-x64/**/*.msix
-          9.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\bin\Release\net9.0-windows10.0.19041.0\win10-x64/**/*.msix
+          **\**\10.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\bin\Release\net10.0-windows10.0.19041.0\win10-x64/**/*.msix
+          10.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\bin\Release\net10.0-windows10.0.19041.0\win10-x64/**/*.msix
         TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
    #https://docs.microsoft.com/en-us/windows/msix/desktop/azure-dev-ops
    #Create secret pipeline variable WindowsCertSecret with cert password
-    - script: '"C:\Program Files (x86)\Windows Kits\10\App Certification Kit\SignTool" sign /fd SHA256 /f $(Agent.TempDirectory)/XamCATFidCert.pfx /p $(WindowsCertSecret) $(Build.ArtifactStagingDirectory)\9.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\bin\Release\net9.0-windows10.0.19041.0\win10-x64\AppPackages\WeatherTwentyOne_1.0.0.0_Test\WeatherTwentyOne_1.0.0.0_x64.msix'
+    - script: '"C:\Program Files (x86)\Windows Kits\10\App Certification Kit\SignTool" sign /fd SHA256 /f $(Agent.TempDirectory)/XamCATFidCert.pfx /p $(WindowsCertSecret) $(Build.ArtifactStagingDirectory)\10.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\bin\Release\net10.0-windows10.0.19041.0\win10-x64\AppPackages\WeatherTwentyOne_1.0.0.0_Test\WeatherTwentyOne_1.0.0.0_x64.msix'
       displayName: 'Sign MSIX Package'
 
 

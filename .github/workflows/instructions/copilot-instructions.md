@@ -12,9 +12,8 @@ This repository contains **sample applications and demonstrations** for **.NET M
 
 ### Key Technologies
 - **.NET SDK** - Various versions depending on the sample:
-  - **8.0 folder**: Samples targeting .NET 8
-  - **9.0 folder**: Samples targeting .NET 9
-  - **10.0 folder**: Samples targeting .NET 10
+  - **10.0 folder**: Samples targeting .NET 10 (current stable)
+  - **11.0 folder**: Samples targeting .NET 11 (preview)
   - etc.
 - **C#** and **XAML** for application development
 - **MSBuild** for building individual samples
@@ -28,7 +27,7 @@ Before working with .NET MAUI samples, ensure your development environment is pr
 
 1. **Follow the official .NET MAUI installation guide:**
    - Visit [Install .NET MAUI](https://docs.microsoft.com/dotnet/maui/get-started/installation) for comprehensive setup instructions
-   - Install the required .NET SDK version (8.0, 9.0, or 10.0 depending on the sample)
+   - Install the required .NET SDK version (10.0 or 11.0 preview depending on the sample)
 
 2. **Verify installation:**
    ```powershell
@@ -46,14 +45,11 @@ Before working with .NET MAUI samples, ensure your development environment is pr
 
 2. **Choose and navigate to the appropriate sample:**
    ```powershell
-   # For .NET 10 samples
+   # For .NET 10 samples (current stable)
    cd 10.0/UserInterface/ControlGallery
    
-   # For .NET 9 samples
-   cd 9.0/Apps/Calculator
-   
-   # For .NET 8 samples  
-   cd 8.0/Apps/WeatherTwentyOne
+   # For .NET 11 preview samples
+   cd 11.0/Maps/MapClustering
    ```
 
 3. **Build and run the sample:**
@@ -65,9 +61,9 @@ Before working with .NET MAUI samples, ensure your development environment is pr
 ## Project Structure
 
 ### Important Directories
-- `8.0/` - Samples targeting .NET 8
-- `9.0/` - Samples targeting .NET 9
-- `10.0/` - Samples targeting .NET 10
+- `10.0/` - Samples targeting .NET 10 (current stable, complete set)
+- `11.0/` - Samples targeting .NET 11 (preview, net-new features only)
+- `9.0/` - Deprecated (.NET 9 is out of support)
 - `eng/` - Build engineering and tooling
 - `.github/` - GitHub workflows and configuration
 - `Images/` - Shared images used across samples
