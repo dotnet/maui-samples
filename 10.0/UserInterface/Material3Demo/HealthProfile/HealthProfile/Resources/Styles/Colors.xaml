@@ -47,7 +47,7 @@
     <Color x:Key="SurfaceDark">#141218</Color>
     <Color x:Key="SurfaceContainerDark">#211F26</Color>
     <Color x:Key="SurfaceVariantDark">#49454F</Color>
-    <Color x:Key="OnSurfaceDark">#E6E1E5</Color>
+    <Color x:Key="OnSurfaceDark">#E6E0E9</Color>
     <Color x:Key="OnSurfaceVariantDark">#CAC4D0</Color>
     <Color x:Key="OutlineDark">#938F99</Color>
     <Color x:Key="OutlineVariantDark">#49454F</Color>
