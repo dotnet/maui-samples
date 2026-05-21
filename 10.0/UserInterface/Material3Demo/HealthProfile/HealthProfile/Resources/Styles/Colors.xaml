@@ -36,7 +36,7 @@
     <Color x:Key="TertiaryContainerDark">#633B48</Color>
     <Color x:Key="OnTertiaryContainerDark">#FFD8E4</Color>
 
-    <Color x:Key="SurfaceLight">#FFFBFE</Color>
+    <Color x:Key="SurfaceLight">#FEF7FF</Color>
     <Color x:Key="SurfaceContainerLight">#F3EDF7</Color>
     <Color x:Key="SurfaceVariantLight">#E7E0EC</Color>
     <Color x:Key="OnSurfaceLight">#1D1B20</Color>
