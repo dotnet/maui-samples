@@ -19,11 +19,8 @@
             <Label Text="Expected value" FontAttributes="Bold" />
             <Label x:Name="ExpectedLabel" AutomationId="ExpectedValue" />
             <Label Text="Actual value" FontAttributes="Bold" />
-            <Label x:Name="ActualLabel" />
-            <Label
-                x:Name="StatusLabel"
-                FontAttributes="Bold"
-                FontSize="24" />
+            <ContentView x:Name="ActualValueHost" />
+            <ContentView x:Name="StatusHost" />
             <Button
                 AutomationId="BackToMatrix"
                 Clicked="OnBackToMatrix"

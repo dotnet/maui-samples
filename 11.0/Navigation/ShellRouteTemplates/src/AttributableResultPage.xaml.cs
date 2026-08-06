@@ -4,11 +4,9 @@ namespace ShellRouteTemplates;
 
 public partial class AttributableResultPage : ContentPage, IQueryAttributable
 {
-	protected AttributableResultPage(string automationId)
+	protected AttributableResultPage()
 	{
 		InitializeComponent();
-		ActualLabel.AutomationId = $"ActualValue-{automationId}";
-		StatusLabel.AutomationId = $"ResultStatus-{automationId}";
 	}
 
 	public void ApplyQueryAttributes(IDictionary<string, object> query)
@@ -21,6 +19,21 @@ public partial class AttributableResultPage : ContentPage, IQueryAttributable
 			&& query.TryGetValue(example.ParameterName, out var parameterValue)
 				? parameterValue?.ToString()
 				: null;
+		var actualLabel = new Label();
+		var statusLabel = new Label
+		{
+			FontAttributes = FontAttributes.Bold,
+			FontSize = 24
+		};
+
+		if (example is not null)
+		{
+			actualLabel.AutomationId = $"ActualValue-{example.Id}";
+			statusLabel.AutomationId = $"ResultStatus-{example.Id}";
+		}
+
+		ActualValueHost.Content = actualLabel;
+		StatusHost.Content = statusLabel;
 
 		RouteResultView.Render(
 			example,
@@ -29,8 +42,8 @@ public partial class AttributableResultPage : ContentPage, IQueryAttributable
 			TemplateLabel,
 			DeliveryLabel,
 			ExpectedLabel,
-			ActualLabel,
-			StatusLabel);
+			actualLabel,
+			statusLabel);
 	}
 
 	async void OnBackToMatrix(object? sender, EventArgs e) =>
@@ -39,63 +52,36 @@ public partial class AttributableResultPage : ContentPage, IQueryAttributable
 
 public sealed class TravelerResultPage : AttributableResultPage
 {
-	public TravelerResultPage() : base("traveler")
-	{
-	}
 }
 
 public sealed class DefaultValueResultPage : AttributableResultPage
 {
-	public DefaultValueResultPage() : base("default")
-	{
-	}
 }
 
 public sealed class IntConstraintResultPage : AttributableResultPage
 {
-	public IntConstraintResultPage() : base("constraint-int")
-	{
-	}
 }
 
 public sealed class LongConstraintResultPage : AttributableResultPage
 {
-	public LongConstraintResultPage() : base("constraint-long")
-	{
-	}
 }
 
 public sealed class DoubleConstraintResultPage : AttributableResultPage
 {
-	public DoubleConstraintResultPage() : base("constraint-double")
-	{
-	}
 }
 
 public sealed class BoolConstraintResultPage : AttributableResultPage
 {
-	public BoolConstraintResultPage() : base("constraint-bool")
-	{
-	}
 }
 
 public sealed class GuidConstraintResultPage : AttributableResultPage
 {
-	public GuidConstraintResultPage() : base("constraint-guid")
-	{
-	}
 }
 
 public sealed class AlphaConstraintResultPage : AttributableResultPage
 {
-	public AlphaConstraintResultPage() : base("constraint-alpha")
-	{
-	}
 }
 
 public sealed class CatchAllResultPage : AttributableResultPage
 {
-	public CatchAllResultPage() : base("catch-all")
-	{
-	}
 }
