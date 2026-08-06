@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ShellRouteTemplates.QueryPropertyResultPage"
+    Title="Route result">
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="12">
+            <Label
+                FontAttributes="Bold"
+                FontSize="28"
+                SemanticProperties.HeadingLevel="Level1"
+                Text="QueryProperty result" />
+            <Label x:Name="FormLabel" FontAttributes="Bold" FontSize="20" />
+            <Label Text="Template" FontAttributes="Bold" />
+            <Label x:Name="TemplateLabel" FontFamily="monospace" />
+            <Label Text="Delivery" FontAttributes="Bold" />
+            <Label x:Name="DeliveryLabel" />
+            <Label Text="Expected value" FontAttributes="Bold" />
+            <Label x:Name="ExpectedLabel" AutomationId="ExpectedValue" />
+            <Label Text="Actual value" FontAttributes="Bold" />
+            <Label x:Name="ActualLabel" />
+            <Label
+                x:Name="StatusLabel"
+                FontAttributes="Bold"
+                FontSize="24" />
+            <Button
+                AutomationId="BackToMatrix"
+                Clicked="OnBackToMatrix"
+                Text="Back to route matrix" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
