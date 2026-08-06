@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:Passkeys.Client.ViewModels"
+             x:Class="Passkeys.Client.MainPage"
+             x:DataType="viewModels:PasskeysViewModel"
+             Title="Passkeys">
+    <Grid RowDefinitions="*,Auto" Padding="20" RowSpacing="12">
+        <ScrollView>
+            <VerticalStackLayout Spacing="12">
+                <Label Text="Native passkeys"
+                       AutomationId="page-title"
+                       FontSize="28"
+                       FontAttributes="Bold" />
+                <Label Text="{Binding SupportedText}"
+                       FontAttributes="Italic" />
+                <Label Text="{Binding ServerBaseUrl, StringFormat='Relying party: {0}'}"
+                       FontSize="12"
+                       TextColor="Gray" />
+
+                <VerticalStackLayout Spacing="8"
+                                     IsVisible="{Binding IsLoggedOut}">
+                    <Label Text="Create or sign in to a test account. Account and passkey data is discarded whenever the sample server stops."
+                           FontSize="12"
+                           TextColor="Gray" />
+                    <Entry Text="{Binding Username}"
+                           Placeholder="Email"
+                           Keyboard="Email" />
+                    <Entry Text="{Binding Password}"
+                           Placeholder="Password"
+                           IsPassword="True" />
+                    <Button Text="Sign in"
+                            AutomationId="password-sign-in-button"
+                            Command="{Binding SignInPasswordCommand}"
+                            IsEnabled="{Binding IsNotBusy}" />
+                    <Button Text="Create account"
+                            AutomationId="create-account-button"
+                            Command="{Binding SignUpCommand}"
+                            IsEnabled="{Binding IsNotBusy}" />
+                    <Label Text="or"
+                           HorizontalOptions="Center"
+                           TextColor="Gray" />
+                    <Button Text="Sign in with a passkey"
+                            AutomationId="passkey-sign-in-button"
+                            Command="{Binding LoginCommand}"
+                            IsEnabled="{Binding IsNotBusy}" />
+                    <Label Text="No email is sent for passkey sign-in. The platform account picker identifies the account from its discoverable credential."
+                           FontSize="12"
+                           TextColor="Gray" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Spacing="8"
+                                     IsVisible="{Binding IsSignedIn}">
+                    <Label Text="{Binding AccountStatusText}"
+                           FontSize="18"
+                           FontAttributes="Bold" />
+                    <Label Text="{Binding PasskeyStatusText}"
+                           TextColor="Gray" />
+
+                    <VerticalStackLayout Spacing="6"
+                                         BindableLayout.ItemsSource="{Binding Passkeys}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate x:DataType="viewModels:PasskeyItem">
+                                <Border Padding="10"
+                                        Stroke="LightGray"
+                                        StrokeThickness="1"
+                                        StrokeShape="RoundRectangle 8">
+                                    <VerticalStackLayout Spacing="2">
+                                        <Label Text="{Binding DisplayName}"
+                                               FontAttributes="Bold" />
+                                        <Label Text="{Binding ShortId}"
+                                               FontFamily="Monospace"
+                                               FontSize="11"
+                                               TextColor="Gray" />
+                                        <Label Text="{Binding CreatedAtText}"
+                                               FontSize="11"
+                                               TextColor="Gray" />
+                                    </VerticalStackLayout>
+                                </Border>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </VerticalStackLayout>
+
+                    <Button Text="{Binding CreatePasskeyButtonText}"
+                            AutomationId="create-passkey-button"
+                            Command="{Binding RegisterCommand}"
+                            IsEnabled="{Binding IsNotBusy}" />
+                    <Button Text="Sign out"
+                            AutomationId="sign-out-button"
+                            Command="{Binding SignOutCommand}"
+                            IsEnabled="{Binding IsNotBusy}" />
+                </VerticalStackLayout>
+
+                <ActivityIndicator IsRunning="{Binding IsBusy}"
+                                   IsVisible="{Binding IsBusy}" />
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <Label Grid.Row="1"
+               Text="{Binding Status}"
+               FontFamily="Monospace"
+               FontSize="11"
+               TextColor="Gray"
+               LineBreakMode="WordWrap"
+               MaxLines="5" />
+    </Grid>
+</ContentPage>
