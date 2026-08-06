@@ -137,6 +137,10 @@ pwsh ./Configure-Passkeys.ps1 \
   -AppleTeamId ABCDE12345
 ```
 
+The generated local properties retain that ID. Later runs can omit `-ApplicationId`; setup reuses
+`PasskeysApplicationId` from `Passkeys.Local.props` before considering the committed project placeholder.
+Pass `-ApplicationId` again only when you intentionally want to configure a different app identity.
+
 On macOS, `AppleTeamId`, signing identity, and profile are auto-detected when possible. You can provide
 `-AppleSigningIdentity` and `-AppleProvisioningProfile` explicitly. The iOS Simulator needs the generated
 Associated Domains entitlement but does not need device signing. Mac Catalyst and physical iOS devices
@@ -219,6 +223,7 @@ In the app:
 | Symptom | Check |
 | --- | --- |
 | Placeholder tunnel URL appears in the app | Re-run `Configure-Passkeys.ps1`, then rebuild the app. |
+| A rerun uses the wrong package or bundle ID | Check `Passkeys.Local.props`. Setup preserves its `PasskeysApplicationId`; pass `-ApplicationId` explicitly to intentionally replace it. |
 | Android reports no credential provider/create options | Use API 34+ with Google Play services, a signed-in Google account, and screen lock. |
 | Android request cannot be validated | Package name, installed APK signing certificate, assetlinks fingerprint, and `android:apk-key-hash` origin must match. |
 | Apple says the domain is not associated | Compare the signed Team ID/bundle ID, generated entitlement, and AASA response exactly. |

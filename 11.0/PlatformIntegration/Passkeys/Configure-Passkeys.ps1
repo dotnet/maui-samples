@@ -40,10 +40,10 @@
     launchSettings.json "http" profile).
 
 .PARAMETER ApplicationId
-    The app's application id (bundle id) shared by all platforms. Defaults to the sample app's
-    <ApplicationId> read from its project. It's used for the Android package (assetlinks) and, when
-    Apple is configured, the Apple app-id `<TeamID>.<ApplicationId>`. Apple setup is skipped
-    automatically outside macOS unless AppleTeamId is passed explicitly.
+    The app's application id (bundle id) shared by all platforms. Defaults to the value from an existing
+    generated Passkeys.Local.props, then to the sample app's <ApplicationId>. This keeps the package/bundle
+    id stable across reruns. It's used for Android assetlinks and the Apple app-id
+    `<TeamID>.<ApplicationId>`.
 
 .PARAMETER AndroidKeystore
     Path to the Android keystore whose signing-certificate SHA-256 goes into the Digital Asset Links
@@ -83,7 +83,7 @@
     # Android-only: skip Apple setup (e.g. on a machine with no Apple signing certificate).
 
 .EXAMPLE
-    ./Configure-Passkeys.ps1 -AppleTeamId 42GDTGK33W
+    ./Configure-Passkeys.ps1 -AppleTeamId ABCDE12345
     # Override the auto-detected Apple Team ID with an explicit one.
 
 .EXAMPLE
@@ -114,16 +114,31 @@ if (-not $IsMacOS -and -not $NoApple -and -not $AppleTeamId) {
     $appleSkippedForPlatform = $true
 }
 
-# Default the application id to the sample app's <ApplicationId> so the two never drift.
-if (-not $ApplicationId) {
-    $appCsproj = Join-Path $here 'src' 'Passkeys.Client' 'Passkeys.Client.csproj'
+function Get-ConfiguredApplicationId($localProps, $appCsproj) {
+    # Prefer the previously generated local value. Android credentials and Apple App IDs are bound to
+    # this identifier, so silently reverting to the project placeholder on a rerun would break trust.
+    if (Test-Path $localProps) {
+        $m = [regex]::Match((Get-Content -Raw $localProps), '<PasskeysApplicationId>\s*([^<]+?)\s*</PasskeysApplicationId>')
+        if ($m.Success -and -not [string]::IsNullOrWhiteSpace($m.Groups[1].Value)) {
+            return $m.Groups[1].Value.Trim()
+        }
+    }
+
     if (Test-Path $appCsproj) {
         $m = [regex]::Match((Get-Content -Raw $appCsproj), '<ApplicationId>\s*([^<]+?)\s*</ApplicationId>')
-        if ($m.Success) { $ApplicationId = $m.Groups[1].Value.Trim() }
+        if ($m.Success -and -not [string]::IsNullOrWhiteSpace($m.Groups[1].Value)) {
+            return $m.Groups[1].Value.Trim()
+        }
     }
-    if (-not $ApplicationId) {
-        throw "Could not read <ApplicationId> from '$appCsproj'. Pass -ApplicationId explicitly, or ensure the sample project defines <ApplicationId>."
-    }
+
+    throw "Could not read <PasskeysApplicationId> from '$localProps' or <ApplicationId> from '$appCsproj'. Pass -ApplicationId explicitly."
+}
+
+$appDir = Join-Path $here 'src' 'Passkeys.Client'
+$appCsproj = Join-Path $appDir 'Passkeys.Client.csproj'
+$localProps = Join-Path $appDir 'Passkeys.Local.props'
+if (-not $ApplicationId) {
+    $ApplicationId = Get-ConfiguredApplicationId $localProps $appCsproj
 }
 
 # Default to the .NET for Android debug keystore — the key the build actually signs the APK with.
@@ -524,7 +539,6 @@ else {
 # Compose the git-ignored Passkeys.Local.props for the MAUI app: the default server URL always, plus
 # the Apple entitlements/signing (configured by default on macOS; skipped with -NoApple or automatically
 # on other operating systems). The committed files are never edited.
-$appDir = Join-Path $here 'src' 'Passkeys.Client'
 $iosEntitlementsRel = $null
 $macEntitlementsRel = $null
 $resolvedIdentity = $null

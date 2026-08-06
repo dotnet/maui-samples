@@ -6,7 +6,7 @@
   <!-- Local app id and relying-party URL. The setup script keeps the Android package, Apple bundle id,
        association documents, native origins, and the value baked into the app aligned. -->
   <PropertyGroup>
-    <PasskeysApplicationId>com.example.mauipasskeys</PasskeysApplicationId>
+    <PasskeysApplicationId>com.companyname.mauipasskeys</PasskeysApplicationId>
     <ApplicationId Condition="'$(PasskeysApplicationId)' != ''">$(PasskeysApplicationId)</ApplicationId>
     <PasskeysServerUrl></PasskeysServerUrl>
   </PropertyGroup>

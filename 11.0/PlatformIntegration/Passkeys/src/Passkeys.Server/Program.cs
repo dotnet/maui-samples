@@ -63,7 +63,8 @@ builder.Services.AddIdentityCore<IdentityUser>(options =>
 builder.Services.AddSingleton<IEmailSender<IdentityUser>, IdentityNoOpEmailSender>();
 
 // Passkey relying-party config. ServerDomain is the RP ID (the public host the apps use).
-// ValidateOrigin must also accept each platform's native origin (Android's apk-key-hash, Apple's web origin).
+// Assigning ValidateOrigin replaces the framework's default validator, so preserve its cross-origin
+// rejection while extending exact-match origin validation for Android's apk-key-hash and Apple's web origin.
 // This server is the security boundary: it verifies attestation and assertion payloads. The native client
 // only asks the platform authenticator to create those payloads and transports them to these endpoints.
 var passkeysConfig = builder.Configuration.GetSection("Passkeys");
@@ -77,7 +78,8 @@ if (!string.IsNullOrEmpty(serverDomain))
 	builder.Services.Configure<IdentityPasskeyOptions>(options =>
 	{
 		options.ServerDomain = serverDomain;
-		options.ValidateOrigin = context => ValueTask.FromResult(origins.Contains(context.Origin));
+		options.ValidateOrigin = context =>
+			ValueTask.FromResult(!context.CrossOrigin && origins.Contains(context.Origin));
 	});
 }
 
