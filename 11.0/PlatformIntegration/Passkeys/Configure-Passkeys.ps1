@@ -193,7 +193,7 @@ function New-LocalEntitlements($basePlist, $outPlist, $domain) {
         $xml.XmlResolver = $null
         $xml.Load($basePlist)
 
-        $dict = $xml.plist.dict
+        $dict = $xml.SelectSingleNode('/plist/dict')
         $existing = $dict.SelectNodes('key') | Where-Object { $_.InnerText -eq 'com.apple.developer.associated-domains' } | Select-Object -First 1
         if ($existing) {
             $arr = $existing.NextSibling
