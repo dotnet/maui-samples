@@ -1,0 +1,33 @@
+<!-- TEMPLATE for local passkey testing. Copy to Passkeys.Local.props (git-ignored) and fill in, or
+     run `pwsh ../../Configure-Passkeys.ps1`, which generates Passkeys.Local.props. This .in template
+     is committed for reference; the real Passkeys.Local.props is never committed. See ../../README.md. -->
+<Project>
+
+  <!-- Local app id and relying-party URL. The setup script keeps the Android package, Apple bundle id,
+       association documents, native origins, and the value baked into the app aligned. -->
+  <PropertyGroup>
+    <PasskeysApplicationId>com.companyname.mauipasskeys</PasskeysApplicationId>
+    <ApplicationId Condition="'$(PasskeysApplicationId)' != ''">$(PasskeysApplicationId)</ApplicationId>
+    <PasskeysServerUrl></PasskeysServerUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <AssemblyMetadata Include="PasskeysServerUrl" Value="$(PasskeysServerUrl)" />
+  </ItemGroup>
+
+  <!-- APPLE ONLY (delete this block for Windows/Android). Points at the git-ignored local entitlements
+       that carry webcredentials:<domain>. Generate it by copying Platforms/iOS/Entitlements.plist to
+       Platforms/iOS/Entitlements.Local.plist and adding a com.apple.developer.associated-domains array
+       with the single string "webcredentials:<your-tunnel-host>". -->
+  <PropertyGroup Condition="$(TargetFramework.Contains('-ios'))">
+    <CodesignEntitlements>Platforms/iOS/Entitlements.Local.plist</CodesignEntitlements>
+  </PropertyGroup>
+
+  <!-- MAC CATALYST ONLY. Uses a generated copy of the Mac Catalyst base entitlements so sandbox and
+       outbound-network permissions are preserved, plus a matching Associated Domains profile. -->
+  <PropertyGroup Condition="$(TargetFramework.Contains('-maccatalyst'))">
+    <CodesignEntitlements>Platforms/MacCatalyst/Entitlements.Local.plist</CodesignEntitlements>
+    <CodesignKey>Apple Development: Your Name (XXXXXXXXXX)</CodesignKey>
+    <CodesignProvision>Your Provisioning Profile Name</CodesignProvision>
+  </PropertyGroup>
+
+</Project>

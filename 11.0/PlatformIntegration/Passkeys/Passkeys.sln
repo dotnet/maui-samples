@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Passkeys.Client", "src\Passkeys.Client\Passkeys.Client.csproj", "{BB97F7C3-BCF0-4D5A-8A41-98D11131320E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Passkeys.Server", "src\Passkeys.Server\Passkeys.Server.csproj", "{338478B2-DC9E-494C-8823-66E5C152C4EA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BB97F7C3-BCF0-4D5A-8A41-98D11131320E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB97F7C3-BCF0-4D5A-8A41-98D11131320E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB97F7C3-BCF0-4D5A-8A41-98D11131320E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB97F7C3-BCF0-4D5A-8A41-98D11131320E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{338478B2-DC9E-494C-8823-66E5C152C4EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{338478B2-DC9E-494C-8823-66E5C152C4EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{338478B2-DC9E-494C-8823-66E5C152C4EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{338478B2-DC9E-494C-8823-66E5C152C4EA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

@@ -361,3 +361,9 @@ Resource.designer.cs
 10.0/AI/ChatClientWithMobile/src/ChatMobile.Api/appsettings.json
 10.0/AI/ChatClientWithMobile/src/ChatMobile.Api/appsettings.Development.json
 .vscode/settings.json
+
+# .NET 11 preview SDK and local Passkeys sample configuration
+11.0/.dotnet/
+11.0/PlatformIntegration/Passkeys/src/Passkeys.Client/Passkeys.Local.props
+11.0/PlatformIntegration/Passkeys/src/Passkeys.Client/Platforms/iOS/Entitlements.Local.plist
+11.0/PlatformIntegration/Passkeys/src/Passkeys.Client/Platforms/MacCatalyst/Entitlements.Local.plist
