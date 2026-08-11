@@ -10,7 +10,7 @@ This folder contains samples that demonstrate **features specific to .NET MAUI 1
 
 ```bash
 # 1. Install the preview SDK locally (does NOT modify your system PATH)
-./dotnet-install.sh --version 11.0.100-preview.3.26207.106 --install-dir ./.dotnet
+./dotnet-install.sh --version 11.0.100-preview.7.26381.103 --install-dir ./.dotnet
 
 # 2. The global.json in this folder already has sdk.paths configured:
 cat global.json
@@ -21,7 +21,7 @@ The `global.json` in this folder uses `sdk.paths` to point to a local `.dotnet/`
 ```json
 {
   "sdk": {
-    "version": "11.0.100-preview.3.26207.106",
+    "version": "11.0.100-preview.7.26381.103",
     "paths": [".dotnet"]
   }
 }
