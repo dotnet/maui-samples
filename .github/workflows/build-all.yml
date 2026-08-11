@@ -21,7 +21,7 @@ jobs:
       with:
         dotnet-version: |
           10.0.x
-          11.0.x
+          11.0.100-preview.7.26381.103
         include-prerelease: true
         dotnet-quality: 'preview'
 
