@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ShellRouteTemplates.MainPage"
+    xmlns:models="clr-namespace:ShellRouteTemplates.Models"
+    xmlns:viewModels="clr-namespace:ShellRouteTemplates.ViewModels"
+    x:DataType="viewModels:MainPageViewModel"
+    Title="Route matrix">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="16">
+            <Label
+                FontAttributes="Bold"
+                FontSize="28"
+                SemanticProperties.HeadingLevel="Level1"
+                Text="Trip route lab" />
+            <Label
+                FontSize="16"
+                Text="Run each absolute URI and verify the value delivered by its route template." />
+            <Border
+                Background="#FFF4CE"
+                Padding="12"
+                Stroke="#9D5D00"
+                StrokeShape="RoundRectangle 8">
+                <Label
+                    AutomationId="AbsoluteOnlyNotice"
+                    Text="Absolute navigation only: every example starts with //routes. Relative navigation with template routes is not supported."
+                    TextColor="#5C2D00" />
+            </Border>
+
+            <VerticalStackLayout
+                BindableLayout.ItemsSource="{Binding Examples}"
+                Spacing="12">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate x:DataType="models:RouteExample">
+                        <Border
+                            Padding="14"
+                            Stroke="{AppThemeBinding Light=#D0D0D0, Dark=#505050}"
+                            StrokeShape="RoundRectangle 10">
+                            <Grid
+                                ColumnDefinitions="*,Auto"
+                                ColumnSpacing="12"
+                                RowDefinitions="Auto,Auto,Auto,Auto">
+                                <Label
+                                    Grid.ColumnSpan="2"
+                                    FontAttributes="Bold"
+                                    FontSize="18"
+                                    Text="{Binding Form}" />
+                                <Label
+                                    Grid.Row="1"
+                                    Grid.ColumnSpan="2"
+                                    FontFamily="monospace"
+                                    Text="{Binding Template}" />
+                                <Label
+                                    Grid.Row="2"
+                                    Grid.ColumnSpan="2"
+                                    FontSize="12"
+                                    LineBreakMode="CharacterWrap"
+                                    Text="{Binding NavigationUri}" />
+                                <Label
+                                    Grid.Row="3"
+                                    Margin="0,8,0,0"
+                                    Text="{Binding Summary}"
+                                    VerticalOptions="Center" />
+                                <Button
+                                    Grid.Row="3"
+                                    Grid.Column="1"
+                                    Margin="8,8,0,0"
+                                    AutomationId="{Binding AutomationId}"
+                                    Command="{Binding BindingContext.NavigateCommand, Source={RelativeSource AncestorType={x:Type ContentPage}}}"
+                                    CommandParameter="{Binding .}"
+                                    Text="Run" />
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
