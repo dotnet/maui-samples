@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AnimationCancellation.MainPage"
+             Title="Animation cancellation"
+             BackgroundColor="#F0F2F5">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20,40" Spacing="20">
+
+            <Label Text="Animation cancellation"
+                   FontSize="28"
+                   FontAttributes="Bold"
+                   TextColor="#512BD4"
+                   HorizontalOptions="Center" />
+
+            <Label Text="The async animation methods on ViewExtensions now accept a CancellationToken. Pass a token, then cancel it to abort the animation cleanly without waiting for it to finish."
+                   FontSize="14"
+                   TextColor="#666666"
+                   HorizontalTextAlignment="Center"
+                   Margin="0,0,0,10" />
+
+            <Border StrokeShape="RoundRectangle 12"
+                    StrokeThickness="0"
+                    BackgroundColor="White"
+                    Padding="20">
+                <VerticalStackLayout Spacing="16">
+
+                    <Image x:Name="LogoImage"
+                           Source="dotnet_bot.png"
+                           HeightRequest="180"
+                           Aspect="AspectFit" />
+
+                    <Label x:Name="StatusLabel"
+                           Text="Ready."
+                           FontSize="14"
+                           TextColor="#333333"
+                           HorizontalOptions="Center" />
+
+                    <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                        <Button x:Name="FadeButton"
+                                Text="Fade out (5s)"
+                                BackgroundColor="#512BD4"
+                                TextColor="White"
+                                Clicked="OnFadeClicked" />
+                        <Button x:Name="CancelButton"
+                                Text="Cancel"
+                                BackgroundColor="#D32F2F"
+                                TextColor="White"
+                                IsEnabled="False"
+                                Clicked="OnCancelClicked" />
+                        <Button Text="Reset"
+                                BackgroundColor="#888888"
+                                TextColor="White"
+                                Clicked="OnResetClicked" />
+                    </HorizontalStackLayout>
+
+                </VerticalStackLayout>
+            </Border>
+
+            <Label Text="Try this:"
+                   FontSize="16"
+                   FontAttributes="Bold"
+                   TextColor="#333333"
+                   Margin="0,10,0,0" />
+
+            <Label Text="1. Tap Fade out (5s) to start a long fade.&#10;2. Tap Cancel before the fade finishes."
+                   FontSize="13"
+                   TextColor="#666666" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
