@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BoxViewFill.MainPage"
+             BackgroundColor="#F0F2F5">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20,40" Spacing="20">
+
+            <Label Text="BoxView.Fill"
+                   FontSize="28"
+                   FontAttributes="Bold"
+                   TextColor="#512BD4"
+                   HorizontalOptions="Center" />
+
+            <Label Text="The new Fill property on BoxView accepts any Brush, so gradients and patterns can paint a BoxView without a custom handler."
+                   FontSize="14"
+                   TextColor="#666666"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center" />
+
+            <Label Text="SolidColorBrush"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   TextColor="#333333"
+                   Margin="0,10,0,0" />
+
+            <!-- <docregion_fill_solid> -->
+            <BoxView HeightRequest="80"
+                     CornerRadius="12">
+                <BoxView.Fill>
+                    <SolidColorBrush Color="#512BD4" />
+                </BoxView.Fill>
+            </BoxView>
+            <!-- </docregion_fill_solid> -->
+
+            <Label Text="LinearGradientBrush"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   TextColor="#333333"
+                   Margin="0,10,0,0" />
+
+            <!-- <docregion_fill_linear> -->
+            <BoxView HeightRequest="120"
+                     CornerRadius="12">
+                <BoxView.Fill>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#512BD4" Offset="0.0" />
+                        <GradientStop Color="#0099CC" Offset="1.0" />
+                    </LinearGradientBrush>
+                </BoxView.Fill>
+            </BoxView>
+            <!-- </docregion_fill_linear> -->
+
+            <Label Text="RadialGradientBrush"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   TextColor="#333333"
+                   Margin="0,10,0,0" />
+
+            <!-- <docregion_fill_radial> -->
+            <BoxView HeightRequest="160"
+                     CornerRadius="80">
+                <BoxView.Fill>
+                    <RadialGradientBrush Center="0.5,0.5" Radius="0.5">
+                        <GradientStop Color="#FFC107" Offset="0.0" />
+                        <GradientStop Color="#FF5722" Offset="0.8" />
+                        <GradientStop Color="#7B1FA2" Offset="1.0" />
+                    </RadialGradientBrush>
+                </BoxView.Fill>
+            </BoxView>
+            <!-- </docregion_fill_radial> -->
+
+            <Label Text="Fill vs BackgroundColor"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   TextColor="#333333"
+                   Margin="0,20,0,0" />
+
+            <Label Text="BackgroundColor still works for solid colors, but only Fill supports brushes."
+                   FontSize="13"
+                   TextColor="#888888" />
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                <VerticalStackLayout Grid.Column="0" Spacing="6">
+                    <Label Text="BackgroundColor"
+                           FontSize="13"
+                           TextColor="#666666"
+                           HorizontalOptions="Center" />
+                    <BoxView BackgroundColor="#0099CC"
+                             HeightRequest="80"
+                             CornerRadius="8" />
+                </VerticalStackLayout>
+                <VerticalStackLayout Grid.Column="1" Spacing="6">
+                    <Label Text="Fill (Brush)"
+                           FontSize="13"
+                           TextColor="#666666"
+                           HorizontalOptions="Center" />
+                    <BoxView HeightRequest="80"
+                             CornerRadius="8">
+                        <BoxView.Fill>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                <GradientStop Color="#0099CC" Offset="0.0" />
+                                <GradientStop Color="#512BD4" Offset="1.0" />
+                            </LinearGradientBrush>
+                        </BoxView.Fill>
+                    </BoxView>
+                </VerticalStackLayout>
+            </Grid>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
