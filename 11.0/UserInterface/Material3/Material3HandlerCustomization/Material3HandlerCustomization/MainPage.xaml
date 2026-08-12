@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Material3HandlerCustomization.MainPage"
+             Title="Material 3 customization"
+             BackgroundColor="#F0F2F5">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20,40" Spacing="20">
+
+            <Label Text="Material 3 handler customization"
+                   FontSize="26"
+                   FontAttributes="Bold"
+                   TextColor="#512BD4" />
+
+            <Label Text="The Android Material 3 platform views and helper types are public in .NET MAUI 11, so an app can subclass them and wire the result up via the handler's PlatformViewFactory."
+                   FontSize="14"
+                   TextColor="#666666" />
+
+            <Label Text="Editor (custom MauiMaterialEditText on Android)"
+                   FontSize="16"
+                   FontAttributes="Bold"
+                   TextColor="#333333"
+                   Margin="0,10,0,0" />
+
+            <Border StrokeShape="RoundRectangle 12"
+                    StrokeThickness="0"
+                    BackgroundColor="White"
+                    Padding="12">
+                <Editor Placeholder="Type something here..."
+                        HeightRequest="120"
+                        TextColor="#512BD4"
+                        AutoSize="TextChanges" />
+            </Border>
+
+            <Label Text="On Android, this Editor renders through a custom MauiMaterialEditText subclass that capitalises every keystroke and changes the cursor color. On other platforms it uses the default Editor handler."
+                   FontSize="13"
+                   TextColor="#888888" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
