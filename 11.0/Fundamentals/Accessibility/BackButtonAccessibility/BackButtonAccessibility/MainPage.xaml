@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BackButtonAccessibility.MainPage"
+             Title="Orders"
+             BackgroundColor="#F0F2F5">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20,40" Spacing="20">
+
+            <Label Text="Back button accessibility"
+                   FontSize="26"
+                   FontAttributes="Bold"
+                   TextColor="#512BD4" />
+
+            <Label Text="In .NET MAUI 11 the NavigationPage back button and the Shell back button can now expose a custom accessibility label so screen readers announce something meaningful instead of generic 'Back'."
+                   FontSize="14"
+                   TextColor="#666666" />
+
+            <Button Text="View order #1138 details"
+                    BackgroundColor="#512BD4"
+                    TextColor="White"
+                    Clicked="OnViewOrderClicked" />
+
+            <Label Text="On the detail page, enable a screen reader (VoiceOver / TalkBack / Narrator) and focus the back button — you'll hear 'Back to order list' instead of 'Back'."
+                   FontSize="13"
+                   TextColor="#888888"
+                   Margin="0,10,0,0" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

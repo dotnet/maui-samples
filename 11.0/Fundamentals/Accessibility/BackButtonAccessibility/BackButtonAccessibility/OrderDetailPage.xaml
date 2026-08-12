@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BackButtonAccessibility.OrderDetailPage"
+             Title="Order #1138"
+             BackgroundColor="#F0F2F5">
+
+    <!-- <docregion_navpage_backbutton_label> -->
+    <!-- The attached property is read by screen readers on iOS, Android, and Windows. -->
+    <NavigationPage.BackButtonAccessibilityLabel>
+        Back to order list
+    </NavigationPage.BackButtonAccessibilityLabel>
+    <!-- </docregion_navpage_backbutton_label> -->
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20,40" Spacing="16">
+
+            <Label Text="Order #1138"
+                   FontSize="26"
+                   FontAttributes="Bold"
+                   TextColor="#512BD4" />
+
+            <Label Text="Status: Shipped"
+                   FontSize="16"
+                   TextColor="#333333" />
+
+            <Label Text="Carrier: USPS Priority Mail"
+                   FontSize="14"
+                   TextColor="#666666" />
+
+            <Label Text="Estimated delivery: in 2 days"
+                   FontSize="14"
+                   TextColor="#666666" />
+
+            <Label Text="Try this:"
+                   FontSize="16"
+                   FontAttributes="Bold"
+                   Margin="0,20,0,0" />
+
+            <Label Text="Enable a screen reader and focus the back button at the top of this page. You should hear 'Back to order list' instead of just 'Back'."
+                   FontSize="13"
+                   TextColor="#666666" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
