@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="LocalChatClientWithAgents.AppShell"
+    Shell.NavBarIsVisible="False"
+    Title=".NET MAUI Trip Planner">
+
+    <ShellContent
+        ContentTemplate="{DataTemplate LandmarksPage}"
+        Route="LandmarksPage" />
+
+</Shell>

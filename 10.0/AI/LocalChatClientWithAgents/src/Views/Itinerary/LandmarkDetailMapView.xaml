@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    xmlns:maps="http://schemas.microsoft.com/dotnet/2021/maui/maps"
+    x:Class="LocalChatClientWithAgents.Views.Itinerary.LandmarkDetailMapView"
+    x:DataType="Landmark"
+    x:Name="MapControl">
+
+    <maps:Map x:Name="map" 
+              IsEnabled="False" 
+              IsScrollEnabled="False" 
+              IsZoomEnabled="False">
+        <maps:Map.ItemTemplate>
+            <DataTemplate x:DataType="Landmark">
+                <maps:Pin Location="{Binding Location}" Label="{Binding Name}" />
+            </DataTemplate>
+        </maps:Map.ItemTemplate>
+    </maps:Map>
+
+</ContentView>

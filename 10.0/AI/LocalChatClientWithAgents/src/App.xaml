@@ -1,0 +1,17 @@
+﻿<?xml version = "1.0" encoding = "UTF-8" ?>
+<Application
+             x:Class="LocalChatClientWithAgents.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
+                <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            
+            <!-- Converters -->
+            <IsNotNullConverter x:Key="IsNotNullConverter" />
+            <InvertedBoolConverter x:Key="InvertedBoolConverter" />
+            <IsNotNullOrEmptyConverter x:Key="IsNotNullOrEmptyConverter" />
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
