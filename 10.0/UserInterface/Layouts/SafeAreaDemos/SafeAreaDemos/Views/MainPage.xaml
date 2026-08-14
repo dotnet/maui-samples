@@ -1,0 +1,63 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:SafeAreaDemos"
+             xmlns:views="clr-namespace:SafeAreaDemos.Views"
+             x:Class="SafeAreaDemos.MainPage"
+             Title="SafeArea demos"
+             x:DataType="local:MainPage">
+       <ScrollView>
+              <VerticalStackLayout Padding="20"
+                                   Spacing="15">
+                     <Label Text="SafeArea Demos"
+                            FontSize="32"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Center"
+                            Margin="0,10,0,20"/>
+
+                     <Label Text="SafeAreaEdges Property Overview"
+                            FontSize="Medium"
+                            FontAttributes="Bold"/>
+                     <Label Text="The SafeAreaEdges property controls which edges of a view should respect system safe areas like notches, status bars, and keyboards. It can be set to None, All, Top, Bottom, Left, Right, Container, or SoftInput."
+                            FontSize="14"
+                            TextColor="Gray"
+                            LineBreakMode="WordWrap"
+                            Margin="0,0,0,10"/>
+
+                     <!-- Basic Examples Section -->
+                     <Label Text="Basic Examples"
+                            FontSize="Medium"
+                            FontAttributes="Bold"
+                            Margin="0,10,0,0"/>
+
+                     <Label Text="Edge-to-edge content (SafeAreaEdges=None)"
+                            FontSize="Small"/>
+                     <Button Text="Example 1: Edge-to-Edge Content"
+                             Command="{Binding NavigateCommand}"
+                             CommandParameter="{x:Type views:Example1EdgeToEdge}"/>
+
+                     <Label Text="Respect all safe areas (SafeAreaEdges=All)"
+                            FontSize="Small"/>
+                     <Button Text="Example 2: Respect All Safe Areas"
+                             Command="{Binding NavigateCommand}"
+                             CommandParameter="{x:Type views:Example2RespectAll}"/>
+
+                     <Label Text="Keyboard-aware layout (SafeAreaEdges=SoftInput)"
+                            FontSize="Small"/>
+                     <Button Text="Example 3: Keyboard-Aware Layout"
+                             Command="{Binding NavigateCommand}"
+                             CommandParameter="{x:Type views:Example3KeyboardAware}"/>
+
+                     <Label Text="Platform default behavior (SafeAreaEdges=Default)"
+                            FontSize="Small"/>
+                     <Button Text="Example 4: Default Safe Area"
+                             Command="{Binding NavigateCommand}"
+                             CommandParameter="{x:Type views:Example4Default}"/>
+
+                     <Label Text="Container with automatic padding (SafeAreaEdges=Container)"
+                            FontSize="Small"/>
+                     <Button Text="Example 5: Container Safe Area"
+                             Command="{Binding NavigateCommand}"
+                             CommandParameter="{x:Type views:Example5Container}"/>
+              </VerticalStackLayout>
+       </ScrollView>
+</ContentPage>

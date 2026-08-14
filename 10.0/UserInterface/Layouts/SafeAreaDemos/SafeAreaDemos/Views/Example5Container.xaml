@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SafeAreaDemos.Views.Example5Container"
+             SafeAreaEdges="Container"
+             Shell.NavBarIsVisible="False">
+
+       <!-- Main Grid with edge-to-edge content -->
+       <Grid>
+              <Grid RowDefinitions="50,75,*,75,30">
+                     <!-- StatusBar Overlay -->
+                     <Grid Background="{StaticResource OverlayColor}">
+                            <Label Text="Top Overlay"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"
+                                   TextColor="Black"/>
+                     </Grid>
+
+                     <Grid Padding="15,10"
+                           Grid.Row="1"
+                           HorizontalOptions="Start">
+                            <!-- Back Button -->
+                            <Border Grid.Column="0"
+                                    Background="#FFFFFF"
+                                    Stroke="Transparent"
+                                    StrokeShape="RoundRectangle 20"
+                                    WidthRequest="40"
+                                    HeightRequest="40"
+                                    VerticalOptions="Center">
+                                   <Border.Shadow>
+                                          <Shadow Brush="Black"
+                                                  Opacity="0.3"
+                                                  Radius="10"
+                                                  Offset="0,4"/>
+                                   </Border.Shadow>
+                                   <Border.IsVisible>
+                                          <OnPlatform x:TypeArguments="x:Boolean">
+                                                 <On Platform="Windows"
+                                                     Value="False"/>
+                                                 <On Platform="Android, iOS, MacCatalyst"
+                                                     Value="True"/>
+                                          </OnPlatform>
+                                   </Border.IsVisible>
+                                   <Button Text="←"
+                                           TextColor="#667eea"
+                                           FontSize="24"
+                                           FontAttributes="Bold"
+                                           Background="Transparent"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Center"
+                                           Clicked="Button_Clicked">
+                                          <Button.Padding>
+                                                 <OnPlatform x:TypeArguments="Thickness">
+                                                        <On Platform="Android"
+                                                            Value="0,-10,0,0"/>
+                                                 </OnPlatform>
+                                          </Button.Padding>
+                                   </Button>
+                            </Border>
+                     </Grid>
+
+                     <ScrollView Grid.Row="2">
+                            <VerticalStackLayout Padding="20,10,20,20"
+                                                 Spacing="15">
+                                   <!-- Title -->
+                                   <Label Text="SafeAreaEdges = &quot;Container&quot;"
+                                          FontSize="24"
+                                          FontAttributes="Bold"
+                                          Margin="0,0,0,10"/>
+
+                                   <!-- Behavior Section -->
+                                   <Label Text="Behavior:"
+                                          FontSize="18"
+                                          FontAttributes="Bold"/>
+
+                                   <Label Text="• Content avoids status bars, notches, and home indicators"
+                                          FontSize="16"
+                                          Margin="10,0,0,5"/>
+
+                                   <Label Text="• Content flows under the keyboard (no keyboard padding)"
+                                          FontSize="16"
+                                          Margin="10,0,0,5"/>
+
+                                   <Label Text="• Balances immersive design with visibility of system UI elements"
+                                          FontSize="16"
+                                          Margin="10,0,0,5"/>
+
+                                   <Label Text="• Allows keyboard to overlay content while keeping important UI visible"
+                                          FontSize="16"
+                                          Margin="10,0,0,10"/>
+
+                                   <!-- Use Cases Section -->
+                                   <Label Text="Use Cases:"
+                                          FontSize="18"
+                                          FontAttributes="Bold"
+                                          Margin="0,10,0,0"/>
+
+                                   <Label Text="• Scrollable content where keyboard overlay is acceptable"
+                                          FontSize="16"
+                                          Margin="10,0,0,5"/>
+
+                                   <Label Text="• Social media feeds with bottom input bars"
+                                          FontSize="16"
+                                          Margin="10,0,0,5"/>
+
+                                   <Label Text="• Content viewers with comments at bottom"
+                                          FontSize="16"
+                                          Margin="10,0,0,5"/>
+
+                                   <Label Text="• Apps that need edge-to-edge content but must avoid notches and system bars"
+                                          FontSize="16"
+                                          Margin="10,0,0,5"/>
+
+                                   <Label Text="• UIs where manual scroll adjustment is preferred over automatic keyboard avoidance"
+                                          FontSize="16"
+                                          Margin="10,0,0,10"/>
+                                   <Label Text="Important Note:"
+                                          FontSize="18"
+                                          FontAttributes="Bold"
+                                          TextColor="#FF6B6B"
+                                          Margin="0,10,0,0"/>
+
+                                   <Label Text="Container is ideal when you want a hybrid approach: respect safe areas for system UI elements but let the keyboard overlay content. This is useful for scrollable interfaces where users can manually scroll to see content behind the keyboard."
+                                          FontSize="14"
+                                          LineBreakMode="WordWrap"
+                                          Margin="10,0,0,0"/>
+                            </VerticalStackLayout>
+                     </ScrollView>
+
+                     <Grid Padding="15,10"
+                           Grid.Row="3">
+                            <Entry Placeholder="Enter text here"/>
+                     </Grid>
+
+                     <!-- Bottom Overlay -->
+                     <Grid Background="{StaticResource OverlayColor}"
+                           Grid.Row="6">
+                            <Label Text="Bottom Overlay"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"
+                                   TextColor="black"/>
+                     </Grid>
+              </Grid>
+       </Grid>
+</ContentPage>
