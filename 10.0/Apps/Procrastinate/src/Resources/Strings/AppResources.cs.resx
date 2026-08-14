@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>1.3</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  
+  <data name="AppName" xml:space="preserve"><value>Prokrastinovat</value></data>
+  <data name="Settings" xml:space="preserve"><value>Nastavení</value></data>
+  <data name="Accessibility" xml:space="preserve"><value>Přístupnost</value></data>
+  <data name="HighContrastMode" xml:space="preserve"><value>Režim vysokého kontrastu</value></data>
+  <data name="HighContrastDesc" xml:space="preserve"><value>Použít barvy s vyšším kontrastem</value></data>
+  <data name="ThemePreview" xml:space="preserve"><value>Náhled motivu</value></data>
+  <data name="CurrentTheme" xml:space="preserve"><value>Aktuální: {0} motiv</value></data>
+  <data name="DefaultTheme" xml:space="preserve"><value>Výchozí</value></data>
+  <data name="HighContrast" xml:space="preserve"><value>Vysoký kontrast</value></data>
+  <data name="ChangesApply" xml:space="preserve"><value>Změny se projeví okamžitě</value></data>
+  <data name="Language" xml:space="preserve"><value>Jazyk</value></data>
+  
+  <data name="TodaysTasks" xml:space="preserve"><value>Dnešní úkoly</value></data>
+  <data name="YourProductivityList" xml:space="preserve"><value>Váš seznam produktivity:</value></data>
+  <data name="TakeABreak" xml:space="preserve"><value>Dát si pauzu</value></data>
+  <data name="DoingGreat" xml:space="preserve"><value>Jde vám to skvěle! Dnes jen 1 úkol!</value></data>
+  <data name="AddMoreTasks" xml:space="preserve"><value>Přidat další úkoly</value></data>
+  <data name="Congratulations" xml:space="preserve"><value>🎉 Gratulujeme! Dokončili jste VŠECHNY své úkoly!</value></data>
+  <data name="NeedAnotherBreak" xml:space="preserve"><value>Počkejte... stále potřebujete další pauzu!</value></data>
+  
+  <data name="MiniGames" xml:space="preserve"><value>Mini-hry</value></data>
+  <data name="ProductivityOverrated" xml:space="preserve"><value>Protože produktivita je přeceňovaná!</value></data>
+  <data name="ShuffleGames" xml:space="preserve"><value>Zamíchat hry</value></data>
+  <data name="Score" xml:space="preserve"><value>Skóre: {0}</value></data>
+  <data name="GameOver" xml:space="preserve"><value>Konec hry! Finální skóre: {0}</value></data>
+  <data name="StartGame" xml:space="preserve"><value>Začít</value></data>
+  <data name="NewGame" xml:space="preserve"><value>Nová hra</value></data>
+  <data name="YourTurn" xml:space="preserve"><value>Váš tah (X)</value></data>
+  <data name="AIThinking" xml:space="preserve"><value>AI přemýšlí...</value></data>
+  <data name="YouWin" xml:space="preserve"><value>Vyhráli jste! 🎉</value></data>
+  <data name="AIWins" xml:space="preserve"><value>AI vyhrála! 🤖</value></data>
+  <data name="Draw" xml:space="preserve"><value>Remíza!</value></data>
+  <data name="Clicks" xml:space="preserve"><value>Kliknutí: {0}</value></data>
+  <data name="StartChallenge" xml:space="preserve"><value>Začít výzvu</value></data>
+  <data name="WaitForGreen" xml:space="preserve"><value>Čekejte na zelenou!</value></data>
+  <data name="TapNow" xml:space="preserve"><value>KLEPNĚTE!</value></data>
+  <data name="TooEarly" xml:space="preserve"><value>Příliš brzy! Zkuste znovu.</value></data>
+  <data name="ReactionTime" xml:space="preserve"><value>Reakční čas: {0}ms</value></data>
+  <data name="TapStartToBegin" xml:space="preserve"><value>Klepněte na 'Začít'</value></data>
+  
+  <data name="ExcuseGenerator" xml:space="preserve"><value>Generátor výmluv</value></data>
+  <data name="NeedAReason" xml:space="preserve"><value>Potřebujete důvod něco nedělat? Pomůžeme!</value></data>
+  <data name="TapForExcuse" xml:space="preserve"><value>Klepněte pro novou výmluvu!</value></data>
+  <data name="GenerateExcuse" xml:space="preserve"><value>Generovat výmluvu</value></data>
+  <data name="CopyToClipboard" xml:space="preserve"><value>Kopírovat</value></data>
+  <data name="Copied" xml:space="preserve"><value>Zkopírováno!</value></data>
+  <data name="ExcusesGenerated" xml:space="preserve"><value>Dnes vygenerované výmluvy: {0}</value></data>
+  
+  <data name="YourStats" xml:space="preserve"><value>Vaše statistiky</value></data>
+  <data name="BeProud" xml:space="preserve"><value>Buďte hrdí na své úspěchy!</value></data>
+  <data name="TasksAvoided" xml:space="preserve"><value>Vyhnuté úkoly</value></data>
+  <data name="BreaksTaken" xml:space="preserve"><value>Pauzy</value></data>
+  <data name="ExcusesGeneratedStat" xml:space="preserve"><value>Vygenerované výmluvy</value></data>
+  <data name="GamesPlayed" xml:space="preserve"><value>Odehrané hry</value></data>
+  <data name="AchievementUnlocked" xml:space="preserve"><value>Odemčený úspěch</value></data>
+  <data name="GettingStarted" xml:space="preserve"><value>Začátek: Otevřít aplikaci!</value></data>
+  <data name="BeginnerProcrastinator" xml:space="preserve"><value>Začínající prokrastinátor</value></data>
+  <data name="LegendaryProcrastinator" xml:space="preserve"><value>LEGENDÁRNÍ PROKRASTINÁTOR</value></data>
+  
+  <data name="SimonSays" xml:space="preserve"><value>Šimon říká</value></data>
+  <data name="SimonSaysDesc" xml:space="preserve"><value>Sledujte vzor a opakujte!</value></data>
+  <data name="ClickSpeed" xml:space="preserve"><value>Rychlost klikání</value></data>
+  <data name="ClickSpeedDesc" xml:space="preserve"><value>Kolik kliknutí za 5 sekund?</value></data>
+  <data name="ReactionTimeGame" xml:space="preserve"><value>Reakční čas</value></data>
+  <data name="ReactionTimeDesc" xml:space="preserve"><value>Čekejte na zelenou a klepněte!</value></data>
+  <data name="TicTacToe" xml:space="preserve"><value>Piškvorky</value></data>
+  <data name="TicTacToeDesc" xml:space="preserve"><value>Klasická hra X a O!</value></data>
+  <data name="Minesweeper" xml:space="preserve"><value>Hledání min</value></data>
+  <data name="MinesweeperDesc" xml:space="preserve"><value>Najděte všechna bezpečná pole!</value></data>
+  <data name="TiltSnake" xml:space="preserve"><value>Naklápěcí had</value></data>
+  <data name="TiltSnakeDesc" xml:space="preserve"><value>Nakloňte telefon a veďte hada!</value></data>
+  <data name="MemoryMatch" xml:space="preserve"><value>Pexeso</value></data>
+  <data name="MemoryMatchDesc" xml:space="preserve"><value>Najděte dvojice!</value></data>
+  <data name="NumberGuess" xml:space="preserve"><value>Hádej číslo</value></data>
+  <data name="NumberGuessDesc" xml:space="preserve"><value>Hádejte číslo 1-100!</value></data>
+  <data name="WhackAMole" xml:space="preserve"><value>Mlátička krtků</value></data>
+  <data name="WhackAMoleDesc" xml:space="preserve"><value>Mlať krtky co nejrychleji!</value></data>
+  
+  <!-- Additional game strings -->
+  <data name="ClickMe" xml:space="preserve"><value>Klikni na mě!</value></data>
+  <data name="FinalClicks" xml:space="preserve"><value>Konec: {0} kliknutí! ({1:F1}/sek)</value></data>
+  <data name="Wait" xml:space="preserve"><value>Čekej...</value></data>
+  <data name="Start" xml:space="preserve"><value>Start</value></data>
+  <data name="TooSoon" xml:space="preserve"><value>Příliš brzy!</value></data>
+  <data name="Done" xml:space="preserve"><value>Hotovo!</value></data>
+  <data name="FindSafeCells" xml:space="preserve"><value>Najdi bezpečná pole! ({0} min)</value></data>
+  <data name="BoomGameOver" xml:space="preserve"><value>Bum! Konec hry 💥</value></data>
+  <data name="TiltToMove" xml:space="preserve"><value>Nakloň pro pohyb!</value></data>
+  <data name="AccelerometerNotAvailable" xml:space="preserve"><value>Akcelerometr není k dispozici</value></data>
+  <data name="GameOverScore" xml:space="preserve"><value>Konec hry! Skóre: {0}</value></data>
+  <data name="MovesAndPairs" xml:space="preserve"><value>Tahy: {0} | Páry: {1}/{2}</value></data>
+  <data name="WinInMoves" xml:space="preserve"><value>Vyhráno za {0} tahů! 🎉</value></data>
+  <data name="ThinkingOfNumber" xml:space="preserve"><value>Myslím na číslo 1-100...</value></data>
+  <data name="Attempts" xml:space="preserve"><value>Pokusy: {0}</value></data>
+  <data name="EnterGuess" xml:space="preserve"><value>Zadej svůj tip</value></data>
+  <data name="Guess" xml:space="preserve"><value>Hádat!</value></data>
+  <data name="EnterNumber1to100" xml:space="preserve"><value>Zadej číslo 1-100</value></data>
+  <data name="Correct" xml:space="preserve"><value>🎉 Správně! Bylo to {0}!</value></data>
+  <data name="TooLow" xml:space="preserve"><value>📈 {0} je příliš NÍZKÉ!</value></data>
+  <data name="TooHigh" xml:space="preserve"><value>📉 {0} je příliš VYSOKÉ!</value></data>
+  <data name="ScoreAndMisses" xml:space="preserve"><value>Skóre: {0} | Minuto: {1}</value></data>
+  <data name="StartGame30s" xml:space="preserve"><value>Spustit hru (30s)</value></data>
+  
+  <!-- Excuse Generator Settings -->
+  <data name="ExcuseEngine" xml:space="preserve"><value>Motor výmluv</value></data>
+  <data name="ExcuseEngineDesc" xml:space="preserve"><value>Vyberte, jak se generují výmluvy</value></data>
+  <data name="RandomGenerator" xml:space="preserve"><value>Náhodný generátor</value></data>
+  <data name="CloudAI" xml:space="preserve"><value>Cloud AI (Groq)</value></data>
+  <data name="ApiEndpoint" xml:space="preserve"><value>API Endpoint</value></data>
+  <data name="ApiEndpointPlaceholder" xml:space="preserve"><value>http://localhost:11434</value></data>
+  <data name="AiModel" xml:space="preserve"><value>AI Model</value></data>
+  <data name="Generating" xml:space="preserve"><value>Generuji...</value></data>
+  <data name="GroqApiKeyLabel" xml:space="preserve"><value>Groq API klíč</value></data>
+  <data name="GroqApiKeyPlaceholder" xml:space="preserve"><value>Zadejte svůj Groq API klíč</value></data>
+  <data name="GroqGetKeyHint" xml:space="preserve"><value>Získejte svůj klíč zdarma na console.groq.com</value></data>
+  <data name="OnDeviceAI" xml:space="preserve"><value>AI na zařízení (Apple)</value></data>
+  <data name="OnDeviceAIHint" xml:space="preserve"><value>Používá Apple Intelligence na iOS 26+. Bez internetu, zcela soukromé.</value></data>
+  <data name="OnDeviceAIAvailable" xml:space="preserve"><value>Apple Intelligence je připravena!</value></data>
+  <data name="OnDeviceAIUnavailable" xml:space="preserve"><value>Vyžaduje iOS 26+ s povolenou Apple Intelligence</value></data>
+  <data name="TakeANap" xml:space="preserve">
+    <value>Dát si šlofíka</value>
+  </data>
+  <data name="GrabACoffee" xml:space="preserve">
+    <value>Dát si kafe</value>
+  </data>
+  <data name="StretchABit" xml:space="preserve">
+    <value>Protáhnout se</value>
+  </data>
+  <data name="StareAtCeiling" xml:space="preserve">
+    <value>Zírat na strop</value>
+  </data>
+  <data name="About" xml:space="preserve">
+    <value>O aplikaci</value>
+  </data>
+  <data name="AboutDescription" xml:space="preserve">
+    <value>Ultimátní anti-produktivní aplikace. Postavena s .NET MAUI a zdravým pohrdáním termíny.</value>
+  </data>
+  <data name="Author" xml:space="preserve">
+    <value>Vytvořil Stephane Delcroix</value>
+  </data>
+  <data name="Share" xml:space="preserve"><value>Sdílet</value></data>
+  <data name="ShareExcuse" xml:space="preserve"><value>Sdílet tuto výmluvu</value></data>
+  <data name="Last7Days" xml:space="preserve"><value>Posledních 7 Dní</value></data>
+  <data name="GenerateCartoon" xml:space="preserve"><value>Vygenerovat kreslený obrázek</value></data>
+  <data name="ImageGenerationFailed" xml:space="preserve"><value>Nepodařilo se vygenerovat obrázek. Zkuste to později.</value></data>
+</root>

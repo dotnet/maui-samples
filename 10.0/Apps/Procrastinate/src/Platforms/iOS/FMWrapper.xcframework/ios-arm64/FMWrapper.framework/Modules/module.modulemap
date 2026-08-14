@@ -1,0 +1,5 @@
+framework module FMWrapper {
+    umbrella header "FMWrapper.h"
+    export *
+    module * { export * }
+}

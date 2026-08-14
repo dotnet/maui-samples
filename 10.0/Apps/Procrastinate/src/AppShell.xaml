@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="procrastinate.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:procrastinate"
+    xmlns:pages="clr-namespace:procrastinate.Pages"
+    xmlns:strings="clr-namespace:procrastinate.Services"
+    x:Name="ThisShell"
+    Title="Procrastinator's Helper">
+
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Shell" ApplyToDerivedTypes="True">
+                <Setter Property="Shell.BackgroundColor" Value="{AppThemeBinding Light={StaticResource Nord6}, Dark={StaticResource Nord0}}"/>
+                <Setter Property="Shell.ForegroundColor" Value="{AppThemeBinding Light={StaticResource Nord0}, Dark={StaticResource Nord6}}"/>
+                <Setter Property="Shell.TitleColor" Value="{AppThemeBinding Light={StaticResource Nord0}, Dark={StaticResource Nord6}}"/>
+                <Setter Property="Shell.TabBarBackgroundColor" Value="{AppThemeBinding Light={StaticResource Nord5}, Dark={StaticResource Nord1}}"/>
+                <Setter Property="Shell.TabBarForegroundColor" Value="{AppThemeBinding Light={StaticResource Nord1}, Dark={StaticResource Nord4}}"/>
+                <Setter Property="Shell.TabBarTitleColor" Value="{AppThemeBinding Light={StaticResource Nord1}, Dark={StaticResource Nord4}}"/>
+                <Setter Property="Shell.TabBarUnselectedColor" Value="{StaticResource Nord3}"/>
+                <Setter Property="Shell.FlyoutBackgroundColor" Value="{AppThemeBinding Light={StaticResource Nord5}, Dark={StaticResource Nord1}}"/>
+            </Style>
+        </ResourceDictionary>
+    </Shell.Resources>
+
+    <!-- iOS: Bottom TabBar -->
+    <TabBar x:Name="MobileTabBar">
+        <ShellContent Title="{Binding TabTasks, Source={x:Static strings:AppStrings.Instance}}" ContentTemplate="{DataTemplate pages:TasksPage}" Route="TasksPage">
+            <ShellContent.Icon>
+                <FontImageSource Glyph="&#xf46d;" FontFamily="FontAwesomeSolid" Color="{StaticResource Nord4}"/>
+            </ShellContent.Icon>
+        </ShellContent>
+        <ShellContent Title="{Binding TabGames, Source={x:Static strings:AppStrings.Instance}}" ContentTemplate="{DataTemplate pages:GamesPage}" Route="GamesPage">
+            <ShellContent.Icon>
+                <FontImageSource Glyph="&#xf11b;" FontFamily="FontAwesomeSolid" Color="{StaticResource Nord4}"/>
+            </ShellContent.Icon>
+        </ShellContent>
+        <ShellContent Title="{Binding TabExcuses, Source={x:Static strings:AppStrings.Instance}}" ContentTemplate="{DataTemplate pages:ExcusePage}" Route="ExcusePage">
+            <ShellContent.Icon>
+                <FontImageSource Glyph="&#xf630;" FontFamily="FontAwesomeSolid" Color="{StaticResource Nord4}"/>
+            </ShellContent.Icon>
+        </ShellContent>
+        <ShellContent Title="{Binding TabStats, Source={x:Static strings:AppStrings.Instance}}" ContentTemplate="{DataTemplate pages:StatsPage}" Route="StatsPage">
+            <ShellContent.Icon>
+                <FontImageSource Glyph="&#xf201;" FontFamily="FontAwesomeSolid" Color="{StaticResource Nord4}"/>
+            </ShellContent.Icon>
+        </ShellContent>
+    </TabBar>
+
+    <!-- Mac Catalyst: Flyout sidebar -->
+    <FlyoutItem x:Name="DesktopFlyout" FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent Title="{Binding TabTasks, Source={x:Static strings:AppStrings.Instance}}" ContentTemplate="{DataTemplate pages:TasksPage}" Route="TasksPageDesktop">
+            <ShellContent.Icon>
+                <FontImageSource Glyph="&#xf46d;" FontFamily="FontAwesomeSolid" Color="{StaticResource Nord4}"/>
+            </ShellContent.Icon>
+        </ShellContent>
+        <ShellContent Title="{Binding TabGames, Source={x:Static strings:AppStrings.Instance}}" ContentTemplate="{DataTemplate pages:GamesPage}" Route="GamesPageDesktop">
+            <ShellContent.Icon>
+                <FontImageSource Glyph="&#xf11b;" FontFamily="FontAwesomeSolid" Color="{StaticResource Nord4}"/>
+            </ShellContent.Icon>
+        </ShellContent>
+        <ShellContent Title="{Binding TabExcuses, Source={x:Static strings:AppStrings.Instance}}" ContentTemplate="{DataTemplate pages:ExcusePage}" Route="ExcusePageDesktop">
+            <ShellContent.Icon>
+                <FontImageSource Glyph="&#xf630;" FontFamily="FontAwesomeSolid" Color="{StaticResource Nord4}"/>
+            </ShellContent.Icon>
+        </ShellContent>
+        <ShellContent Title="{Binding TabStats, Source={x:Static strings:AppStrings.Instance}}" ContentTemplate="{DataTemplate pages:StatsPage}" Route="StatsPageDesktop">
+            <ShellContent.Icon>
+                <FontImageSource Glyph="&#xf201;" FontFamily="FontAwesomeSolid" Color="{StaticResource Nord4}"/>
+            </ShellContent.Icon>
+        </ShellContent>
+    </FlyoutItem>
+
+</Shell>
