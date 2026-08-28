@@ -8,16 +8,11 @@
             BindingContext = new MonkeysViewModel();
         }
 
-        void OnListViewItemTapped(object sender, ItemTappedEventArgs e)
+        async void OnCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ((ListView)sender).SelectedItem = null;
-        }
-
-        async void OnListViewItemSelected(object sender, SelectedItemChangedEventArgs e)
-        {
-            var monkey = ((ListView)sender).SelectedItem as Monkey;
-            if (monkey != null)
+            if (e.CurrentSelection.FirstOrDefault() is Monkey monkey)
             {
+                ((CollectionView)sender).SelectedItem = null;
                 var page = new MonkeyDetailsPage();
                 page.BindingContext = monkey;
                 await Navigation.PushAsync(page);

@@ -72,7 +72,20 @@
         </Grid>
 
         <!-- List of Persons -->
-        <ListView Grid.Row="3"
-                  ItemsSource="{Binding Persons}" />
+        <CollectionView Grid.Row="3"
+                        ItemsSource="{Binding Persons}"
+                        SelectionMode="Single">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="local:PersonViewModel">
+                    <Grid RowDefinitions="Auto,1">
+                        <Label Padding="10"
+                               Text="{Binding .}" />
+                        <BoxView Grid.Row="1"
+                                 Color="#E0E0E0"
+                                 HeightRequest="1" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </Grid>
 </ContentPage>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
 			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+			 xmlns:local="clr-namespace:ModalNavigation"
 			 x:Class="ModalNavigation.MainPage">
 	<ContentPage.Padding>
 		<OnPlatform x:TypeArguments="Thickness">
@@ -8,8 +9,22 @@
         </OnPlatform>
 	</ContentPage.Padding>
 	<ContentPage.Content>
-		<StackLayout>
-			<ListView x:Name="listView" ItemSelected="OnItemSelected" />
-		</StackLayout>
+		<Grid>
+			<CollectionView x:Name="collectionView"
+			                SelectionMode="Single"
+			                SelectionChanged="OnSelectionChanged">
+				<CollectionView.ItemTemplate>
+					<DataTemplate x:DataType="local:Contact">
+						<Grid RowDefinitions="Auto,1">
+							<Label Padding="10"
+							       Text="{Binding Name}" />
+							<BoxView Grid.Row="1"
+							         Color="#E0E0E0"
+							         HeightRequest="1" />
+						</Grid>
+					</DataTemplate>
+				</CollectionView.ItemTemplate>
+			</CollectionView>
+		</Grid>
 	</ContentPage.Content>
 </ContentPage>

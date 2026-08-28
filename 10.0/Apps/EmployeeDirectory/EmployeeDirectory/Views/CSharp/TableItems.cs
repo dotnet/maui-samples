@@ -14,6 +14,8 @@
             };
         }
 
+
+
         public static View CreateListItem()
         {
             var photo = new Image { HeightRequest = 44, WidthRequest = 44 };
@@ -70,4 +72,3 @@
         }
     }
 }
-

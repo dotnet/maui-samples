@@ -2,16 +2,18 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models="clr-namespace:ControlGallery.Models"
-             x:Class="ControlGallery.Views.XAML.ListViewDemoPage"
-             Title="ListView Demo">
-    <StackLayout>
-        <Label Text="ListView"
+             x:Class="ControlGallery.Views.XAML.CollectionViewListDemoPage"
+             Title="CollectionView List Demo">
+    <Grid RowDefinitions="Auto,*">
+        <Label Text="CollectionView"
                FontSize="50"
                FontAttributes="Bold"
                HorizontalOptions="Center" />
 
-        <ListView Margin="10, 0">
-            <ListView.ItemsSource>
+        <CollectionView Grid.Row="1"
+                        Margin="10,0"
+                        SelectionMode="Single">
+            <CollectionView.ItemsSource>
                 <x:Array Type="{x:Type models:Person}">
                     <models:Person Name="Abigail" Birthday="01/15/1975" FavoriteColor="Aqua" />
                     <models:Person Name="Bob" Birthday="02/20/1976" FavoriteColor="Black" />
@@ -40,25 +42,29 @@
                     <models:Person Name="Yvonne" Birthday="01/10/1987" FavoriteColor="Purple" />
                     <models:Person Name="Zachary" Birthday="02/05/1988" FavoriteColor="Red" />
                 </x:Array>
-            </ListView.ItemsSource>
+            </CollectionView.ItemsSource>
                 
-            <ListView.ItemTemplate>
+            <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:Person">
-                    <ViewCell>
-                        <StackLayout Padding="0, 5"
-                                     Orientation="Horizontal" 
-                                     Spacing="6">
+                    <Grid Padding="0,5"
+                          RowDefinitions="Auto,1"
+                          ColumnDefinitions="Auto,*"
+                          ColumnSpacing="6">
                             <BoxView Color="{Binding FavoriteColor}"
                                      HeightRequest="60" 
                                      WidthRequest="60" />
-                            <StackLayout VerticalOptions="Center">
+                            <VerticalStackLayout Grid.Column="1"
+                                                 VerticalOptions="Center">
                                 <Label Text="{Binding Name}" />
                                 <Label Text="{Binding Birthday, StringFormat='Born {0:d}'}" />
-                            </StackLayout>
-                        </StackLayout>
-                    </ViewCell>
+                            </VerticalStackLayout>
+                        <BoxView Grid.Row="1"
+                                 Grid.ColumnSpan="2"
+                                 Color="#E0E0E0"
+                                 HeightRequest="1" />
+                    </Grid>
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </StackLayout>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
 </ContentPage>
