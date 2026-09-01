@@ -16,15 +16,15 @@
                FontAttributes="Bold"
                Margin="12" />
 
-        <ListView HasUnevenRows="True"
-                  ItemsSource="{Binding PermissionItems}"
-                  Grid.Row="1">
-            <ListView.ItemTemplate>
+        <CollectionView ItemsSource="{Binding PermissionItems}"
+                        SelectionMode="Single"
+                        Grid.Row="1">
+            <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:PermissionItem">
-                    <ViewCell>
+                    <Grid HeightRequest="91"
+                          RowDefinitions="90,1">
                         <Grid Padding="12"
                               RowSpacing="0"
-                              HeightRequest="90"
                               RowDefinitions="*,*,*"
                               ColumnDefinitions="*,Auto,Auto">
 
@@ -63,9 +63,12 @@
                                     VerticalOptions="Center" />
 
                         </Grid>
-                    </ViewCell>
+                        <BoxView Grid.Row="1"
+                                 Color="#E0E0E0"
+                                 HeightRequest="1" />
+                    </Grid>
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </Grid>
 </views:BasePage>
