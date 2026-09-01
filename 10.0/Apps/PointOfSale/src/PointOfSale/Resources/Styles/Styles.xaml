@@ -307,6 +307,10 @@
         <Setter Property="OnColor" Value="{StaticResource Primary}"/>
     </Style>
 
+    <Style TargetType="TextCell">
+        <Setter Property="TextColor" Value="Black"/>
+    </Style>
+
     <Style TargetType="Image">
         <Setter Property="Aspect" Value="Center"/>
 
