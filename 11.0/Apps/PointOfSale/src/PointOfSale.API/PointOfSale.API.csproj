@@ -11,12 +11,14 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Datasync" Version="5.0.12" />
     <PackageReference Include="Microsoft.AspNetCore.Datasync.EFCore" Version="5.0.12" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.0">
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.16" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.16">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Identity.Web" Version="2.0.7-preview" />
+    <PackageReference Include="Microsoft.Identity.Web" Version="2.17.0" />
+    <!-- The identity and SQL clients otherwise resolve a vulnerable Azure.Identity version. -->
+    <PackageReference Include="Azure.Identity" Version="1.11.4" />
   </ItemGroup>
 
 </Project>

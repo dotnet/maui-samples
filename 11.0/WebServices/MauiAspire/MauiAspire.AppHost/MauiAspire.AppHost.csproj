@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <Sdk Name="Aspire.AppHost.Sdk" Version="13.0.0" />
+  <Sdk Name="Aspire.AppHost.Sdk" Version="13.6.5" />
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -12,9 +12,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Aspire.Hosting.AppHost" Version="13.0.0" />
-    <PackageReference Include="Aspire.Hosting.DevTunnels" Version="13.0.0-preview.1.25560.3" />
-    <PackageReference Include="Aspire.Hosting.Maui" Version="13.0.0-preview.1.25560.3" />
+    <PackageReference Include="Aspire.Hosting.AppHost" Version="13.6.5" />
+    <PackageReference Include="Aspire.Hosting.DevTunnels" Version="13.6.5" />
+    <PackageReference Include="Aspire.Hosting.Maui" Version="13.6.5-preview.1.26559.7" />
   </ItemGroup>
 
   <ItemGroup>

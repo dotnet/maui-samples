@@ -64,6 +64,9 @@
 
 	<ItemGroup>
 		<PackageReference Include="sqlite-net-pcl" Version="1.9.172" />
+		<!-- Keep sqlite-net's provider and update the vulnerable transitive native SQLite binaries. -->
+		<PackageReference Include="SQLitePCLRaw.lib.e_sqlite3" Version="2.1.12" />
+		<PackageReference Include="SQLitePCLRaw.lib.e_sqlite3.android" Version="2.1.12" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="$(DotNetVersion)" />
 	</ItemGroup>

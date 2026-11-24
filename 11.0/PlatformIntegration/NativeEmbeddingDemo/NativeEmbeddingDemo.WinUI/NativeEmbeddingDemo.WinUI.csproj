@@ -34,7 +34,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.6.240923002" />
 		<Manifest Include="$(ApplicationManifest)" />
 	</ItemGroup>
 
