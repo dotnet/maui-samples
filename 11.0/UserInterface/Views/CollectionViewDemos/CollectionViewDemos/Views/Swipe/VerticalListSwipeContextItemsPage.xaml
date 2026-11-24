@@ -28,6 +28,19 @@
                         </SwipeView.LeftItems>
                         <Grid BackgroundColor="White"
                               Padding="10">
+                            <!-- Right-click context menu on Mac Catalyst and Windows; SwipeView covers touch platforms. -->
+                            <FlyoutBase.ContextFlyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem Text="Favorite"
+                                                    IconImageSource="favorite.png"
+                                                    Command="{Binding x:DataType='viewmodels:MonkeysViewModel', Source={RelativeSource AncestorType={x:Type viewmodels:MonkeysViewModel}}, Path=FavoriteCommand}"
+                                                    CommandParameter="{Binding}" />
+                                    <MenuFlyoutItem Text="Delete"
+                                                    IconImageSource="delete.png"
+                                                    Command="{Binding x:DataType='viewmodels:MonkeysViewModel', Source={RelativeSource AncestorType={x:Type viewmodels:MonkeysViewModel}}, Path=DeleteCommand}"
+                                                    CommandParameter="{Binding}" />
+                                </MenuFlyout>
+                            </FlyoutBase.ContextFlyout>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />

@@ -30,7 +30,7 @@ The releases were checked against [.NET release metadata](https://dotnetcli.blob
 
 ## Migration decisions
 
-- **Omitted:** `UserInterface/Views/ListViewDemos`. Its entire purpose is the deprecated ListView. [CollectionViewDemos](UserInterface/Views/CollectionViewDemos) already teaches selection, grouping, templates, headers/footers, scrolling, refresh, sizing, and swipe actions.
+- **Replaced by CollectionViewDemos:** `UserInterface/Views/ListViewDemos` is not copied because its entire purpose is the deprecated ListView. Every ListViewDemos page has a CollectionView equivalent in [CollectionViewDemos](UserInterface/Views/CollectionViewDemos#coming-from-listviewdemos), which maps each page and adds a context-menu (`ContextFlyout`) replacement for ListView context actions. The original sample remains in [10.0/UserInterface/Views/ListViewDemos](../10.0/UserInterface/Views/ListViewDemos) for reference.
 - **Omitted gallery pages:** `EntryCellDemoPage`, `ImageCellDemoPage`, `SwitchCellDemoPage`, `TextCellDemoPage`, `ViewCellDemoPage`, `ListViewDemoPage`, `TableViewFormDemoPage`, and `TableViewMenuDemoPage` under `UserInterface/ControlGallery/ControlGallery/Views/XAML`. These teach obsolete cells or controls; the gallery already has Entry, Image, Switch, Label, layouts, and CollectionView alternatives. Their menu entries and project metadata are removed too.
 - **Replaced teaching page:** `XAML/Fundamentals/XamlSamples/Views/ListViewDemoPage` becomes `CollectionViewDemoPage`, retaining the color-list data-binding scenario with view-based templates.
 - **Migrated incidental lists:** BehaviorsDemos, DataBindingDemos, ModalNavigation, PlatformIntegrationDemos, XAML Fundamentals, and MarkupExtensions use CollectionView, view templates, and selection-change event arguments. Bounded Grid rows replace unconstrained stacking parents where needed for scrolling.
@@ -55,14 +55,15 @@ The migration was checked with .NET SDK 11.0.100, MAUI 11.0.10, and Xcode 27.2 o
 - **Additional platform compiles:** EmployeeDirectory, PlatformIntegrationDemos, SwipeGesture, WeatherTwentyOne, DataBindingDemos, BehaviorsDemos, ControlGallery, VideoDemos, Passkeys.Client, and WordPuzzle each compile for iOS simulator arm64 and Android, adding 20 target checks. Neither compiler audit reports obsolete API diagnostics (`CS0612`, `CS0618`, or `CA1422`).
 - **Full native builds:** SwipeGesture, WeatherTwentyOne, WordPuzzle, and DataBindingDemos build for Mac Catalyst; ModalNavigation builds for Android arm64. The packaging library builds and packs for Android, iOS, and Mac Catalyst, and its consumer compiles against that local package.
 - **Structural checks:** all 135 intended source projects and six existing destination projects are present; binary assets are unchanged, project/solution references resolve, and all 222 MAUI Apple application platform folders have matching scene manifests and delegates. No changes were made to `9.0/` or `10.0/`.
-- **Runtime limitation:** the desktop was locked, so the built UI apps could not be launched for screenshots or gesture, selection, layout, and animation checks. Builds are not proof of correct rendering. Windows, physical-device features, external services, BrowserStack execution, and hosted CI remain unverified.
+- **Runtime checks (iOS 27.2 simulator):** XamlSamples launches, and its replacement `CollectionViewDemoPage` renders and scrolls the color list. In CollectionViewDemos, the context menu items page renders, swiping a row shows Favorite and Delete, and Delete removes the item. On Mac Catalyst, CollectionViewDemos launches and the page renders. The right-click `ContextFlyout` could not be triggered through desktop automation, so it is unverified at runtime.
+- **Not verified at runtime:** other migrated pages and samples (for example DataBindingDemos selection and WordPuzzle/PhotoPuzzle animations), Android, Windows, physical-device features, external services, BrowserStack execution, and hosted CI.
 - **Remaining warnings:** existing nullable/event-handler and XAML binding warnings remain. NuGet also reports inherited dependency advisories, including critical advisories for PointOfSale.API's `System.Drawing.Common` 5.0.0 and MauiAspire's `Aspire.Dashboard.Sdk.osx-arm64` 13.0.0, plus other high/moderate advisories. PointOfSale's Microcharts dependency also produces a legacy MonoAndroid framework warning. These are not suppressed; dependency remediation is separate follow-up work before treating those demos as production templates.
 
 ## Sample coverage
 
 The table below accounts for every source project through its owning sample path. A sample is grouped by its nearest README (or project directory when it has none); multi-project samples show their project count. All assets and supporting files are copied with their sample, except the explicitly omitted paths above.
 
-**135 projects in 107 baseline sample groups copied; one ListView-only sample/project omitted. Five existing .NET 11 feature demos (six projects) retained, for 141 projects in this folder.** The one replaced XAML teaching page is inside a copied sample, not an additional sample.
+**135 projects in 107 baseline sample groups copied; one ListView-only sample/project replaced by the existing CollectionViewDemos. Five existing .NET 11 feature demos (six projects) retained, for 141 projects in this folder.** The one replaced XAML teaching page is inside a copied sample, not an additional sample.
 
 | Baseline sample path (relative to `10.0/`) | Projects | Decision |
 | --- | ---: | --- |
@@ -151,7 +152,7 @@ The table below accounts for every source project through its owning sample path
 | [UserInterface/Views/GraphicsViewDemos](UserInterface/Views/GraphicsViewDemos) | 1 | Copied and retargeted. |
 | [UserInterface/Views/HybridWebViewDemo](UserInterface/Views/HybridWebViewDemo) | 1 | Copied and retargeted. |
 | [UserInterface/Views/IndicatorViewDemos](UserInterface/Views/IndicatorViewDemos) | 1 | Copied and retargeted. |
-| `UserInterface/Views/ListViewDemos` | 1 | Omitted: deprecated-only; use CollectionViewDemos. |
+| `UserInterface/Views/ListViewDemos` | 1 | Not copied: deprecated-only. Replaced by [CollectionViewDemos](UserInterface/Views/CollectionViewDemos#coming-from-listviewdemos); see the page mapping there. |
 | [UserInterface/Views/Map](UserInterface/Views/Map) | 1 | Copied and retargeted. |
 | [UserInterface/Views/RadioButtonDemos](UserInterface/Views/RadioButtonDemos) | 1 | Copied and retargeted. |
 | [UserInterface/Views/RefreshViewDemo](UserInterface/Views/RefreshViewDemo) | 1 | Copied and retargeted. |
