@@ -33,7 +33,7 @@ This sample demonstrates the `LongPressGestureRecognizer` introduced in .NET MAU
 
 ## Prerequisites
 
-- .NET 11 Preview 3 or later
+- .NET 11 SDK or later
 - .NET MAUI workload (`dotnet workload install maui`)
 
 ## Running the sample

@@ -1,0 +1,39 @@
+﻿<VerticalStackLayout xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Spacing="15"
+             x:Class="WeatherTwentyOne.Views.CurrentWidget">
+
+    <Image
+        WidthRequest="200"
+        HeightRequest="200"
+        HorizontalOptions="Center"
+        Aspect="AspectFit"
+        Source="weather_partly_cloudy_day.png">
+        <!--<Image.Shadow>
+            <Shadow Brush="#2B0B98" Offset="20,20" Radius="20" Opacity="0.8"/>
+        </Image.Shadow>-->
+    </Image>
+
+    <Label
+        Text="52℉"
+        HorizontalOptions="Center"
+        class="Title1" />
+
+    <Border BackgroundColor="{StaticResource Primary}"
+            Stroke="Transparent"
+            StrokeThickness="1"
+            HorizontalOptions="Center"
+            Padding="15,4"
+            >
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="60"/>
+        </Border.StrokeShape>
+        <Label
+                    Text="Clear"
+                    TextColor="{StaticResource White}"
+                    HorizontalOptions="Center"
+                    FontSize="18"/>
+    </Border>
+    
+
+</VerticalStackLayout>

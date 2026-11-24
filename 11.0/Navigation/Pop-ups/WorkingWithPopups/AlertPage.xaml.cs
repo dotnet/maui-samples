@@ -1,0 +1,25 @@
+﻿using System;
+using System.Diagnostics;
+
+
+namespace WorkingWithPopups
+{
+	public partial class AlertPage : ContentPage
+	{
+		public AlertPage ()
+		{
+			InitializeComponent ();
+		}
+
+		async void OnAlertSimpleClicked (object? sender, EventArgs e)
+		{
+			await this.DisplayAlertAsync ("Alert", "You have been alerted", "OK");
+		}
+
+		async void OnAlertYesNoClicked (object? sender, EventArgs e)
+		{
+			var answer = await this.DisplayAlertAsync ("Question?", "Would you like to play a game", "Yes", "No");
+			Debug.WriteLine ("Answer: " + answer);
+		}
+	}
+}

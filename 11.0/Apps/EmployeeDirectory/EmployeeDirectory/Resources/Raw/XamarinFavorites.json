@@ -1,0 +1,99 @@
+{
+  "people": [
+    {
+      "id": "nat@xamarin.com",
+      "name": "Nat Friedman",
+      "telephoneNumbers": ["1-855-926-2746"],
+      "homeNumbers": [],
+      "mobileNumbers": [],
+      "email": "nat@xamarin.com",
+      "twitter": "@natfriedman",
+      "title": "CEO",
+      "company": "Xamarin",
+      "department": "Developers"
+    },
+    {
+      "id": "miguel@xamarin.com",
+      "name": "Miguel de Icaza",
+      "telephoneNumbers": ["1-855-926-2746"],
+      "homeNumbers": [],
+      "mobileNumbers": [],
+      "email": "miguel@xamarin.com",
+      "twitter": "@migueldeicaza",
+      "title": "CTO",
+      "company": "Xamarin",
+      "department": "Developers"
+    },
+    {
+      "id": "joseph@xamarin.com",
+      "name": "Joseph Hill",
+      "telephoneNumbers": ["1-855-926-2746"],
+      "homeNumbers": [],
+      "mobileNumbers": [],
+      "email": "joseph@xamarin.com",
+      "twitter": "@josephhill",
+      "title": "COO",
+      "company": "Xamarin",
+      "department": "Developers"
+    },
+    {
+      "id": "stephanie.schatz@xamarin.com",
+      "name": "Stephanie Schatz",
+      "telephoneNumbers": ["1-855-926-2746"],
+      "homeNumbers": [],
+      "mobileNumbers": [],
+      "email": "stephanie.schatz@xamarin.com",
+      "twitter": "@she_travels",
+      "title": "VP Sales",
+      "company": "Xamarin",
+      "department": "Developers"
+    },
+    {
+      "id": "hello@xamarin.com",
+      "name": "Xander A. Monkey",
+      "telephoneNumbers": ["1-855-926-2746"],
+      "homeNumbers": [],
+      "mobileNumbers": [],
+      "email": "hello@xamarin.com",
+      "twitter": "@xamarinhq",
+      "title": "Mascot",
+      "company": "Xamarin",
+      "department": "Developers"
+    },
+    {
+      "id": "anuj.bhatia@xamarin.com",
+      "name": "Anuj Bhatia",
+      "telephoneNumbers": ["1-855-926-2746"],
+      "homeNumbers": [],
+      "mobileNumbers": [],
+      "email": "anuj.bhatia@xamarin.com",
+      "title": "Customer Success Engineer",
+      "company": "Xamarin",
+      "department": "Developers"
+    },
+    {
+      "id": "jo.ann.buckner@xamarin.com",
+      "name": "Jo Ann Buckner",
+      "telephoneNumbers": ["1-855-926-2746"],
+      "homeNumbers": [],
+      "mobileNumbers": [],
+      "email": "jo.ann.buckner@xamarin.com",
+      "twitter": "@joannbuckner",
+      "title": "Marketing",
+      "company": "Xamarin",
+      "department": "Developers"
+    },
+    {
+      "id": "chrisntr@xamarin.com",
+      "name": "Chris Hardy",
+      "telephoneNumbers": ["1-855-926-2746"],
+      "homeNumbers": [],
+      "mobileNumbers": [],
+      "email": "chrisntr@xamarin.com",
+      "twitter": "@chrisntr",
+      "title": "Support Dude",
+      "company": "Xamarin",
+      "department": "Developers"
+    }
+  ]
+}

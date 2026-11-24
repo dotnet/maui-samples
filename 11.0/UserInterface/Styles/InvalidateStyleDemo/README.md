@@ -26,8 +26,8 @@ Demonstrates two new .NET MAUI 11 APIs for dynamically reapplying styles after m
 
 | API | Namespace | Since |
 |-----|-----------|-------|
-| `StyleableElement.InvalidateStyle()` | `Microsoft.Maui.Controls` | .NET 11 Preview 3 |
-| `VisualStateManager.InvalidateVisualStates(VisualElement)` | `Microsoft.Maui.Controls` | .NET 11 Preview 3 |
+| `StyleableElement.InvalidateStyle()` | `Microsoft.Maui.Controls` | .NET 11 |
+| `VisualStateManager.InvalidateVisualStates(VisualElement)` | `Microsoft.Maui.Controls` | .NET 11 |
 
 ## Reference
 

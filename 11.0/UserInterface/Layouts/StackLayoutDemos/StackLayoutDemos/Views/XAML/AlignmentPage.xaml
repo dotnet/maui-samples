@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StackLayoutDemos.Views.XAML.AlignmentPage"
+             Title="Alignment demo">
+    <StackLayout Margin="20"
+                 Spacing="6">
+        <Label Text="Start"
+               BackgroundColor="Gray"
+               HorizontalOptions="Start" />
+        <Label Text="Center"
+               BackgroundColor="Gray"
+               HorizontalOptions="Center" />
+        <Label Text="End"
+               BackgroundColor="Gray"
+               HorizontalOptions="End" />
+        <Label Text="Fill"
+               BackgroundColor="Gray"
+               HorizontalOptions="Fill" />
+    </StackLayout>
+</ContentPage>

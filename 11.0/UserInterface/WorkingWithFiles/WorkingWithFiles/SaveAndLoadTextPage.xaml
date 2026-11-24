@@ -1,0 +1,16 @@
+<?xml version="1.0" ?><ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="WorkingWithFiles.SaveAndLoadTextPage" Title="Save/Load Text">
+    <Grid Margin="20" RowSpacing="20" RowDefinitions="Auto,Auto,Auto,Auto,*">
+        <Label Text="Save and Load Text" FontSize="18" FontAttributes="Bold" Grid.Row="0"/>
+        
+        <Label Text="Type below and press Save, then Load" FontSize="14" Grid.Row="1"/>
+        
+        <Entry x:Name="InputEntry" Placeholder="Enter text to save..." VerticalOptions="Start" Grid.Row="2"/>
+        
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="20" Grid.Row="3">
+            <Button x:Name="SaveButton" Text="Save" Clicked="OnSaveClicked"/>
+            <Button x:Name="LoadButton" Text="Load" Clicked="OnLoadClicked"/>
+        </StackLayout>
+        
+        <Label x:Name="OutputLabel" Text="" VerticalOptions="Fill" BackgroundColor="LightGray" Padding="10" Grid.Row="4"/>
+    </Grid>
+</ContentPage>

@@ -25,9 +25,7 @@ jobs:
       with:
         dotnet-version: |
           10.0.x
-          11.0.100-preview.7.26381.103
-        include-prerelease: true
-        dotnet-quality: 'preview'
+          11.0.x
 
     - name: Install .NET MAUI Workload
       run: |
@@ -35,7 +33,7 @@ jobs:
         dotnet workload install maui
 
     - name: Select Xcode Version
-      run: sudo xcode-select -s /Applications/Xcode_26.6.app
+      run: sudo xcode-select -s /Applications/Xcode_27.2.app
       if: runner.os == 'macOS'
 
     - name: Find and build changed projects

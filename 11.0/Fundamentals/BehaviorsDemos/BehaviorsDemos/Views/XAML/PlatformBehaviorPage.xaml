@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:BehaviorsDemos"
+             x:Class="BehaviorsDemos.PlatformBehaviorPage"
+             Title="PlatformBehavior demo">
+    <VerticalStackLayout Margin="20"
+                         Spacing="6">
+        <Label Text="The image below is tinted red with a PlatformBehaviour on Android, iOS, and MacCatalyst." />
+        <Image Source="dotnet_bot.png"
+               SemanticProperties.Description="Cute dot net bot waving hi to you!"
+               HeightRequest="200"
+               HorizontalOptions="Center">
+            <Image.Behaviors>
+                <local:TintColorBehavior TintColor="Red" />
+            </Image.Behaviors>
+        </Image>
+    </VerticalStackLayout>
+</ContentPage>

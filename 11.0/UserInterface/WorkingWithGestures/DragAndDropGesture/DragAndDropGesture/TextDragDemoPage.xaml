@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DragAndDropGesture.TextDragDemoPage"
+             Title="Text Drag and Drop Demo"
+             BackgroundColor="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource DarkBackground}}">
+    <ScrollView>
+        <StackLayout Padding="20" Spacing="30">
+            
+            <!-- Header Section -->
+            <Border BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource DarkPrimary}}"
+                    StrokeThickness="0"
+                    Padding="20,15">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="12"/>
+                </Border.StrokeShape>
+                <Label Text="Answer the math question by dragging the correct answer"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}"
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center"/>
+            </Border>
+
+            <!-- Question Section -->
+            <Border BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource DarkSurface}}"
+                    StrokeThickness="0"
+                    Padding="25">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="12"/>
+                </Border.StrokeShape>
+                <Border.Shadow>
+                    <Shadow Brush="{AppThemeBinding Light={StaticResource Gray400}, Dark={StaticResource DarkGray200}}"
+                            Offset="0,4"
+                            Radius="8"
+                            Opacity="0.3"/>
+                </Border.Shadow>
+                <StackLayout Spacing="15">
+                    <Label Text="🧮 Math Question"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource DarkGray900}}"
+                           HorizontalOptions="Center"/>
+                    <Label Text="What's 2 + 2?"
+                           FontSize="28"
+                           FontAttributes="Bold"
+                           TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource DarkPrimary}}"
+                           HorizontalOptions="Center"/>
+                </StackLayout>
+            </Border>
+
+            <!-- Answer Options Section -->
+            <StackLayout Spacing="20">
+                <Label Text="Drag the Correct Answer"
+                       FontSize="16"
+                       FontAttributes="Bold"
+                       TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource DarkGray900}}"
+                       HorizontalOptions="Center"/>
+                
+                <Grid ColumnDefinitions="*,20,*" RowSpacing="20">
+                    <!-- Option 1: 3 -->
+                    <Border Grid.Column="0"
+                            BackgroundColor="{AppThemeBinding Light={StaticResource Secondary}, Dark={StaticResource DarkSecondary}}"
+                            StrokeThickness="0"
+                            Padding="20">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="12"/>
+                        </Border.StrokeShape>
+                        <Border.Shadow>
+                            <Shadow Brush="{AppThemeBinding Light={StaticResource Gray400}, Dark={StaticResource DarkGray200}}"
+                                    Offset="0,4"
+                                    Radius="8"
+                                    Opacity="0.3"/>
+                        </Border.Shadow>
+                        <Label Text="3"
+                               FontSize="36"
+                               FontAttributes="Bold"
+                               TextColor="{AppThemeBinding Light={StaticResource PrimaryDarkText}, Dark={StaticResource Black}}"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               HeightRequest="80">
+                            <Label.GestureRecognizers>
+                                <DragGestureRecognizer />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Border>
+                    
+                    <!-- Option 2: 4 -->
+                    <Border Grid.Column="2"
+                            BackgroundColor="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource DarkTertiary}}"
+                            StrokeThickness="0"
+                            Padding="20">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="12"/>
+                        </Border.StrokeShape>
+                        <Border.Shadow>
+                            <Shadow Brush="{AppThemeBinding Light={StaticResource Gray400}, Dark={StaticResource DarkGray200}}"
+                                    Offset="0,4"
+                                    Radius="8"
+                                    Opacity="0.3"/>
+                        </Border.Shadow>
+                        <Label Text="4"
+                               FontSize="36"
+                               FontAttributes="Bold"
+                               TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               HeightRequest="80">
+                            <Label.GestureRecognizers>
+                                <DragGestureRecognizer />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Border>
+                </Grid>
+            </StackLayout>
+
+            <!-- Drop Zone Section -->
+            <StackLayout Spacing="15">
+                <Label Text="Drop Zone"
+                       FontSize="16"
+                       FontAttributes="Bold"
+                       TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource DarkGray900}}"
+                       HorizontalOptions="Center"/>
+                
+                <Border BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource DarkSurface}}"
+                        Stroke="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource DarkGray300}}"
+                        StrokeThickness="2"
+                        StrokeDashArray="8,4"
+                        Padding="20">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="12"/>
+                    </Border.StrokeShape>
+                    <Border.Shadow>
+                        <Shadow Brush="{AppThemeBinding Light={StaticResource Gray400}, Dark={StaticResource DarkGray200}}"
+                                Offset="0,2"
+                                Radius="4"
+                                Opacity="0.2"/>
+                    </Border.Shadow>
+                    <Entry Placeholder="Drag your answer here"
+                           FontSize="18"
+                           TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource DarkGray900}}"
+                           PlaceholderColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource DarkGray500}}"
+                           BackgroundColor="Transparent"
+                           IsReadOnly="True"
+                           HeightRequest="60">
+                        <Entry.GestureRecognizers>
+                            <DropGestureRecognizer DragOver="OnDropGestureRecognizerDragOver"
+                                                   Drop="OnDropGestureRecognizerDrop" />
+                        </Entry.GestureRecognizers>
+                    </Entry>
+                </Border>
+            </StackLayout>
+
+            <!-- Instructions Section -->
+            <Border BackgroundColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource DarkGray200}}"
+                    StrokeThickness="0"
+                    Padding="15">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="8"/>
+                </Border.StrokeShape>
+                <StackLayout Spacing="8">
+                    <Label Text="📝 Instructions"
+                           FontSize="14"
+                           FontAttributes="Bold"
+                           TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource DarkGray900}}"/>
+                    <Label Text="1. Look at the math question above"
+                           FontSize="12"
+                           TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource DarkGray600}}"/>
+                    <Label Text="2. Drag the correct answer from the options"
+                           FontSize="12"
+                           TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource DarkGray600}}"/>
+                    <Label Text="3. Drop it into the answer box below"
+                           FontSize="12"
+                           TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource DarkGray600}}"/>
+                    <Label Text="4. Get instant feedback on your answer!"
+                           FontSize="12"
+                           TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource DarkGray600}}"/>
+                </StackLayout>
+            </Border>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

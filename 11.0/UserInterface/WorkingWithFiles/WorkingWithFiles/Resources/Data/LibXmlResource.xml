@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ArrayOfMonkey xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Monkey>
+		<Name>Baboon</Name>
+		<Location>Africa and Asia</Location>
+		<Details>Baboons are African and Arabian Old World monkeys belonging to the genus Papio, part of the subfamily Cercopithecinae.</Details>
+	</Monkey>
+	<Monkey>
+		<Name>Capuchin Monkey</Name>
+		<Location>Central and South America</Location>
+		<Details>The capuchin monkeys are New World monkeys of the subfamily Cebinae.</Details>
+	</Monkey>
+	<Monkey>
+		<Name>Blue Monkey</Name>
+		<Location>Central and East Africa</Location>
+		<Details>The blue monkey or diademed monkey is a species of Old World monkey native to Central and East Africa.</Details>
+	</Monkey>
+	<Monkey>
+		<Name>Squirrel Monkey</Name>
+		<Location>Central and South America</Location>
+		<Details>The squirrel monkeys are the New World monkeys of the genus Saimiri.</Details>
+	</Monkey>
+	<Monkey>
+		<Name>Golden Lion Tamarin</Name>
+		<Location>Brazil</Location>
+		<Details>The golden lion tamarin is a small New World monkey of the family Callitrichidae.</Details>
+	</Monkey>
+	<Monkey>
+		<Name>Howler Monkey</Name>
+		<Location>South America</Location>
+		<Details>Howler monkeys are among the largest of the New World monkeys.</Details>
+	</Monkey>
+	<Monkey>
+		<Name>Japanese Macaque</Name>
+		<Location>Japan</Location>
+		<Details>The Japanese macaque is a terrestrial Old World monkey species native to Japan.</Details>
+	</Monkey>
+	<Monkey>
+		<Name>Mandrill</Name>
+		<Location>Africa</Location>
+		<Details>The mandrill is a primate of the Old World monkey family, closely related to the baboons and even more closely to the drill.</Details>
+	</Monkey>
+</ArrayOfMonkey>

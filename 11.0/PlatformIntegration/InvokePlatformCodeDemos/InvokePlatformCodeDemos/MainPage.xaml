@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="InvokePlatformCodeDemos.MainPage">
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="FontSize"
+                    Value="{OnPlatform Default=14, WinUI=20}" />
+        </Style>
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="Auto, Auto, Auto"
+          ColumnDefinitions="0.8*, 0.2*"
+          Margin="20"
+          RowSpacing="10">
+        <Label Text="Orientation using conditional compilation:"
+               FontAttributes="Bold" />
+        <Label x:Name="conditionalCompilationOrientationLabel"
+               Grid.Column="1" />
+        <Label Grid.Row="1" Text="Orientation using partial methods:"
+               FontAttributes="Bold" />
+        <Label x:Name="partialMethodsOrientationLabel"
+               Grid.Row="1"
+               Grid.Column="1" />
+    </Grid>
+</ContentPage>

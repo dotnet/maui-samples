@@ -1,0 +1,77 @@
+name: windowsCI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  workflow_dispatch:
+
+env:
+    DOTNETVERSION: 11.0.x
+
+jobs:
+  buildWindows:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET SDK ${{env.DOTNETVERSION}}
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '${{env.DOTNETVERSION}}'
+
+      - name: Install .NET MAUI
+        shell: pwsh
+        run: |
+          & dotnet nuget locals all --clear
+          & dotnet workload install maui
+
+      # https://docs.microsoft.com/en-us/dotnet/maui/windows/deployment/overview
+      - name: Build Windows MSIX
+        run: |
+          cd .\11.0\Apps\WeatherTwentyOne\src\
+          dotnet publish -f net11.0-windows10.0.19041.0 -c Release
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: artifacts-windows
+          path: |
+            **\*.msix
+
+  buildAndroid:
+      runs-on: windows-latest
+
+      steps:
+        - uses: actions/checkout@v4
+
+        - name: Setup .NET SDK ${{env.DOTNETVERSION}}
+          uses: actions/setup-dotnet@v4
+          with:
+            dotnet-version: '${{env.DOTNETVERSION}}'
+
+        - name: Install .NET MAUI
+          shell: bash
+          run: |
+            dotnet nuget locals all --clear
+            dotnet workload install maui
+
+        - name: Restore nuget packages
+          run: |
+            cd 11.0\Apps\WeatherTwentyOne\src
+            dotnet restore WeatherTwentyOne.sln
+
+          # https://docs.microsoft.com/en-us/dotnet/maui/android/deployment/overview
+        - name: Build Android App
+          shell: bash
+          run: |
+            cd 11.0/Apps/WeatherTwentyOne/src
+            dotnet publish -f:net11.0-android -c:Release
+
+        - uses: actions/upload-artifact@v4
+          with:
+            name: artifacts-android
+            path: |
+              11.0\Apps\WeatherTwentyOne\src\WeatherTwentyOne\bin\Release\net11.0-android\publish\*.apk

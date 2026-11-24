@@ -17,3 +17,9 @@
 
 # PlatformIntegrationDemo requires iOS code signing certificates
 ./10.0/PlatformIntegration/PlatformIntegrationDemos/PlatformIntegrationDemo/PlatformIntegrationDemo.csproj
+# .NET 11: the same external service, packaging and signing prerequisites apply.
+./11.0/UITesting/BrowserStackAppiumMaui/BasicAppiumNunitSample/UITests.Android/UITests.Android.csproj
+./11.0/UITesting/BrowserStackAppiumMaui/BasicAppiumNunitSample/UITests.iOS/UITests.iOS.csproj
+./11.0/Packaging/NuGetWithMSBuildFiles/src/PackageConsumerApp/PackageConsumerApp.csproj
+./11.0/AgeSignals/AgeSignals/AgeSignals.csproj
+./11.0/PlatformIntegration/PlatformIntegrationDemos/PlatformIntegrationDemo/PlatformIntegrationDemo.csproj

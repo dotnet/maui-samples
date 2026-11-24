@@ -21,3 +21,8 @@
 ./10.0/AI/ChatClient/src/SimpleChatClient.csproj
 ./10.0/AI/ChatClientWithTools/src/ChatClientWithTools.csproj
 ./10.0/Apps/DeveloperBalance/DeveloperBalance.csproj
+# .NET 11: the same external service, packaging and signing prerequisites apply.
+./11.0/UITesting/BrowserStackAppiumMaui/BasicAppiumNunitSample/UITests.Android/UITests.Android.csproj
+./11.0/UITesting/BrowserStackAppiumMaui/BasicAppiumNunitSample/UITests.iOS/UITests.iOS.csproj
+./11.0/Packaging/NuGetWithMSBuildFiles/src/PackageConsumerApp/PackageConsumerApp.csproj
+./11.0/AgeSignals/DeclaredAgeRangeWrapperBinding.iOS/DeclaredAgeRangeWrapperBinding.iOS.csproj

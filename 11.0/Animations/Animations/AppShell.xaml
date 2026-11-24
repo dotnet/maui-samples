@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="Animations.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Animations"
+    Shell.FlyoutBehavior="Flyout">
+
+    <ShellContent
+        Title="Custom Animations"
+        ContentTemplate="{DataTemplate local:CustomAnimationPage}"
+        Route="custom" />
+    
+    <ShellContent
+        Title="Fade"
+        ContentTemplate="{DataTemplate local:FadePage}"
+        Route="fade" />
+
+    <ShellContent
+        Title="Rotate"
+        ContentTemplate="{DataTemplate local:RotatePage}"
+        Route="rotate" />
+
+    <ShellContent
+        Title="Scale"
+        ContentTemplate="{DataTemplate local:ScalePage}"
+        Route="scale" />
+
+    <ShellContent
+        Title="Translate"
+        ContentTemplate="{DataTemplate local:TranslatePage}"
+        Route="translate" />
+
+</Shell>

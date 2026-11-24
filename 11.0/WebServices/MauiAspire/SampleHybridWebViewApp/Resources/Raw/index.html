@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecast</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="HybridWebView.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .logo {
+            width: 120px;
+            height: auto;
+            margin-bottom: 16px;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .actions {
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        button {
+            background-color: #1b6ec2;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        button:hover:not(:disabled) {
+            background-color: #1861ac;
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .status-message {
+            text-align: center;
+            padding: 12px;
+            margin-bottom: 16px;
+            background-color: #e8e8e8;
+            border-radius: 8px;
+        }
+
+        .weather-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .weather-card {
+            background-color: #F3F6FF;
+            padding: 14px;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .date {
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .temperature {
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .temp-c {
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .temp-f {
+            color: #666;
+        }
+
+        .summary {
+            font-style: italic;
+            color: #394867;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #1a1a1a;
+                color: #e0e0e0;
+            }
+
+            .weather-card {
+                background-color: #1F2633;
+            }
+
+            .status-message {
+                background-color: #2a2a2a;
+                color: #e0e0e0;
+            }
+
+            .summary {
+                color: #C5D1EB;
+            }
+
+            .temp-f {
+                color: #999;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        function App() {
+            const [forecasts, setForecasts] = useState([]);
+            const [isLoading, setIsLoading] = useState(false);
+            const [statusMessage, setStatusMessage] = useState('Initializing...');
+
+            // Check HybridWebView availability on mount
+            useEffect(() => {
+                console.log('Checking HybridWebView availability...');
+                console.log('window.HybridWebView:', window.HybridWebView);
+                
+                if (window.HybridWebView) {
+                    setStatusMessage('Click "Load Weather" to get forecast');
+                } else {
+                    setStatusMessage('Error: HybridWebView not available. Check console for details.');
+                }
+            }, []);
+
+            // Set up callback for receiving data from C#
+            window.receiveWeatherData = (data) => {
+                try {
+                    console.log('Received weather data:', data);
+                    console.log('First item:', data.length > 0 ? data[0] : 'No items');
+                    setForecasts(data);
+                    setStatusMessage(data.length > 0 
+                        ? `Loaded ${data.length} weather forecasts`
+                        : 'No weather data available');
+                } catch (error) {
+                    console.error('Error processing weather data:', error);
+                    setStatusMessage(`Error: ${error.message}`);
+                    setForecasts([]);
+                } finally {
+                    setIsLoading(false);
+                }
+            };
+
+            const loadWeatherData = async () => {
+                try {
+                    setIsLoading(true);
+                    setStatusMessage('Loading weather data...');
+
+                    console.log('Attempting to send message to C#...');
+                    console.log('window.HybridWebView:', window.HybridWebView);
+
+                    // Check if HybridWebView is available
+                    if (!window.HybridWebView) {
+                        throw new Error('HybridWebView not available');
+                    }
+
+                    // Send message to C# via HybridWebView
+                    console.log('Sending GetWeatherForecast message...');
+                    window.HybridWebView.SendRawMessage('GetWeatherForecast');
+                } catch (error) {
+                    console.error('Error loading weather data:', error);
+                    setStatusMessage(`Error: ${error.message}`);
+                    setForecasts([]);
+                    setIsLoading(false);
+                }
+            };
+
+            const formatDate = (dateString) => {
+                if (!dateString) return 'Unknown Date';
+                const date = new Date(dateString);
+                if (isNaN(date.getTime())) return 'Invalid Date';
+                return date.toLocaleDateString('en-US', { 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                });
+            };
+
+            return (
+                <div className="container">
+                <div className="header">
+                    <img src="dotnet_bot.png" alt="dotnet bot" className="logo" />
+                    <h1>Weather Forecast</h1>
+                    <p className="subtitle">Data from the Aspire Weather API</p>
+                </div>                    <div className="actions">
+                        <button onClick={loadWeatherData} disabled={isLoading}>
+                            {isLoading ? 'Loading...' : 'Load Weather'}
+                        </button>
+                    </div>
+
+                    {statusMessage && (
+                        <div className="status-message">{statusMessage}</div>
+                    )}
+
+                    {forecasts.length > 0 ? (
+                        <div className="weather-grid">
+                            {forecasts.map((forecast, index) => {
+                                // Handle both PascalCase and camelCase property names
+                                const date = forecast.date || forecast.Date;
+                                const tempC = forecast.temperatureC ?? forecast.TemperatureC ?? 'N/A';
+                                const tempF = forecast.temperatureF ?? forecast.TemperatureF ?? 'N/A';
+                                const summary = forecast.summary || forecast.Summary || 'No summary';
+                                
+                                return (
+                                    <div key={index} className="weather-card">
+                                        <div className="date">{formatDate(date)}</div>
+                                        <div className="temperature">
+                                            <span className="temp-c">{tempC}°C</span>
+                                            <span className="temp-f">({tempF}°F)</span>
+                                        </div>
+                                        <div className="summary">{summary}</div>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    ) : !isLoading && !statusMessage.includes('Loading') && (
+                        <div className="empty-state">No forecasts available yet.</div>
+                    )}
+                </div>
+            );
+        }
+
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+<?xml version="1.0" ?><ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ControlGallery.Views.XAML.ProgressBarDemoPage" Title="ProgressBar">
+    <Grid RowSpacing="6" RowDefinitions="Auto,*">
+        <Label Text="ProgressBar" FontSize="50" FontAttributes="Bold" HorizontalOptions="Center" Grid.Row="0"/>
+
+        <ProgressBar x:Name="progressBar" VerticalOptions="Center" Margin="10, 0" Grid.Row="1"/>
+    </Grid>
+</ContentPage>

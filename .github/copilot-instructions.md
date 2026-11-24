@@ -10,8 +10,9 @@ When in Agent mode, work directly in the code files.
 
 This is the **dotnet/maui-samples** repository containing .NET MAUI sample applications organized by .NET version:
 
-- The **highest stable version folder** (e.g., `10.0/`) contains the complete set of samples
-- The **preview folder** (e.g., `11.0/`) contains only samples demonstrating features specific to that preview
+- The **highest stable version folder** (currently `11.0/`) contains the complete set of samples
+- Future **preview folders** contain only samples demonstrating features specific to that preview; no .NET 12 preview folder is present yet.
+- `10.0/` is preserved for users of the previous release; do not modify it during the .NET 11 migration.
 - **Deprecated folders** (e.g., `9.0/`) contain only a README with a deprecation notice
 - **`Upgrading/`** contains Xamarin.Forms to .NET MAUI migration guides
 
@@ -32,7 +33,7 @@ This is the **dotnet/maui-samples** repository containing .NET MAUI sample appli
 - Place stable samples in the current stable version folder
 - Only add samples to the preview folder if they demonstrate features **specific** to that preview that don't exist in the stable version
 - Use `$(MauiVersion)` and `$(DotNetVersion)` for package versions (they are inherited from `Directory.Build.props`)
-- Ensure `SupportedOSPlatformVersion` is at least `15.0` for iOS and macCatalyst
+- For .NET 11 samples, set `SupportedOSPlatformVersion` to at least `15.0` for iOS, `17.0` for Mac Catalyst, and `24.0` for Android.
 
 ## .NET MAUI coding conventions
 
@@ -76,7 +77,7 @@ When a new stable .NET version ships, use this playbook (see `.github/agents/ver
 
 1. Promote the preview folder to the new stable with all samples
 2. Create a new preview folder for the next .NET version
-3. Deprecate the old stable folder (replace content with a README)
+3. Preserve the previous release folder unless its removal is explicitly requested
 4. Update `Directory.Build.props` in each versioned folder with correct versions
 5. Update `.github/dependabot.yml` to point at the new folder paths
 

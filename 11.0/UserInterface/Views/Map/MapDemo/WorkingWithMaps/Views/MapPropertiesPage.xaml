@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:maps="http://schemas.microsoft.com/dotnet/2021/maui/maps"
+             x:Class="WorkingWithMaps.Views.MapPropertiesPage"
+             Title="Map properties demo">
+    <StackLayout Margin="10">
+        <maps:Map x:Name="map"
+                  MapClicked="OnMapClicked" />
+        <Grid ColumnDefinitions="0.8*,0.2*"
+              RowDefinitions="Auto,Auto,Auto,Auto">
+            <Label Text="Scroll enabled:"
+                   VerticalTextAlignment="Center" />
+            <CheckBox Grid.Column="1"
+                      x:Name="scrollEnabledCheckBox"
+                      IsChecked="True" />
+            <Label Grid.Row="1"
+                   Text="Zoom enabled:"
+                   VerticalTextAlignment="Center" />
+            <CheckBox Grid.Row="1"
+                      Grid.Column="1"
+                      x:Name="zoomEnabledCheckBox"
+                      IsChecked="True" />
+            <Label Grid.Row="2"
+                   Text="Show user:"
+                   VerticalTextAlignment="Center" />
+            <CheckBox Grid.Row="2"
+                      Grid.Column="1"
+                      x:Name="showUserCheckBox"
+                      CheckedChanged="OnCheckBoxCheckedChanged"/>
+            <Label Grid.Row="3"
+                   Text="Show traffic:"
+                   VerticalTextAlignment="Center" />
+            <CheckBox Grid.Row="3"
+                      Grid.Column="1"
+                      x:Name="showTrafficCheckBox"
+                      CheckedChanged="OnCheckBoxCheckedChanged" />
+        </Grid>
+    </StackLayout>
+</ContentPage>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="ShellFlyoutSample.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:ShellFlyoutSample"
+    Shell.FlyoutBehavior="Flyout">
+
+    <FlyoutItem Title="One" FlyoutIcon="{StaticResource IconOne}">
+        <ShellContent
+            Title="One"
+            ContentTemplate="{DataTemplate local:MainPage}"
+            Route="OnePage" />
+    </FlyoutItem>
+    <FlyoutItem Title="Two" FlyoutIcon="{StaticResource IconTwo}">
+        <ShellContent
+            Title="Two"
+            ContentTemplate="{DataTemplate local:MainPage}"
+            Route="TwoPage" />
+    </FlyoutItem>
+    <FlyoutItem Title="Three" FlyoutIcon="{StaticResource IconThree}">
+        <ShellContent
+            Title="Three"
+            ContentTemplate="{DataTemplate local:MainPage}"
+            Route="ThreePage" />
+    </FlyoutItem>
+    <FlyoutItem Title="Four" FlyoutIcon="{StaticResource IconFour}">
+        <ShellContent
+            Title="Four"
+            ContentTemplate="{DataTemplate local:MainPage}"
+            Route="FourPage" />
+    </FlyoutItem>
+
+</Shell>

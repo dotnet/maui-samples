@@ -1,0 +1,24 @@
+<?xml version="1.0" ?><views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:views="clr-namespace:PlatformIntegrationDemo.Views" xmlns:viewmodels="clr-namespace:PlatformIntegrationDemo.ViewModels" x:Class="PlatformIntegrationDemo.Views.FilePickerPage" Title="File Picker" x:DataType="viewmodels:FilePickerViewModel">
+    <views:BasePage.BindingContext>
+        <viewmodels:FilePickerViewModel/>
+    </views:BasePage.BindingContext>
+
+    <Grid RowDefinitions="Auto,*">
+        <Label Text="Pick files from storage." FontAttributes="Bold" Margin="12"/>
+
+        <ScrollView Grid.Row="1">
+            <Grid Padding="12,0,12,12" RowSpacing="6" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,*">
+                <Button Text="Pick file" Command="{Binding PickFileCommand}" Grid.Row="0"/>
+                <Button Text="Pick image" Command="{Binding PickImageCommand}" Grid.Row="1"/>
+                <Button Text="Pick pdf" Command="{Binding PickPdfCommand}" Grid.Row="2"/>
+                <Button Text="Pick custom type" Command="{Binding PickCustomTypeCommand}" Grid.Row="3"/>
+                <Button Text="Pick image and send email" Command="{Binding PickAndSendCommand}" Grid.Row="4"/>
+                <Button Text="Pick multiple files" Command="{Binding PickMultipleFilesCommand}" Grid.Row="5"/>
+
+                <Label Text="{Binding Text}" HorizontalOptions="Fill" Grid.Row="6"/>
+
+                <Image Source="{Binding Image}" IsVisible="{Binding IsImageVisible}" HorizontalOptions="Fill" VerticalOptions="Fill" Grid.Row="7"/>
+            </Grid>
+        </ScrollView>
+    </Grid>
+</views:BasePage>
