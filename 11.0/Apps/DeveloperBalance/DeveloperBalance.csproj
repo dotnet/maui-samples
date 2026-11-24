@@ -75,7 +75,7 @@
 		<!-- bundle_green has no patched release; keep its provider and update the native SQLite binaries. -->
 		<PackageReference Include="SQLitePCLRaw.lib.e_sqlite3" Version="2.1.12" />
 		<PackageReference Include="SQLitePCLRaw.lib.e_sqlite3.android" Version="2.1.12" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'" />
-		<PackageReference Include="Syncfusion.Maui.Toolkit" Version="1.0.8" />
+		<PackageReference Include="Syncfusion.Maui.Toolkit" Version="1.0.12" />
 	</ItemGroup>
 	
 </Project>

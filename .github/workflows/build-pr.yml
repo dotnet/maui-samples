@@ -10,7 +10,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [windows-latest, macos-26]
+        os: [windows-latest, xcode-27]
 
     runs-on: ${{ matrix.os }}
 
@@ -35,6 +35,23 @@ jobs:
     - name: Select Xcode Version
       run: sudo xcode-select -s /Applications/Xcode_27.2.app
       if: runner.os == 'macOS'
+
+    - name: Prepare local NuGet sample packages
+      run: |
+        $changedFiles = git diff --name-only -r --diff-filter=d HEAD^1 HEAD
+        if (-not ($changedFiles | Where-Object { $_ -like '11.0/Packaging/NuGetWithMSBuildFiles/*' })) {
+          Write-Output "No NuGetWithMSBuildFiles changes; skipping local package preparation."
+          exit 0
+        }
+        # PackageConsumerApp restores SamplePackage from this local feed, so produce it before any project builds.
+        $sampleSource = "./11.0/Packaging/NuGetWithMSBuildFiles/src"
+        New-Item -ItemType Directory -Force -Path "$sampleSource/artifacts" | Out-Null
+        dotnet build "$sampleSource/SamplePackage/SamplePackage.csproj"
+        if ($LASTEXITCODE -ne 0) {
+          Write-Output "::error:: Failed to produce SamplePackage for PackageConsumerApp"
+          exit $LASTEXITCODE
+        }
+      shell: powershell
 
     - name: Find and build changed projects
       run: |
