@@ -1,22 +1,56 @@
-<?xml version="1.0" ?><ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:models="clr-namespace:ControlGallery.Models" xmlns:views="clr-namespace:ControlGallery.Views.XAML" x:Class="ControlGallery.Views.XAML.IndicatorViewDemoPage" Title="IndicatorView Demo" x:DataType="views:IndicatorViewDemoPage">
-    <StackLayout Margin="20">
-        <Label Text="IndicatorView" FontSize="50" FontAttributes="Bold" HorizontalOptions="Center"/>
-        <CarouselView ItemsSource="{Binding Monkeys}" IndicatorView="indicatorView">
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:ControlGallery.Models"
+             xmlns:views="clr-namespace:ControlGallery.Views.XAML"
+             x:Class="ControlGallery.Views.XAML.IndicatorViewDemoPage"
+             Title="IndicatorView"
+             x:DataType="views:IndicatorViewDemoPage">
+    <Grid RowDefinitions="Auto,Auto,Auto"
+          Style="{StaticResource DemoLayout}">
+        <VerticalStackLayout Style="{StaticResource DemoHeader}">
+            <Label Text="Collections" Style="{StaticResource Eyebrow}" />
+            <Label Text="IndicatorView" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+            <Label Text="Show the number of items in a CarouselView, and the current position." Style="{StaticResource Lead}" />
+        </VerticalStackLayout>
+
+        <CarouselView Grid.Row="1"
+                      ItemsSource="{Binding Monkeys}"
+                      IndicatorView="indicatorView"
+                      HeightRequest="440"
+                      PeekAreaInsets="28"
+                      Margin="-20,0">
             <CarouselView.ItemTemplate>
                 <DataTemplate x:DataType="models:Monkey">
-                    <Grid RowSpacing="6" RowDefinitions="*">
-                        <Border Stroke="DarkGray" StrokeShape="RoundRectangle 5" Margin="20" Padding="20" HeightRequest="300" HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="0">
-                            <StackLayout>
-                                <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="20" HorizontalOptions="Center" VerticalOptions="Center"/>
-                                <Image Source="{Binding ImageUrl}" Aspect="AspectFill" HeightRequest="150" WidthRequest="150" HorizontalOptions="Center"/>
-                                <Label Text="{Binding Location}" HorizontalOptions="Center"/>
-                                <Label Text="{Binding Details}" FontAttributes="Italic" HorizontalOptions="Center" MaxLines="5" LineBreakMode="TailTruncation"/>
-                            </StackLayout>
-                        </Border>
-                    </Grid>
+                    <Border Style="{StaticResource Card}"
+                            Padding="0"
+                            Margin="6,0"
+                            VerticalOptions="Start">
+                        <Grid RowDefinitions="220,Auto">
+                            <Image Source="{Binding ImageUrl}"
+                                   Aspect="AspectFill" />
+                            <VerticalStackLayout Grid.Row="1"
+                                                 Padding="20"
+                                                 Spacing="6">
+                                <Label Text="{Binding Name}"
+                                       Style="{StaticResource Title2}" />
+                                <Label Text="{Binding Location}"
+                                       Style="{StaticResource Eyebrow}" />
+                                <Label Text="{Binding Details}"
+                                       Style="{StaticResource BodySecondary}"
+                                       MaxLines="5"
+                                       LineBreakMode="TailTruncation" />
+                            </VerticalStackLayout>
+                        </Grid>
+                    </Border>
                 </DataTemplate>
             </CarouselView.ItemTemplate>
         </CarouselView>
-        <IndicatorView x:Name="indicatorView" Margin="0,0,0,40" IndicatorColor="LightGray" SelectedIndicatorColor="DarkGray" HorizontalOptions="Center"/>
-    </StackLayout>
+
+        <IndicatorView x:Name="indicatorView"
+                       Grid.Row="2"
+                       IndicatorSize="8"
+                       MaximumVisible="12"
+                       HorizontalOptions="Center" />
+    </Grid>
 </ContentPage>

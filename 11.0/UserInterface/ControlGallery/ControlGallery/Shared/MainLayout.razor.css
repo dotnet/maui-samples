@@ -68,3 +68,10 @@ main {
 		padding-right: 1.5rem !important;
 	}
 }
+
+@media (prefers-color-scheme: dark) {
+	.top-row {
+		background-color: #24222F;
+		border-bottom-color: #353146;
+	}
+}

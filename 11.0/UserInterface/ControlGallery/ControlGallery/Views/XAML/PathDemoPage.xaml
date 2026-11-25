@@ -1,25 +1,33 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ControlGallery.Views.XAML.PathDemoPage"
-             Title="Path Demo">
-    <StackLayout>
-        <Label Text="Path"
-               FontSize="50"
-               FontAttributes="Bold"
-               HorizontalOptions="Center" />
-        <Path Stroke="Black"
-              Aspect="Uniform"
-              HorizontalOptions="Center"
-              HeightRequest="100"
-              WidthRequest="100"
-              Data="M13.9,16.2
-                    L32,16.2 32,31.9 13.9,30.1Z
-                    M0,16.2
-                    L11.9,16.2 11.9,29.9 0,28.6Z
-                    M11.9,2
-                    L11.9,14.2 0,14.2 0,3.3Z
-                    M32,0
-                    L32,14.2 13.9,14.2 13.9,1.8Z" />
-       </StackLayout>
+             Title="Path">
+    <Grid RowDefinitions="Auto,Auto"
+          Style="{StaticResource DemoLayout}">
+        <VerticalStackLayout Style="{StaticResource DemoHeader}">
+            <Label Text="Shapes &amp; graphics" Style="{StaticResource Eyebrow}" />
+            <Label Text="Path" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+            <Label Text="Draw curves and complex shapes from path geometry." Style="{StaticResource Lead}" />
+        </VerticalStackLayout>
+
+        <Border Grid.Row="1"
+                Style="{StaticResource DemoSurface}">
+            <Path Stroke="{StaticResource Blue}"
+                  StrokeThickness="2"
+                  Aspect="Uniform"
+                  HorizontalOptions="Center"
+                  VerticalOptions="Center"
+                  HeightRequest="140"
+                  WidthRequest="140"
+                  Data="M13.9,16.2
+                        L32,16.2 32,31.9 13.9,30.1Z
+                        M0,16.2
+                        L11.9,16.2 11.9,29.9 0,28.6Z
+                        M11.9,2
+                        L11.9,14.2 0,14.2 0,3.3Z
+                        M32,0
+                        L32,14.2 13.9,14.2 13.9,1.8Z" />
+        </Border>
+    </Grid>
 </ContentPage>

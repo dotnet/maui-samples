@@ -7,8 +7,13 @@ namespace ControlGallery.Drawables
     {
         public void Draw(ICanvas canvas, RectF dirtyRect)
         {
+            // Match the hands to the current light or dark theme.
+            bool isDark = Application.Current?.RequestedTheme == AppTheme.Dark;
+            Color handColor = isDark ? Color.FromArgb("#F4F2FA") : Color.FromArgb("#17151F");
+
             canvas.StrokeLineCap = LineCap.Round;
-            canvas.FillColor = Colors.Gray;
+            canvas.StrokeColor = handColor;
+            canvas.FillColor = Color.FromArgb("#8C879F");
 
             // Translation and scaling
             canvas.Translate(dirtyRect.Center.X, dirtyRect.Center.Y);
@@ -39,6 +44,7 @@ namespace ControlGallery.Drawables
             canvas.RestoreState();
 
             // Second hand
+            canvas.StrokeColor = Color.FromArgb("#F43F5E");
             canvas.StrokeSize = 2;
             canvas.SaveState();
             canvas.Rotate(6 * now.Second);

@@ -1,13 +1,30 @@
-<?xml version="1.0" ?><ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ControlGallery.Views.XAML.AbsoluteLayoutDemoPage" Title="AbsoluteLayout Demo">
-    <Grid RowSpacing="6" RowDefinitions="Auto,*">
-        <Label Text="AbsoluteLayout" FontSize="40" FontAttributes="Bold" HorizontalOptions="Center" Grid.Row="0"/>
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ControlGallery.Views.XAML.AbsoluteLayoutDemoPage"
+             Title="AbsoluteLayout">
+    <Grid RowDefinitions="Auto,*"
+          Style="{StaticResource DemoLayout}">
+        <VerticalStackLayout Style="{StaticResource DemoHeader}">
+            <Label Text="Layouts" Style="{StaticResource Eyebrow}" />
+            <Label Text="AbsoluteLayout" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+            <Label Text="Position children with absolute or proportional coordinates. These labels are moved in code." Style="{StaticResource Lead}" />
+        </VerticalStackLayout>
 
-        <AbsoluteLayout BackgroundColor="#CCCCFF" VerticalOptions="Fill" Grid.Row="1">
-            
-            <!-- Create two Labels for animating. -->
-            <Label x:Name="text1" Text="AbsoluteLayout" TextColor="Black" AbsoluteLayout.LayoutFlags="PositionProportional"/>
-            
-            <Label x:Name="text2" Text="AbsoluteLayout" TextColor="Black" AbsoluteLayout.LayoutFlags="PositionProportional"/>
-        </AbsoluteLayout>
+        <Border Grid.Row="1"
+                Style="{StaticResource DemoSurface}">
+            <AbsoluteLayout>
+                <!-- Two Labels that are animated in the code-behind file. -->
+                <Label x:Name="text1"
+                       Text="AbsoluteLayout"
+                       Style="{StaticResource Headline}"
+                       AbsoluteLayout.LayoutFlags="PositionProportional" />
+                <Label x:Name="text2"
+                       Text="AbsoluteLayout"
+                       Style="{StaticResource Headline}"
+                       TextColor="{AppThemeBinding Light={StaticResource PrimaryLight}, Dark={StaticResource PrimaryDark}}"
+                       AbsoluteLayout.LayoutFlags="PositionProportional" />
+            </AbsoluteLayout>
+        </Border>
     </Grid>
 </ContentPage>

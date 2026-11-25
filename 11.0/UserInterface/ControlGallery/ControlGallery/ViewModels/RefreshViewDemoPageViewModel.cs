@@ -17,6 +17,14 @@ namespace ControlGallery.ViewModels
         readonly Random random;
         bool isRefreshing;
 
+        // The accent palette from Resources/Styles/Colors.xaml.
+        static readonly Color[] palette =
+        [
+            Color.FromArgb("#7C5CFF"), Color.FromArgb("#3B82F6"), Color.FromArgb("#0284C7"),
+            Color.FromArgb("#0D9488"), Color.FromArgb("#16A34A"), Color.FromArgb("#F59E0B"),
+            Color.FromArgb("#EA580C"), Color.FromArgb("#F43F5E"), Color.FromArgb("#EC4899")
+        ];
+
         public bool IsRefreshing
         {
             get { return isRefreshing; }
@@ -44,7 +52,7 @@ namespace ControlGallery.ViewModels
             {
                 Items.Add(new RefreshItem
                 {
-                    Color = Color.FromRgb(random.NextDouble(), random.NextDouble(), random.NextDouble()),
+                    Color = palette[random.Next(palette.Length)],
                     Name = $"Item {itemNumber++}"
                 });
             }

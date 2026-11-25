@@ -1,59 +1,80 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models="clr-namespace:ControlGallery.Models"
              xmlns:views="clr-namespace:ControlGallery.Views.XAML"
+             xmlns:local="clr-namespace:ControlGallery"
              x:Class="ControlGallery.Views.XAML.SwipeViewDemoPage"
-             Title="SwipeView Demo"
+             Title="SwipeView"
              x:DataType="views:SwipeViewDemoPage"
              x:Name="page">
-    <StackLayout Margin="20">
-        <Label Text="SwipeView"
-               FontSize="50"
-               FontAttributes="Bold"
-               HorizontalOptions="Center" />
-        
+    <Grid RowDefinitions="Auto,Auto,*"
+          Style="{StaticResource DemoLayout}"
+          Padding="20,8,20,0">
+        <VerticalStackLayout Style="{StaticResource DemoHeader}">
+            <Label Text="Collections" Style="{StaticResource Eyebrow}" />
+            <Label Text="SwipeView" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+            <Label Text="Reveal context actions by swiping an item." Style="{StaticResource Lead}" />
+        </VerticalStackLayout>
+
+        <Border Grid.Row="1"
+                Style="{StaticResource Hint}">
+            <Label Text="Swipe an item to the left to delete it."
+                   Style="{StaticResource HintLabel}" />
+        </Border>
+
         <CollectionView x:Name="collectionView"
+                        Grid.Row="2"
                         ItemsSource="{Binding Monkeys}">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical"
+                                   ItemSpacing="10" />
+            </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:Monkey">
                     <SwipeView>
-                        <SwipeView.LeftItems>
+                        <SwipeView.RightItems>
                             <SwipeItems>
                                 <SwipeItem Text="Delete"
-                                           IconImageSource="delete.png"
-                                           BackgroundColor="LightPink"
+                                           BackgroundColor="{StaticResource DeepRose}"
                                            Command="{Binding x:DataType='views:SwipeViewDemoPage', Source={x:Reference page}, Path=DeleteCommand}"
-                                           CommandParameter="{Binding}" />
+                                           CommandParameter="{Binding}">
+                                    <SwipeItem.IconImageSource>
+                                        <FontImageSource FontFamily="MaterialIcons"
+                                                         Glyph="{x:Static local:MaterialIcons.Delete}"
+                                                         Color="White" />
+                                    </SwipeItem.IconImageSource>
+                                </SwipeItem>
                             </SwipeItems>
-                        </SwipeView.LeftItems>
-                        <Grid BackgroundColor="White"
-                              Padding="10">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <Image Grid.RowSpan="2" 
-                                   Source="{Binding ImageUrl}" 
-                                   Aspect="AspectFill"
-                                   HeightRequest="60" 
-                                   WidthRequest="60" />
-                            <Label Grid.Column="1" 
-                                   Text="{Binding Name}" 
-                                   FontAttributes="Bold" />
-                            <Label Grid.Row="1"
-                                   Grid.Column="1" 
-                                   Text="{Binding Location}"
-                                   FontAttributes="Italic" 
-                                   VerticalOptions="End" />
-                        </Grid>
+                        </SwipeView.RightItems>
+                        <Border Style="{StaticResource Card}"
+                                Padding="12">
+                            <Grid ColumnDefinitions="Auto,*"
+                                  ColumnSpacing="14">
+                                <Border StrokeThickness="0"
+                                        StrokeShape="RoundRectangle 12"
+                                        WidthRequest="56"
+                                        HeightRequest="56">
+                                    <Image Source="{Binding ImageUrl}"
+                                           Aspect="AspectFill" />
+                                </Border>
+                                <VerticalStackLayout Grid.Column="1"
+                                                     Spacing="2"
+                                                     VerticalOptions="Center">
+                                    <Label Text="{Binding Name}"
+                                           Style="{StaticResource Headline}" />
+                                    <Label Text="{Binding Location}"
+                                           Style="{StaticResource Caption}" />
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Border>
                     </SwipeView>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
+            <CollectionView.Footer>
+                <BoxView HeightRequest="24"
+                         Color="Transparent" />
+            </CollectionView.Footer>
         </CollectionView>
-    </StackLayout>
+    </Grid>
 </ContentPage>

@@ -1,19 +1,40 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ControlGallery.Views.XAML.HorizontalStackLayoutDemoPage"
-             Title="HorizontalStackLayout demo">
-    <VerticalStackLayout Margin="20">
-        <Label Text="HorizontalStackLayout"
-               FontSize="50"
-               FontAttributes="Bold"
-               HorizontalOptions="Center" />
-        <HorizontalStackLayout Spacing="10">
-            <Rectangle Fill="Red"
-                       HeightRequest="30"
-                       WidthRequest="30" />
-            <Label Text="Red"
-                   FontSize="20" />
-        </HorizontalStackLayout>
-    </VerticalStackLayout>
+             Title="HorizontalStackLayout">
+    <Grid RowDefinitions="Auto,Auto"
+          Style="{StaticResource DemoLayout}">
+        <VerticalStackLayout Style="{StaticResource DemoHeader}">
+            <Label Text="Layouts" Style="{StaticResource Eyebrow}" />
+            <Label Text="HorizontalStackLayout" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+            <Label Text="Arrange children in a single horizontal row." Style="{StaticResource Lead}" />
+        </VerticalStackLayout>
+
+        <Border Grid.Row="1"
+                Style="{StaticResource DemoSurface}">
+            <HorizontalStackLayout Spacing="10"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center">
+                <Rectangle Fill="{StaticResource Rose}"
+                           HeightRequest="30"
+                           WidthRequest="30" />
+                <Label Text="Red"
+                       FontSize="20"
+                       VerticalOptions="Center" />
+                <Rectangle Fill="{StaticResource Green}"
+                           HeightRequest="30"
+                           WidthRequest="30" />
+                <Label Text="Green"
+                       FontSize="20"
+                       VerticalOptions="Center" />
+                <Rectangle Fill="{StaticResource Blue}"
+                           HeightRequest="30"
+                           WidthRequest="30" />
+                <Label Text="Blue"
+                       FontSize="20"
+                       VerticalOptions="Center" />
+            </HorizontalStackLayout>
+        </Border>
+    </Grid>
 </ContentPage>

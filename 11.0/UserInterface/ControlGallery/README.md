@@ -18,4 +18,14 @@ The main control groups used to create the user interface of a .NET MAUI app are
 
 This sample displays supported .NET MAUI controls, one per page. Deprecated ListView, TableView, and cell-only pages are not carried forward; use the CollectionView, Entry, Image, Switch, Label, and layout pages instead.
 
+The home page groups the controls by category, and you can search or filter them. Every demo page uses the same header and card layout, in light and dark themes.
+
 For more information about .NET MAUI controls, see [.NET MAUI controls](https://docs.microsoft.com/dotnet/maui/user-interface/controls/).
+
+## Styling
+
+All styling lives in resource dictionaries, so the demo pages contain little more than the control they demonstrate:
+
+- `Resources/Styles/Colors.xaml` defines the color tokens. Most come in `Light` and `Dark` pairs, plus a shared accent palette.
+- `Resources/Styles/Styles.xaml` defines implicit styles that theme every control, and explicit styles such as `Title1`, `Lead`, `Card`, and `DemoSurface` that pages opt into.
+- The app uses the [Inter](https://rsms.me/inter/) typeface (SIL Open Font License) and [Material Icons Round](https://fonts.google.com/icons) (Apache License 2.0). Their license files are in `Resources/Fonts`.

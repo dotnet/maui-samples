@@ -19,5 +19,10 @@ namespace ControlGallery.Views.XAML
                 IsPresented = false;
             }
         }
+
+        void OnShowFlyoutClicked(object? sender, EventArgs e)
+        {
+            IsPresented = true;
+        }
     }
 }

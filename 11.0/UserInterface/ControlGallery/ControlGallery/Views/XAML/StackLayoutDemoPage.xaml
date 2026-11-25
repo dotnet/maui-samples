@@ -2,28 +2,35 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ControlGallery.Views.XAML.StackLayoutDemoPage"
-             Title="Stack layouts">
-    <Grid RowDefinitions="Auto,*" RowSpacing="6">
-        <Label Text="Stack layouts"
-               FontSize="50"
-               FontAttributes="Bold"
-               HorizontalOptions="Center" />
-        <Grid Grid.Row="1" Margin="10" RowDefinitions="Auto,*,Auto">
-            <VerticalStackLayout Spacing="6">
-                <Label Text="VerticalStackLayout" HorizontalOptions="Start" />
-                <Label Text="stacks its children" HorizontalOptions="Center" />
-                <Label Text="vertically." HorizontalOptions="End" />
-                <Label Text="HorizontalOptions controls" HorizontalOptions="Start" />
-                <Label Text="their cross-axis alignment." HorizontalOptions="End" />
-            </VerticalStackLayout>
-            <Label Grid.Row="1"
-                   Text="A Grid star row fills the remaining space. Stack layouts arrange children sequentially without expansion options."
-                   VerticalOptions="Center" />
-            <HorizontalStackLayout Grid.Row="2" Spacing="6">
-                <Label Text="Stacking" />
-                <Label Text="can also be" />
-                <Label Text="horizontal." />
-            </HorizontalStackLayout>
-        </Grid>
+             Title="StackLayout">
+    <Grid RowDefinitions="Auto,*"
+          Style="{StaticResource DemoLayout}">
+        <VerticalStackLayout Style="{StaticResource DemoHeader}">
+            <Label Text="Layouts" Style="{StaticResource Eyebrow}" />
+            <Label Text="StackLayout" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+            <Label Text="Arrange children sequentially, vertically or horizontally." Style="{StaticResource Lead}" />
+        </VerticalStackLayout>
+
+        <Border Grid.Row="1"
+                Style="{StaticResource DemoSurface}">
+            <Grid RowDefinitions="Auto,*,Auto">
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="VerticalStackLayout" HorizontalOptions="Start" />
+                    <Label Text="stacks its children" HorizontalOptions="Center" />
+                    <Label Text="vertically." HorizontalOptions="End" />
+                    <Label Text="HorizontalOptions controls" HorizontalOptions="Start" />
+                    <Label Text="their cross-axis alignment." HorizontalOptions="End" />
+                </VerticalStackLayout>
+                <Label Grid.Row="1"
+                       Text="A Grid star row fills the remaining space. Stack layouts arrange children sequentially without expansion options."
+                       Style="{StaticResource BodySecondary}"
+                       VerticalOptions="Center" />
+                <HorizontalStackLayout Grid.Row="2" Spacing="6">
+                    <Label Text="Stacking" />
+                    <Label Text="can also be" />
+                    <Label Text="horizontal." />
+                </HorizontalStackLayout>
+            </Grid>
+        </Border>
     </Grid>
 </ContentPage>

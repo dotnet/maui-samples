@@ -1,44 +1,42 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ControlGallery.Views.XAML.NavigationPageDemoPage"
-             Title="NavigationPage Demo">
+             Title="NavigationPage">
+    <!-- Although this page is actually a ContentPage, it can
+         navigate because the app's MainPage is hosted in a
+         NavigationPage (see App.xaml.cs). -->
 
-    <!-- Although this page is actually a ContentPage, it can 
-         function as a NavigationPage because the HomePage
-         is launched as an ApplicationPage in App. -->
+    <ScrollView>
+        <Grid RowDefinitions="Auto,Auto"
+              Style="{StaticResource DemoLayout}">
+            <VerticalStackLayout Style="{StaticResource DemoHeader}">
+                <Label Text="Pages" Style="{StaticResource Eyebrow}" />
+                <Label Text="NavigationPage" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+                <Label Text="Navigate through a stack of pages. Push a page, then use the back button to return." Style="{StaticResource Lead}" />
+            </VerticalStackLayout>
 
-    <StackLayout>
-        <Label Text="NavigationPage"
-               FontSize="40"
-               FontAttributes="Bold"
-               HorizontalOptions="Center" />
-
-        <StackLayout HorizontalOptions="Center">
-
-            <Button Text=" Go to Label Demo Page "
-                    FontSize="20"
-                    BorderWidth="1" 
-                    StyleId="LabelDemoPage"
-                    Clicked="OnButtonClicked" />
-
-            <Button Text=" Go to Image Demo Page "
-                    FontSize="20"
-                    BorderWidth="1" 
-                    StyleId="ImageDemoPage"
-                    Clicked="OnButtonClicked" />
-
-            <Button Text=" Go to BoxView Demo Page "
-                    FontSize="20"
-                    BorderWidth="1" 
-                    StyleId="BoxViewDemoPage"
-                    Clicked="OnButtonClicked" />
-
-            <Button Text=" Go to WebView Demo Page "
-                    FontSize="20"
-                    BorderWidth="1" 
-                    StyleId="WebViewDemoPage"
-                    Clicked="OnButtonClicked" />
-        </StackLayout>
-    </StackLayout>
+            <Border Grid.Row="1"
+                    Style="{StaticResource DemoSurface}">
+                <VerticalStackLayout Spacing="12">
+                    <Button Text="Go to Label demo page"
+                            Style="{StaticResource TonalButton}"
+                            StyleId="LabelDemoPage"
+                            Clicked="OnButtonClicked" />
+                    <Button Text="Go to Image demo page"
+                            Style="{StaticResource TonalButton}"
+                            StyleId="ImageDemoPage"
+                            Clicked="OnButtonClicked" />
+                    <Button Text="Go to BoxView demo page"
+                            Style="{StaticResource TonalButton}"
+                            StyleId="BoxViewDemoPage"
+                            Clicked="OnButtonClicked" />
+                    <Button Text="Go to WebView demo page"
+                            Style="{StaticResource TonalButton}"
+                            StyleId="WebViewDemoPage"
+                            Clicked="OnButtonClicked" />
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+    </ScrollView>
 </ContentPage>

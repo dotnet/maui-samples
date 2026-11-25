@@ -54,7 +54,10 @@
 		<MauiImage Update="Resources\Images\dotnet_bot.png" Resize="True" BaseSize="300,185" />
 
 		<!-- Custom Fonts -->
-		<MauiFont Include="Resources\Fonts\*" />
+		<MauiFont Include="Resources\Fonts\*.ttf;Resources\Fonts\*.otf" />
+
+		<!-- Font licenses, shipped with the app as required by the SIL OFL and Apache 2.0 licenses -->
+		<MauiAsset Include="Resources\Fonts\*-LICENSE.txt" LogicalName="Licenses\%(Filename)%(Extension)" />
 
 		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />

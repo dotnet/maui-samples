@@ -1,9 +1,27 @@
-<?xml version="1.0" ?><ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ControlGallery.Views.XAML.SliderDemoPage" Title="Slider Demo">
-    <Grid RowSpacing="6" RowDefinitions="Auto,*,*">
-        <Label Text="Slider" FontSize="50" FontAttributes="Bold" HorizontalOptions="Center" Grid.Row="0"/>
-        
-        <Slider x:Name="slider" Minimum="0" Maximum="100" VerticalOptions="Center" Grid.Row="1"/>
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ControlGallery.Views.XAML.SliderDemoPage"
+             Title="Slider">
+    <Grid RowDefinitions="Auto,Auto"
+          Style="{StaticResource DemoLayout}">
+        <VerticalStackLayout Style="{StaticResource DemoHeader}">
+            <Label Text="Input" Style="{StaticResource Eyebrow}" />
+            <Label Text="Slider" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+            <Label Text="Select a number from a continuous range." Style="{StaticResource Lead}" />
+        </VerticalStackLayout>
 
-        <Label x:DataType="Slider" Text="{Binding Source={x:Reference slider},                               Path=Value,                               StringFormat='Slider value is {0:F1}'}" FontSize="20" HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="2"/>
+        <Border Grid.Row="1"
+                Style="{StaticResource DemoSurface}">
+            <VerticalStackLayout Spacing="16"
+                                 VerticalOptions="Center">
+                <Slider x:Name="slider"
+                        Minimum="0"
+                        Maximum="100" />
+                <Label x:DataType="Slider"
+                       Text="{Binding Source={x:Reference slider}, Path=Value, StringFormat='Slider value is {0:F1}'}"
+                       Style="{StaticResource Value}" />
+            </VerticalStackLayout>
+        </Border>
     </Grid>
 </ContentPage>

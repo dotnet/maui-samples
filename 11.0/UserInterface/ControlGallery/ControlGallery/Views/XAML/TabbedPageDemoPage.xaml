@@ -1,42 +1,56 @@
-<?xml version="1.0" ?><TabbedPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:models="clr-namespace:ControlGallery.Models" x:Class="ControlGallery.Views.XAML.TabbedPageDemoPage" Title="TabbedPage Demo">
+<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:local="clr-namespace:ControlGallery"
+            xmlns:models="clr-namespace:ControlGallery.Models"
+            x:Class="ControlGallery.Views.XAML.TabbedPageDemoPage"
+            Title="TabbedPage">
 
     <TabbedPage.ItemsSource>
         <x:Array Type="{x:Type models:NamedColor}">
-            <models:NamedColor Name="Red" Color="Red"/>
-            <models:NamedColor Name="Green" Color="Green"/>
-            <models:NamedColor Name="Blue" Color="Blue"/>
-            <models:NamedColor Name="Yellow" Color="Yellow"/>
+            <models:NamedColor Name="Red" Color="Red" />
+            <models:NamedColor Name="Green" Color="Green" />
+            <models:NamedColor Name="Blue" Color="Blue" />
+            <models:NamedColor Name="Yellow" Color="Yellow" />
         </x:Array>
     </TabbedPage.ItemsSource>
 
     <TabbedPage.ItemTemplate>
         <DataTemplate x:DataType="models:NamedColor">
             <ContentPage Title="{Binding Name}">
-                <ContentPage.Resources>
-                    <ResourceDictionary>
-                        <Style TargetType="Label">
-                            <Setter Property="FontSize" Value="20"/>
-                            <Setter Property="HorizontalTextAlignment" Value="End"/>
-                        </Style>
-                    </ResourceDictionary>
-                </ContentPage.Resources>
+                <ContentPage.IconImageSource>
+                    <FontImageSource FontFamily="MaterialIcons"
+                                     Glyph="{x:Static local:MaterialIcons.Circle}" />
+                </ContentPage.IconImageSource>
+                <Grid RowDefinitions="Auto,Auto"
+                      RowSpacing="24"
+                      Padding="20,24">
+                    <Border StrokeThickness="0"
+                            StrokeShape="RoundRectangle 32"
+                            Background="{Binding Color}"
+                            HeightRequest="160"
+                            WidthRequest="160"
+                            HorizontalOptions="Center" />
 
-                <Grid RowSpacing="6" RowDefinitions="*,Auto,*">
-                    <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="0">
-
-                        <Label Text="{Binding Red, StringFormat='R = {0:F2}'}"/>
-                        <Label Text="{Binding Green, StringFormat='G = {0:F2}'}"/>
-                        <Label Text="{Binding Blue, StringFormat='B = {0:F2}'}"/>
-                    </StackLayout>
-
-                    <BoxView Color="{Binding Color}" WidthRequest="100" HeightRequest="100" HorizontalOptions="Center" Grid.Row="1"/>
-
-                    <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="2">
-
-                        <Label Text="{Binding Hue, StringFormat='Hue = {0:F2}'}"/>
-                        <Label Text="{Binding Saturation, StringFormat='Saturation = {0:F2}'}"/>
-                        <Label Text="{Binding Luminosity, StringFormat='Luminosity = {0:F2}'}"/>
-                    </StackLayout>
+                    <Border Grid.Row="1"
+                            Style="{StaticResource DemoSurface}">
+                        <Grid ColumnDefinitions="*,*"
+                              ColumnSpacing="16">
+                            <VerticalStackLayout Spacing="6">
+                                <Label Text="RGB" Style="{StaticResource Eyebrow}" />
+                                <Label Text="{Binding Red, StringFormat='R = {0:F2}'}" />
+                                <Label Text="{Binding Green, StringFormat='G = {0:F2}'}" />
+                                <Label Text="{Binding Blue, StringFormat='B = {0:F2}'}" />
+                            </VerticalStackLayout>
+                            <VerticalStackLayout Grid.Column="1"
+                                                 Spacing="6">
+                                <Label Text="HSL" Style="{StaticResource Eyebrow}" />
+                                <Label Text="{Binding Hue, StringFormat='Hue = {0:F2}'}" />
+                                <Label Text="{Binding Saturation, StringFormat='Saturation = {0:F2}'}" />
+                                <Label Text="{Binding Luminosity, StringFormat='Luminosity = {0:F2}'}" />
+                            </VerticalStackLayout>
+                        </Grid>
+                    </Border>
                 </Grid>
             </ContentPage>
         </DataTemplate>

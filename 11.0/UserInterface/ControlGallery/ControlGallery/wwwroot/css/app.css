@@ -62,3 +62,34 @@ a, .btn-link {
 	.blazor-error-boundary::after {
 		content: "An error has occurred."
 	}
+
+/* Follow the app's dark theme, using the gallery design system colors. */
+@media (prefers-color-scheme: dark) {
+	html, body {
+		background-color: #1D1B27;
+		color: #F4F2FA;
+	}
+
+	a, .btn-link {
+		color: #A893FF;
+	}
+
+	.alert-secondary {
+		background-color: #24222F;
+		border-color: #353146;
+		color: #F4F2FA;
+	}
+
+	.table {
+		color: #F4F2FA;
+	}
+
+	#blazor-error-ui {
+		background: #4A3B12;
+		color: #FFF6D6;
+	}
+
+		#blazor-error-ui a {
+			color: #FFD666;
+		}
+}

@@ -1,23 +1,29 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ControlGallery.Views.XAML.ImageButtonDemoPage"
-             Title="ImageButton Demo">
-    <StackLayout>
-        <Label Text="ImageButton"
-               FontSize="50"
-               FontAttributes="Bold"
-               HorizontalOptions="Center" />
+             Title="ImageButton">
+    <Grid RowDefinitions="Auto,Auto"
+          Style="{StaticResource DemoLayout}">
+        <VerticalStackLayout Style="{StaticResource DemoHeader}">
+            <Label Text="Input" Style="{StaticResource Eyebrow}" />
+            <Label Text="ImageButton" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+            <Label Text="Initiate a command by tapping an image." Style="{StaticResource Lead}" />
+        </VerticalStackLayout>
 
-       <ImageButton Source="dotnet_bot.png"
-                    HorizontalOptions="Center"
-                    VerticalOptions="Center"
-                    Clicked="OnImageButtonClicked" />
-
-        <Label x:Name="label"
-               Text="0 ImageButton clicks"
-               FontSize="20"
-               HorizontalOptions="Center"
-               VerticalOptions="Center" />
-    </StackLayout>
+        <Border Grid.Row="1"
+                Style="{StaticResource DemoSurface}">
+            <VerticalStackLayout Spacing="20"
+                                 VerticalOptions="Center">
+                <ImageButton Source="dotnet_bot.png"
+                             HeightRequest="160"
+                             HorizontalOptions="Center"
+                             Clicked="OnImageButtonClicked"
+                             SemanticProperties.Description="The .NET bot" />
+                <Label x:Name="label"
+                       Text="0 ImageButton clicks"
+                       Style="{StaticResource Value}" />
+            </VerticalStackLayout>
+        </Border>
+    </Grid>
 </ContentPage>

@@ -1,7 +1,24 @@
-<?xml version="1.0" ?><ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ControlGallery.Views.XAML.BoxViewDemoPage" Title="BoxView Demo">
-    <Grid RowSpacing="6" RowDefinitions="Auto,*">
-        <Label Text="BoxView" FontSize="50" FontAttributes="Bold" HorizontalOptions="Center" Grid.Row="0"/>
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ControlGallery.Views.XAML.BoxViewDemoPage"
+             Title="BoxView">
+    <Grid RowDefinitions="Auto,Auto"
+          Style="{StaticResource DemoLayout}">
+        <VerticalStackLayout Style="{StaticResource DemoHeader}">
+            <Label Text="Display" Style="{StaticResource Eyebrow}" />
+            <Label Text="BoxView" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+            <Label Text="Display a colored rectangle, optionally with rounded corners." Style="{StaticResource Lead}" />
+        </VerticalStackLayout>
 
-        <BoxView Color="SkyBlue" WidthRequest="150" HeightRequest="150" HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="1"/>
+        <Border Grid.Row="1"
+                Style="{StaticResource DemoSurface}">
+            <BoxView Color="{StaticResource Sky}"
+                     CornerRadius="24"
+                     WidthRequest="150"
+                     HeightRequest="150"
+                     HorizontalOptions="Center"
+                     VerticalOptions="Center" />
+        </Border>
     </Grid>
 </ContentPage>

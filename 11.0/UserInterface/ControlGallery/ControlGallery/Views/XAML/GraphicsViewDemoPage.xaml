@@ -1,19 +1,27 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:drawable="clr-namespace:ControlGallery.Drawables"
              x:Class="ControlGallery.Views.XAML.GraphicsViewDemoPage"
-             Title="GraphicsView demo">
+             Title="GraphicsView">
     <ContentPage.Resources>
         <drawable:GraphicsDrawable x:Key="drawable" />
     </ContentPage.Resources>
-    <VerticalStackLayout Spacing="6">
-        <Label Text="GraphicsView"
-               FontSize="50"
-               FontAttributes="Bold"
-               HorizontalOptions="Center" />
-        <GraphicsView Drawable="{StaticResource drawable}"
-                      HeightRequest="300"
-                      WidthRequest="400" />
-    </VerticalStackLayout>
+    <Grid RowDefinitions="Auto,Auto"
+          Style="{StaticResource DemoLayout}">
+        <VerticalStackLayout Style="{StaticResource DemoHeader}">
+            <Label Text="Shapes &amp; graphics" Style="{StaticResource Eyebrow}" />
+            <Label Text="GraphicsView" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+            <Label Text="Draw 2D graphics on a canvas. This clock is drawn by an IDrawable." Style="{StaticResource Lead}" />
+        </VerticalStackLayout>
+
+        <Border Grid.Row="1"
+                Style="{StaticResource DemoSurface}">
+            <GraphicsView x:Name="graphicsView"
+                          Drawable="{StaticResource drawable}"
+                          HeightRequest="300"
+                          WidthRequest="300"
+                          HorizontalOptions="Center" />
+        </Border>
+    </Grid>
 </ContentPage>

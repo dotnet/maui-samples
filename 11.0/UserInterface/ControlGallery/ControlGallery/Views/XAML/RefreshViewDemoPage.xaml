@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:ControlGallery.ViewModels"
              xmlns:models="clr-namespace:ControlGallery.Models"
              x:Class="ControlGallery.Views.XAML.RefreshViewDemoPage"
-             Title="RefreshView Demo"
+             Title="RefreshView"
              x:DataType="viewModels:RefreshViewDemoPageViewModel">
     <ContentPage.BindingContext>
         <viewModels:RefreshViewDemoPageViewModel />
@@ -12,36 +12,48 @@
     <ContentPage.Resources>
         <DataTemplate x:Key="ColorItemTemplate"
                       x:DataType="models:RefreshItem">
-            <Grid Margin="5"
-                  HeightRequest="120"
-                  WidthRequest="105">
+            <VerticalStackLayout Margin="6"
+                                 Spacing="6"
+                                 WidthRequest="96">
                 <BoxView Color="{Binding Color}"
-                         HeightRequest="40"
-                         WidthRequest="40" />
+                         CornerRadius="20"
+                         HeightRequest="96"
+                         WidthRequest="96" />
                 <Label Text="{Binding Name}"
-                       HorizontalOptions="Center"
-                       VerticalOptions="Center" />
-            </Grid>
+                       Style="{StaticResource Caption}"
+                       HorizontalTextAlignment="Center" />
+            </VerticalStackLayout>
         </DataTemplate>
     </ContentPage.Resources>
-    <StackLayout Margin="10">
-        <Label Text="RefreshView"
-               FontSize="50"
-               FontAttributes="Bold"
-               HorizontalOptions="Center" />
-        <Label Text="Pull the items down to refresh the ScrollView." />
-        <Label Text="{Binding Items.Count, StringFormat='Number of items: {0}'}" />
-        <RefreshView IsRefreshing="{Binding IsRefreshing}"
-                     RefreshColor="Teal"
+
+    <Grid RowDefinitions="Auto,Auto,*"
+          Style="{StaticResource DemoLayout}"
+          Padding="20,8,20,0">
+        <VerticalStackLayout Style="{StaticResource DemoHeader}">
+            <Label Text="Collections" Style="{StaticResource Eyebrow}" />
+            <Label Text="RefreshView" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+            <Label Text="Add pull-to-refresh to scrollable content." Style="{StaticResource Lead}" />
+        </VerticalStackLayout>
+
+        <Border Grid.Row="1"
+                Style="{StaticResource Hint}">
+            <Label Text="{Binding Items.Count, StringFormat='Pull down to add items. Number of items: {0}'}"
+                   Style="{StaticResource HintLabel}" />
+        </Border>
+
+        <RefreshView Grid.Row="2"
+                     IsRefreshing="{Binding IsRefreshing}"
                      Command="{Binding RefreshCommand}">
             <ScrollView>
                 <FlexLayout Direction="Row"
                             Wrap="Wrap"
-                            AlignItems="Center"
-                            AlignContent="Center"
+                            AlignItems="Start"
+                            AlignContent="Start"
+                            JustifyContent="SpaceEvenly"
+                            Padding="0,0,0,24"
                             BindableLayout.ItemsSource="{Binding Items}"
                             BindableLayout.ItemTemplate="{StaticResource ColorItemTemplate}" />
             </ScrollView>
         </RefreshView>
-    </StackLayout>
+    </Grid>
 </ContentPage>
