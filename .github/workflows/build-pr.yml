@@ -37,12 +37,21 @@ jobs:
         # which main requires. The .NET 11 Apple builds need Xcode 27.2, so that entry runs on the xcode-27 runner.
         os: [windows-latest, macos-26]
 
+    # Always run so a change-detection failure fails the required checks instead of skipping them.
+    if: ${{ !cancelled() }}
     # Expand both required check names, but use Linux for no-build runs.
-    runs-on: ${{ toJSON(fromJSON(needs.changes.outputs.projects)[matrix.os]) == '[]' && 'ubuntu-latest' || (matrix.os == 'macos-26' && 'xcode-27' || matrix.os) }}
+    runs-on: ${{ (needs.changes.result != 'success' || toJSON(fromJSON(needs.changes.outputs.projects || '{}')[matrix.os]) == '[]') && 'ubuntu-latest' || (matrix.os == 'macos-26' && 'xcode-27' || matrix.os) }}
     env:
-      PROJECTS: ${{ toJSON(fromJSON(needs.changes.outputs.projects)[matrix.os]) }}
+      PROJECTS: ${{ toJSON(fromJSON(needs.changes.outputs.projects || '{}')[matrix.os]) }}
 
     steps:
+    - name: Verify change detection
+      if: needs.changes.result != 'success'
+      shell: pwsh
+      run: |
+        Write-Output "::error:: Change detection finished with '${{ needs.changes.result }}'."
+        exit 1
+
     - name: No projects to build
       if: env.PROJECTS == '[]'
       shell: pwsh
