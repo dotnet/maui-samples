@@ -22,3 +22,6 @@
 ./11.0/UITesting/BrowserStackAppiumMaui/BasicAppiumNunitSample/UITests.iOS/UITests.iOS.csproj
 ./11.0/AgeSignals/AgeSignals/AgeSignals.csproj
 ./11.0/PlatformIntegration/PlatformIntegrationDemos/PlatformIntegrationDemo/PlatformIntegrationDemo.csproj
+
+# The WinUI host for the .NET 11 native embedding sample targets only Windows (net11.0-windows), so it is built on the Windows host
+./11.0/PlatformIntegration/NativeEmbeddingDemo/NativeEmbeddingDemo.WinUI/NativeEmbeddingDemo.WinUI.csproj
