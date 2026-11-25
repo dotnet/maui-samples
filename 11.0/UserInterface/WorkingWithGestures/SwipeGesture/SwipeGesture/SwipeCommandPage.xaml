@@ -1,0 +1,15 @@
+<?xml version="1.0" ?><ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="SwipeGesture.SwipeCommandPage">
+    <Grid Margin="20" RowSpacing="6" RowDefinitions="Auto,*,Auto">
+        <Label Text="Swipe inside the box with a single finger." Grid.Row="0"/>
+        <BoxView Color="Teal" WidthRequest="300" HeightRequest="300" HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="1">
+            <BoxView.GestureRecognizers>
+                <!-- Can also set a swipe threshold on each gesture recognizer -->
+                <SwipeGestureRecognizer Direction="Left" Command="{Binding SwipeCommand}" CommandParameter="Left"/>
+                <SwipeGestureRecognizer Direction="Right" Command="{Binding SwipeCommand}" CommandParameter="Right"/>
+                <SwipeGestureRecognizer Direction="Up" Command="{Binding SwipeCommand}" CommandParameter="Up"/>
+                <SwipeGestureRecognizer Direction="Down" Command="{Binding SwipeCommand}" CommandParameter="Down"/>
+            </BoxView.GestureRecognizers>
+        </BoxView>
+        <Label Text="{Binding SwipeDirection}" Grid.Row="2"/>
+    </Grid>
+</ContentPage>

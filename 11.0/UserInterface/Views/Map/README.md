@@ -1,6 +1,6 @@
 ---
 name: .NET MAUI - Map Features
-description: Demonstrates new Maps features in .NET MAUI 11 Preview 3, including pin clustering, custom pin icons, overlay click events, long press to drop pins, and MapElement visibility toggling.
+description: Demonstrates Maps features in .NET MAUI 11, including pin clustering, custom pin icons, overlay click events, long press to drop pins, and MapElement visibility toggling.
 page_type: sample
 languages:
 - csharp
@@ -13,6 +13,8 @@ urlFragment: userinterface-map-features
 # Map Features
 
 This sample demonstrates the Maps features introduced in .NET MAUI 11 for the Map control.
+
+The [MapDemo](MapDemo/WorkingWithMaps) sample also covers basic map display, pins, geocoding, and map elements. Both samples are retained here.
 
 ![.NET MAUI Map with pin clustering](images/clustering.png)
 
@@ -29,14 +31,14 @@ This sample demonstrates the Maps features introduced in .NET MAUI 11 for the Ma
 
 ## Prerequisites
 
-- .NET 11 Preview 3 or later
+- .NET 11 SDK or later
 - .NET MAUI workload installed
 - Android: Google Maps API key configured in `AndroidManifest.xml`
 - iOS/Mac Catalyst: No additional configuration required
 
 ## Build and run
 
-1. Open `MapClustering.sln` in Visual Studio 2022 or later.
+1. Open `MapClustering.sln` in a .NET 11-compatible IDE.
 2. For Android, add your Google Maps API key to `Platforms/Android/AndroidManifest.xml`.
 3. Select a target platform and run.
 

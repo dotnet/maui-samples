@@ -1,0 +1,29 @@
+﻿<?xml version = "1.0" encoding = "UTF-8" ?>
+<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:DataBindingDemos"
+             x:Class="DataBindingDemos.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
+                <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style TargetType="StackLayout">
+                <Setter Property="Spacing" Value="6" />
+            </Style>
+
+            <Style TargetType="Grid">
+                <Setter Property="RowSpacing" Value="6" />
+                <Setter Property="ColumnSpacing" Value="6" />
+            </Style>
+
+            <x:String x:Key="fallbackImageUrl">https://upload.wikimedia.org/wikipedia/commons/2/20/Point_d_interrogation.jpg</x:String>
+            <x:String x:Key="locationUnknown">Location unknown</x:String>
+            <x:String x:Key="populationUnknown">Population size unknown</x:String>
+            <x:String x:Key="unknown">Unknown</x:String>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

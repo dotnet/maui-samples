@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:local="clr-namespace:ScaleAndRotate"
+             x:Class="ScaleAndRotate.HomePage"
+             x:DataType="local:HomePage"
+             x:Name="HomePageControl"
+             Title="Scale and Rotate">
+
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="WinUI" Value="10,0,10,10" />
+            <On Platform="iOS, Android, MacCatalyst" Value="0" />
+        </OnPlatform>
+    </ContentPage.Padding>
+
+    <CollectionView ItemsSource="{Binding MenuItems}"
+                    SelectionMode="None">
+        
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="local:MenuItem">
+                <Border BackgroundColor="Transparent"
+                        StrokeThickness="0" 
+                        HeightRequest="44">
+                    
+                    <Label Text="{Binding Title}"
+                           Padding="10"
+                           HorizontalTextAlignment="Start"
+                           VerticalTextAlignment="Center"
+                           BackgroundColor="Transparent">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={x:Reference HomePageControl}, Path=NavigateCommand}"
+                                                  CommandParameter="{Binding PageType}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Border>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+        
+        <CollectionView.ItemsLayout>
+            <LinearItemsLayout Orientation="Vertical"
+                               ItemSpacing="1" />
+        </CollectionView.ItemsLayout>
+    </CollectionView>
+</ContentPage>

@@ -1,0 +1,44 @@
+﻿@inherits LayoutComponentBase
+
+<div class="page">
+    <main>
+        <SignatureCanvas class="my-special-styling-class"
+                         @ref=signatureCanvas
+                         width="400" height="200" />
+    </main>
+</div>
+@code {
+
+    private SignatureCanvas signatureCanvas;
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+
+        WeakReferenceMessenger.Default.Register<ClearSignatureMessage>(this, async (r, m) =>
+        {
+            await HandleClear();
+        });
+
+            WeakReferenceMessenger.Default.Register<SaveSignatureMessage>(this, async (r, m) =>
+            {
+                await HandleSave(m.Value);
+            });
+    }
+       
+
+    async Task HandleClear()
+        {
+            await signatureCanvas.Clear();
+        }
+
+    async Task HandleSave(int table)
+    {
+        var data = await signatureCanvas.ToByteArray();
+
+        var order = AppData.Orders.Where(t => t.Table == table).Single();
+        order.SignatureData = data;
+    }
+
+
+}

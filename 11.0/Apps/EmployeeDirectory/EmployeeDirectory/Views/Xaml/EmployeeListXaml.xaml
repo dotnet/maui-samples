@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:shapes="clr-namespace:Microsoft.Maui.Controls.Shapes;assembly=Microsoft.Maui.Controls"
+             xmlns:data="clr-namespace:EmployeeDirectory.Core.Data;assembly=EmployeeDirectory.Core"
+             x:Class="EmployeeDirectory.Views.Xaml.EmployeeListXaml" 
+             Title="Employee Directory"
+             BackgroundColor="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray900}}">
+    <Grid>
+        <!-- Primary grouped CollectionView -->
+        <CollectionView x:Name="collectionView" 
+                        IsGrouped="True"
+                        SelectionMode="Single"
+                        SelectionChanged="OnSelectionChanged"
+                        ItemsSource="{Binding Groups}"
+                        BackgroundColor="Transparent">
+            <CollectionView.GroupHeaderTemplate>
+                <DataTemplate>
+                    <Label Text="{Binding Title}" 
+                           FontAttributes="Bold"
+                           Margin="16,16,16,8"
+                           TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Primary}}" />
+                </DataTemplate>
+            </CollectionView.GroupHeaderTemplate>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="data:Person">
+                    <Border BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray800}}"
+                            Stroke="Transparent"
+                            Padding="16"
+                            Margin="16,8"
+                            InputTransparent="False">
+                        <Border.StrokeShape>
+                            <shapes:RoundRectangle CornerRadius="12" />
+                        </Border.StrokeShape>
+                        <Grid ColumnDefinitions="60,*,Auto" ColumnSpacing="12">
+                            <Border WidthRequest="60" HeightRequest="60" 
+                                    Stroke="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray700}}"
+                                    BackgroundColor="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray800}}"
+                                    InputTransparent="True">
+                                <Border.StrokeShape>
+                                    <shapes:Ellipse />
+                                </Border.StrokeShape>
+                                <Image Source="{Binding Photo}" Aspect="AspectFill" />
+                            </Border>
+                            <StackLayout Grid.Column="1" VerticalOptions="Center">
+                                <Label Text="{Binding Name}" 
+                                       FontSize="18" FontAttributes="Bold"
+                                       TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}" />
+                                <Label Text="{Binding Title}" 
+                                       FontSize="14"
+                                       Margin="0,2,0,0"
+                                       TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray400}}" />
+                            </StackLayout>
+                            <Label Grid.Column="2" Text="♥" FontSize="20"
+                                   TextColor="{StaticResource Primary}" VerticalOptions="Center"
+                                   HorizontalOptions="Center" IsVisible="{Binding IsFavorite}" />
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Floating Action Button -->
+        <Button x:Name="fabButton"
+                Text="🔍"
+                FontSize="20"
+                WidthRequest="56"
+                HeightRequest="56"
+                CornerRadius="28"
+                BackgroundColor="{StaticResource Primary}"
+                TextColor="White"
+                HorizontalOptions="End"
+                VerticalOptions="End"
+                Margin="16">
+            <Button.Shadow>
+                <Shadow Brush="Black" Opacity="0.3" Radius="8" Offset="0,4" />
+            </Button.Shadow>
+        </Button>
+
+        <!-- Fallback manual list (hidden unless activated) -->
+        <ScrollView x:Name="fallbackScroll" IsVisible="False" Background="Transparent">
+            <VerticalStackLayout x:Name="fallbackStack" Padding="16" Spacing="8">
+                <Label Text="Fallback List (debug)" FontSize="18" FontAttributes="Bold" TextColor="Red" />
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

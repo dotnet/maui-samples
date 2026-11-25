@@ -1,7 +1,7 @@
 <Project>
   <PropertyGroup>
-    <!-- .NET MAUI 11 Preview 7 versions — update these when a new preview drops -->
-    <MauiVersion>11.0.0-preview.7.26406.9</MauiVersion>
-    <DotNetVersion>11.0.0-preview.7.26381.103</DotNetVersion>
+    <!-- Stable releases, managed centrally for all .NET 11 samples. -->
+    <MauiVersion>11.0.10</MauiVersion>
+    <DotNetVersion>11.0.0</DotNetVersion>
   </PropertyGroup>
 </Project>

@@ -8,8 +8,8 @@ Samples built with .NET Multi-platform App UI (.NET MAUI).
 
 | Folder | Description |
 | ------ | ----------- |
-| [`10.0/`](10.0/) | **.NET MAUI 10 (current stable)** - Full set of samples targeting the latest supported release. |
-| [`11.0/`](11.0/) | **.NET MAUI 11 (preview)** - Samples for features specific to .NET 11. See [safe preview testing](11.0/README.md). |
+| [`10.0/`](10.0/) | **.NET MAUI 10** - Previous release samples, preserved unchanged. |
+| [`11.0/`](11.0/) | **.NET MAUI 11 (current stable)** - Full set of relevant samples, including .NET 11 features. See [requirements and migration decisions](11.0/README.md). |
 | [`9.0/`](9.0/) | **Deprecated** - .NET 9 is out of support. See the [deprecation notice](9.0/README.md). |
 | [`Upgrading/`](Upgrading/) | Migration guides from Xamarin.Forms to .NET MAUI. |
 
@@ -21,18 +21,18 @@ Sample highlights include:
 
 | Name | Description |
 | ---- | ---- |
-| [SimpleChatClient (AI)](10.0/AI/ChatClient) | A minimal .NET MAUI sample that wires [Microsoft.Extensions.AI](https://learn.microsoft.com/dotnet/ai/microsoft-extensions-ai) into a chat UI. |
-| [ChatClientWithTools (AI)](10.0/AI/ChatClientWithTools) | A .NET MAUI sample showing how to enhance using an LLM via [Microsoft.Extensions.AI](https://learn.microsoft.com/dotnet/ai/microsoft-extensions-ai) with tool function calling. This can improve reliability and repeatability of responses, as well as enable the LLM to answer queries it otherwise could not. |
+| [SimpleChatClient (AI)](11.0/AI/ChatClient) | A minimal .NET MAUI sample that wires [Microsoft.Extensions.AI](https://learn.microsoft.com/dotnet/ai/microsoft-extensions-ai) into a chat UI. |
+| [ChatClientWithTools (AI)](11.0/AI/ChatClientWithTools) | A .NET MAUI sample showing how to enhance using an LLM via [Microsoft.Extensions.AI](https://learn.microsoft.com/dotnet/ai/microsoft-extensions-ai) with tool function calling. This can improve reliability and repeatability of responses, as well as enable the LLM to answer queries it otherwise could not. |
 | [.NET eShop](https://github.com/dotnet/eShop) | A reference .NET application implementing an e-commerce website using a services-based architecture using Aspire. |
-| [Point of Sale](10.0/Apps/PointOfSale) | This app demonstrates various techniques for building a desktop and mobile application that takes advantage of native platform features, and adapts to a wide range of device needs all from a single codebase. |
-| [Weather '21 App](10.0/Apps/WeatherTwentyOne) | This is a .NET MAUI app showcasing responsive UI that adapts to desktop and mobile, and integrates with native platform features. |
-| [Calculator App](10.0/Apps/Calculator) | This basic calculator demonstrates using span and spacing features of a Grid layout to achieve a familiar interface. |
-| [Navigation Samples](10.0/Navigation) | Various sample apps that show you how to do navigation in different scenarios. |
-| [Beginner's Series Task App Sample](10.0/Beginners-Series) | Sample code for the [.NET MAUI for Beginners Series](https://learn.microsoft.com/shows/dotnet-maui-for-beginners/) |
+| [Point of Sale](11.0/Apps/PointOfSale) | This app demonstrates various techniques for building a desktop and mobile application that takes advantage of native platform features, and adapts to a wide range of device needs all from a single codebase. |
+| [Weather '21 App](11.0/Apps/WeatherTwentyOne) | This is a .NET MAUI app showcasing responsive UI that adapts to desktop and mobile, and integrates with native platform features. |
+| [Calculator App](11.0/Apps/Calculator) | This basic calculator demonstrates using span and spacing features of a Grid layout to achieve a familiar interface. |
+| [Navigation Samples](11.0/Navigation) | Various sample apps that show you how to do navigation in different scenarios. |
+| [Beginner's Series Task App Sample](11.0/Beginners-Series) | Sample code for the [.NET MAUI for Beginners Series](https://learn.microsoft.com/shows/dotnet-maui-for-beginners/) |
 
 ## Package Versions
 
-The `10.0/` and `11.0/` folders use centralized version management via `Directory.Build.props`. See [PACKAGE-VERSIONS.md](10.0/PACKAGE-VERSIONS.md) for details on how this works.
+The `10.0/` and `11.0/` folders use centralized version management via `Directory.Build.props`. See [PACKAGE-VERSIONS.md](11.0/PACKAGE-VERSIONS.md) for details on how this works.
 
 ## Community Samples
 

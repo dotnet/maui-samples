@@ -1,0 +1,7 @@
+<?xml version="1.0" ?><ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ControlGallery.Views.XAML.ImageDemoPage" Title="Image Demo">
+    <Grid RowSpacing="6" RowDefinitions="Auto,*">
+        <Label Text="Image" FontSize="50" FontAttributes="Bold" HorizontalOptions="Center" Grid.Row="0"/>
+
+        <Image Source="https://aka.ms/campus.jpg" HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="1"/>
+    </Grid>
+</ContentPage>

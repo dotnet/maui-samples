@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HybridWebViewDemo.MainPage"
+             Title="HybridWebView demo">
+    <Grid ColumnDefinitions="2*,1*"
+          RowDefinitions="Auto, 1*">
+        <Editor x:Name="editor"
+                Text="Hello from HybridWebView"
+                IsReadOnly="True"
+                MinimumHeightRequest="200" />
+        <VerticalStackLayout Grid.Column="1"
+                             Margin="20"
+                             Spacing="10">
+            <Button Text="Send message to JS"
+                    Clicked="OnSendMessageButtonClicked" />
+            <Button Text="Invoke synchronous JavaScript"
+                    Clicked="OnInvokeJSMethodButtonClicked" />
+            <Button Text="Invoke asynchronous JavaScript"
+                    Clicked="OnInvokeAsyncJSMethodButtonClicked" />
+        </VerticalStackLayout>
+        <HybridWebView x:Name="hybridWebView"
+                       Grid.Row="1"
+                       Grid.ColumnSpan="2"
+                       RawMessageReceived="hybridWebView_RawMessageReceived"
+                       WebResourceRequested="hybridWebView_WebResourceRequested"/>
+
+    </Grid>
+</ContentPage>

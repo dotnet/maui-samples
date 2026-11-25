@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:skia="clr-namespace:SkiaSharp;assembly=SkiaSharp"
+             xmlns:skiaMaui="clr-namespace:SkiaSharp.Views.Maui.Controls;assembly=SkiaSharp.Views.Maui.Controls"
+             x:Class="SkiaSharpDemos.Paths.MultipleLinesPage"
+             Title="Multiple Lines">
+    <Grid ColumnDefinitions="*,*"
+          RowDefinitions="Auto,*">
+        <Picker x:Name="pointModePicker"
+                Title="Point Mode"
+                Grid.Row="0"
+                Grid.Column="0"
+                SelectedIndexChanged="OnPickerSelectedIndexChanged">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type skia:SKPointMode}">
+                    <x:Static Member="skia:SKPointMode.Points" />
+                    <x:Static Member="skia:SKPointMode.Lines" />
+                    <x:Static Member="skia:SKPointMode.Polygon" />
+                </x:Array>
+            </Picker.ItemsSource>
+            <Picker.SelectedIndex>0</Picker.SelectedIndex>
+        </Picker>
+        <Picker x:Name="strokeCapPicker"
+                Title="Stroke Cap"
+                Grid.Row="0"
+                Grid.Column="1"
+                SelectedIndexChanged="OnPickerSelectedIndexChanged">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type skia:SKStrokeCap}">
+                    <x:Static Member="skia:SKStrokeCap.Butt" />
+                    <x:Static Member="skia:SKStrokeCap.Round" />
+                    <x:Static Member="skia:SKStrokeCap.Square" />
+                </x:Array>
+            </Picker.ItemsSource>
+            <Picker.SelectedIndex>0</Picker.SelectedIndex>
+        </Picker>
+        <skiaMaui:SKCanvasView x:Name="canvasView"
+                               PaintSurface="OnCanvasViewPaintSurface"
+                               Grid.Row="1"
+                               Grid.Column="0"
+                               Grid.ColumnSpan="2" />
+    </Grid>
+</ContentPage>

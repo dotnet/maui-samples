@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/maui/global"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SimpleChatClient.MainPage"
+             x:DataType="ChatViewModel">
+
+    <Grid RowDefinitions="*,Auto"
+          Padding="10"
+          RowSpacing="8">
+        <!-- Chat messages -->
+        <CollectionView Grid.Row="0"
+                        x:Name="MessagesView"
+                        ItemsSource="{Binding Messages}"
+                        ItemsUpdatingScrollMode="KeepLastItemInView"
+                        Background="Transparent"
+                        SelectionMode="None">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical"
+                                   ItemSpacing="8"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.EmptyView>
+                <ScrollView>
+                    <VerticalStackLayout Spacing="16"
+                                         Padding="24">
+                        <Label Text="Ask me anything"
+                               FontSize="28"
+                               FontAttributes="Bold"
+                               HorizontalTextAlignment="Center"/>
+
+                        <Button Text="How do I create a MAUI CollectionView with grouping?"
+                                Command="{Binding SendPromptCommand}"
+                                CommandParameter="How do I create a .NET MAUI CollectionView with grouping and headers?"
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Padding="16"
+                                Background="Transparent"
+                                TextColor="#222"
+                                BorderColor="#888"
+                                BorderWidth="1.5"
+                                CornerRadius="10"/>
+
+                        <Button Text="What’s the best way to structure MVVM commands?"
+                                Command="{Binding SendPromptCommand}"
+                                CommandParameter="What are best practices for structuring MVVM commands with CommunityToolkit in .NET MAUI?"
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Padding="16"
+                                Background="Transparent"
+                                TextColor="#222"
+                                BorderColor="#888"
+                                BorderWidth="1.5"
+                                CornerRadius="10"/>
+
+                        <Button Text="Show me a sample HTTP call in MAUI."
+                                Command="{Binding SendPromptCommand}"
+                                CommandParameter="Provide a simple example of calling a REST API with HttpClient in .NET MAUI and displaying results."
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Padding="16"
+                                Background="Transparent"
+                                TextColor="#222"
+                                BorderColor="#888"
+                                BorderWidth="1.5"
+                                CornerRadius="10"/>
+
+                        <Button Text="How do I use DI to resolve services?"
+                                Command="{Binding SendPromptCommand}"
+                                CommandParameter="How do I register and resolve services with Microsoft.Extensions.DependencyInjection in a .NET MAUI app?"
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Padding="16"
+                                Background="Transparent"
+                                TextColor="#222"
+                                BorderColor="#888"
+                                BorderWidth="1.5"
+                                CornerRadius="10"/>
+                    </VerticalStackLayout>
+                </ScrollView>
+            </CollectionView.EmptyView>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="ChatMessage">
+                    <Grid>
+                        <Border x:Name="Bubble"
+                                StrokeThickness="0"
+                                Padding="12"
+                                MaximumWidthRequest="520"
+                                Background="#F1F1F1"
+                                HorizontalOptions="Start"
+                                StrokeShape="RoundRectangle 14">
+                            <VerticalStackLayout Spacing="4">
+                                <Label x:Name="MessageText"
+                                       Text="{Binding Text}"
+                                       TextColor="#222"
+                                       LineBreakMode="WordWrap"/>
+                                <Label Text="{Binding Timestamp, StringFormat='{0:t}'}"
+                                       FontSize="10"
+                                       TextColor="#888"
+                                       HorizontalTextAlignment="End"/>
+                            </VerticalStackLayout>
+                            <Border.Triggers>
+                                <!-- User messages: right aligned, accent background -->
+                                <DataTrigger TargetType="Border"
+                                             Binding="{Binding From}"
+                                             Value="User">
+                                    <Setter Property="HorizontalOptions"
+                                            Value="End"/>
+                                    <Setter Property="Background"
+                                            Value="#D1E8FF"/>
+                                </DataTrigger>
+                            </Border.Triggers>
+                        </Border>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+
+        <SfTextInputLayout ContainerType="Outlined"
+                           Hint="Ask something…"
+                           Grid.Row="1">
+            <Entry x:Name="PromptEditor"
+                   Text="{Binding InputText, Mode=TwoWay}"
+                   Completed="OnCompleted"
+                   TextChanged="OnTextChanged"
+                   Keyboard="Chat"
+                   MaxLength="4000"
+                   Background="Transparent"
+                   Margin="16,12"/>
+
+            <SfTextInputLayout.TrailingView>
+                <ImageButton Source="{StaticResource IconSend}"
+                             Background="Transparent"
+                             Command="{Binding SendCommand}"
+                             WidthRequest="44"
+                             HeightRequest="44"
+                             Padding="10"
+                             Margin="8,0"/>
+            </SfTextInputLayout.TrailingView>
+        </SfTextInputLayout>
+    </Grid>
+
+</ContentPage>

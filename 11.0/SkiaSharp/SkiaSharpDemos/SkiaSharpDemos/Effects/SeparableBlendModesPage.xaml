@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:skia="clr-namespace:SkiaSharp;assembly=SkiaSharp"
+             xmlns:skiaMaui="clr-namespace:SkiaSharp.Views.Maui.Controls;assembly=SkiaSharp.Views.Maui.Controls"
+             x:Class="SkiaSharpDemos.Effects.SeparableBlendModesPage"
+             Title="Separable Blend Modes">
+    <Grid RowDefinitions="*,Auto,Auto,Auto,Auto,Auto,Auto">
+        <skiaMaui:SKCanvasView x:Name="canvasView"
+                                VerticalOptions="Fill"
+                                PaintSurface="OnCanvasViewPaintSurface" />
+        <Picker x:Name="blendModePicker"
+                Grid.Row="1"
+                Title="Blend Mode"
+                Margin="10,0"
+                SelectedIndex="0"
+                SelectedIndexChanged="OnPickerSelectedIndexChanged">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type skia:SKBlendMode}">
+                    <x:Static Member="skia:SKBlendMode.Plus" />
+                    <x:Static Member="skia:SKBlendMode.Modulate" />
+                    <x:Static Member="skia:SKBlendMode.Screen" />
+                    <x:Static Member="skia:SKBlendMode.Overlay" />
+                    <x:Static Member="skia:SKBlendMode.Darken" />
+                    <x:Static Member="skia:SKBlendMode.Lighten" />
+                    <x:Static Member="skia:SKBlendMode.ColorDodge" />
+                    <x:Static Member="skia:SKBlendMode.ColorBurn" />
+                    <x:Static Member="skia:SKBlendMode.HardLight" />
+                    <x:Static Member="skia:SKBlendMode.SoftLight" />
+                    <x:Static Member="skia:SKBlendMode.Difference" />
+                    <x:Static Member="skia:SKBlendMode.Exclusion" />
+                    <x:Static Member="skia:SKBlendMode.Multiply" />
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
+        <Slider x:Name="redSlider"
+                Grid.Row="2"
+                MinimumTrackColor="Red"
+                MaximumTrackColor="Red"
+                Margin="10, 0"
+                ValueChanged="OnSliderValueChanged" />
+        <Slider x:Name="greenSlider"
+                Grid.Row="3"
+                MinimumTrackColor="Green"
+                MaximumTrackColor="Green"
+                Margin="10, 0"
+                ValueChanged="OnSliderValueChanged" />
+        <Slider x:Name="blueSlider"
+                Grid.Row="4"
+                MinimumTrackColor="Blue"
+                MaximumTrackColor="Blue"
+                Margin="10, 0"
+                ValueChanged="OnSliderValueChanged" />
+        <Slider x:Name="graySlider"
+                Grid.Row="5"
+                MinimumTrackColor="Gray"
+                MaximumTrackColor="Gray"
+                Margin="10, 0"
+                ValueChanged="OnSliderValueChanged" />
+        <Label x:Name="colorLabel"
+               Grid.Row="6"
+               HorizontalTextAlignment="Center" />
+    </Grid>
+</ContentPage>

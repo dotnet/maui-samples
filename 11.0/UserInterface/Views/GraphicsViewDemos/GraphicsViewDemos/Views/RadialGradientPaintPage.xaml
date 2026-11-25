@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:drawables="clr-namespace:GraphicsViewDemos.Drawables"
+             x:Class="GraphicsViewDemos.Views.RadialGradientPaintPage"
+             Title="Radial gradient paint demo">
+    <ContentPage.Resources>
+        <drawables:CenteredRadialGradientPaintDrawable x:Key="centeredRadialGradientDrawable" />
+        <drawables:TopLeftRadialGradientPaintDrawable x:Key="topLeftRadialGradientDrawable" />
+        <drawables:BottomRightRadialGradientPaintDrawable x:Key="bottomRightRadialGradientDrawable" />        
+    </ContentPage.Resources>
+    <ScrollView>
+        <VerticalStackLayout Margin="15">
+            <Label Text="Centered radial gradient" />
+            <GraphicsView Drawable="{StaticResource centeredRadialGradientDrawable}"
+                          HeightRequest="120"
+                          WidthRequest="400" />
+            <Label Text="Top left radial gradient" />
+            <GraphicsView Drawable="{StaticResource topLeftRadialGradientDrawable}"
+                          HeightRequest="120"
+                          WidthRequest="400" />
+            <Label Text="Bottom right radial gradient" />
+            <GraphicsView Drawable="{StaticResource bottomRightRadialGradientDrawable}"
+                          HeightRequest="120"
+                          WidthRequest="400" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

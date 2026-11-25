@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="ScaleAndRotate.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:ScaleAndRotate"
+    Title="ScaleAndRotate">
+
+    <ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate local:HomePage}"
+        Route="HomePage" />
+
+    <ShellContent
+        Title="Scale and Rotate (XAML)"
+        ContentTemplate="{DataTemplate local:ScaleAndRotatePage}"
+        Route="ScaleAndRotatePage" />
+
+    <ShellContent
+        Title="Scale"
+        ContentTemplate="{DataTemplate local:ScaleDemoPage}"
+        Route="ScaleDemoPage" />
+
+    <ShellContent
+        Title="ScaleX"
+        ContentTemplate="{DataTemplate local:ScaleXDemoPage}"
+        Route="ScaleXDemoPage" />
+
+    <ShellContent
+        Title="ScaleY"
+        ContentTemplate="{DataTemplate local:ScaleYDemoPage}"
+        Route="ScaleYDemoPage" />
+
+    <ShellContent
+        Title="Rotation"
+        ContentTemplate="{DataTemplate local:RotationDemoPage}"
+        Route="RotationDemoPage" />
+
+    <ShellContent
+        Title="RotationX"
+        ContentTemplate="{DataTemplate local:RotationXDemoPage}"
+        Route="RotationXDemoPage" />
+
+    <ShellContent
+        Title="RotationY"
+        ContentTemplate="{DataTemplate local:RotationYDemoPage}"
+        Route="RotationYDemoPage" />
+
+</Shell>

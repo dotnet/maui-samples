@@ -1,0 +1,82 @@
+@page "/"
+@using SampleBlazorHybridApp.Services
+@inject IWeatherService WeatherService
+
+<div class="weather-container">
+    <div class="header">
+        <img src="dotnet_bot.png" alt="dotnet bot" class="logo" />
+        <h1>Weather Forecast</h1>
+        <p class="subtitle">Data from the Aspire Weather API</p>
+    </div>
+
+    <div class="actions">
+        <button class="btn-primary" @onclick="LoadWeatherData" disabled="@isLoading">
+            @if (isLoading)
+            {
+                <span>Loading...</span>
+            }
+            else
+            {
+                <span>Load Weather</span>
+            }
+        </button>
+    </div>
+
+    @if (!string.IsNullOrEmpty(statusMessage))
+    {
+        <div class="status-message">@statusMessage</div>
+    }
+
+    @if (forecasts != null && forecasts.Length > 0)
+    {
+        <div class="weather-grid">
+            @foreach (var forecast in forecasts)
+            {
+                <div class="weather-card">
+                    <div class="date">@forecast.Date.ToString("MMMM dd, yyyy")</div>
+                    <div class="temperature">
+                        <span class="temp-c">@forecast.TemperatureC°C</span>
+                        <span class="temp-f">(@forecast.TemperatureF°F)</span>
+                    </div>
+                    <div class="summary">@forecast.Summary</div>
+                </div>
+            }
+        </div>
+    }
+    else if (!isLoading && string.IsNullOrEmpty(statusMessage))
+    {
+        <div class="empty-state">Click 'Load Weather' to get forecast</div>
+    }
+</div>
+
+@code {
+    private WeatherForecast[]? forecasts;
+    private bool isLoading = false;
+    private string? statusMessage;
+
+    private async Task LoadWeatherData()
+    {
+        try
+        {
+            isLoading = true;
+            statusMessage = "Loading weather data...";
+            StateHasChanged();
+
+            forecasts = await WeatherService.GetWeatherForecastAsync();
+
+            statusMessage = forecasts.Length > 0
+                ? $"Loaded {forecasts.Length} weather forecasts"
+                : "No weather data available";
+        }
+        catch (Exception ex)
+        {
+            statusMessage = $"Error: {ex.Message}";
+            forecasts = null;
+        }
+        finally
+        {
+            isLoading = false;
+            StateHasChanged();
+        }
+    }
+}

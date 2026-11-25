@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:drawables="clr-namespace:GraphicsViewDemos.Drawables"
+             x:Class="GraphicsViewDemos.Views.ImagesPage"
+             Title="Image demos">
+    <ContentPage.Resources>
+        <drawables:LoadImageDrawable x:Key="loadImageDrawable" />
+        <drawables:ResizeImageDrawable x:Key="resizeImageDrawable" />
+        <drawables:DownsizeImageDrawable x:Key="downsizeImageDrawable" />
+        <drawables:SaveImageDrawable x:Key="saveImageDrawable" />
+    </ContentPage.Resources>
+    <ScrollView>
+        <VerticalStackLayout Margin="15">
+            <Label Text="Load image" />
+            <GraphicsView Drawable="{StaticResource loadImageDrawable}"
+                          HeightRequest="270"
+                          WidthRequest="400" />
+            <Label Text="Resize image" />
+            <GraphicsView Drawable="{StaticResource resizeImageDrawable}"
+                          HeightRequest="70"
+                          WidthRequest="400" />
+            <Label Text="Downsize image" />
+            <GraphicsView Drawable="{StaticResource downsizeImageDrawable}"
+                          HeightRequest="110"
+                          WidthRequest="400" />
+            <Label Text="Save image" />
+            <GraphicsView Drawable="{StaticResource saveImageDrawable}"
+                          HeightRequest="160"
+                          WidthRequest="400" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

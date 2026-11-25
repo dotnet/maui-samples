@@ -26,9 +26,9 @@ This .NET MAUI 11 sample is a small trip-planning route lab. Its route matrix ru
 
 ## Requirements
 
-- .NET SDK `11.0.100-preview.7.26381.103`
+- .NET SDK `11.0.100`
 - .NET MAUI workload
-- .NET MAUI `11.0.0-preview.7.26404.4`, supplied by `11.0/Directory.Build.props`
+- .NET MAUI `11.0.10`, supplied by `11.0/Directory.Build.props`
 - Android, iOS, or Mac Catalyst tooling for the target you run
 
 ## Route matrix

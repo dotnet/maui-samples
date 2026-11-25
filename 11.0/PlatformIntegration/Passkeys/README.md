@@ -35,7 +35,7 @@ confirmation, uses an in-memory database, and accepts only origins configured in
 
 ## Prerequisites
 
-- The .NET 11 Preview 7 SDK from [`11.0/global.json`](../../global.json).
+- The stable .NET 11 SDK from [`11.0/global.json`](../../global.json).
 - The MAUI Android, iOS, and Mac Catalyst workloads needed by your host.
 - [PowerShell 7](https://learn.microsoft.com/powershell/scripting/install/installing-powershell).
 - [Dev tunnels CLI](https://learn.microsoft.com/azure/developer/dev-tunnels/get-started):
@@ -44,13 +44,13 @@ confirmation, uses an in-memory database, and accepts only origins configured in
 - A JDK `keytool` for Android fingerprint discovery.
 - Platform requirements listed below.
 
-If the Preview 7 SDK is not installed, use the repository-local workflow from
+If the .NET 11 SDK is not installed, use the repository-local workflow from
 [`11.0/README.md`](../../README.md). From `11.0/`:
 
 ```bash
 curl -fsSL https://dot.net/v1/dotnet-install.sh -o dotnet-install.sh
 chmod +x dotnet-install.sh
-./dotnet-install.sh --version 11.0.100-preview.7.26381.103 --install-dir ./.dotnet
+./dotnet-install.sh --version 11.0.100 --install-dir ./.dotnet
 ```
 
 The local `.dotnet/` directory is ignored by Git and isolated by `11.0/global.json`.
@@ -233,9 +233,7 @@ In the app:
 
 ## Source and release references
 
-This sample adapts the implementation merged in
-[dotnet/maui#36837](https://github.com/dotnet/maui/pull/36837) from the
-[`release/11.0.1xx-preview7`](https://github.com/dotnet/maui/tree/release/11.0.1xx-preview7)
-branch. See the [.NET 11 preview release notes](https://github.com/dotnet/core/tree/main/release-notes/11.0/preview)
-and [.NET MAUI releases](https://github.com/dotnet/maui/releases) for the corresponding Preview 7 release
-notes when published.
+This sample uses the implementation introduced in
+[dotnet/maui#36837](https://github.com/dotnet/maui/pull/36837).
+See the [.NET MAUI 11 release notes](https://learn.microsoft.com/dotnet/maui/whats-new/dotnet-11?view=net-maui-11.0)
+and [.NET MAUI releases](https://github.com/dotnet/maui/releases).

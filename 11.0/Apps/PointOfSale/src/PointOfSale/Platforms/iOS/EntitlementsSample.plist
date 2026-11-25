@@ -1,0 +1,11 @@
+<!-- Rename this file to Entitlements.plist for the full functionality to work. However, this will require you to have a matching provisioning profile in your Apple Developer Account. -->
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>keychain-access-groups</key>
+    <array>
+        <string>$(AppIdentifierPrefix)com.microsoft.adalcache</string>
+    </array>
+</dict>
+</plist>

@@ -1,0 +1,5 @@
+<?xml version="1.0" ?><ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="MarkupExtensions.FontImageDemoPage" Title="FontImage Demo">
+    <StackLayout Margin="20,35,20,20">
+        <Image BackgroundColor="#D1D1D1"><Image.Source><FontImageSource Glyph="" FontFamily="Ionicons" Size="44"/></Image.Source></Image>
+    </StackLayout>
+</ContentPage>

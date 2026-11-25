@@ -1,0 +1,26 @@
+﻿<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:m="clr-namespace:WeatherTwentyOne.Models"
+    xmlns:v="clr-namespace:WeatherTwentyOne.Views"
+    Title="Wind Map"
+    Shell.NavBarIsVisible="{OnIdiom True, Desktop=False}"
+    x:Class="WeatherTwentyOne.Pages.MapPage">
+
+    <Grid
+        Grid.Row="{OnPlatform iOS=1, Default=0}"
+        ColumnDefinitions="{OnIdiom Phone='*', Default='*,480'}"
+        RowDefinitions="*">
+
+        <!-- Main content -->
+        <WebView
+            Source="https://embed.windy.com" />
+
+        <!-- Widget panel -->
+        <v:WidgetsPanel
+            IsVisible="{OnIdiom Phone=False, Default=True}"
+            Grid.Column="{OnIdiom Phone=0, Default=1}" />
+            
+    </Grid>
+
+</ContentPage>

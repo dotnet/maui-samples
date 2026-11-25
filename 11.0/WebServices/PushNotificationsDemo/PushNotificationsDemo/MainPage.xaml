@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PushNotificationsDemo.MainPage"
+             Title="Push notifications demo">
+    <VerticalStackLayout Margin="20"
+                         Spacing="6">
+        <Button x:Name="registerButton"
+                Text="Register"
+                Clicked="OnRegisterButtonClicked" />
+        <Button x:Name="deregisterButton"
+                Text="Deregister"
+                Clicked="OnDeregisterButtonClicked" />
+    </VerticalStackLayout>
+</ContentPage>

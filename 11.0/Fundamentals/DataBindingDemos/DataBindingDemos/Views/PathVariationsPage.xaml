@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:globe="clr-namespace:System.Globalization;assembly=netstandard"
+             x:Class="DataBindingDemos.PathVariationsPage"
+             Title="Path Variations">
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="HorizontalTextAlignment" Value="Center" />
+            <Setter Property="VerticalOptions" Value="Center" />
+        </Style>
+    </ContentPage.Resources>
+
+    <StackLayout x:Name="stackLayout"
+                 Margin="10, 0">
+        <Label Text="Select a time:" />
+
+        <TimePicker x:Name="timePicker" />
+
+        <Label x:Name="label"
+               Text="{Binding x:DataType='TimePicker',
+                              Source={x:Reference timePicker},
+                              Path=Time.TotalSeconds,
+                              StringFormat='{0} total seconds'}" />
+
+        <Label Text="{Binding x:DataType='StackLayout',
+                              Source={x:Reference stackLayout},
+                              Path=Children.Count,
+                              StringFormat='There are {0} children in this StackLayout'}" />
+
+        <Label Text="{Binding x:DataType='globe:CultureInfo',
+                              Source={x:Static globe:CultureInfo.CurrentCulture},
+                              Path=DateTimeFormat.DayNames[3],
+                              StringFormat='The middle day of the week is {0}'}" />
+
+        <Label>
+            <Label.Text>
+                <Binding x:DataType="globe:CultureInfo"
+                         Path="DateTimeFormat.DayNames[3]"
+                         StringFormat="The middle day of the week in French is {0}">
+                    <Binding.Source>
+                        <globe:CultureInfo>
+                            <x:Arguments>
+                                <x:String>fr-FR</x:String>
+                            </x:Arguments>
+                        </globe:CultureInfo>
+                    </Binding.Source>
+                </Binding>
+            </Label.Text>
+        </Label>
+
+        <Label Text="{Binding x:DataType='Label',
+                              Source={x:Reference label},
+                              Path=Text.Length,
+                              StringFormat='The second Label has {0} characters'}" />
+    </StackLayout>
+</ContentPage>

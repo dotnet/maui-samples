@@ -1,0 +1,9 @@
+<?xml version="1.0" ?><ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ControlGallery.Views.XAML.ButtonDemoPage" Title="Button Demo">
+    <Grid RowSpacing="6" RowDefinitions="Auto,*,*">
+        <Label Text="Button" FontSize="50" FontAttributes="Bold" HorizontalOptions="Center" Grid.Row="0"/>
+
+        <Button Text="Click Me!" FontSize="20" BorderWidth="1" HorizontalOptions="Center" VerticalOptions="Center" Clicked="OnButtonClicked" Grid.Row="1"/>
+
+        <Label x:Name="label" Text="0 button clicks" FontSize="20" HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="2"/>
+    </Grid>
+</ContentPage>

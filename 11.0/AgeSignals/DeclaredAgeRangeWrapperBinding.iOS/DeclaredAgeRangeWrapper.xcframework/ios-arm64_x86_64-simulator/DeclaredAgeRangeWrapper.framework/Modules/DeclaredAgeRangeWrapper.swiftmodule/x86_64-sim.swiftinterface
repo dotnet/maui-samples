@@ -1,0 +1,65 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.2 effective-5.10 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)
+// swift-module-flags: -target x86_64-apple-ios26.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-upcoming-feature DisableOutwardActorInference -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature GlobalActorIsolatedTypesUsability -enable-upcoming-feature MemberImportVisibility -enable-upcoming-feature InferIsolatedConformances -enable-upcoming-feature NonisolatedNonsendingByDefault -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name DeclaredAgeRangeWrapper
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
+import DeclaredAgeRange
+import Foundation
+import Swift
+import UIKit
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+public typealias PlatformAnchor = UIKit.UIViewController
+@objc public enum MyAgeRangeDeclaration : Swift.Int {
+  case selfDeclared
+  case guardianDeclared
+  case unknown
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init?(rawValue: Swift.Int)
+  #endif
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public class MyAgeRange : ObjectiveC.NSObject {
+  @objc final public let lowerBound: Foundation.NSNumber?
+  @objc final public let upperBound: Foundation.NSNumber?
+  @objc final public let declaration: DeclaredAgeRangeWrapper.MyAgeRangeDeclaration
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc public init(lowerBound: Foundation.NSNumber?, upperBound: Foundation.NSNumber?, declaration: DeclaredAgeRangeWrapper.MyAgeRangeDeclaration)
+  #endif
+  @objc deinit
+}
+@objc public enum MyAgeRangeResponseType : Swift.Int {
+  case sharing
+  case declinedSharing
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init?(rawValue: Swift.Int)
+  #endif
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public class MyAgeRangeResponse : ObjectiveC.NSObject {
+  @objc final public let type: DeclaredAgeRangeWrapper.MyAgeRangeResponseType
+  @objc final public let range: DeclaredAgeRangeWrapper.MyAgeRange?
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc public init(type: DeclaredAgeRangeWrapper.MyAgeRangeResponseType, range: DeclaredAgeRangeWrapper.MyAgeRange?)
+  #endif
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc public class DeclaredAgeRangeBridge : ObjectiveC.NSObject {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc public static func requestAgeRange(withAgeGates threshold1: Swift.Int, _ threshold2: Foundation.NSNumber?, _ threshold3: Foundation.NSNumber?, in viewController: DeclaredAgeRangeWrapper.PlatformAnchor, completion: @escaping (DeclaredAgeRangeWrapper.MyAgeRangeResponse?, Foundation.NSError?) -> Swift.Void)
+  #endif
+  @objc override dynamic public init()
+  @objc deinit
+}
+extension DeclaredAgeRangeWrapper.MyAgeRangeDeclaration : Swift.Equatable {}
+extension DeclaredAgeRangeWrapper.MyAgeRangeDeclaration : Swift.Hashable {}
+extension DeclaredAgeRangeWrapper.MyAgeRangeDeclaration : Swift.RawRepresentable {}
+extension DeclaredAgeRangeWrapper.MyAgeRangeResponseType : Swift.Equatable {}
+extension DeclaredAgeRangeWrapper.MyAgeRangeResponseType : Swift.Hashable {}
+extension DeclaredAgeRangeWrapper.MyAgeRangeResponseType : Swift.RawRepresentable {}

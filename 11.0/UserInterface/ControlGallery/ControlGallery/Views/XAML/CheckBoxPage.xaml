@@ -1,0 +1,15 @@
+<?xml version="1.0" ?><ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ControlGallery.Views.XAML.CheckBoxPage" Title="CheckBox Demo">
+    <Grid RowSpacing="6" RowDefinitions="Auto,*,*">
+        <Label Text="CheckBox" FontSize="50" FontAttributes="Bold" HorizontalOptions="Center" Grid.Row="0"/>
+        
+        <CheckBox x:Name="checkbox" HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="1"/>
+        
+        <Label Text="CheckBox is now False" FontSize="20" HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="2">
+            <Label.Triggers>
+                <DataTrigger x:DataType="CheckBox" TargetType="Label" Binding="{Binding Source={x:Reference checkbox},                                                Path=IsChecked}" Value="True">
+                    <Setter Property="Text" Value="CheckBox is now True"/>
+                </DataTrigger>
+            </Label.Triggers>
+        </Label>
+    </Grid>
+</ContentPage>

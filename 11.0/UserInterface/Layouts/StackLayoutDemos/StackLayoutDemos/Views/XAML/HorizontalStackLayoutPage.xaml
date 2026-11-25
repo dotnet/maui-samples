@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StackLayoutDemos.Views.XAML.HorizontalStackLayoutPage"
+             Title="Horizontal StackLayout demo">
+    <StackLayout Margin="20"
+                 Orientation="Horizontal"
+                 HorizontalOptions="Center">
+        <BoxView Color="Red"
+                 WidthRequest="40" />
+        <BoxView Color="Yellow"
+                 WidthRequest="40" />
+        <BoxView Color="Blue"
+                 WidthRequest="40" />
+        <BoxView Color="Green"
+                 WidthRequest="40" />
+        <BoxView Color="Orange"
+                 WidthRequest="40" />
+        <BoxView Color="Purple"
+                 WidthRequest="40" />
+    </StackLayout>
+</ContentPage>
+

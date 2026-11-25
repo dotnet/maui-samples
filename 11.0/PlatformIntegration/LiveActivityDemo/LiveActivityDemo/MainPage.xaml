@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LiveActivityDemo.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,15"
+            Spacing="25">
+            <Label
+                Text="(iOS) Live Activity"
+                Style="{StaticResource Headline}"
+                SemanticProperties.HeadingLevel="Level1"/>
+
+            <Label Text="This sample demonstrates starting, updating, and ending a Live Activity on iOS 16.1+. Display includes a lock screen widget and dynamic island display.&#10;&#10;1. Tap Start&#10;2. Lock the phone and observe the widget&#10;3. Unlock and observe the dynamic island&#10;4. Click update to see the displays change&#10;5. Tap End"/>
+
+            <Label
+                TextColor="Purple"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                x:Name="StatusTxt"/>
+
+            <Button
+                x:Name="StartBtn"
+                Text="Start"
+                SemanticProperties.Hint="Start the live activity"
+                Clicked="StartBtn_Clicked"
+                HorizontalOptions="Fill"/>
+
+            <Button
+                x:Name="UpdateBtn"
+                Text="Update (+10%)"
+                SemanticProperties.Hint="Update the live activity progress"
+                Clicked="UpdateBtn_Clicked"
+                HorizontalOptions="Fill"/>
+
+            <Button
+                x:Name="EndBtn"
+                Text="End"
+                SemanticProperties.Hint="End the live activity"
+                Clicked="EndBtn_Clicked"
+                HorizontalOptions="Fill"/>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

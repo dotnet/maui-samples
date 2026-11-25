@@ -1,0 +1,28 @@
+<?xml version="1.0" ?><ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ControlGallery.Views.XAML.PickerDemoPage" Title="Picker Demo">
+    <Grid RowSpacing="6" RowDefinitions="Auto,*,*">
+        <Label Text="Picker" FontSize="50" FontAttributes="Bold" HorizontalOptions="Center" Grid.Row="0"/>
+
+        <Picker Title="Color" VerticalOptions="Center" Margin="10, 0" SelectedIndexChanged="OnPickerSelectedIndexChanged" Grid.Row="1">
+            <Picker.Items>
+                <x:String>Aqua</x:String>
+                <x:String>Black</x:String>
+                <x:String>Blue</x:String>
+                <x:String>Fuchsia</x:String>
+                <x:String>Gray</x:String>
+                <x:String>Green</x:String>
+                <x:String>Lime</x:String>
+                <x:String>Maroon</x:String>
+                <x:String>Navy</x:String>
+                <x:String>Olive</x:String>
+                <x:String>Purple</x:String>
+                <x:String>Red</x:String>
+                <x:String>Silver</x:String>
+                <x:String>Teal</x:String>
+                <x:String>White</x:String>
+                <x:String>Yellow</x:String>
+            </Picker.Items>
+        </Picker>
+        
+        <BoxView x:Name="boxView" WidthRequest="150" HeightRequest="150" HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="2"/>
+    </Grid>
+</ContentPage>

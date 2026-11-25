@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ControlGallery.Views.XAML.RectangleDemoPage"
+             Title="Rectangle Demo">
+    <StackLayout Spacing="6">
+        <Label Text="Rectangle"
+               FontSize="50"
+               FontAttributes="Bold"
+               HorizontalOptions="Center" />
+        <Rectangle Fill="Red"
+                   WidthRequest="150"
+                   HeightRequest="50"
+                   HorizontalOptions="Center" />
+        <Rectangle Stroke="Red"
+                   StrokeThickness="4"
+                   WidthRequest="150"
+                   HeightRequest="150"
+                   HorizontalOptions="Center" />
+    </StackLayout>
+</ContentPage>
