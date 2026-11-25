@@ -10,9 +10,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [windows-latest, xcode-27]
+        # Keep the macos-26 matrix value so the check context stays `build (macos-26)`,
+        # which main requires. The .NET 11 Apple builds need Xcode 27.2, so that entry runs on the xcode-27 runner.
+        os: [windows-latest, macos-26]
 
-    runs-on: ${{ matrix.os }}
+    runs-on: ${{ matrix.os == 'macos-26' && 'xcode-27' || matrix.os }}
 
     steps:
     - name: Checkout code
