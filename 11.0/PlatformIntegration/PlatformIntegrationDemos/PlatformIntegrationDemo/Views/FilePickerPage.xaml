@@ -1,24 +1,63 @@
-<?xml version="1.0" ?><views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:views="clr-namespace:PlatformIntegrationDemo.Views" xmlns:viewmodels="clr-namespace:PlatformIntegrationDemo.ViewModels" x:Class="PlatformIntegrationDemo.Views.FilePickerPage" Title="File Picker" x:DataType="viewmodels:FilePickerViewModel">
+<?xml version="1.0" encoding="utf-8" ?>
+<views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:views="clr-namespace:PlatformIntegrationDemo.Views"
+                xmlns:viewmodels="clr-namespace:PlatformIntegrationDemo.ViewModels"
+                x:Class="PlatformIntegrationDemo.Views.FilePickerPage"
+                Title="File Picker"
+                x:DataType="viewmodels:FilePickerViewModel">
     <views:BasePage.BindingContext>
-        <viewmodels:FilePickerViewModel/>
+        <viewmodels:FilePickerViewModel />
     </views:BasePage.BindingContext>
 
-    <Grid RowDefinitions="Auto,*">
-        <Label Text="Pick files from storage." FontAttributes="Bold" Margin="12"/>
+    <ScrollView>
+        <Grid RowDefinitions="Auto,Auto"
+              Style="{StaticResource DemoLayout}">
+            <VerticalStackLayout Style="{StaticResource DemoHeader}">
+                <Label Text="Storage" Style="{StaticResource Eyebrow}" />
+                <Label Text="File Picker" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+                <Label Text="Let the user pick one or more files. You can limit the picker to images, PDFs, or your own file types." Style="{StaticResource Lead}" />
+                <Border Style="{StaticResource ApiChip}">
+                    <Label Text="FilePicker.PickAsync()" Style="{StaticResource ApiChipLabel}" />
+                </Border>
+            </VerticalStackLayout>
 
-        <ScrollView Grid.Row="1">
-            <Grid Padding="12,0,12,12" RowSpacing="6" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,*">
-                <Button Text="Pick file" Command="{Binding PickFileCommand}" Grid.Row="0"/>
-                <Button Text="Pick image" Command="{Binding PickImageCommand}" Grid.Row="1"/>
-                <Button Text="Pick pdf" Command="{Binding PickPdfCommand}" Grid.Row="2"/>
-                <Button Text="Pick custom type" Command="{Binding PickCustomTypeCommand}" Grid.Row="3"/>
-                <Button Text="Pick image and send email" Command="{Binding PickAndSendCommand}" Grid.Row="4"/>
-                <Button Text="Pick multiple files" Command="{Binding PickMultipleFilesCommand}" Grid.Row="5"/>
-
-                <Label Text="{Binding Text}" HorizontalOptions="Fill" Grid.Row="6"/>
-
-                <Image Source="{Binding Image}" IsVisible="{Binding IsImageVisible}" HorizontalOptions="Fill" VerticalOptions="Fill" Grid.Row="7"/>
-            </Grid>
-        </ScrollView>
-    </Grid>
+            <Border Grid.Row="1"
+                    Style="{StaticResource DemoSurface}">
+                <VerticalStackLayout Spacing="12">
+                    <Button Text="Pick a file"
+                            Command="{Binding PickFileCommand}" />
+                    <Grid ColumnDefinitions="*,*"
+                          ColumnSpacing="12">
+                        <Button Text="Pick an image"
+                                Style="{StaticResource TonalButton}"
+                                Command="{Binding PickImageCommand}" />
+                        <Button Grid.Column="1"
+                                Text="Pick a PDF"
+                                Style="{StaticResource TonalButton}"
+                                Command="{Binding PickPdfCommand}" />
+                    </Grid>
+                    <Grid ColumnDefinitions="*,*"
+                          ColumnSpacing="12">
+                        <Button Text="Custom type"
+                                Style="{StaticResource TonalButton}"
+                                Command="{Binding PickCustomTypeCommand}" />
+                        <Button Grid.Column="1"
+                                Text="Multiple files"
+                                Style="{StaticResource TonalButton}"
+                                Command="{Binding PickMultipleFilesCommand}" />
+                    </Grid>
+                    <Button Text="Pick an image and email it"
+                            Style="{StaticResource TonalButton}"
+                            Command="{Binding PickAndSendCommand}" />
+                    <Label Text="{Binding Text}"
+                           Style="{StaticResource Output}" />
+                    <Image Source="{Binding Image}"
+                           SemanticProperties.Description="The picked image"
+                           IsVisible="{Binding IsImageVisible}"
+                           MaximumHeightRequest="300" />
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+    </ScrollView>
 </views:BasePage>

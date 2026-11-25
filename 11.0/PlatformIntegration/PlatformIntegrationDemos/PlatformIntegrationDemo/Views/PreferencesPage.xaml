@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                 xmlns:views="clr-namespace:PlatformIntegrationDemo.Views"
@@ -10,19 +10,36 @@
         <viewmodels:PreferencesViewModel />
     </views:BasePage.BindingContext>
 
-    <Grid RowDefinitions="Auto,*">
-        <Label Text="Quickly and easily add persistent preferences."
-               FontAttributes="Bold"
-               Margin="12" />
+    <ScrollView>
+        <Grid RowDefinitions="Auto,Auto"
+              Style="{StaticResource DemoLayout}">
+            <VerticalStackLayout Style="{StaticResource DemoHeader}">
+                <Label Text="Storage" Style="{StaticResource Eyebrow}" />
+                <Label Text="Preferences" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+                <Label Text="Store simple values as key-value pairs that persist when the app restarts." Style="{StaticResource Lead}" />
+                <Border Style="{StaticResource ApiChip}">
+                    <Label Text="Preferences.Set()" Style="{StaticResource ApiChipLabel}" />
+                </Border>
+                <Border Style="{StaticResource ApiChip}">
+                    <Label Text="Preferences.Get()" Style="{StaticResource ApiChipLabel}" />
+                </Border>
+            </VerticalStackLayout>
 
-        <ScrollView Grid.Row="1">
-            <StackLayout Padding="12,0,12,12"
-                         Spacing="6">
-                <Label Text="Enter some text to save:" />
-                <Editor Placeholder="Enter text..."
-                        Text="{Binding PreferenceValue}"
-                        AutoSize="TextChanges" />
-            </StackLayout>
-        </ScrollView>
-    </Grid>
+            <Border Grid.Row="1"
+                    Style="{StaticResource DemoSurface}">
+                <VerticalStackLayout Spacing="16">
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Saved text" Style="{StaticResource Caption}" />
+                        <Editor SemanticProperties.Hint="Saved text"
+                                Placeholder="Enter text"
+                                Text="{Binding PreferenceValue}"
+                                AutoSize="TextChanges" />
+                    </VerticalStackLayout>
+                    <Border Style="{StaticResource Hint}">
+                        <Label Text="The text is saved as you type. Restart the app and come back to see it again." Style="{StaticResource HintLabel}" />
+                    </Border>
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+    </ScrollView>
 </views:BasePage>

@@ -11,59 +11,72 @@
         <viewmodels:PermissionsViewModel x:Name="viewModel" />
     </views:BasePage.BindingContext>
 
-    <Grid RowDefinitions="Auto,*">
-        <Label Text="Request various permissions."
-               FontAttributes="Bold"
-               Margin="12" />
+    <Grid RowDefinitions="Auto,*"
+          Style="{StaticResource DemoLayout}">
+        <VerticalStackLayout Style="{StaticResource DemoHeader}">
+            <Label Text="App model" Style="{StaticResource Eyebrow}" />
+            <Label Text="Permissions" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+            <Label Text="Check the status of a runtime permission, request it, and find out whether to show a rationale first." Style="{StaticResource Lead}" />
+            <Border Style="{StaticResource ApiChip}">
+                <Label Text="Permissions.RequestAsync()" Style="{StaticResource ApiChipLabel}" />
+            </Border>
+        </VerticalStackLayout>
 
-        <CollectionView SelectionMode="Single"
-                  ItemsSource="{Binding PermissionItems}"
-                  Grid.Row="1">
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="models:PermissionItem">
-<Grid Padding="12"
-                              RowSpacing="0"
-                              HeightRequest="90"
-                              RowDefinitions="*,*,*"
-                              ColumnDefinitions="*,Auto,Auto">
-
-                            <Label Text="{Binding Title}"
-                                   FontAttributes="Bold"
-                                   VerticalOptions="Center"
-                                   Grid.Row="0"
-                                   Grid.Column="0" />
-                            <Label Text="{Binding Status, Mode=OneWay}"
-                                   VerticalOptions="Center"
-                                   Grid.Row="1"
-                                   Grid.Column="0" />
+        <Border Grid.Row="1"
+                Style="{StaticResource DemoSurface}">
+            <CollectionView ItemsSource="{Binding PermissionItems}"
+                            SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:PermissionItem">
+                        <VerticalStackLayout Padding="0,0,0,12"
+                                             Spacing="8">
+                            <Grid ColumnDefinitions="*,Auto"
+                                  ColumnSpacing="12">
+                                <Label Text="{Binding Title}"
+                                       Style="{StaticResource Headline}" />
+                                <Border Grid.Column="1"
+                                        Style="{StaticResource StatusPill}">
+                                    <Label Text="{Binding Status, Mode=OneWay}"
+                                           Style="{StaticResource StatusPillLabel}" />
+                                </Border>
+                            </Grid>
                             <Label Text="{Binding Rationale, Mode=OneWay}"
-                                   VerticalOptions="Center"
-                                   Grid.Row="2"
-                                   Grid.Column="0" />
-
-                            <Button Text="Check"
-                                    Command="{Binding CheckStatusCommand}"
-                                    Grid.Row="0"
-                                    Grid.RowSpan="2"
-                                    Grid.Column="1"
-                                    VerticalOptions="Center" />
-                            <Button Text="Request"
-                                    Command="{Binding RequestCommand}"
-                                    Grid.Row="0"
-                                    Grid.RowSpan="2"
-                                    Grid.Column="2"
-                                    VerticalOptions="Center" />
-
-                            <Button Text="Show Rationale"
-                                    Command="{Binding ShouldShowRationaleCommand}"
-                                    Grid.Row="2"
-                                    Grid.Column="1"
-                                    Grid.ColumnSpan="2"
-                                    VerticalOptions="Center" />
-
-                        </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+                                   Style="{StaticResource Caption}">
+                                <Label.Triggers>
+                                    <Trigger TargetType="Label" Property="Text" Value="{x:Null}">
+                                        <Setter Property="IsVisible" Value="False" />
+                                    </Trigger>
+                                </Label.Triggers>
+                            </Label>
+                            <Grid ColumnDefinitions="*,*,*"
+                                  ColumnSpacing="8">
+                                <Button Text="Check"
+                                        Style="{StaticResource TonalButton}"
+                                        Padding="8,0"
+                                        FontSize="14"
+                                        Command="{Binding CheckStatusCommand}"
+                                        SemanticProperties.Description="{Binding Title, StringFormat='Check {0}'}" />
+                                <Button Grid.Column="1"
+                                        Text="Request"
+                                        Style="{StaticResource TonalButton}"
+                                        Padding="8,0"
+                                        FontSize="14"
+                                        Command="{Binding RequestCommand}"
+                                        SemanticProperties.Description="{Binding Title, StringFormat='Request {0}'}" />
+                                <Button Grid.Column="2"
+                                        Text="Rationale"
+                                        Style="{StaticResource TonalButton}"
+                                        Padding="8,0"
+                                        FontSize="14"
+                                        Command="{Binding ShouldShowRationaleCommand}"
+                                        SemanticProperties.Description="{Binding Title, StringFormat='Show rationale for {0}'}" />
+                            </Grid>
+                            <BoxView Style="{StaticResource Divider}"
+                                     Margin="0,4,0,0" />
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Border>
     </Grid>
 </views:BasePage>

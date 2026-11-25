@@ -1,75 +1,89 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                 xmlns:views="clr-namespace:PlatformIntegrationDemo.Views"
                 xmlns:viewmodels="clr-namespace:PlatformIntegrationDemo.ViewModels"
                 x:Class="PlatformIntegrationDemo.Views.TextToSpeechPage"
-                Title="Text To Speech"
+                Title="Text to Speech"
                 x:DataType="viewmodels:TextToSpeechViewModel">
     <views:BasePage.BindingContext>
         <viewmodels:TextToSpeechViewModel />
     </views:BasePage.BindingContext>
 
-    <Grid RowDefinitions="Auto,*">
-        <Label Text="Easily let your device speak for you."
-               FontAttributes="Bold"
-               Margin="12" />
+    <ScrollView>
+        <Grid RowDefinitions="Auto,Auto"
+              Style="{StaticResource DemoLayout}">
+            <VerticalStackLayout Style="{StaticResource DemoHeader}">
+                <Label Text="Media" Style="{StaticResource Eyebrow}" />
+                <Label Text="Text to Speech" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+                <Label Text="Speak text with the built-in speech engine, and choose the volume, pitch, and voice." Style="{StaticResource Lead}" />
+                <Border Style="{StaticResource ApiChip}">
+                    <Label Text="TextToSpeech.SpeakAsync()" Style="{StaticResource ApiChipLabel}" />
+                </Border>
+            </VerticalStackLayout>
 
-        <ScrollView Grid.Row="1">
-            <StackLayout Padding="12,0,12,12"
-                         Spacing="6">
-                <Label Text="Text :" />
-                <Editor Text="{Binding Text}"
-                        AutoSize="TextChanges" />
-                <Button Text="Speak"
-                        Command="{Binding SpeakCommand}"
-                        CommandParameter="{Binding  x:DataType='Switch', Source={x:Reference SwitchMultiple}, Path=IsToggled}"
-                        IsEnabled="{Binding IsNotBusy}" />
-                <Button Text="Cancel"
-                        Command="{Binding CancelCommand}"
-                        IsEnabled="{Binding IsBusy}" />
-
-                <Label Text="Multiple Lines Of Text"
-                       HorizontalOptions="Start" />
-                <Switch HorizontalOptions="Center"
-                        x:Name="SwitchMultiple" />
-
-                <Label Text="Advanced"
-                       HorizontalOptions="Start" />
-                <Switch HorizontalOptions="Center"
-                        IsToggled="{Binding AdvancedOptions}" />
-
-                <Label Text="Volume"
-                       HorizontalOptions="Start"
-                       IsVisible="{Binding AdvancedOptions}" />
-                <Label Text="{Binding Volume}"
-                       HorizontalOptions="Center"
-                       IsVisible="{Binding AdvancedOptions}" />
-                <Slider Value="{Binding Volume}"
-                        Minimum="0.0"
-                        Maximum="1.0"
-                        IsVisible="{Binding AdvancedOptions}" />
-
-                <Label Text="Pitch"
-                       HorizontalOptions="Start"
-                       IsVisible="{Binding AdvancedOptions}" />
-                <Label Text="{Binding Pitch}"
-                       HorizontalOptions="Center"
-                       IsVisible="{Binding AdvancedOptions}" />
-                <Slider Value="{Binding Pitch}"
-                        Minimum="0.0"
-                        Maximum="2.0"
-                        IsVisible="{Binding AdvancedOptions}" />
-
-                <Button Text="Pick Locale"
-                        Command="{Binding PickLocaleCommand}"
-                        IsVisible="{Binding AdvancedOptions}" />
-                <Label Text="{Binding Locale}"
-                       IsVisible="{Binding AdvancedOptions}" />
-
-                <ActivityIndicator IsVisible="{Binding IsBusy}"
-                                   IsRunning="{Binding IsBusy}" />
-            </StackLayout>
-        </ScrollView>
-    </Grid>
+            <Border Grid.Row="1"
+                    Style="{StaticResource DemoSurface}">
+                <VerticalStackLayout Spacing="16">
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Text" Style="{StaticResource Caption}" />
+                        <Editor SemanticProperties.Hint="Text"
+                                Text="{Binding Text}"
+                                AutoSize="TextChanges" />
+                    </VerticalStackLayout>
+                    <Grid ColumnDefinitions="*,Auto"
+                          ColumnSpacing="12">
+                        <Label Text="Speak multiple lines" Style="{StaticResource SwitchLabel}" />
+                        <Switch x:Name="SwitchMultiple"
+                                Grid.Column="1"
+                                SemanticProperties.Description="Speak multiple lines" />
+                    </Grid>
+                    <Grid ColumnDefinitions="*,*"
+                          ColumnSpacing="12">
+                        <Button Text="Speak"
+                                Command="{Binding SpeakCommand}"
+                                CommandParameter="{Binding x:DataType='Switch', Source={x:Reference SwitchMultiple}, Path=IsToggled}"
+                                IsEnabled="{Binding IsNotBusy}" />
+                        <Button Grid.Column="1"
+                                Text="Cancel"
+                                Style="{StaticResource TonalButton}"
+                                Command="{Binding CancelCommand}"
+                                IsEnabled="{Binding IsBusy}" />
+                    </Grid>
+                    <ActivityIndicator IsVisible="{Binding IsBusy}"
+                                       IsRunning="{Binding IsBusy}" />
+                    <BoxView Style="{StaticResource Divider}" />
+                    <Grid ColumnDefinitions="*,Auto"
+                          ColumnSpacing="12">
+                        <Label Text="Advanced options" Style="{StaticResource SwitchLabel}" />
+                        <Switch Grid.Column="1"
+                                IsToggled="{Binding AdvancedOptions}"
+                                SemanticProperties.Description="Advanced options" />
+                    </Grid>
+                    <VerticalStackLayout IsVisible="{Binding AdvancedOptions}"
+                                         Spacing="16">
+                        <VerticalStackLayout Spacing="4">
+                            <Label Text="{Binding Volume, StringFormat='Volume: {0:N2}'}" Style="{StaticResource Caption}" />
+                            <Slider SemanticProperties.Description="Volume"
+                                    Minimum="0.0"
+                                    Maximum="1.0"
+                                    Value="{Binding Volume}" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Spacing="4">
+                            <Label Text="{Binding Pitch, StringFormat='Pitch: {0:N2}'}" Style="{StaticResource Caption}" />
+                            <Slider SemanticProperties.Description="Pitch"
+                                    Minimum="0.0"
+                                    Maximum="2.0"
+                                    Value="{Binding Pitch}" />
+                        </VerticalStackLayout>
+                        <Button Text="Pick locale"
+                                Style="{StaticResource TonalButton}"
+                                Command="{Binding PickLocaleCommand}" />
+                        <Label Text="{Binding Locale}"
+                               Style="{StaticResource Output}" />
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+    </ScrollView>
 </views:BasePage>

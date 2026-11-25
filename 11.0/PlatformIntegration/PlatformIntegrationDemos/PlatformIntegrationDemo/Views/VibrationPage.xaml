@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                 xmlns:views="clr-namespace:PlatformIntegrationDemo.Views"
@@ -10,26 +10,46 @@
         <viewmodels:VibrationViewModel />
     </views:BasePage.BindingContext>
 
-    <Grid RowDefinitions="Auto,*">
-        <Label Text="Quickly and easily make the device vibrate."
-               FontAttributes="Bold"
-               Margin="12" />
+    <ScrollView>
+        <Grid RowDefinitions="Auto,Auto"
+              Style="{StaticResource DemoLayout}">
+            <VerticalStackLayout Style="{StaticResource DemoHeader}">
+                <Label Text="Device" Style="{StaticResource Eyebrow}" />
+                <Label Text="Vibration" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+                <Label Text="Vibrate the device for a duration you choose, and cancel the vibration early. On iOS the system decides the duration." Style="{StaticResource Lead}" />
+                <Border Style="{StaticResource ApiChip}">
+                    <Label Text="Vibration.Vibrate()" Style="{StaticResource ApiChipLabel}" />
+                </Border>
+            </VerticalStackLayout>
 
-        <ScrollView Grid.Row="1">
-            <StackLayout Padding="12,0,12,12"
-                         Spacing="6">
-                <Slider Minimum="0"
-                        Maximum="5000"
-                        Value="{Binding Duration}" />
-                <Button Text="Vibrate"
-                        Command="{Binding VibrateCommand}" />
-                <Button Text="Cancel"
-                        Command="{Binding CancelCommand}" />
-                <Label Text="Vibration is not supported."
-                       TextColor="Red"
-                       FontAttributes="Italic"
-                       IsVisible="{Binding IsSupported, Converter={StaticResource InverterConverter}}" />
-            </StackLayout>
-        </ScrollView>
-    </Grid>
+            <Border Grid.Row="1"
+                    Style="{StaticResource DemoSurface}">
+                <VerticalStackLayout Spacing="16">
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Duration" Style="{StaticResource Caption}" />
+                        <Label Text="{Binding Duration, StringFormat='{0:N0} ms'}"
+                               Style="{StaticResource Value}"
+                               HorizontalTextAlignment="Start" />
+                        <Slider SemanticProperties.Description="Duration"
+                                Minimum="0"
+                                Maximum="5000"
+                                Value="{Binding Duration}" />
+                    </VerticalStackLayout>
+                    <Grid ColumnDefinitions="*,*"
+                          ColumnSpacing="12">
+                        <Button Text="Vibrate"
+                                Command="{Binding VibrateCommand}" />
+                        <Button Grid.Column="1"
+                                Text="Cancel"
+                                Style="{StaticResource TonalButton}"
+                                Command="{Binding CancelCommand}" />
+                    </Grid>
+                    <Border Style="{StaticResource Hint}"
+                            IsVisible="{Binding IsSupported, Converter={StaticResource InverterConverter}}">
+                        <Label Text="This device doesn't support vibration." Style="{StaticResource WarningLabel}" />
+                    </Border>
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+    </ScrollView>
 </views:BasePage>

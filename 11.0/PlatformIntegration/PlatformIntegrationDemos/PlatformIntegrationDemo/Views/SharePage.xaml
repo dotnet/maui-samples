@@ -1,72 +1,141 @@
-<?xml version="1.0" ?><views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:views="clr-namespace:PlatformIntegrationDemo.Views" xmlns:viewmodels="clr-namespace:PlatformIntegrationDemo.ViewModels" x:Class="PlatformIntegrationDemo.Views.SharePage" Title="Share" x:DataType="viewmodels:ShareViewModel">
+<?xml version="1.0" encoding="utf-8" ?>
+<views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:views="clr-namespace:PlatformIntegrationDemo.Views"
+                xmlns:viewmodels="clr-namespace:PlatformIntegrationDemo.ViewModels"
+                x:Class="PlatformIntegrationDemo.Views.SharePage"
+                Title="Share"
+                x:DataType="viewmodels:ShareViewModel">
     <views:BasePage.BindingContext>
-        <viewmodels:ShareViewModel/>
+        <viewmodels:ShareViewModel />
     </views:BasePage.BindingContext>
 
-    <Grid RowDefinitions="Auto,*">
-        <Label Text="Share text, websites and files to other applications on the users device." FontAttributes="Bold" Margin="12"/>
+    <ScrollView>
+        <Grid RowDefinitions="Auto,Auto,Auto,Auto"
+              Style="{StaticResource DemoLayout}">
+            <VerticalStackLayout Style="{StaticResource DemoHeader}">
+                <Label Text="Sharing" Style="{StaticResource Eyebrow}" />
+                <Label Text="Share" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+                <Label Text="Send text, a link, or files to other apps with the system share sheet." Style="{StaticResource Lead}" />
+                <Border Style="{StaticResource ApiChip}">
+                    <Label Text="Share.RequestAsync()" Style="{StaticResource ApiChipLabel}" />
+                </Border>
+            </VerticalStackLayout>
 
-        <ScrollView Grid.Row="1">
-            <StackLayout Padding="12,0,12,12" Spacing="6">
-
-                <Label Text="Share Text" FontAttributes="Bold" Margin="0,6,0,0"/>
-
-                <Label Text="Title (Optional)"/>
-                <Entry Text="{Binding Title}"/>
-
-                <Label Text="Subject (Optional)"/>
-                <Entry Text="{Binding Subject}"/>
-
-                <Grid ColumnSpacing="6" ColumnDefinitions="*,Auto">
-                    <Label Text="Text" HorizontalOptions="Start" VerticalOptions="End" Grid.Column="0"/>
-                    <Switch HorizontalOptions="End" IsToggled="{Binding ShareText}" VerticalOptions="End" Grid.Column="1"/>
-                </Grid>
-
-                <Editor Text="{Binding Text}" Placeholder="Enter text to share here." Keyboard="Chat" AutoSize="TextChanges"/>
-
-                <Grid ColumnSpacing="6" ColumnDefinitions="*,Auto">
-                    <Label Text="URI" HorizontalOptions="Start" VerticalOptions="End" Grid.Column="0"/>
-                    <Switch HorizontalOptions="End" IsToggled="{Binding ShareUri}" VerticalOptions="End" Grid.Column="1"/>
-                </Grid>
-
-                <Entry Text="{Binding Uri}" Placeholder="Enter URI to share here."/>
-
-                <Button Text="Share Text" Command="{Binding RequestCommand}" CommandParameter="{Binding Source={RelativeSource Self}}"/>
-
-                <BoxView Margin="0,4,0,4" HeightRequest="1" BackgroundColor="Gray" HorizontalOptions="Fill"/>
-
-                <Label Text="Share File" FontAttributes="Bold" Margin="0,6,0,0"/>
-
-                <Label Text="Title (Optional)"/>
-                <Entry Text="{Binding ShareFileTitle}"/>
-
-                <Label Text="File Name:"/>
-                <Entry Text="{Binding ShareFileAttachmentName}"/>
-                <Label Text="File Contents:"/>
-                <Editor Text="{Binding ShareFileAttachmentContents}" Keyboard="Chat" AutoSize="TextChanges"/>
-
-                <Button Text="Share File" Command="{Binding RequestFileCommand}" CommandParameter="{Binding Source={RelativeSource Self}}"/>
-
-                <BoxView Margin="0,4,0,4" HeightRequest="1" BackgroundColor="Gray" HorizontalOptions="Fill"/>
-
-                <Label Text="Share Files" FontAttributes="Bold" Margin="0,6,0,0"/>
-
-                <Label Text="Title (Optional)"/>
-                <Entry Text="{Binding ShareFilesTitle}"/>
-
-                <Label Text="File1 Name:"/>
-                <Entry Text="{Binding ShareFile1AttachmentName}"/>
-                <Label Text="File1 Contents:"/>
-                <Editor Text="{Binding ShareFile1AttachmentContents}" Keyboard="Chat" AutoSize="TextChanges"/>
-
-                <Label Text="File2 Name:" Margin="0,20,0,0"/>
-                <Entry Text="{Binding ShareFile2AttachmentName}"/>
-                <Label Text="File2 Contents:"/>
-                <Editor Text="{Binding ShareFile2AttachmentContents}" Keyboard="Chat" AutoSize="TextChanges"/>
-
-                <Button Text="Share Files" Command="{Binding RequestFilesCommand}" CommandParameter="{Binding Source={RelativeSource Self}}"/>
-
-            </StackLayout>
-        </ScrollView>
-    </Grid>
+            <Border Grid.Row="1"
+                    Style="{StaticResource DemoSurface}">
+                <VerticalStackLayout Spacing="16">
+                    <Label Text="Share text and a link"
+                           Style="{StaticResource Headline}"
+                           SemanticProperties.HeadingLevel="Level2" />
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Title (optional)" Style="{StaticResource Caption}" />
+                        <Entry SemanticProperties.Hint="Title (optional)"
+                               Text="{Binding Title}" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Subject (optional)" Style="{StaticResource Caption}" />
+                        <Entry SemanticProperties.Hint="Subject (optional)"
+                               Text="{Binding Subject}" />
+                    </VerticalStackLayout>
+                    <Grid ColumnDefinitions="*,Auto"
+                          ColumnSpacing="12">
+                        <Label Text="Include text" Style="{StaticResource SwitchLabel}" />
+                        <Switch Grid.Column="1"
+                                IsToggled="{Binding ShareText}"
+                                SemanticProperties.Description="Include text" />
+                    </Grid>
+                    <Editor Text="{Binding Text}"
+                            IsEnabled="{Binding ShareText}"
+                            SemanticProperties.Hint="Text to share"
+                            Placeholder="Enter text to share"
+                            Keyboard="Chat"
+                            AutoSize="TextChanges" />
+                    <Grid ColumnDefinitions="*,Auto"
+                          ColumnSpacing="12">
+                        <Label Text="Include a link" Style="{StaticResource SwitchLabel}" />
+                        <Switch Grid.Column="1"
+                                IsToggled="{Binding ShareUri}"
+                                SemanticProperties.Description="Include a link" />
+                    </Grid>
+                    <Entry Text="{Binding Uri}"
+                           IsEnabled="{Binding ShareUri}"
+                           SemanticProperties.Hint="Link to share"
+                           Placeholder="Enter a URI to share"
+                           Keyboard="Url" />
+                    <Button Text="Share text"
+                            Command="{Binding RequestCommand}"
+                            CommandParameter="{Binding Source={RelativeSource Self}}" />
+                </VerticalStackLayout>
+            </Border>
+            <Border Grid.Row="2"
+                    Style="{StaticResource DemoSurface}">
+                <VerticalStackLayout Spacing="16">
+                    <Label Text="Share a file"
+                           Style="{StaticResource Headline}"
+                           SemanticProperties.HeadingLevel="Level2" />
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Title (optional)" Style="{StaticResource Caption}" />
+                        <Entry SemanticProperties.Hint="Title (optional)"
+                               Text="{Binding ShareFileTitle}" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="File name" Style="{StaticResource Caption}" />
+                        <Entry SemanticProperties.Hint="File name"
+                               Text="{Binding ShareFileAttachmentName}" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="File contents" Style="{StaticResource Caption}" />
+                        <Editor SemanticProperties.Hint="File contents"
+                                Text="{Binding ShareFileAttachmentContents}"
+                                Keyboard="Chat"
+                                AutoSize="TextChanges" />
+                    </VerticalStackLayout>
+                    <Button Text="Share file"
+                            Command="{Binding RequestFileCommand}"
+                            CommandParameter="{Binding Source={RelativeSource Self}}" />
+                </VerticalStackLayout>
+            </Border>
+            <Border Grid.Row="3"
+                    Style="{StaticResource DemoSurface}">
+                <VerticalStackLayout Spacing="16">
+                    <Label Text="Share multiple files"
+                           Style="{StaticResource Headline}"
+                           SemanticProperties.HeadingLevel="Level2" />
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Title (optional)" Style="{StaticResource Caption}" />
+                        <Entry SemanticProperties.Hint="Title (optional)"
+                               Text="{Binding ShareFilesTitle}" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="First file name" Style="{StaticResource Caption}" />
+                        <Entry SemanticProperties.Hint="First file name"
+                               Text="{Binding ShareFile1AttachmentName}" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="First file contents" Style="{StaticResource Caption}" />
+                        <Editor SemanticProperties.Hint="First file contents"
+                                Text="{Binding ShareFile1AttachmentContents}"
+                                Keyboard="Chat"
+                                AutoSize="TextChanges" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Second file name" Style="{StaticResource Caption}" />
+                        <Entry SemanticProperties.Hint="Second file name"
+                               Text="{Binding ShareFile2AttachmentName}" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Second file contents" Style="{StaticResource Caption}" />
+                        <Editor SemanticProperties.Hint="Second file contents"
+                                Text="{Binding ShareFile2AttachmentContents}"
+                                Keyboard="Chat"
+                                AutoSize="TextChanges" />
+                    </VerticalStackLayout>
+                    <Button Text="Share files"
+                            Command="{Binding RequestFilesCommand}"
+                            CommandParameter="{Binding Source={RelativeSource Self}}" />
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+    </ScrollView>
 </views:BasePage>

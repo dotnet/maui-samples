@@ -1,27 +1,72 @@
-<?xml version="1.0" ?><views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:views="clr-namespace:PlatformIntegrationDemo.Views" xmlns:viewmodels="clr-namespace:PlatformIntegrationDemo.ViewModels" x:Class="PlatformIntegrationDemo.Views.FileSystemPage" Title="File System" x:DataType="viewmodels:FileSystemViewModel">
+<?xml version="1.0" encoding="utf-8" ?>
+<views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:views="clr-namespace:PlatformIntegrationDemo.Views"
+                xmlns:viewmodels="clr-namespace:PlatformIntegrationDemo.ViewModels"
+                x:Class="PlatformIntegrationDemo.Views.FileSystemPage"
+                Title="File System"
+                x:DataType="viewmodels:FileSystemViewModel">
     <views:BasePage.BindingContext>
-        <viewmodels:FileSystemViewModel/>
+        <viewmodels:FileSystemViewModel />
     </views:BasePage.BindingContext>
 
-    <Grid RowDefinitions="Auto,*">
-        <Label Text="Easily save files to app data." FontAttributes="Bold" Margin="12"/>
+    <ScrollView>
+        <Grid RowDefinitions="Auto,Auto,Auto"
+              Style="{StaticResource DemoLayout}">
+            <VerticalStackLayout Style="{StaticResource DemoHeader}">
+                <Label Text="Storage" Style="{StaticResource Eyebrow}" />
+                <Label Text="File System" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+                <Label Text="Find the app's cache and data folders, and save, load, and delete a file in app data." Style="{StaticResource Lead}" />
+                <Border Style="{StaticResource ApiChip}">
+                    <Label Text="FileSystem.AppDataDirectory" Style="{StaticResource ApiChipLabel}" />
+                </Border>
+            </VerticalStackLayout>
 
-        <ScrollView Grid.Row="1">
-            <StackLayout Padding="12,0,12,12" Spacing="6">
-                <Label Text="Paths:" FontAttributes="Bold" Margin="0,6,0,0"/>
-                <Label Text="{Binding CacheDirectory, StringFormat='Cache: {0}'}"/>
-                <Label Text="{Binding AppDataDirectory, StringFormat='App Data: {0}'}"/>
-
-                <Label Text="Operations:" FontAttributes="Bold" Margin="0,6,0,0"/>
-                <Grid ColumnSpacing="6" ColumnDefinitions="*,*,*">
-                    <Button Text="Load" Command="{Binding LoadFileCommand}" HorizontalOptions="Fill" Grid.Column="0"/>
-                    <Button Text="Save" Command="{Binding SaveFileCommand}" HorizontalOptions="Fill" Grid.Column="1"/>
-                    <Button Text="Delete" Command="{Binding DeleteFileCommand}" HorizontalOptions="Fill" Grid.Column="2"/>
-                </Grid>
-
-                <Label Text="Edit the contents of the file:"/>
-                <Editor Text="{Binding CurrentContents}" AutoSize="TextChanges"/>
-            </StackLayout>
-        </ScrollView>
-    </Grid>
+            <Border Grid.Row="1"
+                    Style="{StaticResource DemoSurface}">
+                <VerticalStackLayout Spacing="16">
+                    <Label Text="Folders"
+                           Style="{StaticResource Headline}"
+                           SemanticProperties.HeadingLevel="Level2" />
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Cache" Style="{StaticResource Caption}" />
+                        <Label Text="{Binding CacheDirectory}"
+                               Style="{StaticResource Output}" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="App data" Style="{StaticResource Caption}" />
+                        <Label Text="{Binding AppDataDirectory}"
+                               Style="{StaticResource Output}" />
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </Border>
+            <Border Grid.Row="2"
+                    Style="{StaticResource DemoSurface}">
+                <VerticalStackLayout Spacing="16">
+                    <Label Text="A file in app data"
+                           Style="{StaticResource Headline}"
+                           SemanticProperties.HeadingLevel="Level2" />
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Contents" Style="{StaticResource Caption}" />
+                        <Editor SemanticProperties.Hint="Contents"
+                                Text="{Binding CurrentContents}"
+                                AutoSize="TextChanges" />
+                    </VerticalStackLayout>
+                    <Grid ColumnDefinitions="*,*,*"
+                          ColumnSpacing="8">
+                        <Button Text="Save"
+                                Command="{Binding SaveFileCommand}" />
+                        <Button Grid.Column="1"
+                                Text="Load"
+                                Style="{StaticResource TonalButton}"
+                                Command="{Binding LoadFileCommand}" />
+                        <Button Grid.Column="2"
+                                Text="Delete"
+                                Style="{StaticResource TonalButton}"
+                                Command="{Binding DeleteFileCommand}" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+    </ScrollView>
 </views:BasePage>

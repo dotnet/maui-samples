@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                 xmlns:views="clr-namespace:PlatformIntegrationDemo.Views"
@@ -10,28 +10,40 @@
         <viewmodels:SmsViewModel />
     </views:BasePage.BindingContext>
 
-    <Grid RowDefinitions="Auto,*">
-        <Label Text="Easily send SMS messages."
-               FontAttributes="Bold"
-               Margin="12" />
+    <ScrollView>
+        <Grid RowDefinitions="Auto,Auto"
+              Style="{StaticResource DemoLayout}">
+            <VerticalStackLayout Style="{StaticResource DemoHeader}">
+                <Label Text="Communication" Style="{StaticResource Eyebrow}" />
+                <Label Text="SMS" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+                <Label Text="Open the messaging app with the recipients and message filled in." Style="{StaticResource Lead}" />
+                <Border Style="{StaticResource ApiChip}">
+                    <Label Text="Sms.ComposeAsync()" Style="{StaticResource ApiChipLabel}" />
+                </Border>
+            </VerticalStackLayout>
 
-        <ScrollView Grid.Row="1">
-            <StackLayout Padding="12,0,12,12"
-                         Spacing="6">
-                <Label Text="Recipents (optional, separate multiple with ',' or '*'):" />
-                <Entry Text="{Binding Recipient}"
-                       Keyboard="Telephone" />
-                <Label Text="Message Text (optional):" />
-                <Editor Text="{Binding MessageText}"
-                        Keyboard="Chat"
-                        AutoSize="TextChanges" />
-
-                <Button Text="Send SMS"
-                        Command="{Binding SendSmsCommand}" />
-
-                <ActivityIndicator IsVisible="{Binding IsBusy}"
-                                   IsRunning="{Binding IsBusy}" />
-            </StackLayout>
-        </ScrollView>
-    </Grid>
+            <Border Grid.Row="1"
+                    Style="{StaticResource DemoSurface}">
+                <VerticalStackLayout Spacing="16">
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Recipients (optional, separate with commas)" Style="{StaticResource Caption}" />
+                        <Entry SemanticProperties.Hint="Recipients (optional, separate with commas)"
+                               Keyboard="Telephone"
+                               Text="{Binding Recipient}" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Message (optional)" Style="{StaticResource Caption}" />
+                        <Editor SemanticProperties.Hint="Message (optional)"
+                                Text="{Binding MessageText}"
+                                Keyboard="Chat"
+                                AutoSize="TextChanges" />
+                    </VerticalStackLayout>
+                    <Button Text="Compose SMS"
+                            Command="{Binding SendSmsCommand}" />
+                    <ActivityIndicator IsVisible="{Binding IsBusy}"
+                                       IsRunning="{Binding IsBusy}" />
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+    </ScrollView>
 </views:BasePage>

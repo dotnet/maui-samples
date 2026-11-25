@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                 xmlns:views="clr-namespace:PlatformIntegrationDemo.Views"
@@ -10,40 +10,53 @@
         <viewmodels:WebAuthenticatorViewModel />
     </views:BasePage.BindingContext>
 
-    <Grid RowDefinitions="Auto,*">
-        <Label Text="Quickly and easily authenticate and wait for callbacks on external urls."
-               FontAttributes="Bold"
-               Margin="12" />
+    <ScrollView>
+        <Grid RowDefinitions="Auto,Auto"
+              Style="{StaticResource DemoLayout}">
+            <VerticalStackLayout Style="{StaticResource DemoHeader}">
+                <Label Text="Communication" Style="{StaticResource Eyebrow}" />
+                <Label Text="Web Authenticator" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+                <Label Text="Start a browser-based sign-in flow and wait for the callback to the app. This demo uses a sample server." Style="{StaticResource Lead}" />
+                <Border Style="{StaticResource ApiChip}">
+                    <Label Text="WebAuthenticator.AuthenticateAsync()" Style="{StaticResource ApiChipLabel}" />
+                </Border>
+            </VerticalStackLayout>
 
-        <ScrollView Grid.Row="1">
-            <StackLayout Padding="12,0,12,12"
-                         Spacing="6">
-
-                <Button Text="Microsoft"
-                        Command="{Binding MicrosoftCommand}"
-                        BackgroundColor="#00A4EF"
-                        TextColor="White" />
-                <Button Text="Google"
-                        Command="{Binding GoogleCommand}"
-                        BackgroundColor="#d34836"
-                        TextColor="White" />
-                <Button Text="Facebook"
-                        Command="{Binding FacebookCommand}"
-                        BackgroundColor="#3b5998"
-                        TextColor="White" />
-                <Button Text="Apple"
-                        Command="{Binding AppleCommand}"
-                        BackgroundColor="Black"
-                        TextColor="White" />
-
-                <Label Text="Auth Token:"
-                       FontAttributes="Bold"
-                       Margin="12,12,12,0" />
-                <Label Text="{Binding AuthToken}"
-                       TextColor="Red"
-                       FontAttributes="Italic" />
-
-            </StackLayout>
-        </ScrollView>
-    </Grid>
+            <Border Grid.Row="1"
+                    Style="{StaticResource DemoSurface}">
+                <VerticalStackLayout Spacing="16">
+                    <Label Text="Sign in with"
+                           Style="{StaticResource Headline}"
+                           SemanticProperties.HeadingLevel="Level2" />
+                    <Grid ColumnDefinitions="*,*"
+                          RowDefinitions="Auto,Auto"
+                          ColumnSpacing="12"
+                          RowSpacing="12">
+                        <Button Text="Microsoft"
+                                Style="{StaticResource TonalButton}"
+                                Command="{Binding MicrosoftCommand}" />
+                        <Button Grid.Column="1"
+                                Text="Google"
+                                Style="{StaticResource TonalButton}"
+                                Command="{Binding GoogleCommand}" />
+                        <Button Grid.Row="1"
+                                Text="Facebook"
+                                Style="{StaticResource TonalButton}"
+                                Command="{Binding FacebookCommand}" />
+                        <Button Grid.Row="1"
+                                Grid.Column="1"
+                                Text="Apple"
+                                Style="{StaticResource TonalButton}"
+                                Command="{Binding AppleCommand}" />
+                    </Grid>
+                    <BoxView Style="{StaticResource Divider}" />
+                    <Label Text="Result"
+                           Style="{StaticResource Headline}"
+                           SemanticProperties.HeadingLevel="Level2" />
+                    <Label Text="{Binding AuthToken}"
+                           Style="{StaticResource Output}" />
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+    </ScrollView>
 </views:BasePage>

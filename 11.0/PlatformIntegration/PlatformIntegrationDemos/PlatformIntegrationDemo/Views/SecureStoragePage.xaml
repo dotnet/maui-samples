@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                 xmlns:views="clr-namespace:PlatformIntegrationDemo.Views"
@@ -10,44 +10,62 @@
         <viewmodels:SecureStorageViewModel />
     </views:BasePage.BindingContext>
 
-    <Grid RowDefinitions="Auto,*">
-        <Label Text="Easily store secure data."
-               FontAttributes="Bold"
-               Margin="12" />
+    <ScrollView>
+        <Grid RowDefinitions="Auto,Auto"
+              Style="{StaticResource DemoLayout}">
+            <VerticalStackLayout Style="{StaticResource DemoHeader}">
+                <Label Text="Storage" Style="{StaticResource Eyebrow}" />
+                <Label Text="Secure Storage" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+                <Label Text="Store key-value pairs encrypted, in the iOS keychain or the Android keystore." Style="{StaticResource Lead}" />
+                <Border Style="{StaticResource ApiChip}">
+                    <Label Text="SecureStorage.SetAsync()" Style="{StaticResource ApiChipLabel}" />
+                </Border>
+            </VerticalStackLayout>
 
-        <ScrollView Grid.Row="1">
-            <StackLayout Padding="12,0,12,12"
-                         Spacing="6">
-                <Label Text="Key:" />
-                <Entry Placeholder="Enter key..."
-                       Text="{Binding Key}" />
-
-                <Label Text="Value:" />
-                <Editor Placeholder="Enter text..."
-                        Text="{Binding SecuredValue}"
-                        AutoSize="TextChanges" />
-
-                <Label Text="Enter key, and click 'Load' to get its paired value." />
-                <Button Text="Load"
-                        Command="{Binding LoadCommand}"
-                        IsEnabled="{Binding IsNotBusy}" />
-
-                <Label Text="Enter key and value, and click 'Save' to save the pair." />
-                <Button Text="Save"
-                        Command="{Binding SaveCommand}"
-                        IsEnabled="{Binding IsNotBusy}" />
-
-                <Label Text="Enter key, and click 'Remove' to remove the paired value." />
-                <Button Text="Remove"
-                        Command="{Binding RemoveCommand}"
-                        IsEnabled="{Binding IsNotBusy}" />
-
-                <Label Text="Click 'Remove All' to clear all saved key-value pairs."
-                       Margin="0,20,0,0" />
-                <Button Text="Remove All"
-                        Command="{Binding RemoveAllCommand}"
-                        IsEnabled="{Binding IsNotBusy}" />
-            </StackLayout>
-        </ScrollView>
-    </Grid>
+            <Border Grid.Row="1"
+                    Style="{StaticResource DemoSurface}">
+                <VerticalStackLayout Spacing="16">
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Key" Style="{StaticResource Caption}" />
+                        <Entry SemanticProperties.Hint="Key"
+                               Placeholder="Enter a key"
+                               Text="{Binding Key}" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Value" Style="{StaticResource Caption}" />
+                        <Editor SemanticProperties.Hint="Value"
+                                Placeholder="Enter a value"
+                                Text="{Binding SecuredValue}"
+                                AutoSize="TextChanges" />
+                    </VerticalStackLayout>
+                    <Grid ColumnDefinitions="*,*"
+                          ColumnSpacing="12">
+                        <Button Text="Save"
+                                Command="{Binding SaveCommand}"
+                                IsEnabled="{Binding IsNotBusy}" />
+                        <Button Grid.Column="1"
+                                Text="Load"
+                                Style="{StaticResource TonalButton}"
+                                Command="{Binding LoadCommand}"
+                                IsEnabled="{Binding IsNotBusy}" />
+                    </Grid>
+                    <Grid ColumnDefinitions="*,*"
+                          ColumnSpacing="12">
+                        <Button Text="Remove"
+                                Style="{StaticResource TonalButton}"
+                                Command="{Binding RemoveCommand}"
+                                IsEnabled="{Binding IsNotBusy}" />
+                        <Button Grid.Column="1"
+                                Text="Remove all"
+                                Style="{StaticResource TonalButton}"
+                                Command="{Binding RemoveAllCommand}"
+                                IsEnabled="{Binding IsNotBusy}" />
+                    </Grid>
+                    <Border Style="{StaticResource Hint}">
+                        <Label Text="Save stores the value under the key. Load reads it back, Remove deletes it, and Remove all clears every pair." Style="{StaticResource HintLabel}" />
+                    </Border>
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+    </ScrollView>
 </views:BasePage>

@@ -1,126 +1,321 @@
-<?xml version="1.0" ?><views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:views="clr-namespace:PlatformIntegrationDemo.Views" xmlns:viewmodels="clr-namespace:PlatformIntegrationDemo.ViewModels" x:Class="PlatformIntegrationDemo.Views.AllSensorsPage" Title="All Sensors">
-    <Grid RowDefinitions="Auto,*">
-        <Label Text="Have a look at the accelerometer, compass, gyroscope and magnetometer." FontAttributes="Bold" Margin="12"/>
+<?xml version="1.0" encoding="utf-8" ?>
+<views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:views="clr-namespace:PlatformIntegrationDemo.Views"
+                xmlns:viewmodels="clr-namespace:PlatformIntegrationDemo.ViewModels"
+                x:Class="PlatformIntegrationDemo.Views.AllSensorsPage"
+                Title="All Sensors">
+    <ScrollView>
+        <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+              Style="{StaticResource DemoLayout}">
+            <VerticalStackLayout Style="{StaticResource DemoHeader}">
+                <Label Text="Sensors" Style="{StaticResource Eyebrow}" />
+                <Label Text="All Sensors" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+                <Label Text="Run the motion and environment sensors side by side. Each card uses its own view model." Style="{StaticResource Lead}" />
+                <Border Style="{StaticResource ApiChip}">
+                    <Label Text="Microsoft.Maui.Devices.Sensors" Style="{StaticResource ApiChipLabel}" />
+                </Border>
+            </VerticalStackLayout>
 
-        <ScrollView Grid.Row="1">
-            <StackLayout Padding="0,0,0,12" Spacing="6">
-
-                <Label Text="Accelerometer" FontAttributes="Bold" Margin="12"/>
-                <Grid x:Name="GridAccelerometer" x:DataType="viewmodels:AccelerometerViewModel">
-                    <Grid.BindingContext>
-                        <viewmodels:AccelerometerViewModel/>
-                    </Grid.BindingContext>
-                    <Grid Padding="12,0,12,12" ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto">
-                        <Label Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding X, StringFormat='X: {0:N}'}"/>
-                        <Label Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding Y, StringFormat='Y: {0:N}'}"/>
-                        <Label Grid.Row="2" Grid.ColumnSpan="2" Text="{Binding Z, StringFormat='Z: {0:N}'}"/>
-
-                        <Picker Grid.Row="4" Grid.ColumnSpan="2" HorizontalOptions="Fill" ItemsSource="{Binding Speeds}" SelectedIndex="{Binding Speed, Mode=TwoWay}" IsEnabled="{Binding IsActive, Converter={StaticResource InverterConverter}}"/>
-
-                        <Button Grid.Row="5" Grid.Column="0" Text="Start" Command="{Binding StartCommand}" IsEnabled="{Binding IsActive, Converter={StaticResource InverterConverter}}"/>
-
-                        <Button Grid.Row="5" Grid.Column="1" Text="Stop" Command="{Binding StopCommand}" IsEnabled="{Binding IsActive}"/>
-
-                        <Label Grid.Row="6" Grid.ColumnSpan="2" Text="{Binding ShakeTime}"/>
+            <Border Grid.Row="1" x:Name="GridAccelerometer"
+                    x:DataType="viewmodels:AccelerometerViewModel"
+                    Style="{StaticResource DemoSurface}">
+                <Border.BindingContext>
+                    <viewmodels:AccelerometerViewModel />
+                </Border.BindingContext>
+                <VerticalStackLayout Spacing="16">
+                    <Label Text="Accelerometer"
+                           Style="{StaticResource Headline}"
+                           SemanticProperties.HeadingLevel="Level2" />
+                    <Grid ColumnDefinitions="*,*,*"
+                          ColumnSpacing="10">
+                        <Border Style="{StaticResource ReadoutTile}">
+                            <VerticalStackLayout Spacing="2">
+                                <Label Text="X" Style="{StaticResource ReadoutCaption}" />
+                                <Label Text="{Binding X, StringFormat='{0:N2}'}" Style="{StaticResource ReadoutValue}" />
+                            </VerticalStackLayout>
+                        </Border>
+                        <Border Grid.Column="1" Style="{StaticResource ReadoutTile}">
+                            <VerticalStackLayout Spacing="2">
+                                <Label Text="Y" Style="{StaticResource ReadoutCaption}" />
+                                <Label Text="{Binding Y, StringFormat='{0:N2}'}" Style="{StaticResource ReadoutValue}" />
+                            </VerticalStackLayout>
+                        </Border>
+                        <Border Grid.Column="2" Style="{StaticResource ReadoutTile}">
+                            <VerticalStackLayout Spacing="2">
+                                <Label Text="Z" Style="{StaticResource ReadoutCaption}" />
+                                <Label Text="{Binding Z, StringFormat='{0:N2}'}" Style="{StaticResource ReadoutValue}" />
+                            </VerticalStackLayout>
+                        </Border>
                     </Grid>
-                </Grid>
-
-                <Label Text="Barometer" FontAttributes="Bold" Margin="12"/>
-                <Grid x:Name="GridBarometer" x:DataType="viewmodels:BarometerViewModel">
-                    <Grid.BindingContext>
-                        <viewmodels:BarometerViewModel/>
-                    </Grid.BindingContext>
-                    <Grid Padding="12,0,12,12" RowDefinitions="Auto,Auto,Auto,Auto" ColumnDefinitions="*,*">
-                        <Label Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding Pressure, StringFormat='Barometer pressure (hPA): {0:N}'}"/>
-
-                        <Label Grid.Row="1" Grid.ColumnSpan="2" Text="Speed:"/>
-
-                        <Picker Grid.Row="2" Grid.ColumnSpan="2" HorizontalOptions="Fill" ItemsSource="{Binding Speeds}" SelectedIndex="{Binding Speed, Mode=TwoWay}" IsEnabled="{Binding IsActive, Converter={StaticResource InverterConverter}}" Margin="0,0,0,10"/>
-
-                        <Button Grid.Row="3" Grid.Column="0" Text="Start" Command="{Binding StartCommand}" IsEnabled="{Binding IsActive, Converter={StaticResource InverterConverter}}"/>
-
-                        <Button Grid.Row="3" Grid.Column="1" Text="Stop" Command="{Binding StopCommand}" IsEnabled="{Binding IsActive}"/>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Sensor speed" Style="{StaticResource Caption}" />
+                        <Picker SemanticProperties.Description="Sensor speed"
+                                ItemsSource="{Binding Speeds}"
+                                SelectedIndex="{Binding Speed, Mode=TwoWay}"
+                                IsEnabled="{Binding IsActive, Converter={StaticResource InverterConverter}}" />
+                    </VerticalStackLayout>
+                    <Grid ColumnDefinitions="*,*"
+                          ColumnSpacing="12">
+                        <Button Text="Start"
+                                Command="{Binding StartCommand}"
+                                IsEnabled="{Binding IsActive, Converter={StaticResource InverterConverter}}" />
+                        <Button Grid.Column="1"
+                                Text="Stop"
+                                Style="{StaticResource TonalButton}"
+                                Command="{Binding StopCommand}"
+                                IsEnabled="{Binding IsActive}" />
                     </Grid>
-                </Grid>
-
-                <Label Text="Compass" FontAttributes="Bold" Margin="12"/>
-                <Grid x:Name="GridCompass" x:DataType="viewmodels:CompassViewModel">
-                    <Grid.BindingContext>
-                        <viewmodels:CompassViewModel/>
-                    </Grid.BindingContext>
-                    <Grid Padding="12,0,12,12" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="*,*">
-                        <Label Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding Heading, StringFormat='Heading (degrees): {0:N}'}"/>
-
-                        <Label Grid.Row="1" Grid.ColumnSpan="2" Text="Speed:"/>
-
-                        <Picker Grid.Row="2" Grid.ColumnSpan="2" HorizontalOptions="Fill" ItemsSource="{Binding Speeds}" SelectedIndex="{Binding Speed, Mode=TwoWay}" IsEnabled="{Binding IsActive, Converter={StaticResource InverterConverter}}" Margin="0,0,0,10"/>
-
-                        <Label Grid.Row="3" Grid.ColumnSpan="2" Text="Apply low pass filter:"/>
-
-                        <Switch Grid.Row="4" Grid.ColumnSpan="2" IsToggled="{Binding ApplyLowPassFilter}"/>
-
-                        <Button Grid.Row="5" Grid.Column="0" Text="Start" Command="{Binding StartCommand}" IsEnabled="{Binding IsActive, Converter={StaticResource InverterConverter}}"/>
-
-                        <Button Grid.Row="5" Grid.Column="1" Text="Stop" Command="{Binding StopCommand}" IsEnabled="{Binding IsActive}"/>
+                    <Label Text="{Binding ShakeTime}"
+                           Style="{StaticResource Output}" />
+                </VerticalStackLayout>
+            </Border>
+            <Border Grid.Row="2" x:Name="GridBarometer"
+                    x:DataType="viewmodels:BarometerViewModel"
+                    Style="{StaticResource DemoSurface}">
+                <Border.BindingContext>
+                    <viewmodels:BarometerViewModel />
+                </Border.BindingContext>
+                <VerticalStackLayout Spacing="16">
+                    <Label Text="Barometer"
+                           Style="{StaticResource Headline}"
+                           SemanticProperties.HeadingLevel="Level2" />
+                    <Grid ColumnDefinitions="*"
+                          ColumnSpacing="10">
+                        <Border Style="{StaticResource ReadoutTile}">
+                            <VerticalStackLayout Spacing="2">
+                                <Label Text="Pressure (hPa)" Style="{StaticResource ReadoutCaption}" />
+                                <Label Text="{Binding Pressure, StringFormat='{0:N2}'}" Style="{StaticResource ReadoutValue}" />
+                            </VerticalStackLayout>
+                        </Border>
                     </Grid>
-                </Grid>
-
-                <Label Text="Gyroscope" FontAttributes="Bold" Margin="12"/>
-                <Grid x:Name="GridGyro" x:DataType="viewmodels:GyroscopeViewModel">
-                    <Grid.BindingContext>
-                        <viewmodels:GyroscopeViewModel/>
-                    </Grid.BindingContext>
-                    <Grid Padding="12,0,12,12" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="*,*">
-                        <Label Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding X, StringFormat='X: {0:N}'}"/>
-                        <Label Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding Y, StringFormat='Y: {0:N}'}"/>
-                        <Label Grid.Row="2" Grid.ColumnSpan="2" Text="{Binding Z, StringFormat='Z: {0:N}'}"/>
-
-                        <Picker Grid.Row="4" Grid.ColumnSpan="2" HorizontalOptions="Fill" ItemsSource="{Binding Speeds}" SelectedIndex="{Binding Speed, Mode=TwoWay}" IsEnabled="{Binding IsActive, Converter={StaticResource InverterConverter}}"/>
-
-                        <Button Grid.Row="5" Grid.Column="0" Text="Start" Command="{Binding StartCommand}" IsEnabled="{Binding IsActive, Converter={StaticResource InverterConverter}}"/>
-
-                        <Button Grid.Row="5" Grid.Column="1" Text="Stop" Command="{Binding StopCommand}" IsEnabled="{Binding IsActive}"/>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Sensor speed" Style="{StaticResource Caption}" />
+                        <Picker SemanticProperties.Description="Sensor speed"
+                                ItemsSource="{Binding Speeds}"
+                                SelectedIndex="{Binding Speed, Mode=TwoWay}"
+                                IsEnabled="{Binding IsActive, Converter={StaticResource InverterConverter}}" />
+                    </VerticalStackLayout>
+                    <Grid ColumnDefinitions="*,*"
+                          ColumnSpacing="12">
+                        <Button Text="Start"
+                                Command="{Binding StartCommand}"
+                                IsEnabled="{Binding IsActive, Converter={StaticResource InverterConverter}}" />
+                        <Button Grid.Column="1"
+                                Text="Stop"
+                                Style="{StaticResource TonalButton}"
+                                Command="{Binding StopCommand}"
+                                IsEnabled="{Binding IsActive}" />
                     </Grid>
-                </Grid>
-
-                <Label Text="Magnetometer" FontAttributes="Bold" Margin="12"/>
-                <Grid x:Name="GridMagnetometer" x:DataType="viewmodels:MagnetometerViewModel">
-                    <Grid.BindingContext>
-                        <viewmodels:MagnetometerViewModel/>
-                    </Grid.BindingContext>
-                    <Grid Padding="12,0,12,12" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="*,*">
-
-                        <Label Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding X, StringFormat='X: {0:N}'}"/>
-                        <Label Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding Y, StringFormat='Y: {0:N}'}"/>
-                        <Label Grid.Row="2" Grid.ColumnSpan="2" Text="{Binding Z, StringFormat='Z: {0:N}'}"/>
-
-                        <Picker Grid.Row="4" Grid.ColumnSpan="2" HorizontalOptions="Fill" ItemsSource="{Binding Speeds}" SelectedIndex="{Binding Speed, Mode=TwoWay}" IsEnabled="{Binding IsActive, Converter={StaticResource InverterConverter}}"/>
-
-                        <Button Grid.Row="5" Grid.Column="0" Text="Start" Command="{Binding StartCommand}" IsEnabled="{Binding IsActive, Converter={StaticResource InverterConverter}}"/>
-
-                        <Button Grid.Row="5" Grid.Column="1" Text="Stop" Command="{Binding StopCommand}" IsEnabled="{Binding IsActive}"/>
+                </VerticalStackLayout>
+            </Border>
+            <Border Grid.Row="3" x:Name="GridCompass"
+                    x:DataType="viewmodels:CompassViewModel"
+                    Style="{StaticResource DemoSurface}">
+                <Border.BindingContext>
+                    <viewmodels:CompassViewModel />
+                </Border.BindingContext>
+                <VerticalStackLayout Spacing="16">
+                    <Label Text="Compass"
+                           Style="{StaticResource Headline}"
+                           SemanticProperties.HeadingLevel="Level2" />
+                    <Grid ColumnDefinitions="*"
+                          ColumnSpacing="10">
+                        <Border Style="{StaticResource ReadoutTile}">
+                            <VerticalStackLayout Spacing="2">
+                                <Label Text="Heading (°)" Style="{StaticResource ReadoutCaption}" />
+                                <Label Text="{Binding Heading, StringFormat='{0:N1}'}" Style="{StaticResource ReadoutValue}" />
+                            </VerticalStackLayout>
+                        </Border>
                     </Grid>
-                </Grid>
-
-                <Label Text="Orientation Sensor" FontAttributes="Bold" Margin="12"/>
-                <Grid x:Name="GridOrientation" x:DataType="viewmodels:OrientationSensorViewModel">
-                    <Grid.BindingContext>
-                        <viewmodels:OrientationSensorViewModel/>
-                    </Grid.BindingContext>
-                    <Grid Padding="12,0,12,12" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="*,*">
-                        <Label Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding X, StringFormat='X: {0:N}'}"/>
-                        <Label Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding Y, StringFormat='Y: {0:N}'}"/>
-                        <Label Grid.Row="2" Grid.ColumnSpan="2" Text="{Binding Z, StringFormat='Z: {0:N}'}"/>
-                        <Label Grid.Row="3" Grid.ColumnSpan="2" Text="{Binding W, StringFormat='W: {0:N}'}"/>
-
-                        <Picker Grid.Row="4" Grid.ColumnSpan="2" HorizontalOptions="Fill" ItemsSource="{Binding Speeds}" SelectedIndex="{Binding Speed, Mode=TwoWay}" IsEnabled="{Binding IsActive, Converter={StaticResource InverterConverter}}"/>
-
-                        <Button Grid.Row="5" Grid.Column="0" Text="Start" Command="{Binding StartCommand}" IsEnabled="{Binding IsActive, Converter={StaticResource InverterConverter}}"/>
-
-                        <Button Grid.Row="5" Grid.Column="1" Text="Stop" Command="{Binding StopCommand}" IsEnabled="{Binding IsActive}"/>
+                    <Grid ColumnDefinitions="*,Auto"
+                          ColumnSpacing="12">
+                        <Label Text="Apply low-pass filter" Style="{StaticResource SwitchLabel}" />
+                        <Switch Grid.Column="1"
+                                IsToggled="{Binding ApplyLowPassFilter}"
+                                SemanticProperties.Description="Apply low-pass filter" />
                     </Grid>
-                </Grid>
-            </StackLayout>
-        </ScrollView>
-    </Grid>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Sensor speed" Style="{StaticResource Caption}" />
+                        <Picker SemanticProperties.Description="Sensor speed"
+                                ItemsSource="{Binding Speeds}"
+                                SelectedIndex="{Binding Speed, Mode=TwoWay}"
+                                IsEnabled="{Binding IsActive, Converter={StaticResource InverterConverter}}" />
+                    </VerticalStackLayout>
+                    <Grid ColumnDefinitions="*,*"
+                          ColumnSpacing="12">
+                        <Button Text="Start"
+                                Command="{Binding StartCommand}"
+                                IsEnabled="{Binding IsActive, Converter={StaticResource InverterConverter}}" />
+                        <Button Grid.Column="1"
+                                Text="Stop"
+                                Style="{StaticResource TonalButton}"
+                                Command="{Binding StopCommand}"
+                                IsEnabled="{Binding IsActive}" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+            <Border Grid.Row="4" x:Name="GridGyro"
+                    x:DataType="viewmodels:GyroscopeViewModel"
+                    Style="{StaticResource DemoSurface}">
+                <Border.BindingContext>
+                    <viewmodels:GyroscopeViewModel />
+                </Border.BindingContext>
+                <VerticalStackLayout Spacing="16">
+                    <Label Text="Gyroscope"
+                           Style="{StaticResource Headline}"
+                           SemanticProperties.HeadingLevel="Level2" />
+                    <Grid ColumnDefinitions="*,*,*"
+                          ColumnSpacing="10">
+                        <Border Style="{StaticResource ReadoutTile}">
+                            <VerticalStackLayout Spacing="2">
+                                <Label Text="X" Style="{StaticResource ReadoutCaption}" />
+                                <Label Text="{Binding X, StringFormat='{0:N2}'}" Style="{StaticResource ReadoutValue}" />
+                            </VerticalStackLayout>
+                        </Border>
+                        <Border Grid.Column="1" Style="{StaticResource ReadoutTile}">
+                            <VerticalStackLayout Spacing="2">
+                                <Label Text="Y" Style="{StaticResource ReadoutCaption}" />
+                                <Label Text="{Binding Y, StringFormat='{0:N2}'}" Style="{StaticResource ReadoutValue}" />
+                            </VerticalStackLayout>
+                        </Border>
+                        <Border Grid.Column="2" Style="{StaticResource ReadoutTile}">
+                            <VerticalStackLayout Spacing="2">
+                                <Label Text="Z" Style="{StaticResource ReadoutCaption}" />
+                                <Label Text="{Binding Z, StringFormat='{0:N2}'}" Style="{StaticResource ReadoutValue}" />
+                            </VerticalStackLayout>
+                        </Border>
+                    </Grid>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Sensor speed" Style="{StaticResource Caption}" />
+                        <Picker SemanticProperties.Description="Sensor speed"
+                                ItemsSource="{Binding Speeds}"
+                                SelectedIndex="{Binding Speed, Mode=TwoWay}"
+                                IsEnabled="{Binding IsActive, Converter={StaticResource InverterConverter}}" />
+                    </VerticalStackLayout>
+                    <Grid ColumnDefinitions="*,*"
+                          ColumnSpacing="12">
+                        <Button Text="Start"
+                                Command="{Binding StartCommand}"
+                                IsEnabled="{Binding IsActive, Converter={StaticResource InverterConverter}}" />
+                        <Button Grid.Column="1"
+                                Text="Stop"
+                                Style="{StaticResource TonalButton}"
+                                Command="{Binding StopCommand}"
+                                IsEnabled="{Binding IsActive}" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+            <Border Grid.Row="5" x:Name="GridMagnetometer"
+                    x:DataType="viewmodels:MagnetometerViewModel"
+                    Style="{StaticResource DemoSurface}">
+                <Border.BindingContext>
+                    <viewmodels:MagnetometerViewModel />
+                </Border.BindingContext>
+                <VerticalStackLayout Spacing="16">
+                    <Label Text="Magnetometer"
+                           Style="{StaticResource Headline}"
+                           SemanticProperties.HeadingLevel="Level2" />
+                    <Grid ColumnDefinitions="*,*,*"
+                          ColumnSpacing="10">
+                        <Border Style="{StaticResource ReadoutTile}">
+                            <VerticalStackLayout Spacing="2">
+                                <Label Text="X (µT)" Style="{StaticResource ReadoutCaption}" />
+                                <Label Text="{Binding X, StringFormat='{0:N1}'}" Style="{StaticResource ReadoutValue}" />
+                            </VerticalStackLayout>
+                        </Border>
+                        <Border Grid.Column="1" Style="{StaticResource ReadoutTile}">
+                            <VerticalStackLayout Spacing="2">
+                                <Label Text="Y (µT)" Style="{StaticResource ReadoutCaption}" />
+                                <Label Text="{Binding Y, StringFormat='{0:N1}'}" Style="{StaticResource ReadoutValue}" />
+                            </VerticalStackLayout>
+                        </Border>
+                        <Border Grid.Column="2" Style="{StaticResource ReadoutTile}">
+                            <VerticalStackLayout Spacing="2">
+                                <Label Text="Z (µT)" Style="{StaticResource ReadoutCaption}" />
+                                <Label Text="{Binding Z, StringFormat='{0:N1}'}" Style="{StaticResource ReadoutValue}" />
+                            </VerticalStackLayout>
+                        </Border>
+                    </Grid>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Sensor speed" Style="{StaticResource Caption}" />
+                        <Picker SemanticProperties.Description="Sensor speed"
+                                ItemsSource="{Binding Speeds}"
+                                SelectedIndex="{Binding Speed, Mode=TwoWay}"
+                                IsEnabled="{Binding IsActive, Converter={StaticResource InverterConverter}}" />
+                    </VerticalStackLayout>
+                    <Grid ColumnDefinitions="*,*"
+                          ColumnSpacing="12">
+                        <Button Text="Start"
+                                Command="{Binding StartCommand}"
+                                IsEnabled="{Binding IsActive, Converter={StaticResource InverterConverter}}" />
+                        <Button Grid.Column="1"
+                                Text="Stop"
+                                Style="{StaticResource TonalButton}"
+                                Command="{Binding StopCommand}"
+                                IsEnabled="{Binding IsActive}" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+            <Border Grid.Row="6" x:Name="GridOrientation"
+                    x:DataType="viewmodels:OrientationSensorViewModel"
+                    Style="{StaticResource DemoSurface}">
+                <Border.BindingContext>
+                    <viewmodels:OrientationSensorViewModel />
+                </Border.BindingContext>
+                <VerticalStackLayout Spacing="16">
+                    <Label Text="Orientation sensor"
+                           Style="{StaticResource Headline}"
+                           SemanticProperties.HeadingLevel="Level2" />
+                    <Grid ColumnDefinitions="*,*"
+                          ColumnSpacing="10"
+                          RowDefinitions="Auto,Auto"
+                          RowSpacing="10">
+                        <Border Style="{StaticResource ReadoutTile}">
+                            <VerticalStackLayout Spacing="2">
+                                <Label Text="X" Style="{StaticResource ReadoutCaption}" />
+                                <Label Text="{Binding X, StringFormat='{0:N2}'}" Style="{StaticResource ReadoutValue}" />
+                            </VerticalStackLayout>
+                        </Border>
+                        <Border Grid.Column="1" Style="{StaticResource ReadoutTile}">
+                            <VerticalStackLayout Spacing="2">
+                                <Label Text="Y" Style="{StaticResource ReadoutCaption}" />
+                                <Label Text="{Binding Y, StringFormat='{0:N2}'}" Style="{StaticResource ReadoutValue}" />
+                            </VerticalStackLayout>
+                        </Border>
+                        <Border Grid.Row="1" Style="{StaticResource ReadoutTile}">
+                            <VerticalStackLayout Spacing="2">
+                                <Label Text="Z" Style="{StaticResource ReadoutCaption}" />
+                                <Label Text="{Binding Z, StringFormat='{0:N2}'}" Style="{StaticResource ReadoutValue}" />
+                            </VerticalStackLayout>
+                        </Border>
+                        <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource ReadoutTile}">
+                            <VerticalStackLayout Spacing="2">
+                                <Label Text="W" Style="{StaticResource ReadoutCaption}" />
+                                <Label Text="{Binding W, StringFormat='{0:N2}'}" Style="{StaticResource ReadoutValue}" />
+                            </VerticalStackLayout>
+                        </Border>
+                    </Grid>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Sensor speed" Style="{StaticResource Caption}" />
+                        <Picker SemanticProperties.Description="Sensor speed"
+                                ItemsSource="{Binding Speeds}"
+                                SelectedIndex="{Binding Speed, Mode=TwoWay}"
+                                IsEnabled="{Binding IsActive, Converter={StaticResource InverterConverter}}" />
+                    </VerticalStackLayout>
+                    <Grid ColumnDefinitions="*,*"
+                          ColumnSpacing="12">
+                        <Button Text="Start"
+                                Command="{Binding StartCommand}"
+                                IsEnabled="{Binding IsActive, Converter={StaticResource InverterConverter}}" />
+                        <Button Grid.Column="1"
+                                Text="Stop"
+                                Style="{StaticResource TonalButton}"
+                                Command="{Binding StopCommand}"
+                                IsEnabled="{Binding IsActive}" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+    </ScrollView>
 </views:BasePage>
