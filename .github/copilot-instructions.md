@@ -81,6 +81,8 @@ When a new stable .NET version ships, use this playbook (see `.github/agents/ver
 4. Update `Directory.Build.props` in each versioned folder with correct versions
 5. Update `.github/dependabot.yml` to point at the new folder paths
 
+When an unsupported version is removed, delete its entire folder rather than retaining a README notice. Link to its samples at a verified historical commit from the root README; do not assume an archive tag exists (`net9-archive` was never created).
+
 ### Phase 2: CI Workflows
 
 1. Remove the deprecated SDK version from `dotnet-version` lists
@@ -108,12 +110,16 @@ Search all non-code files for hardcoded paths to the deprecated version folder:
 ### Phase 5: Documentation
 
 1. Root `README.md` -- update the repository structure table
-2. Deprecation notice -- create README in the deprecated folder with upgrade guide link
+2. New stable folder `README.md` -- follow `11.0/README.md`: short user-facing introduction, prerequisites, build/run example, folder navigation table, and relevant links
 3. `PACKAGE-VERSIONS.md` -- create/update in new stable folder
-4. Preview folder `README.md` -- document `sdk.paths` pattern for safe testing
+4. Preview folder `README.md` -- document `sdk.paths` pattern for safe testing in preview folders only
+5. Root archive links -- point removed versions to verified historical commits, not nonexistent tags
+
+Keep migration decisions, package/advisory tables, validation/coverage reports, and warnings analysis out of version-folder READMEs. Put those details in the PR description instead.
 
 ### Known CI gotchas
 
+- **Required checks**: Keep `build (windows-latest)` and `build (macos-26)` on every PR, including documentation-only changes. Use lightweight no-build runs rather than workflow path filters or a job-level matrix condition that removes the required check names.
 - **iOS code signing**: Projects requiring signing certs fail on macOS CI. Exclude in `eng/excluded_projects_macos.txt`
 - **Third-party Windows native assets**: Some packages lack native DLLs for new TFMs. Exclude in `eng/excluded_projects_windows.txt`
 - **Source generator analyzer errors**: MAUI source gen may use preview APIs. Suppress with `<NoWarn>` in `Directory.Build.props`, not individual projects

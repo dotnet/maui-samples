@@ -11,7 +11,7 @@ You are a specialist in migrating the dotnet/maui-samples repository between .NE
 
 - The repository maintains **one stable folder** with the complete set of samples (the highest GA .NET version)
 - A **preview folder** contains only samples for features unique to the upcoming .NET version
-- **Deprecated folders** contain only a `README.md` deprecation notice
+- **Archived versions** are removed from the working tree; the root README links to their samples at a verified historical commit
 - Each versioned folder has its own `Directory.Build.props` defining `$(MauiVersion)` and `$(DotNetVersion)`
 
 ## Migration playbook
@@ -33,14 +33,12 @@ When migrating to a new stable .NET version (e.g., N-1 → N, with N+1 as previe
 - Add `README.md` documenting `sdk.paths` for safe preview testing (link to https://learn.microsoft.com/dotnet/core/tools/test-prerelease-sdk-locally)
 - Only add samples here for features that are genuinely new in N+1
 
-### 3. Deprecate old stable
+### 3. Archive unsupported versions
 
-- Delete all content from the old stable folder (N-1)
-- Create a `README.md` with:
-  - A notice that the version is out of support
-  - A link to the new stable folder
-  - A link to the official upgrade guide on Microsoft Learn
-  - A note that old code is available in git history
+- Preserve the previous release folder while it is still supported
+- When removing an unsupported version, delete the entire version folder, including its README
+- Link to that version's samples at a verified historical commit from the root README
+- Do not assume an archive tag exists: `net9-archive` was never created
 
 ### 4. Update all csproj files
 
@@ -87,10 +85,12 @@ Replace `OLD_VERSION` with the deprecated version number.
 
 ### 9. Update documentation
 
-- **Root `README.md`**: Update the repository structure table
+- **Root `README.md`**: Update the repository structure table and historical archive links
+- **New stable folder `README.md`**: Follow `11.0/README.md`: a short user-facing introduction, prerequisites, build/run example, folder navigation table, and relevant documentation links
+- Keep migration decisions, package/advisory tables, validation/coverage reports, and warnings analysis out of version-folder READMEs; put them in the PR description
 - **`.github/copilot-instructions.md`**: Update folder descriptions to reflect current versions
 - **Stable folder `PACKAGE-VERSIONS.md`**: Ensure it's current
-- **Preview folder `README.md`**: Document safe testing with `sdk.paths`
+- **Preview folder `README.md`**: Document safe testing with `sdk.paths`; keep preview-specific SDK isolation guidance out of stable-folder READMEs
 
 ## Known issues during migration
 
@@ -139,7 +139,9 @@ Before creating a migration PR, verify:
 - [ ] Exclusion files are clean (no stale paths)
 - [ ] Dependabot config covers correct directories
 - [ ] Root README reflects current structure
-- [ ] Deprecated folder has only README.md
+- [ ] New stable README is user-facing, with prerequisites, build/run instructions, navigation, and links
+- [ ] Migration decisions, package/advisory tables, validation/coverage, and warnings analysis are in the PR description, not version-folder READMEs
+- [ ] Unsupported version folders are removed and root README archive links resolve to verified historical commits
 - [ ] Preview folder has global.json + README documenting sdk.paths
 - [ ] **No stale version folder references** — scan all `.md`, `.yml`, `.yaml`, and `.txt` files for hardcoded paths to deprecated version folders (e.g., `9.0/`, `8.0/`). Update or remove them. Pay special attention to:
   - README files with navigation links or code examples
