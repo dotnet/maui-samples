@@ -12,8 +12,8 @@ This repository contains **sample applications and demonstrations** for **.NET M
 
 ### Key Technologies
 - **.NET SDK** - Various versions depending on the sample:
-  - **10.0 folder**: Samples targeting .NET 10 (current stable)
-  - **11.0 folder**: Samples targeting .NET 11 (preview)
+  - **10.0 folder**: Samples targeting .NET 10 (previous release)
+  - **11.0 folder**: Samples targeting .NET 11 (current stable)
   - etc.
 - **C#** and **XAML** for application development
 - **MSBuild** for building individual samples
@@ -27,7 +27,7 @@ Before working with .NET MAUI samples, ensure your development environment is pr
 
 1. **Follow the official .NET MAUI installation guide:**
    - Visit [Install .NET MAUI](https://docs.microsoft.com/dotnet/maui/get-started/installation) for comprehensive setup instructions
-   - Install the required .NET SDK version (10.0 or 11.0 preview depending on the sample)
+   - Install the required .NET SDK version (10.0 or 11.0 depending on the sample)
 
 2. **Verify installation:**
    ```powershell
@@ -45,11 +45,11 @@ Before working with .NET MAUI samples, ensure your development environment is pr
 
 2. **Choose and navigate to the appropriate sample:**
    ```powershell
-   # For .NET 10 samples (current stable)
+   # For .NET 10 samples (previous release)
    cd 10.0/UserInterface/ControlGallery
    
-   # For .NET 11 preview samples
-   cd 11.0/Maps/MapClustering
+   # For .NET 11 samples (current stable)
+   cd 11.0/UserInterface/Views/Map/MapClustering
    ```
 
 3. **Build and run the sample:**
@@ -61,9 +61,9 @@ Before working with .NET MAUI samples, ensure your development environment is pr
 ## Project Structure
 
 ### Important Directories
-- `10.0/` - Samples targeting .NET 10 (current stable, complete set)
-- `11.0/` - Samples targeting .NET 11 (preview, net-new features only)
-- `9.0/` - Deprecated (.NET 9 is out of support)
+- `10.0/` - Samples targeting .NET 10 (previous release)
+- `11.0/` - Samples targeting .NET 11 (current stable, complete sample set)
+- Archived versions are linked from the root README; .NET 9 is no longer in the working tree
 - `eng/` - Build engineering and tooling
 - `.github/` - GitHub workflows and configuration
 - `Images/` - Shared images used across samples

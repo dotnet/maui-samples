@@ -13,7 +13,7 @@ This is the **dotnet/maui-samples** repository containing .NET MAUI sample appli
 - The **highest stable version folder** (currently `11.0/`) contains the complete set of samples
 - Future **preview folders** contain only samples demonstrating features specific to that preview; no .NET 12 preview folder is present yet.
 - `10.0/` is preserved for users of the previous release; do not modify it during the .NET 11 migration.
-- **Deprecated folders** (e.g., `9.0/`) contain only a README with a deprecation notice
+- **Archived versions** are linked from the root README; the .NET 9 samples are no longer in the working tree
 - **`Upgrading/`** contains Xamarin.Forms to .NET MAUI migration guides
 
 ## NuGet dependencies and centralized versioning

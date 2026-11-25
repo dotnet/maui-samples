@@ -9,9 +9,10 @@ Samples built with .NET Multi-platform App UI (.NET MAUI).
 | Folder | Description |
 | ------ | ----------- |
 | [`10.0/`](10.0/) | **.NET MAUI 10** - Previous release samples, preserved unchanged. |
-| [`11.0/`](11.0/) | **.NET MAUI 11 (current stable)** - Full set of relevant samples, including .NET 11 features. See [requirements and migration decisions](11.0/README.md). |
-| [`9.0/`](9.0/) | **Deprecated** - .NET 9 is out of support. See the [deprecation notice](9.0/README.md). |
+| [`11.0/`](11.0/) | **.NET MAUI 11 (current stable)** - Samples for the current release. See [getting started and sample navigation](11.0/README.md). |
 | [`Upgrading/`](Upgrading/) | Migration guides from Xamarin.Forms to .NET MAUI. |
+
+.NET 9 is out of support. Its samples are available in the [.NET 9 archive](https://github.com/dotnet/maui-samples/tree/3d63131f047bd1fac518117072367e17cc4d3f35/9.0).
 
 ## Official Samples
 
