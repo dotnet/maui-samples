@@ -19,7 +19,7 @@
                              HeightRequest="160"
                              HorizontalOptions="Center"
                              Clicked="OnImageButtonClicked"
-                             SemanticProperties.Description="The .NET bot" />
+                             SemanticProperties.Description="The .NET bots riding a rocket" />
                 <Label x:Name="label"
                        Text="0 ImageButton clicks"
                        Style="{StaticResource Value}" />

@@ -153,9 +153,9 @@
                         </Border>
                         <Image Grid.Column="1"
                                Source="dotnet_bot.png"
-                               HeightRequest="52"
+                               HeightRequest="64"
                                Aspect="AspectFit"
-                               SemanticProperties.Description="The .NET bot" />
+                               SemanticProperties.Description="The .NET bots riding a rocket" />
                         <Label Grid.Row="1"
                                Grid.ColumnSpan="2"
                                Text="Control Gallery"
