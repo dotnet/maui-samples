@@ -12,7 +12,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Aspire.Hosting.AppHost" Version="13.0.0" />
+    <PackageReference Include="Aspire.Hosting.AppHost" Version="13.6.5" />
     <PackageReference Include="Aspire.Hosting.DevTunnels" Version="13.0.0-preview.1.25560.3" />
     <PackageReference Include="Aspire.Hosting.Maui" Version="13.0.0-preview.1.25560.3" />
   </ItemGroup>
