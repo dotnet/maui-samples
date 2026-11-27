@@ -41,6 +41,9 @@ namespace PlatformIntegrationDemo.ViewModels
             set => SetProperty(ref currentLocation, value);
         }
 
+        string NoLocationFound
+            => $"No location found within {locationTimeout.TotalSeconds} seconds. Try again, or try a lower accuracy.";
+
         public string[] Accuracies
             => Enum.GetNames(typeof(GeolocationAccuracy));
 
@@ -97,8 +100,13 @@ namespace PlatformIntegrationDemo.ViewModels
                 cts = new CancellationTokenSource();
                 var location = await Geolocation.GetLocationAsync(request, cts.Token);
                 CurrentLocation = location is null
-                    ? $"No location found within {locationTimeout.TotalSeconds} seconds. Try again, or try a lower accuracy."
+                    ? NoLocationFound
                     : FormatLocation(location);
+            }
+            catch (OperationCanceledException)
+            {
+                // On Windows, a timed-out request throws instead of returning null.
+                CurrentLocation = NoLocationFound;
             }
             catch (Exception ex)
             {
