@@ -4,6 +4,7 @@ namespace PlatformIntegrationDemo.ViewModels
 {
     public class GeolocationViewModel : BaseViewModel
     {
+        static readonly TimeSpan locationTimeout = TimeSpan.FromSeconds(10);
         string notAvailable = "not available";
         string lastLocation;
         string currentLocation;
@@ -91,10 +92,13 @@ namespace PlatformIntegrationDemo.ViewModels
             IsBusy = true;
             try
             {
-                var request = new GeolocationRequest((GeolocationAccuracy)Accuracy);
+                // Without a timeout, the request waits until the device gets a location fix.
+                var request = new GeolocationRequest((GeolocationAccuracy)Accuracy, locationTimeout);
                 cts = new CancellationTokenSource();
                 var location = await Geolocation.GetLocationAsync(request, cts.Token);
-                CurrentLocation = FormatLocation(location);
+                CurrentLocation = location is null
+                    ? $"No location found within {locationTimeout.TotalSeconds} seconds. Try again, or try a lower accuracy."
+                    : FormatLocation(location);
             }
             catch (Exception ex)
             {

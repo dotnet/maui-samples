@@ -118,14 +118,26 @@ namespace PlatformIntegrationDemo.ViewModels
         }
 
         async void OnRequest(Microsoft.Maui.Controls.View element)
-            => await Share.RequestAsync(new ShareTextRequest
+        {
+            var text = ShareText ? Text : null;
+            var uri = ShareUri ? Uri : null;
+
+            // Share.RequestAsync throws if there's neither text nor a URI to share.
+            if (string.IsNullOrWhiteSpace(text) && string.IsNullOrWhiteSpace(uri))
+            {
+                await DisplayAlertAsync("Enter some text or a link to share.");
+                return;
+            }
+
+            await Share.RequestAsync(new ShareTextRequest
             {
                 Subject = Subject,
-                Text = ShareText ? Text : null,
-                Uri = ShareUri ? Uri : null,
+                Text = text,
+                Uri = uri,
                 Title = Title,
                 PresentationSourceBounds = element.GetAbsoluteBounds()
             });
+        }
 
         async void OnFileRequest(Microsoft.Maui.Controls.View element)
         {

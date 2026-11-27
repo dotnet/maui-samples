@@ -34,7 +34,8 @@ namespace PlatformIntegrationDemo.ViewModels
 
             try
             {
-                var message = new SmsMessage(MessageText, Recipient.Split(',', '*'));
+                // Recipients are optional, so Recipient can be null.
+                var message = new SmsMessage(MessageText, Recipient?.Split(',', '*'));
                 await Sms.ComposeAsync(message);
             }
             catch (FeatureNotSupportedException)
