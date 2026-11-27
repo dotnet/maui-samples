@@ -20,6 +20,18 @@ This sample displays supported .NET MAUI controls, one per page. Deprecated List
 
 The home page groups the controls by category, and you can search or filter them. Every demo page uses the same header and card layout, in light and dark themes.
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="Screenshots/home-dark.png">
+  <source media="(prefers-color-scheme: light)" srcset="Screenshots/home-light.png">
+  <img alt="The Control Gallery home page on iOS and Android" src="Screenshots/home-light.png">
+</picture>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="Screenshots/demos-dark.png">
+  <source media="(prefers-color-scheme: light)" srcset="Screenshots/demos-light.png">
+  <img alt="The CollectionView, SwipeView, Grid, and Button demo pages" src="Screenshots/demos-light.png">
+</picture>
+
 For more information about .NET MAUI controls, see [.NET MAUI controls](https://docs.microsoft.com/dotnet/maui/user-interface/controls/).
 
 ## Styling
