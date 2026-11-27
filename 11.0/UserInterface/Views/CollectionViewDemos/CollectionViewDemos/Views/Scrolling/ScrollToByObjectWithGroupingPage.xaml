@@ -1,77 +1,89 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:CollectionViewDemos.Controls"
              xmlns:models="clr-namespace:CollectionViewDemos.Models"
              xmlns:viewmodels="clr-namespace:CollectionViewDemos.ViewModels"
              x:Class="CollectionViewDemos.Views.ScrollToByObjectWithGroupingPage"
-             Title="Scroll to object (grouped data)"
+             Title="Scroll to an item in a group"
              x:DataType="viewmodels:GroupedAnimalsViewModel">
-    <Grid RowDefinitions="Auto, Auto, Auto, *"
-          Margin="20">
-        <HorizontalStackLayout HorizontalOptions="Center">
-            <Label Text="ScrollToPosition: "
-                   VerticalTextAlignment="Center" />
-            <controls:EnumPicker x:Name="enumPicker"
-                                 EnumType="{x:Type ScrollToPosition}"
-                                 SelectedIndex="0" />
-        </HorizontalStackLayout>
-        <HorizontalStackLayout HorizontalOptions="Center"
-                               Grid.Row="1">
-            <Label Text="Animate scroll: "
-                   VerticalTextAlignment="Center" />
-            <Switch x:Name="animateSwitch"
-                    IsToggled="true" />
-        </HorizontalStackLayout>
-        <Button Text="Scroll to Proboscis Monkey"
-                Clicked="OnButtonClicked"
-                Grid.Row="2" />
-        <CollectionView x:Name="collectionView"
-                        ItemsSource="{Binding Animals}"
-                        IsGrouped="true"
-                        Scrolled="OnCollectionViewScrolled"
-                        Grid.Row="3">
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="models:Animal">
-                    <Grid Padding="10">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <Image Grid.RowSpan="2"
-                               Source="{Binding ImageUrl}"
-                               Aspect="AspectFill"
-                               HeightRequest="60"
-                               WidthRequest="60" />
-                        <Label Grid.Column="1"
-                               Text="{Binding Name}"
-                               FontAttributes="Bold" />
-                        <Label Grid.Row="1"
-                               Grid.Column="1"
-                               Text="{Binding Location}"
-                               FontAttributes="Italic"
-                               VerticalOptions="End" />
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-            <CollectionView.GroupHeaderTemplate>
-                <DataTemplate x:DataType="models:AnimalGroup">
-                    <Label Text="{Binding Name}"
-                           BackgroundColor="LightGray"
-                           FontSize="20"
-                           FontAttributes="Bold" />
-                </DataTemplate>
-            </CollectionView.GroupHeaderTemplate>
-            <CollectionView.GroupFooterTemplate>
-                <DataTemplate x:DataType="models:AnimalGroup">
-                    <Label Text="{Binding Count, StringFormat='Total animals: {0:D}'}"
-                           Margin="0,0,0,10" />
-                </DataTemplate>
-            </CollectionView.GroupFooterTemplate>
-        </CollectionView>
+    <Grid RowDefinitions="Auto,Auto,*"
+          Style="{StaticResource DemoLayout}">
+        <VerticalStackLayout Style="{StaticResource DemoHeader}">
+            <Label Text="Scrolling" Style="{StaticResource Eyebrow}" />
+            <Label Text="Scroll to an item in a group" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+            <Label Text="In grouped data, ScrollTo can take an item object and its group. Pick a ScrollToPosition, then scroll to the Proboscis Monkey." Style="{StaticResource Lead}" />
+        </VerticalStackLayout>
+
+        <Border Grid.Row="1"
+                Style="{StaticResource Card}">
+            <Grid RowDefinitions="Auto,Auto,Auto"
+                  ColumnDefinitions="*,Auto"
+                  RowSpacing="6"
+                  ColumnSpacing="16">
+                <Label Text="ScrollToPosition"
+                       Style="{StaticResource Caption}" />
+                <Label Grid.Column="1"
+                       Text="Animate"
+                       Style="{StaticResource Caption}" />
+                <controls:EnumPicker x:Name="enumPicker"
+                                     Grid.Row="1"
+                                     EnumType="{x:Type ScrollToPosition}"
+                                     SelectedIndex="0" />
+                <Switch x:Name="animateSwitch"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        IsToggled="true"
+                        VerticalOptions="Center" />
+                <Button Grid.Row="2"
+                        Grid.ColumnSpan="2"
+                        Margin="0,8,0,0"
+                        Text="Scroll to Proboscis Monkey"
+                        Clicked="OnButtonClicked" />
+            </Grid>
+        </Border>
+
+        <Border Grid.Row="2"
+                Style="{StaticResource ListSurface}">
+            <CollectionView x:Name="collectionView"
+                            ItemsSource="{Binding Animals}"
+                            IsGrouped="true"
+                            Scrolled="OnCollectionViewScrolled">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Animal">
+                        <Grid Padding="16,10"
+                              RowDefinitions="Auto,Auto"
+                              ColumnDefinitions="Auto,*"
+                              ColumnSpacing="14">
+                            <Image Grid.RowSpan="2"
+                                   Source="{Binding ImageUrl}"
+                                   HeightRequest="48"
+                                   WidthRequest="48" />
+                            <Label Grid.Column="1"
+                                   Text="{Binding Name}"
+                                   Style="{StaticResource Headline}"
+                                   VerticalOptions="End" />
+                            <Label Grid.Row="1"
+                                   Grid.Column="1"
+                                   Text="{Binding Location}"
+                                   Style="{StaticResource Caption}" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                <CollectionView.GroupHeaderTemplate>
+                    <DataTemplate x:DataType="models:AnimalGroup">
+                        <Label Text="{Binding Name}"
+                               Style="{StaticResource GroupHeader}" />
+                    </DataTemplate>
+                </CollectionView.GroupHeaderTemplate>
+                <CollectionView.GroupFooterTemplate>
+                    <DataTemplate x:DataType="models:AnimalGroup">
+                        <Label Text="{Binding Count, StringFormat='Total animals: {0:D}'}"
+                               Style="{StaticResource Caption}"
+                               Padding="16,4,16,12" />
+                    </DataTemplate>
+                </CollectionView.GroupFooterTemplate>
+            </CollectionView>
+        </Border>
     </Grid>
 </ContentPage>

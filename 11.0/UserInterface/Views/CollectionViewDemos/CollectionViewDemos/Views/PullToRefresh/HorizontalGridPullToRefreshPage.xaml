@@ -1,47 +1,64 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models="clr-namespace:CollectionViewDemos.Models"
              xmlns:viewmodels="clr-namespace:CollectionViewDemos.ViewModels"
              x:Class="CollectionViewDemos.Views.HorizontalGridPullToRefreshPage"
+             Title="Refresh a horizontal grid"
              x:DataType="viewmodels:AnimalsViewModel">
-    <StackLayout Margin="20">
-        <Label Text="Pull the items down to refresh the CollectionView." />
-        <Label Text="{Binding Animals.Count, StringFormat='Number of items: {0}'}" />
-        <RefreshView IsRefreshing="{Binding IsRefreshing}"
-                     Command="{Binding RefreshCommand}">
-            <CollectionView ItemsSource="{Binding Animals}"
-                            ItemsLayout="HorizontalGrid, 4">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="models:Animal">
-                        <Grid Padding="10">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="35" />
-                                <RowDefinition Height="35" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="70" />
-                                <ColumnDefinition Width="140" />
-                            </Grid.ColumnDefinitions>
-                            <Image Grid.RowSpan="2"
-                                   Source="{Binding ImageUrl}"
-                                   Aspect="AspectFill"
-                                   HeightRequest="60"
-                                   WidthRequest="60" />
-                            <Label Grid.Column="1"
-                                   Text="{Binding Name}"
-                                   FontAttributes="Bold"
-                                   LineBreakMode="TailTruncation" />
-                            <Label Grid.Row="1"
-                                   Grid.Column="1"
-                                   Text="{Binding Location}"
-                                   LineBreakMode="TailTruncation"
-                                   FontAttributes="Italic"
-                                   VerticalOptions="End" />
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </RefreshView>
-    </StackLayout>
+    <Grid RowDefinitions="Auto,Auto,*"
+          Style="{StaticResource DemoLayout}">
+        <VerticalStackLayout Style="{StaticResource DemoHeader}">
+            <Label Text="Pull to refresh" Style="{StaticResource Eyebrow}" />
+            <Label Text="Refresh a horizontal grid" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+            <Label Text="A RefreshView also works around a CollectionView with ItemsLayout=&quot;HorizontalGrid, 4&quot;. Each refresh loads more animals." Style="{StaticResource Lead}" />
+        </VerticalStackLayout>
+
+        <Border Grid.Row="1"
+                Style="{StaticResource Hint}">
+            <Grid ColumnDefinitions="*,Auto"
+                  ColumnSpacing="12">
+                <Label Text="Pull down to refresh."
+                       Style="{StaticResource HintLabel}" />
+                <Label Grid.Column="1"
+                       Text="{Binding Animals.Count, StringFormat='Number of items: {0}'}"
+                       Style="{StaticResource HintLabel}" />
+            </Grid>
+        </Border>
+
+        <Border Grid.Row="2"
+                Style="{StaticResource ListSurface}"
+                VerticalOptions="Start">
+            <RefreshView IsRefreshing="{Binding IsRefreshing}"
+                         Command="{Binding RefreshCommand}"
+                         HeightRequest="256">
+                <CollectionView ItemsSource="{Binding Animals}"
+                                ItemsLayout="HorizontalGrid, 4">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:Animal">
+                            <Grid Padding="12,8"
+                                  RowDefinitions="Auto,Auto"
+                                  ColumnDefinitions="48,140"
+                                  ColumnSpacing="12">
+                                <Image Grid.RowSpan="2"
+                                       Source="{Binding ImageUrl}"
+                                       HeightRequest="48"
+                                       WidthRequest="48" />
+                                <Label Grid.Column="1"
+                                       Text="{Binding Name}"
+                                       Style="{StaticResource Headline}"
+                                       LineBreakMode="TailTruncation"
+                                       VerticalOptions="End" />
+                                <Label Grid.Row="1"
+                                       Grid.Column="1"
+                                       Text="{Binding Location}"
+                                       Style="{StaticResource Caption}"
+                                       LineBreakMode="TailTruncation" />
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </RefreshView>
+        </Border>
+    </Grid>
 </ContentPage>

@@ -1,49 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:CollectionViewDemos.Controls"
              xmlns:models="clr-namespace:CollectionViewDemos.Models"
              xmlns:viewmodels="clr-namespace:CollectionViewDemos.ViewModels"
              x:Class="CollectionViewDemos.Views.VerticalListVariableSizeItemsPage"
-             Title="Vertical list (variable size items)"
+             Title="Variable size items"
              x:DataType="viewmodels:MonkeysViewModel">
-  <Grid RowDefinitions="Auto, *" 
-        Margin="20">
-        <HorizontalStackLayout HorizontalOptions="Center">
-            <Label Text="ItemSizingStrategy:"
-                   VerticalTextAlignment="Center" />
-            <controls:EnumPicker x:Name="enumPicker"
-                                 EnumType="{x:Type ItemSizingStrategy}"
-                                 SelectedIndex="0" />
-        </HorizontalStackLayout>
-        <CollectionView ItemsSource="{Binding Monkeys}" 
-                        ItemSizingStrategy="{Binding x:DataType='controls:EnumPicker', Source={x:Reference enumPicker}, Path=SelectedItem}"
-                        Grid.Row="1">
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="models:Monkey">
-                    <Grid Padding="10">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <Image Grid.RowSpan="2" 
-                               Source="{Binding ImageUrl}" 
-                               Aspect="AspectFill" />
-                        <Label Grid.Column="1" 
-                               Text="{Binding Name}" 
-                               FontAttributes="Bold" />
-                        <Label Grid.Row="1"
-                               Grid.Column="1" 
-                               Text="{Binding Location}"
-                               FontAttributes="Italic" 
-                               VerticalOptions="End" />
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+    <Grid RowDefinitions="Auto,Auto,*"
+          Style="{StaticResource DemoLayout}">
+        <VerticalStackLayout Style="{StaticResource DemoHeader}">
+            <Label Text="Sizing" Style="{StaticResource Eyebrow}" />
+            <Label Text="Variable size items" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+            <Label Text="With ItemSizingStrategy=&quot;MeasureAllItems&quot; each item is as tall as its description. Pick MeasureFirstItem to give every item the first item's height." Style="{StaticResource Lead}" />
+        </VerticalStackLayout>
+
+        <Border Grid.Row="1"
+                Style="{StaticResource Card}">
+            <Grid ColumnDefinitions="Auto,*"
+                  ColumnSpacing="12">
+                <Label Text="ItemSizingStrategy"
+                       Style="{StaticResource Caption}"
+                       VerticalOptions="Center" />
+                <controls:EnumPicker x:Name="enumPicker"
+                                     Grid.Column="1"
+                                     EnumType="{x:Type ItemSizingStrategy}"
+                                     SelectedIndex="0" />
+            </Grid>
+        </Border>
+
+        <Border Grid.Row="2"
+                Style="{StaticResource ListSurface}">
+            <CollectionView ItemsSource="{Binding Monkeys}"
+                            ItemSizingStrategy="{Binding x:DataType='controls:EnumPicker', Source={x:Reference enumPicker}, Path=SelectedItem}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Monkey">
+                        <!-- The description's length differs per monkey, so items have different heights. -->
+                        <Grid Padding="16,12"
+                              RowDefinitions="Auto,Auto,Auto"
+                              ColumnDefinitions="Auto,*"
+                              ColumnSpacing="14">
+                            <Image Grid.RowSpan="2"
+                                   Source="{Binding ImageUrl}"
+                                   HeightRequest="48"
+                                   WidthRequest="48" />
+                            <Label Grid.Column="1"
+                                   Text="{Binding Name}"
+                                   Style="{StaticResource Headline}"
+                                   VerticalOptions="End" />
+                            <Label Grid.Row="1"
+                                   Grid.Column="1"
+                                   Text="{Binding Location}"
+                                   Style="{StaticResource Caption}" />
+                            <Label Grid.Row="2"
+                                   Grid.ColumnSpan="2"
+                                   Margin="0,8,0,0"
+                                   Text="{Binding Details}"
+                                   Style="{StaticResource Caption}" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Border>
     </Grid>
 </ContentPage>

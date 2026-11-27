@@ -1,46 +1,57 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:CollectionViewDemos.Controls"
              xmlns:models="clr-namespace:CollectionViewDemos.Models"
              xmlns:viewmodels="clr-namespace:CollectionViewDemos.ViewModels"
-             xmlns:controls="clr-namespace:CollectionViewDemos.Controls"
              x:Class="CollectionViewDemos.Views.VerticalListSpacingPage"
-             Title="Vertical list (spacing)"
+             Title="Vertical list spacing"
              x:DataType="viewmodels:MonkeysViewModel">
-    <Grid RowDefinitions="Auto, *" 
-          Margin="20">
-        <controls:SpacingModifier CV="{x:Reference collectionView}"
+    <Grid RowDefinitions="Auto,Auto,*"
+          Style="{StaticResource DemoLayout}">
+        <VerticalStackLayout Style="{StaticResource DemoHeader}">
+            <Label Text="Spacing" Style="{StaticResource Eyebrow}" />
+            <Label Text="Vertical list spacing" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+            <Label Text="ItemsLayout is a LinearItemsLayout whose ItemSpacing adds space between items. Enter a value and tap Update." Style="{StaticResource Lead}" />
+        </VerticalStackLayout>
+
+        <!-- Declared before the SpacingModifier so Android doesn't focus its Entry and open the keyboard on launch. -->
+        <Border Grid.Row="2"
+                Style="{StaticResource ListSurface}"
+                Padding="8">
+            <CollectionView x:Name="collectionView"
+                            ItemsSource="{Binding Monkeys}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Monkey">
+                        <!-- Tinted tiles make the space between items easy to see. -->
+                        <Border StrokeThickness="0"
+                                StrokeShape="RoundRectangle 12"
+                                Background="{AppThemeBinding Light={StaticResource SurfaceVariantLight}, Dark={StaticResource SurfaceVariantDark}}">
+                            <Grid Padding="16,10"
+                                  RowDefinitions="Auto,Auto"
+                                  ColumnDefinitions="Auto,*"
+                                  ColumnSpacing="14">
+                                <Image Grid.RowSpan="2"
+                                       Source="{Binding ImageUrl}"
+                                       HeightRequest="48"
+                                       WidthRequest="48" />
+                                <Label Grid.Column="1"
+                                       Text="{Binding Name}"
+                                       Style="{StaticResource Headline}"
+                                       VerticalOptions="End" />
+                                <Label Grid.Row="1"
+                                       Grid.Column="1"
+                                       Text="{Binding Location}"
+                                       Style="{StaticResource Caption}" />
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Border>
+
+        <controls:SpacingModifier Grid.Row="1"
+                                  CV="{x:Reference collectionView}"
                                   SpacingText="0" />
-        <CollectionView x:Name="collectionView"
-                        ItemsSource="{Binding Monkeys}"
-                        Grid.Row="1">
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="models:Monkey">
-                    <Grid Padding="10">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <Image Grid.RowSpan="2" 
-                               Source="{Binding ImageUrl}" 
-                               Aspect="AspectFill"
-                               HeightRequest="60" 
-                               WidthRequest="60" />
-                        <Label Grid.Column="1" 
-                               Text="{Binding Name}" 
-                               FontAttributes="Bold" />
-                        <Label Grid.Row="1"
-                               Grid.Column="1" 
-                               Text="{Binding Location}"
-                               FontAttributes="Italic" 
-                               VerticalOptions="End" />
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
     </Grid>
 </ContentPage>

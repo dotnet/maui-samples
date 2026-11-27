@@ -14,9 +14,32 @@ urlFragment: userinterface-collectionview
 
 The .NET Multi-platform App UI (.NET MAUI) `CollectionView` is a view for presenting lists of data using different layout specifications. It aims to provide a more flexible, and performant alternative to `ListView`.
 
-This sample demonstrates how to use the .NET MAUI `CollectionView`.
+This sample demonstrates how to use the .NET MAUI `CollectionView`: layouts, spacing, item sizing, selection, empty views, grouping, pull to refresh, headers and footers, scrolling, and swipe actions.
+
+The home page groups the demos by category, and you can search or filter them. Each demo page names the API it uses, then shows the `CollectionView` in a card, in light and dark themes. The screenshots below follow your GitHub theme.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="images/home-dark.png">
+  <source media="(prefers-color-scheme: light)" srcset="images/home-light.png">
+  <img alt="The home page, vertical grid, and grouped list on iOS and Android" src="images/home-light.png">
+</picture>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="images/demo-pages-dark.png">
+  <source media="(prefers-color-scheme: light)" srcset="images/demo-pages-light.png">
+  <img alt="The multiple selection, grouped list, empty view, and swipe pages" src="images/demo-pages-light.png">
+</picture>
 
 For more information about this sample, see [.NET MAUI CollectionView](https://docs.microsoft.com/dotnet/maui/user-interface/controls/collectionview/).
+
+## Styling and assets
+
+All styling lives in resource dictionaries, so each page contains little more than the `CollectionView` it demonstrates:
+
+- `Resources/Styles/Colors.xaml` defines the color tokens. Most come in `Light` and `Dark` pairs, plus a shared accent palette.
+- `Resources/Styles/Styles.xaml` defines implicit styles that theme every control, and explicit styles such as `Title1`, `Lead`, `ListSurface`, and `GroupHeader` that pages opt into.
+- The app uses the [Inter](https://rsms.me/inter/) typeface (SIL Open Font License) and [Material Icons Round](https://fonts.google.com/icons) (Apache License 2.0). Their license files are in `Resources/Fonts`.
+- The animal images are 3D [Fluent Emoji](https://github.com/microsoft/fluentui-emoji) by Microsoft (MIT License), bundled in `Resources/Images/Animals` with their license file, so the sample works offline.
 
 ## Coming from ListViewDemos
 
