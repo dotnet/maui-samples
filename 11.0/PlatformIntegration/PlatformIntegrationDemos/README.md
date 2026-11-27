@@ -56,11 +56,19 @@ This sample demonstrates the following functionality:
   - Preferences
   - Secure storage
 
-The home page groups the demos by category, and you can search or filter them. Each demo page names the API it uses, then shows a card with the controls and the results, in light and dark themes.
+The home page groups the demos by category, and you can search or filter them. Each demo page names the API it uses, then shows a card with the controls and the results. The app supports light and dark themes, and the screenshots below follow your GitHub theme.
 
-![The home page in light and dark themes on iOS and Android](images/home.png)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="images/home-dark.png">
+  <source media="(prefers-color-scheme: light)" srcset="images/home-light.png">
+  <img alt="The home page on iOS and Android" src="images/home-light.png">
+</picture>
 
-![The Accelerometer, Geolocation, Color Converters, and Permissions pages](images/api-pages.png)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="images/api-pages-dark.png">
+  <source media="(prefers-color-scheme: light)" srcset="images/api-pages-light.png">
+  <img alt="The Accelerometer, Geolocation, Color Converters, and Permissions pages" src="images/api-pages-light.png">
+</picture>
 
 Some APIs need real hardware or services. In a simulator or emulator, sensors report zeros, the flashlight and vibration aren't available, and the phone dialer, SMS, and email apps might be missing.
 
