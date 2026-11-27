@@ -1,38 +1,108 @@
-<?xml version="1.0" ?><views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:views="clr-namespace:PlatformIntegrationDemo.Views" xmlns:viewmodels="clr-namespace:PlatformIntegrationDemo.ViewModels" x:Class="PlatformIntegrationDemo.Views.MapsPage" Title="Maps" x:DataType="viewmodels:MapsViewModel">
+<?xml version="1.0" encoding="utf-8" ?>
+<views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:views="clr-namespace:PlatformIntegrationDemo.Views"
+                xmlns:viewmodels="clr-namespace:PlatformIntegrationDemo.ViewModels"
+                x:Class="PlatformIntegrationDemo.Views.MapsPage"
+                Title="Maps"
+                x:DataType="viewmodels:MapsViewModel">
     <views:BasePage.BindingContext>
-        <viewmodels:MapsViewModel/>
+        <viewmodels:MapsViewModel />
     </views:BasePage.BindingContext>
 
-    <Grid RowDefinitions="Auto,*">
-        <Label Text="Open location in maps." FontAttributes="Bold" Margin="12"/>
+    <ScrollView>
+        <Grid RowDefinitions="Auto,Auto,Auto,Auto"
+              Style="{StaticResource DemoLayout}">
+            <VerticalStackLayout Style="{StaticResource DemoHeader}">
+                <Label Text="Location" Style="{StaticResource Eyebrow}" />
+                <Label Text="Maps" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+                <Label Text="Open the maps app at a set of coordinates or at an address, optionally with directions." Style="{StaticResource Lead}" />
+                <Border Style="{StaticResource ApiChip}">
+                    <Label Text="Map.TryOpenAsync()" Style="{StaticResource ApiChipLabel}" />
+                </Border>
+            </VerticalStackLayout>
 
-        <ScrollView Grid.Row="1">
-            <StackLayout Padding="12,0,12,12" Spacing="6">
-                <Label Text="Options:"/>
-                <Label Text="Navigation Mode"/>
-                <Picker HorizontalOptions="Fill" ItemsSource="{Binding NavigationModes}" SelectedIndex="{Binding NavigationMode, Mode=TwoWay}"/>
-                <Label Text="Name"/>
-                <Entry Text="{Binding Name}"/>
-
-                <Label Text="Latitude" Margin="0,24,0,0"/>
-                <Entry Keyboard="Numeric" Text="{Binding Latitude}"/>
-                <Label Text="Longitude"/>
-                <Entry Keyboard="Numeric" Text="{Binding Longitude}"/>
-                <Button Text="Open coordinates" Command="{Binding MapsCommand}"/>
-
-                <Label Text="Thoroughfare" Margin="0,24,0,0"/>
-                <Entry Text="{Binding Thoroughfare}"/>
-                <Label Text="Locality"/>
-                <Entry Text="{Binding Locality}"/>
-                <Label Text="Admin Area"/>
-                <Entry Text="{Binding AdminArea}"/>
-                <Label Text="Country Name"/>
-                <Entry Text="{Binding Country}"/>
-                <Label Text="Zip Code"/>
-                <Entry Text="{Binding ZipCode}" Keyboard="Numeric"/>
-
-                <Button Text="Open address" Command="{Binding LaunchPlacemarkCommand}"/>
-            </StackLayout>
-        </ScrollView>
-    </Grid>
+            <Border Grid.Row="1"
+                    Style="{StaticResource DemoSurface}">
+                <VerticalStackLayout Spacing="16">
+                    <Label Text="Options"
+                           Style="{StaticResource Headline}"
+                           SemanticProperties.HeadingLevel="Level2" />
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Navigation mode" Style="{StaticResource Caption}" />
+                        <Picker SemanticProperties.Description="Navigation mode"
+                                ItemsSource="{Binding NavigationModes}"
+                                SelectedIndex="{Binding NavigationMode, Mode=TwoWay}" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Place name" Style="{StaticResource Caption}" />
+                        <Entry SemanticProperties.Hint="Place name"
+                               Text="{Binding Name}" />
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </Border>
+            <Border Grid.Row="2"
+                    Style="{StaticResource DemoSurface}">
+                <VerticalStackLayout Spacing="16">
+                    <Label Text="Coordinates"
+                           Style="{StaticResource Headline}"
+                           SemanticProperties.HeadingLevel="Level2" />
+                    <Grid ColumnDefinitions="*,*"
+                          ColumnSpacing="12">
+                        <VerticalStackLayout Spacing="4">
+                            <Label Text="Latitude" Style="{StaticResource Caption}" />
+                            <Entry SemanticProperties.Hint="Latitude"
+                                   Keyboard="Numeric"
+                                   Text="{Binding Latitude}" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="1"
+                                             Spacing="4">
+                            <Label Text="Longitude" Style="{StaticResource Caption}" />
+                            <Entry SemanticProperties.Hint="Longitude"
+                                   Keyboard="Numeric"
+                                   Text="{Binding Longitude}" />
+                        </VerticalStackLayout>
+                    </Grid>
+                    <Button Text="Open coordinates"
+                            Command="{Binding MapsCommand}" />
+                </VerticalStackLayout>
+            </Border>
+            <Border Grid.Row="3"
+                    Style="{StaticResource DemoSurface}">
+                <VerticalStackLayout Spacing="16">
+                    <Label Text="Address"
+                           Style="{StaticResource Headline}"
+                           SemanticProperties.HeadingLevel="Level2" />
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Street" Style="{StaticResource Caption}" />
+                        <Entry SemanticProperties.Hint="Street"
+                               Text="{Binding Thoroughfare}" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="City" Style="{StaticResource Caption}" />
+                        <Entry SemanticProperties.Hint="City"
+                               Text="{Binding Locality}" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="State or region" Style="{StaticResource Caption}" />
+                        <Entry SemanticProperties.Hint="State or region"
+                               Text="{Binding AdminArea}" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Country" Style="{StaticResource Caption}" />
+                        <Entry SemanticProperties.Hint="Country"
+                               Text="{Binding Country}" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Postal code" Style="{StaticResource Caption}" />
+                        <Entry SemanticProperties.Hint="Postal code"
+                               Text="{Binding ZipCode}"
+                               Keyboard="Numeric" />
+                    </VerticalStackLayout>
+                    <Button Text="Open address"
+                            Command="{Binding LaunchPlacemarkCommand}" />
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+    </ScrollView>
 </views:BasePage>

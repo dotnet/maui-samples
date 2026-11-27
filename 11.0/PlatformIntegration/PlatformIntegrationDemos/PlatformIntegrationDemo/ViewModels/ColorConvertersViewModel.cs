@@ -10,6 +10,7 @@
 
         public ColorConvertersViewModel()
         {
+            SetColor();
         }
 
         public int Alpha

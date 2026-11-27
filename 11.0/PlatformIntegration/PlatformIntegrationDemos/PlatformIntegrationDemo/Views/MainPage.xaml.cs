@@ -1,25 +1,25 @@
-﻿using PlatformIntegrationDemo.Models;
+using PlatformIntegrationDemo.Models;
 
 namespace PlatformIntegrationDemo.Views;
 
 public partial class MainPage : BasePage
 {
-	public MainPage()
-	{
-		InitializeComponent();
-	}
-
-    async void OnSampleTapped(object sender, SelectionChangedEventArgs e)
+    public MainPage()
     {
-        var item = e.CurrentSelection?.FirstOrDefault() as SampleItem;
-        if (item == null)
-            return;
+        InitializeComponent();
+    }
 
-        await Navigation.PushAsync((Page)Activator.CreateInstance(item.PageType));
+    async void OnSampleTapped(object sender, TappedEventArgs e)
+    {
+        if ((sender as BindableObject)?.BindingContext is SampleItem item)
+            await Navigation.PushAsync((Page)Activator.CreateInstance(item.PageType));
+    }
 
-        // deselect Item
-        ((CollectionView)sender).SelectedItem = null;
+    protected override void OnSizeAllocated(double width, double height)
+    {
+        base.OnSizeAllocated(width, height);
+
+        // Give the list more room on short screens, such as a phone in landscape.
+        hero.IsVisible = height >= 560;
     }
 }
-
-

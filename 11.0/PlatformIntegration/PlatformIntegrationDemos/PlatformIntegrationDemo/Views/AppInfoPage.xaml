@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                 xmlns:views="clr-namespace:PlatformIntegrationDemo.Views"
@@ -10,30 +10,50 @@
         <viewmodels:AppInfoViewModel />
     </views:BasePage.BindingContext>
 
-    <Grid RowDefinitions="Auto,*">
-        <Label Text="Find out about the app with ease."
-               FontAttributes="Bold"
-               Margin="12" />
+    <ScrollView>
+        <Grid RowDefinitions="Auto,Auto"
+              Style="{StaticResource DemoLayout}">
+            <VerticalStackLayout Style="{StaticResource DemoHeader}">
+                <Label Text="App model" Style="{StaticResource Eyebrow}" />
+                <Label Text="App Info" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+                <Label Text="Read information about the app, such as its name, version, and the theme it was asked to use." Style="{StaticResource Lead}" />
+                <Border Style="{StaticResource ApiChip}">
+                    <Label Text="AppInfo.VersionString" Style="{StaticResource ApiChipLabel}" />
+                </Border>
+            </VerticalStackLayout>
 
-        <ScrollView Grid.Row="1">
-            <StackLayout Padding="12,0,12,12"
-                         Spacing="6">
-                <Label Text="App Info:"
-                       FontAttributes="Bold"
-                       Margin="0,6,0,0" />
-                <Label Text="{Binding AppName, StringFormat='Name: {0}'}" />
-                <Label Text="{Binding AppPackageName, StringFormat='Package Name: {0}'}" />
-                <Label Text="{Binding AppTheme, StringFormat='Theme: {0}'}" />
-
-                <Label Text="Version Info:"
-                       FontAttributes="Bold"
-                       Margin="0,6,0,0" />
-                <Label Text="{Binding AppVersion, StringFormat='Version: {0}'}" />
-                <Label Text="{Binding AppBuild, StringFormat='Build: {0}'}" />
-
-                <Button Text="Open Settings"
-                        Command="{Binding ShowSettingsUICommand}" />
-            </StackLayout>
-        </ScrollView>
-    </Grid>
+            <Border Grid.Row="1"
+                    Style="{StaticResource DemoSurface}">
+                <VerticalStackLayout Spacing="16">
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Name" Style="{StaticResource Caption}" />
+                        <Label Text="{Binding AppName}"
+                               Style="{StaticResource PropertyValue}"
+                               FontSize="14"
+                               HorizontalTextAlignment="Start" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Package name" Style="{StaticResource Caption}" />
+                        <Label Text="{Binding AppPackageName}"
+                               Style="{StaticResource PropertyValue}"
+                               FontSize="14"
+                               HorizontalTextAlignment="Start" />
+                    </VerticalStackLayout>
+                    <Grid ColumnDefinitions="Auto,*"
+                          ColumnSpacing="16"
+                          RowSpacing="12"
+                          RowDefinitions="Auto,Auto,Auto">
+                        <Label Text="Requested theme" Style="{StaticResource PropertyName}" />
+                        <Label Grid.Column="1" Text="{Binding AppTheme}" Style="{StaticResource PropertyValue}" />
+                        <Label Grid.Row="1" Text="Version" Style="{StaticResource PropertyName}" />
+                        <Label Grid.Row="1" Grid.Column="1" Text="{Binding AppVersion}" Style="{StaticResource PropertyValue}" />
+                        <Label Grid.Row="2" Text="Build" Style="{StaticResource PropertyName}" />
+                        <Label Grid.Row="2" Grid.Column="1" Text="{Binding AppBuild}" Style="{StaticResource PropertyValue}" />
+                    </Grid>
+                    <Button Text="Open app settings"
+                            Command="{Binding ShowSettingsUICommand}" />
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+    </ScrollView>
 </views:BasePage>

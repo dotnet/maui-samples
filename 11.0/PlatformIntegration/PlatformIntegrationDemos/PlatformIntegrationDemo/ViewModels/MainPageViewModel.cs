@@ -1,267 +1,42 @@
-﻿using PlatformIntegrationDemo.Models;
-using PlatformIntegrationDemo.Views;
+using PlatformIntegrationDemo.Models;
 
 namespace PlatformIntegrationDemo.ViewModels
 {
     public class MainPageViewModel : BaseViewModel
     {
+        readonly SampleCategory allFilter = new("All", Colors.Transparent);
         bool alreadyAppeared;
-        SampleItem[] samples;
-        IEnumerable<SampleItem> filteredItems;
-        string filterText;
+        IReadOnlyList<SampleGroup> groups = [];
+        SampleCategory selectedFilter;
+        string filterText = string.Empty;
 
         public MainPageViewModel()
         {
-            alreadyAppeared = false;
-            samples = new SampleItem[]
-            {
-                new SampleItem(
-                    "📏",
-                    "Accelerometer",
-                    typeof(AccelerometerPage),
-                    "Retrieve acceleration data of the device in 3D space.",
-                    new[] { "accelerometer", "sensors", "hardware", "device" }),
-                new SampleItem(
-                    "📏",
-                    "All Sensors",
-                    typeof(AllSensorsPage),
-                    "Have a look at the accelerometer, barometer, compass, gyroscope, magnetometer, and orientation sensors.",
-                    new[] { "accelerometer", "barometer", "compass", "gyroscope", "magnetometer", "orientation", "sensors", "hardware", "device" }),
-                new SampleItem(
-                    "📦",
-                    "App Info",
-                    typeof(AppInfoPage),
-                    "Find out about the app with ease.",
-                    new[] { "app", "info" }),
-                new SampleItem(
-                    "📏",
-                    "Barometer",
-                    typeof(BarometerPage),
-                    "Easily detect pressure level, via the device barometer.",
-                    new[] { "barometer", "hardware", "device", "sensor" }),
-                new SampleItem(
-                    "🔋",
-                    "Battery",
-                    typeof(BatteryPage),
-                    "Easily detect battery level, source, and state.",
-                    new[] { "battery", "hardware", "device" }),
-                new SampleItem(
-                    "🌐",
-                    "Browser",
-                    typeof(BrowserPage),
-                    "Quickly and easily open a browser to a specific website.",
-                    new[] { "browser", "web", "internet" }),
-                new SampleItem(
-                    "📋",
-                    "Clipboard",
-                    typeof(ClipboardPage),
-                    "Quickly and easily use the clipboard.",
-                    new[] { "clipboard", "copy", "paste" }),
-                new SampleItem(
-                    "🎨",
-                    "Color Converters",
-                    typeof(ColorConvertersPage),
-                    "Convert and adjust colors.",
-                    new[] { "color", "drawing", "style" }),
-                new SampleItem(
-                    "🧭",
-                    "Compass",
-                    typeof(CompassPage),
-                    "Monitor compass for changes.",
-                    new[] { "compass", "sensors", "hardware", "device" }),
-                new SampleItem(
-                    "📶",
-                    "Connectivity",
-                    typeof(ConnectivityPage),
-                    "Check connectivity state and detect changes.",
-                    new[] { "connectivity", "internet", "wifi" }),
-                new SampleItem(
-                    "👶",
-                    "Contacts",
-                    typeof(ContactsPage),
-                    "Get and add contacts in your device.",
-                    new[] { "contacts", "people", "device" }),
-                new SampleItem(
-                    "📱",
-                    "Device Info",
-                    typeof(DeviceInfoPage),
-                    "Find out about the device with ease.",
-                    new[] { "hardware", "device", "info", "screen", "display", "orientation", "rotation" }),
-                new SampleItem(
-                    "📧",
-                    "Email",
-                    typeof(EmailPage),
-                    "Easily send email messages.",
-                    new[] { "email", "share", "communication", "message" }),
-                new SampleItem(
-                    "📁",
-                    "File Picker",
-                    typeof(FilePickerPage),
-                    "Easily pick files from storage.",
-                    new[] { "files", "picking", "filesystem", "storage" }),
-                new SampleItem(
-                "📁",
-                    "File System",
-                    typeof(FileSystemPage),
-                    "Easily save files to app data.",
-                    new[] { "files", "directory", "filesystem", "storage" }),
-                new SampleItem(
-                    "🔦",
-                    "Flashlight",
-                    typeof(FlashlightPage),
-                    "A simple way to turn the flashlight on/off.",
-                    new[] { "flashlight", "torch", "hardware", "flash", "device" }),
-                new SampleItem(
-                    "📍",
-                    "Geocoding",
-                    typeof(GeocodingPage),
-                    "Easily geocode and reverse geocoding.",
-                    new[] { "geocoding", "geolocation", "position", "address", "mapping" }),
-                new SampleItem(
-                    "📍",
-                    "Geolocation",
-                    typeof(GeolocationPage),
-                    "Quickly get the current location.",
-                    new[] { "geolocation", "position", "address", "mapping" }),
-                new SampleItem(
-                    "💤",
-                    "Keep Screen On",
-                    typeof(KeepScreenOnPage),
-                    "Keep the device screen awake.",
-                    new[] { "screen", "awake", "sleep" }),
-                new SampleItem(
-                    "📏",
-                    "Launcher",
-                    typeof(LauncherPage),
-                    "Launch other apps via Uri",
-                    new[] { "launcher", "app", "run" }),
-                new SampleItem(
-                    "📏",
-                    "Gyroscope",
-                    typeof(GyroscopePage),
-                    "Retrieve rotation around the device's three primary axes.",
-                    new[] { "gyroscope", "sensors", "hardware", "device" }),
-                new SampleItem(
-                    "📏",
-                    "Magnetometer",
-                    typeof(MagnetometerPage),
-                    "Detect device's orientation relative to Earth's magnetic field.",
-                    new[] { "compass", "magnetometer", "sensors", "hardware", "device" }),
-                new SampleItem(
-                    "🗺",
-                    "Launch Maps",
-                    typeof(MapsPage),
-                    "Easily launch maps with coordinates.",
-                    new[] { "geocoding", "geolocation", "position", "address", "mapping", "maps", "route", "navigation" }),
-                new SampleItem(
-                    "📏",
-                    "Orientation Sensor",
-                    typeof(OrientationSensorPage),
-                    "Retrieve orientation of the device in 3D space.",
-                    new[] { "orientation", "sensors", "hardware", "device" }),
-                new SampleItem(
-                    "📷",
-                    "Media Picker",
-                    typeof(MediaPickerPage),
-                    "Pick or capture a photo or video.",
-                    new[] { "media", "picker", "video", "picture", "photo", "image", "movie" }),
-                new SampleItem(
-                "🔒",
-                    "Permissions",
-                    typeof(PermissionsPage),
-                    "Request various permissions.",
-                    new[] { "permissions" }),
-                new SampleItem(
-                    "📞",
-                    "Phone Dialer",
-                    typeof(PhoneDialerPage),
-                    "Easily open the phone dialer.",
-                    new[] { "phone", "dialer", "communication", "call" }),
-                new SampleItem(
-                    "⚙️",
-                    "Preferences",
-                    typeof(PreferencesPage),
-                    "Quickly and easily add persistent preferences.",
-                    new[] { "settings", "preferences", "prefs", "storage" }),
-                new SampleItem(
-                    "📷",
-                    "Screenshot",
-                    typeof(ScreenshotPage),
-                    "Quickly and easily take screenshots of your app.",
-                    new[] { "screenshot", "picture", "media", "display" }),
-                new SampleItem(
-                    "🔒",
-                    "Secure Storage",
-                    typeof(SecureStoragePage),
-                    "Securely store data.",
-                    new[] { "settings", "preferences", "prefs", "security", "storage" }),
-                new SampleItem(
-                    "🐊",
-                    "Semantic Screen Reader",
-                    typeof(SemanticScreenReaderPage),
-                    "Read out the semanic contents of a screen.",
-                    new[] { "accessibility", "a11y", "screen reader", "semantic" }),
-                new SampleItem(
-                    "📲",
-                    "Share",
-                    typeof(SharePage),
-                    "Send text, website uris and files to other apps.",
-                    new[] { "data", "transfer", "share", "communication" }),
-                new SampleItem(
-                    "💬",
-                    "SMS",
-                    typeof(SMSPage),
-                    "Easily send SMS messages.",
-                    new[] { "sms", "message", "text", "communication", "share" }),
-                new SampleItem(
-                    "🔊",
-                    "Text To Speech",
-                    typeof(TextToSpeechPage),
-                    "Vocalize text on the device.",
-                    new[] { "text", "message", "speech", "communication" }),
-                new SampleItem(
-                    "🌡",
-                    "Unit Converters",
-                    typeof(UnitConvertersPage),
-                    "Easily converter different units.",
-                    new[] { "units", "converters", "calculations" }),
-                new SampleItem(
-                    "📳",
-                    "Vibration",
-                    typeof(VibrationPage),
-                    "Quickly and easily make the device vibrate.",
-                    new[] { "vibration", "vibrate", "hardware", "device" }),
-                new SampleItem(
-                    "📳",
-                    "Haptic Feedback",
-                    typeof(HapticFeedbackPage),
-                    "Quickly and easily make the device provide haptic feedback",
-                    new[] { "haptic", "feedback", "hardware", "device" }),
-                new SampleItem(
-                    "🔓",
-                    "Web Authenticator",
-                    typeof(WebAuthenticatorPage),
-                    "Quickly and easily authenticate and wait for a callback.",
-                    new[] { "auth", "authenticate", "authenticator", "web", "webauth" }),
-            };
-            filteredItems = samples;
-            filterText = string.Empty;
+            FilterOptions = [allFilter, .. SampleCatalog.Categories];
+            selectedFilter = allFilter;
+            ApplyFilter();
         }
 
-        public IEnumerable<SampleItem> FilteredItems
+        public IReadOnlyList<SampleCategory> FilterOptions { get; }
+
+        public int SampleCount => SampleCatalog.Samples.Count;
+
+        public IReadOnlyList<SampleGroup> Groups
         {
-            get => filteredItems;
-            private set => SetProperty(ref filteredItems, value);
+            get => groups;
+            private set => SetProperty(ref groups, value);
         }
 
         public string FilterText
         {
             get => filterText;
-            set
-            {
-                SetProperty(ref filterText, value);
-                FilteredItems = Filter(samples, value);
-            }
+            set => SetProperty(ref filterText, value, onChanged: ApplyFilter);
+        }
+
+        public SampleCategory SelectedFilter
+        {
+            get => selectedFilter;
+            set => SetProperty(ref selectedFilter, value ?? allFilter, onChanged: ApplyFilter);
         }
 
         public override void OnAppearing()
@@ -284,19 +59,25 @@ namespace PlatformIntegrationDemo.ViewModels
             }
         }
 
-        static IEnumerable<SampleItem> Filter(IEnumerable<SampleItem> samples, string filterText)
+        void ApplyFilter()
         {
-            if (!string.IsNullOrWhiteSpace(filterText))
-            {
-                samples = samples.Where(s =>
-                {
-                    var tags = s.Tags.Union(new[] { s.Name });
-                    return tags.Any(t => t.Contains(filterText, StringComparison.OrdinalIgnoreCase));
-                });
-            }
+            var search = filterText?.Trim() ?? string.Empty;
 
-            return samples.OrderBy(s => s.Name);
+            // Replace the whole list rather than mutating it: simpler, and it avoids
+            // incremental updates of a grouped CollectionView.
+            Groups = SampleCatalog.Categories
+                .Where(category => selectedFilter == allFilter || selectedFilter == category)
+                .Select(category => new SampleGroup(category, SampleCatalog.Samples
+                    .Where(s => s.Category == category && Matches(s, search))
+                    .OrderBy(s => s.Name)))
+                .Where(group => group.Count > 0)
+                .ToList();
         }
+
+        static bool Matches(SampleItem sample, string search) =>
+            search.Length == 0
+            || sample.Name.Contains(search, StringComparison.OrdinalIgnoreCase)
+            || sample.Description.Contains(search, StringComparison.OrdinalIgnoreCase)
+            || sample.Tags.Any(t => t.Contains(search, StringComparison.OrdinalIgnoreCase));
     }
 }
-

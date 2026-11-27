@@ -1,21 +1,54 @@
-<?xml version="1.0" ?><views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:views="clr-namespace:PlatformIntegrationDemo.Views" xmlns:viewmodels="clr-namespace:PlatformIntegrationDemo.ViewModels" x:Class="PlatformIntegrationDemo.Views.MediaPickerPage" Title="MediaPicker" x:DataType="viewmodels:MediaPickerViewModel">
+<?xml version="1.0" encoding="utf-8" ?>
+<views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:views="clr-namespace:PlatformIntegrationDemo.Views"
+                xmlns:viewmodels="clr-namespace:PlatformIntegrationDemo.ViewModels"
+                x:Class="PlatformIntegrationDemo.Views.MediaPickerPage"
+                Title="Media Picker"
+                x:DataType="viewmodels:MediaPickerViewModel">
     <views:BasePage.BindingContext>
-        <viewmodels:MediaPickerViewModel/>
+        <viewmodels:MediaPickerViewModel />
     </views:BasePage.BindingContext>
 
-    <Grid RowDefinitions="Auto,*">
-        <Label Text="Pick or capture a photo or video." FontAttributes="Bold" Margin="12"/>
+    <ScrollView>
+        <Grid RowDefinitions="Auto,Auto"
+              Style="{StaticResource DemoLayout}">
+            <VerticalStackLayout Style="{StaticResource DemoHeader}">
+                <Label Text="Media" Style="{StaticResource Eyebrow}" />
+                <Label Text="Media Picker" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+                <Label Text="Pick a photo or video from the gallery, or capture a new one with the camera." Style="{StaticResource Lead}" />
+                <Border Style="{StaticResource ApiChip}">
+                    <Label Text="MediaPicker.PickPhotosAsync()" Style="{StaticResource ApiChipLabel}" />
+                </Border>
+            </VerticalStackLayout>
 
-        <ScrollView Grid.Row="1">
-            <StackLayout Padding="12,0,12,12" Spacing="6">
-                <Button Text="Pick photo" Command="{Binding PickPhotoCommand}"/>
-                <Button Text="Capture photo" Command="{Binding CapturePhotoCommand}"/>
-                <Button Text="Pick video" Command="{Binding PickVideoCommand}"/>
-                <Button Text="Capture video" Command="{Binding CaptureVideoCommand}"/>
-
-                <Image Source="{Binding PhotoPath}" IsVisible="{Binding ShowPhoto}" HeightRequest="300"/>
-                <!--<MediaElement VerticalOptions="FillAndExpand" Source="{Binding VideoPath}" IsVisible="{Binding ShowVideo}" />-->
-            </StackLayout>
-        </ScrollView>
-    </Grid>
+            <Border Grid.Row="1"
+                    Style="{StaticResource DemoSurface}">
+                <VerticalStackLayout Spacing="12">
+                    <Grid ColumnDefinitions="*,*"
+                          ColumnSpacing="12">
+                        <Button Text="Pick photo"
+                                Command="{Binding PickPhotoCommand}" />
+                        <Button Grid.Column="1"
+                                Text="Capture photo"
+                                Style="{StaticResource TonalButton}"
+                                Command="{Binding CapturePhotoCommand}" />
+                    </Grid>
+                    <Grid ColumnDefinitions="*,*"
+                          ColumnSpacing="12">
+                        <Button Text="Pick video"
+                                Command="{Binding PickVideoCommand}" />
+                        <Button Grid.Column="1"
+                                Text="Capture video"
+                                Style="{StaticResource TonalButton}"
+                                Command="{Binding CaptureVideoCommand}" />
+                    </Grid>
+                    <Image Source="{Binding PhotoPath}"
+                           SemanticProperties.Description="The picked photo"
+                           IsVisible="{Binding ShowPhoto}"
+                           HeightRequest="300" />
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+    </ScrollView>
 </views:BasePage>

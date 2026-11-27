@@ -1,53 +1,97 @@
-<?xml version="1.0" ?><views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:views="clr-namespace:PlatformIntegrationDemo.Views" xmlns:viewmodels="clr-namespace:PlatformIntegrationDemo.ViewModels" x:Class="PlatformIntegrationDemo.Views.BrowserPage" Title="Browser" x:DataType="viewmodels:BrowserViewModel">
+<?xml version="1.0" encoding="utf-8" ?>
+<views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:views="clr-namespace:PlatformIntegrationDemo.Views"
+                xmlns:viewmodels="clr-namespace:PlatformIntegrationDemo.ViewModels"
+                x:Class="PlatformIntegrationDemo.Views.BrowserPage"
+                Title="Browser"
+                x:DataType="viewmodels:BrowserViewModel">
     <views:BasePage.BindingContext>
-        <viewmodels:BrowserViewModel/>
+        <viewmodels:BrowserViewModel />
     </views:BasePage.BindingContext>
 
-    <Grid RowDefinitions="Auto,*">
-        <Label Text="Quickly and easily open URIs." FontAttributes="Bold" Margin="12"/>
+    <ScrollView>
+        <Grid RowDefinitions="Auto,Auto,Auto"
+              Style="{StaticResource DemoLayout}">
+            <VerticalStackLayout Style="{StaticResource DemoHeader}">
+                <Label Text="App model" Style="{StaticResource Eyebrow}" />
+                <Label Text="Browser" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+                <Label Text="Open a website in the system browser or in a browser inside the app, with optional styling." Style="{StaticResource Lead}" />
+                <Border Style="{StaticResource ApiChip}">
+                    <Label Text="Browser.OpenAsync()" Style="{StaticResource ApiChipLabel}" />
+                </Border>
+            </VerticalStackLayout>
 
-        <ScrollView Grid.Row="1">
-            <StackLayout Padding="12,0,12,12" Spacing="6">
-
-                <Label Text="URI:" FontAttributes="Bold" Margin="0,6,0,0"/>
-
-                <Label Text="Enter URI:"/>
-                <Entry Placeholder="https://..." Text="{Binding Uri}"/>
-
-                <Button Text="Open URI" Command="{Binding OpenUriCommand}" IsEnabled="{Binding IsNotBusy}"/>
-
-
-                <Label Text="Launch Type:" FontAttributes="Bold" Margin="0,6,0,0"/>
-                <Picker HorizontalOptions="Fill" ItemsSource="{Binding BrowserLaunchModes}" SelectedIndex="{Binding BrowserType, Mode=TwoWay}"/>
-
-                <Label Text="Launch Options:" FontAttributes="Bold" Margin="0,6,0,0"/>
-                <Label Text="Title Mode:"/>
-                <Picker HorizontalOptions="Fill" ItemsSource="{Binding BrowserTitleModes}" SelectedIndex="{Binding BrowserTitleType, Mode=TwoWay}"/>
-
-                <Label Text="Toolbar Color:"/>
-                <Picker HorizontalOptions="Fill" ItemsSource="{Binding AllColors}" SelectedIndex="{Binding ToolbarColor, Mode=TwoWay}"/>
-
-                <Label Text="Control Tint Color (iOS):"/>
-                <Picker HorizontalOptions="Fill" ItemsSource="{Binding AllColors}" SelectedIndex="{Binding ControlColor, Mode=TwoWay}"/>
-
-                <Label Text="Flags:" FontAttributes="Bold" Margin="0,6,0,0"/>
-
-                <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto">
-
-                    <Label Text="Launch Adjacent (Android)" Grid.Column="0" Grid.Row="0"/>
-                    <Switch IsToggled="{Binding LaunchAdjacent, Mode=TwoWay}" Grid.Column="1" Grid.Row="0"/>
-
-                    <Label Text="Present as Form Sheet (iOS)" Grid.Column="0" Grid.Row="1"/>
-                    <Switch IsToggled="{Binding PresentAsFormSheet, Mode=TwoWay}" Grid.Column="1" Grid.Row="1"/>
-
-                    <Label Text="Present as Page Sheet (iOS)" Grid.Column="0" Grid.Row="2"/>
-                    <Switch IsToggled="{Binding PresentAsPageSheet, Mode=TwoWay}" Grid.Column="1" Grid.Row="2"/>
-
-                </Grid>
-
-                <Label Text="{Binding BrowserStatus}"/>
-
-            </StackLayout>
-        </ScrollView>
-    </Grid>
+            <Border Grid.Row="1"
+                    Style="{StaticResource DemoSurface}">
+                <VerticalStackLayout Spacing="16">
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="URI" Style="{StaticResource Caption}" />
+                        <Entry SemanticProperties.Hint="URI"
+                               Placeholder="https://..."
+                               Keyboard="Url"
+                               Text="{Binding Uri}" />
+                    </VerticalStackLayout>
+                    <Button Text="Open URI"
+                            Command="{Binding OpenUriCommand}"
+                            IsEnabled="{Binding IsNotBusy}" />
+                    <Label Text="{Binding BrowserStatus}"
+                           Style="{StaticResource Output}" />
+                </VerticalStackLayout>
+            </Border>
+            <Border Grid.Row="2"
+                    Style="{StaticResource DemoSurface}">
+                <VerticalStackLayout Spacing="16">
+                    <Label Text="Launch options"
+                           Style="{StaticResource Headline}"
+                           SemanticProperties.HeadingLevel="Level2" />
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Launch mode" Style="{StaticResource Caption}" />
+                        <Picker SemanticProperties.Description="Launch mode"
+                                ItemsSource="{Binding BrowserLaunchModes}"
+                                SelectedIndex="{Binding BrowserType, Mode=TwoWay}" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Title mode" Style="{StaticResource Caption}" />
+                        <Picker SemanticProperties.Description="Title mode"
+                                ItemsSource="{Binding BrowserTitleModes}"
+                                SelectedIndex="{Binding BrowserTitleType, Mode=TwoWay}" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Toolbar color" Style="{StaticResource Caption}" />
+                        <Picker SemanticProperties.Description="Toolbar color"
+                                ItemsSource="{Binding AllColors}"
+                                SelectedIndex="{Binding ToolbarColor, Mode=TwoWay}" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Control tint color (iOS)" Style="{StaticResource Caption}" />
+                        <Picker SemanticProperties.Description="Control tint color (iOS)"
+                                ItemsSource="{Binding AllColors}"
+                                SelectedIndex="{Binding ControlColor, Mode=TwoWay}" />
+                    </VerticalStackLayout>
+                    <Grid ColumnDefinitions="*,Auto"
+                          ColumnSpacing="12">
+                        <Label Text="Launch adjacent (Android)" Style="{StaticResource SwitchLabel}" />
+                        <Switch Grid.Column="1"
+                                IsToggled="{Binding LaunchAdjacent, Mode=TwoWay}"
+                                SemanticProperties.Description="Launch adjacent (Android)" />
+                    </Grid>
+                    <Grid ColumnDefinitions="*,Auto"
+                          ColumnSpacing="12">
+                        <Label Text="Present as form sheet (iOS)" Style="{StaticResource SwitchLabel}" />
+                        <Switch Grid.Column="1"
+                                IsToggled="{Binding PresentAsFormSheet, Mode=TwoWay}"
+                                SemanticProperties.Description="Present as form sheet (iOS)" />
+                    </Grid>
+                    <Grid ColumnDefinitions="*,Auto"
+                          ColumnSpacing="12">
+                        <Label Text="Present as page sheet (iOS)" Style="{StaticResource SwitchLabel}" />
+                        <Switch Grid.Column="1"
+                                IsToggled="{Binding PresentAsPageSheet, Mode=TwoWay}"
+                                SemanticProperties.Description="Present as page sheet (iOS)" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+    </ScrollView>
 </views:BasePage>

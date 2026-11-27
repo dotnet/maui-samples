@@ -118,14 +118,33 @@ namespace PlatformIntegrationDemo.ViewModels
         }
 
         async void OnRequest(Microsoft.Maui.Controls.View element)
-            => await Share.RequestAsync(new ShareTextRequest
+        {
+            var text = ShareText ? Text : null;
+            var uri = ShareUri ? Uri?.Trim() : null;
+
+            // Share.RequestAsync throws if there's neither text nor a URI to share.
+            if (string.IsNullOrWhiteSpace(text) && string.IsNullOrWhiteSpace(uri))
+            {
+                await DisplayAlertAsync("Enter some text or a link to share.");
+                return;
+            }
+
+            // A malformed link makes iOS show an empty share sheet, so check it on every platform.
+            if (!string.IsNullOrWhiteSpace(uri) && !System.Uri.TryCreate(uri, UriKind.Absolute, out _))
+            {
+                await DisplayAlertAsync("Enter a valid link, such as https://learn.microsoft.com.");
+                return;
+            }
+
+            await Share.RequestAsync(new ShareTextRequest
             {
                 Subject = Subject,
-                Text = ShareText ? Text : null,
-                Uri = ShareUri ? Uri : null,
+                Text = text,
+                Uri = uri,
                 Title = Title,
                 PresentationSourceBounds = element.GetAbsoluteBounds()
             });
+        }
 
         async void OnFileRequest(Microsoft.Maui.Controls.View element)
         {

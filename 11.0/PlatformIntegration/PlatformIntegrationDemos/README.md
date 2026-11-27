@@ -56,4 +56,28 @@ This sample demonstrates the following functionality:
   - Preferences
   - Secure storage
 
+The home page groups the demos by category, and you can search or filter them. Each demo page names the API it uses, then shows a card with the controls and the results. The app supports light and dark themes, and the screenshots below follow your GitHub theme.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="images/home-dark.png">
+  <source media="(prefers-color-scheme: light)" srcset="images/home-light.png">
+  <img alt="The home page on iOS and Android" src="images/home-light.png">
+</picture>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="images/api-pages-dark.png">
+  <source media="(prefers-color-scheme: light)" srcset="images/api-pages-light.png">
+  <img alt="The Accelerometer, Geolocation, Color Converters, and Permissions pages" src="images/api-pages-light.png">
+</picture>
+
+Some APIs need real hardware or services. In a simulator or emulator, sensors report zeros, the flashlight and vibration aren't available, and the phone dialer, SMS, and email apps might be missing.
+
 For more information about the sample see [Platform integration](https://learn.microsoft.com/dotnet/maui/platform-integration/).
+
+## Styling
+
+All styling lives in resource dictionaries, so each page contains little more than the API it demonstrates:
+
+- `Resources/Styles/Colors.xaml` and `Resources/Styles/Styles.xaml` define the color tokens and styles shared with the other gallery samples, such as `Title1`, `Lead`, and `DemoSurface`.
+- `Resources/Styles/DemoStyles.xaml` adds the styles specific to this sample, such as the API chip and the sensor readouts.
+- The app uses the [Inter](https://rsms.me/inter/) typeface (SIL Open Font License) and [Material Icons Round](https://fonts.google.com/icons) (Apache License 2.0). Their license files are in `Resources/Fonts`.

@@ -1,8 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                 xmlns:views="clr-namespace:PlatformIntegrationDemo.Views"
                 xmlns:viewmodels="clr-namespace:PlatformIntegrationDemo.ViewModels"
+                xmlns:local="clr-namespace:PlatformIntegrationDemo"
                 x:Class="PlatformIntegrationDemo.Views.DeviceInfoPage"
                 Title="Device Info"
                 x:DataType="viewmodels:DeviceInfoViewModel">
@@ -10,44 +11,88 @@
         <viewmodels:DeviceInfoViewModel />
     </views:BasePage.BindingContext>
 
-    <Grid RowDefinitions="Auto,*">
-        <Label Text="Find out about the device with ease."
-               FontAttributes="Bold"
-               Margin="12" />
+    <ScrollView>
+        <Grid RowDefinitions="Auto,Auto,Auto,Auto"
+              Style="{StaticResource DemoLayout}">
+            <VerticalStackLayout Style="{StaticResource DemoHeader}">
+                <Label Text="Device" Style="{StaticResource Eyebrow}" />
+                <Label Text="Device Info" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+                <Label Text="Read the device model and operating system, and the size, density, and orientation of the main display." Style="{StaticResource Lead}" />
+                <Border Style="{StaticResource ApiChip}">
+                    <Label Text="DeviceInfo.Model" Style="{StaticResource ApiChipLabel}" />
+                </Border>
+            </VerticalStackLayout>
 
-        <ScrollView Grid.Row="1">
-            <StackLayout Padding="12,0,12,12"
-                         Spacing="6">
-                <Label Text="Device Info:"
-                       FontAttributes="Bold"
-                       Margin="0,6,0,0" />
-                <Label Text="{Binding Model, StringFormat='Model: {0}'}" />
-                <Label Text="{Binding Manufacturer, StringFormat='Manufacturer: {0}'}" />
-                <Label Text="{Binding Name, StringFormat='Device Name: {0}'}" />
-                <Label Text="{Binding VersionString, StringFormat='Version: {0}'}" />
-                <Label Text="{Binding Version, StringFormat='Version: {0}'}" />
-                <Label Text="{Binding Platform, StringFormat='Platform: {0}'}" />
-                <Label Text="{Binding Idiom, StringFormat='Idiom: {0}'}" />
-                <Label Text="{Binding DeviceType, StringFormat='Device Type: {0}'}" />
-
-                <Label Text="Screen Metrics:"
-                       FontAttributes="Bold"
-                       Margin="0,6,0,0" />
-                <Label Text="{Binding ScreenMetrics.Width, StringFormat='Width: {0}'}" />
-                <Label Text="{Binding ScreenMetrics.Height, StringFormat='Height: {0}'}" />
-                <Label Text="{Binding ScreenMetrics.Density, StringFormat='Density: {0}'}" />
-                <Label Text="{Binding ScreenMetrics.Orientation, StringFormat='Orientation: {0}'}" />
-                <Label Text="{Binding ScreenMetrics.Rotation, StringFormat='Rotation: {0}'}" />
-                <Label Text="{Binding ScreenMetrics.RefreshRate, StringFormat='Refresh Rate: {0}'}" />
-
-                <Label Text="Top of Device Arrow:"
-                       FontAttributes="Bold"
-                       Margin="0,6,0,0" />
-                <Label Text="&#x2191;"
-                       FontSize="64"
-                       HorizontalOptions="Start"
-                       Rotation="{Binding Rotation}" />
-            </StackLayout>
-        </ScrollView>
-    </Grid>
+            <Border Grid.Row="1"
+                    Style="{StaticResource DemoSurface}">
+                <VerticalStackLayout Spacing="16">
+                    <Label Text="Device"
+                           Style="{StaticResource Headline}"
+                           SemanticProperties.HeadingLevel="Level2" />
+                    <Grid ColumnDefinitions="Auto,*"
+                          ColumnSpacing="16"
+                          RowSpacing="12"
+                          RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
+                        <Label Text="Model" Style="{StaticResource PropertyName}" />
+                        <Label Grid.Column="1" Text="{Binding Model}" Style="{StaticResource PropertyValue}" />
+                        <Label Grid.Row="1" Text="Manufacturer" Style="{StaticResource PropertyName}" />
+                        <Label Grid.Row="1" Grid.Column="1" Text="{Binding Manufacturer}" Style="{StaticResource PropertyValue}" />
+                        <Label Grid.Row="2" Text="Name" Style="{StaticResource PropertyName}" />
+                        <Label Grid.Row="2" Grid.Column="1" Text="{Binding Name}" Style="{StaticResource PropertyValue}" />
+                        <Label Grid.Row="3" Text="Version" Style="{StaticResource PropertyName}" />
+                        <Label Grid.Row="3" Grid.Column="1" Text="{Binding VersionString}" Style="{StaticResource PropertyValue}" />
+                        <Label Grid.Row="4" Text="Parsed version" Style="{StaticResource PropertyName}" />
+                        <Label Grid.Row="4" Grid.Column="1" Text="{Binding Version}" Style="{StaticResource PropertyValue}" />
+                        <Label Grid.Row="5" Text="Platform" Style="{StaticResource PropertyName}" />
+                        <Label Grid.Row="5" Grid.Column="1" Text="{Binding Platform}" Style="{StaticResource PropertyValue}" />
+                        <Label Grid.Row="6" Text="Idiom" Style="{StaticResource PropertyName}" />
+                        <Label Grid.Row="6" Grid.Column="1" Text="{Binding Idiom}" Style="{StaticResource PropertyValue}" />
+                        <Label Grid.Row="7" Text="Device type" Style="{StaticResource PropertyName}" />
+                        <Label Grid.Row="7" Grid.Column="1" Text="{Binding DeviceType}" Style="{StaticResource PropertyValue}" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+            <Border Grid.Row="2"
+                    Style="{StaticResource DemoSurface}">
+                <VerticalStackLayout Spacing="16">
+                    <Label Text="Main display"
+                           Style="{StaticResource Headline}"
+                           SemanticProperties.HeadingLevel="Level2" />
+                    <Grid ColumnDefinitions="Auto,*"
+                          ColumnSpacing="16"
+                          RowSpacing="12"
+                          RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto">
+                        <Label Text="Width" Style="{StaticResource PropertyName}" />
+                        <Label Grid.Column="1" Text="{Binding ScreenMetrics.Width}" Style="{StaticResource PropertyValue}" />
+                        <Label Grid.Row="1" Text="Height" Style="{StaticResource PropertyName}" />
+                        <Label Grid.Row="1" Grid.Column="1" Text="{Binding ScreenMetrics.Height}" Style="{StaticResource PropertyValue}" />
+                        <Label Grid.Row="2" Text="Density" Style="{StaticResource PropertyName}" />
+                        <Label Grid.Row="2" Grid.Column="1" Text="{Binding ScreenMetrics.Density}" Style="{StaticResource PropertyValue}" />
+                        <Label Grid.Row="3" Text="Orientation" Style="{StaticResource PropertyName}" />
+                        <Label Grid.Row="3" Grid.Column="1" Text="{Binding ScreenMetrics.Orientation}" Style="{StaticResource PropertyValue}" />
+                        <Label Grid.Row="4" Text="Rotation" Style="{StaticResource PropertyName}" />
+                        <Label Grid.Row="4" Grid.Column="1" Text="{Binding ScreenMetrics.Rotation}" Style="{StaticResource PropertyValue}" />
+                        <Label Grid.Row="5" Text="Refresh rate" Style="{StaticResource PropertyName}" />
+                        <Label Grid.Row="5" Grid.Column="1" Text="{Binding ScreenMetrics.RefreshRate}" Style="{StaticResource PropertyValue}" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+            <Border Grid.Row="3"
+                    Style="{StaticResource DemoSurface}">
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="Top of the device"
+                           Style="{StaticResource Headline}"
+                           SemanticProperties.HeadingLevel="Level2" />
+                    <Label Text="Rotate the device. The arrow points to the top of the device."
+                           Style="{StaticResource Output}" />
+                    <Label Text="{x:Static local:MaterialIcons.ArrowUpward}"
+                           Style="{StaticResource Icon}"
+                           FontSize="64"
+                           TextColor="{AppThemeBinding Light={StaticResource PrimaryLight}, Dark={StaticResource PrimaryDark}}"
+                           HorizontalOptions="Center"
+                           Rotation="{Binding Rotation}" />
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+    </ScrollView>
 </views:BasePage>

@@ -1,29 +1,90 @@
-<?xml version="1.0" ?><views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:views="clr-namespace:PlatformIntegrationDemo.Views" xmlns:viewmodels="clr-namespace:PlatformIntegrationDemo.ViewModels" x:Class="PlatformIntegrationDemo.Views.UnitConvertersPage" Title="Unit Converters" x:DataType="viewmodels:UnitConvertersViewModel">
+<?xml version="1.0" encoding="utf-8" ?>
+<views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:views="clr-namespace:PlatformIntegrationDemo.Views"
+                xmlns:viewmodels="clr-namespace:PlatformIntegrationDemo.ViewModels"
+                x:Class="PlatformIntegrationDemo.Views.UnitConvertersPage"
+                Title="Unit Converters"
+                x:DataType="viewmodels:UnitConvertersViewModel">
     <views:BasePage.BindingContext>
-        <viewmodels:UnitConvertersViewModel/>
+        <viewmodels:UnitConvertersViewModel />
     </views:BasePage.BindingContext>
 
-    <Grid RowDefinitions="Auto,*">
-        <Label Text="Easily convert units." FontAttributes="Bold" Margin="12"/>
+    <ScrollView>
+        <Grid RowDefinitions="Auto,Auto,Auto"
+              Style="{StaticResource DemoLayout}">
+            <VerticalStackLayout Style="{StaticResource DemoHeader}">
+                <Label Text="Media" Style="{StaticResource Eyebrow}" />
+                <Label Text="Unit Converters" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+                <Label Text="Convert between common units. Drag a slider to convert the value." Style="{StaticResource Lead}" />
+                <Border Style="{StaticResource ApiChip}">
+                    <Label Text="UnitConverters.FahrenheitToCelsius()" Style="{StaticResource ApiChipLabel}" />
+                </Border>
+                <Border Style="{StaticResource ApiChip}">
+                    <Label Text="UnitConverters.MilesToKilometers()" Style="{StaticResource ApiChipLabel}" />
+                </Border>
+            </VerticalStackLayout>
 
-        <ScrollView Grid.Row="1">
-            <StackLayout Padding="12,0,12,12" Spacing="6">
-
-                <Label Text="Temperature"/>
-                <Grid ColumnDefinitions=".25*,.5*,.25*">
-                    <Label Grid.Column="0" Text="{Binding Fahrenheit, StringFormat='{0:N}F'}" HorizontalOptions="Center"/>
-                    <Slider Grid.Column="1" Minimum="0" Maximum="100" Value="{Binding Fahrenheit}" HorizontalOptions="Fill" MaximumTrackColor="Blue" MinimumTrackColor="Blue" ThumbColor="Black"/>
-                    <Label Grid.Column="2" Text="{Binding Celsius, StringFormat='{0:N}C'}" HorizontalOptions="Center"/>
-                </Grid>
-
-                <Label Text="Distance"/>
-                <Grid ColumnDefinitions=".25*,.5*,.25*">
-                    <Label Grid.Column="0" Text="{Binding Miles, StringFormat='{0:N} mi'}" HorizontalOptions="Center"/>
-                    <Slider Grid.Column="1" Minimum="0" Maximum="100" Value="{Binding Miles}" HorizontalOptions="Fill" MaximumTrackColor="Blue" MinimumTrackColor="Blue" ThumbColor="Black"/>
-                    <Label Grid.Column="2" Text="{Binding Kilometers, StringFormat='{0:N} km'}" HorizontalOptions="Center"/>
-                </Grid>
-
-            </StackLayout>
-        </ScrollView>
-    </Grid>
+            <Border Grid.Row="1"
+                    Style="{StaticResource DemoSurface}">
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="Temperature"
+                           Style="{StaticResource Headline}"
+                           SemanticProperties.HeadingLevel="Level2" />
+                    <Grid ColumnDefinitions="*,*"
+                          ColumnSpacing="10">
+                        <Border Style="{StaticResource ReadoutTile}">
+                            <VerticalStackLayout Spacing="2">
+                                <Label Text="Fahrenheit" Style="{StaticResource ReadoutCaption}" />
+                                <Label Text="{Binding Fahrenheit, StringFormat='{0:N1} °F'}" Style="{StaticResource ReadoutValue}" />
+                            </VerticalStackLayout>
+                        </Border>
+                        <Border Grid.Column="1" Style="{StaticResource ReadoutTile}">
+                            <VerticalStackLayout Spacing="2">
+                                <Label Text="Celsius" Style="{StaticResource ReadoutCaption}" />
+                                <Label Text="{Binding Celsius, StringFormat='{0:N1} °C'}" Style="{StaticResource ReadoutValue}" />
+                            </VerticalStackLayout>
+                        </Border>
+                    </Grid>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Drag to set fahrenheit" Style="{StaticResource Caption}" />
+                        <Slider SemanticProperties.Description="Drag to set fahrenheit"
+                                Minimum="0"
+                                Maximum="100"
+                                Value="{Binding Fahrenheit}" />
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </Border>
+            <Border Grid.Row="2"
+                    Style="{StaticResource DemoSurface}">
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="Distance"
+                           Style="{StaticResource Headline}"
+                           SemanticProperties.HeadingLevel="Level2" />
+                    <Grid ColumnDefinitions="*,*"
+                          ColumnSpacing="10">
+                        <Border Style="{StaticResource ReadoutTile}">
+                            <VerticalStackLayout Spacing="2">
+                                <Label Text="Miles" Style="{StaticResource ReadoutCaption}" />
+                                <Label Text="{Binding Miles, StringFormat='{0:N1} mi'}" Style="{StaticResource ReadoutValue}" />
+                            </VerticalStackLayout>
+                        </Border>
+                        <Border Grid.Column="1" Style="{StaticResource ReadoutTile}">
+                            <VerticalStackLayout Spacing="2">
+                                <Label Text="Kilometers" Style="{StaticResource ReadoutCaption}" />
+                                <Label Text="{Binding Kilometers, StringFormat='{0:N1} km'}" Style="{StaticResource ReadoutValue}" />
+                            </VerticalStackLayout>
+                        </Border>
+                    </Grid>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Drag to set miles" Style="{StaticResource Caption}" />
+                        <Slider SemanticProperties.Description="Drag to set miles"
+                                Minimum="0"
+                                Maximum="100"
+                                Value="{Binding Miles}" />
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+    </ScrollView>
 </views:BasePage>

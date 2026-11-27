@@ -11,31 +11,53 @@
         <viewmodels:ContactsViewModel />
     </views:BasePage.BindingContext>
 
-    <Grid RowDefinitions="Auto,Auto,*">
-        <Label Text="Get contacts in your device."
-               FontAttributes="Bold"
-               Margin="12" />
+    <Grid RowDefinitions="Auto,*"
+          Style="{StaticResource DemoLayout}">
+        <VerticalStackLayout Style="{StaticResource DemoHeader}">
+            <Label Text="Communication" Style="{StaticResource Eyebrow}" />
+            <Label Text="Contacts" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+            <Label Text="Pick a single contact, or read every contact on the device. Select a contact to see its details." Style="{StaticResource Lead}" />
+            <Border Style="{StaticResource ApiChip}">
+                <Label Text="Contacts.PickContactAsync()" Style="{StaticResource ApiChipLabel}" />
+            </Border>
+        </VerticalStackLayout>
 
-        <StackLayout Padding="12,0,12,12"
-                     Spacing="6"
-                     Grid.Row="1">
-            <Button Command="{Binding GetContactCommand}"
-                    Text="Pick Contact" />
-            <Button Command="{Binding GetAllContactCommand}"
-                    Text="Get All Contacts" />
-        </StackLayout>
-
-        <CollectionView SelectionMode="Single" ItemsSource="{Binding ContactsList}"
-                  SelectedItem="{Binding SelectedContact}"
-                  Grid.Row="2">
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="appmodel:Contact">
-<Grid Padding="12">
-                            <Label Text="{Binding DisplayName}"
-                                   LineBreakMode="TailTruncation" />
-                        </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+        <Border Grid.Row="1"
+                Style="{StaticResource DemoSurface}">
+            <Grid RowDefinitions="Auto,*"
+                  RowSpacing="12">
+                <Grid ColumnDefinitions="*,*"
+                      ColumnSpacing="12">
+                    <Button Text="Pick contact"
+                            Command="{Binding GetContactCommand}" />
+                    <Button Grid.Column="1"
+                            Text="Get all"
+                            Style="{StaticResource TonalButton}"
+                            Command="{Binding GetAllContactCommand}" />
+                </Grid>
+                <CollectionView Grid.Row="1"
+                                ItemsSource="{Binding ContactsList}"
+                                SelectionMode="Single"
+                                SelectedItem="{Binding SelectedContact}">
+                    <CollectionView.EmptyView>
+                        <Label Text="Contacts you pick or read appear here."
+                               Style="{StaticResource Output}"
+                               HorizontalTextAlignment="Center"
+                               Margin="0,24" />
+                    </CollectionView.EmptyView>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="appmodel:Contact">
+                            <VerticalStackLayout Padding="0,12,0,0"
+                                                 Spacing="12">
+                                <Label Text="{Binding DisplayName}"
+                                       Style="{StaticResource Headline}"
+                                       LineBreakMode="TailTruncation" />
+                                <BoxView Style="{StaticResource Divider}" />
+                            </VerticalStackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Grid>
+        </Border>
     </Grid>
 </views:BasePage>

@@ -1,54 +1,112 @@
-<?xml version="1.0" ?><views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:views="clr-namespace:PlatformIntegrationDemo.Views" xmlns:viewmodels="clr-namespace:PlatformIntegrationDemo.ViewModels" x:Class="PlatformIntegrationDemo.Views.EmailPage" Title="Email" x:DataType="viewmodels:EmailViewModel">
+<?xml version="1.0" encoding="utf-8" ?>
+<views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:views="clr-namespace:PlatformIntegrationDemo.Views"
+                xmlns:viewmodels="clr-namespace:PlatformIntegrationDemo.ViewModels"
+                x:Class="PlatformIntegrationDemo.Views.EmailPage"
+                Title="Email"
+                x:DataType="viewmodels:EmailViewModel">
     <views:BasePage.BindingContext>
-        <viewmodels:EmailViewModel/>
+        <viewmodels:EmailViewModel />
     </views:BasePage.BindingContext>
 
-    <views:BasePage.ToolbarItems>
-        <ToolbarItem Text="Send" Command="{Binding SendEmailCommand}" IsEnabled="{Binding IsNotBusy}"/>
-    </views:BasePage.ToolbarItems>
+    <ScrollView>
+        <Grid RowDefinitions="Auto,Auto,Auto,Auto"
+              Style="{StaticResource DemoLayout}">
+            <VerticalStackLayout Style="{StaticResource DemoHeader}">
+                <Label Text="Communication" Style="{StaticResource Eyebrow}" />
+                <Label Text="Email" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+                <Label Text="Open the email app with the recipients, message, and attachments filled in." Style="{StaticResource Lead}" />
+                <Border Style="{StaticResource ApiChip}">
+                    <Label Text="Email.ComposeAsync()" Style="{StaticResource ApiChipLabel}" />
+                </Border>
+            </VerticalStackLayout>
 
-    <Grid RowDefinitions="Auto,*">
-        <Label Text="Easily send email messages." FontAttributes="Bold" Margin="12"/>
-
-        <ScrollView Grid.Row="1">
-            <StackLayout Padding="12,0,12,12" Spacing="6">
-                <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}"/>
-
-                <Button Text="Send Email" Command="{Binding SendEmailCommand}" IsEnabled="{Binding IsNotBusy}"/>
-
-                <Label Text="Recipients" FontAttributes="Bold" Margin="0,6,0,0"/>
-                <Label Text="To:"/>
-                <Entry Text="{Binding RecipientsTo}"/>
-                <Label Text="CC:"/>
-                <Entry Text="{Binding RecipientsCc}"/>
-                <Label Text="BCC:"/>
-                <Entry Text="{Binding RecipientsBcc}"/>
-
-                <Label Text="Message" FontAttributes="Bold" Margin="0,6,0,0"/>
-                <Label Text="Subject:"/>
-                <Entry Text="{Binding Subject}"/>
-                <Grid ColumnSpacing="6" ColumnDefinitions="*,Auto">
-                    <Label Text="Is Html?" HorizontalTextAlignment="End" HorizontalOptions="Fill" VerticalOptions="Center" Grid.Column="0"/>
-                    <Switch IsToggled="{Binding IsHtml}" VerticalOptions="Center" Grid.Column="1"/>
-                </Grid>
-                <Label Text="Body:"/>
-                <Editor Text="{Binding Body}" Keyboard="Chat" AutoSize="TextChanges"/>
-
-                <Label Text="Attachment" FontAttributes="Bold" Margin="0,6,0,0"/>
-
-                <Label Text="File Name:"/>
-                <Entry Text="{Binding AttachmentName}"/>
-                <Label Text="File Contents:"/>
-                <Editor Text="{Binding AttachmentContents}" Keyboard="Chat" AutoSize="TextChanges"/>
-
-                <Grid ColumnSpacing="6" ColumnDefinitions="*,Auto">
-                    <Label Text="Attach Multiple" HorizontalTextAlignment="End" HorizontalOptions="Fill" VerticalOptions="Center" Grid.Column="0"/>
-                    <Switch IsToggled="{Binding HasMultipleAttachements}" VerticalOptions="Center" Grid.Column="1"/>
-                </Grid>
-
-                <Button Text="Send Email" Command="{Binding SendEmailCommand}" IsEnabled="{Binding IsNotBusy}"/>
-
-            </StackLayout>
-        </ScrollView>
-    </Grid>
+            <Border Grid.Row="1"
+                    Style="{StaticResource DemoSurface}">
+                <VerticalStackLayout Spacing="16">
+                    <Label Text="Recipients"
+                           Style="{StaticResource Headline}"
+                           SemanticProperties.HeadingLevel="Level2" />
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="To" Style="{StaticResource Caption}" />
+                        <Entry SemanticProperties.Hint="To"
+                               Keyboard="Email"
+                               Text="{Binding RecipientsTo}" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="CC" Style="{StaticResource Caption}" />
+                        <Entry SemanticProperties.Hint="CC"
+                               Keyboard="Email"
+                               Text="{Binding RecipientsCc}" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="BCC" Style="{StaticResource Caption}" />
+                        <Entry SemanticProperties.Hint="BCC"
+                               Keyboard="Email"
+                               Text="{Binding RecipientsBcc}" />
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </Border>
+            <Border Grid.Row="2"
+                    Style="{StaticResource DemoSurface}">
+                <VerticalStackLayout Spacing="16">
+                    <Label Text="Message"
+                           Style="{StaticResource Headline}"
+                           SemanticProperties.HeadingLevel="Level2" />
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Subject" Style="{StaticResource Caption}" />
+                        <Entry SemanticProperties.Hint="Subject"
+                               Text="{Binding Subject}" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Body" Style="{StaticResource Caption}" />
+                        <Editor SemanticProperties.Hint="Body"
+                                Text="{Binding Body}"
+                                Keyboard="Chat"
+                                AutoSize="TextChanges" />
+                    </VerticalStackLayout>
+                    <Grid ColumnDefinitions="*,Auto"
+                          ColumnSpacing="12">
+                        <Label Text="HTML body" Style="{StaticResource SwitchLabel}" />
+                        <Switch Grid.Column="1"
+                                IsToggled="{Binding IsHtml}"
+                                SemanticProperties.Description="HTML body" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+            <Border Grid.Row="3"
+                    Style="{StaticResource DemoSurface}">
+                <VerticalStackLayout Spacing="16">
+                    <Label Text="Attachment"
+                           Style="{StaticResource Headline}"
+                           SemanticProperties.HeadingLevel="Level2" />
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="File name" Style="{StaticResource Caption}" />
+                        <Entry SemanticProperties.Hint="File name"
+                               Text="{Binding AttachmentName}" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="File contents" Style="{StaticResource Caption}" />
+                        <Editor SemanticProperties.Hint="File contents"
+                                Text="{Binding AttachmentContents}"
+                                Keyboard="Chat"
+                                AutoSize="TextChanges" />
+                    </VerticalStackLayout>
+                    <Grid ColumnDefinitions="*,Auto"
+                          ColumnSpacing="12">
+                        <Label Text="Attach multiple files" Style="{StaticResource SwitchLabel}" />
+                        <Switch Grid.Column="1"
+                                IsToggled="{Binding HasMultipleAttachements}"
+                                SemanticProperties.Description="Attach multiple files" />
+                    </Grid>
+                    <Button Text="Compose email"
+                            Command="{Binding SendEmailCommand}"
+                            IsEnabled="{Binding IsNotBusy}" />
+                    <ActivityIndicator IsVisible="{Binding IsBusy}"
+                                       IsRunning="{Binding IsBusy}" />
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+    </ScrollView>
 </views:BasePage>

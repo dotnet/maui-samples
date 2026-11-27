@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<!--
+    Styles specific to this sample, built on the gallery design system in Colors.xaml and Styles.xaml.
+    Keep Colors.xaml and Styles.xaml in sync with the other gallery samples, and put additions here.
+-->
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <!-- The API a page demonstrates, shown in its header, such as "Battery.ChargeLevel". -->
+    <Style x:Key="ApiChip" TargetType="Border">
+        <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource PrimaryContainerLight}, Dark={StaticResource PrimaryContainerDark}}" />
+        <Setter Property="StrokeThickness" Value="0" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 8" />
+        <Setter Property="Padding" Value="10,5" />
+        <Setter Property="Margin" Value="0,4,0,0" />
+        <Setter Property="HorizontalOptions" Value="Start" />
+    </Style>
+
+    <Style x:Key="ApiChipLabel" TargetType="Label">
+        <Setter Property="FontFamily" Value="{OnPlatform iOS=Menlo, MacCatalyst=Menlo, Android=monospace, WinUI=Consolas}" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource OnPrimaryContainerLight}, Dark={StaticResource OnPrimaryContainerDark}}" />
+    </Style>
+
+    <!-- A live value, such as a sensor axis. Use in a Grid of equal columns. -->
+    <Style x:Key="ReadoutTile" TargetType="Border">
+        <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource SurfaceVariantLight}, Dark={StaticResource SurfaceVariantDark}}" />
+        <Setter Property="StrokeThickness" Value="0" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 14" />
+        <Setter Property="Padding" Value="12,10" />
+    </Style>
+
+    <Style x:Key="ReadoutCaption" TargetType="Label" BasedOn="{StaticResource SectionHeader}">
+        <Setter Property="FontSize" Value="12" />
+    </Style>
+
+    <Style x:Key="ReadoutValue" TargetType="Label">
+        <Setter Property="FontFamily" Value="InterSemiBold" />
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="LineBreakMode" Value="NoWrap" />
+    </Style>
+
+    <!-- Name and value rows, such as "Model   iPhone". Use in a two-column Grid. -->
+    <Style x:Key="PropertyName" TargetType="Label">
+        <Setter Property="FontFamily" Value="InterRegular" />
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextSecondaryLight}, Dark={StaticResource TextSecondaryDark}}" />
+        <Setter Property="VerticalTextAlignment" Value="Center" />
+    </Style>
+
+    <Style x:Key="PropertyValue" TargetType="Label">
+        <Setter Property="FontFamily" Value="InterMedium" />
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="HorizontalTextAlignment" Value="End" />
+        <Setter Property="VerticalTextAlignment" Value="Center" />
+    </Style>
+
+    <Style x:Key="Divider" TargetType="BoxView">
+        <Setter Property="HeightRequest" Value="1" />
+        <Setter Property="Color" Value="{AppThemeBinding Light={StaticResource OutlineLight}, Dark={StaticResource OutlineDark}}" />
+    </Style>
+
+    <!-- A short status, such as a permission status. -->
+    <Style x:Key="StatusPill" TargetType="Border">
+        <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource SurfaceVariantLight}, Dark={StaticResource SurfaceVariantDark}}" />
+        <Setter Property="StrokeThickness" Value="0" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 10" />
+        <Setter Property="Padding" Value="10,4" />
+        <Setter Property="VerticalOptions" Value="Center" />
+    </Style>
+
+    <Style x:Key="StatusPillLabel" TargetType="Label">
+        <Setter Property="FontFamily" Value="InterMedium" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextSecondaryLight}, Dark={StaticResource TextSecondaryDark}}" />
+    </Style>
+
+    <!-- Output from the API, such as a status message or a result. -->
+    <Style x:Key="Output" TargetType="Label" BasedOn="{StaticResource BodySecondary}">
+        <Setter Property="FontSize" Value="15" />
+    </Style>
+
+    <!-- A label next to a Switch, in a "*,Auto" Grid. -->
+    <Style x:Key="SwitchLabel" TargetType="Label">
+        <Setter Property="FontFamily" Value="InterRegular" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="VerticalTextAlignment" Value="Center" />
+    </Style>
+
+    <!-- Warning when the device doesn't support an API. A lighter rose keeps 4.5:1 contrast in dark mode. -->
+    <Color x:Key="WarningTextDark">#FB7185</Color>
+
+    <Style x:Key="WarningLabel" TargetType="Label" BasedOn="{StaticResource HintLabel}">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource DeepRose}, Dark={StaticResource WarningTextDark}}" />
+    </Style>
+
+</ResourceDictionary>

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                 xmlns:views="clr-namespace:PlatformIntegrationDemo.Views"
@@ -10,42 +10,71 @@
         <viewmodels:GeocodingViewModel />
     </views:BasePage.BindingContext>
 
-    <Grid RowDefinitions="Auto,*">
-        <Label Text="Easily geocode and reverse geocoding."
-               FontAttributes="Bold"
-               Margin="12" />
+    <ScrollView>
+        <Grid RowDefinitions="Auto,Auto,Auto"
+              Style="{StaticResource DemoLayout}">
+            <VerticalStackLayout Style="{StaticResource DemoHeader}">
+                <Label Text="Location" Style="{StaticResource Eyebrow}" />
+                <Label Text="Geocoding" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+                <Label Text="Look up the address of a location, and the location of an address." Style="{StaticResource Lead}" />
+                <Border Style="{StaticResource ApiChip}">
+                    <Label Text="Geocoding.GetPlacemarksAsync()" Style="{StaticResource ApiChipLabel}" />
+                </Border>
+                <Border Style="{StaticResource ApiChip}">
+                    <Label Text="Geocoding.GetLocationsAsync()" Style="{StaticResource ApiChipLabel}" />
+                </Border>
+            </VerticalStackLayout>
 
-        <ScrollView Grid.Row="1">
-            <StackLayout Padding="12,0,12,12"
-                         Spacing="6">
-                <ActivityIndicator IsVisible="{Binding IsBusy}"
-                                   IsRunning="{Binding IsBusy}" />
-
-                <Label Text="Geocoding:"
-                       FontAttributes="Bold"
-                       Margin="0,6,0,0" />
-                <Label Text="Latitude:" />
-                <Entry Text="{Binding Latitude}"
-                       Keyboard="Numeric" />
-                <Label Text="Longitude:" />
-                <Entry Text="{Binding Longitude}"
-                       Keyboard="Numeric" />
-                <Button Text="Detect Placemarks"
-                        Command="{Binding GetAddressCommand}"
-                        IsEnabled="{Binding IsNotBusy}" />
-                <Label Text="{Binding GeocodeAddress}" />
-
-                <Label Text="Reverse Geocoding:"
-                       FontAttributes="Bold"
-                       Margin="0,6,0,0" />
-                <Label Text="Address:" />
-                <Editor Text="{Binding Address}"
-                        AutoSize="TextChanges" />
-                <Button Text="Detect Location"
-                        Command="{Binding GetPositionCommand}"
-                        IsEnabled="{Binding IsNotBusy}" />
-                <Label Text="{Binding GeocodePosition}" />
-            </StackLayout>
-        </ScrollView>
-    </Grid>
+            <Border Grid.Row="1"
+                    Style="{StaticResource DemoSurface}">
+                <VerticalStackLayout Spacing="16">
+                    <Label Text="Coordinates to address"
+                           Style="{StaticResource Headline}"
+                           SemanticProperties.HeadingLevel="Level2" />
+                    <Grid ColumnDefinitions="*,*"
+                          ColumnSpacing="12">
+                        <VerticalStackLayout Spacing="4">
+                            <Label Text="Latitude" Style="{StaticResource Caption}" />
+                            <Entry SemanticProperties.Hint="Latitude"
+                                   Keyboard="Numeric"
+                                   Text="{Binding Latitude}" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="1"
+                                             Spacing="4">
+                            <Label Text="Longitude" Style="{StaticResource Caption}" />
+                            <Entry SemanticProperties.Hint="Longitude"
+                                   Keyboard="Numeric"
+                                   Text="{Binding Longitude}" />
+                        </VerticalStackLayout>
+                    </Grid>
+                    <Button Text="Get address"
+                            Command="{Binding GetAddressCommand}"
+                            IsEnabled="{Binding IsNotBusy}" />
+                    <Label Text="{Binding GeocodeAddress}"
+                           Style="{StaticResource Output}" />
+                </VerticalStackLayout>
+            </Border>
+            <Border Grid.Row="2"
+                    Style="{StaticResource DemoSurface}">
+                <VerticalStackLayout Spacing="16">
+                    <Label Text="Address to coordinates"
+                           Style="{StaticResource Headline}"
+                           SemanticProperties.HeadingLevel="Level2" />
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Address" Style="{StaticResource Caption}" />
+                        <Editor SemanticProperties.Hint="Address"
+                                Text="{Binding Address}"
+                                AutoSize="TextChanges" />
+                    </VerticalStackLayout>
+                    <Button Text="Get coordinates"
+                            Command="{Binding GetPositionCommand}"
+                            IsEnabled="{Binding IsNotBusy}" />
+                    <Label Text="{Binding GeocodePosition}"
+                           Style="{StaticResource Output}" />
+                    <ActivityIndicator IsVisible="{Binding IsBusy}"
+                                       IsRunning="{Binding IsBusy}" />
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+    </ScrollView>
 </views:BasePage>

@@ -1,5 +1,4 @@
 ﻿using PlatformIntegrationDemo.Views;
-using System.Runtime.CompilerServices;
 
 namespace PlatformIntegrationDemo;
 
@@ -12,7 +11,7 @@ public partial class App : Application
 
     protected override Window CreateWindow(IActivationState activationState)
     {
-        return new Window(new AppShell());
+        return new Window(new NavigationPage(new MainPage()));
     }
 
     public static void HandleAppActions(AppAction appAction)
