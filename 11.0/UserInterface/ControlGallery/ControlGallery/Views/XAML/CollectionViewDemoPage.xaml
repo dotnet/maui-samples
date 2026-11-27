@@ -1,48 +1,58 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models="clr-namespace:ControlGallery.Models"
              xmlns:views="clr-namespace:ControlGallery.Views.XAML"
              x:Class="ControlGallery.Views.XAML.CollectionViewDemoPage"
-             Title="CollectionView Demo"
+             Title="CollectionView"
              x:DataType="views:CollectionViewDemoPage">
-    <StackLayout Margin="20">
-        <Label Text="CollectionView"
-               FontSize="50"
-               FontAttributes="Bold"
-               HorizontalOptions="Center" />
-        
-        <CollectionView ItemsSource="{Binding Monkeys}"
-                        ItemsLayout="VerticalGrid, 2">
+    <Grid RowDefinitions="Auto,*"
+          Style="{StaticResource DemoLayout}"
+          Padding="20,8,20,0">
+        <VerticalStackLayout Style="{StaticResource DemoHeader}">
+            <Label Text="Collections" Style="{StaticResource Eyebrow}" />
+            <Label Text="CollectionView" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+            <Label Text="Present a list or grid of data. This one uses a two-column vertical grid." Style="{StaticResource Lead}" />
+        </VerticalStackLayout>
+
+        <CollectionView Grid.Row="1"
+                        ItemsSource="{Binding Animals}">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical"
+                                 Span="2"
+                                 VerticalItemSpacing="12"
+                                 HorizontalItemSpacing="12" />
+            </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="models:Monkey">
-                    <Grid Padding="10">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="35" />
-                            <RowDefinition Height="35" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="70" />
-                            <ColumnDefinition Width="80" />
-                        </Grid.ColumnDefinitions>
-                        <Image Grid.RowSpan="2" 
-                               Source="{Binding ImageUrl}" 
-                               Aspect="AspectFill"
-                               HeightRequest="60" 
-                               WidthRequest="60" />
-                        <Label Grid.Column="1" 
-                               Text="{Binding Name}" 
-                               FontAttributes="Bold"
-                               LineBreakMode="TailTruncation" />
-                        <Label Grid.Row="1"
-                               Grid.Column="1" 
-                               Text="{Binding Location}"
-                               LineBreakMode="TailTruncation"
-                               FontAttributes="Italic" 
-                               VerticalOptions="End" />
-                    </Grid>
+                <DataTemplate x:DataType="models:Animal">
+                    <Border Style="{StaticResource Card}"
+                            Padding="0">
+                        <Grid RowDefinitions="120,Auto">
+                            <Grid Style="{StaticResource ArtworkBackdrop}">
+                                <Image Source="{Binding Image}"
+                                       HeightRequest="80"
+                                       WidthRequest="80"
+                                       AutomationProperties.IsInAccessibleTree="False" />
+                            </Grid>
+                            <VerticalStackLayout Grid.Row="1"
+                                                 Padding="12,10,12,12"
+                                                 Spacing="2">
+                                <Label Text="{Binding Name}"
+                                       Style="{StaticResource Headline}"
+                                       FontSize="15"
+                                       LineBreakMode="TailTruncation" />
+                                <Label Text="{Binding Location}"
+                                       Style="{StaticResource Caption}"
+                                       LineBreakMode="TailTruncation" />
+                            </VerticalStackLayout>
+                        </Grid>
+                    </Border>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
+            <CollectionView.Footer>
+                <BoxView HeightRequest="24"
+                         Color="Transparent" />
+            </CollectionView.Footer>
         </CollectionView>
-    </StackLayout>
+    </Grid>
 </ContentPage>

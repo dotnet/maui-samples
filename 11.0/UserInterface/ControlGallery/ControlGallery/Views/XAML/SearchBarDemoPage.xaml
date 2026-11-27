@@ -1,11 +1,29 @@
-<?xml version="1.0" ?><ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ControlGallery.Views.XAML.SearchBarDemoPage" Title="SearchBar Demo" Padding="10, 0">
-    <Grid RowSpacing="6" RowDefinitions="Auto,Auto,*">
-        <Label Text="SearchBar" FontSize="50" FontAttributes="Bold" HorizontalOptions="Center" Grid.Row="0"/>
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ControlGallery.Views.XAML.SearchBarDemoPage"
+             Title="SearchBar">
+    <Grid RowDefinitions="Auto,Auto,*"
+          Style="{StaticResource DemoLayout}">
+        <VerticalStackLayout Style="{StaticResource DemoHeader}">
+            <Label Text="Input" Style="{StaticResource Eyebrow}" />
+            <Label Text="SearchBar" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+            <Label Text="Initiate a search. Type part of a .NET MAUI property name and press search." Style="{StaticResource Lead}" />
+        </VerticalStackLayout>
 
-        <SearchBar Placeholder=".NET MAUI property" SearchButtonPressed="OnSearchBarButtonPressed" Grid.Row="1"/>
+        <SearchBar Grid.Row="1"
+                   Placeholder=".NET MAUI property"
+                   SearchButtonPressed="OnSearchBarButtonPressed" />
 
-        <ScrollView VerticalOptions="Fill" Grid.Row="2">
-            <Label x:Name="resultsLabel"/>
-        </ScrollView>
+        <Border Grid.Row="2"
+                Style="{StaticResource DemoSurface}"
+                Padding="20,0">
+            <ScrollView>
+                <Label x:Name="resultsLabel"
+                       Text="Results appear here. Try searching for Color or Margin."
+                       Style="{StaticResource BodySecondary}"
+                       Padding="0,16" />
+            </ScrollView>
+        </Border>
     </Grid>
 </ContentPage>

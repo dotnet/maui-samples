@@ -1,15 +1,34 @@
-<?xml version="1.0" ?><ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ControlGallery.Views.XAML.SwitchDemoPage" Title="Switch Demo">
-    <Grid RowSpacing="6" RowDefinitions="Auto,*,*">
-        <Label Text="Switch" FontSize="50" FontAttributes="Bold" HorizontalOptions="Center" Grid.Row="0"/>
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ControlGallery.Views.XAML.SwitchDemoPage"
+             Title="Switch">
+    <Grid RowDefinitions="Auto,Auto"
+          Style="{StaticResource DemoLayout}">
+        <VerticalStackLayout Style="{StaticResource DemoHeader}">
+            <Label Text="Input" Style="{StaticResource Eyebrow}" />
+            <Label Text="Switch" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+            <Label Text="Toggle a Boolean value on or off." Style="{StaticResource Lead}" />
+        </VerticalStackLayout>
 
-        <Switch x:Name="switch" HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="1"/>
-
-        <Label Text="Switch is now False" FontSize="20" HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="2">
-            <Label.Triggers>
-                <DataTrigger x:DataType="Switch" TargetType="Label" Binding="{Binding Source={x:Reference switch},                                                Path=IsToggled}" Value="True">
-                    <Setter Property="Text" Value="Switch is now True"/>
-                </DataTrigger>
-            </Label.Triggers>
-        </Label>
+        <Border Grid.Row="1"
+                Style="{StaticResource DemoSurface}">
+            <VerticalStackLayout Spacing="12"
+                                 VerticalOptions="Center">
+                <Switch x:Name="switch"
+                        HorizontalOptions="Center" />
+                <Label Text="Switch is now False"
+                       Style="{StaticResource Value}">
+                    <Label.Triggers>
+                        <DataTrigger x:DataType="Switch"
+                                     TargetType="Label"
+                                     Binding="{Binding Source={x:Reference switch}, Path=IsToggled}"
+                                     Value="True">
+                            <Setter Property="Text" Value="Switch is now True" />
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
+            </VerticalStackLayout>
+        </Border>
     </Grid>
 </ContentPage>

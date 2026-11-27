@@ -1,28 +1,24 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ControlGallery.Views.XAML.ContentPageDemoPage"
-             Title="ContentPage Demo"
-             Padding="10, 0">
-    <StackLayout>
-        <Label Text="ContentPage"
-               FontSize="40"
-               FontAttributes="Bold"
-               HorizontalOptions="Center" />
+             Title="ContentPage">
+    <Grid RowDefinitions="Auto,Auto"
+          Style="{StaticResource DemoLayout}">
+        <VerticalStackLayout Style="{StaticResource DemoHeader}">
+            <Label Text="Pages" Style="{StaticResource Eyebrow}" />
+            <Label Text="ContentPage" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+            <Label Text="The simplest type of page: it displays a single view." Style="{StaticResource Lead}" />
+        </VerticalStackLayout>
 
-        <Label Text="ContentPage is the simplest type of page."
-               FontSize="20" />
-
-        <Label Text=
-"The content of a ContentPage is generally a
-layout of some sort that can then be a parent
-to multiple children."
-               FontSize="20" />
-
-        <Label Text=
-"This ContentPage contains a StackLayout, which
-in turn contains four Label views (including the
-large one at the top)."
-               FontSize="20" />
-    </StackLayout>
+        <Border Grid.Row="1"
+                Style="{StaticResource DemoSurface}">
+            <VerticalStackLayout Spacing="12">
+                <Label Text="The content of a ContentPage is generally a layout, which can then be the parent of multiple children."
+                       Style="{StaticResource Body}" />
+                <Label Text="This ContentPage contains a Grid with two rows: a header with three Labels, and a Border with this text."
+                       Style="{StaticResource BodySecondary}" />
+            </VerticalStackLayout>
+        </Border>
+    </Grid>
 </ContentPage>

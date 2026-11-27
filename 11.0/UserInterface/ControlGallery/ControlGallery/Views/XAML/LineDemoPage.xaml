@@ -1,18 +1,27 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ControlGallery.Views.XAML.LineDemoPage"
-             Title="Line Demo">
-    <StackLayout>
-        <Label Text="Line"
-               FontSize="50"
-               FontAttributes="Bold"
-               HorizontalOptions="Center" />
-        <Line X1="40"
-              Y1="0"
-              X2="0"
-              Y2="120"
-              Stroke="Red"
-              HorizontalOptions="Center" />
-    </StackLayout>
+             Title="Line">
+    <Grid RowDefinitions="Auto,Auto"
+          Style="{StaticResource DemoLayout}">
+        <VerticalStackLayout Style="{StaticResource DemoHeader}">
+            <Label Text="Shapes &amp; graphics" Style="{StaticResource Eyebrow}" />
+            <Label Text="Line" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+            <Label Text="Draw a line between two points." Style="{StaticResource Lead}" />
+        </VerticalStackLayout>
+
+        <Border Grid.Row="1"
+                Style="{StaticResource DemoSurface}">
+            <Line X1="40"
+                  Y1="0"
+                  X2="0"
+                  Y2="120"
+                  Stroke="{StaticResource Rose}"
+                  StrokeThickness="4"
+                  StrokeLineCap="Round"
+                  HorizontalOptions="Center"
+                  VerticalOptions="Center" />
+        </Border>
+    </Grid>
 </ContentPage>

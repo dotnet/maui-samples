@@ -1,15 +1,27 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ControlGallery.Views.XAML.PolylineDemoPage"
-             Title="Polyline Demo">
-    <StackLayout>
-        <Label Text="Polyline"
-               FontSize="50"
-               FontAttributes="Bold"
-               HorizontalOptions="Center" />
-        <Polyline Points="0,0 10,30, 15,0 18,60 23,30 35,30 40,0 43,60 48,30 100,30"
-                  Stroke="Red"
-                  HorizontalOptions="Center" />
-    </StackLayout>
+             Title="Polyline">
+    <Grid RowDefinitions="Auto,Auto"
+          Style="{StaticResource DemoLayout}">
+        <VerticalStackLayout Style="{StaticResource DemoHeader}">
+            <Label Text="Shapes &amp; graphics" Style="{StaticResource Eyebrow}" />
+            <Label Text="Polyline" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+            <Label Text="Draw a series of connected straight lines. Aspect scales the points to fit." Style="{StaticResource Lead}" />
+        </VerticalStackLayout>
+
+        <Border Grid.Row="1"
+                Style="{StaticResource DemoSurface}">
+            <Polyline Points="0,0 10,30, 15,0 18,60 23,30 35,30 40,0 43,60 48,30 100,30"
+                      Stroke="{StaticResource Rose}"
+                      StrokeThickness="3"
+                      StrokeLineJoin="Round"
+                      Aspect="Uniform"
+                      WidthRequest="260"
+                      HeightRequest="160"
+                      HorizontalOptions="Center"
+                      VerticalOptions="Center" />
+        </Border>
+    </Grid>
 </ContentPage>

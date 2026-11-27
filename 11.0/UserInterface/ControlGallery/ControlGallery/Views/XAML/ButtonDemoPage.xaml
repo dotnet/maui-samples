@@ -1,9 +1,27 @@
-<?xml version="1.0" ?><ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ControlGallery.Views.XAML.ButtonDemoPage" Title="Button Demo">
-    <Grid RowSpacing="6" RowDefinitions="Auto,*,*">
-        <Label Text="Button" FontSize="50" FontAttributes="Bold" HorizontalOptions="Center" Grid.Row="0"/>
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ControlGallery.Views.XAML.ButtonDemoPage"
+             Title="Button">
+    <Grid RowDefinitions="Auto,Auto"
+          Style="{StaticResource DemoLayout}">
+        <VerticalStackLayout Style="{StaticResource DemoHeader}">
+            <Label Text="Input" Style="{StaticResource Eyebrow}" />
+            <Label Text="Button" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+            <Label Text="Initiate a command when tapped." Style="{StaticResource Lead}" />
+        </VerticalStackLayout>
 
-        <Button Text="Click Me!" FontSize="20" BorderWidth="1" HorizontalOptions="Center" VerticalOptions="Center" Clicked="OnButtonClicked" Grid.Row="1"/>
-
-        <Label x:Name="label" Text="0 button clicks" FontSize="20" HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="2"/>
+        <Border Grid.Row="1"
+                Style="{StaticResource DemoSurface}">
+            <VerticalStackLayout Spacing="20"
+                                 VerticalOptions="Center">
+                <Button Text="Click Me!"
+                        HorizontalOptions="Center"
+                        Clicked="OnButtonClicked" />
+                <Label x:Name="label"
+                       Text="0 button clicks"
+                       Style="{StaticResource Value}" />
+            </VerticalStackLayout>
+        </Border>
     </Grid>
 </ContentPage>

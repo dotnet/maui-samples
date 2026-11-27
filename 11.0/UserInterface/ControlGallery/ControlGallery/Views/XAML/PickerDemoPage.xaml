@@ -1,28 +1,47 @@
-<?xml version="1.0" ?><ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ControlGallery.Views.XAML.PickerDemoPage" Title="Picker Demo">
-    <Grid RowSpacing="6" RowDefinitions="Auto,*,*">
-        <Label Text="Picker" FontSize="50" FontAttributes="Bold" HorizontalOptions="Center" Grid.Row="0"/>
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ControlGallery.Views.XAML.PickerDemoPage"
+             Title="Picker">
+    <Grid RowDefinitions="Auto,Auto"
+          Style="{StaticResource DemoLayout}">
+        <VerticalStackLayout Style="{StaticResource DemoHeader}">
+            <Label Text="Input" Style="{StaticResource Eyebrow}" />
+            <Label Text="Picker" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+            <Label Text="Select an item from a list. Pick a color to paint the box." Style="{StaticResource Lead}" />
+        </VerticalStackLayout>
 
-        <Picker Title="Color" VerticalOptions="Center" Margin="10, 0" SelectedIndexChanged="OnPickerSelectedIndexChanged" Grid.Row="1">
-            <Picker.Items>
-                <x:String>Aqua</x:String>
-                <x:String>Black</x:String>
-                <x:String>Blue</x:String>
-                <x:String>Fuchsia</x:String>
-                <x:String>Gray</x:String>
-                <x:String>Green</x:String>
-                <x:String>Lime</x:String>
-                <x:String>Maroon</x:String>
-                <x:String>Navy</x:String>
-                <x:String>Olive</x:String>
-                <x:String>Purple</x:String>
-                <x:String>Red</x:String>
-                <x:String>Silver</x:String>
-                <x:String>Teal</x:String>
-                <x:String>White</x:String>
-                <x:String>Yellow</x:String>
-            </Picker.Items>
-        </Picker>
-        
-        <BoxView x:Name="boxView" WidthRequest="150" HeightRequest="150" HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="2"/>
+        <Border Grid.Row="1"
+                Style="{StaticResource DemoSurface}">
+            <VerticalStackLayout Spacing="20">
+                <Picker Title="Color"
+                        SelectedIndexChanged="OnPickerSelectedIndexChanged">
+                    <Picker.Items>
+                        <x:String>Aqua</x:String>
+                        <x:String>Black</x:String>
+                        <x:String>Blue</x:String>
+                        <x:String>Fuchsia</x:String>
+                        <x:String>Gray</x:String>
+                        <x:String>Green</x:String>
+                        <x:String>Lime</x:String>
+                        <x:String>Maroon</x:String>
+                        <x:String>Navy</x:String>
+                        <x:String>Olive</x:String>
+                        <x:String>Purple</x:String>
+                        <x:String>Red</x:String>
+                        <x:String>Silver</x:String>
+                        <x:String>Teal</x:String>
+                        <x:String>White</x:String>
+                        <x:String>Yellow</x:String>
+                    </Picker.Items>
+                </Picker>
+
+                <BoxView x:Name="boxView"
+                         CornerRadius="24"
+                         WidthRequest="150"
+                         HeightRequest="150"
+                         HorizontalOptions="Center" />
+            </VerticalStackLayout>
+        </Border>
     </Grid>
 </ContentPage>
