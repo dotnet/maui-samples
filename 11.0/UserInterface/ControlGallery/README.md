@@ -29,3 +29,4 @@ All styling lives in resource dictionaries, so the demo pages contain little mor
 - `Resources/Styles/Colors.xaml` defines the color tokens. Most come in `Light` and `Dark` pairs, plus a shared accent palette.
 - `Resources/Styles/Styles.xaml` defines implicit styles that theme every control, and explicit styles such as `Title1`, `Lead`, `Card`, and `DemoSurface` that pages opt into.
 - The app uses the [Inter](https://rsms.me/inter/) typeface (SIL Open Font License) and [Material Icons Round](https://fonts.google.com/icons) (Apache License 2.0). Their license files are in `Resources/Fonts`.
+- The animal images used by the CarouselView, CollectionView, IndicatorView, and SwipeView demos are 3D [Fluent Emoji](https://github.com/microsoft/fluentui-emoji) by Microsoft (MIT License). They're bundled with the app in `Resources/Images/Animals`, with their license file.

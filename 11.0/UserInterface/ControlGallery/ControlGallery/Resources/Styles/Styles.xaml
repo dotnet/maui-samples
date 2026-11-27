@@ -184,6 +184,11 @@
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextSecondaryLight}, Dark={StaticResource TextSecondaryDark}}" />
     </Style>
 
+    <!-- Soft backdrop behind transparent artwork, such as Fluent Emoji, in cards. -->
+    <Style x:Key="ArtworkBackdrop" TargetType="Grid">
+        <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource SurfaceVariantLight}, Dark={StaticResource SurfaceVariantDark}}" />
+    </Style>
+
     <Style x:Key="IconTile" TargetType="Border">
         <Setter Property="WidthRequest" Value="44" />
         <Setter Property="HeightRequest" Value="44" />

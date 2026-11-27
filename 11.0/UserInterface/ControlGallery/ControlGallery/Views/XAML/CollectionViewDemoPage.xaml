@@ -16,7 +16,7 @@
         </VerticalStackLayout>
 
         <CollectionView Grid.Row="1"
-                        ItemsSource="{Binding Monkeys}">
+                        ItemsSource="{Binding Animals}">
             <CollectionView.ItemsLayout>
                 <GridItemsLayout Orientation="Vertical"
                                  Span="2"
@@ -24,12 +24,16 @@
                                  HorizontalItemSpacing="12" />
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="models:Monkey">
+                <DataTemplate x:DataType="models:Animal">
                     <Border Style="{StaticResource Card}"
                             Padding="0">
                         <Grid RowDefinitions="120,Auto">
-                            <Image Source="{Binding ImageUrl}"
-                                   Aspect="AspectFill" />
+                            <Grid Style="{StaticResource ArtworkBackdrop}">
+                                <Image Source="{Binding Image}"
+                                       HeightRequest="80"
+                                       WidthRequest="80"
+                                       AutomationProperties.IsInAccessibleTree="False" />
+                            </Grid>
                             <VerticalStackLayout Grid.Row="1"
                                                  Padding="12,10,12,12"
                                                  Spacing="2">

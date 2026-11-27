@@ -15,20 +15,24 @@
         </VerticalStackLayout>
 
         <CarouselView Grid.Row="1"
-                      ItemsSource="{Binding Monkeys}"
+                      ItemsSource="{Binding Animals}"
                       IndicatorView="indicatorView"
                       HeightRequest="440"
                       PeekAreaInsets="28"
                       Margin="-20,0">
             <CarouselView.ItemTemplate>
-                <DataTemplate x:DataType="models:Monkey">
+                <DataTemplate x:DataType="models:Animal">
                     <Border Style="{StaticResource Card}"
                             Padding="0"
                             Margin="6,0"
                             VerticalOptions="Start">
-                        <Grid RowDefinitions="220,Auto">
-                            <Image Source="{Binding ImageUrl}"
-                                   Aspect="AspectFill" />
+                        <Grid RowDefinitions="200,Auto">
+                            <Grid Style="{StaticResource ArtworkBackdrop}">
+                                <Image Source="{Binding Image}"
+                                       HeightRequest="128"
+                                       WidthRequest="128"
+                                       AutomationProperties.IsInAccessibleTree="False" />
+                            </Grid>
                             <VerticalStackLayout Grid.Row="1"
                                                  Padding="20"
                                                  Spacing="6">

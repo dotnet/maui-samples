@@ -25,13 +25,13 @@
 
         <CollectionView x:Name="collectionView"
                         Grid.Row="2"
-                        ItemsSource="{Binding Monkeys}">
+                        ItemsSource="{Binding Animals}">
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout Orientation="Vertical"
                                    ItemSpacing="10" />
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="models:Monkey">
+                <DataTemplate x:DataType="models:Animal">
                     <SwipeView>
                         <SwipeView.RightItems>
                             <SwipeItems>
@@ -51,12 +51,14 @@
                                 Padding="12">
                             <Grid ColumnDefinitions="Auto,*"
                                   ColumnSpacing="14">
-                                <Border StrokeThickness="0"
-                                        StrokeShape="RoundRectangle 12"
+                                <Border Style="{StaticResource IconTile}"
                                         WidthRequest="56"
-                                        HeightRequest="56">
-                                    <Image Source="{Binding ImageUrl}"
-                                           Aspect="AspectFill" />
+                                        HeightRequest="56"
+                                        Background="{AppThemeBinding Light={StaticResource SurfaceVariantLight}, Dark={StaticResource SurfaceVariantDark}}">
+                                    <Image Source="{Binding Image}"
+                                           HeightRequest="40"
+                                           WidthRequest="40"
+                                           AutomationProperties.IsInAccessibleTree="False" />
                                 </Border>
                                 <VerticalStackLayout Grid.Column="1"
                                                      Spacing="2"
