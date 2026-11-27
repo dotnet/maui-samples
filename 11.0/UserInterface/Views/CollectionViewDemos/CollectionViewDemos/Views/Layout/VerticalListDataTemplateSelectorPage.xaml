@@ -1,79 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:CollectionViewDemos.Controls"
              xmlns:models="clr-namespace:CollectionViewDemos.Models"
              xmlns:viewmodels="clr-namespace:CollectionViewDemos.ViewModels"
              x:Class="CollectionViewDemos.Views.VerticalListDataTemplateSelectorPage"
-             Title="Vertical list (DataTemplateSelector)"
+             Title="DataTemplateSelector"
              x:DataType="viewmodels:MonkeysViewModel">
     <ContentPage.Resources>
+        <!-- Monkeys from the Americas -->
         <DataTemplate x:Key="AmericanMonkeyTemplate"
                       x:DataType="models:Monkey">
-            <Grid Padding="10">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <Image Grid.RowSpan="2" 
-                       Source="{Binding ImageUrl}" 
-                       Aspect="AspectFill"
-                       HeightRequest="60" 
-                       WidthRequest="60" />
-                <Label Grid.Column="1" 
+            <Grid Padding="16,10"
+                  RowDefinitions="Auto,Auto"
+                  ColumnDefinitions="Auto,*"
+                  ColumnSpacing="14">
+                <Image Grid.RowSpan="2"
+                       Source="{Binding ImageUrl}"
+                       HeightRequest="48"
+                       WidthRequest="48" />
+                <Label Grid.Column="1"
                        Text="{Binding Name}"
-                       TextColor="Teal"
-                       FontAttributes="Bold" />
-                <Label Grid.Row="1"
-                       Grid.Column="1" 
-                       Text="{Binding Location}"
-                       TextColor="Teal"
-                       FontAttributes="Italic" 
+                       Style="{StaticResource Headline}"
+                       TextColor="{AppThemeBinding Light={StaticResource DeepTeal}, Dark={StaticResource Teal}}"
                        VerticalOptions="End" />
+                <Label Grid.Row="1"
+                       Grid.Column="1"
+                       Text="{Binding Location}"
+                       Style="{StaticResource Caption}"
+                       TextColor="{AppThemeBinding Light={StaticResource DeepTeal}, Dark={StaticResource Teal}}" />
             </Grid>
         </DataTemplate>
 
+        <!-- All other monkeys -->
         <DataTemplate x:Key="OtherMonkeyTemplate"
                       x:DataType="models:Monkey">
-            <Grid Padding="10">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <Image Grid.RowSpan="2" 
-                       Source="{Binding ImageUrl}" 
-                       Aspect="AspectFill"
-                       Opacity="0.5"
-                       HeightRequest="60" 
-                       WidthRequest="60" />
-                <Label Grid.Column="1" 
+            <Grid Padding="16,10"
+                  RowDefinitions="Auto,Auto"
+                  ColumnDefinitions="Auto,*"
+                  ColumnSpacing="14">
+                <Image Grid.RowSpan="2"
+                       Source="{Binding ImageUrl}"
+                       Opacity="0.4"
+                       HeightRequest="48"
+                       WidthRequest="48" />
+                <Label Grid.Column="1"
                        Text="{Binding Name}"
-                       TextColor="Silver"
-                       FontAttributes="Bold" />
-                <Label Grid.Row="1"
-                       Grid.Column="1" 
-                       Text="{Binding Location}"
-                       TextColor="Silver"
-                       FontAttributes="Italic"
+                       Style="{StaticResource Headline}"
+                       TextColor="{AppThemeBinding Light={StaticResource TextTertiaryLight}, Dark={StaticResource TextTertiaryDark}}"
                        VerticalOptions="End" />
+                <Label Grid.Row="1"
+                       Grid.Column="1"
+                       Text="{Binding Location}"
+                       Style="{StaticResource Caption}"
+                       TextColor="{AppThemeBinding Light={StaticResource TextTertiaryLight}, Dark={StaticResource TextTertiaryDark}}" />
             </Grid>
         </DataTemplate>
-        
+
         <controls:MonkeyDataTemplateSelector x:Key="MonkeySelector"
                                              AmericanMonkey="{StaticResource AmericanMonkeyTemplate}"
                                              OtherMonkey="{StaticResource OtherMonkeyTemplate}" />
     </ContentPage.Resources>
-    
-    <Grid Margin="20">
-        <CollectionView ItemsSource="{Binding Monkeys}"
-                        ItemTemplate="{StaticResource MonkeySelector}" />
+
+    <Grid RowDefinitions="Auto,*"
+          Style="{StaticResource DemoLayout}">
+        <VerticalStackLayout Style="{StaticResource DemoHeader}">
+            <Label Text="Layout" Style="{StaticResource Eyebrow}" />
+            <Label Text="DataTemplateSelector" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+            <Label Text="A DataTemplateSelector picks a template per item: monkeys from the Americas are highlighted in teal." Style="{StaticResource Lead}" />
+        </VerticalStackLayout>
+
+        <Border Grid.Row="1"
+                Style="{StaticResource ListSurface}">
+            <CollectionView ItemsSource="{Binding Monkeys}"
+                            ItemTemplate="{StaticResource MonkeySelector}" />
+        </Border>
     </Grid>
 </ContentPage>

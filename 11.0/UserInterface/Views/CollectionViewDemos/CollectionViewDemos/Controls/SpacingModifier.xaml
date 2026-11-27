@@ -1,15 +1,22 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CollectionViewDemos.Controls.SpacingModifier">
-    <StackLayout Orientation="Horizontal"
-                 HorizontalOptions="Center">
-        <Label Text="Spacing:"
-               VerticalTextAlignment="Center" />
-        <Entry x:Name="entry"
-               Text="0"
-               WidthRequest="100" />
-        <Button Text="Update"
-                Clicked="OnUpdateButtonClicked" />
-    </StackLayout>
+    <Border Style="{StaticResource Card}">
+        <Grid ColumnDefinitions="Auto,*,Auto"
+              ColumnSpacing="12">
+            <Label Text="Spacing"
+                   Style="{StaticResource Caption}"
+                   VerticalOptions="Center" />
+            <Entry x:Name="entry"
+                   Grid.Column="1"
+                   Text="0"
+                   VerticalOptions="Center"
+                   SemanticProperties.Description="Spacing" />
+            <Button Grid.Column="2"
+                    Text="Update"
+                    Style="{StaticResource TonalButton}"
+                    Clicked="OnUpdateButtonClicked" />
+        </Grid>
+    </Border>
 </ContentView>

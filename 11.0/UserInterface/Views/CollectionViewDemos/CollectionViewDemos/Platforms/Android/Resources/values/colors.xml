@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#512BD4</color>
-    <color name="colorPrimaryDark">#2B0B98</color>
-    <color name="colorAccent">#2B0B98</color>
+    <!-- Match the gallery design system (Resources/Styles/Colors.xaml). -->
+    <color name="colorPrimary">#F6F5FA</color>
+    <color name="colorPrimaryDark">#F6F5FA</color>
+    <color name="colorAccent">#512BD4</color>
 </resources>

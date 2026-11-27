@@ -1,12 +1,22 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:CollectionViewDemos.ViewModels"
              x:Class="CollectionViewDemos.Views.VerticalListTextGroupingPage"
-             Title="Grouping (without DataTemplates)"
+             Title="Grouped list (text)"
              x:DataType="viewmodels:GroupedAnimalsViewModel">
-    <Grid Margin="20">
-        <CollectionView ItemsSource="{Binding Animals}"
-                        IsGrouped="true" />
+    <Grid RowDefinitions="Auto,*"
+          Style="{StaticResource DemoLayout}">
+        <VerticalStackLayout Style="{StaticResource DemoHeader}">
+            <Label Text="Grouping" Style="{StaticResource Eyebrow}" />
+            <Label Text="Grouped list (text)" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+            <Label Text="Without templates, each group header and animal is shown as its ToString() text." Style="{StaticResource Lead}" />
+        </VerticalStackLayout>
+
+        <Border Grid.Row="1"
+                Style="{StaticResource DemoSurface}">
+            <CollectionView ItemsSource="{Binding Animals}"
+                            IsGrouped="true" />
+        </Border>
     </Grid>
 </ContentPage>

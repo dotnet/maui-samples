@@ -1,179 +1,219 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:CollectionViewDemos"
-             xmlns:views="clr-namespace:CollectionViewDemos.Views"
+             xmlns:models="clr-namespace:CollectionViewDemos.Models"
              x:Class="CollectionViewDemos.MainPage"
-             Title="CollectionView demos"
-             x:DataType="local:MainPage">
-    <ScrollView>
-        <StackLayout Padding="10">
-            <!-- Layout Section -->
-            <Label Text="Layout" FontAttributes="Bold" FontSize="17" />
-            <Button Text="Vertical list - Text"
-                Command="{Binding NavigateCommand}"
-                CommandParameter="{x:Type views:VerticalListTextPage}" />
-            <Button Text="Horizontal list - Text"
-                Command="{Binding NavigateCommand}"
-                CommandParameter="{x:Type views:HorizontalListTextPage}" />
-            <Button Text="Vertical grid - Text"
-                Command="{Binding NavigateCommand}"
-                CommandParameter="{x:Type views:VerticalGridTextPage}" />
-            <Button Text="Horizontal grid - Text"
-                Command="{Binding NavigateCommand}"
-                CommandParameter="{x:Type views:HorizontalGridTextPage}" />
-            <Button Text="Vertical list - DataTemplate"
-                Command="{Binding NavigateCommand}"
-                CommandParameter="{x:Type views:VerticalListPage}" />
-            <Button Text="Horizontal list - DataTemplate"
-                Command="{Binding NavigateCommand}"
-                CommandParameter="{x:Type views:HorizontalListPage}" />
-            <Button Text="Vertical grid - DataTemplate"
-                Command="{Binding NavigateCommand}"
-                CommandParameter="{x:Type views:VerticalGridPage}" />
-            <Button Text="Horizontal grid - DataTemplate"
-                Command="{Binding NavigateCommand}"
-                CommandParameter="{x:Type views:HorizontalGridPage}" />
-            <Button Text="Vertical list - Data template selector"
-                Command="{Binding NavigateCommand}"
-                CommandParameter="{x:Type views:VerticalListDataTemplateSelectorPage}" />
-            <Button Text="Vertical list - RTL FlowDirection"
-                Command="{Binding NavigateCommand}"
-                CommandParameter="{x:Type views:VerticalListRTLPage}" />
+             x:Name="page"
+             x:DataType="local:MainPage"
+             Title="CollectionView"
+             NavigationPage.HasNavigationBar="False"
+             SafeAreaEdges="Container">
 
-            <!-- Spacing Section -->
-            <Label Text="Spacing" FontAttributes="Bold" FontSize="17" Margin="10,10,0,5" />
-            <Button Text="Vertical list - ItemSpacing"
-                Command="{Binding NavigateCommand}"
-                CommandParameter="{x:Type views:VerticalListSpacingPage}" />
-            <Button Text="Horizontal list - ItemSpacing"
-                Command="{Binding NavigateCommand}"
-                CommandParameter="{x:Type views:HorizontalListSpacingPage}" />
-            <Button Text="Vertical grid - HorizontalItemSpacing and VerticalItemSpacing"
-                Command="{Binding NavigateCommand}"
-                CommandParameter="{x:Type views:VerticalGridSpacingPage}" />
-            <Button Text="Horizontal grid - HorizontalItemSpacing and VerticalItemSpacing"
-                Command="{Binding NavigateCommand}"
-                CommandParameter="{x:Type views:HorizontalGridSpacingPage}" />
-            <!-- Sizing Section -->
-            <Label Text="Sizing" FontAttributes="Bold" FontSize="17" Margin="0,10,0,5" />
-            <Button Text="Variable size items - Vertical list"
-                Command="{Binding NavigateCommand}"
-                CommandParameter="{x:Type views:VerticalListVariableSizeItemsPage}" />
-            <Button Text="Dynamic item sizing - Vertical list"
-                Command="{Binding NavigateCommand}"
-                CommandParameter="{x:Type views:VerticalListDynamicSizeItemsPage}" />
+    <!-- The hero and filters sit outside the CollectionView, so filtering the
+         list never re-creates the SearchBar while you type. -->
+    <Grid RowDefinitions="Auto,Auto,*">
+        <!-- Declared first (but shown in the last row) so that on Android the list,
+             not the SearchBar, gets the initial focus. Otherwise the keyboard opens. -->
+        <CollectionView Grid.Row="2"
+                        ItemsSource="{Binding Groups}"
+                        IsGrouped="True"
+                        SelectionMode="None">
 
-            <!-- Selection Section -->
-            <Label Text="Selection" FontAttributes="Bold" FontSize="17" Margin="0,10,0,5" />
-            <Button Text="Single - Vertical list"
-                Command="{Binding NavigateCommand}"
-                CommandParameter="{x:Type views:VerticalListSingleSelectionPage}" />
-            <Button Text="Multiple - Vertical list"
-                Command="{Binding NavigateCommand}"
-                CommandParameter="{x:Type views:VerticalListMultipleSelectionPage}" />
-            <Button Text="Single pre-selection - Vertical list"
-                Command="{Binding NavigateCommand}"
-                CommandParameter="{x:Type views:VerticalListSinglePreSelectionPage}" />
-            <Button Text="Multiple pre-selection - Vertical list"
-                Command="{Binding NavigateCommand}"
-                CommandParameter="{x:Type views:VerticalListMultiplePreSelectionPage}" />
-            <Button Text="Selection color - Vertical list"
-                Command="{Binding NavigateCommand}"
-                CommandParameter="{x:Type views:VerticalListSelectionColorPage}" />
+            <CollectionView.GroupHeaderTemplate>
+                <DataTemplate x:DataType="models:DemoGroup">
+                    <Grid Padding="24,20,24,8"
+                          ColumnDefinitions="Auto,*,Auto"
+                          ColumnSpacing="10">
+                        <Ellipse Fill="{Binding Category.AccentBrush}"
+                                 WidthRequest="8"
+                                 HeightRequest="8"
+                                 VerticalOptions="Center" />
+                        <Label Grid.Column="1"
+                               Text="{Binding Name}"
+                               Style="{StaticResource SectionHeader}"
+                               SemanticProperties.HeadingLevel="Level2" />
+                        <Label Grid.Column="2"
+                               Text="{Binding Count}"
+                               Style="{StaticResource Caption}" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.GroupHeaderTemplate>
 
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:DemoInfo">
+                    <Grid Padding="20,5">
+                        <Border Style="{StaticResource Card}"
+                                SemanticProperties.Description="{Binding Title}"
+                                SemanticProperties.Hint="{Binding Description}">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding NavigateCommand, Source={x:Reference page}, x:DataType=local:MainPage}"
+                                                      CommandParameter="{Binding}" />
+                            </Border.GestureRecognizers>
+                            <Grid ColumnDefinitions="Auto,*,Auto"
+                                  ColumnSpacing="14">
+                                <Border Style="{StaticResource IconTile}"
+                                        Background="{Binding Category.AccentBrush}">
+                                    <Label Text="{Binding Glyph}"
+                                           Style="{StaticResource Icon}"
+                                           FontSize="22"
+                                           TextColor="White" />
+                                </Border>
+                                <VerticalStackLayout Grid.Column="1"
+                                                     Spacing="2"
+                                                     VerticalOptions="Center">
+                                    <Label Text="{Binding Title}"
+                                           Style="{StaticResource Headline}"
+                                           LineBreakMode="TailTruncation" />
+                                    <Label Text="{Binding Description}"
+                                           Style="{StaticResource Caption}"
+                                           MaxLines="2"
+                                           LineBreakMode="TailTruncation" />
+                                </VerticalStackLayout>
+                                <Label Grid.Column="2"
+                                       Text="{x:Static local:MaterialIcons.ChevronRight}"
+                                       Style="{StaticResource Icon}"
+                                       FontSize="22"
+                                       TextColor="{AppThemeBinding Light={StaticResource TextTertiaryLight}, Dark={StaticResource TextTertiaryDark}}" />
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
 
-            <!-- EmptyView Section -->
-            <Label Text="EmptyView" FontAttributes="Bold" FontSize="17" Margin="0,10,0,5" />
-            <Button Text="EmptyView string - ItemsSource Null"
-                Command="{Binding NavigateCommand}"
-                CommandParameter="{x:Type views:EmptyViewNullPage}" />
-            <Button Text="EmptyView string - Load simulation"
-                Command="{Binding NavigateCommand}"
-                CommandParameter="{x:Type views:EmptyViewLoadSimulationPage}" />
-            <Button Text="EmptyView string - Filtering"
-                Command="{Binding NavigateCommand}"
-                CommandParameter="{x:Type views:EmptyViewFilteredPage}" />
-            <Button Text="EmptyView with multiple views - Filtering"
-                Command="{Binding NavigateCommand}"
-                CommandParameter="{x:Type views:EmptyViewWithViewsFilteredPage}" />
-            <Button Text="EmptyView with EmptyViewTemplate - Filtering"
-                Command="{Binding NavigateCommand}"
-                CommandParameter="{x:Type views:EmptyViewTemplatePage}" />
-            <Button Text="EmptyView with EmptyViewTemplate - Data template selector"
-                Command="{Binding NavigateCommand}"
-                CommandParameter="{x:Type views:EmptyViewDataTemplateSelectorPage}" />
-            <Button Text="EmptyView swap - Filtering"
-                Command="{Binding NavigateCommand}"
-                CommandParameter="{x:Type views:EmptyViewSwapPage}" />
+            <CollectionView.EmptyView>
+                <VerticalStackLayout Padding="24,48"
+                                     Spacing="8">
+                    <Label Text="{x:Static local:MaterialIcons.SearchOff}"
+                           Style="{StaticResource Icon}"
+                           FontSize="40"
+                           TextColor="{AppThemeBinding Light={StaticResource TextTertiaryLight}, Dark={StaticResource TextTertiaryDark}}" />
+                    <Label Text="No demos found"
+                           Style="{StaticResource Headline}"
+                           HorizontalTextAlignment="Center" />
+                    <Label Text="Try a different name or category."
+                           Style="{StaticResource Caption}"
+                           HorizontalTextAlignment="Center" />
+                </VerticalStackLayout>
+            </CollectionView.EmptyView>
 
-            <!-- Grouping Section -->
-            <Label Text="Grouping" FontAttributes="Bold" FontSize="17" Margin="0,10,0,5" />
-            <Button Text="Grouping - Vertical list with DataTemplates"
-                Command="{Binding NavigateCommand}"
-                CommandParameter="{x:Type views:VerticalListGroupingPage}" />
-            <Button Text="Grouping - Vertical list without DataTemplates"
-                Command="{Binding NavigateCommand}"
-                CommandParameter="{x:Type views:VerticalListTextGroupingPage}" />
-            <Button Text="Grouping including empty groups - Vertical list with DataTemplates"
-                Command="{Binding NavigateCommand}"
-                CommandParameter="{x:Type views:VerticalListEmptyGroupsPage}" />
-            <Button Text="Grouping with variable sized items - Vertical list with DataTemplates"
-                Command="{Binding NavigateCommand}"
-                CommandParameter="{x:Type views:VerticalListGroupingVariableSizeItemsPage}" />
+            <CollectionView.Footer>
+                <BoxView HeightRequest="24"
+                         Color="Transparent" />
+            </CollectionView.Footer>
+        </CollectionView>
 
-            <!-- Pull to Refresh Section -->
-            <Label Text="Pull to Refresh" FontAttributes="Bold" FontSize="17" Margin="0,10,0,5" />
-            <Button Text="Pull to refresh using RefreshView - Vertical list"
-                Command="{Binding NavigateCommand}"
-                CommandParameter="{x:Type views:VerticalListPullToRefreshPage}" />
-            <Button Text="Pull to refresh using RefreshView - Horizontal grid"
-                Command="{Binding NavigateCommand}"
-                CommandParameter="{x:Type views:HorizontalGridPullToRefreshPage}" />
+        <Grid x:Name="hero"
+              Padding="20,12,20,0">
+            <Border StrokeThickness="0"
+                    StrokeShape="RoundRectangle 28"
+                    Padding="0">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0"
+                                         EndPoint="1,1">
+                        <GradientStop Color="{StaticResource HeroStart}" Offset="0" />
+                        <GradientStop Color="{StaticResource HeroMiddle}" Offset="0.55" />
+                        <GradientStop Color="{StaticResource HeroEnd}" Offset="1" />
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Grid>
+                    <!-- Decorative circles -->
+                    <Ellipse Fill="#1AFFFFFF"
+                             WidthRequest="240"
+                             HeightRequest="240"
+                             HorizontalOptions="End"
+                             VerticalOptions="Start"
+                             Margin="0,-110,-80,0" />
+                    <Ellipse Fill="#12FFFFFF"
+                             WidthRequest="160"
+                             HeightRequest="160"
+                             HorizontalOptions="Start"
+                             VerticalOptions="End"
+                             Margin="-60,0,0,-90" />
 
-            <!-- Headers and Footers Section -->
-            <Label Text="Headers and Footers" FontAttributes="Bold" FontSize="17" Margin="0,10,0,5" />
-            <Button Text="String header and footer - Vertical list"
-                Command="{Binding NavigateCommand}"
-                CommandParameter="{x:Type views:VerticalListHeaderFooterStringPage}" />
-            <Button Text="DataTemplate header and footer - Vertical list"
-                Command="{Binding NavigateCommand}"
-                CommandParameter="{x:Type views:VerticalListHeaderFooterDataTemplatePage}" />
-            <Button Text="View header and footer - Vertical list"
-                Command="{Binding NavigateCommand}"
-                CommandParameter="{x:Type views:VerticalListHeaderFooterViewPage}" />
-            <Button Text="View header and footer - Horizontal grid"
-                Command="{Binding NavigateCommand}"
-                CommandParameter="{x:Type views:HorizontalGridHeaderFooterViewPage}" />
+                    <Grid Padding="22,16,18,18"
+                          RowDefinitions="Auto,Auto,Auto"
+                          ColumnDefinitions="*,Auto"
+                          RowSpacing="4">
+                        <Border Background="#26FFFFFF"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 10"
+                                Padding="10,4"
+                                HorizontalOptions="Start"
+                                VerticalOptions="Center">
+                            <Label Text=".NET MAUI"
+                                   FontFamily="InterSemiBold"
+                                   FontSize="12"
+                                   CharacterSpacing="0.6"
+                                   TextColor="White" />
+                        </Border>
+                        <Image Grid.Column="1"
+                               Source="dotnet_bot.png"
+                               HeightRequest="64"
+                               Aspect="AspectFit"
+                               SemanticProperties.Description="The .NET bots riding a rocket" />
+                        <Label Grid.Row="1"
+                               Grid.ColumnSpan="2"
+                               Text="CollectionView"
+                               Style="{StaticResource Title1}"
+                               TextColor="White"
+                               SemanticProperties.HeadingLevel="Level1" />
+                        <Label Grid.Row="2"
+                               Grid.ColumnSpan="2"
+                               Text="{Binding DemoCount, StringFormat='{0} demos of lists, grids, selection, and more.'}"
+                               Style="{StaticResource Body}"
+                               TextColor="#E6FFFFFF" />
+                    </Grid>
+                </Grid>
+            </Border>
+        </Grid>
 
-            <!-- Scrolling Section -->
-            <Label Text="Scrolling" FontAttributes="Bold" FontSize="17" Margin="0,10,0,5" />
-            <Button Text="Scroll by index - ScrollTo"
-                Command="{Binding NavigateCommand}"
-                CommandParameter="{x:Type views:ScrollToByIndexPage}" />
-            <Button Text="Scroll by object - ScrollTo"
-                Command="{Binding NavigateCommand}"
-                CommandParameter="{x:Type views:ScrollToByObjectPage}" />
-            <Button Text="Scroll by index - Grouped data"
-                Command="{Binding NavigateCommand}"
-                CommandParameter="{x:Type views:ScrollToByIndexWithGroupingPage}" />
-            <Button Text="Scroll by object - Grouped data"
-                Command="{Binding NavigateCommand}"
-                CommandParameter="{x:Type views:ScrollToByObjectWithGroupingPage}" />
-            <Button Text="Snap points - Type and alignment"
-                Command="{Binding NavigateCommand}"
-                CommandParameter="{x:Type views:VerticalListSnapPointsPage}" />
-            <Button Text="Scroll mode when adding items - ItemsUpdatingScrollMode"
-                Command="{Binding NavigateCommand}"
-                CommandParameter="{x:Type views:ItemsUpdatingScrollModePage}" />
-            <Button Text="Incremental loading on scroll - RemainingItemsThreshold"
-                Command="{Binding NavigateCommand}"
-                CommandParameter="{x:Type views:IncrementalLoadingPage}" />
+        <VerticalStackLayout Grid.Row="1"
+                             Padding="20,14,20,0"
+                             Spacing="10">
+            <SearchBar Placeholder="Search demos"
+                       TextChanged="OnSearchTextChanged" />
 
-            <!-- Swipe Section -->
-            <Label Text="Swipe" FontAttributes="Bold" FontSize="17" Margin="0,10,0,5" />
-            <Button Text="Context menu items - Vertical list"
-                Command="{Binding NavigateCommand}"
-                CommandParameter="{x:Type views:VerticalListSwipeContextItemsPage}" />
-        </StackLayout>
-    </ScrollView>
+            <CollectionView ItemsSource="{Binding FilterOptions}"
+                            SelectionMode="Single"
+                            SelectedItem="{Binding SelectedFilter}"
+                            SelectionChanged="OnFilterSelectionChanged"
+                            HeightRequest="{StaticResource ChipHeight}"
+                            Margin="-20,0"
+                            HorizontalScrollBarVisibility="Never">
+                <!-- Spacers keep the first and last chip aligned with the page margins. -->
+                <CollectionView.Header>
+                    <BoxView WidthRequest="20" Color="Transparent" />
+                </CollectionView.Header>
+                <CollectionView.Footer>
+                    <BoxView WidthRequest="20" Color="Transparent" />
+                </CollectionView.Footer>
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Horizontal"
+                                       ItemSpacing="8" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:DemoCategory">
+                        <Border Style="{StaticResource Chip}">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="Selected">
+                                        <VisualState.Setters>
+                                            <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource PrimaryLight}, Dark={StaticResource PrimaryDark}}" />
+                                            <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource PrimaryLight}, Dark={StaticResource PrimaryDark}}" />
+                                            <Setter TargetName="chipLabel" Property="Label.TextColor" Value="{AppThemeBinding Light={StaticResource OnPrimaryLight}, Dark={StaticResource OnPrimaryDark}}" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Label x:Name="chipLabel"
+                                   Text="{Binding Name}"
+                                   Style="{StaticResource ChipLabel}" />
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </Grid>
 </ContentPage>

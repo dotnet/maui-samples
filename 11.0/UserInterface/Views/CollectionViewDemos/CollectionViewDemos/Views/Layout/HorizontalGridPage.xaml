@@ -1,43 +1,49 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models="clr-namespace:CollectionViewDemos.Models"
              xmlns:viewmodels="clr-namespace:CollectionViewDemos.ViewModels"
              x:Class="CollectionViewDemos.Views.HorizontalGridPage"
-             Title="Horizontal grid (DataTemplate)"
+             Title="Horizontal grid"
              x:DataType="viewmodels:MonkeysViewModel">
-    <Grid Margin="20">
-        <CollectionView ItemsSource="{Binding Monkeys}"
-                        ItemsLayout="HorizontalGrid, 4">
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="models:Monkey">
-                    <Grid Padding="10">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="35" />
-                            <RowDefinition Height="35" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="70" />
-                            <ColumnDefinition Width="140" />
-                        </Grid.ColumnDefinitions>
-                        <Image Grid.RowSpan="2" 
-                               Source="{Binding ImageUrl}" 
-                               Aspect="AspectFill"
-                               HeightRequest="60" 
-                               WidthRequest="60" />
-                        <Label Grid.Column="1" 
-                               Text="{Binding Name}" 
-                               FontAttributes="Bold"
-                               LineBreakMode="TailTruncation" />
-                        <Label Grid.Row="1"
-                               Grid.Column="1" 
-                               Text="{Binding Location}"
-                               LineBreakMode="TailTruncation"
-                               FontAttributes="Italic" 
-                               VerticalOptions="End" />
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+    <Grid RowDefinitions="Auto,*"
+          Style="{StaticResource DemoLayout}">
+        <VerticalStackLayout Style="{StaticResource DemoHeader}">
+            <Label Text="Layout" Style="{StaticResource Eyebrow}" />
+            <Label Text="Horizontal grid" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+            <Label Text="ItemsLayout=&quot;HorizontalGrid, 4&quot; shows the template in four rows. Scroll sideways." Style="{StaticResource Lead}" />
+        </VerticalStackLayout>
+
+        <Border Grid.Row="1"
+                Style="{StaticResource ListSurface}"
+                VerticalOptions="Start">
+            <CollectionView ItemsSource="{Binding Monkeys}"
+                            ItemsLayout="HorizontalGrid, 4"
+                            HeightRequest="256">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Monkey">
+                        <Grid Padding="12,8"
+                              RowDefinitions="Auto,Auto"
+                              ColumnDefinitions="48,140"
+                              ColumnSpacing="12">
+                            <Image Grid.RowSpan="2"
+                                   Source="{Binding ImageUrl}"
+                                   HeightRequest="48"
+                                   WidthRequest="48" />
+                            <Label Grid.Column="1"
+                                   Text="{Binding Name}"
+                                   Style="{StaticResource Headline}"
+                                   LineBreakMode="TailTruncation"
+                                   VerticalOptions="End" />
+                            <Label Grid.Row="1"
+                                   Grid.Column="1"
+                                   Text="{Binding Location}"
+                                   Style="{StaticResource Caption}"
+                                   LineBreakMode="TailTruncation" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Border>
     </Grid>
 </ContentPage>
