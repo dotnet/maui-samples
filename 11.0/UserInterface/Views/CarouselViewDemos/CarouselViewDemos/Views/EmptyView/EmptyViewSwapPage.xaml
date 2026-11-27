@@ -1,10 +1,11 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:CarouselViewDemos"
              xmlns:models="clr-namespace:CarouselViewDemos.Models"
              xmlns:viewmodels="clr-namespace:CarouselViewDemos.ViewModels"
              x:Class="CarouselViewDemos.Views.EmptyViewSwapPage"
-             Title="EmptyView (swap)"
+             Title="Swap EmptyViews"
              x:DataType="viewmodels:MonkeysViewModel">
     <ContentPage.BindingContext>
         <viewmodels:MonkeysViewModel />
@@ -12,76 +13,96 @@
 
     <ContentPage.Resources>
         <ContentView x:Key="BasicEmptyView">
-            <StackLayout>
+            <VerticalStackLayout Padding="24,48"
+                                 Spacing="6">
+                <Label Text="{x:Static local:MaterialIcons.Inbox}"
+                       Style="{StaticResource Icon}"
+                       FontSize="40"
+                       TextColor="{AppThemeBinding Light={StaticResource TextTertiaryLight}, Dark={StaticResource TextTertiaryDark}}"
+                       Margin="0,0,0,6" />
                 <Label Text="No items to display."
-                       Margin="10,25,10,10"
-                       FontAttributes="Bold"
-                       FontSize="18"
-                       HorizontalOptions="Fill"
+                       Style="{StaticResource Headline}"
                        HorizontalTextAlignment="Center" />
-            </StackLayout>
+            </VerticalStackLayout>
         </ContentView>
         <ContentView x:Key="AdvancedEmptyView">
-            <StackLayout>
+            <VerticalStackLayout Padding="24,48"
+                                 Spacing="6">
+                <Label Text="{x:Static local:MaterialIcons.SearchOff}"
+                       Style="{StaticResource Icon}"
+                       FontSize="40"
+                       TextColor="{AppThemeBinding Light={StaticResource TextTertiaryLight}, Dark={StaticResource TextTertiaryDark}}"
+                       Margin="0,0,0,6" />
                 <Label Text="No results matched your filter."
-                       Margin="10,25,10,10"
-                       FontAttributes="Bold"
-                       FontSize="18"
-                       HorizontalOptions="Fill"
+                       Style="{StaticResource Headline}"
                        HorizontalTextAlignment="Center" />
                 <Label Text="Try a broader filter?"
-                       FontAttributes="Italic"
-                       FontSize="12"
-                       HorizontalOptions="Fill"
+                       Style="{StaticResource Caption}"
                        HorizontalTextAlignment="Center" />
-            </StackLayout>
+            </VerticalStackLayout>
         </ContentView>
     </ContentPage.Resources>
 
-    <StackLayout Margin="20">
-        <SearchBar SearchCommand="{Binding FilterCommand}"
-                   SearchCommandParameter="{Binding x:DataType='SearchBar', Source={RelativeSource Self}, Path=Text}"
-                   Placeholder="Filter" />
-        <StackLayout Orientation="Horizontal">
-            <Label Text="Toggle EmptyViews" />
-            <Switch Toggled="OnEmptyViewSwitchToggled" />
-        </StackLayout>
-        <CarouselView x:Name="carouselView"
+    <Grid RowDefinitions="Auto,Auto,*"
+          Style="{StaticResource DemoLayout}">
+        <VerticalStackLayout Style="{StaticResource DemoHeader}">
+            <Label Text="Empty view" Style="{StaticResource Eyebrow}" />
+            <Label Text="Swap EmptyViews" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+            <Label Text="The code-behind sets the EmptyView to one of two views. Filter for &quot;xamarin&quot;, then flip the switch." Style="{StaticResource Lead}" />
+        </VerticalStackLayout>
+
+        <!-- Declared before the SearchBar so Android doesn't focus the SearchBar and open the keyboard on launch. -->
+        <CarouselView Grid.Row="2"
+                      x:Name="carouselView"
                       ItemsSource="{Binding Monkeys}">
             <CarouselView.ItemTemplate>
                 <DataTemplate x:DataType="models:Monkey">
-                    <StackLayout>
-                        <Border Stroke="DarkGray"
-                                StrokeShape="RoundRectangle 5"
-                                Margin="20"
-                                Padding="20"
+                    <Grid>
+                        <Border Style="{StaticResource ItemCard}"
                                 HeightRequest="360"
-                                HorizontalOptions="Center"
-                                VerticalOptions="Center">
-                            <StackLayout>
-                                <Label Text="{Binding Name}" 
-                                       FontAttributes="Bold"
-                                       FontSize="20"
-                                       HorizontalOptions="Center"
-                                       VerticalOptions="Center" />
-                                <Image Source="{Binding ImageUrl}" 
-                                       Aspect="AspectFill"
+                                VerticalOptions="Start">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Text="{Binding Name}"
+                                       Style="{StaticResource Title2}"
+                                       HorizontalTextAlignment="Center" />
+                                <Image Source="{Binding ImageUrl}"
                                        HeightRequest="150"
-                                       WidthRequest="150"
-                                       HorizontalOptions="Center" />
+                                       WidthRequest="150" />
                                 <Label Text="{Binding Location}"
-                                       HorizontalOptions="Center" />
+                                       Style="{StaticResource Caption}"
+                                       HorizontalTextAlignment="Center" />
                                 <Label Text="{Binding Details}"
-                                       FontAttributes="Italic"
-                                       HorizontalOptions="Center"
-                                       MaxLines="5"
+                                       Style="{StaticResource BodySecondary}"
+                                       HorizontalTextAlignment="Center"
+                                       MaxLines="3"
                                        LineBreakMode="TailTruncation" />
-                            </StackLayout>
+                            </VerticalStackLayout>
                         </Border>
-                    </StackLayout>
+                    </Grid>
                 </DataTemplate>
             </CarouselView.ItemTemplate>
         </CarouselView>
-    </StackLayout>
 
+        <Border Grid.Row="1"
+                Style="{StaticResource Card}">
+            <VerticalStackLayout Spacing="12">
+                <SearchBar SearchCommand="{Binding FilterCommand}"
+                           SearchCommandParameter="{Binding x:DataType='SearchBar', Source={RelativeSource Self}, Path=Text}"
+                           Placeholder="Filter" />
+                <Grid ColumnDefinitions="*,Auto"
+                      ColumnSpacing="12">
+                    <VerticalStackLayout Spacing="2"
+                                         VerticalOptions="Center">
+                        <Label Text="Toggle EmptyViews"
+                               Style="{StaticResource Body}" />
+                        <Label Text="Off: AdvancedEmptyView. On: BasicEmptyView."
+                               Style="{StaticResource Caption}" />
+                    </VerticalStackLayout>
+                    <Switch Grid.Column="1"
+                            Toggled="OnEmptyViewSwitchToggled"
+                            VerticalOptions="Center" />
+                </Grid>
+            </VerticalStackLayout>
+        </Border>
+    </Grid>
 </ContentPage>

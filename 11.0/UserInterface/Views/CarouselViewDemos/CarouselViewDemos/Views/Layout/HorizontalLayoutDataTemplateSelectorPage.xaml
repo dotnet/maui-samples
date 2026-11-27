@@ -1,92 +1,86 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:CarouselViewDemos.Controls"
              xmlns:models="clr-namespace:CarouselViewDemos.Models"
              xmlns:viewmodels="clr-namespace:CarouselViewDemos.ViewModels"
              x:Class="CarouselViewDemos.Views.HorizontalLayoutDataTemplateSelectorPage"
-             Title="Horizontal layout (DataTemplateSelector)"
+             Title="DataTemplateSelector"
              x:DataType="viewmodels:MonkeysViewModel">
+    <ContentPage.BindingContext>
+        <viewmodels:MonkeysViewModel />
+    </ContentPage.BindingContext>
+
     <ContentPage.Resources>
         <DataTemplate x:Key="AmericanMonkeyTemplate"
                       x:DataType="models:Monkey">
-            <StackLayout>
-                <Border Stroke="DarkGray"
-                        StrokeShape="RoundRectangle 5"
-                        Margin="20"
-                        Padding="20"
+            <Grid>
+                <Border Style="{StaticResource ItemCard}"
                         HeightRequest="360"
-                        HorizontalOptions="Center"
-                        VerticalOptions="Center">
-                    <StackLayout>
+                        VerticalOptions="Start">
+                    <VerticalStackLayout Spacing="10">
                         <Label Text="{Binding Name}"
-                               FontAttributes="Bold"
-                               FontSize="20"
-                               HorizontalOptions="Center"
-                               VerticalOptions="Center" />
+                               Style="{StaticResource Title2}"
+                               HorizontalTextAlignment="Center" />
                         <Image Source="{Binding ImageUrl}"
-                               Aspect="AspectFill"
                                HeightRequest="150"
-                               WidthRequest="150"
-                               HorizontalOptions="Center" />
+                               WidthRequest="150" />
                         <Label Text="{Binding Location}"
-                               HorizontalOptions="Center" />
+                               Style="{StaticResource Caption}"
+                               HorizontalTextAlignment="Center" />
                         <Label Text="{Binding Details}"
-                               FontAttributes="Italic"
-                               HorizontalOptions="Center"
-                               MaxLines="5"
+                               Style="{StaticResource BodySecondary}"
+                               HorizontalTextAlignment="Center"
+                               MaxLines="3"
                                LineBreakMode="TailTruncation" />
-                    </StackLayout>
+                    </VerticalStackLayout>
                 </Border>
-            </StackLayout>
+            </Grid>
         </DataTemplate>
-
         <DataTemplate x:Key="OtherMonkeyTemplate"
                       x:DataType="models:Monkey">
-            <StackLayout>
-                <Border Stroke="DarkGray"
-                        StrokeShape="RoundRectangle 5"
-                        Margin="20"
-                        Padding="20"
+            <Grid>
+                <Border Style="{StaticResource ItemCard}"
                         HeightRequest="360"
-                        HorizontalOptions="Center"
-                        VerticalOptions="Center">
-                    <StackLayout>
+                        VerticalOptions="Start">
+                    <VerticalStackLayout Spacing="10">
                         <Label Text="{Binding Name}"
-                               TextColor="Silver"
-                               FontAttributes="Bold"
-                               FontSize="20"
-                               HorizontalOptions="Center"
-                               VerticalOptions="Center" />
-                        <Image Source="{Binding ImageUrl}" 
-                               Aspect="AspectFill"
+                               Style="{StaticResource Title2}"
+                               TextColor="{AppThemeBinding Light={StaticResource TextTertiaryLight}, Dark={StaticResource TextTertiaryDark}}"
+                               HorizontalTextAlignment="Center" />
+                        <Image Source="{Binding ImageUrl}"
                                Opacity="0.5"
                                HeightRequest="150"
-                               WidthRequest="150"
-                               HorizontalOptions="Center" />
+                               WidthRequest="150" />
                         <Label Text="{Binding Location}"
-                               TextColor="Silver"
-                               HorizontalOptions="Center" />
+                               Style="{StaticResource Caption}"
+                               TextColor="{AppThemeBinding Light={StaticResource TextTertiaryLight}, Dark={StaticResource TextTertiaryDark}}"
+                               HorizontalTextAlignment="Center" />
                         <Label Text="{Binding Details}"
-                               TextColor="Silver"
-                               FontAttributes="Italic"
-                               HorizontalOptions="Center"
-                               MaxLines="5"
+                               Style="{StaticResource BodySecondary}"
+                               TextColor="{AppThemeBinding Light={StaticResource TextTertiaryLight}, Dark={StaticResource TextTertiaryDark}}"
+                               HorizontalTextAlignment="Center"
+                               MaxLines="3"
                                LineBreakMode="TailTruncation" />
-                    </StackLayout>
+                    </VerticalStackLayout>
                 </Border>
-            </StackLayout>
+            </Grid>
         </DataTemplate>
-
         <controls:MonkeyDataTemplateSelector x:Key="MonkeySelector"
                                              AmericanMonkey="{StaticResource AmericanMonkeyTemplate}"
                                              OtherMonkey="{StaticResource OtherMonkeyTemplate}" />
     </ContentPage.Resources>
 
-    <ContentPage.BindingContext>
-        <viewmodels:MonkeysViewModel />
-    </ContentPage.BindingContext>
+    <Grid RowDefinitions="Auto,*"
+          Style="{StaticResource DemoLayout}">
+        <VerticalStackLayout Style="{StaticResource DemoHeader}">
+            <Label Text="Layout" Style="{StaticResource Eyebrow}" />
+            <Label Text="DataTemplateSelector" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+            <Label Text="MonkeyDataTemplateSelector gives monkeys from the Americas the full card and all others a muted one." Style="{StaticResource Lead}" />
+        </VerticalStackLayout>
 
-    <CarouselView ItemsSource="{Binding Monkeys}"
-                  ItemTemplate="{StaticResource MonkeySelector}" />
+        <CarouselView Grid.Row="1"
+                      ItemsSource="{Binding Monkeys}"
+                      ItemTemplate="{StaticResource MonkeySelector}" />
+    </Grid>
 </ContentPage>

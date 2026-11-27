@@ -1,6 +1,7 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:CarouselViewDemos"
              xmlns:models="clr-namespace:CarouselViewDemos.Models"
              xmlns:viewmodels="clr-namespace:CarouselViewDemos.ViewModels"
              x:Class="CarouselViewDemos.Views.HorizontalSwipeItemsPage"
@@ -9,60 +10,79 @@
     <ContentPage.BindingContext>
         <viewmodels:MonkeysViewModel />
     </ContentPage.BindingContext>
-    <CarouselView x:Name="carouselView"
-                  ItemsSource="{Binding Monkeys}">
-        <CarouselView.ItemTemplate>
-            <DataTemplate x:DataType="models:Monkey">
-                <StackLayout>
-                    <Border Stroke="DarkGray"
-                            StrokeShape="RoundRectangle 5"
-                            Margin="20"
-                            Padding="20"
-                            HeightRequest="360"
-                            HorizontalOptions="Center"
-                            VerticalOptions="Center">
-                        <SwipeView>
+
+    <Grid RowDefinitions="Auto,*"
+          Style="{StaticResource DemoLayout}">
+        <VerticalStackLayout Style="{StaticResource DemoHeader}">
+            <Label Text="Swipe" Style="{StaticResource Eyebrow}" />
+            <Label Text="Swipe items" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+            <Label Text="Each card is a SwipeView. Swipe a card down to reveal Favorite, or up to reveal Delete." Style="{StaticResource Lead}" />
+        </VerticalStackLayout>
+
+        <CarouselView Grid.Row="1"
+                      x:Name="carouselView"
+                      ItemsSource="{Binding Monkeys}">
+            <CarouselView.ItemTemplate>
+                <DataTemplate x:DataType="models:Monkey">
+                    <Grid>
+                        <Border Style="{StaticResource ItemCard}"
+                                Padding="0"
+                                HeightRequest="360"
+                                VerticalOptions="Start">
+                            <SwipeView>
+                                <!-- Swipe down to reveal TopItems, swipe up to reveal BottomItems. -->
                                 <SwipeView.TopItems>
                                     <SwipeItems>
                                         <SwipeItem Text="Favorite"
-                                                   IconImageSource="favorite.png"
-                                                   BackgroundColor="LightGreen"
+                                                   BackgroundColor="{StaticResource DeepViolet}"
                                                    Command="{Binding x:DataType='viewmodels:MonkeysViewModel', Source={RelativeSource AncestorType={x:Type viewmodels:MonkeysViewModel}}, Path=FavoriteCommand}"
-                                                   CommandParameter="{Binding}" />
+                                                   CommandParameter="{Binding}">
+                                            <SwipeItem.IconImageSource>
+                                                <FontImageSource FontFamily="MaterialIcons"
+                                                                 Glyph="{x:Static local:MaterialIcons.Favorite}"
+                                                                 Color="{StaticResource White}" />
+                                            </SwipeItem.IconImageSource>
+                                        </SwipeItem>
                                     </SwipeItems>
                                 </SwipeView.TopItems>
                                 <SwipeView.BottomItems>
                                     <SwipeItems>
                                         <SwipeItem Text="Delete"
-                                                   IconImageSource="delete.png"
-                                                   BackgroundColor="LightPink"
+                                                   BackgroundColor="{StaticResource DeepRose}"
                                                    Command="{Binding x:DataType='viewmodels:MonkeysViewModel', Source={RelativeSource AncestorType={x:Type viewmodels:MonkeysViewModel}}, Path=DeleteCommand}"
-                                                   CommandParameter="{Binding}" />
+                                                   CommandParameter="{Binding}">
+                                            <SwipeItem.IconImageSource>
+                                                <FontImageSource FontFamily="MaterialIcons"
+                                                                 Glyph="{x:Static local:MaterialIcons.Delete}"
+                                                                 Color="{StaticResource White}" />
+                                            </SwipeItem.IconImageSource>
+                                        </SwipeItem>
                                     </SwipeItems>
                                 </SwipeView.BottomItems>
-                                <StackLayout>
-                                    <Label Text="{Binding Name}" 
-                                           FontAttributes="Bold"
-                                           FontSize="20"
-                                           HorizontalOptions="Center"
-                                           VerticalOptions="Center" />
-                                    <Image Source="{Binding ImageUrl}" 
-                                           Aspect="AspectFill"
+                                <!-- An opaque background hides the swipe items until the card is swiped. -->
+                                <VerticalStackLayout Padding="20"
+                                                     Spacing="10"
+                                                     Background="{AppThemeBinding Light={StaticResource ItemCardBrushLight}, Dark={StaticResource ItemCardBrushDark}}">
+                                    <Label Text="{Binding Name}"
+                                           Style="{StaticResource Title2}"
+                                           HorizontalTextAlignment="Center" />
+                                    <Image Source="{Binding ImageUrl}"
                                            HeightRequest="150"
-                                           WidthRequest="150"
-                                           HorizontalOptions="Center" />
+                                           WidthRequest="150" />
                                     <Label Text="{Binding Location}"
-                                           HorizontalOptions="Center" />
+                                           Style="{StaticResource Caption}"
+                                           HorizontalTextAlignment="Center" />
                                     <Label Text="{Binding Details}"
-                                           FontAttributes="Italic"
-                                           HorizontalOptions="Center"
-                                           MaxLines="5"
+                                           Style="{StaticResource BodySecondary}"
+                                           HorizontalTextAlignment="Center"
+                                           MaxLines="3"
                                            LineBreakMode="TailTruncation" />
-                                </StackLayout>
+                                </VerticalStackLayout>
                             </SwipeView>
                         </Border>
-                </StackLayout>
-            </DataTemplate>
-        </CarouselView.ItemTemplate>
-    </CarouselView>
+                    </Grid>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+    </Grid>
 </ContentPage>

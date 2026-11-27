@@ -1,53 +1,60 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models="clr-namespace:CarouselViewDemos.Models"
              xmlns:viewmodels="clr-namespace:CarouselViewDemos.ViewModels"
              x:Class="CarouselViewDemos.Views.IncrementalLoadingPage"
-             Title="Incremental loading on scroll"
+             Title="Incremental loading"
              x:DataType="viewmodels:AnimalsViewModel">
     <ContentPage.BindingContext>
         <viewmodels:AnimalsViewModel />
     </ContentPage.BindingContext>
-    <StackLayout Margin="10">
-        <Label Text="{Binding Animals.Count, StringFormat='Number of items: {0}'}" />
-        <CarouselView ItemsSource="{Binding Animals}"
+
+    <Grid RowDefinitions="Auto,Auto,*"
+          Style="{StaticResource DemoLayout}">
+        <VerticalStackLayout Style="{StaticResource DemoHeader}">
+            <Label Text="Scrolling" Style="{StaticResource Eyebrow}" />
+            <Label Text="Incremental loading" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+            <Label Text="RemainingItemsThreshold=&quot;2&quot; loads ten more animals when you're two items from the end. Keep swiping left." Style="{StaticResource Lead}" />
+        </VerticalStackLayout>
+
+        <Border Grid.Row="1"
+                Style="{StaticResource Hint}">
+            <Label Text="{Binding Animals.Count, StringFormat='Number of items: {0}'}"
+                   Style="{StaticResource HintLabel}" />
+        </Border>
+
+        <CarouselView Grid.Row="2"
+                      ItemsSource="{Binding Animals}"
                       RemainingItemsThreshold="2"
                       RemainingItemsThresholdReached="OnCarouselViewRemainingItemsThresholdReached"
                       RemainingItemsThresholdReachedCommand="{Binding LoadMoreDataCommand}">
             <CarouselView.ItemTemplate>
                 <DataTemplate x:DataType="models:Animal">
-                    <StackLayout>
-                        <Border Stroke="DarkGray"
-                                StrokeShape="RoundRectangle 5"
-                                Margin="20"
-                                Padding="20"
+                    <Grid>
+                        <Border Style="{StaticResource ItemCard}"
                                 HeightRequest="360"
-                                HorizontalOptions="Center"
-                                VerticalOptions="Center">
-                            <StackLayout>
-                                <Label Text="{Binding Name}" 
-                                       FontAttributes="Bold"
-                                       FontSize="20"
-                                       HorizontalOptions="Center"
-                                       VerticalOptions="Center" />
-                                <Image Source="{Binding ImageUrl}" 
-                                       Aspect="AspectFill"
+                                VerticalOptions="Start">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Text="{Binding Name}"
+                                       Style="{StaticResource Title2}"
+                                       HorizontalTextAlignment="Center" />
+                                <Image Source="{Binding ImageUrl}"
                                        HeightRequest="150"
-                                       WidthRequest="150"
-                                       HorizontalOptions="Center" />
+                                       WidthRequest="150" />
                                 <Label Text="{Binding Location}"
-                                       HorizontalOptions="Center" />
+                                       Style="{StaticResource Caption}"
+                                       HorizontalTextAlignment="Center" />
                                 <Label Text="{Binding Details}"
-                                       FontAttributes="Italic"
-                                       HorizontalOptions="Center"
-                                       MaxLines="5"
+                                       Style="{StaticResource BodySecondary}"
+                                       HorizontalTextAlignment="Center"
+                                       MaxLines="3"
                                        LineBreakMode="TailTruncation" />
-                            </StackLayout>
+                            </VerticalStackLayout>
                         </Border>
-                    </StackLayout>
+                    </Grid>
                 </DataTemplate>
             </CarouselView.ItemTemplate>
         </CarouselView>
-    </StackLayout>
+    </Grid>
 </ContentPage>

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:CarouselViewDemos.Controls"
@@ -10,48 +10,71 @@
     <ContentPage.BindingContext>
         <viewmodels:MonkeysViewModel />
     </ContentPage.BindingContext>
-    <StackLayout Margin="20">
-        <StackLayout Orientation="Horizontal"
-                     HorizontalOptions="Center">
-            <Label Text="SnapPointsType: "
-                   VerticalTextAlignment="Center" />
-            <controls:EnumPicker x:Name="snapPointsTypeEnumPicker"
-                                 EnumType="{x:Type SnapPointsType}"
-                                 SelectedIndex="2"
-                                 SelectedIndexChanged="OnSnapPointsTypeSelectedIndexChanged" />
-        </StackLayout>
-        <StackLayout Orientation="Horizontal"
-                     HorizontalOptions="Center">
-            <Label Grid.Row="1" 
-                   Text="SnapPointsAlignment: "
-                   VerticalTextAlignment="Center" />
-            <controls:EnumPicker x:Name="snapPointsAlignmentEnumPicker"
-                                 EnumType="{x:Type SnapPointsAlignment}"
-                                 SelectedIndex="1"
-                                 SelectedIndexChanged="OnSnapPointsAlignmentSelectedIndexChanged" />
-        </StackLayout>
-        <CarouselView x:Name="carouselView"
+
+    <Grid RowDefinitions="Auto,Auto,*"
+          Style="{StaticResource DemoLayout}">
+        <VerticalStackLayout Style="{StaticResource DemoHeader}">
+            <Label Text="Scrolling" Style="{StaticResource Eyebrow}" />
+            <Label Text="Snap points" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+            <Label Text="Choose a SnapPointsType and SnapPointsAlignment, then flick the carousel to see where it comes to rest." Style="{StaticResource Lead}" />
+        </VerticalStackLayout>
+
+        <!-- A negative margin extends the carousel past the page padding, so the peeking items reach the screen edges. -->
+        <CarouselView Grid.Row="2"
+                      x:Name="carouselView"
                       ItemsSource="{Binding Monkeys}"
-                      PeekAreaInsets="100">
+                      PeekAreaInsets="100"
+                      Margin="-20,0">
             <CarouselView.ItemTemplate>
                 <DataTemplate x:DataType="models:Monkey">
-                    <StackLayout>
-                        <Border Stroke="DarkGray"
-                                StrokeShape="RoundRectangle 5"
-                                Margin="20"
-                                Padding="20"
-                                HeightRequest="360"
-                                HorizontalOptions="Center"
-                                VerticalOptions="Center">
-                            <Image Source="{Binding ImageUrl}" 
-                                   Aspect="AspectFit"
-                                   HeightRequest="100"
-                                   WidthRequest="100"
-                                   HorizontalOptions="Center" />
+                    <Grid Padding="6,0">
+                        <Border Style="{StaticResource ItemCard}"
+                                HeightRequest="180"
+                                VerticalOptions="Start">
+                            <VerticalStackLayout Spacing="8"
+                                                 VerticalOptions="Center">
+                                <Image Source="{Binding ImageUrl}"
+                                       HeightRequest="100"
+                                       WidthRequest="100" />
+                                <Label Text="{Binding Name}"
+                                       Style="{StaticResource Caption}"
+                                       HorizontalTextAlignment="Center"
+                                       LineBreakMode="TailTruncation" />
+                            </VerticalStackLayout>
                         </Border>
-                    </StackLayout>
+                    </Grid>
                 </DataTemplate>
             </CarouselView.ItemTemplate>
         </CarouselView>
-    </StackLayout>
+
+        <Border Grid.Row="1"
+                Style="{StaticResource Card}">
+            <VerticalStackLayout Spacing="12">
+                <Grid ColumnDefinitions="*,Auto"
+                      ColumnSpacing="12">
+                    <Label Text="SnapPointsType"
+                           Style="{StaticResource Body}"
+                           VerticalOptions="Center" />
+                    <controls:EnumPicker x:Name="snapPointsTypeEnumPicker"
+                                         Grid.Column="1"
+                                         EnumType="{x:Type SnapPointsType}"
+                                         SelectedIndex="2"
+                                         SelectedIndexChanged="OnSnapPointsTypeSelectedIndexChanged"
+                                         WidthRequest="150" />
+                </Grid>
+                <Grid ColumnDefinitions="*,Auto"
+                      ColumnSpacing="12">
+                    <Label Text="SnapPointsAlignment"
+                           Style="{StaticResource Body}"
+                           VerticalOptions="Center" />
+                    <controls:EnumPicker x:Name="snapPointsAlignmentEnumPicker"
+                                         Grid.Column="1"
+                                         EnumType="{x:Type SnapPointsAlignment}"
+                                         SelectedIndex="1"
+                                         SelectedIndexChanged="OnSnapPointsAlignmentSelectedIndexChanged"
+                                         WidthRequest="150" />
+                </Grid>
+            </VerticalStackLayout>
+        </Border>
+    </Grid>
 </ContentPage>

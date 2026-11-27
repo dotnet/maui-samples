@@ -31,10 +31,10 @@ namespace CarouselViewDemos.Views
 
         void UpdateLabels()
         {
-            previousItemLabel.Text = $"Previous item: {previousItem?.Name}";
-            currentItemLabel.Text = $"Current item: {currentItem?.Name}";
-            previousItemPositionLabel.Text = $"Previous item position: {previousItemPosition}";
-            currentItemPositionLabel.Text = $"Current item position: {currentItemPosition}";
+            previousItemLabel.Text = previousItem?.Name ?? "None";
+            currentItemLabel.Text = currentItem?.Name ?? "None";
+            previousItemPositionLabel.Text = previousItemPosition.ToString();
+            currentItemPositionLabel.Text = currentItemPosition.ToString();
         }
     }
 }
