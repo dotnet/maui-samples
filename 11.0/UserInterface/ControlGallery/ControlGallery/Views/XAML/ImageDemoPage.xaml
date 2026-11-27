@@ -1,7 +1,23 @@
-<?xml version="1.0" ?><ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ControlGallery.Views.XAML.ImageDemoPage" Title="Image Demo">
-    <Grid RowSpacing="6" RowDefinitions="Auto,*">
-        <Label Text="Image" FontSize="50" FontAttributes="Bold" HorizontalOptions="Center" Grid.Row="0"/>
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ControlGallery.Views.XAML.ImageDemoPage"
+             Title="Image">
+    <Grid RowDefinitions="Auto,Auto"
+          Style="{StaticResource DemoLayout}">
+        <VerticalStackLayout Style="{StaticResource DemoHeader}">
+            <Label Text="Display" Style="{StaticResource Eyebrow}" />
+            <Label Text="Image" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+            <Label Text="Display an image from a file, a URI, a stream, or an embedded resource." Style="{StaticResource Lead}" />
+        </VerticalStackLayout>
 
-        <Image Source="https://aka.ms/campus.jpg" HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="1"/>
+        <Border Grid.Row="1"
+                Style="{StaticResource DemoSurface}"
+                Padding="0">
+            <Image Source="https://aka.ms/campus.jpg"
+                   Aspect="AspectFill"
+                   HeightRequest="260"
+                   SemanticProperties.Description="Microsoft campus" />
+        </Border>
     </Grid>
 </ContentPage>

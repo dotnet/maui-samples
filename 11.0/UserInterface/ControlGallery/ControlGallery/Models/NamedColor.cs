@@ -25,7 +25,7 @@ namespace ControlGallery.Models
         {
             get
             {
-                return _color.Blue;
+                return _color.Green;
             }
         }
 

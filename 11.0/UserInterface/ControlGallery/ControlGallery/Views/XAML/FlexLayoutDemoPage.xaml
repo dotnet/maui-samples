@@ -1,95 +1,100 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ControlGallery.Views.XAML.FlexLayoutDemoPage"
-             Title="FlexLayout Demo">
-    <ContentPage.Resources>
-        <Style TargetType="Border">
-            <Setter Property="BackgroundColor" Value="LightYellow" />
-            <Setter Property="Stroke" Value="Blue" />
-            <Setter Property="Margin" Value="10" />
-            <Setter Property="Padding" Value="10" />
-            <Setter Property="StrokeShape" Value="RoundRectangle 15" />
-        </Style>
+             Title="FlexLayout">
+    <Grid RowDefinitions="Auto,*"
+          Style="{StaticResource DemoLayout}"
+          Padding="20,8,20,0">
+        <VerticalStackLayout Style="{StaticResource DemoHeader}">
+            <Label Text="Layouts" Style="{StaticResource Eyebrow}" />
+            <Label Text="FlexLayout" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+            <Label Text="Arrange children in a row or column that can wrap. Each card is also a FlexLayout. Scroll sideways to see more." Style="{StaticResource Lead}" />
+        </VerticalStackLayout>
 
-        <Style TargetType="Label">
-            <Setter Property="Margin" Value="0, 4" />
-        </Style>
+        <ScrollView Grid.Row="1"
+                    Orientation="Both"
+                    Margin="-20,0">
+            <!-- Implicit styles scoped to this ScrollView. They build on the app's
+                 design system and set the FlexLayout attached properties for every card. -->
+            <ScrollView.Resources>
+                <Style TargetType="Border" BasedOn="{StaticResource Card}">
+                    <Setter Property="Margin" Value="8" />
+                    <Setter Property="Padding" Value="16" />
+                    <Setter Property="StrokeShape" Value="RoundRectangle 20" />
+                </Style>
 
-        <Style x:Key="headerLabel" TargetType="Label">
-            <Setter Property="Margin" Value="0, 8" />
-            <Setter Property="FontSize" Value="20" />
-            <Setter Property="TextColor" Value="Blue" />
-        </Style>
+                <Style TargetType="Label" BasedOn="{StaticResource Body}">
+                    <Setter Property="Margin" Value="0,4" />
+                    <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextSecondaryLight}, Dark={StaticResource TextSecondaryDark}}" />
+                </Style>
 
-        <Style TargetType="Image">
-            <Setter Property="FlexLayout.Order" Value="-1" />
-            <Setter Property="FlexLayout.AlignSelf" Value="Center" />
-        </Style>
+                <Style x:Key="headerLabel" TargetType="Label" BasedOn="{StaticResource Title2}">
+                    <Setter Property="Margin" Value="0,8" />
+                    <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextPrimaryLight}, Dark={StaticResource TextPrimaryDark}}" />
+                </Style>
 
-        <Style TargetType="Button">
-            <Setter Property="Text" Value="LEARN MORE" />
-            <Setter Property="FontSize" Value="20" />
-            <Setter Property="TextColor" Value="White" />
-            <Setter Property="BackgroundColor" Value="Green" />
-            <Setter Property="CornerRadius" Value="20" />
-        </Style>
-    </ContentPage.Resources>
+                <Style TargetType="Image">
+                    <Setter Property="FlexLayout.Order" Value="-1" />
+                    <Setter Property="FlexLayout.AlignSelf" Value="Center" />
+                </Style>
 
-    <ScrollView Orientation="Both">
-        <FlexLayout>
-            <Border WidthRequest="300"
-                    HeightRequest="480">
+                <Style TargetType="Button" BasedOn="{StaticResource PrimaryButton}">
+                    <Setter Property="Text" Value="Learn more" />
+                </Style>
+            </ScrollView.Resources>
 
-                <FlexLayout Direction="Column">
-                    <Label Text="Seated Monkey"
-                           Style="{StaticResource headerLabel}" />
-                    <Label Text="This monkey is laid back and relaxed, and likes to watch the world go by." />
-                    <Label Text="  &#x2022; Doesn't make a lot of noise" />
-                    <Label Text="  &#x2022; Often smiles mysteriously" />
-                    <Label Text="  &#x2022; Sleeps sitting up" />
-                    <Image Source="seatedmonkey.jpg"
-                           WidthRequest="180"
-                           HeightRequest="180" />
-                    <Label FlexLayout.Grow="1" />
-                    <Button />
-                </FlexLayout>
-            </Border>
+            <FlexLayout Padding="12,0">
+                <Border WidthRequest="300"
+                        HeightRequest="530">
+                    <FlexLayout Direction="Column">
+                        <Label Text="Seated Monkey"
+                               Style="{StaticResource headerLabel}" />
+                        <Label Text="This monkey is laid back and relaxed, and likes to watch the world go by." />
+                        <Label Text="&#x2022; Doesn't make a lot of noise" />
+                        <Label Text="&#x2022; Often smiles mysteriously" />
+                        <Label Text="&#x2022; Sleeps sitting up" />
+                        <Image Source="seatedmonkey.jpg"
+                               WidthRequest="180"
+                               HeightRequest="180" />
+                        <Label FlexLayout.Grow="1" />
+                        <Button />
+                    </FlexLayout>
+                </Border>
 
-            <Border WidthRequest="300"
-                    HeightRequest="480">
+                <Border WidthRequest="300"
+                        HeightRequest="530">
+                    <FlexLayout Direction="Column">
+                        <Label Text="Banana Monkey"
+                               Style="{StaticResource headerLabel}" />
+                        <Label Text="Watch this monkey eat a giant banana." />
+                        <Label Text="&#x2022; More fun than a barrel of monkeys" />
+                        <Label Text="&#x2022; Banana not included" />
+                        <Image Source="banana.jpg"
+                               WidthRequest="240"
+                               HeightRequest="180" />
+                        <Label FlexLayout.Grow="1" />
+                        <Button />
+                    </FlexLayout>
+                </Border>
 
-                <FlexLayout Direction="Column">
-                    <Label Text="Banana Monkey"
-                           Style="{StaticResource headerLabel}" />
-                    <Label Text="Watch this monkey eat a giant banana." />
-                    <Label Text="  &#x2022; More fun than a barrel of monkeys" />
-                    <Label Text="  &#x2022; Banana not included" />
-                    <Image Source="banana.jpg"
-                           WidthRequest="240"
-                           HeightRequest="180" />
-                    <Label FlexLayout.Grow="1" />
-                    <Button />
-                </FlexLayout>
-            </Border>
-
-            <Border WidthRequest="300"
-                    HeightRequest="480">
-
-                <FlexLayout Direction="Column">
-                    <Label Text="Face-Palm Monkey"
-                           Style="{StaticResource headerLabel}" />
-                    <Label Text="This monkey reacts appropriately to ridiculous assertions and actions." />
-                    <Label Text="  &#x2022; Cynical but not unfriendly" />
-                    <Label Text="  &#x2022; Seven varieties of grimaces" />
-                    <Label Text="  &#x2022; Doesn't laugh at your jokes" />
-                    <Image Source="facepalm.jpg"
-                           WidthRequest="180"
-                           HeightRequest="180" />
-                    <Label FlexLayout.Grow="1" />
-                    <Button />
-                </FlexLayout>
-            </Border>
-        </FlexLayout>
-    </ScrollView>
+                <Border WidthRequest="300"
+                        HeightRequest="530">
+                    <FlexLayout Direction="Column">
+                        <Label Text="Face-Palm Monkey"
+                               Style="{StaticResource headerLabel}" />
+                        <Label Text="This monkey reacts appropriately to ridiculous assertions and actions." />
+                        <Label Text="&#x2022; Cynical but not unfriendly" />
+                        <Label Text="&#x2022; Seven varieties of grimaces" />
+                        <Label Text="&#x2022; Doesn't laugh at your jokes" />
+                        <Image Source="facepalm.jpg"
+                               WidthRequest="180"
+                               HeightRequest="180" />
+                        <Label FlexLayout.Grow="1" />
+                        <Button />
+                    </FlexLayout>
+                </Border>
+            </FlexLayout>
+        </ScrollView>
+    </Grid>
 </ContentPage>

@@ -1,7 +1,19 @@
-<?xml version="1.0" ?><ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ControlGallery.Views.XAML.EditorDemoPage" Title="Editor">
-    <Grid RowSpacing="6" RowDefinitions="Auto,*">
-        <Label Text="Editor" FontSize="50" FontAttributes="Bold" HorizontalOptions="Center" Grid.Row="0"/>
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ControlGallery.Views.XAML.EditorDemoPage"
+             Title="Editor">
+    <Grid RowDefinitions="Auto,*"
+          Style="{StaticResource DemoLayout}">
+        <VerticalStackLayout Style="{StaticResource DemoHeader}">
+            <Label Text="Input" Style="{StaticResource Eyebrow}" />
+            <Label Text="Editor" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+            <Label Text="Edit multiple lines of text." Style="{StaticResource Lead}" />
+        </VerticalStackLayout>
 
-        <Editor VerticalOptions="Fill" Margin="10" Grid.Row="1"/>
+        <Border Grid.Row="1"
+                Style="{StaticResource DemoSurface}">
+            <Editor Placeholder="Type as many lines as you like." />
+        </Border>
     </Grid>
 </ContentPage>

@@ -1,18 +1,24 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ControlGallery.Views.XAML.PolygonDemoPage"
-             Title="Polygon Demo">
-    <StackLayout>
-        <Label Text="Polygon"
-               FontSize="50"
-               FontAttributes="Bold"
-               HorizontalOptions="Center" />
-        <Polygon Points="0 48, 0 144, 96 150, 100 0, 192 0, 192 96, 50 96, 48 192, 150 200 144 48"
-                 Fill="Blue"
-                 Stroke="Red"
-                 StrokeThickness="3"
-                 HorizontalOptions="Center" />
-    </StackLayout>
-</ContentPage>
+             Title="Polygon">
+    <Grid RowDefinitions="Auto,Auto"
+          Style="{StaticResource DemoLayout}">
+        <VerticalStackLayout Style="{StaticResource DemoHeader}">
+            <Label Text="Shapes &amp; graphics" Style="{StaticResource Eyebrow}" />
+            <Label Text="Polygon" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+            <Label Text="Draw a closed shape from a series of points." Style="{StaticResource Lead}" />
+        </VerticalStackLayout>
 
+        <Border Grid.Row="1"
+                Style="{StaticResource DemoSurface}">
+            <Polygon Points="0 48, 0 144, 96 150, 100 0, 192 0, 192 96, 50 96, 48 192, 150 200 144 48"
+                     Fill="{StaticResource Violet}"
+                     Stroke="{StaticResource Amber}"
+                     StrokeThickness="3"
+                     HorizontalOptions="Center"
+                     VerticalOptions="Center" />
+        </Border>
+    </Grid>
+</ContentPage>

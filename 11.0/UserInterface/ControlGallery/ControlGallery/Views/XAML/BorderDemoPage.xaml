@@ -1,25 +1,32 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ControlGallery.Views.XAML.BorderDemoPage"
-             Title="Border Demo">
-    <VerticalStackLayout Spacing="6">
-        <Label Text="Border"
-               FontSize="50"
-               FontAttributes="Bold"
-               HorizontalOptions="Center" />
-        <Border Stroke="#C49B33"
-                StrokeThickness="4"
-                Background="#2B0B98"
-                Padding="16,8"
-                HorizontalOptions="Center">
-            <Border.StrokeShape>
-                <RoundRectangle CornerRadius="40,0,0,40" />
-            </Border.StrokeShape>
-            <Label Text=".NET MAUI"
-                   TextColor="White"
-                   FontSize="18"
-                   FontAttributes="Bold" />
+             Title="Border">
+    <Grid RowDefinitions="Auto,Auto"
+          Style="{StaticResource DemoLayout}">
+        <VerticalStackLayout Style="{StaticResource DemoHeader}">
+            <Label Text="Layouts" Style="{StaticResource Eyebrow}" />
+            <Label Text="Border" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+            <Label Text="Draw a border, background, or shape around a single child." Style="{StaticResource Lead}" />
+        </VerticalStackLayout>
+
+        <Border Grid.Row="1"
+                Style="{StaticResource DemoSurface}">
+            <Border Stroke="{StaticResource Amber}"
+                    StrokeThickness="4"
+                    Background="{StaticResource Violet}"
+                    Padding="20,10"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="40,0,0,40" />
+                </Border.StrokeShape>
+                <Label Text=".NET MAUI"
+                       TextColor="White"
+                       FontSize="18"
+                       FontFamily="InterBold" />
+            </Border>
         </Border>
-    </VerticalStackLayout>
+    </Grid>
 </ContentPage>

@@ -1,21 +1,53 @@
-<?xml version="1.0" ?><ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:models="clr-namespace:ControlGallery.Models" xmlns:views="clr-namespace:ControlGallery.Views.XAML" x:Class="ControlGallery.Views.XAML.CarouselViewDemoPage" Title="CarouselView Demo" x:DataType="views:CarouselViewDemoPage">
-    <StackLayout Margin="20">
-        <Label Text="CarouselView" FontSize="50" FontAttributes="Bold" HorizontalOptions="Center"/>
-        <CarouselView ItemsSource="{Binding Monkeys}">
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:ControlGallery.Models"
+             xmlns:views="clr-namespace:ControlGallery.Views.XAML"
+             x:Class="ControlGallery.Views.XAML.CarouselViewDemoPage"
+             Title="CarouselView"
+             x:DataType="views:CarouselViewDemoPage">
+    <Grid RowDefinitions="Auto,*"
+          Style="{StaticResource DemoLayout}">
+        <VerticalStackLayout Style="{StaticResource DemoHeader}">
+            <Label Text="Collections" Style="{StaticResource Eyebrow}" />
+            <Label Text="CarouselView" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+            <Label Text="Present data in a scrollable layout. Swipe to move between items." Style="{StaticResource Lead}" />
+        </VerticalStackLayout>
+
+        <!-- The negative margin lets the carousel run to the edges of the screen. -->
+        <CarouselView Grid.Row="1"
+                      ItemsSource="{Binding Animals}"
+                      PeekAreaInsets="28"
+                      Margin="-20,0">
             <CarouselView.ItemTemplate>
-                <DataTemplate x:DataType="models:Monkey">
-                    <Grid RowSpacing="6" RowDefinitions="*">
-                        <Border Stroke="DarkGray" StrokeShape="RoundRectangle 5" Margin="20" Padding="20" HeightRequest="300" HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="0">
-                            <StackLayout>
-                                <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="20" HorizontalOptions="Center" VerticalOptions="Center"/>
-                                <Image Source="{Binding ImageUrl}" Aspect="AspectFill" HeightRequest="150" WidthRequest="150" HorizontalOptions="Center"/>
-                                <Label Text="{Binding Location}" HorizontalOptions="Center"/>
-                                <Label Text="{Binding Details}" FontAttributes="Italic" HorizontalOptions="Center" MaxLines="5" LineBreakMode="TailTruncation"/>
-                            </StackLayout>
-                        </Border>
-                    </Grid>
+                <DataTemplate x:DataType="models:Animal">
+                    <Border Style="{StaticResource Card}"
+                            Padding="0"
+                            Margin="6,0"
+                            VerticalOptions="Start">
+                        <Grid RowDefinitions="200,Auto">
+                            <Grid Style="{StaticResource ArtworkBackdrop}">
+                                <Image Source="{Binding Image}"
+                                       HeightRequest="128"
+                                       WidthRequest="128"
+                                       AutomationProperties.IsInAccessibleTree="False" />
+                            </Grid>
+                            <VerticalStackLayout Grid.Row="1"
+                                                 Padding="20"
+                                                 Spacing="6">
+                                <Label Text="{Binding Name}"
+                                       Style="{StaticResource Title2}" />
+                                <Label Text="{Binding Location}"
+                                       Style="{StaticResource Eyebrow}" />
+                                <Label Text="{Binding Details}"
+                                       Style="{StaticResource BodySecondary}"
+                                       MaxLines="5"
+                                       LineBreakMode="TailTruncation" />
+                            </VerticalStackLayout>
+                        </Grid>
+                    </Border>
                 </DataTemplate>
             </CarouselView.ItemTemplate>
         </CarouselView>
-    </StackLayout>
+    </Grid>
 </ContentPage>
