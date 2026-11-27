@@ -16,11 +16,19 @@ The .NET Multi-platform App UI (.NET MAUI) `CollectionView` is a view for presen
 
 This sample demonstrates how to use the .NET MAUI `CollectionView`: layouts, spacing, item sizing, selection, empty views, grouping, pull to refresh, headers and footers, scrolling, and swipe actions.
 
-The home page groups the demos by category, and you can search or filter them. Each demo page names the API it uses, then shows the `CollectionView` in a card, in light and dark themes.
+The home page groups the demos by category, and you can search or filter them. Each demo page names the API it uses, then shows the `CollectionView` in a card, in light and dark themes. The screenshots below follow your GitHub theme.
 
-![The home page in light and dark themes on iOS and Android](images/home.png)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="images/home-dark.png">
+  <source media="(prefers-color-scheme: light)" srcset="images/home-light.png">
+  <img alt="The home page, vertical grid, and grouped list on iOS and Android" src="images/home-light.png">
+</picture>
 
-![The selection, grouping, empty view, and swipe pages](images/demo-pages.png)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="images/demo-pages-dark.png">
+  <source media="(prefers-color-scheme: light)" srcset="images/demo-pages-light.png">
+  <img alt="The multiple selection, grouped list, empty view, and swipe pages" src="images/demo-pages-light.png">
+</picture>
 
 For more information about this sample, see [.NET MAUI CollectionView](https://docs.microsoft.com/dotnet/maui/user-interface/controls/collectionview/).
 
