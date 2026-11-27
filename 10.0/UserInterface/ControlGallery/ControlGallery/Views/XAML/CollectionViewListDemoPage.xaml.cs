@@ -3,9 +3,9 @@ using Microsoft.Maui.Controls;
 
 namespace ControlGallery.Views.XAML
 {
-    public partial class ListViewDemoPage : ContentPage
+    public partial class CollectionViewListDemoPage : ContentPage
     {
-        public ListViewDemoPage()
+        public CollectionViewListDemoPage()
         {
             InitializeComponent();
         }

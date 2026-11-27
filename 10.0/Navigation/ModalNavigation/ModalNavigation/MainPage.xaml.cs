@@ -12,15 +12,15 @@ namespace ModalNavigation;
 			InitializeComponent ();
 
 			SetupData ();
-			listView.ItemsSource = contacts;
+			collectionView.ItemsSource = contacts;
 		}
 
-		async void OnItemSelected (object sender, SelectedItemChangedEventArgs e)
+		async void OnSelectionChanged (object sender, SelectionChangedEventArgs e)
 		{
-			if (listView.SelectedItem != null) {
+			if (e.CurrentSelection.FirstOrDefault() is Contact contact) {
 				var detailPage = new DetailPage ();
-				detailPage.BindingContext = e.SelectedItem as Contact;
-				listView.SelectedItem = null;
+				detailPage.BindingContext = contact;
+				collectionView.SelectedItem = null;
 				await Navigation.PushModalAsync (detailPage);
 			}
 		}
@@ -60,6 +60,5 @@ namespace ModalNavigation;
 			});
 		}
 	}
-
 
 

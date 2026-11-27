@@ -3,8 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MarkupExtensions.ArrayDemoPage"
              Title="x:Array Demo Page">
-    <ListView Margin="10">
-        <ListView.ItemsSource>
+    <CollectionView Margin="10"
+                    SelectionMode="Single">
+        <CollectionView.ItemsSource>
             <x:Array Type="{x:Type Color}">
                 <Color>Aqua</Color>
                 <Color>Black</Color>
@@ -24,14 +25,18 @@
                 <Color>White</Color>
                 <Color>Yellow</Color>
             </x:Array>
-        </ListView.ItemsSource>
-        <ListView.ItemTemplate>
+        </CollectionView.ItemsSource>
+        <CollectionView.ItemTemplate>
             <DataTemplate x:DataType="Color">
-                <ViewCell>
+                <Grid HeightRequest="44"
+                      RowDefinitions="*,1">
                     <BoxView Color="{Binding}"
                              Margin="3" />
-                </ViewCell>
+                    <BoxView Grid.Row="1"
+                             Color="#E0E0E0"
+                             HeightRequest="1" />
+                </Grid>
             </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
 </ContentPage>        

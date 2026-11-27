@@ -3,7 +3,7 @@ using Microsoft.Maui.Graphics;
 
 namespace ControlGallery.Models
 {
-    // Used in CollectionViewDemoPage and ListViewDemoPage
+    // Used in CollectionViewDemoPage and CollectionViewListDemoPage
     public class Person
     {
         public Person()

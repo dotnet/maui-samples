@@ -30,7 +30,7 @@
             </StackLayout>
 
             <StackLayout Padding="0,10">
-                <Label Text="x:Array Demo - Use an array to fill a ListView" FontSize="Small" />
+                <Label Text="x:Array Demo - Use an array to fill a CollectionView" FontSize="Small" />
                 <Button Text="Navigate"
                     Command="{Binding NavigateCommand}"
                     CommandParameter="{x:Type local:ArrayDemoPage}" />

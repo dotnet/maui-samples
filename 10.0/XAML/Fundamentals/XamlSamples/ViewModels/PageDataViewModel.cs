@@ -47,8 +47,8 @@
                 new PageDataViewModel(typeof(SliderTransformsPage), "Slider Transforms",
                                       "Use Sliders with reverse bindings"),
 
-                new PageDataViewModel(typeof(ListViewDemoPage), "ListView Demo",
-                                      "Use a ListView with data bindings"),
+                new PageDataViewModel(typeof(CollectionViewDemoPage), "CollectionView Demo",
+                                      "Use a CollectionView with data bindings"),
 
                 // Part 5. From Data Bindings to MVVM
                 new PageDataViewModel(typeof(OneShotDateTimePage), "One-Shot DateTime",

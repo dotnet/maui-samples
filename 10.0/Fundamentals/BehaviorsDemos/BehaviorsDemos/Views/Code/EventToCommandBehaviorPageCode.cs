@@ -6,36 +6,62 @@
         {
             BindingContext = new HomePageViewModel();
 
-            var listView = new ListView();
-            listView.SetBinding(ItemsView<Cell>.ItemsSourceProperty, static (HomePageViewModel vm) => vm.People);
-            listView.ItemTemplate = new DataTemplate(() =>
+            var collectionView = new CollectionView
             {
-                var textCell = new TextCell();
-                textCell.SetBinding(TextCell.TextProperty, static (Person person) => person.Name);
-                return textCell;
+                SelectionMode = SelectionMode.Single
+            };
+            collectionView.SetBinding(ItemsView.ItemsSourceProperty, static (HomePageViewModel vm) => vm.People);
+            collectionView.ItemTemplate = new DataTemplate(() =>
+            {
+                var nameLabel = new Label { Padding = 10 };
+                nameLabel.SetBinding(Label.TextProperty, static (Person person) => person.Name);
+
+                var divider = new BoxView
+                {
+                    Background = Colors.LightGray,
+                    HeightRequest = 1
+                };
+
+                var itemLayout = new Grid
+                {
+                    RowDefinitions =
+                    {
+                        new RowDefinition(GridLength.Auto),
+                        new RowDefinition(1)
+                    }
+                };
+                itemLayout.Add(nameLabel);
+                itemLayout.Add(divider, row: 1);
+                return itemLayout;
             });
-            listView.Behaviors.Add(new EventToCommandBehavior
+            collectionView.Behaviors.Add(new EventToCommandBehavior
             {
-                EventName = "ItemSelected",
+                EventName = "SelectionChanged",
                 Command = ((HomePageViewModel)BindingContext).OutputAgeCommand,
-                Converter = new SelectedItemEventArgsToSelectedItemConverter()
+                Converter = new SelectionChangedEventArgsToSelectedItemConverter()
             });
 
             var selectedItemLabel = new Label();
             selectedItemLabel.SetBinding(Label.TextProperty, static (HomePageViewModel vm) => vm.SelectedItemText);
-            Content = new StackLayout
+            var layout = new Grid
             {
                 Margin = new Thickness(20),
-                Children = {
-                    new Label {
-                        Text = "Behaviors Demo",
-                        FontAttributes = FontAttributes.Bold,
-                        HorizontalOptions = LayoutOptions.Center
-                    },
-                    listView,
-                    selectedItemLabel
+                RowDefinitions =
+                {
+                    new RowDefinition(GridLength.Auto),
+                    new RowDefinition(GridLength.Star),
+                    new RowDefinition(GridLength.Auto)
                 }
             };
+            layout.Add(new Label
+            {
+                Text = "Behaviors Demo",
+                FontAttributes = FontAttributes.Bold,
+                HorizontalOptions = LayoutOptions.Center
+            });
+            layout.Add(collectionView, row: 1);
+            layout.Add(selectedItemLabel, row: 2);
+            Content = layout;
         }
     }
 }

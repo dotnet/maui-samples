@@ -4,13 +4,23 @@
              x:Class="XamlSamples.MainPage"
 			 Padding="5,0"
 			 Title="XAML Samples">
-	<ListView ItemsSource="{x:Static local:PageDataViewModel.All}"
-			  ItemSelected="OnListViewItemSelected">
-		<ListView.ItemTemplate>
+	<CollectionView ItemsSource="{x:Static local:PageDataViewModel.All}"
+	                SelectionMode="Single"
+	                SelectionChanged="OnSelectionChanged">
+		<CollectionView.ItemTemplate>
 			<DataTemplate x:DataType="local:PageDataViewModel">
-				<TextCell Text="{Binding Title}"
-                          Detail="{Binding Description}" />
+				<Grid Padding="10"
+				      RowDefinitions="Auto,Auto,1">
+					<Label Text="{Binding Title}"
+					       FontAttributes="Bold" />
+					<Label Grid.Row="1"
+					       Text="{Binding Description}"
+					       FontSize="12" />
+					<BoxView Grid.Row="2"
+					         Color="#E0E0E0"
+					         HeightRequest="1" />
+				</Grid>
 			</DataTemplate>
-		</ListView.ItemTemplate>
-	</ListView>
+		</CollectionView.ItemTemplate>
+	</CollectionView>
 </ContentPage>

@@ -5,23 +5,15 @@
              x:Class="DataBindingDemos.MonkeysPage"
              Title="Monkeys"
              x:DataType="local:MonkeysViewModel">
-    <StackLayout Margin="20">
-        <ListView ItemsSource="{Binding Monkeys}" 
-                  HasUnevenRows="true" 
-                  ItemTapped="OnListViewItemTapped" 
-                  ItemSelected="OnListViewItemSelected">
-            <ListView.ItemTemplate>
+    <Grid Margin="20">
+        <CollectionView ItemsSource="{Binding Monkeys}"
+                        SelectionMode="Single"
+                        SelectionChanged="OnCollectionViewSelectionChanged">
+            <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="local:Monkey">
-                    <ViewCell>
-                        <Grid Padding="10">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="*" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
+                    <Grid Padding="10"
+                          RowDefinitions="Auto,Auto,1"
+                          ColumnDefinitions="Auto,*">
                             <Image Grid.RowSpan="2" 
                                    Source="{Binding ImageUrl, TargetNullValue={StaticResource fallbackImageUrl}}" 
                                    Aspect="AspectFill" 
@@ -35,10 +27,13 @@
                                    Text="{Binding Location, TargetNullValue={StaticResource locationUnknown}}" 
                                    VerticalOptions="End" 
                                    Style="{DynamicResource SubtitleTextStyle}" />
-                        </Grid>
-                    </ViewCell>
+                        <BoxView Grid.Row="2"
+                                 Grid.ColumnSpan="2"
+                                 Color="#E0E0E0"
+                                 HeightRequest="1" />
+                    </Grid>
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </StackLayout>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
 </ContentPage>

@@ -136,7 +136,7 @@
 
             <!-- EntryCell -->
             <StackLayout Padding="0,5">
-                <Label Text="EntryCell - Display an Entry in a ListView or TableView" FontSize="Medium" />
+                <Label Text="EntryCell - Display an Entry in a TableView" FontSize="Medium" />
                 <Button Text="EntryCell"
                     Command="{Binding NavigateCommand}"
                     CommandParameter="{x:Type views:EntryCellDemoPage}" />
@@ -192,7 +192,7 @@
 
             <!-- ImageCell -->
             <StackLayout Padding="0,5">
-                <Label Text="ImageCell - Display a bitmap in a ListView or TableView" FontSize="Small" />
+                <Label Text="ImageCell - Display a bitmap in a TableView" FontSize="Small" />
                 <Button Text="ImageCell"
                     Command="{Binding NavigateCommand}"
                     CommandParameter="{x:Type views:ImageCellDemoPage}" />
@@ -230,12 +230,12 @@
                     CommandParameter="{x:Type views:LineDemoPage}" />
             </StackLayout>
 
-            <!-- ListView -->
+            <!-- CollectionView list template -->
             <StackLayout Padding="0,5">
-                <Label Text="ListView - Select from a list of data items" FontSize="Small" />
-                <Button Text="ListView"
+                <Label Text="CollectionView - Display a templated list of data items" FontSize="Small" />
+                <Button Text="CollectionView list template"
                     Command="{Binding NavigateCommand}"
-                    CommandParameter="{x:Type views:ListViewDemoPage}" />
+                    CommandParameter="{x:Type views:CollectionViewListDemoPage}" />
             </StackLayout>
 
             <!-- NavigationPage -->
@@ -368,7 +368,7 @@
 
             <!-- SwitchCell -->
             <StackLayout Padding="0,5">
-                <Label Text="SwitchCell - Display a Switch in a ListView or TableView" FontSize="Small" />
+                <Label Text="SwitchCell - Display a Switch in a TableView" FontSize="Small" />
                 <Button Text="SwitchCell"
                     Command="{Binding NavigateCommand}"
                     CommandParameter="{x:Type views:SwitchCellDemoPage}" />
@@ -408,7 +408,7 @@
 
             <!-- TextCell -->
             <StackLayout Padding="0,5">
-                <Label Text="TextCell - Display text in a ListView or TableView" FontSize="Small" />
+                <Label Text="TextCell - Display text in a TableView" FontSize="Small" />
                 <Button Text="TextCell"
                     Command="{Binding NavigateCommand}"
                     CommandParameter="{x:Type views:TextCellDemoPage}" />

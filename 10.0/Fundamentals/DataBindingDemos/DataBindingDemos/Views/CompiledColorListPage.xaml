@@ -10,31 +10,36 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <ListView x:Name="colorListView" 
-                  Grid.Row="0"
-                  ItemsSource="{x:Static local:NamedColor.All}"
-                  RowHeight="40">
-            <ListView.ItemTemplate>
+        <CollectionView x:Name="colorCollectionView"
+                        Grid.Row="0"
+                        ItemsSource="{x:Static local:NamedColor.All}"
+                        SelectionMode="Single">
+            <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="local:NamedColor">
-                    <ViewCell>
-                        <StackLayout Orientation="Horizontal">
+                    <Grid HeightRequest="40"
+                          RowDefinitions="*,1"
+                          ColumnDefinitions="Auto,*">
                             <BoxView Color="{Binding Color}"
                                      HeightRequest="32"
                                      WidthRequest="32"
                                      VerticalOptions="Center" />
 
-                            <Label Text="{Binding FriendlyName}"
+                            <Label Grid.Column="1"
+                                   Text="{Binding FriendlyName}"
                                    FontSize="24"
                                    VerticalOptions="Center" />
-                        </StackLayout>
-                    </ViewCell>
+                        <BoxView Grid.Row="1"
+                                 Grid.ColumnSpan="2"
+                                 Color="#E0E0E0"
+                                 HeightRequest="1" />
+                    </Grid>
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
 
         <BoxView x:DataType="local:NamedColor"
                  Grid.Row="1"
-                 BindingContext="{Binding x:DataType='ListView', Source={x:Reference colorListView}, Path=SelectedItem}"
+                 BindingContext="{Binding x:DataType='CollectionView', Source={x:Reference colorCollectionView}, Path=SelectedItem}"
                  Color="{Binding Color}" />
     </Grid>
 </ContentPage>

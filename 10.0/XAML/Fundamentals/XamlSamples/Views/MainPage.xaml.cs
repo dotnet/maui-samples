@@ -7,13 +7,11 @@ public partial class MainPage : ContentPage
 		InitializeComponent();
 	}
 
-    private async void OnListViewItemSelected(object sender, SelectedItemChangedEventArgs args)
+    private async void OnSelectionChanged(object sender, SelectionChangedEventArgs args)
     {
-        (sender as ListView).SelectedItem = null;
-
-        if (args.SelectedItem != null)
+        if (args.CurrentSelection.FirstOrDefault() is PageDataViewModel pageData)
         {
-            PageDataViewModel pageData = args.SelectedItem as PageDataViewModel;
+            ((CollectionView)sender).SelectedItem = null;
             Page page = (Page)Activator.CreateInstance(pageData.Type);
             await Navigation.PushAsync(page);
         }

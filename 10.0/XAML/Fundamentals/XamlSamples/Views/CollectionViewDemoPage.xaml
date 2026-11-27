@@ -2,32 +2,35 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:XamlSamples"
-             x:Class="XamlSamples.ListViewDemoPage"
-             Title="ListView Demo Page">
+             x:Class="XamlSamples.CollectionViewDemoPage"
+             Title="CollectionView Demo Page">
     <ContentPage.Resources>
         <x:Double x:Key="boxSize">50</x:Double>
-        <x:Int32 x:Key="rowHeight">60</x:Int32>
+        <x:Double x:Key="rowHeight">60</x:Double>
         <local:FloatToIntConverter x:Key="intConverter" />
     </ContentPage.Resources>
 
-    <ListView ItemsSource="{x:Static local:NamedColor.All}"
-              RowHeight="{StaticResource rowHeight}">
-        <ListView.ItemTemplate>
+    <CollectionView ItemsSource="{x:Static local:NamedColor.All}"
+                    SelectionMode="Single">
+        <CollectionView.ItemTemplate>
             <DataTemplate x:DataType="local:NamedColor">
-                <ViewCell>
-                    <StackLayout Padding="5, 5, 0, 5"
-                                 Orientation="Horizontal"
-                                 Spacing="15">
+                <Grid HeightRequest="{StaticResource rowHeight}"
+                      RowDefinitions="*,1">
+                    <Grid Padding="5,5,0,5"
+                          ColumnDefinitions="Auto,*"
+                          ColumnSpacing="15">
                         <BoxView WidthRequest="{StaticResource boxSize}"
                                  HeightRequest="{StaticResource boxSize}"
                                  Color="{Binding Color}" />
-                        <StackLayout Padding="5, 0, 0, 0"
-                                     VerticalOptions="Center">
+                        <Grid Grid.Column="1"
+                              Padding="5,0,0,0"
+                              RowDefinitions="Auto,Auto"
+                              VerticalOptions="Center">
                             <Label Text="{Binding FriendlyName}"
                                    FontAttributes="Bold"
                                    FontSize="14" />
-                            <StackLayout Orientation="Horizontal"
-                                         Spacing="0">
+                            <HorizontalStackLayout Grid.Row="1"
+                                                   Spacing="0">
                                 <Label Text="{Binding Red,
                                        Converter={StaticResource intConverter},
                                        ConverterParameter=255,
@@ -40,11 +43,14 @@
                                        Converter={StaticResource intConverter},
                                        ConverterParameter=255,
                                        StringFormat=', B={0:X2}'}" />
-                            </StackLayout>
-                        </StackLayout>
-                    </StackLayout>
-                </ViewCell>
+                            </HorizontalStackLayout>
+                        </Grid>
+                    </Grid>
+                    <BoxView Grid.Row="1"
+                             Color="#E0E0E0"
+                             HeightRequest="1" />
+                </Grid>
             </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
 </ContentPage>

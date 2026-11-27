@@ -25,19 +25,22 @@
                     Text="Get All Contacts" />
         </StackLayout>
 
-        <ListView ItemsSource="{Binding ContactsList}"
-                  SelectedItem="{Binding SelectedContact}"
-                  Grid.Row="2">
-            <ListView.ItemTemplate>
+        <CollectionView ItemsSource="{Binding ContactsList}"
+                        SelectedItem="{Binding SelectedContact}"
+                        SelectionMode="Single"
+                        Grid.Row="2">
+            <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="appmodel:Contact">
-                    <ViewCell>
-                        <Grid Padding="12">
-                            <Label Text="{Binding DisplayName}"
-                                   LineBreakMode="TailTruncation" />
-                        </Grid>
-                    </ViewCell>
+                    <Grid RowDefinitions="Auto,1">
+                        <Label Padding="12"
+                               Text="{Binding DisplayName}"
+                               LineBreakMode="TailTruncation" />
+                        <BoxView Grid.Row="1"
+                                 Color="#E0E0E0"
+                                 HeightRequest="1" />
+                    </Grid>
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </Grid>
 </views:BasePage>
