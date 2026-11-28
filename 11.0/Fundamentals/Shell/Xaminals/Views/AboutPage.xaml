@@ -1,65 +1,122 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:views="clr-namespace:Xaminals.Views"
              x:Class="Xaminals.Views.AboutPage"
              Title="About"
              x:DataType="views:AboutPage">
     <ContentPage.Resources>
-        <Color x:Key="Primary">#96d1ff</Color>
-        <Color x:Key="LightTextColor">#999999</Color>
+        <Style x:Key="FeatureDot"
+               TargetType="Ellipse">
+            <Setter Property="Fill"
+                    Value="{AppThemeBinding Light={StaticResource AboutLight}, Dark={StaticResource AboutBright}}" />
+            <Setter Property="WidthRequest"
+                    Value="8" />
+            <Setter Property="HeightRequest"
+                    Value="8" />
+            <Setter Property="Margin"
+                    Value="0,8,0,0" />
+            <Setter Property="VerticalOptions"
+                    Value="Start" />
+        </Style>
     </ContentPage.Resources>
-    
+
     <ScrollView>
-        <Grid RowDefinitions="Auto,*">
-            <Image Source="dotnet.png" 
-                   HorizontalOptions="Center"
-                   Aspect="AspectFit" />
-            <ScrollView Grid.Row="1">
-                <StackLayout Orientation="Vertical" 
-                             Padding="16,40,16,40"
-                             Spacing="10">
-                    <Label FontSize="22">
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <FormattedString.Spans>
-                                    <Span Text="Xaminals" 
-                                          FontAttributes="Bold" 
-                                          FontSize="22" />
-                                    <Span Text=" " />
-                                    <Span Text="1.0" 
-                                          TextColor="{StaticResource LightTextColor}" />
-                                </FormattedString.Spans>
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
-                    <Label>
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <FormattedString.Spans>
-                                    <Span Text="This app is written in XAML and C# with " />
-                                    <Span Text=".NET MAUI" 
-                                          FontAttributes="Bold" 
-                                          TextColor="Blue" 
-                                          TextDecorations="Underline">
-                                        <Span.GestureRecognizers>
-                                           <TapGestureRecognizer Command="{Binding TapCommand, Mode=OneWay}"
-                                                                 CommandParameter="https://docs.microsoft.com/dotnet/maui" />
-                                         </Span.GestureRecognizers>
-                                    </Span>
-                                    <Span Text="." />
-                                </FormattedString.Spans>
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
-                    <Button Margin="0,10,0,0"
-                            Text="Learn more" 
-                            Command="{Binding TapCommand}"
-                            CommandParameter="https://docs.microsoft.com/dotnet/maui"
-                            BackgroundColor="{StaticResource Primary}"
-                            TextColor="White" />
-                </StackLayout>
-            </ScrollView>
+        <Grid RowDefinitions="Auto,Auto">
+            <Grid HeightRequest="200"
+                  Padding="24,8,24,16">
+                <Grid.Background>
+                    <LinearGradientBrush StartPoint="0,0"
+                                         EndPoint="0,1">
+                        <GradientStop Color="{AppThemeBinding Light={StaticResource AboutLight}, Dark={StaticResource AboutDeep}}"
+                                      Offset="0" />
+                        <GradientStop Color="{AppThemeBinding Light={StaticResource AboutGlowLight}, Dark={StaticResource AboutGlowDark}}"
+                                      Offset="1" />
+                    </LinearGradientBrush>
+                </Grid.Background>
+                <Image Source="dotnet_bot.png"
+                       Aspect="AspectFit" />
+            </Grid>
+
+            <Grid Grid.Row="1"
+                  RowDefinitions="Auto,Auto,Auto,Auto"
+                  RowSpacing="16"
+                  Padding="20,24,20,40">
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Xaminals"
+                                  FontFamily="NunitoExtraBold"
+                                  FontSize="32" />
+                            <Span Text="  1.0"
+                                  FontFamily="NunitoSemiBold"
+                                  FontSize="18"
+                                  TextColor="{AppThemeBinding Light={StaticResource TextSecondaryLight}, Dark={StaticResource TextSecondaryDark}}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label Grid.Row="1"
+                       Style="{StaticResource Body}">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="A pocket field guide to animals, written in XAML and C# with " />
+                            <Span Text=".NET MAUI"
+                                  FontFamily="NunitoExtraBold"
+                                  TextColor="{AppThemeBinding Light={StaticResource AboutLight}, Dark={StaticResource AboutBright}}"
+                                  TextDecorations="Underline">
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding TapCommand, Mode=OneWay}"
+                                                          CommandParameter="https://learn.microsoft.com/dotnet/maui" />
+                                </Span.GestureRecognizers>
+                            </Span>
+                            <Span Text="." />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <Border Grid.Row="2"
+                        Style="{StaticResource Card}"
+                        Padding="20">
+                    <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto"
+                          ColumnDefinitions="Auto,*"
+                          RowSpacing="10"
+                          ColumnSpacing="12">
+                        <Label Grid.ColumnSpan="2"
+                               Text="WHAT THIS SAMPLE SHOWS"
+                               Style="{StaticResource SectionHeader}" />
+                        <Ellipse Grid.Row="1"
+                                 Style="{StaticResource FeatureDot}" />
+                        <Label Grid.Row="1"
+                               Grid.Column="1"
+                               Text="A flyout with a header, footer, items and a menu item" />
+                        <Ellipse Grid.Row="2"
+                                 Style="{StaticResource FeatureDot}" />
+                        <Label Grid.Row="2"
+                               Grid.Column="1"
+                               Text="Bottom tabs, plus top tabs in the Domestic section" />
+                        <Ellipse Grid.Row="3"
+                                 Style="{StaticResource FeatureDot}" />
+                        <Label Grid.Row="3"
+                               Grid.Column="1"
+                               Text="Route navigation that passes query parameters to detail pages" />
+                        <Ellipse Grid.Row="4"
+                                 Style="{StaticResource FeatureDot}" />
+                        <Label Grid.Row="4"
+                               Grid.Column="1"
+                               Text="A SearchHandler with templated suggestions on every list" />
+                        <Ellipse Grid.Row="5"
+                                 Style="{StaticResource FeatureDot}" />
+                        <Label Grid.Row="5"
+                               Grid.Column="1"
+                               Text="A custom back button on the monkey details page" />
+                    </Grid>
+                </Border>
+
+                <Button Grid.Row="3"
+                        Text="Learn more about Shell"
+                        Command="{Binding TapCommand}"
+                        CommandParameter="https://learn.microsoft.com/dotnet/maui/fundamentals/shell/" />
+            </Grid>
         </Grid>
     </ScrollView>
 </ContentPage>

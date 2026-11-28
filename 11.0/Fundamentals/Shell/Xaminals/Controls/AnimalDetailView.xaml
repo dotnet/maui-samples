@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- The layout shared by every detail page. Its BindingContext is the Animal to show. -->
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:Xaminals.Models"
+             x:Class="Xaminals.Controls.AnimalDetailView"
+             x:DataType="models:Animal">
+    <ScrollView>
+        <Grid RowDefinitions="Auto,Auto,Auto,Auto"
+              RowSpacing="14"
+              Padding="{OnPlatform iOS='20,20,20,110', Default='20,20,20,48'}">
+            <Border Style="{StaticResource HeroTile}">
+                <Image Source="{Binding ImageUrl}"
+                       WidthRequest="148"
+                       HeightRequest="148">
+                    <Image.Shadow>
+                        <Shadow Brush="Black"
+                                Offset="0,12"
+                                Radius="24"
+                                Opacity="0.18" />
+                    </Image.Shadow>
+                </Image>
+            </Border>
+            <Label Grid.Row="1"
+                   Text="{Binding Name}"
+                   Style="{StaticResource DisplayTitle}"
+                   Margin="4,10,4,0" />
+            <Border Grid.Row="2"
+                    Style="{StaticResource Pill}"
+                    Margin="4,0">
+                <Grid ColumnDefinitions="Auto,*"
+                      ColumnSpacing="8">
+                    <Image Source="globe.png"
+                           WidthRequest="20"
+                           HeightRequest="20" />
+                    <Label Grid.Column="1"
+                           Text="{Binding Location}"
+                           FontFamily="NunitoSemiBold"
+                           VerticalOptions="Center" />
+                </Grid>
+            </Border>
+            <Border Grid.Row="3"
+                    Style="{StaticResource Card}"
+                    Padding="20"
+                    Margin="0,6,0,0">
+                <Grid RowDefinitions="Auto,Auto"
+                      RowSpacing="8">
+                    <Label Text="ABOUT"
+                           Style="{StaticResource SectionHeader}" />
+                    <Label Grid.Row="1"
+                           Text="{Binding Details}"
+                           Style="{StaticResource Body}" />
+                </Grid>
+            </Border>
+        </Grid>
+    </ScrollView>
+</ContentView>

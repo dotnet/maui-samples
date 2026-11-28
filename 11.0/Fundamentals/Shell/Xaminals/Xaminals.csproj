@@ -50,10 +50,19 @@
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
-		<MauiImage Update="Resources\Images\dotnet_bot.png" Resize="True" BaseSize="300,185" />
+		<MauiImage Update="Resources\Images\dotnet_bot.png" Resize="True" BaseSize="300,187" />
+		<MauiImage Update="Resources\Images\flyout_pattern.png" BaseSize="360,780" />
+		<!-- 3D Fluent Emoji by Microsoft (MIT), 256 px source images -->
+		<MauiImage Include="Resources\Images\Emoji\*.png" BaseSize="128,128" />
+		<!-- High Contrast Fluent Emoji by Microsoft (MIT, license in Emoji folder): single-color icons that the tab bar tints -->
+		<MauiImage Include="Resources\Images\Icons\*.svg" BaseSize="26,26" />
+		<MauiImage Update="Resources\Images\Icons\back.svg" BaseSize="24,24" TintColor="White" />
 
-		<!-- Custom Fonts -->
-		<MauiFont Include="Resources\Fonts\*" />
+		<!-- Custom Fonts: Nunito (SIL OFL 1.1) -->
+		<MauiFont Include="Resources\Fonts\*.ttf" />
+
+		<!-- Font and image licenses, shipped with the app as their licenses require -->
+		<MauiAsset Include="Resources\Fonts\*-LICENSE.txt;Resources\Images\Emoji\*-LICENSE.txt" LogicalName="Licenses\%(Filename)%(Extension)" />
 
 		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />

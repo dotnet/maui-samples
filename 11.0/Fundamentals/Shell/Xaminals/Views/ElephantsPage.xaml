@@ -6,35 +6,24 @@
              xmlns:views="clr-namespace:Xaminals.Views"
              x:Class="Xaminals.Views.ElephantsPage"
              Title="Elephants">
-    <ContentPage.Resources>
-        <Style TargetType="Grid">
-            <Setter Property="VisualStateManager.VisualStateGroups">
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal" />
-                        <VisualState x:Name="Selected">
-                            <VisualState.Setters>
-                                <Setter Property="BackgroundColor" 
-                                        Value="#ED3B3B" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </Setter>
-        </Style>
-    </ContentPage.Resources>
-    
     <Shell.SearchHandler>
-        <controls:AnimalSearchHandler Placeholder="Enter search term"
+        <controls:AnimalSearchHandler Placeholder="Search elephants"
                                       ShowsResults="true"
                                       ItemTemplate="{StaticResource AnimalSearchTemplate}"
                                       Animals="{x:Static data:ElephantData.Elephants}"
                                       SelectedItemNavigationTarget="{x:Type views:ElephantDetailPage}" />
     </Shell.SearchHandler>
-    
-    <CollectionView Margin="20"
-                    ItemsSource="{x:Static data:ElephantData.Elephants}"
+
+    <CollectionView ItemsSource="{x:Static data:ElephantData.Elephants}"
                     ItemTemplate="{StaticResource AnimalTemplate}"
                     SelectionMode="Single"
-                    SelectionChanged="OnCollectionViewSelectionChanged" />
+                    SelectionChanged="OnCollectionViewSelectionChanged">
+        <CollectionView.Header>
+            <Label Text="Giants of Africa and Asia, plus a few extinct relatives."
+                   Style="{StaticResource ListIntro}" />
+        </CollectionView.Header>
+        <CollectionView.Footer>
+            <ContentView Style="{StaticResource ListFooter}" />
+        </CollectionView.Footer>
+    </CollectionView>
 </ContentPage>
