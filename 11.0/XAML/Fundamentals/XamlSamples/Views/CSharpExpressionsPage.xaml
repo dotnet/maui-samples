@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="XamlSamples.CSharpExpressionsPage"
+             Title="C# expressions"
+             x:DataType="OrderViewModel">
+    <ContentPage.BindingContext>
+        <OrderViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="6">
+            <!-- A property path is a compiled binding. On an Entry, it's TwoWay. -->
+            <Grid ColumnDefinitions="*,*">
+                <Entry Text="{FirstName}"
+                       Placeholder="First name" />
+                <Entry Grid.Column="1"
+                       Text="{LastName}"
+                       Placeholder="Last name" />
+            </Grid>
+            <Label Text="Text=&quot;{FirstName}&quot;"
+                   Style="{StaticResource CodeText}"
+                   HorizontalTextAlignment="Center" />
+
+            <!-- An interpolated string updates when FirstName or LastName changes. -->
+            <Label Text="{$'Hello, {FirstName} {LastName}!'}"
+                   Style="{StaticResource Title2}"
+                   HorizontalTextAlignment="Center"
+                   Margin="0,18,0,0" />
+            <Label Text="Text=&quot;{$'Hello, {FirstName} {LastName}!'}&quot;"
+                   Style="{StaticResource CodeText}"
+                   HorizontalTextAlignment="Center" />
+
+            <!-- Event attributes can be lambdas. They run in the page class, so they use its Order property.
+                 GT stands for >, and GTE for >=, which are awkward to write in XML. -->
+            <Grid ColumnDefinitions="Auto,*,Auto"
+                  Margin="0,18,0,0">
+                <Button Text="&#xe15b;"
+                        FontFamily="MaterialIcons"
+                        FontSize="22"
+                        Padding="0"
+                        WidthRequest="48"
+                        Clicked="{(sender, e) => Order.Quantity--}"
+                        IsEnabled="{Quantity GT 0}"
+                        SemanticProperties.Description="Remove a ticket" />
+                <Label Grid.Column="1"
+                       Text="{$'{Quantity} {(Quantity == 1 ? 'ticket' : 'tickets')}'}"
+                       Style="{StaticResource Value}"
+                       VerticalOptions="Center" />
+                <Button Grid.Column="2"
+                        Text="&#xe145;"
+                        FontFamily="MaterialIcons"
+                        FontSize="22"
+                        Padding="0"
+                        WidthRequest="48"
+                        Clicked="{(sender, e) => Order.Quantity++}"
+                        SemanticProperties.Description="Add a ticket" />
+            </Grid>
+            <Label Text="Clicked=&quot;{(sender, e) => Order.Quantity++}&quot;&#10;IsEnabled=&quot;{Quantity GT 0}&quot;"
+                   Style="{StaticResource CodeText}"
+                   HorizontalTextAlignment="Center" />
+
+            <Label Text="{$'Total: {Quantity * Price:C2}'}"
+                   Style="{StaticResource Headline}"
+                   HorizontalTextAlignment="Center"
+                   Margin="0,18,0,0" />
+            <Label Text="Text=&quot;{$'Total: {Quantity * Price:C2}'}&quot;"
+                   Style="{StaticResource CodeText}"
+                   HorizontalTextAlignment="Center" />
+
+            <Label Text="Group seating: 3 or more tickets"
+                   IsVisible="{Quantity GTE 3}"
+                   Style="{StaticResource Caption}"
+                   HorizontalTextAlignment="Center"
+                   Margin="0,18,0,0" />
+            <Label Text="IsVisible=&quot;{Quantity GTE 3}&quot;"
+                   Style="{StaticResource CodeText}"
+                   HorizontalTextAlignment="Center" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,70 +1,41 @@
-﻿namespace XamlSamples
+namespace XamlSamples
 {
+    // One demo page in the catalog. MainPage lists these, and DemoPageHeader shows
+    // the title and lead of the page that's open.
     public class PageDataViewModel
     {
-        public PageDataViewModel(Type type, string title, string description)
+        public PageDataViewModel(Type type, string title, string description, string lead, string glyph, string docsUrl = null)
         {
             Type = type;
             Title = title;
             Description = description;
+            Lead = lead;
+            Glyph = glyph;
+            this.docsUrl = docsUrl;
         }
+
+        readonly string docsUrl;
 
         public Type Type { private set; get; }
 
         public string Title { private set; get; }
 
+        // Short summary shown on the home page.
         public string Description { private set; get; }
 
-        static PageDataViewModel()
-        {
-            All = new List<PageDataViewModel>
-            {
-                // Part 1. Getting Started with XAML
-                new PageDataViewModel(typeof(HelloXamlPage), "Hello, XAML",
-                                      "Display a Label with many properties set"),
+        // Longer explanation shown above the demo.
+        public string Lead { private set; get; }
 
-                new PageDataViewModel(typeof(XamlPlusCodePage), "XAML + Code",
-                                      "Interact with a Slider and Button"),
+        public string Glyph { private set; get; }
 
-                // Part 2. Essential XAML Syntax
-                new PageDataViewModel(typeof(GridDemoPage), "Grid Demo",
-                                      "Explore XAML syntax with the Grid"),
+        public PageSection Section { internal set; get; }
 
-                new PageDataViewModel(typeof(AbsoluteDemoPage), "Absolute Demo",
-                                      "Explore XAML syntax with AbsoluteLayout"),
+        public string DocsUrl => docsUrl ?? Section.DocsUrl;
 
-                // Part 3. XAML Markup Extensions
-                new PageDataViewModel(typeof(SharedResourcesPage), "Shared Resources",
-                                      "Using resource dictionaries to share resources"),
+        public string DocsLinkText => docsUrl is null ? "Read the tutorial" : "Learn more";
 
-                new PageDataViewModel(typeof(StaticConstantsPage), "Static Constants",
-                                      "Using the x:Static markup extensions"),
+        public static IList<PageDataViewModel> All => PageSection.All.SelectMany(section => section.Pages).ToList();
 
-                // Part 4. Data Binding Basics
-                new PageDataViewModel(typeof(SliderBindingsPage), "Slider Bindings",
-                                      "Bind properties of two views on the page"),
-
-                new PageDataViewModel(typeof(SliderTransformsPage), "Slider Transforms",
-                                      "Use Sliders with reverse bindings"),
-
-                new PageDataViewModel(typeof(CollectionViewDemoPage), "CollectionView Demo",
-                                      "Use a CollectionView with data bindings"),
-
-                // Part 5. From Data Bindings to MVVM
-                new PageDataViewModel(typeof(OneShotDateTimePage), "One-Shot DateTime",
-                                      "Obtain the current DateTime and display it"),
-
-                new PageDataViewModel(typeof(ClockPage), "Clock",
-                                      "Dynamically display the current time"),
-
-                new PageDataViewModel(typeof(HslColorScrollPage), "HSL Color Scroll",
-                                      "Use a view model to select HSL colors"),
-
-                new PageDataViewModel(typeof(KeypadPage), "Keypad",
-                                      "Use a view model for numeric keypad logic")
-            };
-        }
-
-        public static IList<PageDataViewModel> All { private set; get; } 
+        public static PageDataViewModel Find(Type pageType) => All.FirstOrDefault(page => page.Type == pageType);
     }
 }

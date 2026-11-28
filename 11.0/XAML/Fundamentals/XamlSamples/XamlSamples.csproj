@@ -49,10 +49,15 @@
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
-		<MauiImage Update="Resources\Images\dotnet_bot.png" Resize="True" BaseSize="300,185" />
+		<!-- 3D Fluent Emoji by Microsoft (MIT), 256 px source images -->
+		<MauiImage Include="Resources\Images\Groceries\*.png" BaseSize="128,128" />
+		<MauiImage Update="Resources\Images\dotnet_bot.png" Resize="True" BaseSize="300,187" />
 
-		<!-- Custom Fonts -->
-		<MauiFont Include="Resources\Fonts\*" />
+		<!-- Custom Fonts: Inter (SIL OFL 1.1) and Material Icons Round (Apache 2.0) -->
+		<MauiFont Include="Resources\Fonts\*.ttf;Resources\Fonts\*.otf" />
+
+		<!-- Font and image licenses, shipped with the app as their licenses require -->
+		<MauiAsset Include="Resources\Fonts\*-LICENSE.txt;Resources\Images\Groceries\*-LICENSE.txt" LogicalName="Licenses\%(Filename)%(Extension)" />
 
 		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />

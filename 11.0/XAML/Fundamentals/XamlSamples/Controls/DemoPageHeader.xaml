@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:XamlSamples"
+             x:Class="XamlSamples.DemoPageHeader"
+             x:DataType="local:PageDataViewModel">
+    <!-- The header above every demo page. DemoPageTemplate (Resources/Styles/DemoPage.xaml)
+         adds it, so the pages themselves contain only the XAML that the tutorial teaches. -->
+    <VerticalStackLayout Style="{StaticResource DemoHeader}">
+        <Label Text="{Binding Section.Name}"
+               Style="{StaticResource Eyebrow}" />
+        <Label Text="{Binding Title}"
+               Style="{StaticResource Title1}"
+               SemanticProperties.HeadingLevel="Level1" />
+        <Label Text="{Binding Lead}"
+               Style="{StaticResource Lead}" />
+        <Button Text="{Binding DocsLinkText}"
+                Style="{StaticResource LinkButton}"
+                Clicked="OnDocsClicked"
+                SemanticProperties.Hint="Opens the documentation in your browser" />
+    </VerticalStackLayout>
+</ContentView>

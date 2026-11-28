@@ -2,7 +2,6 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="XamlSamples.SliderTransformsPage"
-             Padding="5"
              Title="Slider Transforms Page">
     <Grid>
         <Grid.RowDefinitions>
@@ -30,8 +29,7 @@
                 BindingContext="{x:Reference label}"
                 Grid.Row="1" Grid.Column="0"
                 Maximum="10"
-                Value="{Binding Scale, Mode=TwoWay}" 
-                Margin="20,0,0,0" />
+                Value="{Binding Scale, Mode=TwoWay}" />
         <Label x:DataType="Slider"
                BindingContext="{x:Reference scaleSlider}"
                Text="{Binding Value, StringFormat='Scale = {0:F1}'}"
@@ -44,8 +42,7 @@
                 BindingContext="{x:Reference label}"
                 Grid.Row="2" Grid.Column="0"
                 Maximum="360"
-                Value="{Binding Rotation, Mode=OneWayToSource}" 
-                Margin="20,0,0,0" />
+                Value="{Binding Rotation, Mode=OneWayToSource}" />
         <Label x:DataType="Slider"
                BindingContext="{x:Reference rotationSlider}"
                Text="{Binding Value, StringFormat='Rotation = {0:F0}'}"
@@ -58,8 +55,7 @@
                 BindingContext="{x:Reference label}"
                 Grid.Row="3" Grid.Column="0"
                 Maximum="360"
-                Value="{Binding RotationX, Mode=OneWayToSource}"
-                Margin="20,0,0,0" />
+                Value="{Binding RotationX, Mode=OneWayToSource}" />
         <Label x:DataType="Slider"
                BindingContext="{x:Reference rotationXSlider}"
                Text="{Binding Value, StringFormat='RotationX = {0:F0}'}"
@@ -72,8 +68,7 @@
                 BindingContext="{x:Reference label}"
                 Grid.Row="4" Grid.Column="0"
                 Maximum="360"
-                Value="{Binding RotationY, Mode=OneWayToSource}"
-                Margin="20,0,0,0" />
+                Value="{Binding RotationY, Mode=OneWayToSource}" />
         <Label x:DataType="Slider"
                BindingContext="{x:Reference rotationYSlider}"
                Text="{Binding Value, StringFormat='RotationY = {0:F0}'}"

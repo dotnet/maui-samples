@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- No xmlns declarations: in .NET 11 the .NET MAUI and x: namespaces are implicit.
+     HslViewModel needs no prefix either, because GlobalXmlns.cs adds this app's
+     XamlSamples namespace to the global XAML namespace. -->
+<ContentPage x:Class="XamlSamples.ImplicitXmlnsPage"
+             Title="Implicit namespaces"
+             x:DataType="HslViewModel">
+    <ContentPage.BindingContext>
+        <HslViewModel Color="MediumSlateBlue" />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="12">
+            <BoxView Color="{Binding Color}"
+                     HeightRequest="88"
+                     CornerRadius="16" />
+            <Slider Value="{Binding Hue}"
+                    SemanticProperties.Description="Hue" />
+            <Label Text="{Binding Hue, StringFormat='HslViewModel, from this app, says Hue = {0:F2}'}"
+                   Style="{StaticResource Caption}"
+                   HorizontalTextAlignment="Center" />
+
+            <Label Text="This page's root element"
+                   Style="{StaticResource SectionHeader}"
+                   Margin="0,8,0,0" />
+            <Border Style="{StaticResource CodeBlock}">
+                <Label Style="{StaticResource CodeText}"
+                       Text="&lt;ContentPage&#10;  x:Class=&quot;XamlSamples.ImplicitXmlnsPage&quot;&#10;  x:DataType=&quot;HslViewModel&quot;&gt;" />
+            </Border>
+
+            <Label Text="GlobalXmlns.cs"
+                   Style="{StaticResource SectionHeader}"
+                   Margin="0,8,0,0" />
+            <Border Style="{StaticResource CodeBlock}">
+                <Label Style="{StaticResource CodeText}"
+                       Text="[assembly: XmlnsDefinition(&#10;  &quot;http://schemas.microsoft.com/dotnet/maui/global&quot;,&#10;  &quot;XamlSamples&quot;)]" />
+            </Border>
+
+            <Border Style="{StaticResource Hint}">
+                <Label Style="{StaticResource HintLabel}"
+                       Text="You still need an explicit declaration, such as xmlns:local=&quot;clr-namespace:XamlSamples&quot;, when two namespaces contain types with the same name. The tutorial pages keep theirs, because the tutorial explains them." />
+            </Border>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

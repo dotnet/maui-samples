@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<!--
+    Styles for this sample's demo pages.
+
+    The pages contain the XAML that the XAML fundamentals tutorial teaches, so readers can
+    compare them line by line. Everything that makes them look good lives here instead:
+
+    1. An implicit ContentPage style gives every page DemoPageTemplate: a header (from the
+       page catalog in ViewModels/PageSection.cs) above a card that holds the page's content.
+    2. Implicit StackLayout, VerticalStackLayout, Grid, and Button styles add spacing and
+       theme colors that the tutorial's XAML doesn't set.
+-->
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:XamlSamples">
+
+    <!-- The card that holds a page's content -->
+    <Style x:Key="DemoStage" TargetType="Border" BasedOn="{StaticResource DemoSurface}" />
+
+    <ControlTemplate x:Key="DemoPageTemplate"
+                     x:DataType="ContentPage">
+        <Grid RowDefinitions="Auto,*"
+              RowSpacing="16"
+              ColumnSpacing="0"
+              Padding="20,8,20,24">
+            <!-- On short windows, such as a phone in landscape, hide the header to leave room for the demo. -->
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="WindowHeight">
+                    <VisualState x:Name="Short">
+                        <VisualState.StateTriggers>
+                            <AdaptiveTrigger MinWindowHeight="0" />
+                        </VisualState.StateTriggers>
+                        <VisualState.Setters>
+                            <Setter Property="Padding" Value="20,8" />
+                            <Setter Property="RowSpacing" Value="0" />
+                            <Setter TargetName="header" Property="VisualElement.IsVisible" Value="False" />
+                            <Setter TargetName="stage" Property="Border.Padding" Value="12" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="Tall">
+                        <VisualState.StateTriggers>
+                            <AdaptiveTrigger MinWindowHeight="560" />
+                        </VisualState.StateTriggers>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+
+            <local:DemoPageHeader x:Name="header"
+                                  Page="{Binding Source={RelativeSource TemplatedParent}}" />
+            <Border x:Name="stage"
+                    Grid.Row="1"
+                    Style="{StaticResource DemoStage}">
+                <ContentPresenter />
+            </Border>
+        </Grid>
+    </ControlTemplate>
+
+    <!-- Overrides the design system's Page style for content pages, so it repeats its setters. -->
+    <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
+        <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource BackgroundLight}, Dark={StaticResource BackgroundDark}}" />
+        <Setter Property="ControlTemplate" Value="{StaticResource DemoPageTemplate}" />
+    </Style>
+
+    <!-- The tutorial's layouts don't set any spacing. A StackLayout is centered in the card,
+         as the tutorial's VerticalOptions="Center" settings intend. When it's the root of a
+         CollectionView item, the Selected state tints it, instead of the platform's gray. -->
+    <Style TargetType="StackLayout">
+        <Setter Property="Spacing" Value="8" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="Selected">
+                        <VisualState.Setters>
+                            <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource PrimaryContainerLight}, Dark={StaticResource PrimaryContainerDark}}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
+    <Style TargetType="VerticalStackLayout">
+        <Setter Property="Spacing" Value="8" />
+    </Style>
+
+    <Style TargetType="Grid">
+        <Setter Property="RowSpacing" Value="8" />
+        <Setter Property="ColumnSpacing" Value="8" />
+    </Style>
+
+    <!-- Tonal rather than filled, so that text colors set by the Shared resources page stay
+         readable in both themes. The border shows only on pages that set a BorderWidth. -->
+    <Style TargetType="Button" BasedOn="{StaticResource TonalButton}">
+        <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource OutlineStrongLight}, Dark={StaticResource OutlineStrongDark}}" />
+    </Style>
+
+    <!-- The "Read the tutorial" link in the page header -->
+    <Style x:Key="LinkButton" TargetType="Button">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource PrimaryLight}, Dark={StaticResource PrimaryDark}}" />
+        <Setter Property="FontFamily" Value="InterSemiBold" />
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="BorderWidth" Value="0" />
+        <Setter Property="MinimumHeightRequest" Value="44" />
+        <Setter Property="HorizontalOptions" Value="Start" />
+        <Setter Property="ContentLayout" Value="Left, 6" />
+        <Setter Property="ImageSource">
+            <FontImageSource Glyph="{x:Static local:MaterialIcons.MenuBook}"
+                             FontFamily="MaterialIcons"
+                             Size="18"
+                             Color="{AppThemeBinding Light={StaticResource PrimaryLight}, Dark={StaticResource PrimaryDark}}" />
+        </Setter>
+    </Style>
+
+    <!-- Code snippets on the "New in .NET 11" pages -->
+    <Style x:Key="CodeBlock" TargetType="Border">
+        <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource SurfaceVariantLight}, Dark={StaticResource SurfaceVariantDark}}" />
+        <Setter Property="StrokeThickness" Value="0" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 12" />
+        <Setter Property="Padding" Value="12,10" />
+    </Style>
+
+    <OnPlatform x:Key="MonospaceFont" x:TypeArguments="x:String" Default="monospace">
+        <On Platform="iOS, MacCatalyst" Value="Menlo" />
+        <On Platform="WinUI" Value="Consolas" />
+    </OnPlatform>
+
+    <Style x:Key="CodeText" TargetType="Label">
+        <Setter Property="FontFamily" Value="{StaticResource MonospaceFont}" />
+        <Setter Property="FontSize" Value="11" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource OnPrimaryContainerLight}, Dark={StaticResource OnPrimaryContainerDark}}" />
+    </Style>
+
+</ResourceDictionary>
