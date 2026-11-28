@@ -1,44 +1,53 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
-<?xaml-comp compile="true" ?>
-<ResourceDictionary 
-    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+<?xml version="1.0" encoding="UTF-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
-    <Color x:Key="Primary">#512BD4</Color>
-    <Color x:Key="Secondary">#DFD8F7</Color>
-    <Color x:Key="Tertiary">#2B0B98</Color>
-    <Color x:Key="White">White</Color>
-    <Color x:Key="Black">Black</Color>
-    <Color x:Key="Gray100">#E1E1E1</Color>
-    <Color x:Key="Gray200">#C8C8C8</Color>
-    <Color x:Key="Gray300">#ACACAC</Color>
-    <Color x:Key="Gray400">#919191</Color>
-    <Color x:Key="Gray500">#6E6E6E</Color>
-    <Color x:Key="Gray600">#404040</Color>
-    <Color x:Key="Gray900">#212121</Color>
-    <Color x:Key="Gray950">#141414</Color>
-    <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}"/>
-    <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource Secondary}"/>
-    <SolidColorBrush x:Key="TertiaryBrush" Color="{StaticResource Tertiary}"/>
-    <SolidColorBrush x:Key="WhiteBrush" Color="{StaticResource White}"/>
-    <SolidColorBrush x:Key="BlackBrush" Color="{StaticResource Black}"/>
-    <SolidColorBrush x:Key="Gray100Brush" Color="{StaticResource Gray100}"/>
-    <SolidColorBrush x:Key="Gray200Brush" Color="{StaticResource Gray200}"/>
-    <SolidColorBrush x:Key="Gray300Brush" Color="{StaticResource Gray300}"/>
-    <SolidColorBrush x:Key="Gray400Brush" Color="{StaticResource Gray400}"/>
-    <SolidColorBrush x:Key="Gray500Brush" Color="{StaticResource Gray500}"/>
-    <SolidColorBrush x:Key="Gray600Brush" Color="{StaticResource Gray600}"/>
-    <SolidColorBrush x:Key="Gray900Brush" Color="{StaticResource Gray900}"/>
-    <SolidColorBrush x:Key="Gray950Brush" Color="{StaticResource Gray950}"/>
+    <!-- Each animal family has its own color. Shell styles in AppShell.xaml use these for
+         the navigation bar (Light, or Deep in dark theme) and the selected tab (Light, or Bright in dark theme). -->
+    <Color x:Key="DomesticLight">#B53D20</Color>
+    <Color x:Key="DomesticDeep">#A23B22</Color>
+    <Color x:Key="DomesticBright">#FF9B7A</Color>
 
-    <Color x:Key="Yellow100Accent">#F7B548</Color>
-    <Color x:Key="Yellow200Accent">#FFD590</Color>
-    <Color x:Key="Yellow300Accent">#FFE5B9</Color>
-    <Color x:Key="Cyan100Accent">#28C2D1</Color>
-    <Color x:Key="Cyan200Accent">#7BDDEF</Color>
-    <Color x:Key="Cyan300Accent">#C3F2F4</Color>
-    <Color x:Key="Blue100Accent">#3E8EED</Color>
-    <Color x:Key="Blue200Accent">#72ACF1</Color>
-    <Color x:Key="Blue300Accent">#A7CBF6</Color>
+    <Color x:Key="MonkeysLight">#2B7A4B</Color>
+    <Color x:Key="MonkeysDeep">#1F6A42</Color>
+    <Color x:Key="MonkeysBright">#6FD49A</Color>
+
+    <Color x:Key="ElephantsLight">#4E5F9E</Color>
+    <Color x:Key="ElephantsDeep">#3F4F86</Color>
+    <Color x:Key="ElephantsBright">#A9B6EC</Color>
+
+    <Color x:Key="BearsLight">#8A5A36</Color>
+    <Color x:Key="BearsDeep">#6B4630</Color>
+    <Color x:Key="BearsBright">#D9A57E</Color>
+
+    <Color x:Key="AboutLight">#512BD4</Color>
+    <Color x:Key="AboutDeep">#3E1FA8</Color>
+    <Color x:Key="AboutBright">#B9A6FF</Color>
+    <Color x:Key="AboutGlowLight">#8B6CF5</Color>
+    <Color x:Key="AboutGlowDark">#5A3BC4</Color>
+
+    <!-- Warm neutrals, in Light and Dark pairs. -->
+    <Color x:Key="PageBackgroundLight">#FBF7F2</Color>
+    <Color x:Key="PageBackgroundDark">#15120F</Color>
+    <Color x:Key="SurfaceLight">#FFFFFF</Color>
+    <Color x:Key="SurfaceDark">#221D19</Color>
+    <Color x:Key="SurfaceVariantLight">#F4ECE2</Color>
+    <Color x:Key="SurfaceVariantDark">#2F2823</Color>
+    <Color x:Key="OutlineLight">#ECE3D8</Color>
+    <Color x:Key="OutlineDark">#3A322C</Color>
+    <Color x:Key="TextPrimaryLight">#2B2420</Color>
+    <Color x:Key="TextPrimaryDark">#F5EFE9</Color>
+    <Color x:Key="TextSecondaryLight">#75685D</Color>
+    <Color x:Key="TextSecondaryDark">#B5A99E</Color>
+    <Color x:Key="TabBarLight">#FFFFFF</Color>
+    <Color x:Key="TabBarDark">#1C1815</Color>
+    <Color x:Key="TabUnselectedLight">#75685D</Color>
+    <Color x:Key="TabUnselectedDark">#8F8378</Color>
+
+    <!-- Flyout header gradient. -->
+    <Color x:Key="SunriseStartLight">#B53D20</Color>
+    <Color x:Key="SunriseEndLight">#B3541C</Color>
+    <Color x:Key="SunriseStartDark">#8E321C</Color>
+    <Color x:Key="SunriseEndDark">#8A4514</Color>
 
 </ResourceDictionary>

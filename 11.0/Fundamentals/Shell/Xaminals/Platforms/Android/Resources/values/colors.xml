@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#512BD4</color>
-    <color name="colorPrimaryDark">#000000</color>
-    <color name="colorAccent">#2B0B98</color>
+    <!-- colorPrimary fills the area behind the status bar. It matches the page background
+         (Resources/Styles/Colors.xaml), so the system status bar icons stay readable. -->
+    <color name="colorPrimary">#FBF7F2</color>
+    <color name="colorPrimaryDark">#FBF7F2</color>
+    <color name="colorAccent">#B53D20</color>
 </resources>

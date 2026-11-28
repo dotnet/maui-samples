@@ -7,15 +7,16 @@
        xmlns:views="clr-namespace:Xaminals.Views"
        x:Class="Xaminals.AppShell"
        x:Name="shell"
-       FlyoutBackgroundImage="photo.jpg"
+       FlyoutBackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight}, Dark={StaticResource PageBackgroundDark}}"
+       FlyoutBackgroundImage="flyout_pattern.png"
        FlyoutBackgroundImageAspect="AspectFill"
        FlyoutHeaderBehavior="CollapseOnScroll"
+       Shell.ForegroundColor="White"
        x:DataType="local:AppShell">
     <Shell.Resources>
+        <!-- Shell colors shared by every section -->
         <Style x:Key="BaseStyle"
                TargetType="Element">
-            <Setter Property="Shell.BackgroundColor"
-                    Value="#455A64" />
             <Setter Property="Shell.ForegroundColor"
                     Value="White" />
             <Setter Property="Shell.TitleColor"
@@ -23,39 +24,101 @@
             <Setter Property="Shell.DisabledColor"
                     Value="#B4FFFFFF" />
             <Setter Property="Shell.UnselectedColor"
-                    Value="#95FFFFFF" />
+                    Value="#E6FFFFFF" />
+            <Setter Property="Shell.TabBarBackgroundColor"
+                    Value="{AppThemeBinding Light={StaticResource TabBarLight}, Dark={StaticResource TabBarDark}}" />
+            <Setter Property="Shell.TabBarUnselectedColor"
+                    Value="{AppThemeBinding Light={StaticResource TabUnselectedLight}, Dark={StaticResource TabUnselectedDark}}" />
         </Style>
         <Style TargetType="ShellItem"
                BasedOn="{StaticResource BaseStyle}" />
+
+        <!-- Each section sets its own navigation bar and selected tab colors -->
         <Style x:Key="DomesticShell"
                TargetType="Element"
                BasedOn="{StaticResource BaseStyle}">
             <Setter Property="Shell.BackgroundColor"
-                    Value="#039BE6" />
+                    Value="{AppThemeBinding Light={StaticResource DomesticLight}, Dark={StaticResource DomesticDeep}}" />
+            <Setter Property="Shell.TabBarForegroundColor"
+                    Value="{AppThemeBinding Light={StaticResource DomesticLight}, Dark={StaticResource DomesticBright}}" />
+            <Setter Property="Shell.TabBarTitleColor"
+                    Value="{AppThemeBinding Light={StaticResource DomesticLight}, Dark={StaticResource DomesticBright}}" />
         </Style>
         <Style x:Key="MonkeysShell"
                TargetType="Element"
                BasedOn="{StaticResource BaseStyle}">
             <Setter Property="Shell.BackgroundColor"
-                    Value="#689F39" />
+                    Value="{AppThemeBinding Light={StaticResource MonkeysLight}, Dark={StaticResource MonkeysDeep}}" />
+            <Setter Property="Shell.TabBarForegroundColor"
+                    Value="{AppThemeBinding Light={StaticResource MonkeysLight}, Dark={StaticResource MonkeysBright}}" />
+            <Setter Property="Shell.TabBarTitleColor"
+                    Value="{AppThemeBinding Light={StaticResource MonkeysLight}, Dark={StaticResource MonkeysBright}}" />
         </Style>
         <Style x:Key="ElephantsShell"
                TargetType="Element"
                BasedOn="{StaticResource BaseStyle}">
             <Setter Property="Shell.BackgroundColor"
-                    Value="#ED3B3B" />
+                    Value="{AppThemeBinding Light={StaticResource ElephantsLight}, Dark={StaticResource ElephantsDeep}}" />
+            <Setter Property="Shell.TabBarForegroundColor"
+                    Value="{AppThemeBinding Light={StaticResource ElephantsLight}, Dark={StaticResource ElephantsBright}}" />
+            <Setter Property="Shell.TabBarTitleColor"
+                    Value="{AppThemeBinding Light={StaticResource ElephantsLight}, Dark={StaticResource ElephantsBright}}" />
         </Style>
         <Style x:Key="BearsShell"
                TargetType="Element"
                BasedOn="{StaticResource BaseStyle}">
             <Setter Property="Shell.BackgroundColor"
-                    Value="#546DFE" />
+                    Value="{AppThemeBinding Light={StaticResource BearsLight}, Dark={StaticResource BearsDeep}}" />
+            <Setter Property="Shell.TabBarForegroundColor"
+                    Value="{AppThemeBinding Light={StaticResource BearsLight}, Dark={StaticResource BearsBright}}" />
+            <Setter Property="Shell.TabBarTitleColor"
+                    Value="{AppThemeBinding Light={StaticResource BearsLight}, Dark={StaticResource BearsBright}}" />
         </Style>
         <Style x:Key="AboutShell"
                TargetType="Element"
                BasedOn="{StaticResource BaseStyle}">
             <Setter Property="Shell.BackgroundColor"
-                    Value="#96d1ff" />
+                    Value="{AppThemeBinding Light={StaticResource AboutLight}, Dark={StaticResource AboutDeep}}" />
+        </Style>
+
+        <!-- Shell applies these style classes to the default flyout item and menu item templates -->
+        <Style TargetType="Label"
+               Class="FlyoutItemLabelStyle">
+            <Setter Property="FontFamily"
+                    Value="NunitoSemiBold" />
+            <Setter Property="FontSize"
+                    Value="16" />
+            <Setter Property="TextColor"
+                    Value="{AppThemeBinding Light={StaticResource TextPrimaryLight}, Dark={StaticResource TextPrimaryDark}}" />
+        </Style>
+        <Style TargetType="Image"
+               Class="FlyoutItemImageStyle">
+            <Setter Property="WidthRequest"
+                    Value="28" />
+            <Setter Property="HeightRequest"
+                    Value="28" />
+        </Style>
+        <Style TargetType="Layout"
+               Class="FlyoutItemLayoutStyle"
+               ApplyToDerivedTypes="True">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                        Value="Transparent" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                        Value="{AppThemeBinding Light={StaticResource SurfaceVariantLight}, Dark={StaticResource SurfaceVariantDark}}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
         </Style>
     </Shell.Resources>
 
@@ -69,19 +132,18 @@
 
     <!-- Template for FlyoutHeader -->
     <!-- Not required, as the FlyoutHeader is set above -->
-    <!--    <Shell.FlyoutHeaderTemplate>
+    <!--<Shell.FlyoutHeaderTemplate>
         <DataTemplate>
-            <Grid BackgroundColor="Black"
-                  HeightRequest="200">
-                <Image Aspect="AspectFill" 
-                       Source="xamarinstore.jpg" 
-                       Opacity="0.6" />
-                <Label Text="Animals" 
-                       TextColor="White" 
-                       FontAttributes="Bold" 
+            <Grid HeightRequest="200"
+                  Background="{StaticResource DomesticLight}">
+                <Image Source="monkey.png"
+                       Opacity="0.3" />
+                <Label Text="Animals"
+                       TextColor="White"
+                       FontAttributes="Bold"
                        HorizontalTextAlignment="Center"
                        VerticalTextAlignment="Center" />
-            </Grid>            
+            </Grid>
         </DataTemplate>
     </Shell.FlyoutHeaderTemplate>-->
 
@@ -89,15 +151,16 @@
     <!-- Not required, as the FlyoutFooter is set above -->
     <!--<Shell.FlyoutFooterTemplate>
         <DataTemplate>
-            <StackLayout>
+            <Grid RowDefinitions="Auto,Auto"
+                  Padding="20">
                 <Label Text="Xaminals"
-                       TextColor="GhostWhite"
                        FontAttributes="Bold"
                        HorizontalOptions="Center" />
-                <Label Text="{Binding Source={x:Static sys:DateTime.Now}, StringFormat='{0:MMMM dd, yyyy}'}"
-                       TextColor="GhostWhite"
+                <Label Grid.Row="1"
+                       x:DataType="sys:DateTime"
+                       Text="{Binding Source={x:Static sys:DateTime.Now}, StringFormat='{0:MMMM dd, yyyy}'}"
                        HorizontalOptions="Center" />
-            </StackLayout>
+            </Grid>
         </DataTemplate>
     </Shell.FlyoutFooterTemplate>-->
 
@@ -110,7 +173,6 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Label Text="{Binding Title}"
-                           TextColor="White"
                            FontSize="20" />
                 </DataTemplate>
             </CollectionView.ItemTemplate>
@@ -127,7 +189,6 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Label Text="{Binding Title}"
-                               TextColor="White"
                                FontSize="20" />
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
@@ -136,49 +197,54 @@
     </Shell.FlyoutContentTemplate>-->
 
     <!-- Template each FlyoutItem -->
-    <!--    <Shell.ItemTemplate>
-        <DataTemplate>
+    <!-- Not required, the style classes above restyle the default template -->
+    <!--<Shell.ItemTemplate>
+        <DataTemplate x:DataType="BaseShellItem">
             <Grid ColumnDefinitions="0.2*,0.8*">
-                <Image Source="{Binding Icon}"
+                <Image Source="{Binding FlyoutIcon}"
                        Margin="5"
                        HeightRequest="45" />
                 <Label Grid.Column="1"
                        Text="{Binding Title}"
                        FontAttributes="Italic"
-                       VerticalTextAlignment="Center" /> 
+                       VerticalTextAlignment="Center" />
             </Grid>
         </DataTemplate>
     </Shell.ItemTemplate>-->
 
     <!-- Template each MenuItem -->
-    <!--    <Shell.MenuItemTemplate>
-        <DataTemplate>
+    <!-- Not required, the style classes above restyle the default template -->
+    <!-- Shell wraps each MenuItem in a BaseShellItem, so bind to Title and FlyoutIcon -->
+    <!--<Shell.MenuItemTemplate>
+        <DataTemplate x:DataType="BaseShellItem">
             <Grid ColumnDefinitions="0.2*,0.8*">
-                <Image Source="{Binding Icon}"
+                <Image Source="{Binding FlyoutIcon}"
                        Margin="5"
                        HeightRequest="45" />
                 <Label Grid.Column="1"
-                       Text="{Binding Text}"
+                       Text="{Binding Title}"
                        FontAttributes="Italic"
-                       VerticalTextAlignment="Center" /> 
+                       VerticalTextAlignment="Center" />
             </Grid>
         </DataTemplate>
     </Shell.MenuItemTemplate>-->
 
+    <!-- Icon is shown in the tab bar, FlyoutIcon in the flyout -->
     <FlyoutItem Route="animals"
                 FlyoutDisplayOptions="AsMultipleItems">
         <Tab Title="Domestic"
              Route="domestic"
-             Icon="paw.png">
+             Icon="icon_domestic.png"
+             FlyoutIcon="house_with_garden.png">
             <ShellContent Route="cats"
                           Style="{StaticResource DomesticShell}"
                           Title="Cats"
-                          Icon="cat.png"
+                          Icon="icon_cat.png"
                           ContentTemplate="{DataTemplate views:CatsPage}" />
             <ShellContent Route="dogs"
                           Style="{StaticResource DomesticShell}"
                           Title="Dogs"
-                          Icon="dog.png"
+                          Icon="icon_dog.png"
                           ContentTemplate="{DataTemplate views:DogsPage}" />
         </Tab>
 
@@ -191,34 +257,37 @@
         The code below demonstrates using these implicit conversion operators to simplify the visual hierarchy. Code that
         relies on the implicit conversion operators will produce intellisense errors in the Visual Studio XAML editor. However,
         this code is valid and does build.
-               
+
         -->
         <ShellContent Route="monkeys"
                       Style="{StaticResource MonkeysShell}"
                       Title="Monkeys"
-                      Icon="monkey.png"
+                      Icon="icon_monkey.png"
+                      FlyoutIcon="monkey.png"
                       ContentTemplate="{DataTemplate views:MonkeysPage}" />
         <ShellContent Route="elephants"
                       Style="{StaticResource ElephantsShell}"
                       Title="Elephants"
-                      Icon="elephant.png"
+                      Icon="icon_elephant.png"
+                      FlyoutIcon="elephant.png"
                       ContentTemplate="{DataTemplate views:ElephantsPage}" />
         <ShellContent Route="bears"
                       Style="{StaticResource BearsShell}"
                       Title="Bears"
-                      Icon="bear.png"
+                      Icon="icon_bear.png"
+                      FlyoutIcon="bear.png"
                       ContentTemplate="{DataTemplate views:BearsPage}" />
     </FlyoutItem>
 
     <ShellContent Route="about"
                   Style="{StaticResource AboutShell}"
                   Title="About"
-                  Icon="info.png"
+                  Icon="information.png"
                   ContentTemplate="{DataTemplate views:AboutPage}" />
 
     <MenuItem Text="Help"
-              IconImageSource="help.png"
+              IconImageSource="red_question_mark.png"
               Command="{Binding HelpCommand}"
-              CommandParameter="https://docs.microsoft.com/dotnet/maui/fundamentals/shell" />
+              CommandParameter="https://learn.microsoft.com/dotnet/maui/fundamentals/shell/" />
 
 </Shell>

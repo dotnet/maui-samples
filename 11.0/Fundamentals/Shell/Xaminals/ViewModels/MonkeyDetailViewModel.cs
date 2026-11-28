@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Web;
+using System.Windows.Input;
 using Xaminals.Models;
 
 namespace Xaminals.ViewModels
@@ -8,6 +8,9 @@ namespace Xaminals.ViewModels
     public class MonkeyDetailViewModel : IQueryAttributable, INotifyPropertyChanged
     {
         public Animal Monkey { get; private set; }
+
+        // Bound to the BackButtonBehavior in MonkeyDetailPage.xaml
+        public ICommand BackCommand { get; } = new Command(async () => await Shell.Current.GoToAsync(".."));
 
         public void ApplyQueryAttributes(IDictionary<string, object> query)
         {

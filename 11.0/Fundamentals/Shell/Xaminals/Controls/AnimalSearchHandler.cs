@@ -7,6 +7,18 @@ namespace Xaminals.Controls
         public IList<Animal> Animals { get; set; }
         public Type SelectedItemNavigationTarget { get; set; }
 
+        public AnimalSearchHandler()
+        {
+            // The same look for the search box on every page, in light and dark themes.
+            this.SetAppThemeColor(BackgroundColorProperty, Resource("SurfaceLight"), Resource("SurfaceDark"));
+            this.SetAppThemeColor(TextColorProperty, Resource("TextPrimaryLight"), Resource("TextPrimaryDark"));
+            this.SetAppThemeColor(PlaceholderColorProperty, Resource("TextSecondaryLight"), Resource("TextSecondaryDark"));
+            this.SetAppThemeColor(CancelButtonColorProperty, Resource("TextSecondaryLight"), Resource("TextSecondaryDark"));
+            FontFamily = "NunitoSemiBold";
+        }
+
+        static Color Resource(string key) => (Color)Application.Current.Resources[key];
+
         protected override void OnQueryChanged(string oldValue, string newValue)
         {
             base.OnQueryChanged(oldValue, newValue);
