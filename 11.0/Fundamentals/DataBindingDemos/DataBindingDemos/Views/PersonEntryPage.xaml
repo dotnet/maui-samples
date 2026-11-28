@@ -3,89 +3,105 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:DataBindingDemos"
              x:Class="DataBindingDemos.PersonEntryPage"
-             Title="Person Entry"
+             Title="Person entry"
              x:DataType="local:PersonCollectionViewModel">
     <ContentPage.BindingContext>
         <local:PersonCollectionViewModel />
     </ContentPage.BindingContext>
-    <Grid Margin="10">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
 
-        <!-- New Button -->
-        <Button Text="New"
-                Grid.Row="0"
-                Command="{Binding NewCommand}"
-                HorizontalOptions="Start" />
+    <ScrollView>
+        <Grid RowDefinitions="Auto,Auto,Auto"
+              Style="{StaticResource DemoLayout}">
+            <VerticalStackLayout Style="{StaticResource DemoHeader}">
+                <Label Text="Commanding" Style="{StaticResource Eyebrow}" />
+                <Label Text="Person entry" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+                <Label Text="The buttons bind to NewCommand, SubmitCommand, and CancelCommand. Each command's CanExecute enables or disables its button. Tap New, enter a name and an age, then tap Submit." Style="{StaticResource Lead}" />
+            </VerticalStackLayout>
 
-        <!-- Entry Form -->
-        <Grid Grid.Row="1"
-              IsEnabled="{Binding IsEditing}">
-            <Grid x:DataType="local:PersonViewModel"
-                  BindingContext="{Binding PersonEdit}">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+            <Border Grid.Row="1"
+                    Style="{StaticResource DemoSurface}">
+                <Grid RowDefinitions="Auto,Auto,Auto"
+                      RowSpacing="16">
+                    <!-- New Button -->
+                    <Button Text="New"
+                            Command="{Binding NewCommand}"
+                            HorizontalOptions="Start" />
 
-                <Label Text="Name: " Grid.Row="0" Grid.Column="0" />
-                <Entry Text="{Binding Name}" 
-                       Grid.Row="0" Grid.Column="1" />
-                <Label Text="Age: " Grid.Row="1" Grid.Column="0" />
-                <StackLayout Orientation="Horizontal" 
-                             Grid.Row="1" Grid.Column="1">
-                    <Stepper Value="{Binding Age}"
-                             Maximum="100" />
-                    <Label Text="{Binding Age, StringFormat='{0} years old'}"
-                           VerticalOptions="Center" />
-                </StackLayout>
-                <Label Text="Skills: " Grid.Row="2" Grid.Column="0" />
-                <Entry Text="{Binding Skills}"
-                       Grid.Row="2" Grid.Column="1" />
-            </Grid>
+                    <!-- Entry Form -->
+                    <Grid Grid.Row="1"
+                          IsEnabled="{Binding IsEditing}">
+                        <Grid x:DataType="local:PersonViewModel"
+                              BindingContext="{Binding PersonEdit}"
+                              RowDefinitions="Auto,Auto,Auto"
+                              ColumnDefinitions="Auto,*"
+                              ColumnSpacing="12"
+                              RowSpacing="8">
+                            <Label Text="Name"
+                                   Style="{StaticResource Caption}"
+                                   VerticalOptions="Center" />
+                            <Entry Grid.Column="1"
+                                   Text="{Binding Name}" />
+                            <Label Grid.Row="1"
+                                   Text="Age"
+                                   Style="{StaticResource Caption}"
+                                   VerticalOptions="Center" />
+                            <HorizontalStackLayout Grid.Row="1"
+                                                   Grid.Column="1"
+                                                   Spacing="12">
+                                <Stepper Value="{Binding Age}"
+                                         Maximum="100"
+                                         VerticalOptions="Center" />
+                                <Label Text="{Binding Age, StringFormat='{0} years old'}"
+                                       VerticalOptions="Center" />
+                            </HorizontalStackLayout>
+                            <Label Grid.Row="2"
+                                   Text="Skills"
+                                   Style="{StaticResource Caption}"
+                                   VerticalOptions="Center" />
+                            <Entry Grid.Row="2"
+                                   Grid.Column="1"
+                                   Text="{Binding Skills}" />
+                        </Grid>
+                    </Grid>
+
+                    <!-- Submit and Cancel Buttons -->
+                    <Grid Grid.Row="2"
+                          ColumnDefinitions="*,*"
+                          ColumnSpacing="12">
+                        <Button Text="Submit"
+                                Command="{Binding SubmitCommand}" />
+                        <Button Grid.Column="1"
+                                Text="Cancel"
+                                Style="{StaticResource TonalButton}"
+                                Command="{Binding CancelCommand}" />
+                    </Grid>
+                </Grid>
+            </Border>
+
+            <!-- List of Persons -->
+            <Border Grid.Row="2"
+                    Style="{StaticResource ListSurface}">
+                <VerticalStackLayout BindableLayout.ItemsSource="{Binding Persons}">
+                    <BindableLayout.EmptyView>
+                        <Label Text="People you submit appear here."
+                               Style="{StaticResource Caption}"
+                               Padding="16" />
+                    </BindableLayout.EmptyView>
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate x:DataType="local:PersonViewModel">
+                            <Label Padding="16,12">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{Binding Name}"
+                                              FontFamily="InterSemiBold" />
+                                        <Span Text="{Binding Age, StringFormat=', age {0}'}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </VerticalStackLayout>
+            </Border>
         </Grid>
-
-        <!-- Submit and Cancel Buttons -->
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-
-            <Button Text="Submit"
-                    Grid.Column="0"
-                    Command="{Binding SubmitCommand}"
-                    VerticalOptions="Center" />
-            <Button Text="Cancel"
-                    Grid.Column="1"
-                    Command="{Binding CancelCommand}"
-                    VerticalOptions="Center" />
-        </Grid>
-
-        <!-- List of Persons -->
-        <CollectionView SelectionMode="Single" Grid.Row="3"
-                        ItemsSource="{Binding Persons}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="local:PersonViewModel">
-                    <Label Padding="10">
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span Text="{Binding Name}" />
-                                <Span Text="{Binding Age, StringFormat=', age {0}'}" />
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </Grid>
+    </ScrollView>
 </ContentPage>

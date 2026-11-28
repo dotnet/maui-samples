@@ -1,26 +1,41 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:DataBindingDemos.Controls"
              xmlns:local="clr-namespace:DataBindingDemos"
              x:Class="DataBindingDemos.RelativeSourceSelfPage"
-             Title="RelativeSource Self Mode"
+             Title="Self"
              BindingContext="{Binding x:DataType='local:RelativeSourceSelfPage', Source={RelativeSource Self}, Path=Person}">
-    <StackLayout Margin="10">
-        <!--
-        In this example, the WidthRequest property is set to a fixed value, and the HeightRequest property binds to the WidthRequest property.
-        -->
-        <BoxView x:DataType="ContentPage"
-                 Color="Red"
-                 WidthRequest="200"
-                 HeightRequest="{Binding Source={RelativeSource Self}, Path=WidthRequest}"
-                 HorizontalOptions="Center" />
-        <controls:Separator />
-        <!--
-        In this example, the page's BindingContext is bound to its own Person property.
-        -->
-        <Label x:DataType="local:Person"
-               Text="{Binding Fullname, StringFormat='Name: {0}'}"
-               HorizontalOptions="Center" />
-    </StackLayout>
+    <ScrollView>
+        <Grid RowDefinitions="Auto,Auto"
+              Style="{StaticResource DemoLayout}">
+            <VerticalStackLayout Style="{StaticResource DemoHeader}">
+                <Label Text="Relative bindings" Style="{StaticResource Eyebrow}" />
+                <Label Text="Self" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+                <Label Text="RelativeSource Self binds to a property of the same element. The BoxView's HeightRequest binds to its own WidthRequest, and the page's BindingContext binds to its own Person property." Style="{StaticResource Lead}" />
+            </VerticalStackLayout>
+
+            <Border Grid.Row="1"
+                    Style="{StaticResource DemoSurface}">
+                <VerticalStackLayout Spacing="16">
+                    <!--
+                    In this example, the WidthRequest property is set to a fixed value, and the HeightRequest property binds to the WidthRequest property.
+                    -->
+                    <BoxView x:DataType="BoxView"
+                             Color="{StaticResource Rose}"
+                             WidthRequest="200"
+                             HeightRequest="{Binding Source={RelativeSource Self}, Path=WidthRequest}"
+                             HorizontalOptions="Center" />
+                    <controls:Separator />
+                    <!--
+                    In this example, the page's BindingContext is bound to its own Person property.
+                    -->
+                    <Label x:DataType="local:Person"
+                           Text="{Binding Fullname, StringFormat='Name: {0}'}"
+                           Style="{StaticResource Value}"
+                           HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+    </ScrollView>
 </ContentPage>

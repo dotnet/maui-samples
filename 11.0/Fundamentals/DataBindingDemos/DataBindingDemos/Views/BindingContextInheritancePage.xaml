@@ -1,30 +1,44 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DataBindingDemos.BindingContextInheritancePage"
-             Title="BindingContext Inheritance">
-    <StackLayout Padding="10">
+             Title="BindingContext inheritance">
+    <ScrollView>
+        <Grid RowDefinitions="Auto,Auto"
+              Style="{StaticResource DemoLayout}">
+            <VerticalStackLayout Style="{StaticResource DemoHeader}">
+                <Label Text="Basic bindings" Style="{StaticResource Eyebrow}" />
+                <Label Text="BindingContext inheritance" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+                <Label Text="The layout's BindingContext is the Slider. Its children inherit it, so the Label and the BoxView both bind Rotation to Value. Drag the slider." Style="{StaticResource Lead}" />
+            </VerticalStackLayout>
 
-        <StackLayout x:DataType="Slider"
-                     VerticalOptions="Fill"
-                     BindingContext="{x:Reference slider}">
+            <Border Grid.Row="1"
+                    Style="{StaticResource DemoSurface}">
+                <VerticalStackLayout Spacing="0">
+                    <Grid x:DataType="Slider"
+                          RowDefinitions="200,100"
+                          BindingContext="{x:Reference slider}">
 
-            <Label Text="TEXT"
-                   FontSize="80"
-                   HorizontalOptions="Center"
-                   VerticalOptions="End"
-                   Rotation="{Binding Value}" />
+                        <Label Text="TEXT"
+                               FontSize="80"
+                               Style="{StaticResource DemoText}"
+                               VerticalOptions="End"
+                               Rotation="{Binding Value}" />
 
-            <BoxView Color="#800000FF"
-                     WidthRequest="180"
-                     HeightRequest="40"
-                     HorizontalOptions="Center"
-                     VerticalOptions="Start"
-                     Rotation="{Binding Value}" />
-        </StackLayout>
+                        <BoxView Grid.Row="1"
+                                 Color="{StaticResource Blue}"
+                                 Opacity="0.5"
+                                 WidthRequest="180"
+                                 HeightRequest="40"
+                                 HorizontalOptions="Center"
+                                 VerticalOptions="Start"
+                                 Rotation="{Binding Value}" />
+                    </Grid>
 
-        <Slider x:Name="slider" 
-                Maximum="360" />
-        
-    </StackLayout>
+                    <Slider x:Name="slider"
+                            Maximum="360" />
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+    </ScrollView>
 </ContentPage>

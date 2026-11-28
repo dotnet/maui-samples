@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using DataBindingDemos.Controls;
 
 namespace DataBindingDemos
 {
@@ -8,7 +9,7 @@ namespace DataBindingDemos
         {
             BindingContext = new GroupViewModel();
 
-            Grid grid = new Grid { Margin = new Thickness(20) };
+            Grid grid = new Grid { RowSpacing = 12 };
 
             grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
             grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
@@ -76,15 +77,19 @@ namespace DataBindingDemos
                 StringFormat = "{0} {1} {2}"
             });
 
-            grid.Add(new Label { Text = "Employee", FontAttributes = FontAttributes.Bold });
+            grid.Add(new Label { Text = "Employee", Style = CodePageLayout.GetStyle("SectionHeader") });
             grid.Add(employee1, 0, 1);
             grid.Add(employee2, 0, 2);
             grid.Add(employee3, 0, 3);
             grid.Add(employee4, 0, 4);
             grid.Add(employee5, 0, 5);
 
-            Title = "MultiBinding code demo";
-            Content = grid;
+            Title = "String formatting in code";
+            Content = CodePageLayout.Create(
+                "Multi-bindings",
+                "String formatting in code",
+                "The same MultiBinding as the XAML demo, created in C#. Binding.Create builds each compiled binding from a lambda, and StringFormat joins them.",
+                grid);
         }
     }
 }

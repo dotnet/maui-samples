@@ -1,63 +1,83 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:sys="clr-namespace:System;assembly=netstandard"
              x:Class="DataBindingDemos.StringFormattingPage"
-             Title="String Formatting">
+             Title="String formatting">
+    <ScrollView>
+        <Grid RowDefinitions="Auto,Auto"
+              Style="{StaticResource DemoLayout}">
+            <VerticalStackLayout Style="{StaticResource DemoHeader}">
+                <Label Text="String formatting" Style="{StaticResource Eyebrow}" />
+                <Label Text="String formatting" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+                <Label Text="StringFormat formats a bound value with a standard .NET format string, such as {0:F2}. Move the slider, pick a time, or type some text." Style="{StaticResource Lead}" />
+            </VerticalStackLayout>
 
-    <ContentPage.Resources>
-        <Style TargetType="Label">
-            <Setter Property="HorizontalTextAlignment" Value="Center" />
-        </Style>
+            <VerticalStackLayout Grid.Row="1"
+                                 Spacing="12">
+                <Border Style="{StaticResource Card}">
+                    <VerticalStackLayout Spacing="8">
+                        <Slider x:Name="slider" />
+                        <Label x:DataType="Slider"
+                               Text="{Binding Source={x:Reference slider},
+                                              Path=Value,
+                                              StringFormat='The slider value is {0:F2}'}"
+                               Style="{StaticResource Value}" />
+                    </VerticalStackLayout>
+                </Border>
 
-        <Style TargetType="BoxView">
-            <Setter Property="Color" Value="Blue" />
-            <Setter Property="HeightRequest" Value="2" />
-            <Setter Property="Margin" Value="0, 5" />
-        </Style>
-    </ContentPage.Resources>
+                <Border Style="{StaticResource Card}">
+                    <VerticalStackLayout Spacing="8">
+                        <TimePicker x:Name="timePicker" />
+                        <Label x:DataType="TimePicker"
+                               Text="{Binding Source={x:Reference timePicker},
+                                              Path=Time,
+                                              StringFormat='The TimeSpan is {0:c}'}"
+                               Style="{StaticResource Value}" />
+                    </VerticalStackLayout>
+                </Border>
 
-    <StackLayout Margin="10">
-        <Slider x:Name="slider" />
-        <Label x:DataType="Slider"
-               Text="{Binding Source={x:Reference slider},
-                              Path=Value,
-                              StringFormat='The slider value is {0:F2}'}" />
+                <Border Style="{StaticResource Card}">
+                    <VerticalStackLayout Spacing="8">
+                        <Entry x:Name="entry"
+                               Placeholder="Type some text" />
+                        <Label x:DataType="Entry"
+                               Text="{Binding Source={x:Reference entry},
+                                              Path=Text,
+                                              StringFormat='The Entry text is &quot;{0}&quot;'}"
+                               Style="{StaticResource Value}" />
+                    </VerticalStackLayout>
+                </Border>
 
-        <BoxView />
+                <Border Style="{StaticResource Card}">
+                    <VerticalStackLayout x:DataType="sys:DateTime"
+                                         BindingContext="{x:Static sys:DateTime.Now}"
+                                         Spacing="4">
+                        <Label Text="{Binding}"
+                               HorizontalTextAlignment="Center" />
+                        <Label Text="{Binding Path=Ticks,
+                                              StringFormat='{0:N0} ticks since 1/1/1'}"
+                               HorizontalTextAlignment="Center" />
+                        <Label Text="{Binding StringFormat='The {{0:MMMM}} specifier produces {0:MMMM}'}"
+                               HorizontalTextAlignment="Center" />
+                        <Label Text="{Binding StringFormat='The long date is {0:D}'}"
+                               HorizontalTextAlignment="Center" />
+                    </VerticalStackLayout>
+                </Border>
 
-        <TimePicker x:Name="timePicker" />
-        <Label x:DataType="TimePicker"
-               Text="{Binding Source={x:Reference timePicker},
-                              Path=Time,
-                              StringFormat='The TimeSpan is {0:c}'}" />
-
-        <BoxView />
-
-        <Entry x:Name="entry" />
-        <Label x:DataType="Entry"
-               Text="{Binding Source={x:Reference entry}, 
-                              Path=Text,
-                              StringFormat='The Entry text is &quot;{0}&quot;'}" />
-
-        <BoxView />
-
-        <StackLayout x:DataType="sys:DateTime"
-                     BindingContext="{x:Static sys:DateTime.Now}">
-            <Label Text="{Binding}" />
-            <Label Text="{Binding Path=Ticks, 
-                                  StringFormat='{0:N0} ticks since 1/1/1'}" />
-            <Label Text="{Binding StringFormat='The {{0:MMMM}} specifier produces {0:MMMM}'}" />
-            <Label Text="{Binding StringFormat='The long date is {0:D}'}" />
-        </StackLayout>
-
-        <BoxView />
-
-        <StackLayout x:DataType="sys:Double"
-                     BindingContext="{x:Static sys:Math.PI}">
-            <Label Text="{Binding}" />
-            <Label Text="{Binding StringFormat='PI to 4 decimal points = {0:F4}'}" />
-            <Label Text="{Binding StringFormat='PI in scientific notation = {0:E7}'}" />
-        </StackLayout>
-    </StackLayout>
+                <Border Style="{StaticResource Card}">
+                    <VerticalStackLayout x:DataType="sys:Double"
+                                         BindingContext="{x:Static sys:Math.PI}"
+                                         Spacing="4">
+                        <Label Text="{Binding}"
+                               HorizontalTextAlignment="Center" />
+                        <Label Text="{Binding StringFormat='PI to 4 decimal points = {0:F4}'}"
+                               HorizontalTextAlignment="Center" />
+                        <Label Text="{Binding StringFormat='PI in scientific notation = {0:E7}'}"
+                               HorizontalTextAlignment="Center" />
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+        </Grid>
+    </ScrollView>
 </ContentPage>

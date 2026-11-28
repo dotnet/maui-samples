@@ -3,35 +3,56 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:DataBindingDemos"
              x:Class="DataBindingDemos.MonkeyDetailsPage"
-             Title="Monkey Details"
+             Title="Monkey details"
              x:DataType="local:Monkey">
     <ScrollView>
-        <StackLayout Margin="20">
-            <Label Text="{Binding Name}"
-                   HorizontalOptions="Center"
-                   Style="{DynamicResource TitleStyle}" />
-            <Label Text="{Binding Location, TargetNullValue={StaticResource locationUnknown}}"
-                   FontAttributes="Italic"
-                   HorizontalOptions="Center" />
-            <!-- Binding below deliberately doesn't compile, to use the fallback value -->
-            <Label Text="{Binding Population, FallbackValue={StaticResource populationUnknown}}"
-                   TextColor="Red"
-                   HorizontalOptions="Center" />
-            <Image Source="{Binding ImageUrl, TargetNullValue={StaticResource fallbackImageUrl}}"
-                   HeightRequest="200"
-                   WidthRequest="200"
-                   HorizontalOptions="Center" />
-            <Label Text="{Binding Details}"
-                   Style="{DynamicResource BodyStyle}" />
-            <Label TextColor="Red"
-                   HorizontalOptions="Center">
-                <Label.FormattedText>
-                    <FormattedString>
-                        <Span Text="Mischievous monkey: "/>
-                        <Span Text="{Binding IsMischievous, TargetNullValue={StaticResource unknown}}" />
-                    </FormattedString>
-                </Label.FormattedText>
-            </Label>
-        </StackLayout>
+        <Grid RowDefinitions="Auto,Auto,Auto"
+              Style="{StaticResource DemoLayout}">
+            <VerticalStackLayout Style="{StaticResource DemoHeader}">
+                <Label Text="Binding fallbacks" Style="{StaticResource Eyebrow}" />
+                <Label Text="Monkey details" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+                <Label Text="Monkey has no Population property, so that binding fails and shows its FallbackValue. Null values show their TargetNullValue." Style="{StaticResource Lead}" />
+            </VerticalStackLayout>
+
+            <Border Grid.Row="1"
+                    Style="{StaticResource DemoSurface}">
+                <VerticalStackLayout Spacing="4">
+                    <Image Source="{Binding ImageUrl, TargetNullValue={StaticResource fallbackImageUrl}}"
+                           HeightRequest="128"
+                           WidthRequest="128"
+                           Margin="0,0,0,12"
+                           HorizontalOptions="Center" />
+                    <Label Text="{Binding Name}"
+                           Style="{StaticResource Title2}"
+                           HorizontalOptions="Center" />
+                    <Label Text="{Binding Location, TargetNullValue={StaticResource locationUnknown}}"
+                           FontAttributes="Italic"
+                           Style="{StaticResource BodySecondary}"
+                           HorizontalOptions="Center" />
+                    <!-- Binding below deliberately doesn't compile, to use the fallback value -->
+                    <Label Text="{Binding Population, FallbackValue={StaticResource populationUnknown}}"
+                           TextColor="{AppThemeBinding Light={StaticResource DeepRose}, Dark={StaticResource Rose}}"
+                           FontFamily="InterSemiBold"
+                           HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Grid.Row="2"
+                    Style="{StaticResource Card}">
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="{Binding Details}"
+                           Style="{StaticResource Body}" />
+                    <Label Style="{StaticResource BodySecondary}">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Mischievous monkey: " />
+                                <Span Text="{Binding IsMischievous, TargetNullValue={StaticResource unknown}}"
+                                      FontFamily="InterSemiBold" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
     </ScrollView>
 </ContentPage>

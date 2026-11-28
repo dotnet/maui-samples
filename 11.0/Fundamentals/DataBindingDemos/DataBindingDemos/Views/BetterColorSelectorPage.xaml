@@ -1,39 +1,44 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:DataBindingDemos"
              x:Class="DataBindingDemos.BetterColorSelectorPage"
-             Title="Better Color Selector"
+             Title="Better color selector"
              x:DataType="local:HslColorViewModel">
     <ContentPage.BindingContext>
         <local:HslColorViewModel Color="Sienna" />
     </ContentPage.BindingContext>
 
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <Style TargetType="Slider">
-                <Setter Property="VerticalOptions" Value="Center" />
-            </Style>
+    <ScrollView>
+        <Grid RowDefinitions="Auto,Auto"
+              Style="{StaticResource DemoLayout}">
+            <VerticalStackLayout Style="{StaticResource DemoHeader}">
+                <Label Text="String formatting" Style="{StaticResource Eyebrow}" />
+                <Label Text="Better color selector" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+                <Label Text="Each Label binds to the same view model property as its Slider and formats the value with StringFormat=&apos;Hue = {0:F2}&apos;. Drag a slider." Style="{StaticResource Lead}" />
+            </VerticalStackLayout>
 
-            <Style TargetType="Label">
-                <Setter Property="HorizontalTextAlignment" Value="Center" />
-            </Style>
-        </ResourceDictionary>
-    </ContentPage.Resources>
-
-    <StackLayout Margin="20">
-        <BoxView Color="{Binding Color}"
-                 HeightRequest="100"
-                 WidthRequest="100"
-                 HorizontalOptions="Center" />
-        <StackLayout Margin="10, 0">
-            <Label Text="{Binding Name}" />
-            <Slider Value="{Binding Hue}" />
-            <Label Text="{Binding Hue, StringFormat='Hue = {0:F2}'}" />
-            <Slider Value="{Binding Saturation}" />
-            <Label Text="{Binding Saturation, StringFormat='Saturation = {0:F2}'}" />
-            <Slider Value="{Binding Luminosity}" />
-            <Label Text="{Binding Luminosity, StringFormat='Luminosity = {0:F2}'}" />
-        </StackLayout>
-    </StackLayout>
-</ContentPage>    
+            <Border Grid.Row="1"
+                    Style="{StaticResource DemoSurface}">
+                <VerticalStackLayout Spacing="12">
+                    <BoxView Color="{Binding Color}"
+                             Style="{StaticResource ColorPreview}" />
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="{Binding Name}"
+                               Style="{StaticResource Title2}"
+                               HorizontalTextAlignment="Center" />
+                        <Slider Value="{Binding Hue}" />
+                        <Label Text="{Binding Hue, StringFormat='Hue = {0:F2}'}"
+                               Style="{StaticResource Value}" />
+                        <Slider Value="{Binding Saturation}" />
+                        <Label Text="{Binding Saturation, StringFormat='Saturation = {0:F2}'}"
+                               Style="{StaticResource Value}" />
+                        <Slider Value="{Binding Luminosity}" />
+                        <Label Text="{Binding Luminosity, StringFormat='Luminosity = {0:F2}'}"
+                               Style="{StaticResource Value}" />
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+    </ScrollView>
+</ContentPage>

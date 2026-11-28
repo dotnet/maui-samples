@@ -1,85 +1,90 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:DataBindingDemos.Controls"
+             xmlns:local="clr-namespace:DataBindingDemos"
              x:Class="DataBindingDemos.RelativeSourceTemplatedParentPage"
-             Title="RelativeSource TemplatedParent Mode">
+             Title="TemplatedParent">
     <ContentPage.Resources>
+        <!-- Avatars for the cards -->
+        <FontImageSource x:Key="PersonIcon" Glyph="{x:Static local:MaterialIcons.Person}" FontFamily="MaterialIcons" Color="White" />
+        <FontImageSource x:Key="FaceIcon" Glyph="{x:Static local:MaterialIcons.Face}" FontFamily="MaterialIcons" Color="White" />
+        <FontImageSource x:Key="PetsIcon" Glyph="{x:Static local:MaterialIcons.Pets}" FontFamily="MaterialIcons" Color="White" />
+
+        <Style TargetType="controls:CardView">
+            <Setter Property="CardColor" Value="{AppThemeBinding Light={StaticResource SurfaceLight}, Dark={StaticResource SurfaceDark}}" />
+            <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource OutlineLight}, Dark={StaticResource OutlineDark}}" />
+        </Style>
+
         <ControlTemplate x:Key="CardViewControlTemplate"
                          x:DataType="controls:CardView">
             <!--
-            In this example, the frame's BindingContext is set to the control instance that the template is applied to. Therefore,
+            In this example, the border's BindingContext is set to the control instance that the template is applied to. Therefore,
             the binding expressions resolve against the properties of each CardView object.
             -->
             <Border BindingContext="{Binding Source={RelativeSource TemplatedParent}}"
                     Background="{Binding CardColor}"
-                   Stroke="{Binding BorderColor}"
+                    Stroke="{Binding BorderColor}"
                     StrokeThickness="1"
-                    StrokeShape="RoundRectangle 12,12,12,12"                    
-                   Padding="8"
-                   HorizontalOptions="Center"
-                   VerticalOptions="Center">
-                <Border.Shadow>
-                    <Shadow Brush="Black"
-                            Offset="10,10"
-                            Radius="14"
-                            Opacity="0.8" />
-                </Border.Shadow>
-                <Grid RowDefinitions="75,4,Auto" ColumnDefinitions="75,200">
-                    <Border 
-                           Stroke="{Binding BorderColor}"
-                           StrokeThickness="1"
-                           Background="{Binding IconBackgroundColor}"
-                           StrokeShape="RoundRectangle 30,30,30,30"  
-                           HeightRequest="60"
-                           WidthRequest="60"
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center">
+                    StrokeShape="RoundRectangle 18"
+                    Padding="16">
+                <Grid RowDefinitions="Auto,Auto,Auto"
+                      ColumnDefinitions="Auto,*"
+                      ColumnSpacing="14"
+                      RowSpacing="12">
+                    <Border Background="{Binding IconBackgroundColor}"
+                            StrokeThickness="0"
+                            StrokeShape="RoundRectangle 24"
+                            HeightRequest="48"
+                            WidthRequest="48">
                         <Image Source="{Binding IconImageSource}"
-                               Margin="-20"
-                               WidthRequest="60"
-                               HeightRequest="60"
-                               Aspect="AspectFill" />
+                               WidthRequest="28"
+                               HeightRequest="28" />
                     </Border>
                     <Label Grid.Column="1"
                            Text="{Binding CardTitle}"
-                           FontAttributes="Bold"
-                           FontSize="20"
-                           VerticalTextAlignment="Center"
-                           HorizontalTextAlignment="Start" />
+                           Style="{StaticResource Headline}"
+                           VerticalTextAlignment="Center" />
                     <BoxView Grid.Row="1"
                              Grid.ColumnSpan="2"
-                             BackgroundColor="{Binding BorderColor}"
-                             HeightRequest="2"
-                             HorizontalOptions="Fill" />
+                             Color="{Binding BorderColor}"
+                             HeightRequest="1" />
                     <Label Grid.Row="2"
                            Grid.ColumnSpan="2"
                            Text="{Binding CardDescription}"
-                           VerticalTextAlignment="Start"
-                           VerticalOptions="Fill"
-                           HorizontalOptions="Fill" />
+                           Style="{StaticResource BodySecondary}" />
                 </Grid>
             </Border>
         </ControlTemplate>
     </ContentPage.Resources>
-    <StackLayout Margin="30" Spacing="30">
-        <controls:CardView BorderColor="DarkGray"
-                           CardTitle="John Doe"
-                           CardDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla elit dolor, convallis non interdum."
-                           IconBackgroundColor="SlateGray"
-                           IconImageSource="user.png"
-                           ControlTemplate="{StaticResource CardViewControlTemplate}" />
-        <controls:CardView BorderColor="DarkGray"
-                           CardTitle="Jane Doe"
-                           CardDescription="Phasellus eu convallis mi. In tempus augue eu dignissim fermentum. Morbi ut lacus vitae eros lacinia."
-                           IconBackgroundColor="SlateGray"
-                           IconImageSource="user.png"
-                           ControlTemplate="{StaticResource CardViewControlTemplate}" />
-        <controls:CardView BorderColor="DarkGray"
-                           CardTitle="Xamarin Monkey"
-                           CardDescription="Aliquam sagittis, odio lacinia fermentum dictum, mi erat scelerisque erat, quis aliquet arcu."
-                           IconBackgroundColor="SlateGray"
-                           IconImageSource="user.png"
-                           ControlTemplate="{StaticResource CardViewControlTemplate}" />
-    </StackLayout>
+
+    <ScrollView>
+        <Grid RowDefinitions="Auto,Auto"
+              Style="{StaticResource DemoLayout}">
+            <VerticalStackLayout Style="{StaticResource DemoHeader}">
+                <Label Text="Relative bindings" Style="{StaticResource Eyebrow}" />
+                <Label Text="TemplatedParent" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+                <Label Text="Each card is a CardView with a ControlTemplate. Inside the template, RelativeSource TemplatedParent binds to the CardView's CardTitle, CardDescription, and icon properties." Style="{StaticResource Lead}" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Grid.Row="1"
+                                 Spacing="12">
+                <controls:CardView CardTitle="John Doe"
+                                   CardDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla elit dolor, convallis non interdum."
+                                   IconBackgroundColor="{StaticResource Violet}"
+                                   IconImageSource="{StaticResource PersonIcon}"
+                                   ControlTemplate="{StaticResource CardViewControlTemplate}" />
+                <controls:CardView CardTitle="Jane Doe"
+                                   CardDescription="Phasellus eu convallis mi. In tempus augue eu dignissim fermentum. Morbi ut lacus vitae eros lacinia."
+                                   IconBackgroundColor="{StaticResource Teal}"
+                                   IconImageSource="{StaticResource FaceIcon}"
+                                   ControlTemplate="{StaticResource CardViewControlTemplate}" />
+                <controls:CardView CardTitle="Xamarin Monkey"
+                                   CardDescription="Aliquam sagittis, odio lacinia fermentum dictum, mi erat scelerisque erat, quis aliquet arcu."
+                                   IconBackgroundColor="{StaticResource Orange}"
+                                   IconImageSource="{StaticResource PetsIcon}"
+                                   ControlTemplate="{StaticResource CardViewControlTemplate}" />
+            </VerticalStackLayout>
+        </Grid>
+    </ScrollView>
 </ContentPage>

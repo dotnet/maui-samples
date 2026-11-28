@@ -3,31 +3,46 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:DataBindingDemos"
              x:Class="DataBindingDemos.RelativeSourceFindAncestorPage"
-             Title="RelativeSource FindAncestor Mode"
+             Title="FindAncestor"
              BindingContext="{Binding x:DataType='local:RelativeSourceFindAncestorPage', Source={RelativeSource Self}, Path=DefaultViewModel}"
              x:DataType="local:PeopleViewModel">
-    <Grid Margin="10">
+    <Grid RowDefinitions="Auto,*"
+          Style="{StaticResource DemoLayout}">
+        <VerticalStackLayout Style="{StaticResource DemoHeader}">
+            <Label Text="Relative bindings" Style="{StaticResource Eyebrow}" />
+            <Label Text="FindAncestor" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+            <Label Text="Each Delete button binds its Command to the DeleteEmployeeCommand of an ancestor's PeopleViewModel, found with RelativeSource AncestorType. Tap Delete." Style="{StaticResource Lead}" />
+        </VerticalStackLayout>
+
         <!--
         In this example, the page's BindingContext is bound to its own DefaultViewModel property.
-        -->        
-        <CollectionView SelectionMode="Single" ItemsSource="{Binding Employees}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="local:Person">
-<StackLayout Orientation="Horizontal">
+        -->
+        <Border Grid.Row="1"
+                Style="{StaticResource ListSurface}"
+                VerticalOptions="Start">
+            <CollectionView ItemsSource="{Binding Employees}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="local:Person">
+                        <Grid Padding="16,8"
+                              ColumnDefinitions="*,Auto"
+                              ColumnSpacing="12">
                             <Label Text="{Binding Fullname}"
+                                   Style="{StaticResource Headline}"
                                    VerticalOptions="Center" />
                             <!--
                             In this example, the button's Command property is bound to the DeleteEmployeeCommand in its parent's view model.
                             Therefore, the PeopleViewModel class does not need a reference to its parent, and the DataTemplate isn't dependent
                             upon the parent type.
                             -->
-                            <Button Text="Delete"
+                            <Button Grid.Column="1"
+                                    Text="Delete"
+                                    Style="{StaticResource TonalButton}"
                                     Command="{Binding x:DataType='local:PeopleViewModel', Source={RelativeSource AncestorType={x:Type local:PeopleViewModel}}, Path=DeleteEmployeeCommand}"
-                                    CommandParameter="{Binding}"
-                                    HorizontalOptions="End" />
-                        </StackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+                                    CommandParameter="{Binding}" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Border>
     </Grid>
 </ContentPage>
