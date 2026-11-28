@@ -1,56 +1,83 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models="clr-namespace:CarouselViewDemos.Models"
              xmlns:viewmodels="clr-namespace:CarouselViewDemos.ViewModels"
              x:Class="CarouselViewDemos.Views.SetCurrentItemAndPositionPage"
-             Title="Set CurrentItem/Position from VM"
+             Title="Preset item and position"
              x:DataType="viewmodels:MonkeysViewModel">
     <ContentPage.BindingContext>
         <viewmodels:MonkeysViewModel />
     </ContentPage.BindingContext>
-    <StackLayout Margin="10">
-        <Label BindingContext="{Binding x:DataType='CarouselView', Source={x:Reference carouselView}, Path=CurrentItem}"
-               Text="{Binding x:DataType='models:Monkey', Path=Name, StringFormat='Current item: {0}', FallbackValue='Current item:'}" />
-        <Label BindingContext="{Binding x:DataType='CarouselView', Source={x:Reference carouselView}}"
-               Text="{Binding x:DataType='CarouselView', Path=Position, StringFormat='Position: {0}'}" />
-        <CarouselView x:Name="carouselView"
+
+    <Grid RowDefinitions="Auto,Auto,*"
+          Style="{StaticResource DemoLayout}">
+        <VerticalStackLayout Style="{StaticResource DemoHeader}">
+            <Label Text="Interaction" Style="{StaticResource Eyebrow}" />
+            <Label Text="Preset item and position" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+            <Label Text="The view model sets CurrentItem and Position to the fourth monkey, so the carousel opens on Squirrel Monkey." Style="{StaticResource Lead}" />
+        </VerticalStackLayout>
+
+        <Border Grid.Row="1"
+                Style="{StaticResource Card}">
+            <VerticalStackLayout Spacing="12">
+                <Grid RowDefinitions="Auto"
+                      ColumnDefinitions="*,*"
+                      RowSpacing="12"
+                      ColumnSpacing="12">
+                    <VerticalStackLayout
+                                         Spacing="2">
+                        <Label Text="Current item"
+                               Style="{StaticResource Caption}" />
+                        <Label BindingContext="{Binding x:DataType='CarouselView', Source={x:Reference carouselView}, Path=CurrentItem}"
+                           Text="{Binding x:DataType='models:Monkey', Path=Name, FallbackValue='None'}"
+                               Style="{StaticResource Headline}"
+                               LineBreakMode="TailTruncation" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Grid.Column="1"
+                                         Spacing="2">
+                        <Label Text="Position"
+                               Style="{StaticResource Caption}" />
+                        <Label BindingContext="{Binding x:DataType='CarouselView', Source={x:Reference carouselView}}"
+                           Text="{Binding x:DataType='CarouselView', Path=Position}"
+                               Style="{StaticResource Headline}"
+                               LineBreakMode="TailTruncation" />
+                    </VerticalStackLayout>
+                </Grid>
+            </VerticalStackLayout>
+        </Border>
+
+        <CarouselView Grid.Row="2"
+                      x:Name="carouselView"
                       ItemsSource="{Binding Monkeys}"
                       CurrentItem="{Binding CurrentItem}"
                       Position="{Binding Position}">
             <CarouselView.ItemTemplate>
                 <DataTemplate x:DataType="models:Monkey">
-                    <StackLayout>
-                        <Border Stroke="DarkGray"
-                                StrokeShape="RoundRectangle 5"
-                                Margin="20"
-                                Padding="20"
+                    <Grid>
+                        <Border Style="{StaticResource ItemCard}"
                                 HeightRequest="360"
-                                HorizontalOptions="Center"
-                                VerticalOptions="Center">
-                            <StackLayout>
-                                <Label Text="{Binding Name}" 
-                                       FontAttributes="Bold"
-                                       FontSize="20"
-                                       HorizontalOptions="Center"
-                                       VerticalOptions="Center" />
-                                <Image Source="{Binding ImageUrl}" 
-                                       Aspect="AspectFill"
+                                VerticalOptions="Start">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Text="{Binding Name}"
+                                       Style="{StaticResource Title2}"
+                                       HorizontalTextAlignment="Center" />
+                                <Image Source="{Binding ImageUrl}"
                                        HeightRequest="150"
-                                       WidthRequest="150"
-                                       HorizontalOptions="Center" />
+                                       WidthRequest="150" />
                                 <Label Text="{Binding Location}"
-                                       HorizontalOptions="Center" />
+                                       Style="{StaticResource Caption}"
+                                       HorizontalTextAlignment="Center" />
                                 <Label Text="{Binding Details}"
-                                       FontAttributes="Italic"
-                                       HorizontalOptions="Center"
-                                       MaxLines="5"
+                                       Style="{StaticResource BodySecondary}"
+                                       HorizontalTextAlignment="Center"
+                                       MaxLines="3"
                                        LineBreakMode="TailTruncation" />
-                            </StackLayout>
+                            </VerticalStackLayout>
                         </Border>
-                    </StackLayout>
+                    </Grid>
                 </DataTemplate>
             </CarouselView.ItemTemplate>
         </CarouselView>
-    </StackLayout>
+    </Grid>
 </ContentPage>

@@ -1,48 +1,54 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models="clr-namespace:CarouselViewDemos.Models"
              xmlns:viewmodels="clr-namespace:CarouselViewDemos.ViewModels"
              x:Class="CarouselViewDemos.Views.HorizontalLayoutPeekAreaPage"
-             Title="Horizontal layout (peek items)"
+             Title="Peek items"
              x:DataType="viewmodels:MonkeysViewModel">
     <ContentPage.BindingContext>
         <viewmodels:MonkeysViewModel />
     </ContentPage.BindingContext>
-    <CarouselView ItemsSource="{Binding Monkeys}"
-                  PeekAreaInsets="100">
-        <CarouselView.ItemTemplate>
-            <DataTemplate x:DataType="models:Monkey">
-                <StackLayout>
-                    <Border Stroke="DarkGray"
-                            StrokeShape="RoundRectangle 5"
-                            Margin="20"
-                            Padding="20"
-                            HeightRequest="360"
-                            HorizontalOptions="Center"
-                            VerticalOptions="Center">
-                        <StackLayout>
-                            <Label Text="{Binding Name}" 
-                                   FontAttributes="Bold"
-                                   FontSize="20"
-                                   HorizontalOptions="Center"
-                                   VerticalOptions="Center" />
-                            <Image Source="{Binding ImageUrl}" 
-                                   Aspect="AspectFill"
-                                   HeightRequest="150"
-                                   WidthRequest="150"
-                                   HorizontalOptions="Center" />
-                            <Label Text="{Binding Location}"
-                                   HorizontalOptions="Center" />
-                            <Label Text="{Binding Details}"
-                                   FontAttributes="Italic"
-                                   HorizontalOptions="Center"
-                                   MaxLines="5"
-                                   LineBreakMode="TailTruncation" />
-                        </StackLayout>
-                    </Border>
-                </StackLayout>
-            </DataTemplate>
-        </CarouselView.ItemTemplate>
-    </CarouselView>
+
+    <Grid RowDefinitions="Auto,*"
+          Style="{StaticResource DemoLayout}">
+        <VerticalStackLayout Style="{StaticResource DemoHeader}">
+            <Label Text="Layout" Style="{StaticResource Eyebrow}" />
+            <Label Text="Peek items" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+            <Label Text="PeekAreaInsets=&quot;60&quot; shows part of the previous and next cards at the edges." Style="{StaticResource Lead}" />
+        </VerticalStackLayout>
+
+        <!-- A negative margin extends the carousel past the page padding, so the peeking items reach the screen edges. -->
+        <CarouselView Grid.Row="1"
+                      ItemsSource="{Binding Monkeys}"
+                      PeekAreaInsets="60"
+                      Margin="-20,0">
+            <CarouselView.ItemTemplate>
+                <DataTemplate x:DataType="models:Monkey">
+                    <Grid Padding="6,0">
+                        <Border Style="{StaticResource ItemCard}"
+                                HeightRequest="360"
+                                VerticalOptions="Start">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Text="{Binding Name}"
+                                       Style="{StaticResource Title2}"
+                                       HorizontalTextAlignment="Center" />
+                                <Image Source="{Binding ImageUrl}"
+                                       HeightRequest="150"
+                                       WidthRequest="150" />
+                                <Label Text="{Binding Location}"
+                                       Style="{StaticResource Caption}"
+                                       HorizontalTextAlignment="Center" />
+                                <Label Text="{Binding Details}"
+                                       Style="{StaticResource BodySecondary}"
+                                       HorizontalTextAlignment="Center"
+                                       MaxLines="3"
+                                       LineBreakMode="TailTruncation" />
+                            </VerticalStackLayout>
+                        </Border>
+                    </Grid>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+    </Grid>
 </ContentPage>

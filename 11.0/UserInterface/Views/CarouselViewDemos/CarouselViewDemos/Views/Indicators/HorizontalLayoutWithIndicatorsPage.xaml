@@ -1,56 +1,60 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models="clr-namespace:CarouselViewDemos.Models"
              xmlns:viewmodels="clr-namespace:CarouselViewDemos.ViewModels"
              x:Class="CarouselViewDemos.Views.HorizontalLayoutWithIndicatorsPage"
-             Title="Indicators"
+             Title="IndicatorView"
              x:DataType="viewmodels:MonkeysViewModel">
     <ContentPage.BindingContext>
         <viewmodels:MonkeysViewModel />
     </ContentPage.BindingContext>
-    <StackLayout>
-        <CarouselView ItemsSource="{Binding Monkeys}"
-                      IndicatorView="indicatorView">
+
+    <Grid RowDefinitions="Auto,Auto,Auto"
+          Style="{StaticResource DemoLayout}">
+        <VerticalStackLayout Style="{StaticResource DemoHeader}">
+            <Label Text="Indicators" Style="{StaticResource Eyebrow}" />
+            <Label Text="IndicatorView" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+            <Label Text="IndicatorView=&quot;indicatorView&quot; connects the carousel to the indicators below. Swipe and the selected indicator follows." Style="{StaticResource Lead}" />
+        </VerticalStackLayout>
+
+        <CarouselView Grid.Row="1"
+                      ItemsSource="{Binding Monkeys}"
+                      IndicatorView="indicatorView"
+                      HeightRequest="360">
             <CarouselView.ItemTemplate>
                 <DataTemplate x:DataType="models:Monkey">
-                    <StackLayout>
-                        <Border Stroke="DarkGray"
-                                StrokeShape="RoundRectangle 5"
-                                Margin="20"
-                                Padding="20"
+                    <Grid>
+                        <Border Style="{StaticResource ItemCard}"
                                 HeightRequest="360"
-                                HorizontalOptions="Center"
-                                VerticalOptions="Center">
-                            <StackLayout>
-                                <Label Text="{Binding Name}" 
-                                       FontAttributes="Bold"
-                                       FontSize="20"
-                                       HorizontalOptions="Center"
-                                       VerticalOptions="Center" />
-                                <Image Source="{Binding ImageUrl}" 
-                                       Aspect="AspectFill"
+                                VerticalOptions="Start">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Text="{Binding Name}"
+                                       Style="{StaticResource Title2}"
+                                       HorizontalTextAlignment="Center" />
+                                <Image Source="{Binding ImageUrl}"
                                        HeightRequest="150"
-                                       WidthRequest="150"
-                                       HorizontalOptions="Center" />
+                                       WidthRequest="150" />
                                 <Label Text="{Binding Location}"
-                                       HorizontalOptions="Center" />
+                                       Style="{StaticResource Caption}"
+                                       HorizontalTextAlignment="Center" />
                                 <Label Text="{Binding Details}"
-                                       FontAttributes="Italic"
-                                       HorizontalOptions="Center"
-                                       MaxLines="5"
+                                       Style="{StaticResource BodySecondary}"
+                                       HorizontalTextAlignment="Center"
+                                       MaxLines="3"
                                        LineBreakMode="TailTruncation" />
-                            </StackLayout>
+                            </VerticalStackLayout>
                         </Border>
-                    </StackLayout>
+                    </Grid>
                 </DataTemplate>
             </CarouselView.ItemTemplate>
         </CarouselView>
+
         <IndicatorView x:Name="indicatorView"
-                       IndicatorsShape="Square"
-                       IndicatorColor="LightGray"
-                       SelectedIndicatorColor="DarkGray"
-                       HorizontalOptions="Center"
-                       Margin="0,0,0,40" />
-    </StackLayout>
+                       Grid.Row="2"
+                       IndicatorColor="{AppThemeBinding Light={StaticResource TextTertiaryLight}, Dark={StaticResource OutlineStrongDark}}"
+                       SelectedIndicatorColor="{AppThemeBinding Light={StaticResource PrimaryLight}, Dark={StaticResource PrimaryDark}}"
+                       IndicatorSize="10"
+                       HorizontalOptions="Center" />
+    </Grid>
 </ContentPage>

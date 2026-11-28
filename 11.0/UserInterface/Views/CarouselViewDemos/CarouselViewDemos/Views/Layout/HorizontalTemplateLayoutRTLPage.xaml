@@ -1,48 +1,52 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models="clr-namespace:CarouselViewDemos.Models"
              xmlns:viewmodels="clr-namespace:CarouselViewDemos.ViewModels"
              x:Class="CarouselViewDemos.Views.HorizontalTemplateLayoutRTLPage"
-             Title="Horizontal layout (RTL FlowDirection)"
+             Title="Right-to-left"
              FlowDirection="RightToLeft"
              x:DataType="viewmodels:MonkeysViewModel">
     <ContentPage.BindingContext>
         <viewmodels:MonkeysViewModel />
     </ContentPage.BindingContext>
-    <CarouselView ItemsSource="{Binding Monkeys}">
-        <CarouselView.ItemTemplate>
-            <DataTemplate x:DataType="models:Monkey">
-                <StackLayout>
-                    <Border Stroke="DarkGray"
-                            StrokeShape="RoundRectangle 5"
-                            Margin="20"
-                            Padding="20"
-                            HeightRequest="360"
-                            HorizontalOptions="Center"
-                            VerticalOptions="Center">
-                        <StackLayout>
-                            <Label Text="{Binding Name}" 
-                                   FontAttributes="Bold"
-                                   FontSize="20"
-                                   HorizontalOptions="Center"
-                                   VerticalOptions="Center" />
-                            <Image Source="{Binding ImageUrl}" 
-                                   Aspect="AspectFill"
-                                   HeightRequest="150"
-                                   WidthRequest="150"
-                                   HorizontalOptions="Center" />
-                            <Label Text="{Binding Location}"
-                                   HorizontalOptions="Center" />
-                            <Label Text="{Binding Details}"
-                                   FontAttributes="Italic"
-                                   HorizontalOptions="Center"
-                                   MaxLines="5"
-                                   LineBreakMode="TailTruncation" />
-                        </StackLayout>
-                    </Border>
-                </StackLayout>
-            </DataTemplate>
-        </CarouselView.ItemTemplate>
-    </CarouselView>
+
+    <Grid RowDefinitions="Auto,*"
+          Style="{StaticResource DemoLayout}">
+        <VerticalStackLayout Style="{StaticResource DemoHeader}">
+            <Label Text="Layout" Style="{StaticResource Eyebrow}" />
+            <Label Text="Right-to-left" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+            <Label Text="FlowDirection=&quot;RightToLeft&quot; on the page mirrors the carousel, so the next monkey comes in from the left." Style="{StaticResource Lead}" />
+        </VerticalStackLayout>
+
+        <CarouselView Grid.Row="1"
+                      ItemsSource="{Binding Monkeys}">
+            <CarouselView.ItemTemplate>
+                <DataTemplate x:DataType="models:Monkey">
+                    <Grid>
+                        <Border Style="{StaticResource ItemCard}"
+                                HeightRequest="360"
+                                VerticalOptions="Start">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Text="{Binding Name}"
+                                       Style="{StaticResource Title2}"
+                                       HorizontalTextAlignment="Center" />
+                                <Image Source="{Binding ImageUrl}"
+                                       HeightRequest="150"
+                                       WidthRequest="150" />
+                                <Label Text="{Binding Location}"
+                                       Style="{StaticResource Caption}"
+                                       HorizontalTextAlignment="Center" />
+                                <Label Text="{Binding Details}"
+                                       Style="{StaticResource BodySecondary}"
+                                       HorizontalTextAlignment="Center"
+                                       MaxLines="3"
+                                       LineBreakMode="TailTruncation" />
+                            </VerticalStackLayout>
+                        </Border>
+                    </Grid>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+    </Grid>
 </ContentPage>

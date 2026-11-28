@@ -1,13 +1,29 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:CarouselViewDemos.Models"
              xmlns:viewmodels="clr-namespace:CarouselViewDemos.ViewModels"
              x:Class="CarouselViewDemos.Views.EmptyViewNullPage"
-             Title="EmptyView (Null ItemsSource)"
+             Title="Null ItemsSource"
              x:DataType="viewmodels:MonkeysViewModel">
     <ContentPage.BindingContext>
         <viewmodels:MonkeysViewModel />
     </ContentPage.BindingContext>
-    <CarouselView ItemsSource="{Binding EmptyMonkeys}"
-                  EmptyView="No items to display." />
+
+    <Grid RowDefinitions="Auto,*"
+          Style="{StaticResource DemoLayout}">
+        <VerticalStackLayout Style="{StaticResource DemoHeader}">
+            <Label Text="Empty view" Style="{StaticResource Eyebrow}" />
+            <Label Text="Null ItemsSource" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+            <Label Text="ItemsSource is bound to a collection that is null, so the carousel shows its EmptyView string." Style="{StaticResource Lead}" />
+        </VerticalStackLayout>
+
+        <Border Grid.Row="1"
+                Style="{StaticResource DemoSurface}"
+                HeightRequest="360"
+                VerticalOptions="Start">
+            <CarouselView ItemsSource="{Binding EmptyMonkeys}"
+                          EmptyView="No items to display." />
+        </Border>
+    </Grid>
 </ContentPage>
