@@ -1,7 +1,7 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:XamlSamples;assembly=XamlSamples"
+             xmlns:local="clr-namespace:XamlSamples"
              x:Class="XamlSamples.ClockPage"
              Title="Clock Page"
              x:DataType="local:ClockViewModel">
@@ -10,7 +10,7 @@
     </ContentPage.BindingContext>
 
     <Label Text="{Binding DateTime, StringFormat='{0:T}'}"
-           FontSize="20"
+           FontSize="18"
            HorizontalOptions="Center"
            VerticalOptions="Center" />
 </ContentPage>

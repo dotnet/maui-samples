@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="XamlSamples.ConverterCulturePage"
+             Title="ConverterCulture"
+             x:DataType="PriceViewModel">
+    <ContentPage.BindingContext>
+        <PriceViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <FormatConverter x:Key="format" />
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="14">
+            <Slider Maximum="2000000"
+                    Value="{Binding Amount}"
+                    SemanticProperties.Description="Amount" />
+
+            <Grid ColumnDefinitions="64,*">
+                <Label Text="en-US"
+                       Style="{StaticResource CodeText}"
+                       FontSize="13"
+                       VerticalOptions="Center" />
+                <VerticalStackLayout Grid.Column="1"
+                                     Spacing="2">
+                    <Label Text="{Binding Amount, Converter={StaticResource format}, ConverterParameter=C, ConverterCulture=en-US}"
+                           Style="{StaticResource Headline}" />
+                    <Label Text="{Binding Today, Converter={StaticResource format}, ConverterParameter=D, ConverterCulture=en-US}"
+                           Style="{StaticResource Caption}" />
+                </VerticalStackLayout>
+            </Grid>
+            <Grid ColumnDefinitions="64,*">
+                <Label Text="nl-NL"
+                       Style="{StaticResource CodeText}"
+                       FontSize="13"
+                       VerticalOptions="Center" />
+                <VerticalStackLayout Grid.Column="1"
+                                     Spacing="2">
+                    <Label Text="{Binding Amount, Converter={StaticResource format}, ConverterParameter=C, ConverterCulture=nl-NL}"
+                           Style="{StaticResource Headline}" />
+                    <Label Text="{Binding Today, Converter={StaticResource format}, ConverterParameter=D, ConverterCulture=nl-NL}"
+                           Style="{StaticResource Caption}" />
+                </VerticalStackLayout>
+            </Grid>
+            <Grid ColumnDefinitions="64,*">
+                <Label Text="fr-FR"
+                       Style="{StaticResource CodeText}"
+                       FontSize="13"
+                       VerticalOptions="Center" />
+                <VerticalStackLayout Grid.Column="1"
+                                     Spacing="2">
+                    <Label Text="{Binding Amount, Converter={StaticResource format}, ConverterParameter=C, ConverterCulture=fr-FR}"
+                           Style="{StaticResource Headline}" />
+                    <Label Text="{Binding Today, Converter={StaticResource format}, ConverterParameter=D, ConverterCulture=fr-FR}"
+                           Style="{StaticResource Caption}" />
+                </VerticalStackLayout>
+            </Grid>
+            <Grid ColumnDefinitions="64,*">
+                <Label Text="ja-JP"
+                       Style="{StaticResource CodeText}"
+                       FontSize="13"
+                       VerticalOptions="Center" />
+                <VerticalStackLayout Grid.Column="1"
+                                     Spacing="2">
+                    <Label Text="{Binding Amount, Converter={StaticResource format}, ConverterParameter=C, ConverterCulture=ja-JP}"
+                           Style="{StaticResource Headline}" />
+                    <Label Text="{Binding Today, Converter={StaticResource format}, ConverterParameter=D, ConverterCulture=ja-JP}"
+                           Style="{StaticResource Caption}" />
+                </VerticalStackLayout>
+            </Grid>
+            <Grid ColumnDefinitions="64,*">
+                <Label Text="hi-IN"
+                       Style="{StaticResource CodeText}"
+                       FontSize="13"
+                       VerticalOptions="Center" />
+                <VerticalStackLayout Grid.Column="1"
+                                     Spacing="2">
+                    <Label Text="{Binding Amount, Converter={StaticResource format}, ConverterParameter=C, ConverterCulture=hi-IN}"
+                           Style="{StaticResource Headline}" />
+                    <Label Text="{Binding Today, Converter={StaticResource format}, ConverterParameter=D, ConverterCulture=hi-IN}"
+                           Style="{StaticResource Caption}" />
+                </VerticalStackLayout>
+            </Grid>
+
+            <Border Style="{StaticResource CodeBlock}">
+                <Label Style="{StaticResource CodeText}"
+                       Text="Text=&quot;{Binding Amount,&#10;  Converter={StaticResource format},&#10;  ConverterParameter=C,&#10;  ConverterCulture=nl-NL}&quot;" />
+            </Border>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

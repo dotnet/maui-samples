@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="XamlSamples.AncestorBindingsPage"
+             Title="Ancestor bindings"
+             x:DataType="GroceriesViewModel">
+    <ContentPage.BindingContext>
+        <GroceriesViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="8">
+            <Grid ColumnDefinitions="*,Auto">
+                <Label Text="{Binding Summary}"
+                       Style="{StaticResource Headline}"
+                       VerticalOptions="Center" />
+                <Button Grid.Column="1"
+                        Text="Clear"
+                        Command="{Binding ClearCommand}" />
+            </Grid>
+
+            <Border Style="{StaticResource CodeBlock}">
+                <Label Style="{StaticResource CodeText}"
+                       Text="Command=&quot;{Binding AddCommand,&#10;  Source={RelativeSource AncestorType=&#10;    {x:Type GroceriesViewModel}}}&quot;" />
+            </Border>
+
+            <VerticalStackLayout BindableLayout.ItemsSource="{Binding Items}"
+                                 Spacing="0">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate x:DataType="GroceryItem">
+                        <Grid ColumnDefinitions="Auto,*,Auto,Auto"
+                              ColumnSpacing="12"
+                              Padding="0,4">
+                            <Image Source="{Binding Image}"
+                                   WidthRequest="32"
+                                   HeightRequest="32" />
+                            <Label Grid.Column="1"
+                                   Text="{Binding Name}"
+                                   VerticalOptions="Center" />
+                            <Label Grid.Column="2"
+                                   Text="{Binding Count, StringFormat='× {0}'}"
+                                   Style="{StaticResource Caption}"
+                                   VerticalOptions="Center" />
+                            <!-- The item template's x:DataType is GroceryItem, but AddCommand is on GroceriesViewModel.
+                                 AncestorType finds it, and the source generator compiles the binding against that type. -->
+                            <Button Grid.Column="3"
+                                    Text="&#xe145;"
+                                    FontFamily="MaterialIcons"
+                                    FontSize="22"
+                                    Padding="0"
+                                    WidthRequest="48"
+                                    Command="{Binding AddCommand, Source={RelativeSource AncestorType={x:Type GroceriesViewModel}}}"
+                                    CommandParameter="{Binding .}"
+                                    SemanticProperties.Description="{Binding Name, StringFormat='Add {0}'}" />
+                        </Grid>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="XamlSamples.GridDemoPage"
@@ -14,37 +14,36 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="100" />
         </Grid.ColumnDefinitions>
-        
+
         <Label Text="Autosized cell"
-               Grid.Row="0" Grid.Column="0"
                TextColor="White"
-               BackgroundColor="Blue" />
-        <BoxView Color="Silver"         
-                 Grid.Row="0" Grid.Column="1" />
+               BackgroundColor="RoyalBlue" />
+        <BoxView Color="LightSteelBlue"
+                 Grid.Column="1" />
         <BoxView Color="Teal"
-                 Grid.Row="1" Grid.Column="0" />
+                 Grid.Row="1" />
         <Label Text="Leftover space"
                Grid.Row="1" Grid.Column="1"
-               TextColor="Purple"
-               BackgroundColor="Aqua"
+               TextColor="Indigo"
+               BackgroundColor="Lavender"
                HorizontalTextAlignment="Center"
                VerticalTextAlignment="Center" />
         <Label Text="Span two rows (or more if you want)"
-               Grid.Row="0" Grid.Column="2" Grid.RowSpan="2"
-               TextColor="Yellow"
-               BackgroundColor="Blue"
+               Grid.Column="2" Grid.RowSpan="2"
+               TextColor="White"
+               BackgroundColor="SlateBlue"
                HorizontalTextAlignment="Center"
                VerticalTextAlignment="Center" />
         <Label Text="Span two columns"
-               Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
-               TextColor="Blue"
-               BackgroundColor="Yellow"
+               Grid.Row="2" Grid.ColumnSpan="2"
+               TextColor="MidnightBlue"
+               BackgroundColor="Gold"
                HorizontalTextAlignment="Center"
                VerticalTextAlignment="Center" />
         <Label Text="Fixed 100x100"
                Grid.Row="2" Grid.Column="2"
-               TextColor="Aqua"
-               BackgroundColor="Red"
+               TextColor="White"
+               BackgroundColor="Crimson"
                HorizontalTextAlignment="Center"
                VerticalTextAlignment="Center" />
     </Grid>

@@ -1,22 +1,24 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:XamlSamples"
              xmlns:sys="clr-namespace:System;assembly=netstandard"
              x:Class="XamlSamples.StaticConstantsPage"
-             Title="Static Constants Page"
-             Padding="5,25,5,0">
+             Title="Static Constants Page">
     <StackLayout>
         <Label Text="Hello, XAML!"
-               TextColor="Aqua"
-               BackgroundColor="Brown"
+               TextColor="{x:Static local:AppConstants.BackgroundColor}"
+               BackgroundColor="{x:Static local:AppConstants.ForegroundColor}"
                FontAttributes="Bold"
                FontSize="30"
                HorizontalOptions="Center" />
+        <!-- Scale doesn't change the size that layout reserves, so the margin makes room for the scaled BoxView. -->
         <BoxView WidthRequest="{x:Static sys:Math.PI}"
                  HeightRequest="{x:Static sys:Math.E}"
-                 Color="Aqua"
+                 Color="{x:Static local:AppConstants.ForegroundColor}"
                  HorizontalOptions="Center"
                  VerticalOptions="Center"
+                 Margin="0,150"
                  Scale="100" />
     </StackLayout>
 </ContentPage>
