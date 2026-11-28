@@ -1,54 +1,62 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:DataBindingDemos"
              x:Class="DataBindingDemos.RgbColorSelectorPage"
-             Title="RGB Color Selector"
+             Title="RGB color selector"
              x:DataType="local:RgbColorViewModel">
     <ContentPage.BindingContext>
         <local:RgbColorViewModel Color="Gray" />
     </ContentPage.BindingContext>
     <ContentPage.Resources>
-        <Style TargetType="Slider">
-            <Setter Property="VerticalOptions" Value="Center" />
-        </Style>
-
-        <Style TargetType="Label">
-            <Setter Property="HorizontalTextAlignment" Value="Center" />
-        </Style>
-
         <local:FloatToIntConverter x:Key="floatToInt" />
     </ContentPage.Resources>
 
-    <StackLayout Margin="20">
-        <BoxView Color="{Binding Color}"
-                 HeightRequest="100"
-                 WidthRequest="100"
-                 HorizontalOptions="Center" />
-        <StackLayout Margin="10, 0">
-            <Label Text="{Binding Name}" />
-            <Slider Value="{Binding Red}" />
-            <Label Text="{Binding Red, 
-                                  Converter={StaticResource floatToInt},
-                                  ConverterParameter=255,
-                                  StringFormat='Red = {0:X2}'}" />
-            <Slider Value="{Binding Green}" />
-            <Label Text="{Binding Green, 
-                                  Converter={StaticResource floatToInt},
-                                  ConverterParameter=255,
-                                  StringFormat='Green = {0:X2}'}" />
-            <Slider Value="{Binding Blue}" />
-            <Label>
-                <Label.Text>
-                    <Binding Path="Blue"
-                             StringFormat="Blue = {0:X2}"
-                             Converter="{StaticResource floatToInt}">
-                        <Binding.ConverterParameter>
-                            <x:Single>255</x:Single>
-                        </Binding.ConverterParameter>
-                    </Binding>
-                </Label.Text>
-            </Label>
-        </StackLayout>
-    </StackLayout>
-</ContentPage>    
+    <ScrollView>
+        <Grid RowDefinitions="Auto,Auto"
+              Style="{StaticResource DemoLayout}">
+            <VerticalStackLayout Style="{StaticResource DemoHeader}">
+                <Label Text="Value converters" Style="{StaticResource Eyebrow}" />
+                <Label Text="RGB color selector" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+                <Label Text="FloatToIntConverter multiplies each 0 to 1 component by its ConverterParameter, 255, and StringFormat shows the result in hexadecimal. Drag a slider." Style="{StaticResource Lead}" />
+            </VerticalStackLayout>
+
+            <Border Grid.Row="1"
+                    Style="{StaticResource DemoSurface}">
+                <VerticalStackLayout Spacing="12">
+                    <BoxView Color="{Binding Color}"
+                             Style="{StaticResource ColorPreview}" />
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="{Binding Name}"
+                               Style="{StaticResource Title2}"
+                               HorizontalTextAlignment="Center" />
+                        <Slider Value="{Binding Red}" />
+                        <Label Text="{Binding Red,
+                                              Converter={StaticResource floatToInt},
+                                              ConverterParameter=255,
+                                              StringFormat='Red = {0:X2}'}"
+                               Style="{StaticResource Value}" />
+                        <Slider Value="{Binding Green}" />
+                        <Label Text="{Binding Green,
+                                              Converter={StaticResource floatToInt},
+                                              ConverterParameter=255,
+                                              StringFormat='Green = {0:X2}'}"
+                               Style="{StaticResource Value}" />
+                        <Slider Value="{Binding Blue}" />
+                        <Label Style="{StaticResource Value}">
+                            <Label.Text>
+                                <Binding Path="Blue"
+                                         StringFormat="Blue = {0:X2}"
+                                         Converter="{StaticResource floatToInt}">
+                                    <Binding.ConverterParameter>
+                                        <x:Single>255</x:Single>
+                                    </Binding.ConverterParameter>
+                                </Binding>
+                            </Label.Text>
+                        </Label>
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+    </ScrollView>
+</ContentPage>

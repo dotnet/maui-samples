@@ -1,19 +1,32 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DataBindingDemos.BasicXamlBindingPage"
-             Title="Basic XAML Binding">
-    <StackLayout Padding="10, 0">
-        <Label x:DataType="Slider"
-               Text="TEXT"
-               FontSize="80"
-               HorizontalOptions="Center"
-               VerticalOptions="Center"
-               BindingContext="{x:Reference Name=slider}"
-               Rotation="{Binding Path=Value}" />
+             Title="XAML binding">
+    <ScrollView>
+        <Grid RowDefinitions="Auto,Auto"
+              Style="{StaticResource DemoLayout}">
+            <VerticalStackLayout Style="{StaticResource DemoHeader}">
+                <Label Text="Basic bindings" Style="{StaticResource Eyebrow}" />
+                <Label Text="XAML binding" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+                <Label Text="The Label's BindingContext is the Slider, set with x:Reference, and its Rotation binds to the Slider's Value. Drag the slider." Style="{StaticResource Lead}" />
+            </VerticalStackLayout>
 
-        <Slider x:Name="slider"
-                Maximum="360"
-                VerticalOptions="Center" />
-    </StackLayout>
+            <Border Grid.Row="1"
+                    Style="{StaticResource DemoSurface}">
+                <Grid RowDefinitions="260,Auto">
+                    <Label x:DataType="Slider"
+                           Text="TEXT"
+                           FontSize="80"
+                           Style="{StaticResource DemoText}"
+                           BindingContext="{x:Reference Name=slider}"
+                           Rotation="{Binding Path=Value}" />
+
+                    <Slider x:Name="slider"
+                            Grid.Row="1"
+                            Maximum="360" />
+                </Grid>
+            </Border>
+        </Grid>
+    </ScrollView>
 </ContentPage>

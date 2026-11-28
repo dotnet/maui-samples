@@ -1,35 +1,45 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:DataBindingDemos"
              x:Class="DataBindingDemos.EnableButtonsPage"
-             Title="Enable Buttons">
+             Title="Enable buttons">
     <ContentPage.Resources>
         <local:IntToBoolConverter x:Key="intToBool" />
     </ContentPage.Resources>
-    
-    <StackLayout Padding="10, 0">
-        <Entry x:Name="entry1"
-               Text=""
-               Placeholder="enter search term"
-               VerticalOptions="Center" />
-        <Button x:DataType="Entry"
-                Text="Search"
-                HorizontalOptions="Center"
-                VerticalOptions="Center"
-                IsEnabled="{Binding Source={x:Reference entry1},
-                                    Path=Text.Length,
-                                    Converter={StaticResource intToBool}}" />
-        <Entry x:Name="entry2"
-               Text=""
-               Placeholder="enter destination"
-               VerticalOptions="Center" />
-        <Button x:DataType="Entry"
-                Text="Submit"
-                HorizontalOptions="Center"
-                VerticalOptions="Center"
-                IsEnabled="{Binding Source={x:Reference entry2},
-                                    Path=Text.Length,
-                                    Converter={StaticResource intToBool}}" />
-    </StackLayout>
+
+    <ScrollView>
+        <Grid RowDefinitions="Auto,Auto"
+              Style="{StaticResource DemoLayout}">
+            <VerticalStackLayout Style="{StaticResource DemoHeader}">
+                <Label Text="Value converters" Style="{StaticResource Eyebrow}" />
+                <Label Text="Enable buttons" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+                <Label Text="Each Button binds IsEnabled to the Text.Length of its Entry. IntToBoolConverter turns 0 into false and any other length into true. Type in an entry." Style="{StaticResource Lead}" />
+            </VerticalStackLayout>
+
+            <Border Grid.Row="1"
+                    Style="{StaticResource DemoSurface}">
+                <VerticalStackLayout Spacing="12">
+                    <Entry x:Name="entry1"
+                           Text=""
+                           Placeholder="enter search term" />
+                    <Button x:DataType="Entry"
+                            Text="Search"
+                            IsEnabled="{Binding Source={x:Reference entry1},
+                                                Path=Text.Length,
+                                                Converter={StaticResource intToBool}}" />
+
+                    <Entry x:Name="entry2"
+                           Text=""
+                           Placeholder="enter destination"
+                           Margin="0,12,0,0" />
+                    <Button x:DataType="Entry"
+                            Text="Submit"
+                            IsEnabled="{Binding Source={x:Reference entry2},
+                                                Path=Text.Length,
+                                                Converter={StaticResource intToBool}}" />
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+    </ScrollView>
 </ContentPage>

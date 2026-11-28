@@ -1,21 +1,35 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DataBindingDemos.AlternativeXamlBindingPage"
-             Title="Alternative XAML Binding">
-    <StackLayout Padding="10, 0">
-        <Label x:DataType="Slider"
-               Text="TEXT"
-               FontSize="40"
-               HorizontalOptions="Center"
-               VerticalOptions="Center"
-               Scale="{Binding x:DataType='Slider',
-                               Source={x:Reference slider},
-                               Path=Value}" />
+             Title="XAML binding with a source">
+    <ScrollView>
+        <Grid RowDefinitions="Auto,Auto"
+              Style="{StaticResource DemoLayout}">
+            <VerticalStackLayout Style="{StaticResource DemoHeader}">
+                <Label Text="Basic bindings" Style="{StaticResource Eyebrow}" />
+                <Label Text="XAML binding with a source" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+                <Label Text="The binding sets Source to the Slider with x:Reference, so no BindingContext is needed. The Label's Scale follows the Slider, from -2 to 2, starting at 1. Drag the slider." Style="{StaticResource Lead}" />
+            </VerticalStackLayout>
 
-        <Slider x:Name="slider"
-                Minimum="-2"
-                Maximum="2"
-                VerticalOptions="Center" />
-    </StackLayout>
+            <Border Grid.Row="1"
+                    Style="{StaticResource DemoSurface}">
+                <Grid RowDefinitions="200,Auto">
+                    <Label x:DataType="Slider"
+                           Text="TEXT"
+                           FontSize="40"
+                           Style="{StaticResource DemoText}"
+                           Scale="{Binding x:DataType='Slider',
+                                           Source={x:Reference slider},
+                                           Path=Value}" />
+
+                    <Slider x:Name="slider"
+                            Grid.Row="1"
+                            Minimum="-2"
+                            Maximum="2"
+                            Value="1" />
+                </Grid>
+            </Border>
+        </Grid>
+    </ScrollView>
 </ContentPage>

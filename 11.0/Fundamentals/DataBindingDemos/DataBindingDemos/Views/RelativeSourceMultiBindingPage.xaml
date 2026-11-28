@@ -1,20 +1,28 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:DataBindingDemos"
              xmlns:controls="clr-namespace:DataBindingDemos.Controls"
              x:Class="DataBindingDemos.RelativeSourceMultiBindingPage"
-             Title="RelativeSource MultiBinding demo">
+             Title="RelativeSource multi-binding">
     <ContentPage.Resources>
         <local:AllTrueMultiConverter x:Key="AllTrueConverter" />
+
+        <!-- Avatars for the cards -->
+        <FontImageSource x:Key="PersonIcon" Glyph="{x:Static local:MaterialIcons.Person}" FontFamily="MaterialIcons" Color="White" />
+        <FontImageSource x:Key="FaceIcon" Glyph="{x:Static local:MaterialIcons.Face}" FontFamily="MaterialIcons" Color="White" />
+        <FontImageSource x:Key="PetsIcon" Glyph="{x:Static local:MaterialIcons.Pets}" FontFamily="MaterialIcons" Color="White" />
+
+        <Style TargetType="controls:CardViewExpander">
+            <Setter Property="CardColor" Value="{AppThemeBinding Light={StaticResource SurfaceLight}, Dark={StaticResource SurfaceDark}}" />
+            <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource OutlineLight}, Dark={StaticResource OutlineDark}}" />
+        </Style>
 
         <ControlTemplate x:Key="CardViewExpanderControlTemplate"
                          x:DataType="controls:CardViewExpander">
             <local:Expander BindingContext="{Binding Source={RelativeSource TemplatedParent}}"
                             IsExpanded="{Binding IsExpanded, Source={RelativeSource TemplatedParent}}"
-                            BackgroundColor="{Binding CardColor}"
-                            RowDefinitions="Auto,Auto"
-                            Padding="8">
+                            RowDefinitions="Auto,Auto">
                 <local:Expander.GestureRecognizers>
                     <TapGestureRecognizer Tapped="OnTapGestureRecognized" />
                 </local:Expander.GestureRecognizers>
@@ -24,84 +32,87 @@
                         <Binding Path="IsEnabled" />
                     </MultiBinding>
                 </local:Expander.IsVisible>
-                <Grid>
+                <!-- The card background, behind both rows -->
+                <Border Grid.RowSpan="2"
+                        Background="{Binding CardColor}"
+                        Stroke="{Binding BorderColor}"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 18" />
+                <Grid Padding="16,16,16,0"
+                      ColumnDefinitions="*,Auto">
                     <Label Text="{Binding CardTitle}"
-                           FontAttributes="Bold"
-                           FontSize="20"
-                           VerticalTextAlignment="Center"
-                           HorizontalTextAlignment="Start" />
-                    <Image Source="expand.png"
-                           HorizontalOptions="End"
-                           VerticalOptions="Start">
-                        <Image.Triggers>
-                            <DataTrigger TargetType="Image"
+                           Style="{StaticResource Headline}"
+                           VerticalTextAlignment="Center" />
+                    <Label Grid.Column="1"
+                           Text="{x:Static local:MaterialIcons.ExpandMore}"
+                           Style="{StaticResource Icon}">
+                        <Label.Triggers>
+                            <DataTrigger TargetType="Label"
                                          Binding="{Binding Source={RelativeSource AncestorType={x:Type local:Expander}}, Path=IsExpanded}"
                                          Value="True">
-                                <Setter Property="Source"
-                                        Value="collapse.png" />
+                                <Setter Property="Text"
+                                        Value="{x:Static local:MaterialIcons.ExpandLess}" />
                             </DataTrigger>
-                        </Image.Triggers>
-                    </Image>
+                        </Label.Triggers>
+                    </Label>
                 </Grid>
-                <Grid Padding="10"
-                      Grid.Row="1">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="75" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="75" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
+                <Grid Grid.Row="1"
+                      Padding="16,12,16,16"
+                      ColumnDefinitions="Auto,*"
+                      ColumnSpacing="14">
                     <Border Stroke="{Binding BorderColor}"
-                            BackgroundColor="{Binding IconBackgroundColor}"
-                            StrokeShape="RoundRectangle 38"
-                            HeightRequest="60"
-                            WidthRequest="60"
-                            HorizontalOptions="Center"
-                            VerticalOptions="Center">
+                            Background="{Binding IconBackgroundColor}"
+                            StrokeThickness="0"
+                            StrokeShape="RoundRectangle 24"
+                            HeightRequest="48"
+                            WidthRequest="48"
+                            VerticalOptions="Start">
                         <Image Source="{Binding IconImageSource}"
-                               Margin="-20"
-                               WidthRequest="100"
-                               HeightRequest="100"
-                               Aspect="AspectFill" />
+                               WidthRequest="28"
+                               HeightRequest="28" />
                     </Border>
-                    <Label Grid.Column="2"
-                           Grid.RowSpan="2"
+                    <Label Grid.Column="1"
                            Text="{Binding CardDescription}"
-                           HorizontalOptions="Start" />
+                           Style="{StaticResource BodySecondary}" />
                 </Grid>
             </local:Expander>
         </ControlTemplate>
-
     </ContentPage.Resources>
 
     <ContentPage.BindingContext>
         <local:GroupViewModel />
     </ContentPage.BindingContext>
 
-    <StackLayout Margin="20">
-        <Label Text="Expanders vanish upon collapse." />
-        <controls:CardViewExpander BorderColor="DarkGray"
-                                   CardTitle="John Doe"
-                                   CardDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla elit dolor, convallis non interdum."
-                                   IconBackgroundColor="SlateGray"
-                                   IconImageSource="user.png"
-                                   ControlTemplate="{StaticResource CardViewExpanderControlTemplate}"
-                                   IsExpanded="True" />
-        <controls:CardViewExpander BorderColor="DarkGray"
-                                   CardTitle="Jane Doe"
-                                   CardDescription="Phasellus eu convallis mi. In tempus augue eu dignissim fermentum. Morbi ut lacus vitae eros lacinia."
-                                   IconBackgroundColor="SlateGray"
-                                   IconImageSource="user.png"
-                                   ControlTemplate="{StaticResource CardViewExpanderControlTemplate}"
-                                   IsExpanded="True" />
-        <controls:CardViewExpander BorderColor="DarkGray"
-                                   CardTitle="Monkey"
-                                   CardDescription="Aliquam sagittis, odio lacinia fermentum dictum, mi erat scelerisque erat, quis aliquet arcu."
-                                   IconBackgroundColor="SlateGray"
-                                   IconImageSource="user.png"
-                                   ControlTemplate="{StaticResource CardViewExpanderControlTemplate}"
-                                   IsExpanded="True" />
-    </StackLayout>
+    <ScrollView>
+        <Grid RowDefinitions="Auto,Auto"
+              Style="{StaticResource DemoLayout}">
+            <VerticalStackLayout Style="{StaticResource DemoHeader}">
+                <Label Text="Multi-bindings" Style="{StaticResource Eyebrow}" />
+                <Label Text="RelativeSource multi-binding" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+                <Label Text="Each card's IsVisible is a MultiBinding of IsExpanded and IsEnabled on its templated parent, combined with AllTrueMultiConverter. Tap a card to collapse it, and it vanishes." Style="{StaticResource Lead}" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Grid.Row="1"
+                                 Spacing="12">
+                <controls:CardViewExpander CardTitle="John Doe"
+                                           CardDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla elit dolor, convallis non interdum."
+                                           IconBackgroundColor="{StaticResource Violet}"
+                                           IconImageSource="{StaticResource PersonIcon}"
+                                           ControlTemplate="{StaticResource CardViewExpanderControlTemplate}"
+                                           IsExpanded="True" />
+                <controls:CardViewExpander CardTitle="Jane Doe"
+                                           CardDescription="Phasellus eu convallis mi. In tempus augue eu dignissim fermentum. Morbi ut lacus vitae eros lacinia."
+                                           IconBackgroundColor="{StaticResource Teal}"
+                                           IconImageSource="{StaticResource FaceIcon}"
+                                           ControlTemplate="{StaticResource CardViewExpanderControlTemplate}"
+                                           IsExpanded="True" />
+                <controls:CardViewExpander CardTitle="Monkey"
+                                           CardDescription="Aliquam sagittis, odio lacinia fermentum dictum, mi erat scelerisque erat, quis aliquet arcu."
+                                           IconBackgroundColor="{StaticResource Orange}"
+                                           IconImageSource="{StaticResource PetsIcon}"
+                                           ControlTemplate="{StaticResource CardViewExpanderControlTemplate}"
+                                           IsExpanded="True" />
+            </VerticalStackLayout>
+        </Grid>
+    </ScrollView>
 </ContentPage>

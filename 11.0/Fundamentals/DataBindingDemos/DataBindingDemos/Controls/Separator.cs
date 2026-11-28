@@ -1,12 +1,11 @@
-﻿namespace DataBindingDemos.Controls
+namespace DataBindingDemos.Controls
 {
     public class Separator : BoxView
     {
         public Separator()
         {
-            Color = Colors.Gray;
-            HeightRequest = 2;
-            Opacity = 0.5;
+            this.SetAppThemeColor(ColorProperty, Color.FromArgb("#E3E0EC"), Color.FromArgb("#353146"));
+            HeightRequest = 1;
         }
     }
 }

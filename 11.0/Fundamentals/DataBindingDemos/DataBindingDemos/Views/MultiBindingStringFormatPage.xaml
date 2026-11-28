@@ -1,69 +1,76 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:DataBindingDemos"
              x:Class="DataBindingDemos.MultiBindingStringFormatPage"
-             Title="MultiBinding demo"
+             Title="String formatting"
              x:DataType="local:GroupViewModel">
     <ContentPage.BindingContext>
         <local:GroupViewModel />
     </ContentPage.BindingContext>
 
-    <Grid Margin="20">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <Label Text="Employee"
-               FontAttributes="Bold" />
-        <Label Grid.Row="1">
-            <Label.Text>
-                <MultiBinding StringFormat="{}{0} {1} {2}">
-                    <Binding Path="Employee1.Forename" />
-                    <Binding Path="Employee1.MiddleName" />
-                    <Binding Path="Employee1.Surname" />
-                </MultiBinding>
-            </Label.Text>
-        </Label>
-        <Label Grid.Row="2">
-            <Label.Text>
-                <MultiBinding StringFormat="{}{0} {1} {2}">
-                    <Binding Path="Employee2.Forename" />
-                    <Binding Path="Employee2.MiddleName" />
-                    <Binding Path="Employee2.Surname" />
-                </MultiBinding>
-            </Label.Text>
-        </Label>
-        <Label Grid.Row="3">
-            <Label.Text>
-                <MultiBinding StringFormat="{}{0} {1} {2}">
-                    <Binding Path="Employee3.Forename" />
-                    <Binding Path="Employee3.MiddleName" />
-                    <Binding Path="Employee3.Surname" />
-                </MultiBinding>
-            </Label.Text>
-        </Label>
-        <Label Grid.Row="4">
-            <Label.Text>
-                <MultiBinding StringFormat="{}{0} {1} {2}">
-                    <Binding Path="Employee4.Forename" />
-                    <Binding Path="Employee4.MiddleName" />
-                    <Binding Path="Employee4.Surname" />
-                </MultiBinding>
-            </Label.Text>
-        </Label>
-        <Label Grid.Row="5">
-            <Label.Text>
-                <MultiBinding StringFormat="{}{0} {1} {2}">
-                    <Binding Path="Employee5.Forename" />
-                    <Binding Path="Employee5.MiddleName" />
-                    <Binding Path="Employee5.Surname" />
-                </MultiBinding>
-            </Label.Text>
-        </Label>
-    </Grid>
+    <ScrollView>
+        <Grid RowDefinitions="Auto,Auto"
+              Style="{StaticResource DemoLayout}">
+            <VerticalStackLayout Style="{StaticResource DemoHeader}">
+                <Label Text="Multi-bindings" Style="{StaticResource Eyebrow}" />
+                <Label Text="String formatting" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+                <Label Text="Each Label combines three bindings with a MultiBinding, and StringFormat=&quot;{}{0} {1} {2}&quot; formats them as a full name." Style="{StaticResource Lead}" />
+            </VerticalStackLayout>
+
+            <Border Grid.Row="1"
+                    Style="{StaticResource DemoSurface}">
+                <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto"
+                      RowSpacing="12">
+                    <Label Text="Employee"
+                           Style="{StaticResource SectionHeader}" />
+                <Label Grid.Row="1">
+                    <Label.Text>
+                        <MultiBinding StringFormat="{}{0} {1} {2}">
+                            <Binding Path="Employee1.Forename" />
+                            <Binding Path="Employee1.MiddleName" />
+                            <Binding Path="Employee1.Surname" />
+                        </MultiBinding>
+                    </Label.Text>
+                </Label>
+                <Label Grid.Row="2">
+                    <Label.Text>
+                        <MultiBinding StringFormat="{}{0} {1} {2}">
+                            <Binding Path="Employee2.Forename" />
+                            <Binding Path="Employee2.MiddleName" />
+                            <Binding Path="Employee2.Surname" />
+                        </MultiBinding>
+                    </Label.Text>
+                </Label>
+                <Label Grid.Row="3">
+                    <Label.Text>
+                        <MultiBinding StringFormat="{}{0} {1} {2}">
+                            <Binding Path="Employee3.Forename" />
+                            <Binding Path="Employee3.MiddleName" />
+                            <Binding Path="Employee3.Surname" />
+                        </MultiBinding>
+                    </Label.Text>
+                </Label>
+                <Label Grid.Row="4">
+                    <Label.Text>
+                        <MultiBinding StringFormat="{}{0} {1} {2}">
+                            <Binding Path="Employee4.Forename" />
+                            <Binding Path="Employee4.MiddleName" />
+                            <Binding Path="Employee4.Surname" />
+                        </MultiBinding>
+                    </Label.Text>
+                </Label>
+                <Label Grid.Row="5">
+                    <Label.Text>
+                        <MultiBinding StringFormat="{}{0} {1} {2}">
+                            <Binding Path="Employee5.Forename" />
+                            <Binding Path="Employee5.MiddleName" />
+                            <Binding Path="Employee5.Surname" />
+                        </MultiBinding>
+                    </Label.Text>
+                </Label>
+                </Grid>
+            </Border>
+        </Grid>
+    </ScrollView>
 </ContentPage>

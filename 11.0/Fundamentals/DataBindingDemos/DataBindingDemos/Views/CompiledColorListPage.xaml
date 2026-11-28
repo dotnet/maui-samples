@@ -3,35 +3,49 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:DataBindingDemos"
              x:Class="DataBindingDemos.CompiledColorListPage"
-             Title="Compiled Color List">
-    <Grid Margin="5">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="2*" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+             Title="Compiled color list">
+    <Grid RowDefinitions="Auto,2*,*"
+          Style="{StaticResource DemoLayout}">
+        <VerticalStackLayout Style="{StaticResource DemoHeader}">
+            <Label Text="Compiled bindings" Style="{StaticResource Eyebrow}" />
+            <Label Text="Compiled color list" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+            <Label Text="x:DataType on the DataTemplate compiles the item bindings. The BoxView below binds to the SelectedItem as a NamedColor. Select a color." Style="{StaticResource Lead}" />
+        </VerticalStackLayout>
 
-        <CollectionView SelectionMode="Single" x:Name="colorCollectionView"
-                  Grid.Row="0"
-                  ItemsSource="{x:Static local:NamedColor.All}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="local:NamedColor">
-<StackLayout Orientation="Horizontal">
-                            <BoxView Color="{Binding Color}"
-                                     HeightRequest="32"
-                                     WidthRequest="32"
-                                     VerticalOptions="Center" />
-
-                            <Label Text="{Binding FriendlyName}"
-                                   FontSize="24"
+        <Border Grid.Row="1"
+                Style="{StaticResource ListSurface}">
+            <CollectionView x:Name="colorCollectionView"
+                            SelectionMode="Single"
+                            ItemsSource="{x:Static local:NamedColor.All}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="local:NamedColor">
+                        <Grid Style="{StaticResource SelectableItem}"
+                              Padding="16,8"
+                              ColumnDefinitions="Auto,*"
+                              ColumnSpacing="14">
+                            <!-- The outline keeps very light and very dark colors visible -->
+                            <Border StrokeShape="RoundRectangle 8"
+                                    Stroke="{AppThemeBinding Light={StaticResource OutlineLight}, Dark={StaticResource OutlineStrongDark}}"
+                                    HeightRequest="32"
+                                    WidthRequest="32"
+                                    VerticalOptions="Center">
+                                <BoxView Color="{Binding Color}" />
+                            </Border>
+                            <Label Grid.Column="1"
+                                   Text="{Binding FriendlyName}"
+                                   Style="{StaticResource Headline}"
                                    VerticalOptions="Center" />
-                        </StackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Border>
 
-        <BoxView x:DataType="local:NamedColor"
-                 Grid.Row="1"
-                 BindingContext="{Binding x:DataType='CollectionView', Source={x:Reference colorCollectionView}, Path=SelectedItem}"
-                 Color="{Binding Color}" />
+        <Border Grid.Row="2"
+                Style="{StaticResource ListSurface}">
+            <BoxView x:DataType="local:NamedColor"
+                     BindingContext="{Binding x:DataType='CollectionView', Source={x:Reference colorCollectionView}, Path=SelectedItem}"
+                     Color="{Binding Color}" />
+        </Border>
     </Grid>
 </ContentPage>

@@ -1,4 +1,4 @@
-﻿<?xml version = "1.0" encoding = "UTF-8" ?>
+<?xml version = "1.0" encoding = "UTF-8" ?>
 <Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:DataBindingDemos"
@@ -10,16 +10,27 @@
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
-            <Style TargetType="StackLayout">
-                <Setter Property="Spacing" Value="6" />
+            <!-- Large text that the basic binding demos rotate, scale, and fade -->
+            <Style x:Key="DemoText" TargetType="Label">
+                <Setter Property="FontFamily" Value="InterBold" />
+                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource PrimaryLight}, Dark={StaticResource PrimaryDark}}" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
             </Style>
 
-            <Style TargetType="Grid">
-                <Setter Property="RowSpacing" Value="6" />
-                <Setter Property="ColumnSpacing" Value="6" />
+            <!-- The color swatch at the top of the color selector demos -->
+            <Style x:Key="ColorPreview" TargetType="BoxView">
+                <Setter Property="HeightRequest" Value="160" />
+                <Setter Property="CornerRadius" Value="16" />
             </Style>
 
-            <x:String x:Key="fallbackImageUrl">https://upload.wikimedia.org/wikipedia/commons/2/20/Point_d_interrogation.jpg</x:String>
+            <!-- Text colors for the Switch indicators demo. They have at least 4.5:1 contrast on light
+                 surfaces and 3:1 on dark surfaces, because BoolToObjectConverter can't use AppThemeBinding. -->
+            <Color x:Key="YesText">#15803D</Color>
+            <Color x:Key="NoText">#E11D48</Color>
+
+            <!-- Values used by the binding fallback demos (FallbackValue and TargetNullValue) -->
+            <x:String x:Key="fallbackImageUrl">red_question_mark.png</x:String>
             <x:String x:Key="locationUnknown">Location unknown</x:String>
             <x:String x:Key="populationUnknown">Population size unknown</x:String>
             <x:String x:Key="unknown">Unknown</x:String>

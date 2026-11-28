@@ -3,39 +3,44 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:DataBindingDemos"
              x:Class="DataBindingDemos.MonkeysPage"
-             Title="Monkeys"
+             Title="FallbackValue and TargetNullValue"
              x:DataType="local:MonkeysViewModel">
-    <Grid Margin="20">
-        <CollectionView ItemsSource="{Binding Monkeys}"
-                   
-                  SelectionMode="Single" SelectionChanged="OnCollectionViewSelectionChanged">
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="local:Monkey">
-<Grid Padding="10">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="*" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Image Grid.RowSpan="2" 
-                                   Source="{Binding ImageUrl, TargetNullValue={StaticResource fallbackImageUrl}}" 
-                                   Aspect="AspectFill" 
-                                   HeightRequest="60" 
-                                   WidthRequest="60" />
-                            <Label Grid.Column="1" 
-                                   Text="{Binding Name}" 
-                                   Style="{DynamicResource TitleStyle}" />
-                            <Label Grid.Row="1" 
-                                   Grid.Column="1" 
-                                   Text="{Binding Location, TargetNullValue={StaticResource locationUnknown}}" 
-                                   VerticalOptions="End" 
-                                   Style="{DynamicResource SubtitleTextStyle}" />
+    <Grid RowDefinitions="Auto,*"
+          Style="{StaticResource DemoLayout}">
+        <VerticalStackLayout Style="{StaticResource DemoHeader}">
+            <Label Text="Binding fallbacks" Style="{StaticResource Eyebrow}" />
+            <Label Text="FallbackValue and TargetNullValue" Style="{StaticResource Title1}" SemanticProperties.HeadingLevel="Level1" />
+            <Label Text="When ImageUrl or Location is null, TargetNullValue shows a placeholder instead. Select a monkey to see a FallbackValue." Style="{StaticResource Lead}" />
+        </VerticalStackLayout>
+
+        <Border Grid.Row="1"
+                Style="{StaticResource ListSurface}">
+            <CollectionView ItemsSource="{Binding Monkeys}"
+                            SelectionMode="Single"
+                            SelectionChanged="OnCollectionViewSelectionChanged">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="local:Monkey">
+                        <Grid Style="{StaticResource SelectableItem}"
+                              Padding="16,10"
+                              RowDefinitions="Auto,Auto"
+                              ColumnDefinitions="Auto,*"
+                              ColumnSpacing="14">
+                            <Image Grid.RowSpan="2"
+                                   Source="{Binding ImageUrl, TargetNullValue={StaticResource fallbackImageUrl}}"
+                                   HeightRequest="48"
+                                   WidthRequest="48" />
+                            <Label Grid.Column="1"
+                                   Text="{Binding Name}"
+                                   Style="{StaticResource Headline}"
+                                   VerticalOptions="End" />
+                            <Label Grid.Row="1"
+                                   Grid.Column="1"
+                                   Text="{Binding Location, TargetNullValue={StaticResource locationUnknown}}"
+                                   Style="{StaticResource Caption}" />
                         </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Border>
     </Grid>
 </ContentPage>
